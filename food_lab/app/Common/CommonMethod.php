@@ -9,4 +9,16 @@ namespace App\Common;
 class Method
 {
     //PUBLIC METHOD
+
+
+
+
+
+
+
+    //PRIVATE METHOD
+
+
+
+    
 }

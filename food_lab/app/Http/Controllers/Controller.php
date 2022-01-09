@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Method;
 use App\Common\Variable;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -12,4 +13,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     //**Not allowed to write**/
+
+    public function test(){
+        $variable = new Variable;
+        $method = new Method;
+
+
+      $variable->PAGE_NAME;
+    }
 }

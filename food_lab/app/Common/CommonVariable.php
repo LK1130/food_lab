@@ -9,4 +9,6 @@ namespace App\Common;
 class Variable
 {
     //PUBLIC 
+    public $PAGE_NAME= "Food_Lab";
+
 }

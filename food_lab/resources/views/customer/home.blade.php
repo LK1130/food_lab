@@ -1,1 +1,1 @@
-@extends('COMMON.layout.layout_admin')
+@extends('COMMON.layout.layout_customer')
