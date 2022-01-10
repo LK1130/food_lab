@@ -36,7 +36,7 @@ CREATE TABLE `m_ad_coincharge_message` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ CREATE TABLE `m_ad_coinrate` (
   `de_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `update_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE `m_ad_login` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE `m_ad_news` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -103,7 +103,7 @@ CREATE TABLE `m_ad_track` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE `m_decision_status` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_decision_status`
@@ -143,7 +143,7 @@ CREATE TABLE `m_fav_type` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_fav_type`
@@ -169,7 +169,7 @@ CREATE TABLE `m_news_category` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_news_category`
@@ -195,7 +195,7 @@ CREATE TABLE `m_order_status` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_order_status`
@@ -224,7 +224,7 @@ CREATE TABLE `m_payment` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_payment`
@@ -252,7 +252,7 @@ CREATE TABLE `m_site` (
   `updated_by` bigint DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -267,7 +267,7 @@ CREATE TABLE `m_suggest` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_suggest`
@@ -293,7 +293,7 @@ CREATE TABLE `m_taste` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `m_taste`
@@ -317,7 +317,7 @@ CREATE TABLE `m_township` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -337,7 +337,7 @@ CREATE TABLE `t_ad_coincharge` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -355,7 +355,7 @@ CREATE TABLE `t_ad_coincharge_decision_history` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -371,7 +371,7 @@ CREATE TABLE `t_ad_coincharge_finance` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -390,7 +390,7 @@ CREATE TABLE `t_ad_coinrate_history` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -406,7 +406,7 @@ CREATE TABLE `t_ad_contact` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -421,7 +421,7 @@ CREATE TABLE `t_ad_evd` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `update_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -442,7 +442,7 @@ CREATE TABLE `t_ad_order` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -461,7 +461,7 @@ CREATE TABLE `t_ad_orderdetail` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -478,7 +478,7 @@ CREATE TABLE `t_ad_report` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -495,7 +495,7 @@ CREATE TABLE `t_ad_suggest` (
   `del_flg` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -522,7 +522,7 @@ CREATE TABLE `t_cu_customer` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -541,7 +541,7 @@ CREATE TABLE `t_cu_customer_login` (
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'updated timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Indexes for dumped tables
