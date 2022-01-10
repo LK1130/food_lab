@@ -13,12 +13,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     //**Not allowed to write**/
-
-    public function test(){
-        $variable = new Variable;
-        $method = new Method;
-
-
-      $variable->PAGE_NAME;
-    }
 }
