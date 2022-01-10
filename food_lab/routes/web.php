@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 
@@ -18,3 +19,5 @@ Route::resource('adminLogin', loginController::class);
 Route::get('asdf', function () {
     return view('admin.settingFolder.loginManageFolder.adminAdd');
 });
+
+Route::get('/', [CustomerController::class, 'foodlab']);
