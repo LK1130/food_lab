@@ -21,3 +21,8 @@ Route::get('asdf', function () {
 });
 
 Route::get('/', [CustomerController::class, 'foodlab']);
+
+/**
+ * For salesChart show
+ */
+Route::get('salesChart' , [SalesController::class,'salesChart']);
