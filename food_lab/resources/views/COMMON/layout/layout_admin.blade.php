@@ -16,7 +16,6 @@
 
 <body>
     <div class="container-fluid">
-
         <div class="row">
             <!-- sidenav bar Start  -->
             <div class="col-md-2">
@@ -25,12 +24,12 @@
                         <li class="adminli">Admin name</li>
                         <li class="adminli">{{ __('messageZN.Last Login') }}:12:12</li>
                     </div>
-                    <div class="list-group list-group-flush my-3">
+                    <div class="text-center list-group list-group-flush my-3 x">
                         <a href=""><button class="buttons btn ">{{ __('messageZN.Dashboard') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Transaction') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Customer') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Coin') }}</button></a>
-                        <a href=""><button class="buttons btn">{{ __('messageZN.Finace') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Finance') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Products') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Setting') }}</button></a>
                         <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
