@@ -26,24 +26,23 @@
                 <div class="sidenav fixed-top">
                     <div class="sidebar-heading text-center py-4 text-uppercase fs-5 text-white">
                         <li class="adminli">Admin name</li>
-                        <li class="adminli">Last Login:12:12</li>
+                        <li class="adminli">{{ __('messageZN.Last Login') }}:12:12</li>
                     </div>
                     <div class="list-group list-group-flush my-3">
-                        <a href=""><button class="buttons btn active">Dashboard</button></a>
-                        <a href=""><button class="buttons btn">Transaction</button></a>
-                        <a href=""><button class="buttons btn">Customer</button></a>
-                        <a href=""><button class="buttons btn">Coin</button></a>
-                        <a href=""><button class="buttons btn">Finace</button></a>
-                        <a href=""><button class="buttons btn">Products</button></a>
-                        <a href=""><button class="buttons btn">Setting</button></a>
-                        <a href=""><button class="logout btn">Logout</button></a>
+                        <a href=""><button class="buttons btn ">{{ __('messageZN.Dashboard') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Transaction') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Customer') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Coin') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Finace') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Products') }}</button></a>
+                        <a href=""><button class="buttons btn">{{ __('messageZN.Setting') }}</button></a>
+                        <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
                     </div>
                 </div>
                 <!-- sidenav bar End  -->
             </div>
-            <div class="col-md-10">
-                @yield('body')
-            </div>
+            @yield('body')
+
         </div>
     </div>
 </body>

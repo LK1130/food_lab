@@ -23,6 +23,12 @@ Route::get('asdf', function () {
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
+Route::get('orderTransaction', function () {
+    return View('admin.transactions.orderTransaction');
+});
+Route::get('coinchargeList', function () {
+    return View('admin.transactions.coinchargeList');
+});
 
 Route::get('/', [CustomerController::class, 'foodlab']);
 
