@@ -29,4 +29,8 @@ Route::get('/', [CustomerController::class, 'foodlab']);
 /**
  * For salesChart show
  */
-Route::get('salesChart' , [SalesController::class,'salesChart']);
+//Route::get('salesChart' , [SalesController::class,'salesChart']);
+
+Route::get('saleChart', function () {
+    return View('admin.salesChart.monthlySale');
+});
