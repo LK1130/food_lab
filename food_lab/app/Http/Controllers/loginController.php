@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\adminValidation;
 use App\Models\AdminLogin;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class loginController extends Controller
      */
     public function index()
     {
-        return view('admin.settingFolder.loginManageFolder.adminList');
+        $admin = new AdminLogin();
+        return $admin->AdminList();
     }
 
     /**
@@ -25,7 +27,7 @@ class loginController extends Controller
      */
     public function create()
     {
-
+        //admin add view
         return view('admin.settingFolder.loginManageFolder.adminAdd');
     }
 
@@ -35,10 +37,21 @@ class loginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /*
+    * Create:zayar(2022/01/10) 
+    * Update: 
+    * This is function is to store data by passing parameter to model
+    * $request is used for form data
+    * Return is view (adminList.blade.php)
+    */
+    public function store(adminValidation $request)
     {
+
+        $validate = $request->validated();
+        //call class from Adminlogin model 
         $admin = new AdminLogin();
-        return $admin->AdminAdd();
+        //pass parameter
+        return $admin->AdminAdd($validate);
     }
 
     /**
@@ -47,6 +60,13 @@ class loginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*
+    * Create:zayar(2022/01/10) 
+    * Update: 
+    * This is function is to show specified resource.
+    * $id is used searching this userid
+    * Return is view (adminList.blade.php)
+    */
     public function show($id)
     {
         //

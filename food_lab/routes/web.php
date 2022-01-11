@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 
-Route::resource('adminLogin', loginController::class);
+Route::resource('adminLogin', LoginController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +15,6 @@ Route::resource('adminLogin', loginController::class);
 |
 */
 
-Route::get('asdf', function () {
-    return view('admin.settingFolder.loginManageFolder.adminAdd');
+Route::get('coinrate', function () {
+    return view('admin.settingFolder.coinRateFolder.coinRate');
 });
