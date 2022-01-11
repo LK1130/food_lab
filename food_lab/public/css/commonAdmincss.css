@@ -1,0 +1,18 @@
+:root {
+    /* Color list */
+    --dashboardbg: #9d8a8a;
+    --btns: #d4401f;
+    --logout: #b70b0b;
+    --dashboardminlistingheader: #d3a1a1;
+    --tablecolor1: #c4c4c4;
+    --tablecolor2: #9d8a8a;
+    --approvebtn: #32ab07;
+    --editbtn: #316ad8;
+    --inactivebtn: #b70b0b;
+    --white: #ffffff;
+    /* Font Size List */
+    --fontsize1: 1rem;
+    --fontsize2: 2rem;
+    --fontsize3: 3rem;
+    --fontsize4: 4rem;
+}

@@ -3,6 +3,8 @@
 
  @section('css') 
  <link rel="stylesheet" href="{{ URL::asset('css/adminAdd.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}"/>
  @endsection
 
 @section('script') 
@@ -14,20 +16,9 @@
 @section('body')
     {{-- Starts Header Buttons --}}
 <div class="navBar">
-    <a href="{{ url('adminLogin') }}"><button class="checked">{{__('messageZY.loginManage')}}</button></a>
-    <a href="{{ url('coinrate') }}"><button>{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('sitemanager') }}"><button>{{__('messageZY.siteManager')}}</button></a>
-</div>
-{{-- Button for mobile --}}
-<div class="moblieNav" id="mobileNav">
-    <ion-icon name="list-outline"></ion-icon>
-</div>
-{{-- Nav bar for mobile view --}}
-<div class="mobileNavShow">
-    <ion-icon name="close-outline" id="cross" class="cross"></ion-icon>
-    <a href="{{ url('adminLogin') }}"><button class="checked">{{__('messageZY.loginManage')}}</button></a>
-    <a href="{{ url('coinrate') }}"><button>{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('sitemanager') }}"><button>{{__('messageZY.siteManager')}}</button></a>
+    <a href="{{ url('adminLogin') }}"><button class="checked headerButton">{{__('messageZY.loginManage')}}</button></a>
+    <a href="{{ url('coinrate') }}"><button class=" headerButton">{{__('messageZY.coinRate')}}</button></a>
+    <a href="{{ url('sitemanager') }}"><button class=" headerButton">{{__('messageZY.siteManager')}}</button></a>
 </div>
     {{-- Starts Form --}}
     <div class="adminAddForm">
@@ -45,6 +36,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">{{__('messageZY.password')}}</label>
+                            <ion-icon name="eye-off-outline" id="icon"></ion-icon>
                             <input type="password" class="form-control" id="password" name="password" value="{{ $admins->ad_password }}">
                             @error('password')
                             <li class="text-danger ">{{ $message }}</li>

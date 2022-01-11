@@ -3,6 +3,7 @@
 
  @section('css') 
  <link rel="stylesheet" href="{{ URL::asset('css/adminList.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}"/>
  @endsection
 
 @section('script') 
@@ -14,9 +15,9 @@
 @section('body')
     {{-- Starts Header Buttons --}}
 <div class="navBar">
-    <a href="{{ url('adminLogin') }}"><button class="checked">{{__('messageZY.loginManage')}}</button></a>
-    <a href="{{ url('coinrate') }}"><button>{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('sitemanager') }}"><button>{{__('messageZY.siteManager')}}</button></a>
+    <a href="{{ url('adminLogin') }}"><button class="checked headerButton">{{__('messageZY.loginManage')}}</button></a>
+    <a href="{{ url('coinrate') }}"><button class=" headerButton">{{__('messageZY.coinRate')}}</button></a>
+    <a href="{{ url('sitemanager') }}"><button class=" headerButton">{{__('messageZY.siteManager')}}</button></a>
 </div>
     {{-- Starts Table --}}
     <table class="table">
@@ -36,10 +37,10 @@
         
         <tr class="tableChile">
             
-            <td >{{ $count++ }}</td>
-            <td >{{$admin->ad_name}}</td>
-            <td >{{$admin->ad_password}}</td>
-            <td >{{$admin->ad_role}} </td>
+            <td class="tdBlack">{{ $count++ }}</td>
+            <td class="tdBlack">{{$admin->ad_name}}</td>
+            <td class="tdWhite">{{$admin->ad_password}}</td>
+            <td class="tdWhite">{{$admin->ad_role}} </td>
             <td ><a href="{{ route('adminLogin.show',$admin->id)}}"><button  class="btn btn-secondary">{{__('messageZY.detail')}}</button></a></td>
             <td ><a href="{{ route('adminLogin.edit',$admin->id)}}"><button  class="btn btn-primary">{{__('messageZY.edit')}}</button></a></td>
             <td>
@@ -55,6 +56,7 @@
             
         @endforelse
     </table>
-    
+    <div class="d-flex justify-content-center ">{{ $admins->links() }}</div>
+    <a href="{{ route('adminLogin.create')}}"><button  class="btn addAdminButton">{{__('messageZY.addAdmin')}}</button></a>
 
 @endsection

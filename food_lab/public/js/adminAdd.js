@@ -1,16 +1,16 @@
 $(document).ready(function () {
-    //to show the mobile view of nav bars when list-icon button is clicked
-    $("#mobileNav").click(function () {
-        //show the nav bar of the mobile view
-        $(".mobileNavShow").css({ visibility: "visible" });
-        //hide the list-icon button
-        $("#mobileNav").css({ visibility: "hidden" });
-    });
-    //to hide the mobile view of nav bars when cross-icon button is clicked
-    $("#cross").click(function () {
-        //hide the nav bar of the mobile view
-        $(".mobileNavShow").css({ visibility: "hidden" });
-        //show the list-icon button
-        $("#mobileNav").css({ visibility: "visible" });
-    });
+    /*
+     * Create:zayar(2022/01/11)
+     * Update:
+     * This function is used to toggle the attribute of password.
+     */
+    iconClick();
+    function iconClick() {
+        $("#icon").click(function () {
+            let attribute = $("#password").attr("type");
+            if (attribute == "password") {
+                $("#password").attr("type", "text");
+            } else $("#password").attr("type", "password");
+        });
+    }
 });

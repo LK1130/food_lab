@@ -1,52 +1,46 @@
-:root {
-    --bs-buttonInactive: #c5c5c5;
-    --bs-buttonActive: #d4401f;
-    --bs-white: white;
-    --bs-tableHeader: #9d8a8a;
-    --bs-tableChile: #c4c4c4;
-}
-* {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
 .navBar {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     gap: 7vh;
-    margin-top: 5vh;
+    margin-top: 6vh;
 }
 
-.navBar button {
+.headerButton {
     width: 12vw;
     height: 8vh;
-    background-color: var(--bs-buttonInactive);
+    background-color: var(--inactivebtn);
     border: 1px solid black;
     border-radius: 2vh;
 }
 
-.navBar button:hover {
-    background-color: var(--bs-buttonActive);
+.headerButton:hover {
+    background-color: var(--btns);
     color: var(--bs-white);
 }
 .checked {
-    background-color: var(--bs-buttonActive) !important;
+    background-color: var(--btns) !important;
     color: var(--bs-white);
 }
 .table {
     width: 70%;
-    margin-left: 20%;
-    margin-top: 4%;
+    margin-left: 15%;
+    margin-top: 8%;
     box-shadow: 5px 5px 7px black;
 }
 .tableHeader {
-    background-color: var(--bs-tableHeader);
+    background-color: var(--tablecolor1);
 }
 .tableChile {
-    background-color: var(--bs-tableChile);
+    background-color: var(--tablecolor2);
+}
+.tdWhite {
+    color: var(--white) !important;
+    font-size: var(--fontsize1);
+}
+.tdBlack {
+    font-size: var(--fontsize1);
 }
 fieldset {
     margin-left: 35%;
@@ -56,6 +50,12 @@ label {
     margin: 3vh;
     font-size: large;
 }
-.btn {
+.btnDown {
     margin-left: 20vh;
+}
+.addAdminButton {
+    margin-top: 3%;
+    margin-left: 70%;
+    background-color: var(--btns);
+    color: var(--white);
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Requests\adminValidation;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
@@ -29,7 +29,7 @@ class AdminLogin extends Model
         $admin->ad_login_dt = Carbon::now();
         $admin->save();
         $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.settingFolder.loginManageFolder.adminList', ['admins' => $admins]);
+        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -40,8 +40,8 @@ class AdminLogin extends Model
     */
     public function AdminList()
     {
-        $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.settingFolder.loginManageFolder.adminList', ['admins' => $admins]);
+        $admins = AdminLogin::where('del_flg', '=', 0)->paginate(3);
+        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -54,7 +54,7 @@ class AdminLogin extends Model
     public function AdminDetail($id)
     {
         $admin = AdminLogin::find($id);
-        return view('admin.settingFolder.loginManageFolder.adminDetail', ['admins' => $admin]);
+        return view('admin.setting.loginManage.adminDetail', ['admins' => $admin]);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -66,7 +66,7 @@ class AdminLogin extends Model
     public function AdminEdit($id)
     {
         $admin = AdminLogin::find($id);
-        return view('admin.settingFolder.loginManageFolder.adminEdit', ['admins' => $admin]);
+        return view('admin.setting.loginManage.adminEdit', ['admins' => $admin]);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -84,7 +84,7 @@ class AdminLogin extends Model
         $admin->ad_role = $validate['role'];
         $admin->save();
         $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.settingFolder.loginManageFolder.adminList', ['admins' => $admins]);
+        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -99,6 +99,6 @@ class AdminLogin extends Model
         $admin->del_flg = 1;
         $admin->save();
         $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.settingFolder.loginManageFolder.adminList', ['admins' => $admins]);
+        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
 }

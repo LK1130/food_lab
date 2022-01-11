@@ -1,0 +1,46 @@
+* {
+    font-family: sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.sidenav {
+    width: 15vw;
+    height: 100vh;
+    background-color: #9d8a8a;
+    position: fixed;
+}
+
+.adminli {
+    list-style: none !important;
+}
+.buttons {
+    margin-left: 10%;
+    margin-top: 10%;
+    width: 12vw;
+    height: 7vh;
+    font-size: 1.5rem !important;
+    border-radius: 10px !important;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: var(--white) !important;
+}
+.buttons:hover,
+.active {
+    background-color: #d4401f !important;
+    color: white !important;
+}
+.logout {
+    width: 10vw;
+    height: 6vh;
+    margin-left: 16%;
+    margin-top: 15%;
+    font-size: 1.3rem !important;
+    border-radius: 10px !important;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #b70b0b !important;
+    color: white !important;
+}

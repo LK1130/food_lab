@@ -19,7 +19,6 @@ class loginController extends Controller
         $admin = new AdminLogin();
         return $admin->AdminList();
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -28,9 +27,8 @@ class loginController extends Controller
     public function create()
     {
         //admin add view
-        return view('admin.settingFolder.loginManageFolder.adminAdd');
+        return view('admin.setting.loginManage.adminAdd');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -46,7 +44,6 @@ class loginController extends Controller
     */
     public function store(adminValidation $request)
     {
-
         $validate = $request->validated();
         //call class from Adminlogin model 
         $admin = new AdminLogin();

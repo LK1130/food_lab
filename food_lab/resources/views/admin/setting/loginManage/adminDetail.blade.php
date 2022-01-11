@@ -3,6 +3,8 @@
 
  @section('css') 
  <link rel="stylesheet" href="{{ URL::asset('css/adminList.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}"/>
  @endsection
 
 @section('script') 
@@ -14,9 +16,9 @@
 @section('body')
     {{-- Starts Header Buttons --}}
 <div class="navBar">
-    <a href="{{ url('adminLogin') }}"><button class="checked">{{__('messageZY.loginManage')}}</button></a>
-    <a href="{{ url('coinrate') }}"><button>{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('sitemanager') }}"><button>{{__('messageZY.siteManager')}}</button></a>
+    <a href="{{ url('adminLogin') }}"><button class="checked headerButton">{{__('messageZY.loginManage')}}</button></a>
+    <a href="{{ url('coinrate') }}"><button class=" headerButton">{{__('messageZY.coinRate')}}</button></a>
+    <a href="{{ url('sitemanager') }}"><button class=" headerButton">{{__('messageZY.siteManager')}}</button></a>
 </div>
     {{-- Starts Show Feild --}}
     
