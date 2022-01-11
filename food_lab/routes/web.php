@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\SalesController;
 
-Route::resource('adminLogin', loginController::class);
+Route::resource('adminLogin', LoginController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +24,14 @@ Route::get('asdf', function () {
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
+Route::get('orderTransaction', function () {
+    return View('admin.transactions.orderTransaction');
+});
+Route::get('coinchargeList', function () {
+    return View('admin.transactions.coinchargeList');
+});
 
+//For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
 
 /**
@@ -32,3 +39,6 @@ Route::get('/', [CustomerController::class, 'foodlab']);
  */
 Route::get('amountCheck' , [SalesController::class,'amountCheck']);
 
+Route::get('saleChart', function () {
+    return View('admin.salesChart.monthlySale');
+});

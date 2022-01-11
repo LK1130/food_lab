@@ -1,0 +1,61 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 7vh;
+    margin-top: 6vh;
+}
+
+.headerButton {
+    width: 12vw;
+    height: 8vh;
+    background-color: var(--inactivebtn);
+    border: 1px solid black;
+    border-radius: 2vh;
+}
+
+.headerButton:hover {
+    background-color: var(--btns);
+    color: var(--bs-white);
+}
+.checked {
+    background-color: var(--btns) !important;
+    color: var(--bs-white);
+}
+.table {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 8%;
+    box-shadow: 5px 5px 7px black;
+}
+.tableHeader {
+    background-color: var(--tablecolor1);
+}
+.tableChile {
+    background-color: var(--tablecolor2);
+}
+.tdWhite {
+    color: var(--white) !important;
+    font-size: var(--fontsize1);
+}
+.tdBlack {
+    font-size: var(--fontsize1);
+}
+fieldset {
+    margin-left: 35%;
+    margin-top: 4%;
+}
+label {
+    margin: 3vh;
+    font-size: large;
+}
+.btnDown {
+    margin-left: 20vh;
+}
+.addAdminButton {
+    margin-top: 3%;
+    margin-left: 70%;
+    background-color: var(--btns);
+    color: var(--white);
+}
