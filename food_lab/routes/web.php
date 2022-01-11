@@ -4,6 +4,7 @@ use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\SalesController;
 
 Route::resource('adminLogin', loginController::class);
 /*
@@ -29,8 +30,5 @@ Route::get('/', [CustomerController::class, 'foodlab']);
 /**
  * For salesChart show
  */
-//Route::get('salesChart' , [SalesController::class,'salesChart']);
+Route::get('amountCheck' , [SalesController::class,'amountCheck']);
 
-Route::get('saleChart', function () {
-    return View('admin.salesChart.monthlySale');
-});

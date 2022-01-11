@@ -22,34 +22,20 @@ Monthly Sales
   <!-- Sales Change Button -->
   <div id="salesChangeBtn">
     <!-- Daily Sales Button -->
-    <button id="dailySales">Daily Sale</button>
+    <a href=""><button id="dailySales">Daily Sale</button></a>
     <!--Monthly Sales Button -->
-    <button id="monthlySales">Monthly Sale</button>
+    <a href=""><button id="monthlySales" active>Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
-    <button id="yearlySales">Yearly Sale</button>
+    <a href=""><button id="yearlySales">Yearly Sale</button></a>
     <!-- Range Sales Button -->
-    <button id="rangeSales">Range Sale</button>
+    <a href=""><button id="rangeSales">Range Sale</button></a>
   </div>
   <br></br>
-    <!-- For Range Sale Search -->
-    <div id="rangeSearch">
-      <h1>Range Sale</h1>
-      <div id="inputBox">
-        <!-- For  Start Range Search -->
-        <input type="text" name="" id="fromRangeCount"></input>
-         <!-- For Between Symbol -->
-         <h3 id="betweenSymbol">~</h3>
-        <!-- For  End Range Search -->
-        <input type="text" name="" id="toRangeCount"></input>
-        <!-- For  Range Search  Submit-->
-        <button type="submit" id="rangeSearchSubmit">Search</button>
-      </div>
-    </div>
   <!-- For Daily Chart-->
     <div id="lineChart">
       <!-- For showing Daily Chart details-->
       <div id="chart">
-
+          
       </div>
     </div>
 @endsection

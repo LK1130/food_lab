@@ -3,11 +3,12 @@ $( document ).ready(function() {
       series: [
       {
         name: "Order Transaction",
-        data: [28, 29, 33, 36, 32, 32, 33,18, 17,38,50,30]
+        data: "<?php  echo $order['totalOrder'];?>"
       },
       {
         name: "Coin",
-        data: [12, 11, 14, 18, 17, 13, 13,45,28,45, 29,33 ]
+        data: "<?php  echo $coin['totalAmount'];?>"
+        
       }
     ],
       chart: {
@@ -54,10 +55,10 @@ $( document ).ready(function() {
     },
     yaxis: {
       title: {
-        text: 'Temperature'
+        text: 'Money'
       },
       min: 0,
-      max: 100
+      max: 1000000
     },
     legend: {
       position: 'top',
