@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 
@@ -18,3 +19,10 @@ Route::resource('adminLogin', LoginController::class);
 Route::get('coinrate', function () {
     return view('admin.settingFolder.coinRateFolder.coinRate');
 });
+
+Route::get('/', [CustomerController::class, 'foodlab']);
+
+/**
+ * For salesChart show
+ */
+Route::get('salesChart' , [SalesController::class,'salesChart']);
