@@ -25,7 +25,7 @@ body {
     border-radius: 10px !important;
     font-weight: 500;
     cursor: pointer;
-    background-color: white !important;
+    background-color: var(--white) !important;
 }
 .buttons:hover,
 .active {
