@@ -18,6 +18,7 @@ Route::resource('adminLogin', LoginController::class);
 */
 
 
+//For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
 
 /**
