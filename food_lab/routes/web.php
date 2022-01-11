@@ -5,7 +5,7 @@ use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 
-Route::resource('adminLogin', loginController::class);
+Route::resource('adminLogin', LoginController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +30,14 @@ Route::get('coinchargeList', function () {
     return View('admin.transactions.coinchargeList');
 });
 
+//For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
 
 /**
  * For salesChart show
  */
-Route::get('salesChart' , [SalesController::class,'salesChart']);
+//Route::get('salesChart' , [SalesController::class,'salesChart']);
+
+Route::get('saleChart', function () {
+    return View('admin.salesChart.monthlySale');
+});
