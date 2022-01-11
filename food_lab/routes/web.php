@@ -1,8 +1,11 @@
 <?php
 
 use Facade\FlareClient\View;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\loginController;
 
+Route::resource('adminLogin', loginController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('asdf', function () {
+    return view('admin.settingFolder.loginManageFolder.adminAdd');
 });
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
+
+Route::get('/', [CustomerController::class, 'foodlab']);
+
+/**
+ * For salesChart show
+ */
+Route::get('salesChart' , [SalesController::class,'salesChart']);
