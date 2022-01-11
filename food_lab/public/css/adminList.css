@@ -48,3 +48,14 @@
 .tableChile {
     background-color: var(--bs-tableChile);
 }
+fieldset {
+    margin-left: 35%;
+    margin-top: 4%;
+}
+label {
+    margin: 3vh;
+    font-size: large;
+}
+.btn {
+    margin-left: 20vh;
+}

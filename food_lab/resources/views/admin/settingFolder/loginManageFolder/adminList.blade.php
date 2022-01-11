@@ -27,27 +27,31 @@
             <th>Role</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         @php
         $count = 1;
         @endphp
         @forelse ($admins as $admin)
+        
         <tr class="tableChile">
-            <td>{{ $count++ }}</td>
-            <td>{{$admin->ad_name}}</td>
-            <td>{{$admin->ad_password}}</td>
-            <td>{{$admin->ad_role}} </td>
-            <td class="text-primary"><a href="{{ route('adminLogin.edit',$admin->id)}}">{{__('message.Edit')}}</a></td>
+            
+            <td >{{ $count++ }}</td>
+            <td >{{$admin->ad_name}}</td>
+            <td >{{$admin->ad_password}}</td>
+            <td >{{$admin->ad_role}} </td>
+            <td ><a href="{{ route('adminLogin.show',$admin->id)}}"><button  class="btn btn-secondary">{{__('messageZY.detail')}}</button></a></td>
+            <td ><a href="{{ route('adminLogin.edit',$admin->id)}}"><button  class="btn btn-primary">{{__('messageZY.edit')}}</button></a></td>
             <td>
             <form action="{{ route('adminLogin.destroy',$admin->id)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" >{{__('message.Delete')}}</button>
-        </form>
-      </td>
-          </tr>
+            <button type="submit" class="btn btn-danger">{{__('messageZY.delete')}}</button>
+            </form>
+            </td>
+        </tr>
         @empty
-            <td>{{__('message.NoRoomHasLeft')}} .</td>
+            <td>{{__('messageZY.noadmin')}} .</td>
             
         @endforelse
     </table>

@@ -69,7 +69,8 @@ class loginController extends Controller
     */
     public function show($id)
     {
-        //
+        $admin = new AdminLogin();
+        return $admin->AdminDetail($id);
     }
 
     /**
@@ -78,9 +79,17 @@ class loginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*
+    * Create:zayar(2022/01/10) 
+    * Update: 
+    * This is function is to show specified resource in Admin Edit View..
+    * $id is used searching this adminid.
+    * Return is view (adminList.blade.php)
+    */
     public function edit($id)
     {
-        //
+        $admin = new AdminLogin();
+        return $admin->AdminEdit($id);
     }
 
     /**
@@ -90,9 +99,18 @@ class loginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    /*
+    * Create:zayar(2022/01/10) 
+    * Update: 
+    * This is function is to update specified user request.
+    * $id is used searching this adminid.
+    * Return is view (adminList.blade.php)
+    */
+    public function update(adminValidation $request, $id)
     {
-        //
+        $validate = $request->validated();
+        $admin = new AdminLogin();
+        return $admin->AdminUpdate($validate, $id);
     }
 
     /**
@@ -103,6 +121,7 @@ class loginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = new AdminLogin();
+        return $admin->AdminDelete($id);
     }
 }

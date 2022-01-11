@@ -62,7 +62,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="addadmin">Add Admin</button>
+                            <button type="submit" class="addadmin">{{__('messageZY.addAdmin')}}</button>
                         </div>
                 </div>
         </form>
