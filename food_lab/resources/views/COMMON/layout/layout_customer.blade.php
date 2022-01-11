@@ -11,8 +11,6 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <div class="container-fluid">
-        @yield('body')
-    </div>
+    @yield('body')
 </body>
 </html>

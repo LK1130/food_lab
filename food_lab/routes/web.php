@@ -20,4 +20,5 @@ Route::get('asdf', function () {
     return view('admin.settingFolder.loginManageFolder.adminAdd');
 });
 
+//For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
