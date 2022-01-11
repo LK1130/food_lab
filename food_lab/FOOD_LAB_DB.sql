@@ -430,19 +430,20 @@ CREATE TABLE `t_ad_evd` (
 --
 
 CREATE TABLE `t_ad_order` (
-  `id` bigint NOT NULL COMMENT 'ID of Row',
-  `customer_id` bigint NOT NULL COMMENT 'Customer Id',
-  `payment` int NOT NULL COMMENT 'Payment Type',
-  `township_id` int DEFAULT NULL COMMENT 'Delivery Township ID',
-  `grandtotal_coin` int DEFAULT NULL COMMENT 'If Customer Buy with Coin',
-  `grandtotal_cash` int DEFAULT NULL COMMENT 'If Customer buy with COD',
-  `order_status` int NOT NULL COMMENT 'Order Status',
-  `order_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Order DateTime',
-  `last_control_by` bigint NOT NULL COMMENT 'Last Time Controly By',
-  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
+  `id` bigint(20) NOT NULL COMMENT 'ID of Row',
+  `customer_id` bigint(20) NOT NULL COMMENT 'Customer Id',
+  `payment` int(11) NOT NULL COMMENT 'Payment Type',
+  `township_id` int(11) DEFAULT NULL COMMENT 'Delivery Township ID',
+  `grandtotal_coin` int(11) DEFAULT NULL COMMENT 'If Customer Buy with Coin',
+  `grandtotal_cash` int(11) DEFAULT NULL COMMENT 'If Customer buy with COD',
+  `order_status` int(11) NOT NULL COMMENT 'Order Status',
+  `order_date` date NOT NULL COMMENT 'Order DateTime',
+  `order_time` time NOT NULL,
+  `last_control_by` bigint(20) NOT NULL COMMENT 'Last Time Controly By',
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 

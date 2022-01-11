@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Monthly Sales</title>
-      <!-- For Apex Charts Cdn-->
-      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-     <!-- For Jquery Cdn-->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!-- Join Css -->
-    <link rel="stylesheet"  href= "css/salesChart.css"></link>
-    <!-- Join Javascript -->
-    <script src= "js/monthlyChart.js"></script>
-</head>
-<body>
+
+@extends('COMMON.layout.layout_admin')
+
+@section('title')
+Monthly Sales
+@endsection
+
+@section('css')
+<!-- Join Css -->
+<link rel="stylesheet"  href= "css/salesChart.css"></link>
+@endsection
+
+@section('script')
+  <!-- For Apex Charts Cdn-->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+ <!-- Join Javascript -->
+ <script src= "js/monthlyChart.js"></script>
+@endsection
+
+
+@section('body')
   <!-- Sales Change Button -->
   <div id="salesChangeBtn">
     <!-- Daily Sales Button -->
@@ -27,7 +31,7 @@
     <button id="rangeSales">Range Sale</button>
   </div>
   <br></br>
-  <!-- For Range Sale Search -->
+    <!-- For Range Sale Search -->
     <div id="rangeSearch">
       <h1>Range Sale</h1>
       <div id="inputBox">
@@ -48,6 +52,4 @@
 
       </div>
     </div>
-
-</body>
-</html>
+@endsection
