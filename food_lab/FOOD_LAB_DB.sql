@@ -84,6 +84,7 @@ CREATE TABLE `m_ad_news` (
   `source` varchar(255) DEFAULT NULL COMMENT 'Path of image',
   `category` int NOT NULL COMMENT 'Category New',
   `write_by` bigint NOT NULL COMMENT 'Write By',
+  `public` int NOT NULL COMMENT '0:show ,1:hide',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
@@ -441,7 +442,7 @@ CREATE TABLE t_ad_order (
   `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ;
+);
 
 -- --------------------------------------------------------
 
