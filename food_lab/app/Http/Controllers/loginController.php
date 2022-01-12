@@ -7,7 +7,7 @@ use App\Http\Requests\adminValidation;
 use App\Models\AdminLogin;
 use Illuminate\Http\Request;
 
-class loginController extends Controller
+class LoginController extends Controller
 {
     /*
     * Create:zayar(2022/01/12) 
