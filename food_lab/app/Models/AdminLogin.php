@@ -28,8 +28,7 @@ class AdminLogin extends Model
         $admin->ad_role = $validate['role'];
         $admin->ad_login_dt = Carbon::now();
         $admin->save();
-        $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
+        return redirect('adminLogin');
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -83,8 +82,7 @@ class AdminLogin extends Model
         $admin->ad_password = $validate['password'];
         $admin->ad_role = $validate['role'];
         $admin->save();
-        $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
+        return redirect('adminLogin');
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -98,7 +96,7 @@ class AdminLogin extends Model
         $admin = AdminLogin::find($id);
         $admin->del_flg = 1;
         $admin->save();
-        $admins = AdminLogin::where('del_flg', '=', 0)->get();
-        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
+
+        return redirect('adminLogin');
     }
 }

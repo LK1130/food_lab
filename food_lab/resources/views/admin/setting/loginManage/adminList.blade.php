@@ -4,6 +4,7 @@
  @section('css') 
  <link rel="stylesheet" href="{{ URL::asset('css/adminList.css') }}"/>
  <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}"/>
  @endsection
 
 @section('script') 
@@ -22,10 +23,10 @@
     {{-- Starts Table --}}
     <table class="table">
         <tr class="tableHeader">
-            <th>No.</th>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Role</th>
+            <th>{{__('messageZY.number')}}</th>
+            <th>{{__('messageZY.username')}}</th>
+            <th>{{__('messageZY.password')}}</th>
+            <th>{{__('messageZY.role')}}</th>
             <th></th>
             <th></th>
             <th></th>

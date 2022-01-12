@@ -4,9 +4,10 @@ use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\CoinController;
 use App\Http\Controllers\SalesController;
 
-Route::resource('adminLogin', LoginController::class);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +19,11 @@ Route::resource('adminLogin', LoginController::class);
 |
 */
 
-Route::get('asdf', function () {
-    return view('admin.settingFolder.loginManageFolder.adminAdd');
-});
+//admin/setting/loginManage
+Route::resource('adminLogin', LoginController::class);
+//admin/setting/coinRate
+Route::resource('coinrate', CoinController::class);
+
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
@@ -37,7 +40,7 @@ Route::get('/', [CustomerController::class, 'foodlab']);
 /**
  * For salesChart show
  */
-Route::get('amountCheck' , [SalesController::class,'amountCheck']);
+Route::get('amountCheck', [SalesController::class, 'amountCheck']);
 
 Route::get('saleChart', function () {
     return View('admin.salesChart.monthlySale');
