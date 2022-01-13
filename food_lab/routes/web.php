@@ -35,10 +35,18 @@ Route::get('coinchargeList', function () {
 Route::get('/', [CustomerController::class, 'foodlab']);
 
 /**
- * For salesChart show
+ * For Monthly SalesChart show
  */
-Route::get('amountCheck' , [SalesController::class,'amountCheck']);
+Route::get('monthlyChart' , [SalesController::class,'monthlyCheck']);
 
-Route::get('saleChart', function () {
-    return View('admin.salesChart.monthlySale');
-});
+/**
+ * For Yearly SalesChart show
+ */
+Route::get('yearlyChart' , [SalesController::class,'yearlyCheck']);
+
+/**
+ * For Yearly SalesChart show
+ */
+Route::get('dailyChart' , [SalesController::class,'dailyCheck']);
+
+
