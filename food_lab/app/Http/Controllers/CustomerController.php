@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdNews;
+use App\Models\Township;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -9,12 +11,65 @@ class CustomerController extends Controller
     /*
      * Create : Min Khant(10/1/2022)
      * Update :
-     * Explain of function : For call view customer home blade
-     * Prarmeter : no
+     * Explain of function : For call view customer home page
+     * Prarameter : no
      * return : View Home Blade
      * */
     public function foodlab()
     {
-        return view('customer.home');
+        $townships = new Township();
+        $townshipnames = $townships->townshipDetails();
+
+        $news = new AdNews();
+        $newDatas = $news->news();
+        return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas]);
+    }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : For call view customer policy page
+     * Prarameter : no
+     * return : View policyInfo Blade
+     * */
+    public function policy()
+    {
+        return view('customer.policyInfo');
+    }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : For call view customer report page
+     * Prarameter : no
+     * return : View report Blade
+     * */
+    public function  report()
+    {
+        return view('customer.report');
+    }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : For call view customer report page
+     * Prarameter : no
+     * return : View report Blade
+     * */
+    public function  reportData()
+    {
+        return view('customer.report');
+    }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : For call view customer report page
+     * Prarameter : no
+     * return : View report Blade
+     * */
+    public function  suggest()
+    {
+        return view('customer.suggest');
     }
 }

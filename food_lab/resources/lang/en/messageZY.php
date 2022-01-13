@@ -16,7 +16,14 @@ return [
     'delete' => 'Delete',
     'detail' => 'Detail',
     'noadmin' => 'No admin has left.',
-    'admindetail' => 'Admin Detail'
-
+    'admindetail' => 'Admin Detail',
+    'number' => 'No.',
+    'coin' => 'Coin',
+    'kyat' => 'Kyat',
+    'note' => 'Note',
+    'change' => 'Change',
+    'date' => 'Date',
+    'noHistory' => 'No one has changed the coin rate yet.',
+    'changecoinrate' => 'Change Coin Rate'
 
 ];

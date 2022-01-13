@@ -23,6 +23,34 @@
     background-color: var(--btns) !important;
     color: var(--bs-white);
 }
+
+fieldset {
+    width: 50% !important;
+    margin-left: 20%;
+    border: 1px solid black;
+    margin-top: 5% !important;
+}
+
+fieldset input {
+    width: 20vw !important;
+}
+.rowInput {
+    margin: 5%;
+}
+.coinImg {
+    width: 8%;
+    display: inline;
+}
+.change {
+    margin-top: 5vh;
+    margin-left: 30%;
+    width: 18%;
+    height: 10vh;
+    background-color: var(--btns);
+    border: 1px solid black;
+    color: var(--white);
+    border-radius: 2vh;
+}
 .table {
     width: 70%;
     margin-left: 23%;
@@ -41,17 +69,6 @@
 }
 .tdBlack {
     font-size: var(--fontsize1);
-}
-fieldset {
-    margin-left: 35%;
-    margin-top: 4%;
-}
-label {
-    margin: 3vh;
-    font-size: large;
-}
-.btnDown {
-    margin-left: 20vh;
 }
 .addAdminButton {
     margin-top: 3%;

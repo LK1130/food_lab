@@ -30,3 +30,8 @@
     padding-left: 0 !important;
     margin: 0 !important;
 }
+.topbtns:hover,
+.active {
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
