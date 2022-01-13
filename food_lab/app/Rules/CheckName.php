@@ -33,7 +33,7 @@ class CheckName implements Rule
     */
     public function passes($attribute, $value)
     {
-        $admin = AdminLogin::where('ad_name', '=', $value)->get();
+        $admin = AdminLogin::where('ad_name', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

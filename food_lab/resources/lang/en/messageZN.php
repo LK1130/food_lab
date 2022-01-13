@@ -5,7 +5,7 @@ return [
     'Dashboard'=>'Dashboard',
     'Transaction'=>'Transaction',
     'Customer'=>'Customer',
-    'Finace'=>'Finace',
+    'Finance'=>'Finance',
     'Coin'=>'Coin',
     'Products'=>'Products',
     'Setting'=>'Setting',
