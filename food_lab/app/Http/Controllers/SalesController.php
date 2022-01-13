@@ -51,7 +51,6 @@ class SalesController extends Controller
 
         $orderArray = [];
         
-       
         foreach($order as $key => $value){
             array_push($orderArray, $value->totalorder);
         };
@@ -128,8 +127,6 @@ class SalesController extends Controller
         foreach($coin as $key => $value){
             array_push($coinArray, $value->totalAmount);
         };
-       
-
         $order= OrderTransactionCheck::select(
         
             DB::raw('order_date as date'),
