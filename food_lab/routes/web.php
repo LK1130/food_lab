@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\SalesController;
 
-Route::resource('adminLogin', LoginController::class);
+//Route::resource('adminLogin', LoginController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,18 +21,18 @@ Route::resource('adminLogin', LoginController::class);
 Route::get('asdf', function () {
     return view('admin.settingFolder.loginManageFolder.adminAdd');
 });
+
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
+
 Route::get('orderTransaction', function () {
     return View('admin.transactions.orderTransaction');
 });
+
 Route::get('coinchargeList', function () {
     return View('admin.transactions.coinchargeList');
 });
-
-//For customer home page
-Route::get('/', [CustomerController::class, 'foodlab']);
 
 /**
  * For salesChart show
@@ -42,3 +42,30 @@ Route::get('amountCheck' , [SalesController::class,'amountCheck']);
 Route::get('saleChart', function () {
     return View('admin.salesChart.monthlySale');
 });
+
+
+//_________________________________Customer Routes_________________________
+
+/*
+ * For customer home page
+*/
+Route::get('/', [CustomerController::class, 'foodlab']);
+
+/*
+ * For Policy Info Page
+*/
+Route::get('/policyinfo',[CustomerController::class,'policy']);
+
+/*
+ * For Reprot Page
+*/
+Route::get('/report',[CustomerController::class,'report']);
+
+/*
+ * From Report Page to store form data in database
+*/
+Route::post('/report',[CustomerController::class,'reportData']);
+
+/*
+ * For Suggest Page */
+Route::get('/suggest',[CustomerController::class,'suggest']);
