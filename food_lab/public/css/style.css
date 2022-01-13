@@ -1,0 +1,262 @@
+/*Start Welcome Section*/
+
+.welcomes {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/img/bg1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.welcometexts,
+.companyinfos {
+    color: var(--text-color);
+}
+
+.companyinfos {
+    max-width: 70%;
+    text-align: justify;
+    margin-top: 7%;
+    position: relative;
+}
+
+.falefts {
+    font-size: 2.5rem;
+    position: absolute;
+    right: 100%;
+    bottom: 100%;
+}
+
+.farights {
+    font-size: 2.5rem;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+}
+
+
+/*End Welcome Section*/
+
+
+/*Start Best Seller Item Section*/
+
+.best-items,
+.recommand-items {
+    min-height: 100vh;
+    background-image: url('/img/bg2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sellers {
+    min-width: 95%;
+    background: linear-gradient( 120deg, rgba(0, 0, 0, 1)30%, rgba(245, 0, 0, 0.5) 60%);
+    border-radius: 20px;
+}
+
+.seller-headers {
+    width: auto;
+    background-color: var(--bg2-color);
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    display: inline;
+    float: none !important;
+    margin-left: 10%;
+    padding: 0 10px 0 10px;
+}
+
+.recommands {
+    min-width: 95%;
+    background: linear-gradient( 120deg, rgba(245, 0, 0, 0.5) 30%, rgba(0, 0, 0, 1) 60%);
+    border-radius: 20px;
+}
+
+.coins {
+    color: var(--coin-color);
+    font-size: 1.4rem;
+}
+
+.shopbtns {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: 2px groove transparent;
+}
+
+.shopbtns:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border: 2px groove var(--primary-color);
+}
+
+
+/*End Best Seller Item Section*/
+
+
+/*Start Delivery Section*/
+
+.deliverys {
+    min-height: 100vh;
+    background: linear-gradient(360deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.7) 90%), url('/img/bg3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.del-infos {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+
+/*start delivery Informaiton*/
+
+.township-infos div p {
+    font-size: 1.2rem;
+}
+
+.township-infos div p:first-of-type,
+.township-infos div p:nth-of-type(2) {
+    color: var(--primary-color);
+}
+
+.township-infos div:first-of-type p {
+    font-size: 2rem;
+}
+
+.township-names {
+    font-size: 1.1rem;
+}
+
+.deliverys img {
+    width: 60%;
+    padding-left: 5vw;
+}
+
+
+/*end delivery Informaiton*/
+
+@media (max-width: 720px) {
+    .deliverys img {
+        display: none;
+    }
+}
+
+
+/*End Delivery Section*/
+
+
+/*Start Contact Section */
+
+.contacts {
+    min-height: 100vh;
+    color: var(--text-color);
+    background-image: url("/img/bg4.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    overflow-x: hidden;
+}
+
+.company-infos p.fw-bolder {
+    font-size: 2.5rem;
+}
+
+.company-details {
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.maps {
+    border-radius: 10px;
+}
+
+@media (max-width: 720px) {
+    .maps {
+        display: none;
+    }
+}
+
+/*End Contact Section */
+
+/*Start Policy Section*/
+
+.policy-infos{
+    font-size: 1.4rem;
+    margin-left: 15%;
+    margin-top: 3%;
+    letter-spacing: 0.5px;
+    word-spacing: 0.5px;
+}
+
+.policyheaders{
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.policy-infos div>*{
+    padding-bottom: 10px;
+}
+/*End Policy Section*/
+
+/*Start Report Form Section */
+
+.forms{
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-top: 2%;
+}
+
+form{
+    min-width: 80%;
+}
+
+form div{
+    margin-bottom: 5%;
+}
+
+form div label{
+    min-width: 20%;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+form div input,
+button{
+    font-size: 1.5rem;
+}
+
+form div button:first-of-type{
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border: 2px groove transparent;
+    padding: 10px 20px;
+}
+
+form div button:first-of-type:hover{
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border: 2px groove var(--primary-color);
+}
+
+form div .cancels{
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    border: 2px groove transparent;
+    padding: 10px 20px;
+}
+
+/*End Report Form Section*/
