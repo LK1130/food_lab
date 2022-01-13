@@ -149,29 +149,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>U12312</td>
-                            <td>Yangon</td>
-                            <td>0915881128</td>
-                        </tr>
-                        <tr class="tablecolor1">
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>U12312</td>
-                            <td>Yangon</td>
-                            <td>0915881128</td>
-                        </tr>
-                        <tr class="tablecolor1">
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>U12312</td>
-                            <td>Yangon</td>
-                            <td>0915881128</td>
-                        </tr>
+                        @foreach ($t_cu_customer as $list1)
+                            <tr class="tablecolor1">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $list1->nickname }}</td>
+                                <td>{{ $list1->customerID }}</td>
+                                <td>{{ $list1->address3 }}</td>
+                                <td>{{ $list1->phone }}</td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $t_cu_customer->links() }}</div>
                 <a href="" class="d-flex justify-content-end"><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>

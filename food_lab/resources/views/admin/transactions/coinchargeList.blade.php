@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Order Transaction
+    Coin Charge List
 @endsection
 
 @section('css')
@@ -17,9 +17,10 @@
 @section('body')
     <div class="col-md-10">
         <div class="mt-4">
-            <a href="" class="me-5"><button
-                    class="btn topbtn inactive text-light fs-4">{{ __('messageZN.Order Transaction') }}</button></a>
-            <a href=""><button class="btn topbtn  text-light fs-4">{{ __('messageZN.Coin Charge List') }}</button></a>
+            <a href="orderTransaction" class="me-5"><button
+                    class="btn topbtn inactive text-light fs-4 topbtns">{{ __('messageZN.Order Transaction') }}</button></a>
+            <a href="coinchargeList"><button
+                    class="btn topbtn  text-light fs-4 topbtns">{{ __('messageZN.Coin Charge List') }}</button></a>
         </div>
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageZN.Coin Charge List') }}</div>
         <div class="row ">

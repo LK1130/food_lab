@@ -2,6 +2,7 @@
 
 use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\SalesController;
@@ -21,16 +22,19 @@ Route::resource('adminLogin', LoginController::class);
 Route::get('asdf', function () {
     return view('admin.settingFolder.loginManageFolder.adminAdd');
 });
-Route::get('dashboard', function () {
-    return View('admin.dashboard');
+//For Dashboard & Transaction
+Route::get('dashboard',[DashboardController::class,'dashboardList']);
+Route::get('coinchargeList',[DashboardController::class,'coinchargeList']);
+Route::get('orderTransaction',[DashboardController::class,'orderTransaction']);
+// Route::get('orderTransaction', function () {
+//     return View('admin.transactions.orderTransaction');
+// });
+// Route::get('coinchargeList', function () {
+//     return View('admin.transactions.coinchargeList');
+// });
+Route::get('ordertransactionDetail', function () {
+        return view('admin.transactions.ordertransactionDetail');
 });
-Route::get('orderTransaction', function () {
-    return View('admin.transactions.orderTransaction');
-});
-Route::get('coinchargeList', function () {
-    return View('admin.transactions.coinchargeList');
-});
-
 //For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
 
