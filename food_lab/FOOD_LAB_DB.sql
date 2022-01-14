@@ -48,7 +48,7 @@ CREATE TABLE `m_ad_coinrate` (
   `id` bigint NOT NULL COMMENT 'ID of Row',
   `base` int NOT NULL COMMENT 'Base on coin',
   `rate` int NOT NULL COMMENT 'Rate',
-  `de_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
 ) ;
