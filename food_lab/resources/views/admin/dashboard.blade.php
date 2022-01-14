@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-md-6">
                 {{-- Transaction List --}}
-                <div class="status text fs-3 fw-bold mb-2">{{ __('messageZN.Transaction List') }}t</div>
+                <div class="status text fs-3 fw-bold mb-2">{{ __('messageZN.Transaction List') }}</div>
                 <table class="table boxshad">
                     <thead>
                         <tr class="tableheader">
