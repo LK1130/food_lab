@@ -48,7 +48,7 @@ CREATE TABLE `m_ad_coinrate` (
   `id` bigint NOT NULL COMMENT 'ID of Row',
   `base` int NOT NULL COMMENT 'Base on coin',
   `rate` int NOT NULL COMMENT 'Rate',
-  `de_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
 ) ;
@@ -84,7 +84,6 @@ CREATE TABLE `m_ad_news` (
   `source` varchar(255) DEFAULT NULL COMMENT 'Path of image',
   `category` int NOT NULL COMMENT 'Category New',
   `write_by` bigint NOT NULL COMMENT 'Write By',
-  `public` int NOT NULL COMMENT '0:show ,1:hide',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
@@ -382,6 +381,8 @@ CREATE TABLE `t_ad_coincharge_finance` (
 
 CREATE TABLE `t_ad_coinrate_history` (
   `id` bigint NOT NULL COMMENT 'ID of Row',
+  `old_base` int NOT NULL COMMENT 'Old base coin',
+  `new_base` int NOT NULL COMMENT 'New Base Coin',
   `old_rate` int NOT NULL COMMENT 'Old Rate',
   `new_rate` int NOT NULL COMMENT 'New Rate',
   `change_by` bigint NOT NULL COMMENT 'Change by',
@@ -428,7 +429,7 @@ CREATE TABLE `t_ad_evd` (
 -- Table structure for table `t_ad_order`
 --
 
-CREATE TABLE t_ad_order (
+CREATE TABLE `t_ad_order` (
   `id` bigint(20) NOT NULL COMMENT 'ID of Row',
   `customer_id` bigint(20) NOT NULL COMMENT 'Customer Id',
   `payment` int(11) NOT NULL COMMENT 'Payment Type',
@@ -436,13 +437,13 @@ CREATE TABLE t_ad_order (
   `grandtotal_coin` int(11) DEFAULT NULL COMMENT 'If Customer Buy with Coin',
   `grandtotal_cash` int(11) DEFAULT NULL COMMENT 'If Customer buy with COD',
   `order_status` int(11) NOT NULL COMMENT 'Order Status',
-  `order_date` date NOT NULL COMMENT 'Order Date',
-  `order_time` time NOT NULL COMMENT 'Order Time',
+  `order_date` date NOT NULL COMMENT 'Order DateTime',
+  `order_time` time NOT NULL,
   `last_control_by` bigint(20) NOT NULL COMMENT 'Last Time Controly By',
   `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -958,6 +959,156 @@ ALTER TABLE `t_ad_report`
 --
 ALTER TABLE `t_cu_customer_login`
   ADD CONSTRAINT `t_cu_customer_login_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 14, 2022 at 10:10 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `food_lab_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_product`
+--
+
+CREATE TABLE `m_product` (
+  `id` bigint(20) NOT NULL COMMENT 'ID of Row',
+  `product_name` varchar(255) NOT NULL COMMENT 'Prouduct Name',
+  `product_type` int(11) NOT NULL COMMENT 'Types of Product',
+  `product_taste` int(11) NOT NULL COMMENT 'Taste of Product',
+  `coin` int(11) NOT NULL COMMENT 'Product coin value',
+  `amount` int(11) NOT NULL COMMENT 'Amount Of Prouduct',
+  `description` varchar(255) NOT NULL COMMENT 'Product Description',
+  `avaliable` int(11) NOT NULL COMMENT 'Avaliable or not',
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `m_product`
+--
+ALTER TABLE `m_product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `m_product`
+--
+ALTER TABLE `m_product`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID of Row';
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 14, 2022 at 10:10 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `food_lab_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_product_detail`
+--
+
+CREATE TABLE `m_product_detail` (
+  `id` bigint(20) NOT NULL COMMENT 'ID of Row',
+  `product_id` bigint(20) NOT NULL COMMENT 'Product Id',
+  `category` int(11) NOT NULL COMMENT 'Show Case Category',
+  `label` varchar(20) NOT NULL COMMENT 'Label Name',
+  `order` int(11) NOT NULL COMMENT 'Order',
+  `value` varchar(20) NOT NULL COMMENT 'Value',
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `m_product_detail`
+--
+ALTER TABLE `m_product_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `m_product_detail`
+--
+ALTER TABLE `m_product_detail`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID of Row';
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `m_product_detail`
+--
+ALTER TABLE `m_product_detail`
+  ADD CONSTRAINT `m_product_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `m_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

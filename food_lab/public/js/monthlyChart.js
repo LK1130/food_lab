@@ -1,13 +1,17 @@
-$( document ).ready(function() {
+/*
+     * Create:cherry(2022/01/11)
+     * Update:
+     * This function is used to show Monthly Chart using apex chart.
+     */
     var options = {
       series: [
       {
         name: "Order Transaction",
-        data: "<?php  echo $order['totalOrder'];?>"
+        data: array
       },
       {
         name: "Coin",
-        data: "<?php  echo $coin['totalAmount'];?>"
+        data: array1
         
       }
     ],
@@ -48,17 +52,17 @@ $( document ).ready(function() {
       size: 1
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'],
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'], // to show month in x-axis
       title: {
-        text: 'Month'
+        text: 'Months'
       }
     },
     yaxis: {
       title: {
-        text: 'Money'
+        text: 'Amount'
       },
-      min: 0,
-      max: 1000000
+      min: 0
+    
     },
     legend: {
       position: 'top',
@@ -72,5 +76,5 @@ $( document ).ready(function() {
     var chart = new ApexCharts(document.getElementById("chart"), options);
     chart.render();
     
-  });
+  
   

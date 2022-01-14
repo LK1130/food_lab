@@ -2,7 +2,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-Monthly Sales
+Yearly Sales
 @endsection
 
 @section('css')
@@ -23,9 +23,9 @@ Monthly Sales
     <!-- Daily Sales Button -->
     <a href="dailyChart"><button id="dailySales" >Daily Sale</button></a>
     <!--Monthly Sales Button -->
-    <a href="monthlyChart"><button id="monthlySales" active>Monthly Sale</button></a>
+    <a href="monthlyChart"><button id="monthlySales">Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
-    <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
+    <a href="yearlyChart"><button id="yearlySales" active>Yearly Sale</button></a>
     <!-- Range Sales Button -->
     <a href=""><button id="rangeSales">Range Sale</button></a>
     
@@ -40,11 +40,13 @@ Monthly Sales
     </div>
      <!-- For Sending Array to monthlyChart.js -->
     <script>
-       // For Sending Order Array to monthlyChart.js
+      // For Sending Order Array to yearlyChart.js
       var array = @json($orderArray);
-       // For Sending Coin Array to monthlyChart.js
+      // For Sending Coin Array to yearlyChart.js
       var array1 = @json($coinArray);
+       // For Sending Year Array to yearlyChart.js
+      var yearCount= @json($yearCount);
     </script>
      <!-- Join Javascript -->
-    <script src= "js/monthlyChart.js" ></script>
+    <script src= "js/yearlyChart.js" ></script>
 @endsection
