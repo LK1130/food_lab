@@ -1073,7 +1073,7 @@ CREATE TABLE `m_product_detail` (
   `category` int(11) NOT NULL COMMENT 'Show Case Category',
   `label` varchar(20) NOT NULL COMMENT 'Label Name',
   `order` int(11) NOT NULL COMMENT 'Order',
-  `value` varchar(20) NOT NULL,
+  `value` varchar(20) NOT NULL COMMENT 'Value',
   `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
