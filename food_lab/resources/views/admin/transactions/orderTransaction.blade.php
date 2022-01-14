@@ -10,7 +10,8 @@
 @endsection
 
 @section('script')
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ URL::asset('js/orderTransaction.js') }}"></script>
 @endsection
 
 
@@ -39,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 text-light fs-5">
+                        <tr class="tablecolor1 text-light fs-4" id="clickrow" data-href="ordertransactionDetail">
                             <th scope="row">1</th>
                             <td>Mark</td>
                             <td>Coin</td>
@@ -51,7 +52,7 @@
                                 12:12
                             </td>
                         </tr>
-                        <tr class="tablecolor1 text-light fs-5">
+                        <tr class="tablecolor1 text-light fs-4">
                             <th scope="row">2</th>
                             <td>Mark</td>
                             <td>Coin</td>
@@ -63,7 +64,7 @@
                                 12:12
                             </td>
                         </tr>
-                        <tr class="tablecolor1 text-light fs-5">
+                        <tr class="tablecolor1 text-light fs-4">
                             <th scope="row">3</th>
                             <td>Mark</td>
                             <td>Coin</td>
