@@ -38,21 +38,21 @@ Route::resource('adminLogin', LoginController::class);
 //admin/setting/coinRate
 Route::resource('coinrate', CoinController::class);
 
+//_________________________________Chart Routes_________________________
+/**
+ * For Daily SalesChart show
+ */
+Route::get('dailyChart' , [SalesController::class,'dailyChart']);
 
 /**
  * For Monthly SalesChart show
  */
-Route::get('monthlyChart' , [SalesController::class,'monthlyCheck']);
+Route::get('monthlyChart' , [SalesController::class,'monthlyChart']);
 
 /**
  * For Yearly SalesChart show
  */
-Route::get('yearlyChart' , [SalesController::class,'yearlyCheck']);
-
-/**
- * For Yearly SalesChart show
- */
-Route::get('dailyChart' , [SalesController::class,'dailyCheck']);
+Route::get('yearlyChart' , [SalesController::class,'yearlyChart']);
 
 //_________________________________Customer Routes_________________________
 
