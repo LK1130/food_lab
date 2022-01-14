@@ -964,3 +964,153 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 14, 2022 at 10:10 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `food_lab_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_product`
+--
+
+CREATE TABLE `m_product` (
+  `id` bigint(20) NOT NULL COMMENT 'ID of Row',
+  `product_name` varchar(255) NOT NULL COMMENT 'Prouduct Name',
+  `product_type` int(11) NOT NULL COMMENT 'Types of Product',
+  `product_taste` int(11) NOT NULL COMMENT 'Taste of Product',
+  `coin` int(11) NOT NULL COMMENT 'Product coin value',
+  `amount` int(11) NOT NULL COMMENT 'Amount Of Prouduct',
+  `description` varchar(255) NOT NULL COMMENT 'Product Description',
+  `avaliable` int(11) NOT NULL COMMENT 'Avaliable or not',
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `m_product`
+--
+ALTER TABLE `m_product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `m_product`
+--
+ALTER TABLE `m_product`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID of Row';
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 14, 2022 at 10:10 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `food_lab_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_product_detail`
+--
+
+CREATE TABLE `m_product_detail` (
+  `id` bigint(20) NOT NULL COMMENT 'ID of Row',
+  `product_id` bigint(20) NOT NULL COMMENT 'Product Id',
+  `category` int(11) NOT NULL COMMENT 'Show Case Category',
+  `label` varchar(20) NOT NULL COMMENT 'Label Name',
+  `order` int(11) NOT NULL COMMENT 'Order',
+  `value` varchar(20) NOT NULL,
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `m_product_detail`
+--
+ALTER TABLE `m_product_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `m_product_detail`
+--
+ALTER TABLE `m_product_detail`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID of Row';
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `m_product_detail`
+--
+ALTER TABLE `m_product_detail`
+  ADD CONSTRAINT `m_product_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `m_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
