@@ -27,7 +27,7 @@ Daily Sales
     <!-- Yearly Sales Button -->
     <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
     <!-- Range Sales Button -->
-    <a href=""><button id="rangeSales">Range Sale</button></a>
+    <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>
     
   </div>
   <br></br>

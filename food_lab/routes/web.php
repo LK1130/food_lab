@@ -54,6 +54,13 @@ Route::get('monthlyChart' , [SalesController::class,'monthlyChart']);
  */
 Route::get('yearlyChart' , [SalesController::class,'yearlyChart']);
 
+/**
+ * For Range Chart show
+ */
+Route::get('rangeChart' , function () {
+    return view('admin.salesChart.rangeSale');
+});
+
 //_________________________________Customer Routes_________________________
 
 /*
