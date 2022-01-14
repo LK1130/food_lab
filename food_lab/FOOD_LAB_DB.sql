@@ -50,7 +50,7 @@ CREATE TABLE `m_ad_coinrate` (
   `rate` int NOT NULL COMMENT 'Rate',
   `de_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted Or Not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created Timestamp',
-  `update_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
 ) ;
 
 -- --------------------------------------------------------
@@ -420,7 +420,7 @@ CREATE TABLE `t_ad_evd` (
   `note` varchar(255) DEFAULT NULL COMMENT 'note',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
-  `update_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
 ) ;
 
 -- --------------------------------------------------------
