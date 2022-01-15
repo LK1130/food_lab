@@ -24,7 +24,7 @@ class OrderTransactionCheckFactory extends Factory
             'order_status' => $this->faker->randomDigitNot(0,8,9),
             'order_date' =>$this->faker->dateTimeBetween($startDate = '-3 years', $endDate = 'now'),
             'order_time' => $this->faker->time($format = 'H:i:s', $max = 'now'),
-            'last_control_by' => 2,
+            'last_control_by' => 1,
         ];
     }
 }
