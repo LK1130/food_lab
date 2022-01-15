@@ -84,6 +84,7 @@ CREATE TABLE `m_ad_news` (
   `source` varchar(255) DEFAULT NULL COMMENT 'Path of image',
   `category` int NOT NULL COMMENT 'Category New',
   `write_by` bigint NOT NULL COMMENT 'Write By',
+  `public` int NOT NULL COMMENT '0:show ,1:hide',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
@@ -381,8 +382,6 @@ CREATE TABLE `t_ad_coincharge_finance` (
 
 CREATE TABLE `t_ad_coinrate_history` (
   `id` bigint NOT NULL COMMENT 'ID of Row',
-  `old_base` int NOT NULL COMMENT 'Old base coin',
-  `new_base` int NOT NULL COMMENT 'New Base Coin',
   `old_rate` int NOT NULL COMMENT 'Old Rate',
   `new_rate` int NOT NULL COMMENT 'New Rate',
   `change_by` bigint NOT NULL COMMENT 'Change by',
@@ -429,7 +428,7 @@ CREATE TABLE `t_ad_evd` (
 -- Table structure for table `t_ad_order`
 --
 
-CREATE TABLE `t_ad_order` (
+CREATE TABLE t_ad_order (
   `id` bigint(20) NOT NULL COMMENT 'ID of Row',
   `customer_id` bigint(20) NOT NULL COMMENT 'Customer Id',
   `payment` int(11) NOT NULL COMMENT 'Payment Type',
@@ -437,13 +436,13 @@ CREATE TABLE `t_ad_order` (
   `grandtotal_coin` int(11) DEFAULT NULL COMMENT 'If Customer Buy with Coin',
   `grandtotal_cash` int(11) DEFAULT NULL COMMENT 'If Customer buy with COD',
   `order_status` int(11) NOT NULL COMMENT 'Order Status',
-  `order_date` date NOT NULL COMMENT 'Order DateTime',
-  `order_time` time NOT NULL,
+  `order_date` date NOT NULL COMMENT 'Order Date',
+  `order_time` time NOT NULL COMMENT 'Order Time',
   `last_control_by` bigint(20) NOT NULL COMMENT 'Last Time Controly By',
   `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- --------------------------------------------------------
 

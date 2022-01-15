@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class customerInfoController extends Controller
+class CustomerInfoController extends Controller
 {
             /*
     * Create:Zarni(2022/01/12) 

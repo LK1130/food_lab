@@ -75,21 +75,31 @@
 #rangeSearch{
     width: 75%;
     height: 50%;
-    margin-top: 0.2em;
-    margin-left: 5em;
+    margin-top: 2em;
+    margin-left: 15em;
+    display: flex;
+    flex-direction: row;
+}
+#saleCaption{
+    margin-top: 1.5em;
+    margin-left: 7em;
+}
+.choice{
+    display: flex;
+    flex-direction: column;
 }
 /*For Range Sale Search Details Div*/
 #inputBox{
     width: 100%;
     height: 3em;
     display: flex;
-    margin-left: 3em;
+    margin-left: 2em;
     margin-top: 0.2em;
     flex-direction: row;
 }
 /*For Start Range Search*/
 #fromRangeCount{
-    width: 25%;
+    width: 30%;
     margin-left: 3em;
     border-radius: 1.5em;
     border:0.1rem solid var(--color2);
@@ -99,8 +109,6 @@
     padding-left: 1.3em;
     font-size: 1em;
 }
-
-
 /*For Between Symbol*/
 #betweenSymbol{
     width: 1em;
@@ -111,7 +119,7 @@
 }
 /*For End Range Search*/
 #toRangeCount{
-    width: 25%;
+    width: 30%;
     margin-left: 3em;
     border-radius: 1.5em;
     border:0.1rem solid var(--color2);
@@ -136,5 +144,15 @@
     width: 75%;
     height: 80%;
     margin-top: 6em;
-    margin-left: 16em;
+    margin-left: 17%;
+    display: flex;
+    flex-direction: row;
 }
+#chart{
+   display: inline-block;
+   width: 65%;
+}
+#chart1{
+    display: inline-block;
+    width: 65%;
+ }

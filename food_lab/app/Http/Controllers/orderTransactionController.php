@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class orderTransactionController extends Controller
+class OrderTransactionController extends Controller
 {
     public function orderTransaction(){
         $transactiion = DB::table('t_ad_order');
