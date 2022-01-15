@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Dashboardtransaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class orderTransactionFactory extends Factory
+class OrderTransactionFactory extends Factory
 {
     protected $model = Dashboardtransaction::class;
     /**
