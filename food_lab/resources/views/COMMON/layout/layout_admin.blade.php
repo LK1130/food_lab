@@ -25,14 +25,18 @@
                         <li class="adminli">Admin name</li>
                         <li class="adminli">{{ __('messageZN.Last Login') }}:12:12</li>
                     </div>
-                    <div class="text-center list-group list-group-flush my-3 x">
+                    <div class="text-center list-group list-group-flush ">
                         <a href="dashboard"><button class="buttons btn ">{{ __('messageZN.Dashboard') }}</button></a>
-                        <a href="/orderTransaction"><button class="buttons btn">{{ __('messageZN.Transaction') }}</button></a>
-                        <a href="/customerInfo"><button class="buttons btn">{{ __('messageZN.Customer') }}</button></a>
+                        <a href="/orderTransaction"><button
+                                class="buttons btn">{{ __('messageZN.Transaction') }}</button></a>
+                        <a href="/customerInfo"><button
+                                class="buttons btn">{{ __('messageZN.Customer') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Coin') }}</button></a>
-                        <a href="/dailyChart"><button class="buttons btn">{{ __('messageZN.Finance') }}</button></a>
+                        <a href="/dailyChart"><button
+                                class="buttons btn">{{ __('messageZN.Finance') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Products') }}</button></a>
-                        <a href="/adminLogin"><button class="buttons btn">{{ __('messageZN.Setting') }}</button></a>
+                        <a href="/adminLogin"><button
+                                class="buttons btn">{{ __('messageZN.Setting') }}</button></a>
                         <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
                     </div>
                 </div>

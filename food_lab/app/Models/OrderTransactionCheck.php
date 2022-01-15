@@ -13,6 +13,4 @@ class OrderTransactionCheck extends Model
     {
         return OrderTransactionCheck::all();
     }
-
-   
 }

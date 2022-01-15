@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\CoinController;
 use App\Http\Controllers\customerInfoController;
+use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\TransactionController;
 
@@ -26,7 +27,7 @@ use App\Http\Controllers\TransactionController;
  */
 Route::get('dashboard',[DashboardController::class,'dashboardList']);
 Route::get('coinchargeList',[DashboardController::class,'coinchargeList']);
-Route::get('orderTransaction',[DashboardController::class,'orderTransaction']);
+Route::get('orderTransaction',[OrderTransactionController::class,'orderTransaction']);
 Route::get('ordertransactionDetail',[TransactionController::class,'ordertransactionDetail']);
 /**
  * Customer Info

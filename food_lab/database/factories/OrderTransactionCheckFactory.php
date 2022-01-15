@@ -16,7 +16,7 @@ class OrderTransactionCheckFactory extends Factory
     public function definition()
     {
         return [
-            'customer_id'=> 1,
+            'customer_id'=> 41,
             'payment' =>$this->faker->randomDigit(),
             'township_id' => $this->faker->randomDigit(),
             'grandtotal_coin' => $this->faker->numerify('####'),

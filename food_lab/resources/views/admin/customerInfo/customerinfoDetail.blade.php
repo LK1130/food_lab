@@ -30,47 +30,37 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mt-5">
-                        <div class="status text tableheaders fw-bold mt-6">Product History</div>
+                        <div class="status text tableheaders fw-bold mt-6">Order History</div>
                         <table class="table boxshad">
-                            <thead>
-                                <tr class="tableheader tablerows">
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">UserID</th>
-                                    <th scope="col">Product ID</th>
-                                    <th scope="col">Date&Time</th>
-                                </tr>
+                            <tr class="tableheader tablerows">
+                                <th scope="col">No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">GrandTotal Coin</th>
+                                <th scope="col">GrandTotal Cash</th>
+                                <th scope="col">Order Status</th>
+                                <th scope="col">Last Control By</th>
+                                <th scope="col">Date&Time</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr class="tablecolor1 tablerows">
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>M12231</td>
-                                    <td>P12312</td>
-                                    <td>12/1/2022 <br>
-                                        12:12
-                                    </td>
-                                </tr>
-                                <tr class="tablecolor1 tablerows">
-                                    <th scope="row">2</th>
-                                    <td>Mark</td>
-                                    <td>M12231</td>
-                                    <td>P12312</td>
-                                    <td>12/1/2022 <br>
-                                        12:12
-                                    </td>
-                                </tr>
-                                <tr class="tablecolor1 tablerows">
-                                    <th scope="row">3</th>
-                                    <td>Mark</td>
-                                    <td>M12231</td>
-                                    <td>P12312</td>
-                                    <td>12/1/2022 <br>
-                                        12:12
-                                    </td>
-                                </tr>
+                                @foreach ($t_ad_order as $trans)
+                                    <tr class="tablecolor1 text-light tablerows">
+                                        <th scope="row">1</th>
+                                        <td>{{ $trans->customer_id }}</td>
+                                        <td>{{ $trans->payment }}</td>
+                                        <td>{{ $trans->grandtotal_coin }}</td>
+                                        <td>{{ $trans->grandtotal_cash }}</td>
+                                        <td>{{ $trans->order_status }}</td>
+                                        <td>{{ $trans->last_control_by }}</td>
+                                        <td>{{ $trans->order_date }} <br>
+                                            {{ $trans->order_time }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">{{ $t_ad_order->links() }}</div>
                     </div>
                     <div class="col-md-6 mt-5">
                         <div class="status text fs-3 fw-bold mt-6">Coin Charge History</div>
@@ -80,37 +70,27 @@
                                     <th scope="col">No.</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">UserID</th>
-                                    <th scope="col">Product ID</th>
-                                    <th scope="col">Date&Time</th>
+                                    <th scope="col">Coin Amount</th>
+                                    <th scope="col">Approve By</th>
+                                    <th scope="col">Request Time</th>
+                                    <th scope="col">Approve Time</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="tablecolor1 tablerows">
+                                <tr class="tablecolor1 text-light tablerows">
                                     <th scope="row">1</th>
                                     <td>Mark</td>
                                     <td>M12231</td>
-                                    <td>P12312</td>
+                                    <td>3000</td>
+                                    <td>David</td>
                                     <td>12/1/2022 <br>
                                         12:12
                                     </td>
-                                </tr>
-                                <tr class="tablecolor1 tablerows">
-                                    <th scope="row">2</th>
-                                    <td>Mark</td>
-                                    <td>M12231</td>
-                                    <td>P12312</td>
                                     <td>12/1/2022 <br>
                                         12:12
                                     </td>
-                                </tr>
-                                <tr class="tablecolor1 tablerows">
-                                    <th scope="row">3</th>
-                                    <td>Mark</td>
-                                    <td>M12231</td>
-                                    <td>P12312</td>
-                                    <td>12/1/2022 <br>
-                                        12:12
-                                    </td>
+                                    <td>Reject</td>
                                 </tr>
                             </tbody>
                         </table>

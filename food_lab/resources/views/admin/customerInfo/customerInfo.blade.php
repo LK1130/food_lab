@@ -36,16 +36,21 @@
                             <th scope="col">CustomerID</th>
                             <th scope="col">Phone No.</th>
                             <th scope="col">Address</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($t_cu_customer as $list1)
-                            <tr class="tablecolor1 tablerows" id="clickrow" data-href="customerinfoDetail">
+                            <tr class="tablecolor1 tablerows">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list1->nickname }}</td>
                                 <td>{{ $list1->customerID }}</td>
                                 <td>{{ $list1->phone }}</td>
                                 <td>{{ $list1->address3 }}</td>
+                                <td>
+                                    <a href="customerinfoDetail"><button class="btn tablerows btn-outline-light"><i
+                                                class="bi bi-arrow-right"></i></button></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
