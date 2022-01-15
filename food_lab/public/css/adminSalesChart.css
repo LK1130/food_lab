@@ -73,10 +73,10 @@
 }
 /*For Range Sale Search*/
 #rangeSearch{
-    width: 75%;
-    height: 50%;
+    width: 50%;
+    height: 60%;
     margin-top: 2em;
-    margin-left: 15em;
+    margin-left: 20em;
     display: flex;
     flex-direction: row;
 }
@@ -88,20 +88,10 @@
     display: flex;
     flex-direction: column;
 }
-/*For Range Sale Search Details Div*/
-#inputBox{
-    width: 100%;
-    height: 3em;
-    display: flex;
-    margin-left: 2em;
-    margin-top: 0.2em;
-    flex-direction: row;
-}
 /*For Start Range Search*/
-#fromRangeCount{
+.fromRangeCount{
     width: 30%;
     margin-left: 3em;
-    border-radius: 1.5em;
     border:0.1rem solid var(--color2);
     background-color: var(--color3);
     color: var(--color1);
@@ -118,10 +108,9 @@
     font-size: 2em;
 }
 /*For End Range Search*/
-#toRangeCount{
+.toRangeCount{
     width: 30%;
     margin-left: 3em;
-    border-radius: 1.5em;
     border:0.1rem solid var(--color2);
     background-color: var(--color3);
     color: var(--color1);

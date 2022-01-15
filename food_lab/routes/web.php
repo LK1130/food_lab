@@ -62,8 +62,10 @@ Route::get('yearlyChart' , [SalesController::class,'yearlyChart']);
  * For Range Chart show
  */
 Route::get('rangeChart' , function () {
-    return view('admin.salesChart.rangeSale');
+    return  view('admin.salesChart.rangeSale', ['order' => '' , 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily'=> [], 'coinDaily'=> [] ]) ; 
 });
+Route::post('rangeChart' , [SalesController::class,'rangeChart']);
+
 
 //_________________________________Customer Routes_________________________
 

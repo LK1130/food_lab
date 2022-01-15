@@ -7,7 +7,7 @@ Yearly Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/salesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
 @endsection
 
 @section('script')

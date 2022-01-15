@@ -7,7 +7,7 @@ Daily Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/salesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
 @endsection
 
 @section('script')
@@ -49,9 +49,9 @@ Daily Sales
       var orderArray = @json($orderArray);
       // For Sending Coin Array to Coin dailyChart.js
       var coinArray = @json($coinArray);
-      // For Sending Year Array to Order dailyChart.js 
+      // For Sending daily Array to Order dailyChart.js 
       var orderDaily= @json($orderDaily);
-       // For Sending Year Array to  Coin dailyChart.js
+       // For Sending daily Array to  Coin dailyChart.js
       var coinDaily= @json($coinDaily);
     </script>
      <!-- Join Javascript -->

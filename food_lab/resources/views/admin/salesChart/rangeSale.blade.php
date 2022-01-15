@@ -7,7 +7,7 @@ Monthly Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/salesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
 @endsection
 
 @section('script')
@@ -33,7 +33,7 @@ Monthly Sales
   <br></br>
   <h1 id="saleCaption">Range Sale</h1>
     <!-- For Range Sale Search -->
-    <form action="rangeChart" method="Post">
+    <form action="/rangeChart" method="Post">
       @csrf
         <div id="rangeSearch">
           <!-- For  Start Range Search -->
@@ -58,6 +58,16 @@ Monthly Sales
 
       </div>
   </div>
-
-  <script src= "js/yearlyChart.js" ></script>
+  <script>
+    // {{--For Sending Order Array to Order rangeChart.js  --}}
+      var orderArray = @json($orderArray);
+    // {{--  For Sending Coin Array to Coin rangeChart.js  --}}
+      var coinArray = @json($coinArray);
+    // {{--  For Sending order Array to Order rangeChart.js --}}
+      var orderDaily= @json($orderDaily);
+    // {{-- For Sending  coin Array to  Coin rangeChart.js  --}}
+      var coinDaily= @json($coinDaily);
+    </script>
+     <!-- Join Javascript -->
+    <script src= "js/rangeChart.js" ></script>
 @endsection
