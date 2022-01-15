@@ -35,6 +35,6 @@
     background-color: var(--btns) !important;
     color: var(--white) !important;
 }
-#clickrow {
+.clickrow {
     cursor: pointer;
 }

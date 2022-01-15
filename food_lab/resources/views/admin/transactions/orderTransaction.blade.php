@@ -40,42 +40,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 text-light fs-4" id="clickrow" data-href="ordertransactionDetail">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Coin</td>
-                            <td>300</td>
-                            <td>0</td>
-                            <td>complete</td>
-                            <td>AWdasd</td>
-                            <td>12/1/2022 <br>
-                                12:12
-                            </td>
-                        </tr>
-                        <tr class="tablecolor1 text-light fs-4">
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Coin</td>
-                            <td>300</td>
-                            <td>0</td>
-                            <td>complete</td>
-                            <td>AWdasd</td>
-                            <td>12/1/2022 <br>
-                                12:12
-                            </td>
-                        </tr>
-                        <tr class="tablecolor1 text-light fs-4">
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Coin</td>
-                            <td>300</td>
-                            <td>0</td>
-                            <td>complete</td>
-                            <td>AWdasd</td>
-                            <td>12/1/2022 <br>
-                                12:12
-                            </td>
-                        </tr>
+                        @foreach ($t_ad_order as $trans)
+                            <tr class="tablecolor1 text-light fs-4" id="clickrow" data-href="ordertransactionDetail">
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Coin</td>
+                                <td></td>
+                                <td></td>
+                                <td>complete</td>
+                                <td>AWdasd</td>
+                                <td>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

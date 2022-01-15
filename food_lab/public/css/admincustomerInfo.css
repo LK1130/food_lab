@@ -23,3 +23,6 @@
 .tablerows {
     font-size: var(--tablerow);
 }
+#clickrow {
+    cursor: pointer;
+}
