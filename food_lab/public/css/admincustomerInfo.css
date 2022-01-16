@@ -1,0 +1,28 @@
+.cusinput {
+    width: 20vw !important;
+}
+.bybtns {
+    background-color: var(--btns);
+}
+.roow {
+    padding-left: 0 !important;
+    margin: 0 !important;
+}
+.btnstext {
+    font-size: var(--btntextsize);
+}
+.title {
+    font-size: var(--title);
+}
+.detail {
+    font-size: var(--detail);
+}
+.tableheaders {
+    font-size: var(--tableheader);
+}
+.tablerows {
+    font-size: var(--tablerow);
+}
+#clickrow {
+    cursor: pointer;
+}

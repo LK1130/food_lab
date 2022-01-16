@@ -2,7 +2,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-Monthly Sales
+Yearly Sales
 @endsection
 
 @section('css')
@@ -23,31 +23,37 @@ Monthly Sales
     <!-- Daily Sales Button -->
     <a href="dailyChart"><button id="dailySales" >Daily Sale</button></a>
     <!--Monthly Sales Button -->
-    <a href="monthlyChart"><button id="monthlySales" active>Monthly Sale</button></a>
+    <a href="monthlyChart"><button id="monthlySales">Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
-    <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
+    <a href="yearlyChart"><button id="yearlySales" active>Yearly Sale</button></a>
     <!-- Range Sales Button -->
     <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>
     
   </div>
   <br></br>
-  <!-- For Daily Chart-->
+  <!-- For Yearly Sale Chart-->
     <div id="lineChart">
-      <!-- For showing Daily Chart details-->
-      <div id="chart">
+      <!-- For showing Yearly Chart details-->
+        <!-- For  Order Yearly Sale Chart-->
+        <div id="chart">
 
-      </div>
-      <div id="chart1">
+        </div>
+        <!-- For  Coin Yearly Sale Chart-->
+        <div id="chart1">
 
-      </div>
+        </div>
     </div>
-     <!-- For Sending Array to monthlyChart.js -->
+     <!-- For Sending Array to YearlyChart.js -->
     <script>
-       // For Sending Order Array to monthlyChart.js
+      // For Sending Order Array to Order yearlyChart.js
       var orderArray = @json($orderArray);
-       // For Sending Coin Array to monthlyChart.js
+      // For Sending Coin Array to Coin yearlyChart.js
       var coinArray = @json($coinArray);
+      // For Sending Year Array to Order yearlyChart.js 
+      var orderYearly= @json($orderYearly);
+       // For Sending Year Array to  Coin yearlyChart.js
+      var coinYearly= @json($coinYearly);
     </script>
      <!-- Join Javascript -->
-    <script src= "js/monthlyChart.js" ></script>
+    <script src= "js/yearlyChart.js" ></script>
 @endsection
