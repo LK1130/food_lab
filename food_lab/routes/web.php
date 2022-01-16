@@ -72,3 +72,19 @@ Route::post('/report', [CustomerController::class, 'reportData']);
 /*
  * For Suggest Page */
 Route::get('/suggest', [CustomerController::class, 'suggest']);
+
+/*
+ * For Access Page
+ */
+Route::get('/access',[CustomerController::class,'access']);
+
+/*
+ * For Register Form
+ */
+Route::post('/access',[CustomerController::class,'register']);
+
+/*
+ * For Login Page
+ */
+Route::get('/login',[CustomerController::class,'login']);
+
