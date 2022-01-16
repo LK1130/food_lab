@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\CoinController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SalesController;
 
 
@@ -79,3 +80,9 @@ Route::post('/report', [CustomerController::class, 'reportData']);
 /*
  * For Suggest Page */
 Route::get('/suggest', [CustomerController::class, 'suggest']);
+
+
+/*
+ * For Product Crud Page
+*/
+Route::resource('product', ProductController::class);
