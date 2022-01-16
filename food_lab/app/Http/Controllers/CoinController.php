@@ -22,13 +22,13 @@ class CoinController extends Controller
         $commonVar = new Variable();
         $t_ad_coincharge = new T_AD_CoinCharge();
         // Request
-        $request= $t_ad_coincharge->listing($commonVar->REQUEST);
+        $request= $t_ad_coincharge->listing($commonVar->REQUEST,'request');
         // Approve
-        $approve = $t_ad_coincharge->listing($commonVar->APPROVE);
+        $approve = $t_ad_coincharge->listing($commonVar->APPROVE, 'approve');
         // Waiting
-        $waiting = $t_ad_coincharge->listing($commonVar->WAITING);
+        $waiting = $t_ad_coincharge->listing($commonVar->WAITING,'waiting');
         // Reject
-        $reject = $t_ad_coincharge->listing($commonVar->REJECT);
+        $reject = $t_ad_coincharge->listing($commonVar->REJECT,'reject');
         // Return to view
         return view('admin.coin.list',['request'=> $request, 'approve' => $approve, 'waiting' => $waiting, 'reject' => $reject] );
     }

@@ -32,14 +32,14 @@
 }
 
 .tbcust > :not(caption) > * > *{
-    padding: 2px !important;
+    padding:0 15px 0 15px!important;
     overflow-wrap: anywhere;
+    color: black;
 }
 
 .tableth{
     font-size: var(--tablerow);
     height: 4vh;
-    background-color: var(--tablecolor1) !important;
 }
 
 .tabletd{
@@ -47,13 +47,13 @@
     background-color: var(--tablecolor2);
 }
 
-.scroll {
+/* .scroll {
     display:block;
     height:40vh;
     overflow:auto;
-}
+} */
 
-.tbcust thead, .scroll tr {
+/* .tbcust thead, .scroll tr {
     text-align: center;
     display:table;
     width:100%;
@@ -62,4 +62,4 @@
 
 .no{
     width: 3vw !important;
-}
+} */

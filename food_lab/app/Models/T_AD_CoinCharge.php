@@ -17,12 +17,12 @@ class T_AD_CoinCharge extends Model
     * Parameters : no
     * Return : all data
     */
-    public function listing($status){
+    public function listing($status,$category){
       return  T_AD_CoinCharge::where('decision_status', $status)
       ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
       ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
       ->where('t_ad_coincharge.del_flg',0)
       ->orderby('request_datetime','desc')
-      ->get();
+      ->paginate(10,['*'], $category);
     }
 }
