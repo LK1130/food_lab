@@ -18,7 +18,8 @@ class LoginController extends Controller
     public function index()
     {
         $admin = new AdminLogin();
-        return $admin->AdminList();
+        $admins = $admin->AdminList();
+        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
 
 
@@ -47,7 +48,8 @@ class LoginController extends Controller
         //call class from Adminlogin model 
         $admin = new AdminLogin();
         //pass parameter
-        return $admin->AdminAdd($validate);
+        $admin->AdminAdd($validate);
+        return redirect('adminLogin');
     }
 
 
@@ -60,11 +62,15 @@ class LoginController extends Controller
     */
     public function show($id)
     {
-        $admin = new AdminLogin();
-        return $admin->AdminDetail($id);
+        $find = AdminLogin::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $admin = new AdminLogin();
+            $admins = $admin->AdminDetail($id);
+            return view('admin.setting.loginManage.adminDetail', ['admins' => $admins]);
+        }
     }
-
-
     /*
     * Create:zayar(2022/01/10) 
     * Update: 
@@ -74,8 +80,14 @@ class LoginController extends Controller
     */
     public function edit($id)
     {
-        $admin = new AdminLogin();
-        return $admin->AdminEdit($id);
+        $find = AdminLogin::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $admin = new AdminLogin();
+            $admins = $admin->AdminEdit($id);
+            return view('admin.setting.loginManage.adminEdit', ['admins' => $admins]);
+        }
     }
 
     /*
@@ -87,9 +99,15 @@ class LoginController extends Controller
     */
     public function update(AdminValidation $request, $id)
     {
-        $validate = $request->validated();
-        $admin = new AdminLogin();
-        return $admin->AdminUpdate($validate, $id);
+        $find = AdminLogin::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $validate = $request->validated();
+            $admin = new AdminLogin();
+            $admin->AdminUpdate($validate, $id);
+            return redirect('adminLogin');
+        }
     }
 
     /*
@@ -99,9 +117,17 @@ class LoginController extends Controller
     * $id is used searching this adminid.
     * Return is view (adminList.blade.php)
     */
-    public function destroy($id)
+    public  function destroy($id)
     {
-        $admin = new AdminLogin();
-        return $admin->AdminDelete($id);
+
+
+        $find = AdminLogin::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $admin = new AdminLogin();
+            $admin->AdminDelete($id);
+            return redirect('adminLogin');
+        }
     }
 }

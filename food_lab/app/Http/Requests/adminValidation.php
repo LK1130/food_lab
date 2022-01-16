@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\CheckName;
 use App\Rules\OnlyDefinedOption;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
+
 
 class AdminValidation extends FormRequest
 {
