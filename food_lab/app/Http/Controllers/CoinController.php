@@ -16,7 +16,8 @@ class CoinController extends Controller
     public function index()
     {
         $admin = new AdminCoinRate();
-        return $admin->coinHistory();
+        $admins = $admin->coinHistory();
+        return view('admin.setting.coinRate.coinRate', ['admins' => $admins]);
     }
 
     /*
@@ -42,6 +43,7 @@ class CoinController extends Controller
             'note' => 'required|min:10|max:255'
         ]);
         $admin = new AdminCoinRate();
-        return $admin->coinRateChange($request);
+        $admin->coinRateChange($request);
+        return redirect('coinrate');
     }
 }

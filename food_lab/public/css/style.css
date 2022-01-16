@@ -213,6 +213,11 @@
 /*Start Report Form Section */
 
 .forms{
+    min-height: 81vh;
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("/img/bg6.png");
+}
+
+.form-headers{
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-top: 2%;
@@ -260,3 +265,109 @@ form div .cancels{
 }
 
 /*End Report Form Section*/
+
+/*Start Access Section*/
+
+.accesses{
+    min-height: 100vh;
+    background: url('/img/bg7.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.arrows{
+    font-size: 2rem;
+}
+
+/*start register header*/
+.register-headers div:first-of-type{
+    min-width: 60%;
+}
+
+.welcome-registers{
+    min-width: 40%;
+}
+
+.creates{
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.sign-withs i{
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.sign-withs a{
+    background: var(--bg-color);
+    font-size: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.creates:last-of-type{
+    letter-spacing: 2px;
+    word-spacing: 1px;
+}
+
+@media (max-width: 720px) {
+    .register-headers div:first-of-type{
+        min-width: 100%;
+    }
+
+    .welcome-registers{
+       display: none;
+    }
+}
+/*end register header*/
+
+/*start register form*/
+.register-forms{
+    min-width: 100%;
+}
+
+.register-forms form{
+    min-width: 60%;
+}
+
+.register-forms .inputs{
+    width: 80%;
+    margin-bottom: 2%;
+}
+
+.register-forms input{
+    background-color: var(--bg-color);
+    border: none;
+    color: var(--text-color);
+    border-radius: 15px;
+    padding: 15px 10px;
+}
+
+.register-forms input::placeholder{
+    color: var(--text-color);
+}
+
+.register-forms input[type = 'submit']{
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+/*end register form*/
+
+.have-accs{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.have-accs a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+/*End Access Section*/

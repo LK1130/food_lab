@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
     @yield('css')
-    @yield('js')
     <title>@yield('title')</title>
 </head>
 <body>
@@ -49,7 +49,7 @@
                         <a class="nav-link texts" href="#">{{ __('messageMK.inform') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texts" href="#">{{ __('messageMK.access') }}</a>
+                        <a class="nav-link texts" href="/access">{{ __('messageMK.access') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link texts" href="#">profile</a>

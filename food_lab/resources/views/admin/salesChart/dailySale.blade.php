@@ -7,7 +7,7 @@ Daily Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/salesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
 @endsection
 
 @section('script')
@@ -27,26 +27,32 @@ Daily Sales
     <!-- Yearly Sales Button -->
     <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
     <!-- Range Sales Button -->
-    <a href=""><button id="rangeSales">Range Sale</button></a>
+    <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>
     
   </div>
   <br></br>
   <!-- For Daily Chart-->
     <div id="lineChart">
       <!-- For showing Daily Chart details-->
+      <!-- For  Order daily Sale Chart-->
       <div id="chart">
 
       </div>
+      <!-- For  Coin daily Sale Chart-->
+      <div id="chart1">
+
+      </div>
     </div>
-     <!-- For Sending Array to monthlyChart.js -->
+     <!-- For Sending Array to DailyChart.js -->
     <script>
-      // For Sending Order Array to monthlyChart.js
-      var array = @json($orderArray);
-      // For Sending Coin Array to monthlyChart.js
-      var array1 = @json($coinArray);
-      // For Sending Date Array to monthlyChart.js
-      var daily = @json($dailyArray);
-     
+      // For Sending Order Array to Order dailyChart.js
+      var orderArray = @json($orderArray);
+      // For Sending Coin Array to Coin dailyChart.js
+      var coinArray = @json($coinArray);
+      // For Sending daily Array to Order dailyChart.js 
+      var orderDaily= @json($orderDaily);
+       // For Sending daily Array to  Coin dailyChart.js
+      var coinDaily= @json($coinDaily);
     </script>
      <!-- Join Javascript -->
     <script src= "js/dailyChart.js" ></script>

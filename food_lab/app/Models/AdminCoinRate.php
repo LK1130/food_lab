@@ -20,8 +20,7 @@ class AdminCoinRate extends Model
     */
     public function coinHistory()
     {
-        $admins = AdminCoinRateHistory::where('del_flg', '=', 0)->paginate(3);
-        return view('admin.setting.coinRate.coinRate', ['admins' => $admins]);
+        return AdminCoinRateHistory::where('del_flg', '=', 0)->paginate(3);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -36,18 +35,27 @@ class AdminCoinRate extends Model
     {
 
         $oldrate = AdminCoinRate::select(['rate'])->where('del_flg', '=', 0)->orderBy('id', 'desc')->first();
-
-        $history = new AdminCoinRateHistory();
-        $history->old_rate = $oldrate->rate;
-        $history->new_rate = $request->input('kyat');
-        $history->change_by = 1; //need to change
-        $history->change_note = $request->input('note');
-        $history->save();
-
-        $admin = AdminCoinRate::find(1);
-        $admin->rate = $request->input('kyat');
-        $admin->save();
-
-        return redirect('coinrate');
+        if ($oldrate === null) {
+            $oldrate = 1000;
+            $history = new AdminCoinRateHistory();
+            $history->old_rate = $oldrate;
+            $history->new_rate = $request->input('kyat');
+            $history->change_by = 1; //need to change
+            $history->change_note = $request->input('note');
+            $history->save();
+            $admin = new AdminCoinRate();
+            $admin->rate = $request->input('kyat');
+            $admin->save();
+        } else {
+            $history = new AdminCoinRateHistory();
+            $history->old_rate = $oldrate->rate;
+            $history->new_rate = $request->input('kyat');
+            $history->change_by = 1; //need to change
+            $history->change_note = $request->input('note');
+            $history->save();
+            $admin = AdminCoinRate::where('del_flg', '=', 0)->orderBy('id', 'desc')->first();
+            $admin->rate = $request->input('kyat');
+            $admin->save();
+        }
     }
 }

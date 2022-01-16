@@ -28,7 +28,6 @@ class AdminLogin extends Model
         $admin->ad_role = $validate['role'];
         $admin->ad_login_dt = Carbon::now();
         $admin->save();
-        return redirect('adminLogin');
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -39,8 +38,7 @@ class AdminLogin extends Model
     */
     public function AdminList()
     {
-        $admins = AdminLogin::where('del_flg', '=', 0)->paginate(3);
-        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
+        return AdminLogin::where('del_flg', '=', 0)->paginate(3);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -52,8 +50,7 @@ class AdminLogin extends Model
     */
     public function AdminDetail($id)
     {
-        $admin = AdminLogin::find($id);
-        return view('admin.setting.loginManage.adminDetail', ['admins' => $admin]);
+        return AdminLogin::find($id);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -64,8 +61,7 @@ class AdminLogin extends Model
     */
     public function AdminEdit($id)
     {
-        $admin = AdminLogin::find($id);
-        return view('admin.setting.loginManage.adminEdit', ['admins' => $admin]);
+        return AdminLogin::find($id);
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -82,7 +78,6 @@ class AdminLogin extends Model
         $admin->ad_password = $validate['password'];
         $admin->ad_role = $validate['role'];
         $admin->save();
-        return redirect('adminLogin');
     }
     /*
     * Create:zayar(2022/01/11) 
@@ -96,7 +91,5 @@ class AdminLogin extends Model
         $admin = AdminLogin::find($id);
         $admin->del_flg = 1;
         $admin->save();
-
-        return redirect('adminLogin');
     }
 }
