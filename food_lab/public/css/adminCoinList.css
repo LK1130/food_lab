@@ -1,0 +1,60 @@
+.btncust{
+    margin: 10px;
+    width: 12vw;
+    font-size: var(--btntextsize)!important;
+    border :1px black solid;
+}
+
+.btncust:hover{
+    background-color: var(--btns);
+}
+
+.active{
+    background-color: var(--btns);
+}
+
+.inactive{
+    background-color: var(--inactivebtn) 
+}
+
+.title{
+    font-size: var(--tableheader);
+}
+
+.tbcust{
+    height: 40vh;
+    box-shadow: 3px 10px 10px silver;
+}
+
+.tbcust > :not(caption) > * > *{
+    padding: 2px !important;
+    overflow-wrap: anywhere;
+}
+
+.tableth{
+    font-size: var(--tablerow);
+    height: 4vh;
+    background-color: var(--tablecolor1) !important;
+}
+
+.tabletd{
+    font-size: var(--tablerow);
+    background-color: var(--tablecolor2);
+}
+
+.scroll {
+    display:block;
+    height:40vh;
+    overflow:auto;
+}
+
+.tbcust thead, .scroll tr {
+    text-align: center;
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+.no{
+    width: 3vw !important;
+}

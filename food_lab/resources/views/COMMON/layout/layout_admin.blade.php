@@ -31,7 +31,7 @@
                                 class="buttons btn">{{ __('messageZN.Transaction') }}</button></a>
                         <a href="/customerInfo"><button
                                 class="buttons btn">{{ __('messageZN.Customer') }}</button></a>
-                        <a href=""><button class="buttons btn">{{ __('messageZN.Coin') }}</button></a>
+                        <a href="/coinListing"><button class="buttons btn">{{ __('messageZN.Coin') }}</button></a>
                         <a href="/dailyChart"><button
                                 class="buttons btn">{{ __('messageZN.Finance') }}</button></a>
                         <a href=""><button class="buttons btn">{{ __('messageZN.Products') }}</button></a>

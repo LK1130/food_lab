@@ -2,12 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Variable;
 use App\Http\Controllers\Controller;
 use App\Models\AdminCoinRate;
+use App\Models\T_AD_CoinCharge;
 use Illuminate\Http\Request;
 
 class CoinController extends Controller
 {
+
+    /*
+    * Create : linn(2022/01/16) 
+    * Update : 
+    * This function is use to show coin listing.
+    * Parameters : no
+    * Return : view('admin.coin.list')
+    */
+    public function list(){
+        $commonVar = new Variable();
+        $t_ad_coincharge = new T_AD_CoinCharge();
+        // Request
+        $request= $t_ad_coincharge->listing($commonVar->REQUEST);
+        // Approve
+        $approve = $t_ad_coincharge->listing($commonVar->APPROVE);
+        // Waiting
+        $waiting = $t_ad_coincharge->listing($commonVar->WAITING);
+        // Reject
+        $reject = $t_ad_coincharge->listing($commonVar->REJECT);
+        // Return to view
+        return view('admin.coin.list',['request'=> $request, 'approve' => $approve, 'waiting' => $waiting, 'reject' => $reject] );
+    }
+
+
     /*
     * Create:zayar(2022/01/12) 
     * Update: 
