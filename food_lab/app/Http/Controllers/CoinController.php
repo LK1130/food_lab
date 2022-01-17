@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinRate;
 use App\Models\T_AD_CoinCharge;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CoinController extends Controller
 {
@@ -23,6 +24,9 @@ class CoinController extends Controller
     public function list()
     {
         $commonVar = new Variable();
+        Log::channel('adminlog')->info("CoinController", [
+            'Start list'
+        ]);
         $t_ad_coincharge = new T_AD_CoinCharge();
         // Request
         $request = $t_ad_coincharge->listing($commonVar->REQUEST, 'request');
@@ -32,9 +36,57 @@ class CoinController extends Controller
         $waiting = $t_ad_coincharge->listing($commonVar->WAITING, 'waiting');
         // Reject
         $reject = $t_ad_coincharge->listing($commonVar->REJECT, 'reject');
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End list'
+        ]);
         // Return to view
         return view('admin.coin.list', ['request' => $request, 'approve' => $approve, 'waiting' => $waiting, 'reject' => $reject]);
     }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : no
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function rateHistory()
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start rateHistory'
+        ]);
+        $commonVar = new Variable();
+        $admin = new M_AD_CoinRate();
+        $admins = $admin->coinHistory();
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End rateHistory'
+        ]);
+
+        return view('admin.coin.rateHistory', ['admins' => $admins]);
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : no
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function rateChange()
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start rateChange'
+        ]);
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End rateChange'
+        ]);
+
+        return view('admin.coin.rateChange');
+    }
+
 
 
     /*

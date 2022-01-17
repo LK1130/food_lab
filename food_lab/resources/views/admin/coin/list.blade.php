@@ -16,9 +16,9 @@
                     class="btn text-light  active btncust">{{ __('messageLK.Listing') }}</button></a>
             <a href="" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.AddCoin') }}</button></a>
-            <a href="" class="me-5"><button
+            <a href="rateChange" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.CoinRate') }}</button></a>
-            <a href="" class="me-5"><button
+            <a href="rateHistory" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.CoinHistory') }}</button></a>
         </div>
         <div class="row">
