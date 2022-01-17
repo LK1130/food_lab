@@ -14,26 +14,8 @@ class SiteController extends Controller
     {
         $admin = new M_Site();
         $siteInfo =  $admin->siteManage();
-        $townships =  $admin->township();
-        $payments =  $admin->payments();
-        $categories =  $admin->categories();
-        $tastes =  $admin->tastes();
-        $suggests =  $admin->suggests();
-        $favtypes =  $admin->favtypes();
-        $orderStatus =  $admin->orderStatus();
-        $desicions =  $admin->desicions();
-        $news =  $admin->news();
         return view('admin.setting.siteManage.siteManage', [
-            'siteInfo' => $siteInfo,
-            'townships' => $townships,
-            'payments' => $payments,
-            'categories' => $categories,
-            'tastes' => $tastes,
-            'suggests' => $suggests,
-            'favtypes' => $favtypes,
-            'orderstatus' => $orderStatus,
-            'decisions' => $desicions,
-            'news' => $news,
+            'siteInfo' => $siteInfo
         ]);
     }
     public function store(Request $request)

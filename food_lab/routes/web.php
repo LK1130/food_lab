@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
@@ -40,6 +41,7 @@ Route::resource('coinrate', CoinController::class);
 Route::get('siteManage', [SiteController::class, 'siteManage']);
 Route::post('siteManage/store', [SiteController::class, 'store']);
 //admin/setting/appManage
+Route::resource('app', AppController::class);
 Route::resource('township', TownshipController::class);
 Route::resource('payment', PaymentController::class);
 Route::resource('category', CategoryController::class);
@@ -84,7 +86,7 @@ Route::resource('coinrate', CoinController::class);
 
 //_________________________________Start Admin Coin Routes_________________________
 
-Route::get('coinListing',[CoinController::class,'list']);
+Route::get('coinListing', [CoinController::class, 'list']);
 
 //_________________________________End Admin Coin Routes_________________________
 
@@ -144,15 +146,14 @@ Route::get('/suggest', [CustomerController::class, 'suggest']);
 /*
  * For Access Page
  */
-Route::get('/access',[CustomerController::class,'access']);
+Route::get('/access', [CustomerController::class, 'access']);
 
 /*
  * For Register Form
  */
-Route::post('/access',[CustomerController::class,'register']);
+Route::post('/access', [CustomerController::class, 'register']);
 
 /*
  * For Login Page
  */
-Route::get('/login',[CustomerController::class,'login']);
-
+Route::get('/login', [CustomerController::class, 'login']);

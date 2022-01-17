@@ -17,6 +17,18 @@ class NewsController extends Controller
     * This function is used to show news add view.
     */
 
+    public function index()
+    {
+        $app = new M_Site();
+        $admins = $app->news();
+        return view('admin.setting.newsManage.newsManage', ['news' => $admins]);
+    }
+    /*
+    * Create:zayar(2022/01/15) 
+    * Update: 
+    * This function is used to show news add view.
+    */
+
     public function create()
     {
         $app = new M_AD_News();

@@ -1,3 +1,16 @@
+.setting {
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
+.btncust {
+    margin: 10px;
+    width: 12vw;
+    font-size: var(--btntextsize) !important;
+    border: 1px black solid;
+}
+.active {
+    background-color: var(--btns);
+}
 .navBar {
     display: flex;
     align-items: center;
@@ -32,7 +45,7 @@ fieldset {
 }
 #back {
     position: absolute;
-    bottom: 12.5vh;
+    bottom: 11.6vh;
     left: 110vh;
     width: 10vh !important;
 }
@@ -77,6 +90,7 @@ fieldset input {
 }
 #back {
     margin-left: 10vh;
+    margin-top: 5vh;
 }
 label,
 select,
