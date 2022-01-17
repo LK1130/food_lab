@@ -18,31 +18,29 @@ Daily Sales
 @endsection
 
 @section('body')
-  <!-- Sales Change Button -->
-  <div id="salesChangeBtn">
+<div class="col-md-10">
     <!-- Daily Sales Button -->
-    <a href="dailyChart"><button id="dailySales" active>Daily Sale</button></a>
+    <a href="dailyChart"><button id="dailySales" class="active">Daily Sale</button></a>
     <!--Monthly Sales Button -->
     <a href="monthlyChart"><button id="monthlySales">Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
     <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
     <!-- Range Sales Button -->
-    <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>
-    
-  </div>
+    <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>  
   <br></br>
   <!-- For Daily Chart-->
     <div id="lineChart">
       <!-- For showing Daily Chart details-->
       <!-- For  Order daily Sale Chart-->
       <div id="chart">
-
+      
       </div>
       <!-- For  Coin daily Sale Chart-->
       <div id="chart1">
 
       </div>
     </div>
+</div>
      <!-- For Sending Array to DailyChart.js -->
     <script>
       // For Sending Order Array to Order dailyChart.js
