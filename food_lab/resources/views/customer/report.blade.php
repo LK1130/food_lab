@@ -10,9 +10,9 @@
 
 @section('header')
     {{-- Start Report Form Section --}}
-    <section>
+    <section class="forms">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <p class="fw-bolder forms">{{ __('messageMK.reportForm') }}</p>
+            <p class="fw-bolder form-headers">{{ __('messageMK.reportForm') }}</p>
             <form action="/report" method="post">
                 @csrf
                 <div class="d-flex">

@@ -81,6 +81,15 @@ Route::resource('adminLogin', LoginController::class);
 //admin/setting/coinRate
 Route::resource('coinrate', CoinController::class);
 
+
+//_________________________________Start Admin Coin Routes_________________________
+
+Route::get('coinListing',[CoinController::class,'list']);
+
+//_________________________________End Admin Coin Routes_________________________
+
+
+
 //_________________________________Chart Routes_________________________
 /**
  * For Daily SalesChart show
@@ -131,3 +140,19 @@ Route::post('/report', [CustomerController::class, 'reportData']);
 /*
  * For Suggest Page */
 Route::get('/suggest', [CustomerController::class, 'suggest']);
+
+/*
+ * For Access Page
+ */
+Route::get('/access',[CustomerController::class,'access']);
+
+/*
+ * For Register Form
+ */
+Route::post('/access',[CustomerController::class,'register']);
+
+/*
+ * For Login Page
+ */
+Route::get('/login',[CustomerController::class,'login']);
+

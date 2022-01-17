@@ -6,7 +6,7 @@
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 
-@section('js')
+@section('script')
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
 @endsection
 

@@ -57,5 +57,20 @@ class M_Township extends Model
         $admin = M_Township::find($id);
         $admin->del_flg = 1;
         $admin->save();
+
+    use HasFactory;
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : To get Township name in m_township Table From Database
+     * Prarameter : no
+     * return : Township names and each delivery prices
+     * */
+    public function townshipDetails()
+    {
+        return M_Township::where('del_flg','=','0')
+            ->get();
     }
 }
+
