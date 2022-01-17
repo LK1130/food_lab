@@ -19,9 +19,10 @@
 <div class="navBar">
     <a href="{{ url('adminLogin') }}"><button class=" headerButton">{{__('messageZY.loginManage')}}</button></a>
     <a href="{{ url('coinrate') }}"><button  class="checked headerButton">{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('sitemanager') }}"><button  class=" headerButton">{{__('messageZY.siteManager')}}</button></a>
+    <a href="{{ url('siteManage') }}"><button  class=" headerButton">{{__('messageZY.siteManager')}}</button></a>
 </div>
     {{-- Starts Form --}}
+    <a href="{{ url('coinrate') }}"><button class="change" id="back">{{__('messageZY.back')}}</button></a>
     <form action="{{route('coinrate.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
     <fieldset class="border p-2">
@@ -52,6 +53,9 @@
             </div>
         </div>
         <button type="submit" class="change">{{__('messageZY.change')}}</button>
+        <input type="reset" value="{{__('messageZY.reset')}}" class="reset">
+        
     </fieldset>
 </form>
+
 @endsection
