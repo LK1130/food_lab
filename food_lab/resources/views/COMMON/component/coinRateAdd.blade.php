@@ -1,6 +1,3 @@
-{{-- Starts Form --}}
-    <a href="{{ url('coinrate') }}"><button class="change" id="back">{{__('messageZY.back')}}</button></a>
-    <form action="{{route('coinrate.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
     <fieldset class="border p-2">
         <legend>{{__('messageZY.changecoinrate')}}</legend>
@@ -33,4 +30,3 @@
         <input type="reset" value="{{__('messageZY.reset')}}" class="reset">
         
     </fieldset>
-</form>

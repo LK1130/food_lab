@@ -22,4 +22,7 @@
 </div>
 
     @include('COMMON.component.coinRateHistory')
+      <a href="{{ route('coinrate.create')}}">
+        <button  class="addAdminButton">{{__('messageZY.change')}}</button>
+    </a>
 @endsection

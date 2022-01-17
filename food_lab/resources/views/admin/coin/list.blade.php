@@ -3,7 +3,7 @@
 
  @section('css') 
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
- <link rel="stylesheet" href="{{ URL::asset('css/adminCoinList.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminCoin.css') }}"/>
  @endsection
 
 @section('script') 
@@ -46,7 +46,7 @@
                             <td scope="col">{{ \Carbon\Carbon::parse($item->request_datetime)->diffForHumans() }}</td>
                             <td scope="col">{{ $item->ad_name }}</td>                            
                             <td>
-                                <a href=""><button class="btn btn-outline-success"><i class="bi bi-arrow-right"></i></button></a>
+                                <a href="makeDecision"><button class="btn btn-outline-success"><i class="bi bi-arrow-right"></i></button></a>
                             </td>
                         </tr> 
                         @empty

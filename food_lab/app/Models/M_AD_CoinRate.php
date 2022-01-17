@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class M_AD_CoinRate extends Model
 {
-
     public $table = 'm_ad_coinrate';
     use HasFactory;
     /*
@@ -49,6 +48,10 @@ class M_AD_CoinRate extends Model
    */
     public function coinRateChange($request)
     {
+        Log::channel('adminlog')->info("M_AD_CoinRate Model", [
+            'Start coinRateChange'
+        ]);
+
         DB::transaction(function () use($request) {
             $oldrate = M_AD_CoinRate::select(['rate'])->where('del_flg', '=', 0)->orderBy('id', 'desc')->first();
             if ($oldrate === null) {
@@ -76,5 +79,9 @@ class M_AD_CoinRate extends Model
                 $admin->save();
             }
         });
+
+        Log::channel('adminlog')->info("M_AD_CoinRate Model", [
+            'End coinRateChange'
+        ]);
     }
 }

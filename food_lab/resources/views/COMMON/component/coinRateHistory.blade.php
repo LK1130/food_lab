@@ -25,6 +25,3 @@
         @endforelse
     </table>
     <div class="d-flex justify-content-center ">{{ $admins->links() }}</div>
-    <a href="{{ route('coinrate.create')}}">
-        <button  class="addAdminButton">{{__('messageZY.change')}}</button>
-    </a>

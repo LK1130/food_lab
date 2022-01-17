@@ -72,7 +72,7 @@ class CoinController extends Controller
     * Update : 
     * This function is use to show coin change history.
     * Parameters : no
-    * Return : view('admin.coin.rateHistory')
+    * Return : view('admin.coin.rateChange')
     */
     public function rateChange()
     {
@@ -87,6 +87,53 @@ class CoinController extends Controller
         return view('admin.coin.rateChange');
     }
 
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : no
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function rateStore(Request $request)
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start rateStore'
+        ]);
+
+        $request->validate([
+            'kyat' => 'required|min:0|max:100000|numeric',
+            'note' => 'required|min:10|max:255'
+        ]);
+        $admin = new M_AD_CoinRate();
+        $admin->coinRateChange($request);
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End rateStore'
+        ]);
+
+        return redirect('rateHistory');
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : no
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function decision(Request $request)
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start decision'
+        ]);
+
+    
+        Log::channel('adminlog')->info("CoinController", [
+            'End decision'
+        ]);
+
+        return view('admin.coin.decision');
+    }
 
 
     /*
