@@ -8,5 +8,6 @@ return [
     'Request' => 'Request List',
     'Approve' => 'Approve List',
     'Waiting' => 'Waiting List',
-    'Reject' => 'Reject List'
+    'Reject' => 'Reject List',
+    'Back' => 'Back'
 ];

@@ -527,10 +527,10 @@ CREATE TABLE `t_cu_customer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_cu_customer_login`
+-- Table structure for table `m_cu_customer_login`
 --
 
-CREATE TABLE `t_cu_customer_login` (
+CREATE TABLE `m_cu_customer_login` (
   `id` int NOT NULL COMMENT 'ID of Row',
   `email` varchar(128) NOT NULL COMMENT 'Email',
   `password` varchar(30) NOT NULL COMMENT 'Password',
@@ -713,9 +713,9 @@ ALTER TABLE `t_cu_customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_cu_customer_login`
+-- Indexes for table `m_cu_customer_login`
 --
-ALTER TABLE `t_cu_customer_login`
+ALTER TABLE `m_cu_customer_login`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
@@ -874,9 +874,9 @@ ALTER TABLE `t_cu_customer`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'Row of Id';
 
 --
--- AUTO_INCREMENT for table `t_cu_customer_login`
+-- AUTO_INCREMENT for table `m_cu_customer_login`
 --
-ALTER TABLE `t_cu_customer_login`
+ALTER TABLE `m_cu_customer_login`
   MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'ID of Row';
 
 --
@@ -954,10 +954,10 @@ ALTER TABLE `t_ad_report`
   ADD CONSTRAINT `t_ad_report_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `t_ad_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `t_cu_customer_login`
+-- Constraints for table `m_cu_customer_login`
 --
-ALTER TABLE `t_cu_customer_login`
-  ADD CONSTRAINT `t_cu_customer_login_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `m_cu_customer_login`
+  ADD CONSTRAINT `m_cu_customer_login_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

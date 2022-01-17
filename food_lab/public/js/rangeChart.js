@@ -19,7 +19,7 @@ var options = {
       top: 18,
       left: 7,
       blur: 10,
-      opacity: 0.2
+      opacity: 0.5
     },
     toolbar: {
       show: true
@@ -93,7 +93,7 @@ var options1 = {
       opacity: 0.2
     },
     toolbar: {
-      show: false
+      show: true
     }
   },
   colors: ['#ffa600'],

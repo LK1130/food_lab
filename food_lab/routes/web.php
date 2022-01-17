@@ -87,6 +87,10 @@ Route::resource('coinrate', CoinController::class);
 //_________________________________Start Admin Coin Routes_________________________
 
 Route::get('coinListing', [CoinController::class, 'list']);
+Route::get('rateHistory', [CoinController::class, 'rateHistory']);
+Route::get('rateChange', [CoinController::class, 'rateChange']);
+Route::post('rateStore', [CoinController::class, 'rateStore']);
+Route::get('makeDecision', [CoinController::class, 'decision']);
 
 //_________________________________End Admin Coin Routes_________________________
 

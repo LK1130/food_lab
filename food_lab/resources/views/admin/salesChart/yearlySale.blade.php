@@ -18,18 +18,16 @@ Yearly Sales
 @endsection
 
 @section('body')
-  <!-- Sales Change Button -->
-  <div id="salesChangeBtn">
+<div class="col-md-10">
     <!-- Daily Sales Button -->
     <a href="dailyChart"><button id="dailySales" >Daily Sale</button></a>
     <!--Monthly Sales Button -->
     <a href="monthlyChart"><button id="monthlySales">Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
-    <a href="yearlyChart"><button id="yearlySales" active>Yearly Sale</button></a>
+    <a href="yearlyChart"><button id="yearlySales" class="active">Yearly Sale</button></a>
     <!-- Range Sales Button -->
     <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>
-    
-  </div>
+
   <br></br>
   <!-- For Yearly Sale Chart-->
     <div id="lineChart">
@@ -43,6 +41,7 @@ Yearly Sales
 
         </div>
     </div>
+</div>
      <!-- For Sending Array to YearlyChart.js -->
     <script>
       // For Sending Order Array to Order yearlyChart.js

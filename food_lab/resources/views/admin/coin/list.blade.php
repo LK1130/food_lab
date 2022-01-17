@@ -3,7 +3,7 @@
 
  @section('css') 
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
- <link rel="stylesheet" href="{{ URL::asset('css/adminCoinList.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminCoin.css') }}"/>
  @endsection
 
 @section('script') 
@@ -16,9 +16,9 @@
                     class="btn text-light  active btncust">{{ __('messageLK.Listing') }}</button></a>
             <a href="" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.AddCoin') }}</button></a>
-            <a href="" class="me-5"><button
+            <a href="rateChange" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.CoinRate') }}</button></a>
-            <a href="" class="me-5"><button
+            <a href="rateHistory" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.CoinHistory') }}</button></a>
         </div>
         <div class="row">
@@ -46,7 +46,7 @@
                             <td scope="col">{{ \Carbon\Carbon::parse($item->request_datetime)->diffForHumans() }}</td>
                             <td scope="col">{{ $item->ad_name }}</td>                            
                             <td>
-                                <a href=""><button class="btn btn-outline-success"><i class="bi bi-arrow-right"></i></button></a>
+                                <a href="makeDecision"><button class="btn btn-outline-success"><i class="bi bi-arrow-right"></i></button></a>
                             </td>
                         </tr> 
                         @empty
