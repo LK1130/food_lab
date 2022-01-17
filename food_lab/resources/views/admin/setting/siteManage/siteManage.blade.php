@@ -24,9 +24,11 @@
 </div>
     {{-- Starts Table --}}
     <select class="select" id="select">
-        <option value="3">{{__('messageZY.newsmanage')}}</option>
-        <option value="2">{{__('messageZY.appManage')}}</option>
         <option value="1">{{__('messageZY.siteManage')}}</option>
+        <option value="2">{{__('messageZY.appManage')}}</option>
+        <option value="3">{{__('messageZY.newsmanage')}}</option>
+        
+        
         
         
         
@@ -38,7 +40,7 @@
             <div class="rowInput">
                 <label for="name">{{__('messageZY.sitename')}}</label>
                 <div class="input-group mb-3">
-                    <input type="text" id="name" name="name" value="{{ $siteInfo->site_name }}">
+                    <input type="text" id="name" name="name" value="{{$siteInfo==null ? '' : $siteInfo->site_name }}">
                     @error('name')
                     <li class="text-danger ">{{ $message }}</li>
                     @enderror
@@ -49,20 +51,20 @@
                 <label for="logo">{{__('messageZY.sitelogo')}}</label>
                 <div class="showImageInitial">
                     <h2>{{__('messageZY.sitecurrentimg')}}</h2>
-                    <img id="imgInitial" src="/storage/siteLogo/{{$siteInfo->site_logo}}" />
+                    <img id="imgInitial" src="/storage/siteLogo/{{$siteInfo==null ? '' : $siteInfo->site_logo}}" />
                 </div>
                 <div class="showImageChange">
                     <h2>{{__('messageZY.yourimage')}}</h2>
                     <img id="imageChange" src="" />
                 </div>
                 <div class="input-group mb-3">
-                    <input type="file" id="logo" name="logo" value="{{$siteInfo->site_logo}}">
+                    <input type="file" id="logo" name="logo" value="{{$siteInfo==null ? '' : $siteInfo->site_logo}}">
                 </div>
             </div>
             <div class="rowInput">
                 <label for="policy">{{__('messageZY.privacy')}}</label>
                 <div class="input-group mb-3">
-                    <input type="text" id="policy" name="policy" value="{{ $siteInfo->privacy_policy }}">
+                    <input type="text" id="policy" name="policy" value="{{$siteInfo==null ? '' :  $siteInfo->privacy_policy }}">
                                 @error('policy')
                                 <li class="text-danger ">{{ $message }}</li>
                                 @enderror
@@ -72,7 +74,7 @@
             <div class="rowInput">
                 <div class="checkbox">
                     <label for="maintenance">{{__('messageZY.maintenance')}}</label>
-                    @if ($siteInfo->maintenance==0)
+                    @if ($siteInfo==null ? '' : $siteInfo->maintenance==0)
                     <input type="checkbox" id="maintenance" >
                     @else
                     <input type="checkbox" id="maintenance" checked>
@@ -97,20 +99,13 @@
                 </tr>
                 @php
                     $countnews = 1;
-                    $category="";
                     @endphp
                 @forelse ($news as $new)
-            @if    ($new->category==1)@php $category="Food"; @endphp 
-            @elseif($new->category==2)@php $category="Health"; @endphp 
-            @elseif($new->category==3)@php $category="Promotion"; @endphp 
-            @elseif($new->category==4)@php $category="Social"; @endphp 
-            @elseif($new->category==5)@php $category="Other"; @endphp 
-            @endif
             <tr class="tableChile">
                 <td class="tdBlack">{{ $countnews++ }}</td>
                 <td class="tdBlack">{{$new->title}}</td>
                 <td class="tdBlack">{{$new->detail}}</td>
-                <td class="tdBlack">{{$category}}</td>
+                <td class="tdBlack">{{$new->category_name}}</td>
                 <td><input type="checkbox"></td>
                 <td><a href="{{ route('news.show',$new->id)}}"><button  class="btn btn-primary btn-sm">{{__('messageZY.edit')}}</button></a></td>
                 <td>

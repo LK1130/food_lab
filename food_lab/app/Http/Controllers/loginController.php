@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\adminValidation;
 use App\Models\AdminLogin;
+use App\Models\M_AD_Login;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -17,7 +18,7 @@ class LoginController extends Controller
     */
     public function index()
     {
-        $admin = new AdminLogin();
+        $admin = new M_AD_Login();
         $admins = $admin->AdminList();
         return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
@@ -46,7 +47,7 @@ class LoginController extends Controller
     {
         $validate = $request->validated();
         //call class from Adminlogin model 
-        $admin = new AdminLogin();
+        $admin = new M_AD_Login();
         //pass parameter
         $admin->AdminAdd($validate);
         return redirect('adminLogin');
@@ -62,11 +63,11 @@ class LoginController extends Controller
     */
     public function show($id)
     {
-        $find = AdminLogin::where('id', '=', $id)->first();
+        $find = M_AD_Login::where('id', '=', $id)->first();
         if ($find === null) {
             return view('errors.404');
         } else {
-            $admin = new AdminLogin();
+            $admin = new M_AD_Login();
             $admins = $admin->AdminDetail($id);
             return view('admin.setting.loginManage.adminDetail', ['admins' => $admins]);
         }
@@ -80,11 +81,11 @@ class LoginController extends Controller
     */
     public function edit($id)
     {
-        $find = AdminLogin::where('id', '=', $id)->first();
+        $find = M_AD_Login::where('id', '=', $id)->first();
         if ($find === null) {
             return view('errors.404');
         } else {
-            $admin = new AdminLogin();
+            $admin = new M_AD_Login();
             $admins = $admin->AdminEdit($id);
             return view('admin.setting.loginManage.adminEdit', ['admins' => $admins]);
         }
@@ -99,12 +100,12 @@ class LoginController extends Controller
     */
     public function update(AdminValidation $request, $id)
     {
-        $find = AdminLogin::where('id', '=', $id)->first();
+        $find = M_AD_Login::where('id', '=', $id)->first();
         if ($find === null) {
             return view('errors.404');
         } else {
             $validate = $request->validated();
-            $admin = new AdminLogin();
+            $admin = new M_AD_Login();
             $admin->AdminUpdate($validate, $id);
             return redirect('adminLogin');
         }
@@ -121,11 +122,11 @@ class LoginController extends Controller
     {
 
 
-        $find = AdminLogin::where('id', '=', $id)->first();
+        $find = M_AD_Login::where('id', '=', $id)->first();
         if ($find === null) {
             return view('errors.404');
         } else {
-            $admin = new AdminLogin();
+            $admin = new M_AD_Login();
             $admin->AdminDelete($id);
             return redirect('adminLogin');
         }

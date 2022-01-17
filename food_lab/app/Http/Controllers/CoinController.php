@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminCoinRate;
+use App\Models\M_AD_CoinRate;
 use Illuminate\Http\Request;
 
 class CoinController extends Controller
@@ -15,7 +15,7 @@ class CoinController extends Controller
     */
     public function index()
     {
-        $admin = new AdminCoinRate();
+        $admin = new M_AD_CoinRate();
         $admins = $admin->coinHistory();
         return view('admin.setting.coinRate.coinRate', ['admins' => $admins]);
     }
@@ -42,7 +42,7 @@ class CoinController extends Controller
             'kyat' => 'required|min:0|max:100000|numeric',
             'note' => 'required|min:10|max:255'
         ]);
-        $admin = new AdminCoinRate();
+        $admin = new M_AD_CoinRate();
         $admin->coinRateChange($request);
         return redirect('coinrate');
     }

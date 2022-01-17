@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryValidation;
 use App\Models\CategoryModel;
+use App\Models\M_News_Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -28,7 +29,7 @@ class CategoryController extends Controller
     public function store(CategoryValidation $request)
     {
         $validate = $request->validated();
-        $admin = new CategoryModel();
+        $admin = new M_News_Category();
         $admin->categoryAdd($validate);
         return redirect('siteManage');
     }
@@ -40,7 +41,7 @@ class CategoryController extends Controller
 
     public function show($id)
     {
-        $admin = new CategoryModel();
+        $admin = new M_News_Category();
         $admins = $admin->categoryEditView($id);
         return view('admin.setting.appManage.categoryEdit', ['category' => $admins]);
     }
@@ -53,7 +54,7 @@ class CategoryController extends Controller
     public function update(CategoryValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new CategoryModel();
+        $admin = new M_News_Category();
         $admin->categoryEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -64,7 +65,7 @@ class CategoryController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new CategoryModel();
+        $admin = new M_News_Category();
         $admin->categoryDelete($id);
         return redirect('siteManage');
     }

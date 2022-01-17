@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TownshipValidation;
-use App\Models\AppManage;
-use App\Models\TownshipModel;
+use App\Models\M_Township;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 
@@ -29,7 +28,7 @@ class TownshipController extends Controller
     public function store(TownshipValidation $request)
     {
         $validate = $request->validated();
-        $admin = new TownshipModel();
+        $admin = new M_Township();
         $admin->townshipAdd($validate);
         return redirect('siteManage');
     }
@@ -41,7 +40,7 @@ class TownshipController extends Controller
     */
     public function show($id)
     {
-        $admin = new TownshipModel();
+        $admin = new M_Township();
         $admins = $admin->townshipEditView($id);
         return view('admin.setting.appManage.townshipEdit', ['township' => $admins]);
     }
@@ -54,7 +53,7 @@ class TownshipController extends Controller
     public function update(TownshipValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new TownshipModel();
+        $admin = new M_Township();
         $admin->townshipEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -66,7 +65,7 @@ class TownshipController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new TownshipModel();
+        $admin = new M_Township();
         $admin->townshipDelete($id);
         return redirect('siteManage');
     }

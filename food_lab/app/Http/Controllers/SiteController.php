@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Site;
 use App\Models\siteManage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,7 @@ class SiteController extends Controller
 {
     public function siteManage()
     {
-        $admin = new siteManage();
+        $admin = new M_Site();
         $siteInfo =  $admin->siteManage();
         $townships =  $admin->township();
         $payments =  $admin->payments();
@@ -50,7 +51,7 @@ class SiteController extends Controller
         }
         $logo = $request->file('logo');
         $siteLogo = $logo->getClientOriginalName();
-        $admin = new siteManage();
+        $admin = new M_Site();
         $admin->saveSiteUpdate($request, $siteLogo);
         return redirect('siteManage');
     }

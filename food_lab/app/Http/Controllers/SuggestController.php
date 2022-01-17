@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SuggestValidation;
 use App\Models\SuggestModel;
+use App\Models\T_AD_Suggest;
 use Illuminate\Http\Request;
 
 class SuggestController extends Controller
@@ -28,7 +29,7 @@ class SuggestController extends Controller
     public function store(SuggestValidation $request)
     {
         $validate = $request->validated();
-        $admin = new SuggestModel();
+        $admin = new T_AD_Suggest();
         $admin->suggestAdd($validate);
         return redirect('siteManage');
     }
@@ -40,7 +41,7 @@ class SuggestController extends Controller
 
     public function show($id)
     {
-        $admin = new SuggestModel();
+        $admin = new T_AD_Suggest();
         $admins = $admin->suggestEditView($id);
         return view('admin.setting.appManage.suggestEdit', ['suggest' => $admins]);
     }
@@ -53,7 +54,7 @@ class SuggestController extends Controller
     public function update(SuggestValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new SuggestModel();
+        $admin = new T_AD_Suggest();
         $admin->suggestEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -64,7 +65,7 @@ class SuggestController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new SuggestModel();
+        $admin = new T_AD_Suggest();
         $admin->suggestDelete($id);
         return redirect('siteManage');
     }

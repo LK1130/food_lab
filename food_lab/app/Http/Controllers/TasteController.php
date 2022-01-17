@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TasteValidation;
+use App\Models\M_Taste;
 use App\Models\TasteModel;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class TasteController extends Controller
     public function store(TasteValidation $request)
     {
         $validate = $request->validated();
-        $admin = new TasteModel();
+        $admin = new M_Taste();
         $admin->tasteAdd($validate);
         return redirect('siteManage');
     }
@@ -40,7 +41,7 @@ class TasteController extends Controller
 
     public function show($id)
     {
-        $admin = new TasteModel();
+        $admin = new M_Taste();
         $admins = $admin->tasteEditView($id);
         return view('admin.setting.appManage.tasteEdit', ['taste' => $admins]);
     }
@@ -53,7 +54,7 @@ class TasteController extends Controller
     public function update(TasteValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new TasteModel();
+        $admin = new M_Taste();
         $admin->tasteEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -64,7 +65,7 @@ class TasteController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new TasteModel();
+        $admin = new M_Taste();
         $admin->tasteDelete($id);
         return redirect('siteManage');
     }
