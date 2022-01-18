@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckMail;
 use http\Client\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,8 +27,8 @@ class RegisterValidation extends FormRequest
     {
         return [
             'username' => 'required | min:6 | max:30',
-            'phone' => 'required | max:11',
-            'email' => 'required | max:128 | email',
+            'phone' => 'required | max:11 ',
+            'email' => ['required', ' max:128 ', 'email', new CheckMail()],
             'addressNo' => 'required | max:11',
             'addressTownship' => 'required | max:11',
             'addressCity' => 'required | max:128',

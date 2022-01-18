@@ -143,7 +143,16 @@ Route::get('/access',[CustomerController::class,'access']);
 Route::post('/access',[CustomerController::class,'register']);
 
 /*
+ * For verify account
+ */
+Route::get('mail/{key}',[CustomerController::class,'verifyLink']);
+
+/*
  * For Login Page
  */
 Route::get('/login',[CustomerController::class,'login']);
 
+/*
+ * For Login Form
+ */
+Route::post('/login',[CustomerController::class,'loginForm']);

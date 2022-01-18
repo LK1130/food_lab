@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- fontawasome css 1 --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- custom css 2--}}
-    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <script src="{{ asset('js/app.js') }}"></script>
-    {{-- custom js 1--}}
-    <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
-    <title>Food Lab</title>
-</head>
-<body>
+@extends('COMMON.layout.layout_cusotmer_2')
+
+@section('google')
+    <script src="https://apis.google.com/js/platform.js" async></script>
+@endsection
+
+@section('facebook')
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+@endsection
+
+@section('body')
     {{-- Start Access Section--}}
     <section class="accesses">
         <div class="d-flex ps-5 py-4">
             <div class="me-4 mt-3">
-                <i class="fas fa-arrow-left text-white arrows"></i>
+                <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div>
                 <img src="{{ url('/img/logo.png') }}" alt="logo"/>
@@ -32,7 +25,7 @@
             <div>
                 <p class="fw-bolder pb-3 creates">Create Account</p>
                 <div class="d-flex justify-content-around align-items-center text-white sign-withs">
-                    <a href="#" class="btn"><i class="fab fa-google"></i> Sign Up With Google</a>
+                    <div class="btn g-signin2" data-onsuccess="onSignIn"><i class="fab fa-google"></i> Sign Up With Google</div>
                     <a href="#" class="btn"><i class="fab fa-facebook"></i> Sign Up With Facebook</a>
                 </div>
                 <p class="text-center fw-bolder py-2 creates">OR</p>
@@ -96,7 +89,7 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="submit" class="form-control text-center" value="Create Account"/>
+                    <input type="submit" class="form-control text-center" value="Create Account"  data-bs-toggle="modal" data-bs-target="#modal"/>
                 </div>
             </form>
             <div>
@@ -109,5 +102,5 @@
             <p>Already Have An Account ? <a href="/login" class="ms-3">Login in here</a></p>
         </div>
     </section>
-    {{-- End Access Section--}}
-</body>
+
+@endsection
