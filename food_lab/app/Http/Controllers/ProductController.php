@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Fav_Type;
+use App\Models\M_Taste;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -12,9 +15,20 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+      /*
+    * Create : Aung Min Khant(17/1/2022)
+    * Update :
+    * Explain of function : To get data from m_fav_type and m_taste database and view to add product form
+    * return 
+    * */ 
+    
     public function index()
     {
-        return View('admin.product.productAdd');
+        $mFav = M_Fav_Type::all();
+        $mTaste = M_Taste::all();
+        Log::critical("mtaste" ,[$mTaste]);
+        return View('admin.product.productAdd',['mFav'=>$mFav,'mTaste' => $mTaste,'active'=>6]);
     }
 
     /**

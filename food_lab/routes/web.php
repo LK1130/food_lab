@@ -19,6 +19,7 @@ use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\OrderTransactionController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -51,6 +52,7 @@ Route::resource('decision', DecisionController::class);
 //admin/setting/newsManage
 Route::resource('news', NewsController::class);
 
+
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
@@ -72,6 +74,12 @@ Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransa
  */
 Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
 Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
+
+/**
+ * For Product Form page
+ */
+
+Route::resource('product', ProductController::class);
 
 //For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
