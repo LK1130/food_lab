@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FavouriteValidation;
 use App\Models\FavTypeModel;
+use App\Models\M_AD_Track;
 use Illuminate\Http\Request;
 
 class FavtypeController extends Controller
@@ -28,7 +29,7 @@ class FavtypeController extends Controller
     public function store(FavouriteValidation $request)
     {
         $validate = $request->validated();
-        $admin = new FavTypeModel();
+        $admin = new M_AD_Track();
         $admin->favTypeAdd($validate);
         return redirect('siteManage');
     }
@@ -40,7 +41,7 @@ class FavtypeController extends Controller
 
     public function show($id)
     {
-        $admin = new FavTypeModel();
+        $admin = new M_AD_Track();
         $admins = $admin->favTypeEditView($id);
         return view('admin.setting.appManage.favTypeEdit', ['fav' => $admins]);
     }
@@ -53,7 +54,7 @@ class FavtypeController extends Controller
     public function update(FavouriteValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new FavTypeModel();
+        $admin = new M_AD_Track();
         $admin->favTypeEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -64,7 +65,7 @@ class FavtypeController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new FavTypeModel();
+        $admin = new M_AD_Track();
         $admin->favTypeDelete($id);
         return redirect('siteManage');
     }

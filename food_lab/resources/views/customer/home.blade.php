@@ -23,6 +23,7 @@
 @endsection
 
 @section('header')
+
     {{--  start carousel  --}}
     <div id="carouselExampleIndicators" class="carousel slide carousels" data-bs-ride="">
         <div class="carousel-indicators">
@@ -38,6 +39,7 @@
                         <p  class="fw-bold delivery-infos">{{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}</p>
                         <a class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
+
                     <div class="col-6 ">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1"/>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentValidation;
+use App\Models\M_Payment;
 use App\Models\PaymentModel;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class PaymentController extends Controller
     public function store(PaymentValidation $request)
     {
         $validate = $request->validated();
-        $admin = new PaymentModel();
+        $admin = new M_Payment();
         $admin->paymentAdd($validate);
         return redirect('siteManage');
     }
@@ -42,7 +43,7 @@ class PaymentController extends Controller
 
     public function show($id)
     {
-        $admin = new PaymentModel();
+        $admin = new M_Payment();
         $admins =  $admin->paymentEditView($id);
         return view('admin.setting.appManage.paymentEdit', ['payment' => $admins]);
     }
@@ -56,7 +57,7 @@ class PaymentController extends Controller
     public function update(PaymentValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new PaymentModel();
+        $admin = new M_Payment();
         $admin->paymentEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -68,7 +69,7 @@ class PaymentController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new PaymentModel();
+        $admin = new M_Payment();
         $admin->paymentDelete($id);
         return redirect('siteManage');
     }

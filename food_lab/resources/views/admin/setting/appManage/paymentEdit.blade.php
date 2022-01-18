@@ -2,9 +2,10 @@
 @section('title','Payment Add')
 
  @section('css') 
- <link rel="stylesheet" href="{{ URL::asset('css/adminAdd.css') }}"/>
+
  <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}"/>
  <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminAdd.css') }}"/>
  @endsection
 
 @section('script') 
@@ -16,9 +17,9 @@
 @section('body')
     {{-- Starts Header Buttons --}}
 <div class="navBar">
-    <a href="{{ url('adminLogin') }}"><button class=" headerButton">{{__('messageZY.loginManage')}}</button></a>
-    <a href="{{ url('coinrate') }}"><button  class=" headerButton">{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('siteManage') }}"><button  class="checked headerButton">{{__('messageZY.siteManager')}}</button></a>
+    <a href="{{ url('adminLogin') }}"><button class="btn text-light  active btncust">{{__('messageZY.loginManage')}}</button></a>
+    <a href="{{ url('coinrate') }}"><button class="btn text-light  active btncust">{{__('messageZY.coinRate')}}</button></a>
+    <a href="{{ url('siteManage') }}"><button class="btn text-light  active btncust">{{__('messageZY.siteManager')}}</button></a>
 </div>
     {{-- Starts Form --}}
     <div class="adminAddForm">
@@ -49,7 +50,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-lg m-4">{{__('messageZY.save')}}</button>
+                            <button class="btn text-light  active btncust mt-5">{{__('messageZY.save')}}</button>
                         </div>
                 </div>
         </form>

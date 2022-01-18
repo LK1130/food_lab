@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Site;
 use App\Models\siteManage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,28 +12,10 @@ class SiteController extends Controller
 {
     public function siteManage()
     {
-        $admin = new siteManage();
+        $admin = new M_Site();
         $siteInfo =  $admin->siteManage();
-        $townships =  $admin->township();
-        $payments =  $admin->payments();
-        $categories =  $admin->categories();
-        $tastes =  $admin->tastes();
-        $suggests =  $admin->suggests();
-        $favtypes =  $admin->favtypes();
-        $orderStatus =  $admin->orderStatus();
-        $desicions =  $admin->desicions();
-        $news =  $admin->news();
         return view('admin.setting.siteManage.siteManage', [
-            'siteInfo' => $siteInfo,
-            'townships' => $townships,
-            'payments' => $payments,
-            'categories' => $categories,
-            'tastes' => $tastes,
-            'suggests' => $suggests,
-            'favtypes' => $favtypes,
-            'orderstatus' => $orderStatus,
-            'decisions' => $desicions,
-            'news' => $news,
+            'siteInfo' => $siteInfo
         ]);
     }
     public function store(Request $request)
@@ -50,7 +33,7 @@ class SiteController extends Controller
         }
         $logo = $request->file('logo');
         $siteLogo = $logo->getClientOriginalName();
-        $admin = new siteManage();
+        $admin = new M_Site();
         $admin->saveSiteUpdate($request, $siteLogo);
         return redirect('siteManage');
     }

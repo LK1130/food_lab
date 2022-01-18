@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_AD_News;
+use App\Models\M_Site;
 use App\Models\NewsModel;
 use App\Models\SiteManage;
 use Illuminate\Http\Request;
@@ -15,9 +17,21 @@ class NewsController extends Controller
     * This function is used to show news add view.
     */
 
+    public function index()
+    {
+        $app = new M_Site();
+        $admins = $app->news();
+        return view('admin.setting.newsManage.newsManage', ['news' => $admins]);
+    }
+    /*
+    * Create:zayar(2022/01/15) 
+    * Update: 
+    * This function is used to show news add view.
+    */
+
     public function create()
     {
-        $app = new NewsModel();
+        $app = new M_AD_News();
         $admins = $app->newsAddView();
         return view('admin.setting.newsManage.newsAdd', ['categories' => $admins]);
     }
@@ -43,7 +57,7 @@ class NewsController extends Controller
         }
         $logo = $request->file('source');
         $siteLogo = $logo->getClientOriginalName();
-        $admin = new NewsModel();
+        $admin = new M_AD_News();
         $admin->newsAdd($request, $siteLogo);
         return redirect('siteManage');
     }
@@ -55,10 +69,11 @@ class NewsController extends Controller
 
     public function show($id)
     {
-        $admin = new NewsModel();
+        $admin = new M_AD_News();
         $news = $admin->newsEditView($id);
-        $site = new SiteManage();
+        $site = new M_Site();
         $categories =  $site->categories();
+        return $news;
         return view('admin.setting.newsManage.newsEdit', ['news' => $news, 'categories' => $categories]);
     }
     /*
@@ -74,7 +89,7 @@ class NewsController extends Controller
             'category' => 'required',
             'detail' => 'required'
         ]);
-        $admin = new NewsModel();
+        $admin = new M_AD_News();
         $admin->newsEdit($request, $id);
         return redirect('siteManage');
     }
@@ -85,7 +100,7 @@ class NewsController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new NewsModel();
+        $admin = new M_AD_News();
         $admin->newsDelete($id);
         return redirect('siteManage');
     }

@@ -18,9 +18,7 @@ Monthly Sales
 @endsection
 
 @section('body')
- 
-   <!-- Sales Change Button -->
-  <div id="salesChangeBtn">
+<div class="col-md-10">
     <!-- Daily Sales Button -->
     <a href="dailyChart"><button id="dailySales">Daily Sale</button></a>
     <!--Monthly Sales Button -->
@@ -28,26 +26,31 @@ Monthly Sales
     <!-- Yearly Sales Button -->
     <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
     <!-- Range Sales Button -->
-    <a href="rangeChart"><button id="rangeSales" active>Range Sale</button></a>
-  </div>
+    <a href="rangeChart"><button id="rangeSales" class="active">Range Sale</button></a>
   <br></br>
-  <h1 id="saleCaption">Range Sale</h1>
+  <h3 id="saleCaption">Range Sale</h3>
     <!-- For Range Sale Search -->
     <form action="/rangeChart" method="Post">
       @csrf
         <div id="rangeSearch">
           <!-- For  Start Range Search -->
           <input id="appt-date"  class="fromRangeCount" type="date" name="fromDate"></input>
+          @if ($errors->has('fromDate'))
+          <span class="text-danger">{{ $errors->first('fromDate') }}</span>
+          @endif
           <!-- For Between Symbol -->
           <h3 id="betweenSymbol">~</h3>
           <!-- For  End Range Search -->
           <input id="appt-date" class="toRangeCount"  type="date" name="toDate"></input>
-          
+          @if ($errors->has('toDate'))
+          <span class="text-danger">{{ $errors->first('toDate') }}</span>
+          @endif
+          <!-- Search Btn -->
           <button type="submit" class="btn btn-primary btn-lg" id="rangeSearchSubmit">Search</button>
         </div>
     </form> 
   <!-- For Yearly Sale Chart-->
-  <div id="lineChart">
+  <div id="lineChart1">
     <!-- For showing Yearly Chart details-->
       <!-- For  Order Sale Chart-->
       <div id="chart">
@@ -58,6 +61,7 @@ Monthly Sales
 
       </div>
   </div>
+</div>
   <script>
     // {{--For Sending Order Array to Order rangeChart.js  --}}
       var orderArray = @json($orderArray);
