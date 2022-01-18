@@ -21,7 +21,8 @@
 @section('body')
      <div class="col-md-10">
             {{-- Product Form --}}
-            <form action="">
+            <form action="{{ route('product.store') }}" method="POST">
+            @csrf
             <div class="mt-4 mb-4 labels">Products Add Form</div>
             
            
@@ -103,7 +104,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="ptype" class="form-label titles">Type</label>
-                            <select name="ptype" id="ptaste" class="form-select selects" required>
+                            <select name="ptype" id="ptype" class="form-select selects" required>
                                 <option value="0" selected disabled>Choose Type</option>
                                @foreach ($mFav as $item)
                                <option value="{{ $item->favourite_food }}">{{ $item->favourite_food }}</option>
@@ -131,7 +132,7 @@
                                 
                                 </div>
                                 <div class="mt-2">
-                                    <input type="checkbox" name="avaliable" id="avaliable" class="custombox" value="avaliable">
+                                    <input type="checkbox" name="avaliable" id="avaliable" class="custombox" value="1">
                                 </div>
                         </div>
                     </div>
