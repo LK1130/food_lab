@@ -19,9 +19,9 @@
     <div class="col-md-10">
         <div class="mt-4">
             <a href="orderTransaction" class="me-5"><button
-                    class="btn topbtn inactive text-light fs-4 topbtns">{{ __('messageZN.Order Transaction') }}</button></a>
+                    class="btn  inactive text-light fs-4 topbtns">{{ __('messageZN.Order Transaction') }}</button></a>
             <a href="coinchargeList"><button
-                    class="btn topbtn  text-light fs-4 topbtns">{{ __('messageZN.Coin Charge List') }}</button></a>
+                    class="btn   text-light fs-4 topbtns btncust">{{ __('messageZN.Coin Charge List') }}</button></a>
         </div>
         <div class="status text tableheaders fw-bold mb-4 mt-4">{{ __('messageZN.Coin Charge List') }}</div>
         <div class="row ">

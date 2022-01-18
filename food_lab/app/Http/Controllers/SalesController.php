@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RangeChart;
 use App\Http\Controllers\Controller;
 use App\Models\CoinChargeFinance;
 use App\Models\OrderTransactionCheck;
+use App\Models\T_AD_CoinCharge_Finance;
+use App\Models\T_AD_Order;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -18,52 +21,44 @@ class SalesController extends Controller
      * Explain of function : For getting total order amount  of daily from t_ad_order and 
      *                         total money amount of daily from  t_ad_coincharge_finance
      * Prarmeter : no
-     * return : view 'admin.salesChart.dailySale' with compact('coin','order')) ; 
+     * return : view 'admin.salesChart.dailySale'; 
      * */
     public function dailyChart()
     {   
-        $currentYear = Carbon::now()->year;
-        $currentMonth = Carbon::now()->month;
-
-        $coin= CoinChargeFinance::select(
-            DB::raw('date(created_at) as date '),
-            DB::raw('sum(amount) as totalAmount'),
-        )
-        ->where(DB::raw('month(created_at)'), $currentMonth)
-        ->where(DB::raw('year(created_at)'), $currentYear)
-        ->orderBy(DB::raw('created_at'), 'ASC')
-        ->groupBy('date')
-        ->get();
-        
+        Log::channel('adminlog')->info("SalesController", [
+            'Start dailyChart'
+        ]);
+        // Get Coin Daily Data From T_AD_CoinCharge_Finance Model //
+         $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
+         $coinList= $T_AD_CoinCharge_Finance->coinDaily();
+        // Senting daily coin data to dailyChart.js
         $coinDaily = [];
-        foreach($coin as $key => $value){
-            array_push($coinDaily, $value->date);
+        foreach($coinList as $key => $value){
+            array_push($coinDaily, $value->day);
         };  
         $coinArray = [];
-        foreach($coin as $key => $value){
+        foreach($coinList as $key => $value){
             array_push($coinArray, $value->totalAmount);
         };
 
-        $order= OrderTransactionCheck::select(
-            DB::raw('order_date as date'),
-            DB::raw('count(id) as totalorder'),
-        )
-        ->where(DB::raw('month(order_date)'), $currentMonth)
-        ->where(DB::raw('year(order_date)'), $currentYear)
-        ->orderBy(DB::raw('order_date'), 'ASC')
-        ->groupBy('date')
-        ->get();
-        
+        // Get Order Daily Data From T_AD_Order Model //
+        $T_AD_Order = new T_AD_Order();
+        $orderList=  $T_AD_Order->orderDaily();
+        // Senting daily order data to dailyChart.js
         $orderDaily = [];
-        foreach($order as $key => $value){
-            array_push($orderDaily, $value->date);
+        foreach($orderList as $key => $value){
+            array_push($orderDaily, $value->day);
         };  
-
         $orderArray = [];
-        foreach($order as $key => $value){
+        foreach($orderList as $key => $value){
             array_push($orderArray, $value->totalorder);
         };    
-        return  view('admin.salesChart.dailySale', ['order' => $order , 'coin' => $coin, 'orderArray' => $orderArray, 'coinArray' => $coinArray, 'orderDaily'=> $orderDaily, 'coinDaily'=> $coinDaily]) ; 
+
+        Log::channel('adminlog')->info("SalesController", [
+            'End dailyChart'
+        ]);
+
+        return  view('admin.salesChart.dailySale', ['orderArray' => $orderArray, 'coinArray' => $coinArray, 'orderDaily'=> $orderDaily, 'coinDaily'=> $coinDaily]) ; 
     }
      /*
      * Create : Cherry(11/1/2022)
@@ -71,43 +66,36 @@ class SalesController extends Controller
      * Explain of function : For getting total order amount  of monthly from t_ad_order and 
      *                         total money amount of monthly from  t_ad_coincharge_finance
      * Prarmeter : no
-     * return : view 'admin.salesChart.monthlySale' with compact('coin','order')) ; 
+     * return : view 'admin.salesChart.monthlySale' ; 
      * */
     public function monthlyChart()
-    {
-        $current = Carbon::now()->year;
-        $coin= CoinChargeFinance::select(
-            DB::raw('year(created_at) as year'),
-            DB::raw('month(created_at) as month'),
-            DB::raw('sum(amount) as totalAmount'),
-        )
-        ->whereBetween( DB::raw('year(created_at)'),[$current-1,$current])
-        ->groupBy('year')
-        ->groupBy('month')
-        ->get();
-
+    {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start monthlyChart'
+        ]);
+        // Get Coin Monthly Data From T_AD_CoinCharge_Finance Model //
+        $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
+        $coinList= $T_AD_CoinCharge_Finance->coinMonthly();
+        // Senting monthly coin data to monthlyChart.js
         $coinArray = [];
-        foreach($coin as $key => $value){
+        foreach($coinList as $key => $value){
             array_push($coinArray, $value->totalAmount);
         };
 
-        $order= OrderTransactionCheck::select(
-            
-            DB::raw('year(order_date) as year'),
-            DB::raw('month(order_date) as month'),
-            DB::raw('count(id) as totalorder'),
-        )
-        ->whereBetween( DB::raw('year(order_date)'),[$current-1,$current])
-        ->groupBy('year')
-        ->groupBy('month')
-        ->get();
-
+        // Get Order Monthly Data From T_AD_Order Model //
+        $T_AD_Order = new T_AD_Order();
+        $orderList=  $T_AD_Order->orderMonthly();
+        // Senting monthly order data to monthlyChart.js
         $orderArray = [];
-        
-        foreach($order as $key => $value){
+        foreach($orderList as $key => $value){
             array_push($orderArray, $value->totalorder);
         };
-        return  view('admin.salesChart.monthlySale', ['order' => $order , 'coin' => $coin, 'orderArray' => $orderArray, 'coinArray' => $coinArray, ]) ; 
+
+        Log::channel('adminlog')->info("SalesController", [
+            'End monthlyChart'
+        ]);
+
+        return  view('admin.salesChart.monthlySale', ['orderArray' => $orderArray, 'coinArray' => $coinArray]) ; 
     }
   /*
      * Create : Cherry(12/1/2022)
@@ -115,45 +103,92 @@ class SalesController extends Controller
      * Explain of function : For getting total order amount  of yearly from t_ad_order and 
      *                         total money amount of yearly from  t_ad_coincharge_finance
      * Prarmeter : no
-     * return : view 'admin.salesChart.yearlySale' with compact('coin','order')) ; 
+     * return : view 'admin.salesChart.yearlySale' ; 
      * */
     public function yearlyChart()
-    {
-        $coin= CoinChargeFinance::select(
-            DB::raw('year(created_at) as year'),
-            DB::raw('sum(amount) as totalAmount'),
-        )
-        ->orderBy(DB::raw('year(created_at)'), 'ASC')
-        ->groupBy('year')
-        ->get();
-
+    {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start yearlyChart'
+        ]);
+         // Get Coin Yeatly Data From T_AD_CoinCharge_Finance Model //
+        $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
+        $coinList= $T_AD_CoinCharge_Finance->coinMonthly();
+        // Senting yearlyy coin data to yearlyChart.js
         $coinArray = [];
-        foreach($coin as $key => $value){
+        foreach($coinList as $key => $value){
             array_push($coinArray, $value->totalAmount);
         };
-
         $coinYearly = [];
-        foreach($coin as $key => $value){
+        foreach($coinList as $key => $value){
             array_push($coinYearly, $value->year);
         };
        
-        $order= OrderTransactionCheck::select(
-            DB::raw('year(order_date) as year'),
-            DB::raw('count(id) as totalorder'),
-        )
-        ->orderBy(DB::raw('year(order_date)'), 'ASC')
-        ->groupBy('year')
-        ->get();
-        
+       // Get Order Yearly Data From T_AD_Order Model //
+        $T_AD_Order = new T_AD_Order();
+        $orderList=  $T_AD_Order->orderMonthly();
+        // Senting yearly order data to yearlyChart.js
         $orderArray = [];
-        foreach($order as $key => $value){
+        foreach($orderList as $key => $value){
             array_push($orderArray, $value->totalorder);
         };
-
         $orderYearly = [];
-        foreach($coin as $key => $value){
+        foreach($orderList as $key => $value){
             array_push($orderYearly, $value->year);
         };
-        return  view('admin.salesChart.yearlySale', ['order' => $order , 'coin' => $coin, 'orderArray' => $orderArray, 'coinArray' => $coinArray, 'coinYearly' => $coinYearly ,'orderYearly' => $orderYearly]) ; 
+
+        Log::channel('adminlog')->info("SalesController", [
+            'End yearlyChart'
+        ]);
+
+        return  view('admin.salesChart.yearlySale', ['orderArray' => $orderArray, 'coinArray' => $coinArray, 'coinYearly' => $coinYearly ,'orderYearly' => $orderYearly]) ; 
+    }
+     /*
+     * Create : Cherry(14/1/2022)
+     * Update :
+     * Explain of function : For showing data charts between start date and end date
+     * Prarmeter : no
+     * return : 
+     * */
+    public function rangeChart(RangeChart $request)
+    {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start rangeChart'
+        ]);
+        $validated = $request->validated();
+        $fromDate = $validated['fromDate'];
+        $toDate = $validated['toDate'];
+
+        // Get Searching Coin Data From T_AD_CoinCharge_Finance Model //
+        $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
+        $coinList= $T_AD_CoinCharge_Finance->coinRange($validated);
+        // Senting coin data to rangeChart.js
+        $coinDaily = [];
+        foreach($coinList as $key => $value){
+            array_push($coinDaily, $value->date);
+        };  
+        $coinArray = [];
+        foreach($coinList as $key => $value){
+            array_push($coinArray, $value->totalAmount);
+        };
+
+        // Get searching Order Data From T_AD_Order Model //
+        $T_AD_Order = new T_AD_Order();
+        $orderList=  $T_AD_Order->orderRange($validated);
+        // Senting order data to rangeChart.js
+        $orderDaily = [];
+        foreach($orderList as $key => $value){
+            array_push($orderDaily, $value->date);
+        };  
+
+        $orderArray = [];
+        foreach($orderList as $key => $value){
+            array_push($orderArray, $value->totalorder);
+        };  
+        
+        Log::channel('adminlog')->info("SalesController", [
+            'End rangeChart'
+        ]);
+
+        return  view('admin.salesChart.rangeSale', ['orderArray' => $orderArray, 'coinArray' => $coinArray, 'orderDaily'=> $orderDaily, 'coinDaily'=> $coinDaily]) ; 
     }
 }

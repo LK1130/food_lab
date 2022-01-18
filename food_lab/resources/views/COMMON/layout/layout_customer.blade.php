@@ -9,7 +9,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
     @yield('css')
-    @yield('js')
     <title>@yield('title')</title>
 </head>
 <body>
@@ -50,7 +49,7 @@
                         <a class="nav-link texts" href="#">{{ __('messageMK.inform') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texts" href="#">{{ __('messageMK.access') }}</a>
+                        <a class="nav-link texts" href="/access">{{ __('messageMK.access') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link texts" href="#">profile</a>

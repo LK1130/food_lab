@@ -1,4 +1,3 @@
-
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
@@ -7,7 +6,7 @@ Monthly Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/salesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
 @endsection
 
 @section('script')
@@ -18,18 +17,15 @@ Monthly Sales
 @endsection
 
 @section('body')
-  <!-- Sales Change Button -->
-  <div id="salesChangeBtn">
+<div class="col-md-10">
     <!-- Daily Sales Button -->
     <a href="dailyChart"><button id="dailySales" >Daily Sale</button></a>
     <!--Monthly Sales Button -->
-    <a href="monthlyChart"><button id="monthlySales" active>Monthly Sale</button></a>
+    <a href="monthlyChart"><button id="monthlySales" class="active">Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
     <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
     <!-- Range Sales Button -->
     <a href="rangeChart"><button id="rangeSales">Range Sale</button></a>
-    
-  </div>
   <br></br>
   <!-- For Daily Chart-->
     <div id="lineChart">
@@ -41,6 +37,7 @@ Monthly Sales
 
       </div>
     </div>
+</div>
      <!-- For Sending Array to monthlyChart.js -->
     <script>
        // For Sending Order Array to monthlyChart.js

@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
         integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ URL::asset('js/admindashboard.js') }}"></script>
+
 
 @endsection
 
@@ -54,23 +54,23 @@
         <div class="row align-items-start me-4">
             <div class="col a ">
                 <div class="text-center pb-3">
-                    <p class=" numbers">{{ $tcount }}</p>
+                    <p class=" numbers tcount">{{ $tcount }}</p>
                     <p class="detail">{{ __('messageZN.Total Transaction') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers">20</p>
+                    <p class=" numbers cuscount">{{ $cuscount }}</p>
                     <p class="detail">{{ __('messageZN.Total User Register') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="customerInfo" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers coinrate">1500</p>
+                    <p class=" numbers coinrate">{{ $coinrate->rate }}</p>
                     <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
@@ -111,10 +111,9 @@
                             <tr class="tablecolor1 tablerows">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list2->customerID }}</td>
-                                <td>{{ $list2->payment }}</td>
+                                <td>{{ $list2->payment_name }}</td>
                                 <td>{{ $list2->order_status }}</td>
-                                <td>{{ $list2->order_date }} <br>
-                                    {{ $list2->order_time }}
+                                <td>{{ $list2->order_date }} {{ $list2->order_time }}
                                 </td>
                             </tr>
                         @endforeach
@@ -225,5 +224,13 @@
             </div>
         </div>
 
-
+        <script>
+            // for transaction count
+            var tcount = @json($tcount);
+            // for customer count
+            var cuscount = @json($cuscount);
+            // for coinrate
+            var coinrate = @json($coinrate->rate);
+        </script>
+        <script src="{{ URL::asset('js/admindashboard.js') }}"></script>
     @endsection

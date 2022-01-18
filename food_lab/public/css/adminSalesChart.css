@@ -8,15 +8,6 @@
     --color2:black;
     --color3:white;
 }
-/*div for Change Btns of all sales */
-#salesChangeBtn{
-    width: 80%;
-    height: 20%;
-    border-radius: 1em;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-}
 /* Daily Sales Button */
 #dailySales{
     width: 8em;
@@ -67,41 +58,32 @@
 }
 /*Btn Hover Color Change*/
 #dailySales:hover,#monthlySales:hover,
-#yearlySales:hover,#rangeSales:hover {
+#yearlySales:hover,#rangeSales:hover,
+.active {
     background-color: #d4401f;
     color: white;
 }
 /*For Range Sale Search*/
 #rangeSearch{
-    width: 75%;
-    height: 50%;
+    width: 50em;
+    height: 3em;
     margin-top: 2em;
-    margin-left: 15em;
+    margin-left: 5em;
     display: flex;
     flex-direction: row;
 }
 #saleCaption{
-    margin-top: 1.5em;
-    margin-left: 7em;
+    margin-top: 1em;
+    margin-left: 2em;
 }
 .choice{
     display: flex;
     flex-direction: column;
 }
-/*For Range Sale Search Details Div*/
-#inputBox{
-    width: 100%;
-    height: 3em;
-    display: flex;
-    margin-left: 2em;
-    margin-top: 0.2em;
-    flex-direction: row;
-}
 /*For Start Range Search*/
-#fromRangeCount{
-    width: 30%;
+.fromRangeCount{
+    width: 15em;
     margin-left: 3em;
-    border-radius: 1.5em;
     border:0.1rem solid var(--color2);
     background-color: var(--color3);
     color: var(--color1);
@@ -118,10 +100,9 @@
     font-size: 2em;
 }
 /*For End Range Search*/
-#toRangeCount{
-    width: 30%;
+.toRangeCount{
+    width: 15em;
     margin-left: 3em;
-    border-radius: 1.5em;
     border:0.1rem solid var(--color2);
     background-color: var(--color3);
     color: var(--color1);
@@ -131,7 +112,7 @@
 }
 /*For Range Search Submit*/
 #rangeSearchSubmit{
-    width: 10%;
+    width: 10em;
     margin-left: 3em;
     border-radius: 1.2em;
     background-color: var(--color1);
@@ -144,15 +125,58 @@
     width: 75%;
     height: 80%;
     margin-top: 6em;
-    margin-left: 17%;
+    margin-left:3em;
+    display: flex;
+    flex-direction: row;
+}
+#lineChart1{
+    width: 75%;
+    height: 80%;
+    margin-top: 5em;
+    margin-left:3em;
     display: flex;
     flex-direction: row;
 }
 #chart{
    display: inline-block;
    width: 65%;
+   display: flex;
 }
 #chart1{
     display: inline-block;
     width: 65%;
+    display: flex;
  }
+ @media(max-width: 800px) {
+    #lineChart,#lineChart1{
+        display: flex;
+        flex-direction: column;
+        margin-top: 3em;
+    }
+    #dailySales,#monthlySales,
+    #yearlySales,#rangeSales{
+        width: 7.4em;
+        height: 3em;
+        margin-top: 3em;
+        margin-left: 4em;
+        font-size: 1em;
+    }
+    #rangeSearch{
+        width: 11em;
+        height: 12em;
+        margin-left: 10em;
+        margin-top: 1.5em;
+        display: flex;
+        flex-direction: column;
+    }
+    #betweenSymbol{
+        margin-left:4.5em;
+    }
+    #rangeSearchSubmit{
+       margin-top:2em;
+       margin-left: 5.5em;
+    }
+    #saleCaption{
+        margin-top: 1.5em;
+    }
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\adminValidation;
 use App\Models\AdminLogin;
+use App\Models\M_AD_Login;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -17,8 +18,9 @@ class LoginController extends Controller
     */
     public function index()
     {
-        $admin = new AdminLogin();
-        return $admin->AdminList();
+        $admin = new M_AD_Login();
+        $admins = $admin->AdminList();
+        return view('admin.setting.loginManage.adminList', ['admins' => $admins]);
     }
 
 
@@ -45,9 +47,10 @@ class LoginController extends Controller
     {
         $validate = $request->validated();
         //call class from Adminlogin model 
-        $admin = new AdminLogin();
+        $admin = new M_AD_Login();
         //pass parameter
-        return $admin->AdminAdd($validate);
+        $admin->AdminAdd($validate);
+        return redirect('adminLogin');
     }
 
 
@@ -60,11 +63,15 @@ class LoginController extends Controller
     */
     public function show($id)
     {
-        $admin = new AdminLogin();
-        return $admin->AdminDetail($id);
+        $find = M_AD_Login::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $admin = new M_AD_Login();
+            $admins = $admin->AdminDetail($id);
+            return view('admin.setting.loginManage.adminDetail', ['admins' => $admins]);
+        }
     }
-
-
     /*
     * Create:zayar(2022/01/10) 
     * Update: 
@@ -74,8 +81,14 @@ class LoginController extends Controller
     */
     public function edit($id)
     {
-        $admin = new AdminLogin();
-        return $admin->AdminEdit($id);
+        $find = M_AD_Login::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $admin = new M_AD_Login();
+            $admins = $admin->AdminEdit($id);
+            return view('admin.setting.loginManage.adminEdit', ['admins' => $admins]);
+        }
     }
 
     /*
@@ -87,9 +100,15 @@ class LoginController extends Controller
     */
     public function update(AdminValidation $request, $id)
     {
-        $validate = $request->validated();
-        $admin = new AdminLogin();
-        return $admin->AdminUpdate($validate, $id);
+        $find = M_AD_Login::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $validate = $request->validated();
+            $admin = new M_AD_Login();
+            $admin->AdminUpdate($validate, $id);
+            return redirect('adminLogin');
+        }
     }
 
     /*
@@ -99,9 +118,17 @@ class LoginController extends Controller
     * $id is used searching this adminid.
     * Return is view (adminList.blade.php)
     */
-    public function destroy($id)
+    public  function destroy($id)
     {
-        $admin = new AdminLogin();
-        return $admin->AdminDelete($id);
+
+
+        $find = M_AD_Login::where('id', '=', $id)->first();
+        if ($find === null) {
+            return view('errors.404');
+        } else {
+            $admin = new M_AD_Login();
+            $admin->AdminDelete($id);
+            return redirect('adminLogin');
+        }
     }
 }

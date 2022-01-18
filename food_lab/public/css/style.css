@@ -2,7 +2,8 @@
 
 .welcomes {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/img/bg1.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url("/img/bg1.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -34,16 +35,14 @@
     left: 100%;
 }
 
-
 /*End Welcome Section*/
-
 
 /*Start Best Seller Item Section*/
 
 .best-items,
 .recommand-items {
     min-height: 100vh;
-    background-image: url('/img/bg2.png');
+    background-image: url("/img/bg2.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -54,7 +53,11 @@
 
 .sellers {
     min-width: 95%;
-    background: linear-gradient( 120deg, rgba(0, 0, 0, 1)30%, rgba(245, 0, 0, 0.5) 60%);
+    background: linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 1) 30%,
+        rgba(245, 0, 0, 0.5) 60%
+    );
     border-radius: 20px;
 }
 
@@ -74,7 +77,11 @@
 
 .recommands {
     min-width: 95%;
-    background: linear-gradient( 120deg, rgba(245, 0, 0, 0.5) 30%, rgba(0, 0, 0, 1) 60%);
+    background: linear-gradient(
+        120deg,
+        rgba(245, 0, 0, 0.5) 30%,
+        rgba(0, 0, 0, 1) 60%
+    );
     border-radius: 20px;
 }
 
@@ -95,15 +102,18 @@
     border: 2px groove var(--primary-color);
 }
 
-
 /*End Best Seller Item Section*/
-
 
 /*Start Delivery Section*/
 
 .deliverys {
     min-height: 100vh;
-    background: linear-gradient(360deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.7) 90%), url('/img/bg3.png');
+    background: linear-gradient(
+            360deg,
+            rgba(0, 0, 0, 0.7) 10%,
+            rgba(0, 0, 0, 0.7) 90%
+        ),
+        url("/img/bg3.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -116,7 +126,6 @@
     letter-spacing: 2px;
     word-spacing: 2px;
 }
-
 
 /*start delivery Informaiton*/
 
@@ -142,7 +151,6 @@
     padding-left: 5vw;
 }
 
-
 /*end delivery Informaiton*/
 
 @media (max-width: 720px) {
@@ -151,9 +159,7 @@
     }
 }
 
-
 /*End Delivery Section*/
-
 
 /*Start Contact Section */
 
@@ -192,7 +198,7 @@
 
 /*Start Policy Section*/
 
-.policy-infos{
+.policy-infos {
     font-size: 1.4rem;
     margin-left: 15%;
     margin-top: 3%;
@@ -200,44 +206,50 @@
     word-spacing: 0.5px;
 }
 
-.policyheaders{
+.policyheaders {
     font-size: 2.5rem;
     color: var(--primary-color);
 }
 
-.policy-infos div>*{
+.policy-infos div > * {
     padding-bottom: 10px;
 }
 /*End Policy Section*/
 
 /*Start Report Form Section */
 
-.forms{
+.forms {
+    min-height: 81vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/img/bg6.png");
+}
+
+.form-headers {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-top: 2%;
 }
 
-form{
+form {
     min-width: 80%;
 }
 
-form div{
+form div {
     margin-bottom: 5%;
 }
 
-form div label{
+form div label {
     min-width: 20%;
     font-size: 1.5rem;
     color: var(--text-color);
 }
 
 form div input,
-button{
+button {
     font-size: 1.5rem;
 }
 
-form div button:first-of-type{
+form div button:first-of-type {
     background-color: var(--primary-color);
     color: var(--text-color);
     font-weight: bold;
@@ -245,13 +257,13 @@ form div button:first-of-type{
     padding: 10px 20px;
 }
 
-form div button:first-of-type:hover{
+form div button:first-of-type:hover {
     background-color: var(--text-color);
     color: var(--primary-color);
     border: 2px groove var(--primary-color);
 }
 
-form div .cancels{
+form div .cancels {
     background-color: var(--text-color);
     color: var(--primary-color);
     font-weight: bold;
@@ -260,3 +272,109 @@ form div .cancels{
 }
 
 /*End Report Form Section*/
+
+/*Start Access Section*/
+
+.accesses {
+    min-height: 100vh;
+    background: url("/img/bg7.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.arrows {
+    font-size: 2rem;
+}
+
+/*start register header*/
+.register-headers div:first-of-type {
+    min-width: 60%;
+}
+
+.welcome-registers {
+    min-width: 40%;
+}
+
+.creates {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.sign-withs i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.sign-withs a {
+    background: var(--bg-color);
+    font-size: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.creates:last-of-type {
+    letter-spacing: 2px;
+    word-spacing: 1px;
+}
+
+@media (max-width: 720px) {
+    .register-headers div:first-of-type {
+        min-width: 100%;
+    }
+
+    .welcome-registers {
+        display: none;
+    }
+}
+/*end register header*/
+
+/*start register form*/
+.register-forms {
+    min-width: 100%;
+}
+
+.register-forms form {
+    min-width: 60%;
+}
+
+.register-forms .inputs {
+    width: 80%;
+    margin-bottom: 2%;
+}
+
+.register-forms input {
+    background-color: var(--bg-color);
+    border: none;
+    color: var(--text-color);
+    border-radius: 15px;
+    padding: 15px 10px;
+}
+
+.register-forms input::placeholder {
+    color: var(--text-color);
+}
+
+.register-forms input[type="submit"] {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+/*end register form*/
+
+.have-accs {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.have-accs a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+/*End Access Section*/

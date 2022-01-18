@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_AD_CoinRate;
 use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_Order;
 use App\Models\T_CU_Customer;
@@ -30,7 +31,13 @@ class DashboardController extends Controller
         
         $tcount = new T_AD_Order();
         $transcount1 = $tcount->Dashboardtranscount();
-        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1]);
+        
+        $cuscount = new T_CU_Customer();
+        $customercount = $cuscount->Dashboardcuscount();
+
+        $rateofcoin =new M_AD_CoinRate();
+        $coinrate = $rateofcoin->DashboardCoinrate();
+        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate]);
     }
   
         /*

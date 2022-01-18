@@ -26,17 +26,17 @@
                         <li class="adminli">{{ __('messageZN.Last Login') }}:12:12</li>
                     </div>
                     <div class="text-center list-group list-group-flush ">
-                        <a href="dashboard"><button class="buttons btn ">{{ __('messageZN.Dashboard') }}</button></a>
+                        <a href="dashboard"><button class="buttons btn dash">{{ __('messageZN.Dashboard') }}</button></a>
                         <a href="/orderTransaction"><button
-                                class="buttons btn">{{ __('messageZN.Transaction') }}</button></a>
+                                class="buttons btn tran">{{ __('messageZN.Transaction') }}</button></a>
                         <a href="/customerInfo"><button
-                                class="buttons btn">{{ __('messageZN.Customer') }}</button></a>
-                        <a href=""><button class="buttons btn">{{ __('messageZN.Coin') }}</button></a>
+                                class="buttons btn cust">{{ __('messageZN.Customer') }}</button></a>
+                        <a href="/coinListing"><button class="buttons btn coin">{{ __('messageZN.Coin') }}</button></a>
                         <a href="/dailyChart"><button
-                                class="buttons btn">{{ __('messageZN.Finance') }}</button></a>
-                        <a href=""><button class="buttons btn">{{ __('messageZN.Products') }}</button></a>
+                                class="buttons btn sale">{{ __('messageZN.Finance') }}</button></a>
+                        <a href=""><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>
                         <a href="/adminLogin"><button
-                                class="buttons btn">{{ __('messageZN.Setting') }}</button></a>
+                                class="buttons btn setting">{{ __('messageZN.Setting') }}</button></a>
                         <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
                     </div>
                 </div>

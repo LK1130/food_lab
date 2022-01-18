@@ -19,9 +19,9 @@
     <div class="col-md-10">
         <div class="mt-4">
             <a href="orderTransaction" class="me-5"><button
-                    class="btn topbtn text-light fs-4 topbtns">{{ __('messageZN.Order Transaction') }}</button></a>
+                    class="btn  text-light  topbtns btncust">{{ __('messageZN.Order Transaction') }}</button></a>
             <a href="coinchargeList"><button
-                    class="btn topbtn inactive text-light fs-4 topbtns">{{ __('messageZN.Coin Charge List') }}</button></a>
+                    class="btn  inactive text-light  topbtns ">{{ __('messageZN.Coin Charge List') }}</button></a>
         </div>
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageZN.Order Transaction') }}</div>
         <div class="row ">
@@ -45,12 +45,12 @@
                             <tr class="tablecolor1 text-light tablerows">
                                 <th scope="row">{{ $t_ad_order->firstItem() + $key }}</th>
                                 <td>{{ $trans->customerID }}</td>
-                                <td>{{ $trans->payment }}</td>
+                                <td>{{ $trans->payment_name }}</td>
                                 <td>{{ $trans->grandtotal_coin }}</td>
                                 <td>{{ $trans->grandtotal_cash }}</td>
-                                <td>{{ $trans->order_status }}</td>
-                                <td>{{ $trans->last_control_by }}</td>
-                                <td>{{ $trans->order_date }} <br>
+                                <td>{{ $trans->status }}</td>
+                                <td>{{ $trans->ad_name }}</td>
+                                <td>{{ $trans->order_date }}
                                     {{ $trans->order_time }}
                                 </td>
                                 <td>

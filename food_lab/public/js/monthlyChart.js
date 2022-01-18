@@ -19,10 +19,10 @@ var options = {
       top: 18,
       left: 7,
       blur: 10,
-      opacity: 0.2
+      opacity: 0.5
     },
     toolbar: {
-      show: false
+      show:true
     }
   },
   colors: ['#77B6EA'],
@@ -40,11 +40,11 @@ var options = {
     borderColor: '#e7e7e7',
     row: {
       colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-      opacity: 0.5
+      opacity: 0.5,
     },
   },
   markers: {
-    size: 1
+    size: 1,
   },
   xaxis: {
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'], // to show months in x-axis
@@ -66,6 +66,7 @@ var options = {
     offsetX: -5
   }
 };
+
   var chart = new ApexCharts(document.getElementById("chart"), options);
   chart.render();
   /*
@@ -92,7 +93,7 @@ var options1 = {
       opacity: 0.2
     },
       toolbar: {
-        show: false
+        show: true
       }
     },
     colors: ['#ffa600'],

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterValidation;
 use App\Models\AdNews;
-use App\Models\Township;
+use App\Models\M_AD_News;
+use App\Models\M_Township;
+use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -17,10 +20,10 @@ class CustomerController extends Controller
      * */
     public function foodlab()
     {
-        $townships = new Township();
+        $townships = new M_Township();
         $townshipnames = $townships->townshipDetails();
 
-        $news = new AdNews();
+        $news = new M_AD_News();
         $newDatas = $news->news();
         return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas]);
     }
@@ -71,5 +74,46 @@ class CustomerController extends Controller
     public function  suggest()
     {
         return view('customer.suggest');
+    }
+
+    /*
+     * Create : Min Khant(14/1/2022)
+     * Update :
+     * Explain of function : For call view customer create accoutn page
+     * Prarameter : no
+     * return : View Register Blade
+     * */
+    public function access()
+    {
+        return view('customer.register');
+    }
+
+    /*
+      * Create : Min Khant(14/1/2022)
+      * Update :
+      * Explain of function : For call view customer login page
+      * Prarameter : no
+      * return : View login Blade
+      * */
+    public function login()
+    {
+        return view('customer.login');
+    }
+
+    /*
+      * Create : Min Khant(14/1/2022)
+      * Update :
+      * Explain of function : For call view customer login page
+      * Prarameter : no
+      * return : redirect login
+    */
+    public function register(RegisterValidation  $request)
+    {
+        $validated = $request->validated();
+
+        $customer = new T_CU_Customer();
+        $customer->customerData($validated);
+
+        return redirect('/login');
     }
 }

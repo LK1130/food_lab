@@ -22,7 +22,7 @@ var options = {
         opacity: 0.2
       },
       toolbar: {
-        show: false
+        show: true
       }
     },
     colors: ['#77B6EA'],
@@ -49,7 +49,7 @@ var options = {
     xaxis: {
       categories: orderYearly, // to show years in x-axis
       title: {
-        text: 'Years'
+        text: 'Years',
       }
     },
     yaxis: {
@@ -92,7 +92,7 @@ var options1 = {
       opacity: 0.2
     },
     toolbar: {
-      show: false
+      show: true
     }
   },
   colors: ['#ffa600'],

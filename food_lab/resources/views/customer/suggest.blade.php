@@ -10,9 +10,9 @@
 
 @section('header')
     {{-- Start Report Form Section --}}
-    <section>
+    <section class="forms">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <p class="fw-bolder forms">{{ __('messageMK.suggestForm') }}</p>
+            <p class="fw-bolder form-headers">{{ __('messageMK.suggestForm') }}</p>
             <form action="/suggest" method="post">
                 @csrf
                 <div class="d-flex">
@@ -28,6 +28,9 @@
                     <label class="fw-bold" id="details">{{ __('messageMK.suggestDetails') }}</label>
                     <textarea class="form-control" id="details"></textarea>
 
+                </div>
+                <div class="float-end">
+                    <p><span>0</span>/255</p>
                 </div>
                 <div class="float-end">
                     <button type="submit" class="btn me-5">{{ __('messageMK.suggest') }}</button>
