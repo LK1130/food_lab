@@ -25,6 +25,9 @@ class SalesController extends Controller
      * */
     public function dailyChart()
     {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start dailyChart'
+        ]);
         // Get Coin Daily Data From T_AD_CoinCharge_Finance Model //
          $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
          $coinList= $T_AD_CoinCharge_Finance->coinDaily();
@@ -50,6 +53,11 @@ class SalesController extends Controller
         foreach($orderList as $key => $value){
             array_push($orderArray, $value->totalorder);
         };    
+
+        Log::channel('adminlog')->info("SalesController", [
+            'End dailyChart'
+        ]);
+
         return  view('admin.salesChart.dailySale', ['orderArray' => $orderArray, 'coinArray' => $coinArray, 'orderDaily'=> $orderDaily, 'coinDaily'=> $coinDaily]) ; 
     }
      /*
@@ -61,7 +69,10 @@ class SalesController extends Controller
      * return : view 'admin.salesChart.monthlySale' ; 
      * */
     public function monthlyChart()
-    {
+    {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start monthlyChart'
+        ]);
         // Get Coin Monthly Data From T_AD_CoinCharge_Finance Model //
         $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
         $coinList= $T_AD_CoinCharge_Finance->coinMonthly();
@@ -79,6 +90,11 @@ class SalesController extends Controller
         foreach($orderList as $key => $value){
             array_push($orderArray, $value->totalorder);
         };
+
+        Log::channel('adminlog')->info("SalesController", [
+            'End monthlyChart'
+        ]);
+
         return  view('admin.salesChart.monthlySale', ['orderArray' => $orderArray, 'coinArray' => $coinArray]) ; 
     }
   /*
@@ -90,7 +106,10 @@ class SalesController extends Controller
      * return : view 'admin.salesChart.yearlySale' ; 
      * */
     public function yearlyChart()
-    {
+    {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start yearlyChart'
+        ]);
          // Get Coin Yeatly Data From T_AD_CoinCharge_Finance Model //
         $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
         $coinList= $T_AD_CoinCharge_Finance->coinMonthly();
@@ -116,6 +135,11 @@ class SalesController extends Controller
         foreach($orderList as $key => $value){
             array_push($orderYearly, $value->year);
         };
+
+        Log::channel('adminlog')->info("SalesController", [
+            'End yearlyChart'
+        ]);
+
         return  view('admin.salesChart.yearlySale', ['orderArray' => $orderArray, 'coinArray' => $coinArray, 'coinYearly' => $coinYearly ,'orderYearly' => $orderYearly]) ; 
     }
      /*
@@ -127,6 +151,9 @@ class SalesController extends Controller
      * */
     public function rangeChart(RangeChart $request)
     {   
+        Log::channel('adminlog')->info("SalesController", [
+            'Start rangeChart'
+        ]);
         $validated = $request->validated();
         $fromDate = $validated['fromDate'];
         $toDate = $validated['toDate'];
@@ -156,7 +183,12 @@ class SalesController extends Controller
         $orderArray = [];
         foreach($orderList as $key => $value){
             array_push($orderArray, $value->totalorder);
-        };    
+        };  
+        
+        Log::channel('adminlog')->info("SalesController", [
+            'End rangeChart'
+        ]);
+
         return  view('admin.salesChart.rangeSale', ['orderArray' => $orderArray, 'coinArray' => $coinArray, 'orderDaily'=> $orderDaily, 'coinDaily'=> $coinDaily]) ; 
     }
 }
