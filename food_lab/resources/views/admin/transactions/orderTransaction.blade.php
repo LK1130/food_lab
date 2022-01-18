@@ -41,10 +41,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($t_ad_order as $trans)
+                        @foreach ($t_ad_order as $key => $trans)
                             <tr class="tablecolor1 text-light tablerows">
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $trans->customer_id }}</td>
+                                <th scope="row">{{ $t_ad_order->firstItem() + $key }}</th>
+                                <td>{{ $trans->customerID }}</td>
                                 <td>{{ $trans->payment }}</td>
                                 <td>{{ $trans->grandtotal_coin }}</td>
                                 <td>{{ $trans->grandtotal_cash }}</td>
@@ -54,8 +54,10 @@
                                     {{ $trans->order_time }}
                                 </td>
                                 <td>
-                                    <a href="ordertransactionDetail"><button class="btn tablerows btn-outline-light"><i
-                                                class="bi bi-arrow-right"></i></button></a>
+                                    <a href="ordertransactionDetail?id={{ $trans->id }}">
+                                        <button class="btn tablerows btn-outline-light"><i
+                                                class="bi bi-arrow-right"></i></button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

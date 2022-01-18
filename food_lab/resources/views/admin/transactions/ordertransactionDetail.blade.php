@@ -18,9 +18,9 @@
 @section('body')
     <div class="col-md-10">
         <div class="mt-4">
-            <a href="" class="me-5"><button
+            <a href="orderTransaction" class="me-5"><button
                     class="btn topbtn text-light fs-4 topbtns">{{ __('messageZN.Order Transaction') }}</button></a>
-            <a href=""><button
+            <a href="coinchargeList"><button
                     class="btn topbtn inactive text-light fs-4 topbtns">{{ __('messageZN.Coin Charge List') }}</button></a>
         </div>
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageZN.Order Transaction Detail') }}</div>
@@ -31,15 +31,16 @@
                         {{-- Name And ID --}}
                         <div class="col-md-6">
                             <div class="text-start ms-5 fs-4">
-                                <li class="lidisplay"><b>Customer Name</b> : asdasd</li>
-                                <li class="lidisplay"> <b>Customer ID</b> : U123123</li>
+                                <li class="lidisplay"><b>Customer Name</b> : {{ $order->nickname }}</li>
+                                <li class="lidisplay"> <b>Customer ID</b> :{{ $order->customerID }} </li>
                             </div>
                         </div>
                         {{-- Order Id And Date --}}
                         <div class="col-md-6">
                             <div class="text-end me-5 fs-4">
-                                <li class="lidisplay"> <b>OrderID</b> :12312312</li>
-                                <li class="lidisplay"><b>Date</b> : 2020/1/1 12:12 PM</li>
+                                <li class="lidisplay"> <b>OrderID</b> :{{ $order->orderid }}</li>
+                                <li class="lidisplay"><b>Date</b> : {{ $order->order_date }}
+                                    {{ $order->order_time }}</li>
                             </div>
                         </div>
                         <div class="row mainbox">
@@ -94,19 +95,28 @@
                     <div class="row position-relative">
                         <div class="col-md-4">
                             <div class="text-start ms-5 fs-4 position-absolute bottom-0 start-0">
-                                <p> <b>Last Control By</b> : zawdasdaw</p>
+                                <p> <b>Last Control By</b> :{{ $order->ad_name }} </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="text-center position-absolute bottom-0 start-50 translate-middle-x ">
                                 <li class="lidisplay fs-4"><b>ORDER STATUS</b></li>
-                                <li class="lidisplay fs-4">Complete</li>
+                                <li class="lidisplay fs-4">{{ $order->status }}</li>
                             </div>
                         </div>
                         <div class="col-md-4 ">
                             <div class="text-end position-absolute bottom-0 end-0">
                                 <li class="lidisplay fs-5 me-4"><b>Delivery Fees</b> : 1,000</li>
-                                <li class="lidisplay fs-3 me-4"><b>Grand Total </b> : 3,300</li>
+                                @if ($order->grandtotal_coin > 0)
+                                    <li class="lidisplay fs-3 me-4"><b>Grand Toatl Coin </b> :
+                                        {{ $order->grandtotal_coin }}
+                                    </li>
+                                @else
+                                    <li class="lidisplay fs-3 me-4"><b>Grand Total Cash</b> :
+                                        {{ $order->grandtotal_cash }}
+                                    </li>
+                                @endif
+
                             </div>
                         </div>
                     </div>

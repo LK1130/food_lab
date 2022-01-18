@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\T_AD_CoinCharge;
+use App\Models\T_AD_Order;
+use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,20 +18,21 @@ class DashboardController extends Controller
     * Return is view (dashboard.blade.php)
     */
     public function dashboardList(){
-        $customer = DB::table('t_cu_customer')
-        ->paginate(5);
 
-        return view('admin.dashboard',['t_cu_customer'=>$customer]);
+        $detail = new T_AD_Order();
+        $orderdetail = $detail->DashboardMinitrans();
+
+        $customer = new T_CU_Customer();
+        $customerlist = $customer->DashboardMinicus();
+
+        $coin = new T_AD_CoinCharge();
+        $coincharge  = $coin->Dashboardminicoin();
+        
+        $tcount = new T_AD_Order();
+        $transcount1 = $tcount->Dashboardtranscount();
+        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1]);
     }
-        /*
-    * Create:zarni(2022/01/12) 
-    * Update: 
-    * This is function is to show admin Coin charge List.
-    * Return is view (coinchargeList.blade.php)
-    */
-    public function coinchargeList(){
-        return view('admin.transactions.coinchargeList');
-    }
+  
         /*
     * Create:zarni(2022/01/12) 
     * Update: 
@@ -38,4 +42,5 @@ class DashboardController extends Controller
     public function orderTransaction(){
         return view('admin.transactions.orderTransaction');
     }
+
 }

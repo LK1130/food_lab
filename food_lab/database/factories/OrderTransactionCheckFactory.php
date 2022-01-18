@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderTransactionCheckFactory extends Factory
 {
-     protected $model = OrderTransactionCheck::class;
+     protected $model = T_AD_Order::class;
     /**
      * Define the model's default state.
      *
