@@ -21,6 +21,7 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -80,8 +81,9 @@ Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDe
 /**
  * For Product Form page
  */
-
 Route::resource('product', ProductController::class);
+//Prouduct List
+Route::get('productList',[ProductListController::class,'showList']);
 
 //For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);

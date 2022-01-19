@@ -84,4 +84,26 @@ class M_AD_CoinRate extends Model
             'End coinRateChange'
         ]);
     }
+
+     /*
+    * Create : Aung Min Khant(19/1/2022)
+    * Update :
+    * Explain of function : To get rate data from m_ad_coinrate database 
+    * parament : none
+    * return get data
+    * */
+
+    public function getRate(){
+        Log::channel('adminlog')->info("M_AD_CoinRate Model", [
+            'Start coinRate'
+        ]);
+
+        $rate = DB::table('m_ad_coinrate')->latest('id')->first();
+       
+        Log::channel('adminlog')->info("M_AD_CoinRate Model", [
+            'End coinRate'
+        ]);
+
+        return $rate;
+    }
 }

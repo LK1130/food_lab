@@ -204,7 +204,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="" class="d-flex justify-content-end"><button
+                <a href="/productList" class="d-flex justify-content-end"><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
             <div class="col-md-6">
