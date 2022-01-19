@@ -238,7 +238,7 @@ class ProductController extends Controller
 
         $request->validate([
             'pname' => 'required',
-            'coin' => 'required',
+            'coin' => 'required|min:0',
             'photo1' => 'required'
         ]);
 

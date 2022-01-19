@@ -23,7 +23,7 @@ $(document).ready(function (e) {
   
     let rate = parseInt($('#rate').text());
     $('#coin').on('keyup keypress', function () {
-      let coin = parseInt($('#coin').val());
+      let coin = Math.abs(parseInt($('#coin').val()));
       //  console.lg
       if ($('#coin').val() === "") {
         console.log('hello');

@@ -121,7 +121,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="coin" class="form-label titles">{{ __('messageAMK.CoinAmount') }}</label>
-                            <input type="number" name="coin" id="coin" class="form-control inputs" required>
+                            <input type="number" name="coin" id="coin" class="form-control inputs" min="0" required>
                             @error('coin')
                             <li class="text-danger ">{{ $message }}</li>
                             @enderror
