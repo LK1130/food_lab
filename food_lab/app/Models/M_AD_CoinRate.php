@@ -105,5 +105,24 @@ class M_AD_CoinRate extends Model
         ]);
 
         return $rate;
+        }
+       /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin ordertransactionList
+    * Return 
+    */
+    public function DashboardCoinrate(){
+
+        Log::channel('adminlog')->info("M_AD_CoinRate Model", [
+            'Start DashboardCoinrate'
+        ]);
+
+        $coinrate = M_AD_CoinRate::first();
+
+        Log::channel('adminlog')->info("M_AD_CoinRate Model", [
+            'End DashboardCoinrate'
+        ]);
+
+        return $coinrate;
     }
 }

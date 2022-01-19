@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderTransactionCheck;
+use App\Models\T_AD_Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +17,9 @@ class OrderTransactionController extends Controller
     * Return is view (customerInfo.blade.php)
     */
     public function orderTransaction(){
-        $transaction = DB::table('t_ad_order')
-        ->paginate(10);
-        return view('admin.transactions.orderTransaction',['t_ad_order'=>$transaction]);
+
+        $detail = new T_AD_Order();
+        $orderdetail = $detail->OrderTransactions();
+        return view('admin.transactions.orderTransaction',['t_ad_order'=>$orderdetail]);
     }
 }

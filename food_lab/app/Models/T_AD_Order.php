@@ -7,15 +7,130 @@ use App\Http\Requests\RangeChart;
 use App\Rules\SearchDate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
 class T_AD_Order extends Model
 {
     public $table = 't_ad_order';
     use HasFactory;
+    /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin ordertransactionDetail
+    * Return 
+    */
+    public function orderTransaction()
+    {
+        return T_AD_Order::all();
+    }
+    /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin ordertransactionDetail
+    * Return 
+    */
+
+
+    public function ordertransactionDetails($id){
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start ordertransactionDetails'
+        ]);
+
+        $ordertransactionDetail =T_AD_Order::
+        select ('*',DB::raw('t_ad_order.id AS orderid'))
+        
+        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_order.customer_id')
+        ->join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
+        ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
+        ->where('t_ad_order.del_flg',0)
+        ->where('t_ad_order.id','=',$id)
+        ->first();
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End ordertransactionDetails'
+        ]);
+
+        return $ordertransactionDetail;
+    }
+
+
+        /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin ordertransactionList
+    * Return 
+    */
+    public function OrderTransactions(){
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start OrderTransactions'
+        ]);
+        
+        $ordertransactions=T_AD_Order::
+        join('t_cu_customer','t_cu_customer.id','=','t_ad_order.customer_id')
+        ->join('m_payment','m_payment.id','=','t_ad_order.payment')
+        ->join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
+        ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
+        ->where('t_ad_order.del_flg',0)
+        ->paginate(10);
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End OrderTransactions'
+        ]);
+
+        return $ordertransactions;
+    }
+    /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin Dashboardminitransaction List
+    * Return 
+    */
+    public function DashboardMinitrans(){
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start DashboardMinitrans'
+        ]);
+
+        $dashboardtrans = T_AD_Order::
+        join('t_cu_customer','t_cu_customer.id','=','t_ad_order.customer_id')
+        ->join('m_payment','m_payment.id','=','t_ad_order.payment')
+        ->where('t_ad_order.del_flg',0)
+        ->limit(5)
+        ->get();
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End DashboardMinitrans'
+        ]);
+
+        return $dashboardtrans;
+        }
+    /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin Dashboardtransaction Count
+    * Return 
+    */
+        public function Dashboardtranscount(){
+
+            Log::channel('adminlog')->info("T_AD_Order Model", [
+                'Start Dashboardtranscount'
+            ]);
+
+            $transcount = T_AD_Order::where('t_ad_order.del_flg',0)
+            ->count('t_ad_order.id');
+
+            Log::channel('adminlog')->info("T_AD_Order Model", [
+                'End Dashboardtranscount'
+            ]);
+
+            return $transcount;
+        }
 
     public function orderDaily()
     {   
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start orderDaily'
+        ]);
+
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;
 
@@ -29,10 +144,19 @@ class T_AD_Order extends Model
         ->orderBy(DB::raw('order_date'), 'ASC')
         ->groupBy('date')
         ->get();
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End orderDaily'
+        ]);
+
         return $order;
     }
     public function orderMonthly()
     {   
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start orderMonthly'
+        ]);
+
         $current = Carbon::now()->year;
         $order=T_AD_Order::select(
             
@@ -44,10 +168,19 @@ class T_AD_Order extends Model
         ->groupBy('year')
         ->groupBy('month')
         ->get();
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End orderMonthly'
+        ]);
+        
         return $order;
     }
     public function orderYearly()
     {   
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start orderYearly'
+        ]);
+
         $current = Carbon::now()->year;
         $order= T_AD_Order::select(
             DB::raw('year(order_date) as year'),
@@ -56,10 +189,19 @@ class T_AD_Order extends Model
         ->orderBy(DB::raw('year(order_date)'), 'ASC')
         ->groupBy('year')
         ->get();
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End orderYearly'
+        ]);
+
         return $order;
     }
     public function orderRange($request)
-    {          
+    {    
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start orderRange'
+        ]);
+
         $fromDate = $request['fromDate'];
         $toDate = $request['toDate'];
 
@@ -72,6 +214,11 @@ class T_AD_Order extends Model
         ->orderBy(DB::raw('order_date'), 'ASC')
         ->groupBy('date')
         ->get();
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End orderRange'
+        ]);
+
         return $order;
     }
 

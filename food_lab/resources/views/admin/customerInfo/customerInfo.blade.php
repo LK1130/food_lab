@@ -48,8 +48,10 @@
                                 <td>{{ $list1->phone }}</td>
                                 <td>{{ $list1->address3 }}</td>
                                 <td>
-                                    <a href="customerinfoDetail"><button class="btn tablerows btn-outline-light"><i
-                                                class="bi bi-arrow-right"></i></button></a>
+                                    <form action="customerinfoDetail/" .{{ $list1->id }}>
+                                        <button class="btn tablerows btn-outline-light"><i
+                                                class="bi bi-arrow-right"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

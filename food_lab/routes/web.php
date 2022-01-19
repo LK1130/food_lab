@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
@@ -68,10 +69,10 @@ Route::get('coinchargeList', function () {
 /**
  * For Dashboard & Transaction
  */
-Route::get('dashboard', [DashboardController::class, 'dashboardList']);
-Route::get('coinchargeList', [DashboardController::class, 'coinchargeList']);
-Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
-Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
+Route::get('dashboard',[DashboardController::class,'dashboardList']);
+Route::get('coinchargeList',[CoinchargeTransaction::class,'coinchargeList']);
+Route::get('orderTransaction',[OrderTransactionController::class,'orderTransaction']);
+Route::get('ordertransactionDetail',[TransactionController::class,'ordertransactionDetail']);
 /**
  * Customer Info
  */

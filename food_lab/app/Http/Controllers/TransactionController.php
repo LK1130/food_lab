@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\T_AD_Order;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -13,7 +14,9 @@ class TransactionController extends Controller
     * This is function is to show admin ordertransactionDetail
     * Return is view (ordertransactionDetail.php)
     */
-    public function ordertransactionDetail(){
-        return view('admin.transactions.ordertransactionDetail');
+    public function ordertransactionDetail(Request $request){
+        $ordertable = new T_AD_Order();
+        $order = $ordertable->ordertransactionDetails($request->input('id'));
+        return view('admin.transactions.ordertransactionDetail',['order'=>$order]);
     }
 }
