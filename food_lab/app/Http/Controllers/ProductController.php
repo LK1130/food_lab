@@ -195,6 +195,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+
+        Log::channel('adminlog')->info("Product Controller", [
+            'Start edit Data'
+        ]);
         $mFav = M_Fav_Type::all();
         $mTaste = M_Taste::all();
 
@@ -219,6 +223,9 @@ class ProductController extends Controller
             t_ad_evd.link_id = $id")
         );
 
+        Log::channel('adminlog')->info("Product Controller", [
+            'End edit Data'
+        ]);
         // return $product_detail;
         return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $mProduct, "pdetails" => $mProductDetail,'evd' => $evd]);
     }
@@ -338,7 +345,7 @@ class ProductController extends Controller
 
 
         Log::channel('adminlog')->info("Product Controller", [
-            'End Store Data'
+            'End Update Data'
         ]);
     }
 
