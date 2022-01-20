@@ -6,7 +6,6 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ URL::asset('css/adminDashbord.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/admincustomerInfo.css') }}">
 @endsection
 
@@ -48,8 +47,10 @@
                                 <td>{{ $list1->phone }}</td>
                                 <td>{{ $list1->address3 }}</td>
                                 <td>
-                                    <a href="customerinfoDetail"><button class="btn tablerows btn-outline-light"><i
-                                                class="bi bi-arrow-right"></i></button></a>
+                                    <form action="customerinfoDetail/" .{{ $list1->id }}>
+                                        <button class="btn tablerows btn-outline-light"><i
+                                                class="bi bi-arrow-right"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

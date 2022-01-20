@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
@@ -21,6 +22,7 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -67,10 +69,10 @@ Route::get('coinchargeList', function () {
 /**
  * For Dashboard & Transaction
  */
-Route::get('dashboard', [DashboardController::class, 'dashboardList']);
-Route::get('coinchargeList', [DashboardController::class, 'coinchargeList']);
-Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
-Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
+Route::get('dashboard',[DashboardController::class,'dashboardList']);
+Route::get('coinchargeList',[CoinchargeTransaction::class,'coinchargeList']);
+Route::get('orderTransaction',[OrderTransactionController::class,'orderTransaction']);
+Route::get('ordertransactionDetail',[TransactionController::class,'ordertransactionDetail']);
 /**
  * Customer Info
  */
@@ -80,8 +82,9 @@ Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDe
 /**
  * For Product Form page
  */
-
 Route::resource('product', ProductController::class);
+//Prouduct List
+Route::get('productList',[ProductListController::class,'showList']);
 
 //For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);

@@ -15,85 +15,93 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ URL::asset('js/adminProductTagsInput.js') }}"></script>
-<script src="{{ URL::asset('js/adminProduct.js') }}"></script>
+<script src="{{ URL::asset('js/adminProductForm.js') }}"></script>
 @endsection
 
 @section('body')
      <div class="col-md-10">
             {{-- Product Form --}}
-            <form action="{{ route('product.store') }}" method="POST">
+            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mt-4 mb-4 labels">Products Add Form</div>
+            <div class="mt-4 mb-4 labels">{{ __('messageAMK.ProductsAdd Form') }}</div>
             
            
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                        
                         <div class="mt-2  image-container">
                              <div class="row">
-                                 <div class="col-md-6">
-                                     <div class="mx-5 mt-4 blocks">
-                                         <img src="" alt="">
+                                 <div class="col-md-6 col-sm-10">
+                                     <div class="mx-5 mt-4 p-4 blocks">
+                                         <img id="img1" class="img-thumbnail" src="" alt="">
                                      </div>
                                   
-                                     <div class="form-group mx-5 mt-2">
-                                     <input type="file" name="photoone" class="form-control files">
+                                     <div class="form-group mx-4 mt-2">
+                                     <input type="file" name="photo1" id="photoone" class="form-control files">
+                                     @error('photo1')
+                                     <li class="text-danger ">At least One Product Photo is required.</li>
+                                     @enderror
                                     </div>
                                  </div>
-                                 <div class="col-md-6">
-                                    <div class="mx-3 mt-4 blocks">
-                                        <img src="" alt="">
+                                 <div class="col-md-6 col-sm-10">
+                                    <div class="mx-5 mt-4 p-4 blocks">
+                                        <img id="img2" class="img-thumbnail" src="" alt="">
                                     </div>
-                                    <div class="form-group mx-3 mt-2">
-                                    <input type="file" name="phototwo" class="form-control files">
+                                    <div class="form-group mx-4 mt-2">
+                                    <input type="file" name="photo2"  id="phototwo" class="form-control files">
                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mx-5 mt-4 blocks">
-                                        <img src="" alt="">
+                                <div class="col-md-6 col-sm-10">
+                                    <div class="mx-5 mt-4 p-4 blocks">
+                                        <img id="img3" class="img-thumbnail" src="" alt="">
                                     </div>
                                     
-                                    <div class="form-group mx-5 mt-2">
-                                    <input type="file" name="photothree" class="form-control files">
+                                    <div class="form-group mx-4 mt-2">
+                                    <input type="file" name="photo3" id="photothree" class="form-control files">
                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mx-3 mt-4 blocks">
-                                        <img src="" alt="">
+                                <div class="col-md-6 col-sm-10">
+                                    <div class="mx-5 mt-4 p-4 blocks">
+                                        <img id="img4" class="img-thumbnail" src="" alt="">
                                     </div>
                                   
-                                    <div class="form-group mx-3 mt-2">
-                                    <input type="file" name="photofour" class="form-control files">
+                                    <div class="form-group mx-4 mt-2">
+                                    <input type="file" name="photo4" id="photofour" class="form-control files">
                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mx-5 mt-4 blocks">
-                                        <img src="" alt="">
+                                <div class="col-md-6 col-sm-10">
+                                    <div class="mx-5 mt-4 p-4 blocks">
+                                        <img id="img5" class="img-thumbnail" src="" alt="">
                                     </div>
                                    
-                                    <div class="form-group mx-5 mt-2">
-                                    <input type="file" name="photofive" class="form-control files">
+                                    <div class="form-group mx-4 mt-2 mb-3">
+                                    <input type="file" name="photo5" id="photofive" class="form-control files">
                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mx-3 mt-4 blocks"></div>
+                                <div class="col-md-6 col-sm-10">
+                                    <div class="mx-5 mt-4 p-4 blocks">
+                                        <img id="img6" class="img-thumbnail" src="" alt="">
+                                    </div>
                                   
-                                    <div class="form-group mx-3 mt-2">
-                                    <input type="file" name="photosix" class="form-control files">
+                                    <div class="form-group mx-4 mt-2 mb-3">
+                                    <input type="file" name="photo6" id="photosix"class="form-control files">
                                    </div>
                                 </div>
                              </div>
                         </div>
                     </div>
                     {{-- Product Form --}}
-                    <div class="mt-2 col-md-5">
+                    <div class="mt-2 col-md-5 col-sm-10">
                         <div class="form-group">
-                            <label for="pname" class="form-label titles">Product Name</label>
+                            <label for="pname" class="form-label titles">{{ __('messageAMK.ProductName') }}</label>
                             <input type="text" name="pname" id="pname" class="form-control inputs"  required>
+                            @error('pname')
+                                <li class="text-danger ">{{ $message }}</li>
+                                @enderror
                         </div>
                         <div class="form-group">
-                            <label for="ptaste" class="form-label titles">Taste</label>
+                            <label for="ptaste" class="form-label titles">{{ __('messageAMK.Taste') }}</label>
                             <select name="ptaste" id="ptaste" class="form-select selects" required>
                                 <option value="0" selected disabled>Choose Taste</option>
                                 @foreach ($mTaste as $item)
@@ -103,7 +111,7 @@
                             </select>
                         </div>
                         <div class="form-group ">
-                            <label for="ptype" class="form-label titles">Type</label>
+                            <label for="ptype" class="form-label titles">{{ __('messageAMK.Type') }}</label>
                             <select name="ptype" id="ptype" class="form-select selects" required>
                                 <option value="0" selected disabled>Choose Type</option>
                                @foreach ($mFav as $item)
@@ -112,15 +120,18 @@
                             </select>
                         </div>
                         <div class="form-group ">
-                            <label for="coin" class="form-label titles">Coin Amount</label>
-                            <input type="number" name="coin" id="coin" class="form-control inputs" required>
+                            <label for="coin" class="form-label titles">{{ __('messageAMK.CoinAmount') }}</label>
+                            <input type="number" name="coin" id="coin" class="form-control inputs" min="0" required>
+                            @error('coin')
+                            <li class="text-danger ">{{ $message }}</li>
+                            @enderror
                             <div class="d-flex justify-content-center">
-                                <p class="mx-3 mt-2 fs-4 fw-bold amounts text-danger">1400 MMK</p>
+                                <p class="mx-3 mt-2 fs-4 fw-bold amounts text-danger" id="rate">{{ $rates->rate }} MMK</p>
                             </div>
                            
                         </div>
                         <div class="form-group">
-                            <label for="list" class="form-label titles">Ingredient List</label>
+                            <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
                             <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" required>
                             </textarea>
                            
@@ -128,7 +139,7 @@
 
                         <div class="d-flex justify-content-between  mt-4 mx-2">
                                 <div class="mx-2">
-                                    <label name="avaliable" class="titles">Avaliable</label>
+                                    <label name="avaliable" class="titles">{{ __('messageAMK.Avaliable') }}</label>
                                 
                                 </div>
                                 <div class="mt-2">
@@ -144,7 +155,7 @@
                 <div class="row">
                     <div class="col-md-10 col-sm-12">
                         <div class="form-group mt-3">
-                            <label for="pdesc" class="form-label titles">Description</label>
+                            <label for="pdesc" class="form-label titles">{{ __('messageAMK.Description') }}</label>
                             <textarea name="pdesc" id="pdesc" class="form-control" cols="30" rows="10"></textarea>
                         </div>
                     </div>
@@ -155,11 +166,19 @@
             {{-- Product Append --}}
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <div class="mt-4 mb-2 titles">Products Detail</div>                             
+                    <div class="col-md-12 col-sm-12 mb-3">
+                        <div class="mt-4 mb-2 titles">{{ __('messageAMK.ProductDetail') }}</div>                             
                             <div class="appendBox">
                                 <div class="m-3 plusBox">
                                     <i class="fas fa-plus-circle icons" ></i>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-7">
+                                        <div class="append">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                     </div>   
@@ -167,8 +186,8 @@
             </div>
 
             <div class="d-flex justify-content-end mb-4">
-                <button type="reset" class="resetBtn">Reset</button>
-                <button type="submit" class="submitBtn">Submit</button>
+                <button type="reset" class="resetBtn">{{ __('messageAMK.Reset') }}</button>
+                <button type="submit" class="submitBtn">{{ __('messageAMK.Submit') }}</button>
             </div>
         </form>
      </div>

@@ -7,7 +7,7 @@ Daily Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"/>
 @endsection
 
 @section('script')
@@ -21,6 +21,7 @@ Daily Sales
 <div class="col-md-10">
   <div class="mt-4">
     <!-- Daily Sales Button -->
+<<<<<<< HEAD
     <a href="dailyChart" class="me-5"><button
             class="btn text-light  active btncust">Daily Sale</button></a>
      <!--Monthly Sales Button -->
@@ -34,6 +35,17 @@ Daily Sales
             class="btn text-light  inactive btncust">Range Sale</button></a>
 </div>
   <!-- For Daily Chart-->
+=======
+    <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  active btncust">Daily</button></a>
+    <!--Monthly Sales Button -->
+    <a href="monthlyChart" class="me-5"><button id="monthlySales"  class="btn text-light inactive btncust">Monthly</button></a>
+    <!-- Yearly Sales Button -->
+    <a href="yearlyChart" class="me-5"><button id="yearlySales"  class="btn text-light inactive btncust">Yearly </button></a>
+    <!-- Range Sales Button -->
+    <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light inactive btncust">Range</button></a>  
+  </div>
+    <!-- For Daily Chart-->
+>>>>>>> f1fd8e2788d2e264e4b43de55a94d797192dfa90
     <div id="lineChart">
       <!-- For showing Daily Chart details-->
       <!-- For  Order daily Sale Chart-->

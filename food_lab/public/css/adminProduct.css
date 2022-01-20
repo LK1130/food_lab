@@ -2,6 +2,11 @@
      box-sizing: border-box;
 }
 
+.product{
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
+
 /* Product Label */
 .labels{
     font-size: var(--title);
@@ -10,15 +15,20 @@
 
 /* Container Image */
 .image-container{
-     width: 43vw;
-     height: 100vh;
+ 
      border: 2px solid  grey;
 }
 
+
+#img1,#img2,#img3,#img4,#img5,#img6{
+    width: 15vw !important;
+    /* height: 21vh; */
+    border: none;
+}
 /* Image Block */
 .blocks{
-    width: 15vw;
-    height: 21vh;
+    /* height: 21vh; */
+    border: 1px solid grey;
     background :rgba(0,0,0,0.5);
 }
 
@@ -96,3 +106,4 @@ textarea{
     border-radius: 10%;
     cursor: pointer;
 }
+

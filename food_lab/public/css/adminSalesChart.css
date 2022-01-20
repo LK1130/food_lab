@@ -8,6 +8,15 @@
     --color2:black;
     --color3:white;
 }
+<<<<<<< HEAD
+=======
+
+.sale{
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
+
+>>>>>>> f1fd8e2788d2e264e4b43de55a94d797192dfa90
 .btncust{
     margin: 10px;
     width: 12vw;
@@ -21,6 +30,62 @@
 
 .active{
     background-color: var(--btns);
+<<<<<<< HEAD
+=======
+}
+
+.inactive{
+    background-color: var(--inactivebtn) 
+}
+
+/* Daily Sales Button */
+#dailySales{
+    /* width: 8em;
+    height: 2.5em;
+    color:  var(--color2);
+    margin-top: 3em;
+    margin-left: 5em;
+    padding: 0.4em;
+    border:0.1rem solid var(--color2);
+    border-radius: 1em;
+    font-size: 1.2em; */
+}
+/* Monthly Sales Button */
+#monthlySales{
+    /* width: 8em;
+    height: 2.5em;
+    color:  var(--color2);
+    margin-top: 3em;
+    margin-left: 5em;
+    padding: 0.4em;
+    border:0.1rem solid var(--color2);
+    border-radius: 1em;
+    font-size: 1.2em; */
+}
+/* Yearly Sales Button */
+#yearlySales{
+    /* width: 8em;
+    height: 2.5em;
+    color:  var(--color2);
+    margin-top: 3em;
+    margin-left: 5em;
+    padding: 0.4em;
+    border:0.1rem solid var(--color2);
+    border-radius: 1em;
+    font-size: 1.2em; */
+}    
+/* Range Sales Button */
+#rangeSales{
+    /* width: 8em;
+    height: 2.5em;
+    color:  var(--color2);
+    margin-top: 3em;
+    margin-left: 5em;
+    padding: 0.4em;
+    border:0.1rem solid var(--color2);
+    border-radius: 1em;
+    font-size: 1.2em; */
+>>>>>>> f1fd8e2788d2e264e4b43de55a94d797192dfa90
 }
 
 .inactive{
@@ -91,15 +156,15 @@
 }
 /*  For Showing Chart Details*/
 #lineChart{
-    width: 75%;
+    width: 100%;
     height: 80%;
     margin-top: 6em;
-    margin-left:3em;
+    padding: 1em;
     display: flex;
     flex-direction: row;
 }
 #lineChart1{
-    width: 75%;
+    width: 100%;
     height: 80%;
     margin-top: 2em;
     margin-left:3em;
@@ -108,12 +173,12 @@
 }
 #chart{
    display: inline-block;
-   width: 65%;
+   width: 100%;
    display: flex;
 }
 #chart1{
     display: inline-block;
-    width: 65%;
+    width: 100%;
     display: flex;
  }
  @media(max-width: 800px) {
