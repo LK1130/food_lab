@@ -1,11 +1,17 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
 @section('google')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async></script>
 @endsection
 
 @section('facebook')
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+{{--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>--}}
+@endsection
+
+@section('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection
 
 @section('body')
@@ -23,15 +29,16 @@
         {{-- start register header --}}
         <div class="d-flex ms-5 register-headers">
             <div>
-                <p class="fw-bolder pb-3 creates">Create Account</p>
+                <p class="fw-bolder pb-3 creates">{{ __('messageMK.createAccount') }}</p>
                 <div class="d-flex justify-content-around align-items-center text-white sign-withs">
-                    <div class="btn g-signin2" data-onsuccess="onSignIn"><i class="fab fa-google"></i> Sign Up With Google</div>
-                    <a href="#" class="btn"><i class="fab fa-facebook"></i> Sign Up With Facebook</a>
+                    <p class="btn g-signin2" data-onsuccess="onSignIn"><i class="fab fa-google"></i>{{ __('messageMK.signUpWithGoogle') }}</p>
+                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
                 </div>
-                <p class="text-center fw-bolder py-2 creates">OR</p>
+                <p class="text-center fw-bolder py-2 creates">{{ __('messageMK.OR') }}</p>
             </div>
             <div class="welcome-registers">
-                <p class="text-center creates">Welcome From <span class="d-block ms-5 ps-5">Our Food Lab</span></p>
+                <p class="text-center creates">{{ __('messageMK.welcomeFrom') }} <span class="d-block ms-5 ps-5">{{ __('messageMK.ourFoodLab') }}</span></p>
             </div>
         </div>
         {{-- end register header --}}
@@ -41,56 +48,106 @@
             <form action="/access" method="post" class="d-flex flex-column align-items-center justify-content-start">
                 @csrf
                 <div class="inputs">
-                    <input type="text" id="username" class="form-control" name="username" placeholder="Full Name" value="{{ old('username') }}" autocomplete="off"/>
+                    <input type="text" id="username" class="form-control" name="username" placeholder="{{ __('messageMK.fullName') }}" value="{{ old('username') }}" autocomplete="off"/>
                     @error('username')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="phone" class="form-control" name="phone" placeholder="Phone" value="{{ old('phone') }}"   autocomplete="off"/>
+                    <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ __('messageMK.phone') }}" value="{{ old('phone') }}"   autocomplete="off"/>
                     @error('phone')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="email" id="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" autocomplete="off"/>
+                    <input type="email" id="email" class="form-control" name="email" placeholder="{{ __('messageMK.email') }}" value="{{ old('email') }}" autocomplete="off"/>
                     @error('email')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="Address(No)" value="{{ old('addressNo') }}" autocomplete="off"/>
+                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(No)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
                     @error('addressNo')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressTownship" class="form-control" name="addressTownship" placeholder="Address(Township)" value="{{ old('addressTownship') }}" autocomplete="off"/>
+                    <input type="text" id="addressTownship" class="form-control" name="addressTownship" placeholder="{{ __('messageMK.address(Township)') }}" value="{{ old('addressTownship') }}" autocomplete="off"/>
                     @error('addressTownship')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressCity" class="form-control" name="addressCity" placeholder="address(City)" value="{{ old('addressCity') }}" autocomplete="off"/>
+                    <input type="text" id="addressCity" class="form-control" name="addressCity" placeholder="{{ __('messageMK.address(City)') }}" value="{{ old('addressCity') }}" autocomplete="off"/>
                     @error('addressCity')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}" autocomplete="off"/>
+                    <div class="passwords">
+                        <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('messageMK.password') }}" value="{{ old('password') }}" autocomplete="off"/>
+                        <i class="fas fa-eye-slash pwd-eye-slash"></i>
+                        <i class="far fa-eye pwd-eye"></i>
+                    </div>
                     @error('password')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="password" id="cPassword" class="form-control" name="cPassword" placeholder="Confirm Password" autocomplete="off"/>
+                    <div class="passwords">
+                        <input type="password" id="cPassword" class="form-control" name="cPassword" placeholder="{{ __('messageMK.confirmPassword') }}" autocomplete="off"/>
+                        <i class="fas fa-eye-slash cpwd-eye-slash"></i>
+                        <i class="far fa-eye cpwd-eye"></i>
+                    </div>
                     @error('cPassword')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="submit" class="form-control text-center" value="Create Account"  data-bs-toggle="modal" data-bs-target="#modal"/>
+                    <input type="button" class="form-control text-center createAccs" value="{{ __('messageMK.createAccount') }}"  data-bs-toggle="modal" data-bs-target="#modal"/>
                 </div>
+                {{-- start modal --}}
+                <div class="modal fade text-white modals" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content contents">
+                            <div class="modal-header justify-content-end">
+                                <button type="submit" class="submits">Skip</button>
+                            </div>
+                            <div class="modal-body">
+                                <fieldset class="border border-3">
+                                    <legend class="modal-headers">Favourite Menu</legend>
+                                    <div class="d-flex">
+                                        <div>
+                                            <p>Chinese Food</p>
+                                            <p>Korea Food</p>
+                                        </div>
+                                        <div>
+                                            <p>Chinese Food</p>
+                                            <p>Korea Food</p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="border border-3">
+                                    <legend class="modal-headers">Favourite taste</legend>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="border border-3">
+                                    <legend  class="modal-headers">Note</legend>
+                                    <textarea></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- end modal--}}
             </form>
             <div>
                 <img src="{{ url('img/menu3.png') }}" width="90%"/>
@@ -99,7 +156,7 @@
         {{-- end register form --}}
 
         <div class="ms-5 py-2 have-accs">
-            <p>Already Have An Account ? <a href="/login" class="ms-3">Login in here</a></p>
+            <p>{{ __('messageMK.alreadyHaveAnAccount') }} <a href="/login" class="ms-3">{{ __('messageMK.loginInHere') }}</a></p>
         </div>
     </section>
 

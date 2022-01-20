@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\CheckMail;
 use http\Client\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class RegisterValidation extends FormRequest
 {
@@ -25,6 +26,13 @@ class RegisterValidation extends FormRequest
      */
     public function rules()
     {
+        Log::channel('customerlog')->info('RegisterValidation Request',[
+            'start rules'
+        ]);
+
+        Log::channel('customerlog')->info('RegisterValidation Request',[
+            'end rules'
+        ]);
         return [
             'username' => 'required | min:6 | max:30',
             'phone' => 'required | max:11 ',

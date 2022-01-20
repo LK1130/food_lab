@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use App\Models\M_CU_Customer_Login;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class LoginPassword implements Rule
 {
@@ -26,6 +27,10 @@ class LoginPassword implements Rule
      */
     public function passes($attribute, $value)
     {
+        Log::channel('customerlog')->info('LoginPassword Rule',[
+            'start passes'
+        ]);
+
         if(session()->has('email')){
             $mail = session()->get('email');
             session()->forget('email');
@@ -35,10 +40,19 @@ class LoginPassword implements Rule
 
             if(count($correct) > 0 ) {
                 session(['verify'=>$correct[0]['verify'],'customerId' => $correct[0]['customer_id']]);
+                Log::channel('customerlog')->info('LoginPassword Rule',[
+                    'end passes'
+                ]);
                 return true;
             }
+            Log::channel('customerlog')->info('LoginPassword Rule',[
+                'end passes'
+            ]);
             return false;
         }
+        Log::channel('customerlog')->info('LoginPassword Rule',[
+            'end passes'
+        ]);
         return false;
     }
 

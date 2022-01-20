@@ -22,7 +22,7 @@ var options = {
         opacity: 0.2
       },
       toolbar: {
-        show: false
+        show: true
       }
     },
     colors: ['#77B6EA'],
@@ -93,7 +93,7 @@ var options1 = {
         opacity: 0.2
       },
       toolbar: {
-        show: false
+        show: true
       }
     },
     colors: ['#ffa600'],

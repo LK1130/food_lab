@@ -11,6 +11,7 @@ use App\Models\M_CU_Customer_Login;
 use App\Models\M_Township;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
@@ -24,11 +25,19 @@ class CustomerController extends Controller
      * */
     public function foodlab()
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'Start foodlab'
+        ]);
+
         $townships = new M_Township();
         $townshipnames = $townships->townshipDetails();
 
         $news = new M_AD_News();
         $newDatas = $news->news();
+
+        Log::channel('customerlog')->info('Customer Controller', [
+            'End foodlab'
+        ]);
         return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas]);
     }
 
@@ -41,6 +50,12 @@ class CustomerController extends Controller
      * */
     public function policy()
     {
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'start policy'
+        ]);
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'end policy'
+        ]);
         return view('customer.policyInfo');
     }
 
@@ -53,6 +68,12 @@ class CustomerController extends Controller
      * */
     public function  report()
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start report'
+        ]);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end report'
+        ]);
         return view('customer.report');
     }
 
@@ -65,6 +86,12 @@ class CustomerController extends Controller
      * */
     public function  reportData()
     {
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'start reportData'
+        ]);
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'end reportData'
+        ]);
         return view('customer.report');
     }
 
@@ -77,6 +104,13 @@ class CustomerController extends Controller
      * */
     public function  suggest()
     {
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'start suggest'
+        ]);
+
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'end suggest'
+        ]);
         return view('customer.suggest');
     }
 
@@ -89,6 +123,13 @@ class CustomerController extends Controller
      * */
     public function access()
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start access'
+        ]);
+
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end access'
+        ]);
         return view('customer.register');
     }
 
@@ -101,22 +142,26 @@ class CustomerController extends Controller
   */
     public function register(RegisterValidation  $request)
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start register'
+        ]);
+
         $validated = $request->validated();
 
         //generate key
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $generateKey = '';
-        for ($i = 0;$i < 128;$i++){
-            $charLength = rand(0,strlen($characters)-1);
+        for ($i = 0; $i < 128; $i++) {
+            $charLength = rand(0, strlen($characters) - 1);
             $generateKey .= $characters[$charLength];
         }
 
         //Call T_CU_Customer for insert customer data
         $customer = new T_CU_Customer();
-        $createAccount = $customer->customerData($validated,$generateKey);
+        $createAccount = $customer->customerData($validated, $generateKey);
 
         //send verify mail
-        if($createAccount){
+        if ($createAccount) {
             $mail = [
                 'title' => 'Mail Send From Laravel',
                 'name' => $validated['username'],
@@ -125,8 +170,32 @@ class CustomerController extends Controller
             ];
             Mail::to($validated['email'])->send(new VerifyMail($mail));
 
+            Log::channel('customerlog')->info('Customer Controller', [
+                'end register'
+            ]);
+
             return redirect('/login');
         }
+    }
+
+    /*
+      * Create : Min Khant(19/1/2022)
+      * Update :
+      * Explain of function : For google login
+      * Prarameter :
+      * return :
+    */
+    public function google(Request $req)
+    {
+        Log::channel('customerlog')->info('Customer Controller',[
+            'start google'
+        ]);
+
+        return $req;
+
+        Log::channel('customerlog')->info('Customer Controller',[
+            'end google'
+        ]);
     }
 
     /*
@@ -138,10 +207,17 @@ class CustomerController extends Controller
     */
     public function verifyLink($key)
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start verifyLink'
+        ]);
+
         $link = new M_CU_Customer_Login();
         $verify = $link->updateVerifyCode($key);
 
-        if($verify){
+        if ($verify) {
+            Log::channel('customerlog')->info('Customer Controller', [
+                'end verifyLink'
+            ]);
             return redirect('/');
         }
     }
@@ -155,6 +231,14 @@ class CustomerController extends Controller
       * */
     public function login()
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start login'
+        ]);
+
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end login'
+        ]);
+
         return view('customer.login');
     }
 
@@ -163,18 +247,27 @@ class CustomerController extends Controller
       * Update :
       * Explain of function : To check email and password
       * Prarameter : no
-      * return : View login Blade
+      * return : View login Blade / check mail blade
      * */
     public function loginForm(LoginValidation $request)
     {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start loginForm'
+        ]);
         $validated = $request->validated();
         $verify = session()->get('verify');
         session()->forget('verify');
 
-        if($verify == 1){
+        if ($verify == 1) {
+            Log::channel('customerlog')->info('Customer Controller', [
+                'end loginForm'
+            ]);
+
             return redirect('/');
         }
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end loginForm'
+        ]);
         return "please check your email";
     }
-
 }

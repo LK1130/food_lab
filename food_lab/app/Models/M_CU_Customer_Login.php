@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_CU_Customer_Login extends Model
 {
@@ -31,8 +32,16 @@ class M_CU_Customer_Login extends Model
     */
     public function updateVerifyCode($key)
     {
-        M_CU_Customer_Login::where('verify_code', $key)
-        ->update(['verify' => 1]);
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'start updateVerifyCode'
+        ]);
+
+        $verify = M_CU_Customer_Login::where('verify_code', $key)
+                ->update(['verify' => 1]);
+
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'end updateVerifyCode'
+        ]);
 
         return true;
     }
@@ -46,24 +55,48 @@ class M_CU_Customer_Login extends Model
     */
     public function checkMail($mail)
     {
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'start checkMail'
+        ]);
+
         $hasMail = M_CU_Customer_Login::where('email', $mail)
         ->get();
+
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'end checkMail'
+        ]);
 
         return $hasMail;
     }
 
     public function loginMail($mail)
     {
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'start  loginMail'
+        ]);
+
         $correct = M_CU_Customer_Login::where('email','=',$mail)
                     ->get();
+
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'end  loginMail'
+        ]);
         return $correct;
     }
 
     public function loginPassword($mail,$pwd)
     {
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'start loginPassword'
+        ]);
+
         $correct = M_CU_Customer_Login::where('email','=',$mail)
                     ->where('password','=',md5(sha1($pwd)))
                     ->get();
+
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+            'end loginPassword'
+        ]);
         return $correct;
     }
 

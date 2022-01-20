@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DecisionValidation;
 use App\Models\DecisionStatusModel;
+use App\Models\M_Decison_Status;
 use Illuminate\Http\Request;
 
 class DecisionController extends Controller
@@ -28,7 +29,7 @@ class DecisionController extends Controller
     public function store(DecisionValidation $request)
     {
         $validate = $request->validated();
-        $admin = new DecisionStatusModel();
+        $admin = new M_Decison_Status();
         $admin->decisionStatusAdd($validate);
         return redirect('siteManage');
     }
@@ -40,7 +41,7 @@ class DecisionController extends Controller
 
     public function show($id)
     {
-        $admin = new DecisionStatusModel();
+        $admin = new M_Decison_Status();
         $admins =  $admin->decisionStatusEditView($id);
         return view('admin.setting.appManage.decisionStatusEdit', ['decision' => $admins]);
     }
@@ -53,7 +54,7 @@ class DecisionController extends Controller
     public function update(DecisionValidation $request, $id)
     {
         $validate = $request->validated();
-        $admin = new DecisionStatusModel();
+        $admin = new M_Decison_Status();
         $admin->decisionStatusEdit($validate, $id);
         return redirect('siteManage');
     }
@@ -64,7 +65,7 @@ class DecisionController extends Controller
     */
     public function destroy($id)
     {
-        $admin = new DecisionStatusModel();
+        $admin = new M_Decison_Status();
         $admin->decisionStatusDelete($id);
         return redirect('siteManage');
     }

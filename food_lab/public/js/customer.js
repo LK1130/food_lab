@@ -1,5 +1,32 @@
 let prices = document.querySelectorAll('.prices');
 
+let news = document.querySelectorAll('.news');
+
+let importantNew = function() {
+    for (let i = 0; i < news.length; i++) {
+        console.log(news[i].getAttribute('id'));
+        let category = news[i].getAttribute('id');
+        switch (category) {
+            case '1':
+                news[i].style.color = 'green';
+                break;
+            case '2':
+                news[i].style.color = 'red';
+                break;
+            case '3':
+                news[i].style.color = 'blue';
+                break;
+            case '4':
+                news[i].style.color = 'red';
+                break;
+            case '5':
+                news[i].style.color = 'black';
+                break;
+        }
+    }
+}
+
+importantNew();
 // Start Access Section
 // start register
 let username = document.getElementById('username'),
@@ -8,7 +35,14 @@ let username = document.getElementById('username'),
     addressNo = document.getElementById('addressNo'),
     addressTownship = document.getElementById('addressTownship'),
     addressCity = document.getElementById('addressCity'),
-    password = document.getElementById('password');
+    password = document.getElementById('password'),
+    cpassword = document.getElementById('cPassword');
+
+let peye = document.querySelector('.pwd-eye'),
+    peyeSlash = document.querySelector('.pwd-eye-slash');
+
+let cpeye = document.querySelector('.cpwd-eye'),
+    cpeyeSlash = document.querySelector('.cpwd-eye-slash');
 // end register
 // End Access Section
 
@@ -37,18 +71,62 @@ for (let i = 0; i < prices.length; i++) {
 
 // Start Access Section
 
-// for google signin 
+// for password eye icon addEventListener
+peyeSlash.addEventListener('click', function() {
+    peyeSlash.style.display = 'none';
+    peye.style.display = 'block';
+    password.setAttribute('type', 'text');
+});
+
+peye.addEventListener('click', function() {
+    peye.style.display = 'none';
+    peyeSlash.style.display = 'block';
+    password.setAttribute('type', 'password');
+});
+
+// for confirm password eye icon addEventListener
+cpeyeSlash.addEventListener('click', function() {
+    cpeyeSlash.style.display = 'none';
+    cpeye.style.display = 'block';
+    cpassword.setAttribute('type', 'text');
+});
+
+cpeye.addEventListener('click', function() {
+    cpeye.style.display = 'none';
+    cpeyeSlash.style.display = 'block';
+    cpassword.setAttribute('type', 'password');
+});
+
+// for google signin
 function onSignIn(googleUser) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
     var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
+    let userData = {
+        'id': `${profile.getId()}`,
+        'name': `${profile.getName()}`,
+        'email': `${profile.getEmail()}`,
+        'all' : `${profile}`
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/google',
+        data: userData,
+        success: function(res) {
+            username.value = res.name;
+            email.value = res.email;
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }
 
-// for facebook login 
+// for facebook login
 function statusChangeCallback(response) { // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response); // The current login status of the person.
@@ -85,9 +163,7 @@ window.fbAsyncInit = function() {
 function testAPI() { // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-        console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '! and Email is ' + response.email;
+        console.warn('Thanks for logging in, ' + response.name + '! and Email is ' + response.email);
     });
 }
 // End Access Section

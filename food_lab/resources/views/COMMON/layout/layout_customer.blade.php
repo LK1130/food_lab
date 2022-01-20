@@ -19,13 +19,13 @@
         {{--  start navbar  --}}
         <nav class="navbar navbar-expand-lg container-fluid py-3">
 
-            <a href="#" class="navbar-brand d-lg-none">
+            <a href="/" class="navbar-brand d-lg-none">
                 <img src="{{ url('img/logo.png') }}"  class="pe-2"/>
                 <span class="comapanynames">{{  __('messageMK.food lab') }}</span>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler bg-danger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon bg-white"></span>
             </button>
 
             <div class="collapse navbar-collapse text-uppercase fw-bolder" id="navbarNav">

@@ -12,6 +12,7 @@
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
     {{-- custom js 1--}}
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
     <title>Food Lab</title>

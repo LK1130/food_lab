@@ -9,6 +9,9 @@ namespace App\Common;
 class Variable
 {
     //PUBLIC 
-    public $PAGE_NAME= "Food_Lab";
+    public $REQUEST = 1;// Reject status
+    public $APPROVE = 2;// Approve status
+    public $WAITING = 3;// Waiting status
+    public $REJECT = 4;// Reject status
 
 }

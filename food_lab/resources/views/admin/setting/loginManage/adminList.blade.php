@@ -2,9 +2,10 @@
 @section('title','Admin List')
 
  @section('css') 
- <link rel="stylesheet" href="{{ URL::asset('css/adminList.css') }}"/>
+
  <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}"/>
  <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}"/>
+ <link rel="stylesheet" href="{{ URL::asset('css/adminList.css') }}"/>
  <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
  @endsection
 
@@ -19,9 +20,9 @@
 @section('body')
     {{-- Starts Header Buttons --}}
 <div class="navBar">
-    <a href="{{ url('adminLogin') }}"><button class="checked headerButton">{{__('messageZY.loginManage')}}</button></a>
-    <a href="{{ url('coinrate') }}"><button class=" headerButton">{{__('messageZY.coinRate')}}</button></a>
-    <a href="{{ url('siteManage') }}"><button class=" headerButton">{{__('messageZY.siteManager')}}</button></a>
+    <a href="{{ url('adminLogin') }}"><button class="btn text-light  active btncust">{{__('messageZY.loginManage')}}</button></a>
+    <a href="{{ url('coinrate') }}"><button class="btn text-light  active btncust">{{__('messageZY.coinRate')}}</button></a>
+    <a href="{{ url('siteManage') }}"><button class="btn text-light  active btncust">{{__('messageZY.siteManager')}}</button></a>
 </div>
     {{-- Starts Table --}}
     <table class="table">
@@ -62,7 +63,7 @@
         @endforelse
     </table>
     <div class="d-flex justify-content-center ">{{ $admins->links() }}</div>
-    <a href="{{ route('adminLogin.create')}}" class="addAdminButton"><button >{{__('messageZY.addAdmin')}}</button></a>
+    <a href="{{ route('adminLogin.create')}}" class="addAdminButton"><button class="btn text-light addAdminButton active btncust">{{__('messageZY.addAdmin')}}</button></a>
     
 
 @endsection

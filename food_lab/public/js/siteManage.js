@@ -1,40 +1,20 @@
 $(document).ready(function () {
-    initial();
     onChange();
     checked();
+    console.log("Asdf");
     /*
      * Create:zayar(2022/01/13)
      * Update:
-     * This function is used to toggle the App Management and Site Management.
-     */
-    function initial() {
-        var selected = $("#select").val();
-        if (selected == "1") {
-            $("#site").css("display", "block");
-            $("#app").css("display", "none");
-            $("#news").css("display", "none");
-        } else if (selected == "2") {
-            $("#site").css("display", "none");
-            $("#app").css("display", "block");
-            $("#news").css("display", "none");
-        } else {
-            $("#site").css("display", "none");
-            $("#app").css("display", "none");
-            $("#news").css("display", "block");
-        }
-        if ($("#maintenance").is(":checked")) {
-            $("#mvalue").val(1);
-        } else $("#mvalue").val(0);
-    }
-
-    /*
-     * Create:zayar(2022/01/13)
-     * Update:
-     * This function is used to toggle the App Management and Site Management.
+     * This function is used to toggle the App Management , Site Management and news Management.
      */
     function onChange() {
         $("#select").change(function () {
-            initial();
+            var selected = $("#select").val();
+            window.location.replace(selected);
+            console.log(url);
+            if ($("#maintenance").is(":checked")) {
+                $("#mvalue").val(1);
+            } else $("#mvalue").val(0);
         });
     }
     /*

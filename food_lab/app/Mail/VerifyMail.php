@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class VerifyMail extends Mailable
 {
@@ -18,7 +19,15 @@ class VerifyMail extends Mailable
      */
     public function __construct($data)
     {
+        Log::channel('customerlog')->info('VerifyMail Mail',[
+            'start __construct'
+        ]);
+
         $this->mail = $data;
+
+        Log::channel('customerlog')->info('VerifyMail Mail',[
+            'end __construct'
+        ]);
     }
 
     /**
@@ -28,6 +37,14 @@ class VerifyMail extends Mailable
      */
     public function build()
     {
+        Log::channel('customerlog')->info('VerifyMail Mail',[
+           'start build'
+        ]);
+
+        Log::channel('customerlog')->info('VerifyMail Mail',[
+            'end build'
+        ]);
+
         return $this->subject('Mail Testing')
             ->view('customer.mail.verify')
             ->with([
