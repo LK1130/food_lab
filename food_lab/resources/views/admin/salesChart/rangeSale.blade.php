@@ -19,15 +19,21 @@ Monthly Sales
 
 @section('body')
 <div class="col-md-10">
-    <!-- Daily Sales Button -->
-    <a href="dailyChart"><button id="dailySales">Daily Sale</button></a>
-    <!--Monthly Sales Button -->
-    <a href="monthlyChart"><button id="monthlySales">Monthly Sale</button></a>
-    <!-- Yearly Sales Button -->
-    <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
-    <!-- Range Sales Button -->
-    <a href="rangeChart"><button id="rangeSales" class="active">Range Sale</button></a>
-  <br></br>
+   <div class="mt-4">
+    <div class="mt-4">
+      <!-- Daily Sales Button -->
+      <a href="dailyChart" class="me-5"><button
+              class="btn text-light  inactive btncust">Daily Sale</button></a>
+       <!--Monthly Sales Button -->
+      <a href="monthlyChart" class="me-5"><button
+              class="btn text-light  inactive btncust" >Monthly Sale</button></a>
+      <!-- Yearly Sales Button -->
+      <a href="yearlyChart" class="me-5"><button
+              class="btn text-light  inactive btncust" >Yearly Sale</button></a>
+       <!-- Range Sales Button -->
+      <a href="rangeChart" class="me-5"><button
+              class="btn text-light  active btncust">Range Sale</button></a>
+  </div>
   <h3 id="saleCaption">Range Sale</h3>
     <!-- For Range Sale Search -->
     <form action="/rangeChart" method="Post">
@@ -35,19 +41,21 @@ Monthly Sales
         <div id="rangeSearch">
           <!-- For  Start Range Search -->
           <input id="appt-date"  class="fromRangeCount" type="date" name="fromDate"></input>
-          @if ($errors->has('fromDate'))
-          <span class="text-danger">{{ $errors->first('fromDate') }}</span>
-          @endif
           <!-- For Between Symbol -->
           <h3 id="betweenSymbol">~</h3>
           <!-- For  End Range Search -->
           <input id="appt-date" class="toRangeCount"  type="date" name="toDate"></input>
-          @if ($errors->has('toDate'))
-          <span class="text-danger">{{ $errors->first('toDate') }}</span>
-          @endif
           <!-- Search Btn -->
           <button type="submit" class="btn btn-primary btn-lg" id="rangeSearchSubmit">Search</button>
         </div>
+        <div>
+          @if ($errors->has('fromDate'))
+          <span class="text-danger errorShow">First Input Box({{ $errors->first('fromDate') }})</span>
+          @endif
+          @if ($errors->has('toDate'))
+          <span class="text-danger errorShow">Second Input Box({{ $errors->first('toDate') }})</span>
+          @endif
+        <div>
     </form> 
   <!-- For Yearly Sale Chart-->
   <div id="lineChart1">
