@@ -41,11 +41,12 @@
                                 <div class="col-md-6 col-sm-10">
                                     <div class="mx-5 mt-4 p-4 blocks">
                                         <img id="img1" class="img-thumbnail"
-                                            src="@isset($evd[0]->path)/storage/{{ $evd[0]->path }}@endisset"
-                                                >
+                                            src="@isset($evd[0]->path)/storage/{{ $evd[0]->path }}@endisset">
                                         </div>
                                         <div class="form-group mx-4 mt-2 mb-2">
-                                            <input type="file" name="photo1" id="photo1" class="form-control files">
+                                            <input type="file" name="photo1" id="photo1" class="form-control files" value="@isset($evd[0]->path)/storage/{{ $evd[0]->path }}@endisset">
+                                            <input type="hidden" name="hide1" id="hide1" >
+                                            {{-- value="@isset($evd[0]->path) {{  URL::asset('/storage/'.$evd[0]->path) }}@endisset" --}}
                                         </div>
                                     </div>
 
@@ -117,18 +118,18 @@
                                                     <input type="text" name="pname" id="pname" class="form-control inputs"
                                                         value="{{ $products->product_name }}" required>
                                                     @error('pname')
-                                                        <li class="text-danger ">{{ $message }}</li>
+                                                        <li class="text-danger ">{{ __("messageAMK.ProductName is required") }}</li>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="ptaste" class="form-label titles">{{ __('messageAMK.Taste') }}</label>
                                                     <select name="ptaste" id="ptaste" class="form-select selects" required>
-                                                        <option value="0" selected disabled>Choose Taste</option>
+                                                      
                                                         @foreach ($mTaste as $item)
                                                             @if ($item->taste == $products->product_taste)
-                                                                <option value="{{ $item->taste }}" selected>{{ $item->taste }}</option>
+                                                                <option value="{{ $item->id }}" selected>{{ $item->taste }}</option>
                                                             @else
-                                                                <option value="{{ $item->taste }}">{{ $item->taste }}</option>
+                                                                <option value="{{ $item->id }}">{{ $item->taste }}</option>
                                                             @endif
 
 
@@ -139,13 +140,13 @@
                                                 <div class="form-group ">
                                                     <label for="ptype" class="form-label titles">{{ __('messageAMK.Type') }}</label>
                                                     <select name="ptype" id="ptype" class="form-select selects" required>
-                                                        <option value="0" selected disabled>Choose Type</option>
+                                                       
                                                         @foreach ($mFav as $item)
                                                             @if ($item->favourite_food == $products->product_type)
-                                                                <option value="{{ $item->favourite_food }}" selected>
+                                                                <option value="{{ $item->id }}" selected>
                                                                     {{ $item->favourite_food }}</option>
                                                             @else
-                                                                <option value="{{ $item->favourite_food }}">{{ $item->favourite_food }}
+                                                                <option value="{{ $item->id }}">{{ $item->favourite_food }}
                                                                 </option>
                                                             @endif
                                                         @endforeach
@@ -156,7 +157,7 @@
                                                     <input type="number" name="coin" id="coin" class="form-control inputs"
                                                         value="{{ $products->coin }}" required>
                                                     @error('coin')
-                                                        <li class="text-danger ">{{ $message }}</li>
+                                                        <li class="text-danger ">{{ __("messageAMK.Coin must be filled and negative sign can't assign.") }}</li>
                                                     @enderror
                                                     <div class="d-flex justify-content-center">
                                                         <p class="mx-3 mt-2 fs-4 fw-bold amounts text-danger" id="rate">{{ $products->amount }} MMK</p>
@@ -216,7 +217,7 @@
                                                         <div class="col-md-12 col-sm-7">
                                                             <div class="append">
                                                                 @foreach ($pdetails as $detail)
-                                                                    <div class="d-flex mt-3 appendCount" id="deleteForm">
+                                                                    <div class="d-flex mt-3 appendCount deleteForm" >
                                                                         <div class="form-group d-flex mx-3">
                                                                             <label for="category"
                                                                                 class="col-form-label titles">{{ __('messageAMK.Category') }}</label>
@@ -259,8 +260,11 @@
                             </div>
                             <script>
                                 var startCount = @json(count($pdetails) + 1);
-                                console.log(startCount);
-
+                                var file = @json($evd[0]->path);
+                                console.log(file);
+                                var rate = @json($rates->rate);
                             </script>
+                            
                             <script src="{{ URL::asset('js/adminProduct.js') }}"></script>
+                            <script src="{{ URL::asset('js/adminProductCalculate.js') }}"></script>
                         @endsection

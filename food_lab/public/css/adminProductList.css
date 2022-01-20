@@ -16,12 +16,14 @@
     padding-left: 0 !important;
     margin: 0 !important;
 }
-.topbtns:hover,
-.active {
-    background-color: var(--btns) !important;
-    color: var(--white) !important;
-}
 
+
+.seemore {
+    background-color: var(--btns) !important;
+    border-radius: 10px;
+    border: 1px solid var(--black) !important;
+    float: right;
+}
 
 .title {
     font-size: var(--title);

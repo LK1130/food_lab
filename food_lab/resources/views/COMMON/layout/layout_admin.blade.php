@@ -34,7 +34,7 @@
                         <a href="/coinListing"><button class="buttons btn coin">{{ __('messageZN.Coin') }}</button></a>
                         <a href="/dailyChart"><button
                                 class="buttons btn sale">{{ __('messageZN.Finance') }}</button></a>
-                        <a href="/product"><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>
+                        <a href="/productList"><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>
                         <a href="/adminLogin"><button
                                 class="buttons btn setting">{{ __('messageZN.Setting') }}</button></a>
                         <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>

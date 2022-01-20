@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class T_AD_Evd extends Model
@@ -35,6 +36,35 @@ class T_AD_Evd extends Model
         Log::channel('adminlog')->info("T_AD_EVD Model", [
             'End save Data'
         ]);
+    }
+
+     /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To restore product image from t_av_evd database
+    * parament : specific id  from m_product database
+    * return  data
+    * */
+    public function editEvd($id)
+    {
+
+        Log::channel('adminlog')->info("T_AD_EVD Model", [
+            'Start edit Data'
+        ]);
+        $evd = DB::select(
+            DB::raw("SELECT
+            t_ad_evd.path
+            FROM
+            t_ad_evd
+            WHERE
+            t_ad_evd.link_id = $id AND
+            t_ad_evd.del_flg =0 ")
+        );
+
+        Log::channel('adminlog')->info("T_AD_EVD Model", [
+            'End edit Data'
+        ]);
+        return $evd;
     }
 
     public function deleteImage($id)

@@ -98,7 +98,7 @@ class M_AD_CoinRate extends Model
             'Start coinRate'
         ]);
 
-        $rate = DB::table('m_ad_coinrate')->latest('id')->first();
+        $rate = DB::table('m_ad_coinrate')->where('m_ad_coinrate.del_flg',0)->latest('id')->first();
        
         Log::channel('adminlog')->info("M_AD_CoinRate Model", [
             'End coinRate'

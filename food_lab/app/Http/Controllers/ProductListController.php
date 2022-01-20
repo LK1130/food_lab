@@ -26,12 +26,17 @@ class ProductListController extends Controller
             'Start Product List'
         ]);
         $product = DB::table('m_product')
+            ->select ('*',DB::raw('m_product.id AS pid'))
+            ->join('m_fav_type','m_fav_type.id','=','m_product.product_type')
+            ->join('m_taste','m_taste.id','=','m_product.product_taste')
+            ->where('m_product.del_flg',0)
             ->paginate(10);
 
-
+        // dd($product);
         Log::channel('adminlog')->info("ProductList Controller", [
             'End Product List'
         ]);
+
         return View('admin.product.productList', ['products' => $product]);
     }
 

@@ -12,6 +12,7 @@ use App\Models\T_AD_Evd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\Console\Input\Input;
 
 class ProductController extends Controller
 {
@@ -30,12 +31,15 @@ class ProductController extends Controller
 
     public function index()
     {
-        $mFav = M_Fav_Type::all();
-        $mTaste = M_Taste::all();
+        $fav = new  M_Fav_Type();
+        $mFav = $fav->getTypeAll();
+
+        $taste = new M_Taste();
+        $mTaste = $taste->getTasteAll();
+
         $mrate = new M_AD_CoinRate();
         $rates = $mrate->getRate();
-        Log::critical("rate", [$rates]);
-        // Log::critical("mtaste", [$mTaste]);
+
         return View('admin.product.productAdd', ['mFav' => $mFav, 'mTaste' => $mTaste, 'rates' => $rates, 'active' => 6]);
     }
 
@@ -72,8 +76,16 @@ class ProductController extends Controller
 
         $request->validate([
             'pname' => 'required',
-            'coin' => 'required',
-            'photo1' => 'required'
+            'coin' => 'required|min:0',
+            'photo1' => 'required||max:51200',
+            'photo2' => 'max:51200',
+            'photo3' => 'max:51200',
+            'photo4' => 'max:51200',
+            'photo5' => 'max:51200',
+            'photo6' => 'max:51200',
+            'list' => 'required',
+            'pdesc' => 'required'
+            
         ]);
         DB::transaction(function () use ($request) {
             $labels = [];
@@ -199,37 +211,30 @@ class ProductController extends Controller
         Log::channel('adminlog')->info("Product Controller", [
             'Start edit Data'
         ]);
-        $mFav = M_Fav_Type::all();
-        $mTaste = M_Taste::all();
 
-        $mProduct = M_Product::findOrfail($id);
-        $mProductDetail = DB::select(
-            DB::raw("SELECT
-            m_product_detail.category,m_product_detail.label,GROUP_CONCAT(m_product_detail.value) as value
-        FROM
-            m_product_detail
-        WHERE
-            m_product_detail.product_id = $id AND
-            m_product_detail.del_flg = 0
-        GROUP BY
-            m_product_detail.label")
-        );
+        $taste = new M_Taste();
+        $mTaste = $taste->getTasteAll();
 
-        $evd = DB::select(
-            DB::raw("SELECT
-            t_ad_evd.path
-            FROM
-            t_ad_evd
-            WHERE
-            t_ad_evd.link_id = $id AND
-            t_ad_evd.del_flg =0 ")
-        );
+        $type = new M_Fav_Type();
+        $mFav = $type->getTypeAll();
+
+        $mProduct = new M_Product();
+        $product = $mProduct->getDataById($id);
+
+        $mDetail = new M_Product_Detail();
+        $mProductDetail = $mDetail->editData($id);
+
+        $tEvd = new T_AD_Evd();
+        $evd = $tEvd->editEvd($id);
+
+        $mrate = new M_AD_CoinRate();
+        $rates = $mrate->getRate();
 
         Log::channel('adminlog')->info("Product Controller", [
             'End edit Data'
         ]);
         // return $product_detail;
-        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $mProduct, "pdetails" => $mProductDetail, 'evd' => $evd]);
+        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $product, "pdetails" => $mProductDetail, 'evd' => $evd,'rates'=>$rates]);
     }
 
     /**
@@ -246,11 +251,10 @@ class ProductController extends Controller
         ]);
 
 
-
         $request->validate([
             'pname' => 'required',
             'coin' => 'required|min:0',
-            'photo1' => 'required'
+            // 'photo1' => 'required'
         ]);
 
         DB::transaction(function () use ($request, $id) {
@@ -264,8 +268,9 @@ class ProductController extends Controller
             $valueSix = [];
             $allValues = [];
             $images = [];
-
-
+          
+            //still missing part
+        // Log::critical("hidden file",[$request->hasFile('hide1'),]);
             $pdController = new ProductListController();
             $pdController->checkCategory($request);
 
@@ -353,6 +358,8 @@ class ProductController extends Controller
         Log::channel('adminlog')->info("Product Controller", [
             'End Update Data'
         ]);
+
+        return  redirect('productList');
     }
 
 

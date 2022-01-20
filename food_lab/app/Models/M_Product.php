@@ -47,7 +47,25 @@ class M_Product extends Model
         return $product;
     }
 
-    
+       /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To get  data with specific id from m_product databse 
+    * parament : specific id from  product list table
+    * return get data
+    * */
+    public function getDataById($id){
+
+        Log::channel('adminlog')->info("M_Product_ Model", [
+            'Start get Data'
+        ]);
+        $mProduct = M_Product::findOrfail($id);
+
+        Log::channel('adminlog')->info("M_Product_ Model", [
+            'End get Data'
+        ]);
+        return $mProduct;
+    }
       /*
     * Create : Aung Min Khant(19/1/2022)
     * Update :
