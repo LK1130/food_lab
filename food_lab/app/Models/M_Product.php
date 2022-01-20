@@ -79,6 +79,7 @@ class M_Product extends Model
             'End update Data'
         ]);
 
+        // dd($product);
         return $product;
     }
     public function productDetail(){

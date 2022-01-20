@@ -209,25 +209,27 @@ class ProductController extends Controller
         FROM
             m_product_detail
         WHERE
-            m_product_detail.product_id = $id
+            m_product_detail.product_id = $id AND
+            m_product_detail.del_flg = 0
         GROUP BY
             m_product_detail.label")
         );
-   
+
         $evd = DB::select(
             DB::raw("SELECT
             t_ad_evd.path
             FROM
             t_ad_evd
             WHERE
-            t_ad_evd.link_id = $id")
+            t_ad_evd.link_id = $id AND
+            t_ad_evd.del_flg =0 ")
         );
 
         Log::channel('adminlog')->info("Product Controller", [
             'End edit Data'
         ]);
         // return $product_detail;
-        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $mProduct, "pdetails" => $mProductDetail,'evd' => $evd]);
+        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $mProduct, "pdetails" => $mProductDetail, 'evd' => $evd]);
     }
 
     /**
@@ -243,13 +245,15 @@ class ProductController extends Controller
             'Start Update Data'
         ]);
 
+
+
         $request->validate([
             'pname' => 'required',
             'coin' => 'required|min:0',
             'photo1' => 'required'
         ]);
 
-        DB::transaction(function () use ($request,$id) {
+        DB::transaction(function () use ($request, $id) {
             $labels = [];
             $categories = [];
             $valueOne = [];
@@ -322,25 +326,27 @@ class ProductController extends Controller
             }
 
             $product = new M_Product();
-             $product->updateData($request,$id);
+            $product = $product->updateData($request, $id);
 
             $productDetail = new M_Product_Detail();
+            $productDetail->deleteData($id);
             $evd = new T_AD_Evd();
+            $evd->deleteImage($id);
+            // dd($product);
             // Log::critical("array", [$labels, $images, $allValues]);
             for ($i = 0; $i < count($labels); $i++) {
                 $value = $allValues[$i];
                 for ($j = 0; $j < count($value); $j++) {
                     $order = $j + 1;
-                    $productDetail->updateData($id, $categories[$i], $labels[$i], $order, $value[$j]);
+                    $productDetail->insert($product, $categories[$i], $labels[$i], $order, $value[$j]);
                 }
             }
 
             for ($x = 0; $x < count($images); $x++) {
 
                 $path = $images[$x]->store('ProductImage');
-                $evd->updateImage($id, $path);
+                $evd->insertImage($path, $product);
             }
-        
         });
 
 
@@ -360,10 +366,4 @@ class ProductController extends Controller
     {
         //
     }
-
-
-
-  
-
-   
 }

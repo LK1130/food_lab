@@ -12,7 +12,7 @@ class T_AD_Evd extends Model
     public $table = 't_ad_evd';
 
 
-     /*
+    /*
     * Create : Aung Min Khant(19/1/2022)
     * Update :
     * Explain of function : To save product image to t_av_evd database
@@ -20,7 +20,7 @@ class T_AD_Evd extends Model
     * return save data
     * */
 
-    public function insertImage($filepath,$product)
+    public function insertImage($filepath, $product)
     {
 
         Log::channel('adminlog')->info("T_AD_EVD Model", [
@@ -37,6 +37,20 @@ class T_AD_Evd extends Model
         ]);
     }
 
+    public function deleteImage($id)
+    {
+
+        Log::channel('adminlog')->info("T_AD_EVD Model", [
+            'Start delete image'
+        ]);
+        T_AD_Evd::where('link_id', $id)
+            ->update(['del_flg' => 1]);
+
+        Log::channel('adminlog')->info("T_AD_EVD Model", [
+            'End delete image'
+        ]);
+    }
+
     /*
     * Create : Aung Min Khant(19/1/2022)
     * Update :
@@ -46,11 +60,14 @@ class T_AD_Evd extends Model
     * */
 
 
-    public function updateImage($id,$filepath){
+    public function updateImage($id, $filepath)
+    {
         Log::channel('adminlog')->info("T_AD_EVD Model", [
             'Start update Data'
         ]);
-        $evd = T_AD_Evd::where('t_ad_evd.link_id','=',$id)->get();
+        $evd = T_AD_Evd::where('t_ad_evd.link_id', '=', $id)
+            ->where('t_ad_evd.path', '=', $filepath)
+            ->get();
         $evd->path = $filepath;
         $evd->save();
 
