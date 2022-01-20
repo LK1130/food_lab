@@ -1,3 +1,34 @@
+/*start navbar*/
+
+.navs {
+    background-color: var(--bg-color);
+    font-size: 1.1rem;
+}
+
+.texts {
+    color: var(--primary-color);
+}
+
+.texts:hover {
+    color: var(--text-color);
+}
+
+.actives {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.comapanynames {
+    color: var(--text-color);
+}
+
+.navs i {
+    cursor: pointer;
+}
+
+
+/*end navbar*/
+
+
 /*Start Welcome Section*/
 
 .welcomes {
@@ -354,12 +385,17 @@ form div .cancels {
     margin-bottom: 2%;
 }
 
-.register-forms input {
+.register-forms input,
+.register-forms select {
     background-color: var(--bg-color);
     border: none;
     color: var(--text-color);
     border-radius: 15px;
     padding: 15px 10px;
+}
+
+.register-forms select {
+    color: black;
 }
 
 .register-forms input::placeholder {
@@ -411,6 +447,14 @@ form div .cancels {
     border: none;
     background-color: transparent;
     border-bottom: 3px solid var(--primary-color);
+}
+
+.modal-inputs {
+    width: 100%;
+    background-color: #FFFFFF !important;
+    color: black !important;
+    border-radius: 0px !important;
+    padding: 0 !important;
 }
 
 

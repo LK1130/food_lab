@@ -4,7 +4,6 @@ let news = document.querySelectorAll('.news');
 
 let importantNew = function() {
     for (let i = 0; i < news.length; i++) {
-        console.log(news[i].getAttribute('id'));
         let category = news[i].getAttribute('id');
         switch (category) {
             case '1':
@@ -36,7 +35,8 @@ let username = document.getElementById('username'),
     addressTownship = document.getElementById('addressTownship'),
     addressCity = document.getElementById('addressCity'),
     password = document.getElementById('password'),
-    cpassword = document.getElementById('cPassword');
+    cpassword = document.getElementById('cPassword'),
+    createAccs = document.getElementById('createAccs');
 
 let peye = document.querySelector('.pwd-eye'),
     peyeSlash = document.querySelector('.pwd-eye-slash');
@@ -109,7 +109,7 @@ function onSignIn(googleUser) {
         'id': `${profile.getId()}`,
         'name': `${profile.getName()}`,
         'email': `${profile.getEmail()}`,
-        'all' : `${profile}`
+        'all': `${profile}`
     };
 
     $.ajax({

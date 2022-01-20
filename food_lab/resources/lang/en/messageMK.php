@@ -1,6 +1,12 @@
 <?php
 
 return [
+    // admin 
+    'Username' => 'Username',
+    'adminLogin' => 'Admin Login',
+    'Password' => 'Password',
+    'login' => 'Login',
+    // customer 
     'home' => 'Home',
     'products' => 'Products',
     'buy coin' => 'Buy Coin',

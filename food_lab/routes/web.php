@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
@@ -32,6 +33,12 @@ use App\Http\Controllers\TransactionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//admin login
+Route::get('/admin', [AdminController::class, 'loginPage']);
+Route::post('/admin', [AdminController::class, 'loginForm']);
+
+// admin logout 
+Route::get('/adminlogout', [AdminController::class, 'logout']);
 
 //admin/setting/loginManage
 Route::resource('adminLogin', LoginController::class);

@@ -37,7 +37,7 @@
                         <a href=""><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>
                         <a href="/adminLogin"><button
                                 class="buttons btn setting">{{ __('messageZN.Setting') }}</button></a>
-                        <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
+                        <a href="/adminlogout"><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
                     </div>
                 </div>
                 <!-- sidenav bar End  -->

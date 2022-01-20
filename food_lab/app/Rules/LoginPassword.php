@@ -27,30 +27,32 @@ class LoginPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        Log::channel('customerlog')->info('LoginPassword Rule',[
+        Log::channel('customerlog')->info('LoginPassword Rule', [
             'start passes'
         ]);
 
-        if(session()->has('email')){
+        if (session()->has('email')) {
             $mail = session()->get('email');
             session()->forget('email');
 
             $hasAcc = new M_CU_Customer_Login();
-            $correct = $hasAcc->loginPassword($mail,$value);
+            $correct = $hasAcc->loginPassword($mail, $value);
 
-            if(count($correct) > 0 ) {
-                session(['verify'=>$correct[0]['verify'],'customerId' => $correct[0]['customer_id']]);
-                Log::channel('customerlog')->info('LoginPassword Rule',[
+            if (count($correct) > 0) {
+                session(['verify' => $correct[0]['verify'], 'customerId' => $correct[0]['customer_id']]);
+
+                Log::channel('customerlog')->info('LoginPassword Rule', [
                     'end passes'
                 ]);
+
                 return true;
             }
-            Log::channel('customerlog')->info('LoginPassword Rule',[
+            Log::channel('customerlog')->info('LoginPassword Rule', [
                 'end passes'
             ]);
             return false;
         }
-        Log::channel('customerlog')->info('LoginPassword Rule',[
+        Log::channel('customerlog')->info('LoginPassword Rule', [
             'end passes'
         ]);
         return false;

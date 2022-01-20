@@ -1,6 +1,8 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
 @section('google')
+    {{--  <link href="../../tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
+    <script src="../../tagsinput/js/bootstrap-tagsinput.min.js"></script>  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async></script>
@@ -66,13 +68,23 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(No)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
+                    <select class="form-select" id="addressNo" name="addressNo">
+                        <option selected>{{ __('messageMK.address(No)') }}</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                     @error('addressNo')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressTownship" class="form-control" name="addressTownship" placeholder="{{ __('messageMK.address(Township)') }}" value="{{ old('addressTownship') }}" autocomplete="off"/>
+                    <select class="form-select" id="addressTownship" name="addressTownship" >
+                        <option selected>{{ __('messageMK.address(Township)') }}</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                     @error('addressTownship')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -104,41 +116,38 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="button" class="form-control text-center createAccs" value="{{ __('messageMK.createAccount') }}"  data-bs-toggle="modal" data-bs-target="#modal"/>
+                    <input type="button" class="form-control text-center createAccs" id="createAccs" value="{{ __('messageMK.createAccount') }}"  data-bs-toggle="modal" data-bs-target="#modal"/>
                 </div>
                 {{-- start modal --}}
                 <div class="modal fade text-white modals" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content contents">
                             <div class="modal-header justify-content-end">
-                                <button type="submit" class="submits">Skip</button>
+                                {{--  <button type="submit" class="submits">Skip</button>  --}}
                             </div>
                             <div class="modal-body">
                                 <fieldset class="border border-3">
                                     <legend class="modal-headers">Favourite Menu</legend>
-                                    <div class="d-flex">
-                                        <div>
-                                            <p>Chinese Food</p>
-                                            <p>Korea Food</p>
-                                        </div>
-                                        <div>
-                                            <p>Chinese Food</p>
-                                            <p>Korea Food</p>
-                                        </div>
+                                    <div class="m-3">
+                                        <input type="text" class="modal-inputs" name="menu" value="chinese,korea,myanmar,japan" data-role="tagsinput" id="tags" class="form-control">
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3">
                                     <legend class="modal-headers">Favourite taste</legend>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <div class="m-3">
+                                        <select class="form-select" name="taste">
+                                            <option selected>Favourite your Taste</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
                                 </fieldset>
                                 <fieldset class="border border-3">
                                     <legend  class="modal-headers">Note</legend>
-                                    <textarea></textarea>
+                                    <div class="m-3">
+                                        <textarea class="form-control" name="note"></textarea>
+                                    </div>
                                 </fieldset>
                             </div>
                             <div class="modal-footer justify-content-center">

@@ -38,6 +38,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'End foodlab'
         ]);
+
         return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas]);
     }
 
@@ -146,6 +147,8 @@ class CustomerController extends Controller
             'start register'
         ]);
 
+        return dd($request);
+
         $validated = $request->validated();
 
         //generate key
@@ -187,13 +190,13 @@ class CustomerController extends Controller
     */
     public function google(Request $req)
     {
-        Log::channel('customerlog')->info('Customer Controller',[
+        Log::channel('customerlog')->info('Customer Controller', [
             'start google'
         ]);
 
         return $req;
 
-        Log::channel('customerlog')->info('Customer Controller',[
+        Log::channel('customerlog')->info('Customer Controller', [
             'end google'
         ]);
     }
@@ -265,9 +268,12 @@ class CustomerController extends Controller
 
             return redirect('/');
         }
+        session()->forget('customerId');
+        
         Log::channel('customerlog')->info('Customer Controller', [
             'end loginForm'
         ]);
-        return "please check your email";
+        
+        return view('customer.mail.checkMail');
     }
 }
