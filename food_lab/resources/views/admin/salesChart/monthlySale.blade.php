@@ -18,22 +18,6 @@ Monthly Sales
 
 @section('body')
 <div class="col-md-10">
-<<<<<<< HEAD
-  <div class="mt-4">
-    <!-- Daily Sales Button -->
-    <a href="dailyChart" class="me-5"><button
-            class="btn text-light  inactive btncust">Daily Sale</button></a>
-     <!--Monthly Sales Button -->
-    <a href="monthlyChart" class="me-5"><button
-            class="btn text-light  active btncust" >Monthly Sale</button></a>
-    <!-- Yearly Sales Button -->
-    <a href="yearlyChart" class="me-5"><button
-            class="btn text-light  inactive btncust" >Yearly Sale</button></a>
-     <!-- Range Sales Button -->
-    <a href="rangeChart" class="me-5"><button
-            class="btn text-light  inactive btncust">Range Sale</button></a>
-</div>
-=======
    <div class="mt-4">
     <!-- Daily Sales Button -->
     <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  inactive btncust">Daily Sale</button></a>
@@ -44,7 +28,6 @@ Monthly Sales
     <!-- Range Sales Button -->
     <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light inactive btncust">Range Sale</button></a>  
   </div>
->>>>>>> f1fd8e2788d2e264e4b43de55a94d797192dfa90
   <!-- For Daily Chart-->
     <div id="lineChart">
       <!-- For showing Daily Chart details-->
