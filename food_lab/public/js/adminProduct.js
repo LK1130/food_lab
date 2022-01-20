@@ -26,9 +26,11 @@ $(document).ready(function (e) {
   * */
 
   let rate = parseInt($('#rate').text());
+  console.log($('rate'));
   $('#coin').on('keyup keypress', function () {
     let coin = Math.abs(parseInt($('#coin').val()));
     //  console.lg
+    console.log(coin);
     if ($('#coin').val() === "") {
       console.log('hello');
       $('#rate').text('0 MMK');
@@ -46,7 +48,7 @@ $(document).ready(function (e) {
  * parameter : none
  * return product image
  * */
-  var photoOne = $("#photoone");
+  var photoOne = $("#photo1");
   var imgOne = $("#img1");
   photoOne.change(function (e) {
     var inputFile = e.target.files[0];
@@ -54,7 +56,7 @@ $(document).ready(function (e) {
     imgOne.attr("src", url);
   });
 
-  var photoTwo = $("#phototwo");
+  var photoTwo = $("#photo2");
   var imgTwo = $("#img2");
   photoTwo.change(function (e) {
     var inputFile = e.target.files[0];
@@ -63,7 +65,7 @@ $(document).ready(function (e) {
     imgTwo.attr("src", url);
   });
 
-  var photoThree = $("#photothree");
+  var photoThree = $("#photo3");
   var imgThree = $("#img3");
   photoThree.change(function (e) {
     var inputFile = e.target.files[0];
@@ -72,7 +74,7 @@ $(document).ready(function (e) {
     imgThree.attr("src", url);
   });
 
-  var photoFour = $("#photofour");
+  var photoFour = $("#photo4");
   var imgFour = $("#img4");
   photoFour.change(function (e) {
     var inputFile = e.target.files[0];
@@ -81,7 +83,7 @@ $(document).ready(function (e) {
     imgFour.attr("src", url);
   });
 
-  var photoFive = $("#photofive");
+  var photoFive = $("#photo5");
   var imgFive = $("#img5");
   photoFive.change(function (e) {
     var inputFile = e.target.files[0];
@@ -90,7 +92,7 @@ $(document).ready(function (e) {
     imgFive.attr("src", url);
   });
 
-  var photoSix = $("#photosix");
+  var photoSix = $("#photo6");
   var imgSix = $("#img6");
   photoSix.change(function (e) {
     var inputFile = e.target.files[0];

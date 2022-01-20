@@ -38,6 +38,7 @@ class M_Product_Detail extends Model
         Log::channel('adminlog')->info("M_Product_Detail Model", [
             'End Insert'
         ]);
+        
     }
 
     /*
@@ -48,27 +49,42 @@ class M_Product_Detail extends Model
     * return update data to database
     * */
 
-    public function updateData($id, $category, $label, $order, $value,)
+
+    public function deleteData($id)
     {
-        Log::channel('adminlog')->info("M_Product_Detail Model", [
-            'Start Update'
-        ]);
-        $product_detail = M_Product_Detail::where('m_product_detail.product_id','=',$id);
-        // $product_detail = DB::table('m_product_detail')
-                // ->where('m_product_detail.product_id',$id)
-                // ->get();
-        $product_detail->category = $category;
-        $product_detail->label = $label;
-        $product_detail->order = $order;
-        $product_detail->value = $value;
-        // $product_detail->product_id = $product->id;
-        $product_detail->save();
 
         Log::channel('adminlog')->info("M_Product_Detail Model", [
-            'End Update'
+            'Start delete data'
         ]);
-        
+        M_Product_Detail::where('product_id', $id)
+            ->update(['del_flg' => 1]);
+
+        Log::channel('adminlog')->info("M_Product_Detail Model", [
+            'End delete data'
+        ]);
     }
+    // public function updateData($id, $category, $label, $order, $value,)
+    // {
+    //     Log::channel('adminlog')->info("M_Product_Detail Model", [
+    //         'Start Update'
+    //     ]);
+    //     $product_detail = M_Product_Detail::where('product_id',$id)->get();
+    //         dd($product_detail);
+    //     // $product_detail = DB::table('m_product_detail')
+    //             // ->where('m_product_detail.product_id',$id)
+    //             // ->get();
+    //     $product_detail->category = $category;
+    //     $product_detail->label = $label;
+    //     $product_detail->order = $order;
+    //     $product_detail->value = $value;
+    //     // $product_detail->product_id = $product->id;
+    //     $product_detail->save();
+
+    //     Log::channel('adminlog')->info("M_Product_Detail Model", [
+    //         'End Update'
+    //     ]);
+
+    // }
     public function product()
     {
 

@@ -2,6 +2,7 @@
 
 return [
     'ProductsAdd Form' => 'Products Add Form',
+    'ProductsEdit Form' => 'Products Edit Form',
     'ProductName' => 'Product Name',
     'Taste' => 'Taste',
     'Type' => 'Type',
@@ -12,6 +13,7 @@ return [
     'Reset' => 'Reset',
     'Submit' => 'Submit',
     'Update' => 'Update',
+    'Category' => 'Category',
     'ProductList'=> 'Product List',
     'No.' => 'No.',
     'ProductId' => 'Product Id',
