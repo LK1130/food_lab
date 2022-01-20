@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class M_Fav_Type extends Model
 {
-    public $table = 'm_fav_type';
     use HasFactory;
+    public $table = 'm_fav_type';
     /*
     * Create:zayar(2022/01/15) 
     * Update: 

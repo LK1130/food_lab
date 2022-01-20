@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class M_Taste extends Model
 {
-    public $table = 'm_taste';
     use HasFactory;
+    public $table = 'm_taste';
     /*
     * Create:zayar(2022/01/15) 
     * Update: 
