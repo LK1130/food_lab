@@ -7,7 +7,7 @@ Monthly Sales
 
 @section('css')
 <!-- Join Css -->
-<link rel="stylesheet"  href= "css/adminSalesChart.css"></link>
+<link rel="stylesheet"  href= "css/adminSalesChart.css"/>
 @endsection
 
 @section('script')
@@ -19,15 +19,16 @@ Monthly Sales
 
 @section('body')
 <div class="col-md-10">
+      <div class="mt-4">
     <!-- Daily Sales Button -->
-    <a href="dailyChart"><button id="dailySales">Daily Sale</button></a>
+    <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  inactive btncust">Daily Sale</button></a>
     <!--Monthly Sales Button -->
-    <a href="monthlyChart"><button id="monthlySales">Monthly Sale</button></a>
+    <a href="monthlyChart" class="me-5"><button id="monthlySales"  class="btn text-light inactive btncust">Monthly Sale</button></a>
     <!-- Yearly Sales Button -->
-    <a href="yearlyChart"><button id="yearlySales">Yearly Sale</button></a>
+    <a href="yearlyChart" class="me-5"><button id="yearlySales"  class="btn text-light inactive btncust">Yearly Sale</button></a>
     <!-- Range Sales Button -->
-    <a href="rangeChart"><button id="rangeSales" class="active">Range Sale</button></a>
-  <br></br>
+    <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light active btncust">Range Sale</button></a>  
+  </div>
   <h3 id="saleCaption">Range Sale</h3>
     <!-- For Range Sale Search -->
     <form action="/rangeChart" method="Post">

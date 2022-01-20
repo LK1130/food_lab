@@ -4,6 +4,11 @@
     font-family: sans-serif;
 }
 
+.tran{
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
+
 .status {
     text-shadow: 0px 5px 10px silver;
 }

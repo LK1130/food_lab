@@ -2,6 +2,11 @@
      box-sizing: border-box;
 }
 
+.product{
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
+
 /* Product Label */
 .labels{
     font-size: var(--title);
