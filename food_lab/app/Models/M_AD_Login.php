@@ -5,11 +5,80 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class M_AD_Login extends Model
 {
     public $table = 'm_ad_login';
     use HasFactory;
+
+    /*
+      * Create : Min Khant(20/1/2022)
+      * Update :
+      * Explain of function : To check admin login username
+      * Prarameter : Username
+      * return : username
+    */
+    public function checkUsernamae($name)
+    {
+        Log::channel('adminlog')->info('M_AD_Login Model', [
+            'start checkUsernamae'
+        ]);
+        $hasName = M_AD_Login::where('ad_name', '=', $name)->get();
+
+        Log::channel('adminlog')->info('M_AD_Login Model', [
+            'end checkUsernamae'
+        ]);
+        return $hasName;
+    }
+
+    /*
+      * Create : Min Khant(20/1/2022)
+      * Update :
+      * Explain of function : To check admin login password
+      * Prarameter : Username
+      * return : admin id
+    */
+    public function checkPassword($name, $password)
+    {
+        Log::channel('adminlog')->info('M_AD_Login Model', [
+            'start checkPassword'
+        ]);
+
+        $hasAccount = M_AD_Login::select(['id', 'ad_role'])
+            ->where('ad_name', $name)
+            ->where('ad_password', $password)
+            ->first();
+
+        Log::channel('adminlog')->info('M_AD_Login Model', [
+            'end checkPassword'
+        ]);
+
+        return $hasAccount;
+    }
+
+    /*
+      * Create : Min Khant(20/1/2022)
+      * Update :
+      * Explain of function : if login complete,to update ad_login_dt
+      * Prarameter : id
+      * return : 
+    */
+    public function updateLoginTime($id)
+    {
+        Log::channel('adminlog')->info('M_AD_Login Model', [
+            'start updateLoginTime'
+        ]);
+
+        $updateTime = M_AD_Login::where('id', '=', $id)
+            ->update(['ad_login_dt' => now()]);
+
+        Log::channel('adminlog')->info('M_AD_Login Model', [
+            'end updateLoginTime'
+        ]);
+        return true;
+    }
+
     /*
     * Create:zayar(2022/01/11) 
     * Update: 
@@ -42,7 +111,7 @@ class M_AD_Login extends Model
     /*
    * Create:zayar(2022/01/11) 
    * Update: 
-   * This is method is used to show user clicked admin form database.
+   * This method is used to show user clicked admin form database.
    * $id is admin id.
    * $admins is admin from database which match with $id.
    * Return is view (adminList.blade.php).

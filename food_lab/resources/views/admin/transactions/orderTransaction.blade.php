@@ -54,7 +54,7 @@
                                     {{ $trans->order_time }}
                                 </td>
                                 <td>
-                                    <a href="ordertransactionDetail?id={{ $trans->id }}">
+                                    <a href="ordertransactionDetail?id={{ $trans->orderid }}">
                                         <button class="btn tablerows btn-outline-light"><i
                                                 class="bi bi-arrow-right"></i></button>
                                     </a>

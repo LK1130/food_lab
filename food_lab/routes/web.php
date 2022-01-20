@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
@@ -35,6 +36,12 @@ use App\Http\Controllers\TransactionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//admin login
+Route::get('/admin', [AdminController::class, 'loginPage']);
+Route::post('/admin', [AdminController::class, 'loginForm']);
+
+// admin logout 
+Route::get('/adminlogout', [AdminController::class, 'logout']);
 
 //admin/setting/loginManage
 Route::resource('adminLogin', LoginController::class);
@@ -69,10 +76,10 @@ Route::get('coinchargeList', function () {
 /**
  * For Dashboard & Transaction
  */
-Route::get('dashboard',[DashboardController::class,'dashboardList']);
-Route::get('coinchargeList',[CoinchargeTransaction::class,'coinchargeList']);
-Route::get('orderTransaction',[OrderTransactionController::class,'orderTransaction']);
-Route::get('ordertransactionDetail',[TransactionController::class,'ordertransactionDetail']);
+Route::get('dashboard', [DashboardController::class, 'dashboardList']);
+Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
+Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
+Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
 /**
  * Customer Info
  */
@@ -84,7 +91,7 @@ Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDe
  */
 Route::resource('product', ProductController::class);
 //Prouduct List
-Route::get('productList',[ProductListController::class,'showList']);
+Route::get('productList', [ProductListController::class, 'showList']);
 
 //For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
@@ -167,8 +174,19 @@ Route::get('/access', [CustomerController::class, 'access']);
  * For Register Form
  */
 Route::post('/access', [CustomerController::class, 'register']);
+Route::post('/google', [CustomerController::class, 'google']);
+
+/*
+ * For verify account
+ */
+Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
 
 /*
  * For Login Page
  */
 Route::get('/login', [CustomerController::class, 'login']);
+
+/*
+ * For Login Form
+ */
+Route::post('/login', [CustomerController::class, 'loginForm']);

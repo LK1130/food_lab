@@ -2,9 +2,11 @@
 
 namespace App\Rules;
 
+use App\Models\M_CU_Customer_Login;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
-class RegisterRule implements Rule
+class CheckMail implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,7 +27,18 @@ class RegisterRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        Log::channel('customerlog')->info('CheckMail Rule',[
+            'start passes'
+        ]);
+
+        $mail = new M_CU_Customer_Login();
+        $hasMail = $mail->checkMail($value);
+
+        Log::channel('customerlog')->info('CheckMail Rule',[
+            'end passes'
+        ]);
+
+        return count($hasMail) > 0 ? false : true;
     }
 
     /**
@@ -35,6 +48,6 @@ class RegisterRule implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Your email already has been created.';
     }
 }
