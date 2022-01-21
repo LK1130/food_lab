@@ -30,4 +30,5 @@ class CustomerInfoController extends Controller
         ->paginate(5);
         return view('admin.customerInfo.customerinfoDetail',['t_ad_order'=>$transaction]);
     }
+    
 }

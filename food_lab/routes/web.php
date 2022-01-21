@@ -172,3 +172,15 @@ Route::post('/access', [CustomerController::class, 'register']);
  * For Login Page
  */
 Route::get('/login', [CustomerController::class, 'login']);
+
+
+/*
+ * For deliery info page
+*/
+Route::get('/deliveryInfo', function () {
+    return View('customer.deliveryInfo');
+});
+Route::get('/cart', function () {
+    return View('customer.cart');
+});
+
