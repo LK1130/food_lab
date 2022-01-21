@@ -16,49 +16,6 @@
 
     {{--Start Header --}}
     <header class="headers">
-        {{--  start navbar  --}}
-        <nav class="navbar navbar-expand-lg container-fluid py-3">
-
-            <a href="#" class="navbar-brand d-lg-none">
-                <img src="{{ url('img/logo.png') }}"  class="pe-2"/>
-                <span class="comapanynames">{{  __('messageMK.food lab') }}</span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse text-uppercase fw-bolder" id="navbarNav">
-                <ul class="navbar-nav w-100 justify-content-around align-items-center border-0 rounded py-3 navs">
-                    <li class="nav-item">
-                        <a class="nav-link texts actives" href="#">{{ __('messageMK.home') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link texts" href="#">{{  __('messageMK.products') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link texts" href="#">{{ __('messageMK.buy coin') }}</a>
-                    </li>
-                    <li class="nav-item companys">
-                        <a href="#" class="navbar-brand d-lg-inline">
-                            <img src="{{ url('img/logo.png') }}"  class="pe-2"/>
-                            <span class="comapanynames">{{  __('messageMK.food lab') }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link texts" href="#">{{ __('messageMK.inform') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link texts" href="/access">{{ __('messageMK.access') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link texts" href="#">profile</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        {{--  end navbar  --}}
-
         @yield('header')
     </header>
     {{--End Header--}}
@@ -74,12 +31,12 @@
             </div>
             <div class="d-flex flex-wrap justify-content-around align-items-start mt-4 footer-details">
                 <div class="footer-navs">
-                    <p><a href="#" class="actives">{{ __('messageMK.home') }}</a></p>
+                    <p><a href="/">{{ __('messageMK.home') }}</a></p>
                     <p><a href="#">{{ __('messageMK.aboutus') }}</a></p>
                     <p><a href="#">{{ __('messageMK.products') }}</a></p>
                     <p><a href="">{{ __('messageMK.buy coin') }}</a></p>
                     <p><a href="#">{{ __('messageMK.inform') }}</a></p>
-                    <p><a href="#">{{ __('messageMK.access') }}</a></p>
+                    <p><a href="/access">{{ __('messageMK.access') }}</a></p>
                     <p><a href="#">{{ __('messageMK.profile') }}</a></p>
                 </div>
                 <div>

@@ -89,9 +89,9 @@ textarea{
     background: var(--btns);
     font-size: var(--btntextsize);
     color: var(--white);
-    margin-right: 1.5rem !important;
-    margin-left: 1.5rem !important;
-     border-radius: 10%;
+    /* margin-right: 1.5rem !important; */
+    margin-left: 7rem !important;
+     border-radius: 10px;
      cursor: pointer;
 }
 
@@ -101,9 +101,25 @@ textarea{
     background: var(--btns);
     font-size: var(--btntextsize);
     color: var(--white);
+    /* margin-right: 1.5rem !important; */
+    margin-left: 10rem !important;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.back{
+    text-decoration: none;
+    color: var(--white);
+}
+
+.backBtn{
+    width: 10vw;
+    height: 3.7vw;
+    background: var(--btns);
+    font-size: var(--btntextsize);
+    color: var(--white);
     margin-right: 1.5rem !important;
     margin-left: 1.5rem !important;
-    border-radius: 10%;
+    border-radius: 10px;
     cursor: pointer;
 }
 

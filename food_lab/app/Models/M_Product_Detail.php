@@ -17,7 +17,7 @@ class M_Product_Detail extends Model
     * Update :
     * Explain of function : To insert data for m_product_detail base 
     * parameter : $request form product,category,label,order and value
-    * return save data to database
+    * return insert data to database
     * */
 
 
@@ -38,17 +38,54 @@ class M_Product_Detail extends Model
         Log::channel('adminlog')->info("M_Product_Detail Model", [
             'End Insert'
         ]);
-        
     }
 
     /*
     * Create : Aung Min Khant(19/1/2022)
     * Update :
-    * Explain of function : To update data for m_product_detail base 
-    * parameter : $request form product,category,label,order and value
-    * return update data to database
+    * Explain of function : to restore data for request by speciic id from  m_product_detail database
+    * parameter : $request id from product list table
+    * return restore data to request form
     * */
 
+    public function editData($id)
+    {
+
+        Log::channel('adminlog')->info("M_Product_Detail Model", [
+            'Start restore data'
+        ]);
+
+        $mProductDetail = DB::select(
+            DB::raw("SELECT
+            m_product_detail.category,m_product_detail.label,GROUP_CONCAT(m_product_detail.value) as value
+        FROM
+            m_product_detail
+        WHERE
+            m_product_detail.product_id = $id AND
+            m_product_detail.del_flg = 0
+        
+        GROUP BY
+            m_product_detail.label
+         ORDER BY 
+            m_product_detail.id     
+        ")
+        );
+
+        Log::channel('adminlog')->info("M_Product_Detail Model", [
+            'End restore data'
+        ]);
+
+        return $mProductDetail;
+    }
+
+
+    /*
+    * Create : Aung Min Khant(19/1/2022)
+    * Update :
+    * Explain of function : to delete data for request by specific id from  m_product_detail database
+    * parameter : $request id from product list table
+    * return restore data to request form
+    * */
 
     public function deleteData($id)
     {
@@ -63,28 +100,7 @@ class M_Product_Detail extends Model
             'End delete data'
         ]);
     }
-    // public function updateData($id, $category, $label, $order, $value,)
-    // {
-    //     Log::channel('adminlog')->info("M_Product_Detail Model", [
-    //         'Start Update'
-    //     ]);
-    //     $product_detail = M_Product_Detail::where('product_id',$id)->get();
-    //         dd($product_detail);
-    //     // $product_detail = DB::table('m_product_detail')
-    //             // ->where('m_product_detail.product_id',$id)
-    //             // ->get();
-    //     $product_detail->category = $category;
-    //     $product_detail->label = $label;
-    //     $product_detail->order = $order;
-    //     $product_detail->value = $value;
-    //     // $product_detail->product_id = $product->id;
-    //     $product_detail->save();
 
-    //     Log::channel('adminlog')->info("M_Product_Detail Model", [
-    //         'End Update'
-    //     ]);
-
-    // }
     public function product()
     {
 

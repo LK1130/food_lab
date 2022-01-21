@@ -25,13 +25,12 @@ class ProductListController extends Controller
         Log::channel('adminlog')->info("ProductList Controller", [
             'Start Product List'
         ]);
-        $product = DB::table('m_product')
-            ->paginate(10);
-
+        $mproduct = new M_Product();
+        $product = $mproduct->getAllProducts();
 
         Log::channel('adminlog')->info("ProductList Controller", [
             'End Product List'
-        ]);
+        ]); 
         return View('admin.product.productList', ['products' => $product]);
     }
 

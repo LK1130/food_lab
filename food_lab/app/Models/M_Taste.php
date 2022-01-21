@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_Taste extends Model
 {
@@ -56,4 +57,26 @@ class M_Taste extends Model
         $admin->del_flg = 1;
         $admin->save();
     }
+
+
+      /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To get  all data from m_taste 
+    * parament : none
+    * return get data
+    * */
+    public function getTasteAll(){
+
+        Log::channel('adminlog')->info("M_Taste Model", [
+            'Start all Data'
+        ]);
+        $mTaste = M_Taste::all();
+
+        Log::channel('adminlog')->info("M_Taste Model", [
+            'End all Data'
+        ]);
+        return  $mTaste;
+    }
+
 }

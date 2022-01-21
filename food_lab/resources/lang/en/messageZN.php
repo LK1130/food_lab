@@ -24,5 +24,6 @@ return [
     'See More'=>'See More',
     'Order Transaction'=>'Order Transaction',
     'Order Transaction Detail'=>'Order Transaction Detail',
-    'Logout'=>'Logout'
+    'Logout'=>'Logout',
+    'Role' => 'Role'
 ];

@@ -191,12 +191,8 @@
                         </tr>
                     </tbody>
                 </table>
-<<<<<<< HEAD
                 <a href="/productList" class="d-flex justify-content-end"><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
-=======
-                <a href=""><button class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
->>>>>>> dca0c77b105cdaafbac9ae057bab4f0fdb43794b
             </div>
             <div class="col-md-6">
                 {{-- Coin Charge List --}}
@@ -224,7 +220,7 @@
 
                     </tbody>
                 </table>
-                <a href="coinchargeList" class=""><button
+                <a href="" class=""><button
                         class="btn seemore text-light ">{{ __('messageZN.See More') }}</button></a>
             </div>
         </div>

@@ -33,6 +33,7 @@ $(document).ready(function (e) {
   
       }
     });
+
   
   
     /*
@@ -115,7 +116,7 @@ $(document).ready(function (e) {
       disable(countDiv);
   
       if (countDiv < 6) {
-        let input = `<div class="d-flex mt-3 appendCount" id="deleteForm" >
+        let input = `<div class="d-flex mt-3 appendCount .deleteform">
             <div class="form-group d-flex mx-3">
                 <label for="category" class="col-form-label titles">Category</label>
             <select name="category${count}" id="category" class="form-select mx-2">
@@ -140,7 +141,7 @@ $(document).ready(function (e) {
         // To delete form
         $('.delete').click(function (e) {
   
-          $(this).closest(`#deleteForm`).remove();
+          $(this).closest(`.deleteForm`).remove();
           let found = false;
           for (let int = 0; int < countArray.length; int++) if (countArray[int] == this.id) found = true;
           if (!found) {

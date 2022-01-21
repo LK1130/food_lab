@@ -12,6 +12,7 @@ use App\Models\T_AD_Evd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\Console\Input\Input;
 
 class ProductController extends Controller
 {
@@ -30,12 +31,15 @@ class ProductController extends Controller
 
     public function index()
     {
-        $mFav = M_Fav_Type::all();
-        $mTaste = M_Taste::all();
+        $fav = new  M_Fav_Type();
+        $mFav = $fav->getTypeAll();
+
+        $taste = new M_Taste();
+        $mTaste = $taste->getTasteAll();
+
         $mrate = new M_AD_CoinRate();
         $rates = $mrate->getRate();
-        Log::critical("rate", [$rates]);
-        // Log::critical("mtaste", [$mTaste]);
+
         return View('admin.product.productAdd', ['mFav' => $mFav, 'mTaste' => $mTaste, 'rates' => $rates, 'active' => 6]);
     }
 
@@ -72,8 +76,16 @@ class ProductController extends Controller
 
         $request->validate([
             'pname' => 'required',
-            'coin' => 'required',
-            'photo1' => 'required'
+            'coin' => 'required|min:0',
+            'photo1' => 'required||max:51200',
+            'photo2' => 'max:51200',
+            'photo3' => 'max:51200',
+            'photo4' => 'max:51200',
+            'photo5' => 'max:51200',
+            'photo6' => 'max:51200',
+            'list' => 'required',
+            'pdesc' => 'required'
+            
         ]);
         DB::transaction(function () use ($request) {
             $labels = [];
@@ -157,7 +169,7 @@ class ProductController extends Controller
             for ($x = 0; $x < count($images); $x++) {
 
                 $path = $images[$x]->store('ProductImage');
-                $evd->insertImage($path, $finalProduct);
+                $evd->insertImage($path, $finalProduct,$x+1);
             }
             for ($i = 0; $i < count($labels); $i++) {
                 $value = $allValues[$i];
@@ -193,43 +205,53 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+       /*
+    * Create : Aung Min Khant(18/1/2022)
+    * Update :
+    * Explain of function : To edit data from request to product edit view
+    * parament : all requestes from  product form
+    * return : edit data
+    * */
     public function edit($id)
     {
 
         Log::channel('adminlog')->info("Product Controller", [
             'Start edit Data'
         ]);
-        $mFav = M_Fav_Type::all();
-        $mTaste = M_Taste::all();
 
-        $mProduct = M_Product::findOrfail($id);
-        $mProductDetail = DB::select(
-            DB::raw("SELECT
-            m_product_detail.category,m_product_detail.label,GROUP_CONCAT(m_product_detail.value) as value
-        FROM
-            m_product_detail
-        WHERE
-            m_product_detail.product_id = $id AND
-            m_product_detail.del_flg = 0
-        GROUP BY
-            m_product_detail.label")
-        );
+        $taste = new M_Taste();
+        $mTaste = $taste->getTasteAll();
 
-        $evd = DB::select(
-            DB::raw("SELECT
-            t_ad_evd.path
-            FROM
-            t_ad_evd
-            WHERE
-            t_ad_evd.link_id = $id AND
-            t_ad_evd.del_flg =0 ")
-        );
+        $type = new M_Fav_Type();
+        $mFav = $type->getTypeAll();
 
+        $mProduct = new M_Product();
+        $product = $mProduct->getDataById($id);
+
+        $mDetail = new M_Product_Detail();
+        $mProductDetail = $mDetail->editData($id);
+
+        $tEvd = new T_AD_Evd();
+        $evd = $tEvd->editEvd($id);
+        
+        
+
+        $mrate = new M_AD_CoinRate();
+        $rates = $mrate->getRate();
+
+
+        session(['1' => $tEvd->getPhoto(1,$product->id)]);
+        session(['2' => $tEvd->getPhoto(2,$product->id)]);
+        session(['3' => $tEvd->getPhoto(3,$product->id)]);
+        session(['4' => $tEvd->getPhoto(4,$product->id)]);
+        session(['5' => $tEvd->getPhoto(5,$product->id)]);
+        session(['6' => $tEvd->getPhoto(6,$product->id)]);
         Log::channel('adminlog')->info("Product Controller", [
             'End edit Data'
         ]);
         // return $product_detail;
-        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $mProduct, "pdetails" => $mProductDetail, 'evd' => $evd]);
+        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $product, "pdetails" => $mProductDetail, 'evd' => $evd,'rates'=>$rates]);
     }
 
     /**
@@ -239,6 +261,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+      /*
+    * Create : Aung Min Khant(19/1/2022)
+    * Update :Aung Min Khant(21/1/2022)
+    * Explain of function : To update data from request to database
+    * parament : all requestes from  product form and specific id
+    * return : update data
+    * */
     public function update(Request $request, $id)
     {
         Log::channel('adminlog')->info("Product Controller", [
@@ -246,11 +276,10 @@ class ProductController extends Controller
         ]);
 
 
-
         $request->validate([
             'pname' => 'required',
             'coin' => 'required|min:0',
-            'photo1' => 'required'
+            // 'photo1' => 'required'
         ]);
 
         DB::transaction(function () use ($request, $id) {
@@ -263,31 +292,11 @@ class ProductController extends Controller
             $valueFive = [];
             $valueSix = [];
             $allValues = [];
-            $images = [];
-
-
+    
             $pdController = new ProductListController();
             $pdController->checkCategory($request);
 
-            if ($request->hasFile('photo1')) {
-                array_push($images, $request->file('photo1'));
-            }
-            if ($request->hasFile('photo2')) {
-                array_push($images, $request->file('photo2'));
-            }
-            if ($request->hasFile('photo3')) {
-                array_push($images, $request->file('photo3'));
-            }
-            if ($request->hasFile('photo4')) {
-                array_push($images, $request->file('photo4'));
-            }
-            if ($request->hasFile('photo5')) {
-                array_push($images, $request->file('photo5'));
-            }
-            if ($request->hasFile('photo6')) {
-                array_push($images, $request->file('photo6'));
-            }
-
+           
             if ($request->has('pdname1') && $request->has('pdvalue1')) {
                 array_push($labels, $request->input("pdname1"));
                 $valueOne = explode(",", $request->input("pdvalue1"));
@@ -331,9 +340,34 @@ class ProductController extends Controller
             $productDetail = new M_Product_Detail();
             $productDetail->deleteData($id);
             $evd = new T_AD_Evd();
-            $evd->deleteImage($id);
-            // dd($product);
-            // Log::critical("array", [$labels, $images, $allValues]);
+
+            if($request->input('hide1')  == "" &&  $request->hasFile('photo1')){ 
+                $path = $request->file('photo1')->store('ProductImage');
+              $evd->insertImage($path,$product,1);
+            }
+            if($request->input('hide2') == "" && $request->hasFile('photo2')){
+                $path = $request->file('photo2')->store('ProductImage');
+              $evd->insertImage($path,$product,2);
+            }
+
+            if($request->input('hide3') == "" && $request->hasFile('photo3')){
+                $path = $request->file('photo3')->store('ProductImage');
+              $evd->insertImage($path,$product,3);
+            }
+            if($request->input('hide4') == "" && $request->hasFile('photo4')){
+                $path = $request->file('photo4')->store('ProductImage');
+              $evd->insertImage($path,$product,4);
+            }
+            if($request->input('hide5') == "" && $request->hasFile('photo5')){
+                $path = $request->file('photo5')->store('ProductImage');
+              $evd->insertImage($path,$product,5);
+            }
+            if($request->input('hide6') == "" && $request->hasFile('photo6')){
+                $path = $request->file('photo6')->store('ProductImage');
+              $evd->insertImage($path,$product,6);
+            }
+
+            
             for ($i = 0; $i < count($labels); $i++) {
                 $value = $allValues[$i];
                 for ($j = 0; $j < count($value); $j++) {
@@ -342,17 +376,14 @@ class ProductController extends Controller
                 }
             }
 
-            for ($x = 0; $x < count($images); $x++) {
-
-                $path = $images[$x]->store('ProductImage');
-                $evd->insertImage($path, $product);
-            }
         });
 
 
         Log::channel('adminlog')->info("Product Controller", [
             'End Update Data'
         ]);
+
+        return  redirect('productList');
     }
 
 

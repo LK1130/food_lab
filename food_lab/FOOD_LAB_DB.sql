@@ -534,7 +534,7 @@ CREATE TABLE `t_cu_customer` (
 CREATE TABLE `m_cu_customer_login` (
   `id` int NOT NULL COMMENT 'ID of Row',
   `email` varchar(128) NOT NULL COMMENT 'Email',
-  `password` varchar(30) NOT NULL COMMENT 'Password',
+  `password` varchar(40) NOT NULL COMMENT 'Password',
   `verify` int NOT NULL DEFAULT '0' COMMENT 'verify or not',
   `verify_code` varchar(128) NOT NULL COMMENT 'verify code',
   `customer_id` bigint NOT NULL COMMENT 'customer id',
