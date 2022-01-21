@@ -8,7 +8,6 @@ use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\CoinController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\FavtypeController;
@@ -21,10 +20,12 @@ use App\Http\Controllers\SuggestController;
 use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
+use Illuminate\Routing\RouteGroup;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +36,15 @@ use App\Http\Controllers\TransactionController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
+//_________________________________Admin Routes_________________________
 */
 //admin login
 Route::get('/admin', [AdminController::class, 'loginPage']);
 Route::post('/admin', [AdminController::class, 'loginForm']);
-
 // admin logout 
 Route::get('/adminlogout', [AdminController::class, 'logout']);
+Route::group(['middleware' => ['checkAdmin']],function(){
 
 //admin/setting/loginManage
 Route::resource('adminLogin', LoginController::class);
@@ -62,7 +65,6 @@ Route::resource('orderstatus', OrderStatusController::class);
 Route::resource('decision', DecisionController::class);
 //admin/setting/newsManage
 Route::resource('news', NewsController::class);
-
 
 Route::get('dashboard', function () {
     return View('admin.dashboard');
@@ -137,7 +139,7 @@ Route::get('rangeChart', function () {
     return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
 });
 Route::post('rangeChart', [SalesController::class, 'rangeChart']);
-
+});
 
 //_________________________________Customer Routes_________________________
 

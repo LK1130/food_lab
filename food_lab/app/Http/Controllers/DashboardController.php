@@ -20,7 +20,6 @@ class DashboardController extends Controller
     */
     public function dashboardList()
     {
-        if (session()->has('adminId')) {
 
             $detail = new T_AD_Order();
             $orderdetail = $detail->DashboardMinitrans();
@@ -40,9 +39,6 @@ class DashboardController extends Controller
             $rateofcoin = new M_AD_CoinRate();
             $coinrate = $rateofcoin->DashboardCoinrate();
             return view('admin.dashboard', ['t_cu_customer' => $customerlist, 'orderdetail' => $orderdetail, 'coincharge' => $coincharge, 'tcount' => $transcount1, 'cuscount' => $customercount, 'coinrate' => $coinrate]);
-        }
-
-        return redirect('/admin');
     }
 
     /*

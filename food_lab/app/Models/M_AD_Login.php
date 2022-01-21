@@ -45,7 +45,7 @@ class M_AD_Login extends Model
             'start checkPassword'
         ]);
 
-        $hasAccount = M_AD_Login::select(['id', 'ad_role'])
+        $hasAccount = M_AD_Login::select(['id', 'ad_role','ad_name'])
             ->where('ad_name', $name)
             ->where('ad_password', $password)
             ->first();

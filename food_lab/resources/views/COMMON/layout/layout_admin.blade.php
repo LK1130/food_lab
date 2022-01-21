@@ -22,8 +22,8 @@
             <div class="col-md-2">
                 <div class="sidenav fixed-top">
                     <div class="sidebar-heading text-center py-4 text-uppercase fs-5 text-white">
-                        <li class="adminli">Admin name</li>
-                        <li class="adminli">{{ __('messageZN.Last Login') }}:12:12</li>
+                        <li class="adminli">{{ session('ad_name') }}</li>
+                        <li class="adminli">{{ __('messageZN.Role') }} : {{ session('role') }}</li>
                     </div>
                     <div class="text-center list-group list-group-flush ">
                         <a href="dashboard"><button class="buttons btn dash">{{ __('messageZN.Dashboard') }}</button></a>
