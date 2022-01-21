@@ -20,8 +20,7 @@ $(document).ready(function (e) {
 
   disableAppendBox();
 
- let var1 = $('#hide1').val(file);
-  console.log(var1);
+ 
   /*
  * Create : Aung Min Khant(17/1/2022)
  * Update :
@@ -35,6 +34,7 @@ $(document).ready(function (e) {
     var inputFile = e.target.files[0];
     var url = window.URL.createObjectURL(inputFile);
     imgOne.attr("src", url);
+    $('#hide1').val("");
   });
 
   var photoTwo = $("#photo2");
@@ -44,6 +44,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgTwo.attr("src", url);
+    $('#hide2').val("");
   });
 
   var photoThree = $("#photo3");
@@ -53,6 +54,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgThree.attr("src", url);
+    $('#hide3').val("");
   });
 
   var photoFour = $("#photo4");
@@ -62,6 +64,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgFour.attr("src", url);
+    $('#hide4').val("");
   });
 
   var photoFive = $("#photo5");
@@ -71,6 +74,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgFive.attr("src", url);
+    $('#hide5').val("");
   });
 
   var photoSix = $("#photo6");
@@ -80,6 +84,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgSix.attr("src", url);
+    $('#hide6').val("");
   });
 
 

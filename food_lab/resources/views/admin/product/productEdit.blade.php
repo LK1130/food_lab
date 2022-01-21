@@ -45,8 +45,8 @@
                                         </div>
                                         <div class="form-group mx-4 mt-2 mb-2">
                                             <input type="file" name="photo1" id="photo1" class="form-control files" value="@isset($evd[0]->path)/storage/{{ $evd[0]->path }}@endisset">
-                                            <input type="hidden" name="hide1" id="hide1" >
-                                            {{-- value="@isset($evd[0]->path) {{  URL::asset('/storage/'.$evd[0]->path) }}@endisset" --}}
+                                            <input type="hidden" name="hide1" id="hide1" value="@isset($evd[0]->path){{ $evd[0]->path }}@endisset">
+                                        
                                         </div>
                                     </div>
 
@@ -58,6 +58,7 @@
                                             </div>
                                             <div class="form-group mx-4 mt-2 mb-2">
                                                 <input type="file" name="photo2" id="photo2" class="form-control files">
+                                                <input type="hidden" name="hide2" id="hide2" value="@isset($evd[1]->path){{ $evd[1]->path }}@endisset">
                                             </div>
                                         </div>
 
@@ -69,6 +70,7 @@
                                                 </div>
                                                 <div class="form-group mx-4 mt-2 mb-2">
                                                     <input type="file" name="photo3" id="photo3" class="form-control files">
+                                                    <input type="hidden" name="hide3" id="hide3" value="@isset($evd[2]->path){{ $evd[2]->path }}@endisset">
                                                 </div>
                                             </div>
 
@@ -80,6 +82,7 @@
                                                     </div>
                                                     <div class="form-group mx-4 mt-2 mb-2">
                                                         <input type="file" name="photo4" id="photo4" class="form-control files">
+                                                        <input type="hidden" name="hide4" id="hide4" value="@isset($evd[3]->path){{ $evd[3]->path }}@endisset">
                                                     </div>
                                                 </div>
 
@@ -91,6 +94,7 @@
                                                         </div>
                                                         <div class="form-group mx-4 mt-2 mb-2">
                                                             <input type="file" name="photo5" id="photo5" class="form-control files">
+                                                            <input type="hidden" name="hide5" id="hide5" value="@isset($evd[4]->path){{ $evd[4]->path }}@endisset">
                                                         </div>
                                                     </div>
 
@@ -102,6 +106,7 @@
                                                             </div>
                                                             <div class="form-group mx-4 mt-2 mb-2">
                                                                 <input type="file" name="photo6" id="photo6" class="form-control files">
+                                                                <input type="hidden" name="hide6" id="hide6" value="@isset($evd[5]->path){{ $evd[5]->path }}@endisset">
                                                             </div>
                                                         </div>
 
@@ -223,7 +228,7 @@
                                                                                 class="col-form-label titles">{{ __('messageAMK.Category') }}</label>
                                                                             <select name="category{{ $loop->iteration }}" id="category"
                                                                                 class="form-select mx-2">
-                                                                                <option value="0" selected disabled>Select category</option>
+                                                                             
                                                                                 @if ($detail->category == 1)
                                                                                     <option value="1" selected>Selected Box</option>
 
@@ -252,9 +257,19 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-end mb-4">
-                                        <button type="reset" class="resetBtn">Reset</button>
-                                        <button type="submit" class="submitBtn">Update</button>
+                                    <div class="row">
+                                        <div class="col-md-12 d-flex justify-content-end mb-4">
+                                            <div class="col-md-6">
+                                                <button class="backBtn"><a href="/productList" class="back">{{ __('messageAMK.Back') }}</a></button>
+                                            </div>
+                                            <div class="col-md-3">
+                                            <button type="reset" class="resetBtn">{{ __('messageAMK.Reset') }}</button>
+                                            
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button type="submit" class="submitBtn">{{ __('messageAMK.Submit') }}</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
