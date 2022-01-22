@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="css/adminLayout.css">
-    <link rel="stylesheet" href="css/commonAdmincss.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}">
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
     @yield('css')
@@ -26,12 +26,14 @@
                         <li class="adminli">{{ __('messageZN.Role') }} : {{ session('role') }}</li>
                     </div>
                     <div class="text-center list-group list-group-flush ">
-                        <a href="dashboard"><button class="buttons btn dash">{{ __('messageZN.Dashboard') }}</button></a>
+                        <a href="/dashboard"><button
+                                class="buttons btn dash navbtnactive">{{ __('messageZN.Dashboard') }}</button></a>
                         <a href="/orderTransaction"><button
                                 class="buttons btn tran">{{ __('messageZN.Transaction') }}</button></a>
                         <a href="/customerInfo"><button
                                 class="buttons btn cust">{{ __('messageZN.Customer') }}</button></a>
-                        <a href="/coinListing"><button class="buttons btn coin">{{ __('messageZN.Coin') }}</button></a>
+                        <a href="/coinListing"><button
+                                class="buttons btn coin">{{ __('messageZN.Coin') }}</button></a>
                         <a href="/dailyChart"><button
                                 class="buttons btn sale">{{ __('messageZN.Finance') }}</button></a>
                         <a href="/productList"><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>

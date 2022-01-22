@@ -136,4 +136,31 @@ class M_Product extends Model
 
         return $this->hasMany('App\Models\M_Product_Detail');
     }
+
+    /*
+      * Create : Zar Ni(15/1/2022)
+      * Update :
+      * Explain of function : To get data for DashboardProductMiniList
+      * Prarameter : no
+      * return :
+    */
+    public function DashboardproductList(){
+        
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start DashboardproductList'
+        ]);
+
+        $dashboardproduct = M_Product::
+        join('m_taste','m_taste.id','=','m_product.product_taste')
+        ->join('m_fav_type','m_fav_type.id','=','m_product.product_type')
+        ->limit(5)
+        ->get();
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End DashboardproductList'
+        ]);
+
+        return $dashboardproduct;
+    }
+
 }
