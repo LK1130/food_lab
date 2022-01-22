@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use PhpParser\Node\Expr\FuncCall;
+use SebastianBergmann\Environment\Console;
 
 class T_CU_Customer extends Model
 {
@@ -55,6 +59,71 @@ class T_CU_Customer extends Model
       ]);
 
         return $cuscount;
+    }
+      /*
+      * Create : Zar Ni(15/1/2022)
+      * Update :
+      * Explain of function : To get data for DashboardCuctomerCount
+      * Prarameter : no
+      * return :
+    */
+    public function customerInfoList(){
+
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'Start customerInfoList'
+    ]);
+
+      $customerlist = T_CU_Customer::where('t_cu_customer.del_flg',0)
+      ->paginate(10);
+
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'End customerInfoList'
+    ]);
+
+      return $customerlist;
+    }
+
+    /*
+      * Create : Zar Ni(20/1/2022)
+      * Update :
+      * Explain of function : To show customer search names
+      * Prarameter : no
+      * return :
+    */
+    public function cusSearch($request){
+
+      $cusSearch = T_CU_Customer::where('nickname','Like','%'.$request->input('nickname').'%')
+      ->where('t_cu_customer.del_flg',0)
+      ->get();
+      
+      return $cusSearch;
+    }
+    /*
+      * Create : Zar Ni(20/1/2022)
+      * Update :
+      * Explain of function : To show customer id search
+      * Prarameter : no
+      * return :
+    */
+    public function cusidSearch($request){
+
+      $cusidSearch = T_CU_Customer::where('customerID','Like','%'.$request->input('id').'%')
+      ->where('t_cu_customer.del_flg',0)
+      ->get();
+
+      return $cusidSearch;
+    }
+
+    public function customerDetail($id){
+
+  
+      $cusDetail = T_CU_Customer::
+      select ('*',DB::raw('t_cu_customer.id AS cid'))
+      ->where('t_cu_customer.del_flg',0)
+      ->where('t_cu_customer.id','=' ,$id)
+      ->first();
+      // Log::critical('asdasd',[$cusDetail]);
+      return $cusDetail;
     }
     /*
       * Create : Min Khant(15/1/2022)

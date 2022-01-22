@@ -76,8 +76,18 @@ Route::get('ordertransactionDetail',[TransactionController::class,'ordertransact
  * Customer Info
  */
 Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
+Route::get('searchname',[customerInfoController::class,'customerSearch']);
+Route::get('searchid',[customerInfoController::class,'customeridSearch']);
 Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
-
+/**
+ * Customer Report
+ */
+Route::get('customerReport',function(){
+    return view('admin.report.customerreport');
+});
+Route::get('reportreplies',function(){
+    return view('admin.report.reportreply');
+});
 /**
  * For Product Form page
  */

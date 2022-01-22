@@ -62,6 +62,18 @@ class T_AD_CoinCharge extends Model
         return $dashboardcoin;
     }
 
+      public function UsercoinchargeList($id){
+
+        $usercoin = T_AD_CoinCharge::
+        join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
+        ->join('m_decision_status','m_decision_status.id','=','t_ad_coincharge.decision_status')
+        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
+        ->where('t_ad_coincharge.del_flg',0)
+        ->where('t_ad_coincharge.customer_id','=',$id)
+        ->paginate(10);
+        
+        return $usercoin;
+      }
   /*
     * Create : linn(2022/01/16) 
     * Update : 

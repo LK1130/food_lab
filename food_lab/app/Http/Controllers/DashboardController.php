@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinRate;
+use App\Models\M_Product;
 use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_Order;
 use App\Models\T_CU_Customer;
@@ -37,9 +38,15 @@ class DashboardController extends Controller
 
         $rateofcoin =new M_AD_CoinRate();
         $coinrate = $rateofcoin->DashboardCoinrate();
-        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate]);
+
+        $today = new T_AD_Order();
+        $todayorder = $today->Todayordercount();
+
+        $product = new M_Product();
+        $dashproduct = $product->DashboardproductList();
+        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate,'todaycount'=>$todayorder,'product'=>$dashproduct]);
     }
-  
+    
         /*
     * Create:zarni(2022/01/12) 
     * Update: 

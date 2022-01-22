@@ -17,6 +17,11 @@ class TransactionController extends Controller
     public function ordertransactionDetail(Request $request){
         $ordertable = new T_AD_Order();
         $order = $ordertable->ordertransactionDetails($request->input('id'));
+
+        if($order == null)
+        {
+            abort(404);
+        }
         return view('admin.transactions.ordertransactionDetail',['order'=>$order]);
     }
 }

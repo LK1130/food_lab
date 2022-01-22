@@ -75,9 +75,9 @@
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers">12</p>
+                    <p class=" numbers">{{ $todaycount }}</p>
                     <p class="detail">{{ __('messageZN.Today Order') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
@@ -98,7 +98,7 @@
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Transaction List') }}</div>
                 <table class="table boxshad">
                     <thead>
-                        <tr class="tableheader tablerows">
+                        <tr class="tableheader tablerows ">
                             <th scope="col">No.</th>
                             <th scope="col">Customer ID</th>
                             <th scope="col">Payment</th>
@@ -112,7 +112,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list2->customerID }}</td>
                                 <td>{{ $list2->payment_name }}</td>
-                                <td>{{ $list2->order_status }}</td>
+                                <td>{{ $list2->status }}</td>
                                 <td>{{ $list2->order_date }} {{ $list2->order_time }}
                                 </td>
                             </tr>
@@ -163,32 +163,22 @@
                             <th scope="col">No.</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Product ID</th>
-                            <th scope="col">Coin</th>
-                            <th scope="col">Tpye</th>
+                            <th scope="col">Coin/amount</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Taste</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">1</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">2</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">3</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
+                        @foreach ($product as $list3)
+                            <tr class="tablecolor1 tablerows">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $list3->product_name }}</td>
+                                <td>C12312</td>
+                                <td>{{ $list3->coin }}/{{ $list3->amount }}</td>
+                                <td>{{ $list3->favourite_food }}</td>
+                                <td>{{ $list3->taste }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <a href=""><button class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
