@@ -105,4 +105,29 @@ class T_AD_CoinCharge_Finance extends Model
         ]);
         return $coin;
     }
+
+    /*
+    * Create : linn(2022/01/16) 
+    * Update : 
+    * This function is use to set coin finance.
+    * Parameters : no
+    * Return : photo path
+    */
+    public function setChargeFinance($chargeid,$amount,$payment)
+    {
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'Start setChargeFinance'
+        ]);
+
+        T_AD_CoinCharge_Finance::where('del_flg', 0)
+        ->where('charge_id', $chargeid)
+        ->update([
+            'payment_type' => $payment,
+            'amount' => $amount
+        ]);
+
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'End setChargeFinance'
+        ]);
+    }
 }

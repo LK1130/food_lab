@@ -1,3 +1,4 @@
+/*****************Coin Charge Listing****************/
 .coin {
     background-color: var(--btns) !important;
     color: var(--white) !important;
@@ -63,9 +64,18 @@
     width: 3vw !important;
 } */
 
-/*****************Add Coin**********************/
+/*****************Decision Making**********************/
+
 .evd_photo img {
     width: 100%;
+}
+
+.labeltag {
+    display: none;
+}
+
+.atag {
+    display: block;
 }
 
 .request_title {
@@ -82,24 +92,25 @@
     line-height: 2.5;
 }
 
-.request_pay{
+.request_pay {
     width: 20vw;
 }
 
+.received_amount{
+ width: 30vw;
+}
 
-.request_decision_check{
+.request_decision_check {
     display: inline-block;
 }
 
-.decisiondiv{
+.decisiondiv {
     display: none;
 }
 
-.decisiondiv button{
+.decisiondiv button {
     width: 12rem;
-    margin: 0.5rem;
 }
-
 
 @media only screen and (max-width: 720px) {
     .mobile_block {
@@ -107,7 +118,7 @@
     }
 
     .mobile_block .col-3,
-    .mobile_block .col{
+    .mobile_block .col {
         width: 100% !important;
     }
 

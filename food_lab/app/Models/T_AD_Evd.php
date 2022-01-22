@@ -35,7 +35,6 @@ class T_AD_Evd extends Model
                 ->update(['del_flg' => 1]);
                 
             }
-       
 
         $evd = new T_AD_Evd();
 
