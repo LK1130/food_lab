@@ -79,7 +79,7 @@
 
 .detail_list {
     list-style-type: none;
-    line-height: 3;
+    line-height: 2.5;
 }
 
 .request_pay{
@@ -90,6 +90,16 @@
 .request_decision_check{
     display: inline-block;
 }
+
+.decisiondiv{
+    display: none;
+}
+
+.decisiondiv button{
+    width: 12rem;
+    margin: 0.5rem;
+}
+
 
 @media only screen and (max-width: 720px) {
     .mobile_block {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class T_AD_CoinCharge extends Model
@@ -87,15 +88,38 @@ class T_AD_CoinCharge extends Model
       'Start listing'
     ]);
 
-    $result =  T_AD_CoinCharge::where('decision_status', $status)
+    $result =  T_AD_CoinCharge::
+      select('*', DB::raw('t_ad_coincharge.id AS chargeid'))
       ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
       ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
+      ->where('decision_status', $status)
       ->where('t_ad_coincharge.del_flg', 0)
       ->orderby('request_datetime', 'desc')
       ->paginate(10, ['*'], $category);
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'End listing'
+    ]);
+
+    return $result;
+  }
+
+  public function charageDetail($chargeid){
+    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
+      'Start charageDetail'
+    ]);
+
+    $result =  T_AD_CoinCharge::select('*', DB::raw('t_cu_customer.id AS customerid')
+    ,DB::raw('m_decision_status.id AS statusid'))
+      ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
+      ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
+      ->where('t_ad_coincharge.del_flg', 0)
+      ->where('t_ad_coincharge.id', $chargeid)
+      ->first();
+
+
+    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
+      'End charageDetail'
     ]);
 
     return $result;

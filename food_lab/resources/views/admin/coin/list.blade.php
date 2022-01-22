@@ -47,7 +47,7 @@
                                 </td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
-                                    <a href="makeDecision"><button class="btn btn-outline-success"><i
+                                    <a href="makeDecision/{{$item->chargeid }}"><button class="btn btn-outline-success"><i
                                                 class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>
@@ -137,7 +137,7 @@
                                 </td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
-                                    <a href=""><button class="btn btn-outline-warning"><i
+                                    <a href="makeDecision/{{$item->chargeid }}"><button class="btn btn-outline-warning"><i
                                                 class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>

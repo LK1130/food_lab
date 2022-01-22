@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 
 use App\Models\M_AD_CoinRate;
+use App\Models\M_Payment;
 use App\Models\T_AD_CoinCharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -121,19 +122,24 @@ class CoinController extends Controller
     * Parameters : no
     * Return : view('admin.coin.rateHistory')
     */
-    public function decision(Request $request)
+    public function decision($id)
     {
         Log::channel('adminlog')->info("CoinController", [
             'Start decision'
         ]);
 
-        
-    
+        $m_payment = new M_Payment();
+        $paymentList = $m_payment->getPayment();
+
+        $t_ad_coincharge = new T_AD_CoinCharge();
+        $chargeDetail = $t_ad_coincharge->charageDetail($id);
+        if ($chargeDetail == null) abort(404);
+
         Log::channel('adminlog')->info("CoinController", [
             'End decision'
         ]);
 
-        return view('admin.coin.decision');
+        return view('admin.coin.decision', ['Cdetail' => $chargeDetail, 'paymentlist' => $paymentList]);
     }
 
 
