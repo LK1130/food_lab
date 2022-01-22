@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\T_AD_Order;
+use App\Models\T_AD_OrderDetail;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -17,11 +18,14 @@ class TransactionController extends Controller
     public function ordertransactionDetail(Request $request){
         $ordertable = new T_AD_Order();
         $order = $ordertable->ordertransactionDetails($request->input('id'));
-
         if($order == null)
         {
             abort(404);
         }
-        return view('admin.transactions.ordertransactionDetail',['order'=>$order]);
+
+        $ordedetail = new T_AD_OrderDetail();
+        $oDetail = $ordedetail->orderDetail($request->input('id'));
+        // return $oDetail;
+        return view('admin.transactions.ordertransactionDetail',['order'=>$order ,'orderdetail'=>$oDetail]);
     }
 }

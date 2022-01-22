@@ -59,35 +59,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="tablecolor1 text-light fs-5">
-                                            <th scope="row">1</th>
-                                            <td>Basda</td>
-                                            <td>M12231</td>
-                                            <td>312</td>
-                                            <td>10</td>
-                                            <td>200</td>
-                                            <td>1,000</td>
-                                        </tr>
-                                        <tr class="tablecolor1 text-light fs-5">
-                                            <th scope="row">2</th>
-                                            <td>Basda</td>
-                                            <td>M12231</td>
-                                            <td>312</td>
-                                            <td>10</td>
-                                            <td>200</td>
-                                            <td>1,000</td>
-                                        </tr>
-                                        <tr class="tablecolor1 text-light fs-5">
-                                            <th scope="row">3</th>
-                                            <td>Basda</td>
-                                            <td>M12231</td>
-                                            <td>312</td>
-                                            <td>10</td>
-                                            <td>200</td>
-                                            <td>1,000</td>
-                                        </tr>
+                                        @foreach ($orderdetail as $list)
+                                            <tr class="tablecolor1 text-light fs-5">
+                                                <th scope="row">1</th>
+                                                <td>{{ $list->product_name }}</td>
+                                                <td>{{ $list->product_id }}</td>
+                                                <td>{{ $list->coin }}</td>
+                                                <td>{{ $list->quantity }}</td>
+                                                <td>{{ $list->total_coin }}</td>
+                                                <td>{{ $list->total_cash }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">{{ $orderdetail->links() }}</div>
                             </div>
 
                         </div>

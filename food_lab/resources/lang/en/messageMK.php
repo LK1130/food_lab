@@ -1,6 +1,12 @@
 <?php
 
 return [
+    // admin 
+    'Username' => 'Username',
+    'adminLogin' => 'Admin Login',
+    'Password' => 'Password',
+    'login' => 'Login',
+    // customer 
     'home' => 'Home',
     'products' => 'Products',
     'buy coin' => 'Buy Coin',
@@ -43,4 +49,24 @@ return [
     'suggestForm' => 'Suggest Form',
     'suggestionType' => 'Suggestion Type',
     'suggestDetails' => 'Suggest Details',
+    'createAccount' => 'Create Account',
+    'signUpWithGoogle' => 'Sign Up With Google',
+    'signUpWithFacebook' => 'Sign Up With Facebook',
+    'OR' => 'OR',
+    'welcomeFrom' => 'Welcome From',
+    'ourFoodLab' => 'Our Food Lab',
+    'fullName' => 'Full Name',
+    'phone' => 'Phone',
+    'email' => 'Email',
+    'address(No)' => 'Address(No)',
+    'address(Township)' => 'Address(Township)',
+    'address(City)' => 'Address(City)',
+    'password' => 'Password',
+    'confirmPassword' => 'Confirm Password',
+    'alreadyHaveAnAccount' => 'Already Have An Account ?',
+    'loginInHere' => 'Login In Here',
+    'signinForm' => 'Signin Form',
+    'signIn' => 'Sign in',
+    'Ifyoudoesn\'thaveAnyaccount' => 'If you doesn\'t have Any account',
+    'signUpHere' => 'Sign Up Here',
 ];

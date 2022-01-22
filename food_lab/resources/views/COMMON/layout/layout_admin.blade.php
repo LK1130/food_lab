@@ -22,8 +22,8 @@
             <div class="col-md-2">
                 <div class="sidenav fixed-top">
                     <div class="sidebar-heading text-center py-4 text-uppercase fs-5 text-white">
-                        <li class="adminli">Admin name</li>
-                        <li class="adminli">{{ __('messageZN.Last Login') }}:12:12</li>
+                        <li class="adminli">{{ session('ad_name') }}</li>
+                        <li class="adminli">{{ __('messageZN.Role') }} : {{ session('role') }}</li>
                     </div>
                     <div class="text-center list-group list-group-flush ">
                         <a href="/dashboard"><button
@@ -36,10 +36,10 @@
                                 class="buttons btn coin">{{ __('messageZN.Coin') }}</button></a>
                         <a href="/dailyChart"><button
                                 class="buttons btn sale">{{ __('messageZN.Finance') }}</button></a>
-                        <a href=""><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>
+                        <a href="/productList"><button class="buttons btn product">{{ __('messageZN.Products') }}</button></a>
                         <a href="/adminLogin"><button
                                 class="buttons btn setting">{{ __('messageZN.Setting') }}</button></a>
-                        <a href=""><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
+                        <a href="/adminlogout"><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
                     </div>
                 </div>
                 <!-- sidenav bar End  -->

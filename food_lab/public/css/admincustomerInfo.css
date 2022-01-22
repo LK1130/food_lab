@@ -1,3 +1,8 @@
+.cust {
+    background-color: var(--btns) !important;
+    color: var(--white) !important;
+}
+
 .cusinput {
     width: 20vw !important;
 }
@@ -25,4 +30,10 @@
 }
 #clickrow {
     cursor: pointer;
+}
+.tableheader {
+    background-color: var(--tablecolor1) !important;
+}
+.tablecolor1 {
+    background-color: var(--tablecolor2);
 }

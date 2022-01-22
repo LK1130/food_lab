@@ -78,4 +78,5 @@ class CustomerInfoController extends Controller
         $searchid
         );
     }
+    
 }

@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
-{    
-        /*
+{
+    /*
     * Create:Zarni(2022/01/12) 
     * Update: 
     * This is function is to show admin dashboard Listing
@@ -53,8 +53,8 @@ class DashboardController extends Controller
     * This is function is to show Order Transaction.
     * Return is view (ordertransaction.blade.php)
     */
-    public function orderTransaction(){
+    public function orderTransaction()
+    {
         return view('admin.transactions.orderTransaction');
     }
-
 }

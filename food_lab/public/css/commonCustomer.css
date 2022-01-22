@@ -25,33 +25,6 @@
 }
 
 
-/*start navbar*/
-
-.navs {
-    background-color: var(--bg-color);
-    font-size: 1.1rem;
-}
-
-.texts {
-    color: var(--primary-color);
-}
-
-.texts:hover {
-    color: var(--text-color);
-}
-
-.actives {
-    border-bottom: 1px solid var(--primary-color);
-}
-
-.comapanynames {
-    color: var(--text-color);
-}
-
-
-/*end navbar*/
-
-
 /*start carousel*/
 
 .carousels {
@@ -164,5 +137,5 @@ footer {
     font-weight: bold;
 }
 
-/*End Footer Section*/
 
+/*End Footer Section*/

@@ -39,7 +39,7 @@
                     </span>
                 </button></a>
             {{-- Report --}}
-            <a href="#">
+            <a href="customerReport">
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -181,7 +181,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href=""><button class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
+                <a href="/productList" class="d-flex justify-content-end"><button
+                        class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
             <div class="col-md-6">
                 {{-- Coin Charge List --}}
@@ -209,7 +210,7 @@
 
                     </tbody>
                 </table>
-                <a href="coinchargeList" class=""><button
+                <a href="" class=""><button
                         class="btn seemore text-light ">{{ __('messageZN.See More') }}</button></a>
             </div>
         </div>

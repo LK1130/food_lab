@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
@@ -7,7 +8,6 @@ use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\CoinController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\FavtypeController;
@@ -20,9 +20,12 @@ use App\Http\Controllers\SuggestController;
 use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
+use Illuminate\Routing\RouteGroup;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +36,15 @@ use App\Http\Controllers\TransactionController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
+//_________________________________Admin Routes_________________________
 */
+//admin login
+Route::get('/admin', [AdminController::class, 'loginPage']);
+Route::post('/admin', [AdminController::class, 'loginForm']);
+// admin logout 
+Route::get('/adminlogout', [AdminController::class, 'logout']);
+Route::group(['middleware' => ['checkAdmin']],function(){
 
 //admin/setting/loginManage
 Route::resource('adminLogin', LoginController::class);
@@ -55,7 +66,6 @@ Route::resource('decision', DecisionController::class);
 //admin/setting/newsManage
 Route::resource('news', NewsController::class);
 
-
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
@@ -68,10 +78,10 @@ Route::get('coinchargeList', function () {
 /**
  * For Dashboard & Transaction
  */
-Route::get('dashboard',[DashboardController::class,'dashboardList']);
-Route::get('coinchargeList',[CoinchargeTransaction::class,'coinchargeList']);
-Route::get('orderTransaction',[OrderTransactionController::class,'orderTransaction']);
-Route::get('ordertransactionDetail',[TransactionController::class,'ordertransactionDetail']);
+Route::get('dashboard', [DashboardController::class, 'dashboardList']);
+Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
+Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
+Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
 /**
  * Customer Info
  */
@@ -91,8 +101,9 @@ Route::get('reportreplies',function(){
 /**
  * For Product Form page
  */
-
 Route::resource('product', ProductController::class);
+//Prouduct List
+Route::get('productList', [ProductListController::class, 'showList']);
 
 //For customer home page
 Route::get('/', [CustomerController::class, 'foodlab']);
@@ -138,7 +149,7 @@ Route::get('rangeChart', function () {
     return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
 });
 Route::post('rangeChart', [SalesController::class, 'rangeChart']);
-
+});
 
 //_________________________________Customer Routes_________________________
 
@@ -175,8 +186,30 @@ Route::get('/access', [CustomerController::class, 'access']);
  * For Register Form
  */
 Route::post('/access', [CustomerController::class, 'register']);
+Route::post('/google', [CustomerController::class, 'google']);
+
+/*
+ * For verify account
+ */
+Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
 
 /*
  * For Login Page
  */
 Route::get('/login', [CustomerController::class, 'login']);
+
+
+/*
+ * For deliery info page
+*/
+Route::get('/deliveryInfo', function () {
+    return View('customer.deliveryInfo');
+});
+Route::get('/cart', function () {
+    return View('customer.cart');
+});
+
+/*
+ * For Login Form
+ */
+Route::post('/login', [CustomerController::class, 'loginForm']);
