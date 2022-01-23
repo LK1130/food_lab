@@ -75,7 +75,7 @@
 }
 
 .atag {
-    display: block;
+    display: inline-block;
 }
 
 .request_title {

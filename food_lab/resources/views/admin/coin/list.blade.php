@@ -21,6 +21,9 @@
             <a href="rateHistory" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.CoinHistory') }}</button></a>
         </div>
+         @if ($errors->any()) 
+        <p class="text-danger fw-bold fs-3">{{$errors->first()}}</p>
+        @endif
         <div class="row">
             <div class="col">
                 <div class="fw-bold mb-4 mt-4 title">{{ __('messageLK.Request') }} ({{ $request->total() }})</div>

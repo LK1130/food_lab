@@ -20,24 +20,22 @@ function decision() {
   * Parameters : no
   * Return : 
 */
-$("#checkBtn").click(function (event) {
-    event.preventDefault();
+$("#recAmt").keyup(function (event) {
     let reqCoin = Number($("#reqCoin").text());
     let recAmt = Number($("#recAmt").val());
     // Calculate
     let amount = Number(reqCoin) * rate;
+
+    $("#appCoin").text(recAmt / rate);
+    
     // check
-    if (recAmt === amount)
-        Swal.fire(
-            'Correct!',
-            'Amount is Correct To pay!',
-            'success'
-        )
-    else
-        Swal.fire({
-            icon: 'error',
-            title: 'Request Coin and Received Amount is Not Match',
-        })
+    if (recAmt === amount) {
+        $("#appCoin").css("color", "#198754");
+        $("#approve").css("visibility", "visible");
+    } else {
+        $("#appCoin").css("color", "#dc3545");
+        $("#approve").css("visibility", "hidden");
+    }
 });
 
 /*
@@ -48,6 +46,8 @@ $("#checkBtn").click(function (event) {
   * Return : 
   */
 $(document).ready(function () {
+    //Set Approve to disabled
+    $("#approve").css("visibility", "hidden");
     $("#approve").click(function (event) {
         var form = $(this).closest("form");
         var name = $(this).data("name");
@@ -66,6 +66,10 @@ $(document).ready(function () {
         }).then((result) => {
             popToggle(false);
             if (result.isConfirmed) {
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "coin")
+                    .attr("value", $("#appCoin").text()) 
+                    .appendTo("#decisionform");
                 $("<input />").attr("type", "hidden")
                     .attr("name", "decision")
                     .attr("value", 2) // Approve
@@ -106,6 +110,10 @@ $(document).ready(function () {
             popToggle(false);
             if (result.isConfirmed) {
                 $("<input />").attr("type", "hidden")
+                    .attr("name", "coin")
+                    .attr("value", $("#appCoin").text())
+                    .appendTo("#decisionform");
+                $("<input />").attr("type", "hidden")
                     .attr("name", "decision")
                     .attr("value", 3) // Waiting
                     .appendTo("#decisionform");
@@ -145,6 +153,10 @@ $(document).ready(function () {
             popToggle(false);
             if (result.isConfirmed) {
                 $("<input />").attr("type", "hidden")
+                    .attr("name", "coin")
+                    .attr("value", $("#appCoin").text())
+                    .appendTo("#decisionform");
+                $("<input />").attr("type", "hidden")
                     .attr("name", "decision")
                     .attr("value", 4) // Reject
                     .appendTo("#decisionform");
@@ -169,12 +181,12 @@ $(document).ready(function () {
         if (enable) {
             $(".sidenav").css('display', 'none');
             $(".atag").css('display', 'none');
-            $(".labeltag").css('display', 'block');
+            $(".labeltag").css('display', 'inline-block');
             $("button").prop('disabled', true);
             $("textarea").prop('disabled', true);
         } else {
             $(".sidenav").css('display', 'block');
-            $(".atag").css('display', 'block');
+            $(".atag").css('display', 'inline-block');
             $(".labeltag").css('display', 'none');
             $("button").prop('disabled', false);
             $("textarea").prop('disabled', false);

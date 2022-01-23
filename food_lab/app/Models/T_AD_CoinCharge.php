@@ -218,8 +218,7 @@ class T_AD_CoinCharge extends Model
       'Start findChargeById'
     ]);
 
-    $result = T_AD_CoinCharge::select('decision_status')
-      ->where('del_flg', 0)
+    $result = T_AD_CoinCharge::where('del_flg', 0)
       ->where('id', $chargeid)
       ->first();
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [

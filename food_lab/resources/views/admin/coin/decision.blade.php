@@ -15,7 +15,7 @@
             <a href="/coinListing" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.Back') }}</button></a>
         </div>
-        <div class="request_title mx-auto"> User Request</div>
+        <div class="request_title fw-bold mx-auto"> User Request</div>
         {{-- Start User Request --}}
         <div class="row mobile_block mt-3">
             <div class="col-3">
@@ -32,11 +32,12 @@
                 <label class="mt-3 fs-5 fw-bold">Contact to Customer</label>
                 <div class="mt-1 fs-5 ms-2 text-danger">
                     <i class="bi bi-telephone-fill me-2"></i>
-                    <a href="tel:{{ $Cdetail->phone }}">{{ $Cdetail->phone }}</a>
+                    {{ $Cdetail->phone }}
                 </div>
                 <div class="mt-1 fs-5 ms-2 text-danger">
                     <i class="bi bi-inbox-fill me-2"></i>
-                    <a href="mailto:{{ $Cdetail->email }}">{{ $Cdetail->email }}</a>
+                    <a href="mailto:{{ $Cdetail->email }}" class="atag">{{ $Cdetail->email }}</a>
+                    <label class="labeltag">{{ $Cdetail->email }}</label>
                 </div>
             </div>
             <div class="col">
@@ -82,14 +83,20 @@
                 <div class="mt-4 mb-4 decisiondiv">
                     <form action="/decided" method="POST" id="decisionform">
                         @csrf
-                        <div class="fs-5 fw-bold">Requested Coin</div>
-                        <div class="fs-1 ms-5" id="reqCoin"> {{ $Cdetail->request_coin }}</div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="fs-5 fw-bold">Requested Coin</div>
+                                <div class="fs-1 ms-5" id="reqCoin"> {{ $Cdetail->request_coin }}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="fs-5 fw-bold">Approve Coin</div>
+                                <div class="fs-1 ms-5" id="appCoin"></div>
+                            </div>
+                        </div>
                         <div class="fs-5 fw-bold">Received Amount</div>
                         <div class="input-group mb-3 received_amount">
                             <input type="number" class="form-control" id="recAmt" name="amount"
-                                placeholder="Received Amount" aria-label="Recipient's username" aria-describedby="checkBtn">
-                            <button class="btn btn-outline-info" type="button" onclick="calAmount()"
-                                id="checkBtn">Check</button>
+                                placeholder="Received Amount" aria-label="Recipient's username" aria-describedby="checkBtn"/>
                         </div>
                         @error('amount')
                             <li class="text-danger ">{{ $message }}</li>
