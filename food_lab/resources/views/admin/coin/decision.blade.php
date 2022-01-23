@@ -20,8 +20,23 @@
         <div class="row mobile_block mt-3">
             <div class="col-3">
                 <div class="evd_photo">
-                    <img src="{{ URL::asset('/storage/coinCharge/' . $path->path) }}"
-                        class="rounded  d-block border border-danger border-1 rounded" alt="...">
+                    @isset($path->path)
+                        <img src="{{ URL::asset('/storage/coinCharge/' . $path->path) }}"
+                            class="rounded  d-block border border-danger border-1 rounded" alt="...">
+                    @endisset
+                    @empty($path->path)
+                        <img src="{{ URL::asset('/img/noimage.jpg') }}"
+                            class="rounded  d-block border border-danger border-1 rounded" alt="...">
+                    @endempty
+                </div>
+                <label class="mt-3 fs-5 fw-bold">Contact to Customer</label>
+                <div class="mt-1 fs-5 ms-2 text-danger">
+                    <i class="bi bi-telephone-fill me-2"></i>
+                    <a href="tel:{{ $Cdetail->phone }}">{{ $Cdetail->phone }}</a>
+                </div>
+                <div class="mt-1 fs-5 ms-2 text-danger">
+                    <i class="bi bi-inbox-fill me-2"></i>
+                    <a href="mailto:{{ $Cdetail->email }}">{{ $Cdetail->email }}</a>
                 </div>
             </div>
             <div class="col">

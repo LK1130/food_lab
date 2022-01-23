@@ -105,7 +105,16 @@ $(document).ready(function () {
         }).then((result) => {
             popToggle(false);
             if (result.isConfirmed) {
-                // form.submit();
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "decision")
+                    .attr("value", 3) // Waiting
+                    .appendTo("#decisionform");
+                // Add ChargeId
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "chargeId")
+                    .attr("value", chargeId) // Charge Id
+                    .appendTo("#decisionform");
+                form.submit();
             }
         });
     });
@@ -135,7 +144,16 @@ $(document).ready(function () {
         }).then((result) => {
             popToggle(false);
             if (result.isConfirmed) {
-                // form.submit();
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "decision")
+                    .attr("value", 4) // Reject
+                    .appendTo("#decisionform");
+                // Add ChargeId
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "chargeId")
+                    .attr("value", chargeId) // Charge Id
+                    .appendTo("#decisionform");
+                form.submit();
             }
         });
     });

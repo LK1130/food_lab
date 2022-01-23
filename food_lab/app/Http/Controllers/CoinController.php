@@ -122,7 +122,7 @@ class CoinController extends Controller
     * Create : linn(2022/01/17) 
     * Update : 
     * This function is use to show coin change history.
-    * Parameters : no
+    * Parameters : charge id
     * Return : view('admin.coin.rateHistory')
     */
     public function decision($id)
@@ -133,6 +133,7 @@ class CoinController extends Controller
         // Get Coin Detail Info
         $t_ad_coincharge = new T_AD_CoinCharge();
         $chargeDetail = $t_ad_coincharge->chargeDetail($id);
+
         if ($chargeDetail == null) abort(404);
 
         // Get Payment List for Payment Select Box
@@ -140,7 +141,7 @@ class CoinController extends Controller
         $paymentList = $m_payment->getPayment();
 
         $path = $t_ad_coincharge->getChargePhoto($id);
-        if ($path == null) abort(500);
+        //if ($path == null) abort(500);
 
         $m_ad_coinrate = new M_AD_CoinRate();
         $rate = $m_ad_coinrate->getRate();
@@ -189,7 +190,7 @@ class CoinController extends Controller
 
                 // Set Status
                 $t_ad_coincharge = new T_AD_CoinCharge();
-                $t_ad_coincharge->setChargeDecision($request->chargeId);
+                $t_ad_coincharge->setChargeDecision($request->chargeId,$request->decision);
 
                 // Add Finance
                 $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
