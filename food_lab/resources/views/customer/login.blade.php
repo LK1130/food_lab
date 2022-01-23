@@ -25,7 +25,7 @@
 
         {{-- start register form --}}
         <div class="d-flex register-forms">
-            <div>
+            <div  class="access-imgs">
                 <img src="{{ url('img/menu3.png') }}" width="90%"/>
             </div>
             <form action="/login" method="post" class="d-flex flex-column align-items-center justify-content-center">

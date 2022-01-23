@@ -32,7 +32,6 @@
                             <th scope="col">{{ __('messageAMK.Amount') }}</th>
                             <th scope="col">{{ __('messageAMK.Avaliable') }}</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,28 +39,34 @@
                             <tr class="tablecolor1 text-light tablerows">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $product->product_name }}</td>
-                                <td>{{ $product->id }}</td>
-                                <td>{{ $product->product_type }}</td>
-                                <td>{{ $product->product_taste }}</td>
+                                <td>{{ $product->pid }}</td>
+                                <td>{{ $product->favourite_food }}</td>
+                                <td>{{ $product->taste }}</td>
                                 <td>{{ $product->coin }}</td>
                                 <td>{{ $product->amount }} MMK</td>
                                 @if ($product->avaliable == 1)
                                     <td>Avaliable</td>
-                                    
+
                                 @else
                                     <td>Not Avaliable</td>
-                                    
+
                                 @endif
                                 <td>
-                                    <a href="{{ route('product.edit',$product->id) }}"><button class="btn tablerows btn-outline-light">{{ __('messageAMK.Edit') }}</button></a>
+                                    {{-- <a href="{{ route('product.edit',$product->id) }}"><button class="btn tablerows btn-outline-light">{{ __('messageAMK.Edit') }}</button></a> --}}
+                                    <a href="{{ route('product.edit', $product->pid) }}"><button
+                                            class="btn btn-outline-light"><i class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">{{ $products->links() }}</div>
+               
             </div>
+            <div class="d-flex justify-content-center">{{ $products->links() }}</div>
+            <a href="/product" class="d-flex justify-content-end"><button
+                class="btn seemore text-light">{{ __('messageAMK.Product Add') }}</button></a>
         </div>
+    </div>
 
 
 

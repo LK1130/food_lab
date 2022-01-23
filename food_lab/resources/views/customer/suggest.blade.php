@@ -10,7 +10,7 @@
                 <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div>
-                <img src="{{ url('/img/logo.png') }}" alt="logo"/>
+                <img src="{{ url('storage/logo/siteLog.png') }}" alt="logo"/>
             </div>
         </div>
         
@@ -21,7 +21,7 @@
                 <div class="d-flex mb-5 errors">
                     <label class="fw-bold">{{ __('messageMK.suggestionType') }}</label>
                     <select class="form-select" name='type'>
-                        <option selected>Open this select menu</option>
+                        <option selected disabled>Open this select menu</option>
                         @foreach ($types as $type)
                             <option value="{{ $type->id }}">{{ $type->suggest_type }}</option>
                         @endforeach

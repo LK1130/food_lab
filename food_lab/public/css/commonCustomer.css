@@ -111,6 +111,17 @@ footer {
     font-size: 1.3rem;
 }
 
+.footer-logos {
+    position: relative;
+}
+
+.footer-names {
+    position: absolute;
+    top: 50%;
+    left: 7%;
+    transform: translateY(-50%);
+}
+
 .footer-infos div:first-of-type p.fw-bolder {
     font-size: 2rem;
     color: var(--primary-color);
@@ -135,6 +146,10 @@ footer {
 .footer-details div:last-of-type p:first-of-type {
     font-size: 1.6rem;
     color: var(--primary-color);
+}
+
+.sitelinks {
+    padding-left: 2.5px;
 }
 
 .copys {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_Fav_Type extends Model
 {
@@ -56,4 +57,27 @@ class M_Fav_Type extends Model
         $admin->del_flg = 1;
         $admin->save();
     }
+
+
+    
+      /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To get  all data from m_taste 
+    * parament : none
+    * return get data
+    * */
+    public function getTypeAll(){
+
+      Log::channel('adminlog')->info("M_Fav_Type Model", [
+          'Start all Data'
+      ]);
+      $mType = M_Fav_Type::all();
+
+      Log::channel('adminlog')->info("M_Fav_Type Model", [
+          'End all Data'
+      ]);
+      return  $mType;
+  }
+
 }

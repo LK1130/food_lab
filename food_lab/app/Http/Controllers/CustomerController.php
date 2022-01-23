@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use App\Http\Requests\ReportFormValidation;
 use App\Http\Requests\SuggestFormValidation;
 use App\Mail\VerifyMail;
 use App\Models\AdNews;
 use App\Models\M_AD_News;
 use App\Models\M_CU_Customer_Login;
 use App\Models\M_Product;
+use App\Models\M_Site;
 use App\Models\M_Suggest;
 use App\Models\M_Township;
 use App\Models\T_AD_Order;
@@ -42,11 +44,17 @@ class CustomerController extends Controller
         $news = new M_AD_News();
         $newDatas = $news->news();
 
+        $site = new M_Site();
+        $name = $site->siteName();
+
+        $product = new M_Product();
+        $productInfos = $product->productInfo();
+
         Log::channel('customerlog')->info('Customer Controller', [
             'End foodlab'
         ]);
 
-        return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas]);
+        return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas, 'name' => $name, 'productInfos' => $productInfos]);
     }
 
     /*
@@ -97,17 +105,20 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : View report Blade
      * */
-    public function  reportForm()
+    public function  reportForm(ReportFormValidation $request)
     {
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start reportData'
         ]);
+
+        $validated = $request->validated();
         $report = new T_AD_Report();
+        $report->customerReport($validated);
 
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end reportData'
         ]);
-        return view('customer.report');
+        return redirect('/');
     }
 
     /*
@@ -119,14 +130,14 @@ class CustomerController extends Controller
      * */
     public function  suggest()
     {
-        Log::channel('cutomerlog')->info('Customer Controller', [
+        Log::channel('customerlog')->info('CustomerController', [
             'start suggest'
         ]);
 
         $data = new M_Suggest();
         $type = $data->suggestType();
 
-        Log::channel('cutomerlog')->info('Customer Controller', [
+        Log::channel('customerlog')->info('CustomerController', [
             'end suggest'
         ]);
         return view('customer.suggest', ['types' => $type]);
@@ -152,6 +163,8 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'end suggestForm'
         ]);
+
+        return redirect('/');
     }
 
     /*

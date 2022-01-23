@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class M_Product extends Model
@@ -32,6 +33,31 @@ class M_Product extends Model
         Log::channel('customerlog')->info('M_Product Model', [
             'end products'
         ]);
+    }
+
+    /* Create : Aung Min Khant(21/1/2022)
+    * Update :
+    * Explain of function : To getall data from m_product databse and m_fav_type and m_taste
+    * parament : none
+    * return all data
+    * */
+
+    public function getAllProducts()
+    {
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start Product List'
+        ]);
+        $product = DB::table('m_product')
+            ->select('*', DB::raw('m_product.id AS pid'))
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->where('m_product.del_flg', 0)
+            ->paginate(10);
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End Product List'
+        ]);
+
         return $product;
     }
 
@@ -72,6 +98,26 @@ class M_Product extends Model
 
 
     /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To get  data with specific id from m_product databse 
+    * parament : specific id from  product list table
+    * return get data
+    * */
+    public function getDataById($id)
+    {
+
+        Log::channel('adminlog')->info("M_Product_ Model", [
+            'Start get Data'
+        ]);
+        $mProduct = M_Product::findOrfail($id);
+
+        Log::channel('adminlog')->info("M_Product_ Model", [
+            'End get Data'
+        ]);
+        return $mProduct;
+    }
+    /*
     * Create : Aung Min Khant(19/1/2022)
     * Update :
     * Explain of function : To update data for m_product databse 
@@ -103,12 +149,60 @@ class M_Product extends Model
             'End update Data'
         ]);
 
-        // dd($product);
+
         return $product;
     }
     public function productDetail()
     {
 
         return $this->hasMany('App\Models\M_Product_Detail');
+    }
+
+    /*
+      * Create : Zar Ni(15/1/2022)
+      * Update :
+      * Explain of function : To get data for DashboardProductMiniList
+      * Prarameter : no
+      * return :
+    */
+    public function DashboardproductList()
+    {
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start DashboardproductList'
+        ]);
+
+        $dashboardproduct = M_Product::join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->limit(5)
+            ->get();
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End DashboardproductList'
+        ]);
+
+        return $dashboardproduct;
+    }
+
+    /*
+     * Create : Min Khant(23/1/2022)
+     * Update :
+     * Explain of function : get product data
+     * Prarameter : no
+     * return : product data
+     * */
+    public function productInfo()
+    {
+        Log::channel('customerlog')->info('M_Product Model', [
+            'start productInfo'
+        ]);
+        $products = M_Product::select(['id', 'product_name', 'coin'])
+            ->where('available', '=', 0)
+            ->where('del_flg', '=', 0)
+            ->get();
+        Log::channel('customerlog')->info('M_Product Model', [
+            'end productInfo'
+        ]);
+        return $products;
     }
 }

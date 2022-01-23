@@ -290,6 +290,9 @@
 .forms {
     min-height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg6.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .reports,
@@ -411,11 +414,6 @@ form div .cancels {
     padding: 15px 30px;
     border-radius: 10px;
     cursor: pointer;
-}
-
-.creates:last-of-type {
-    letter-spacing: 2px;
-    word-spacing: 1px;
 }
 
 .modal-headers {
@@ -544,9 +542,6 @@ form div .cancels {
 }
 
 
-/*End Access Section*/
-
-
 /*Start Login Section*/
 
 .login {
@@ -562,3 +557,18 @@ form div .cancels {
 
 
 /*End Login Section*/
+
+@media (max-width:720px) {
+    .access-imgs {
+        display: none;
+    }
+    .register-forms form {
+        min-width: 100%;
+    }
+    .have-accs {
+        font-size: 1rem;
+    }
+}
+
+
+/*End Access Section*/

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class T_AD_Evd extends Model
@@ -20,14 +21,25 @@ class T_AD_Evd extends Model
     * return save data
     * */
 
-    public function insertImage($filepath, $product)
+    public function insertImage($filepath, $product,$order)
     {
 
         Log::channel('adminlog')->info("T_AD_EVD Model", [
             'Start save Data'
         ]);
+
+        Log::critical("session 1",[session($order),$order]);
+            if(session($order) != ""){
+                $evd = T_AD_Evd::where('link_id','=',$product->id)
+                ->where('order_id','=',$order)
+                ->update(['del_flg' => 1]);
+                
+            }
+
         $evd = new T_AD_Evd();
+
         $evd->link_id = $product->id;
+        $evd->order_id = $order;
         $evd->path = $filepath;
         $evd->note = "Product Image";
         $evd->save();
@@ -35,6 +47,46 @@ class T_AD_Evd extends Model
         Log::channel('adminlog')->info("T_AD_EVD Model", [
             'End save Data'
         ]);
+    }
+
+    /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To restore product image from t_av_evd database
+    * parament : specific id  from m_product database
+    * return  data
+    * */
+    public function editEvd($id)
+    {
+
+        Log::channel('adminlog')->info("T_AD_EVD Model", [
+            'Start edit Data'
+        ]);
+        $evd = DB::select(
+            DB::raw("SELECT
+            t_ad_evd.path
+            FROM
+            t_ad_evd
+            WHERE
+            t_ad_evd.link_id = $id AND
+            t_ad_evd.del_flg =0 
+            ORDER BY
+            t_ad_evd.order_id")
+        );
+
+        Log::channel('adminlog')->info("T_AD_EVD Model", [
+            'End edit Data'
+        ]);
+        return $evd;
+    }
+
+    public function getPhoto($order,$product){
+        $photo = T_AD_Evd::where('link_id','=',$product)
+            ->where('order_id','=',$order)
+            ->where('del_flg','=',0)
+            ->first();
+
+        return $photo ? $photo : "";
     }
 
     public function deleteImage($id)

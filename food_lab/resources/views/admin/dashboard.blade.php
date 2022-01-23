@@ -39,7 +39,7 @@
                     </span>
                 </button></a>
             {{-- Report --}}
-            <a href="#">
+            <a href="customerReport">
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -75,9 +75,9 @@
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers">12</p>
+                    <p class=" numbers">{{ $todaycount }}</p>
                     <p class="detail">{{ __('messageZN.Today Order') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
@@ -98,7 +98,7 @@
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Transaction List') }}</div>
                 <table class="table boxshad">
                     <thead>
-                        <tr class="tableheader tablerows">
+                        <tr class="tableheader tablerows ">
                             <th scope="col">No.</th>
                             <th scope="col">Customer ID</th>
                             <th scope="col">Payment</th>
@@ -112,7 +112,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list2->customerID }}</td>
                                 <td>{{ $list2->payment_name }}</td>
-                                <td>{{ $list2->order_status }}</td>
+                                <td>{{ $list2->status }}</td>
                                 <td>{{ $list2->order_date }} {{ $list2->order_time }}
                                 </td>
                             </tr>
@@ -163,40 +163,26 @@
                             <th scope="col">No.</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Product ID</th>
-                            <th scope="col">Coin</th>
-                            <th scope="col">Tpye</th>
+                            <th scope="col">Coin/amount</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Taste</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">1</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">2</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">3</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
+                        @foreach ($product as $list3)
+                            <tr class="tablecolor1 tablerows">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $list3->product_name }}</td>
+                                <td>C12312</td>
+                                <td>{{ $list3->coin }}/{{ $list3->amount }}</td>
+                                <td>{{ $list3->favourite_food }}</td>
+                                <td>{{ $list3->taste }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-<<<<<<< HEAD
                 <a href="/productList" class="d-flex justify-content-end"><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
-=======
-                <a href=""><button class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
->>>>>>> dca0c77b105cdaafbac9ae057bab4f0fdb43794b
             </div>
             <div class="col-md-6">
                 {{-- Coin Charge List --}}
@@ -224,7 +210,7 @@
 
                     </tbody>
                 </table>
-                <a href="coinchargeList" class=""><button
+                <a href="" class=""><button
                         class="btn seemore text-light ">{{ __('messageZN.See More') }}</button></a>
             </div>
         </div>

@@ -17,30 +17,10 @@ $(document).ready(function (e) {
       return false;
     }
   });
-  /*
-  * Create : Aung Min Khant(19/1/2022)
-  * Update :
-  * Explain of function : When coin input keypress calulate to amount
-  * parameter : none 
-  * return amount
-  * */
 
-  let rate = parseInt($('#rate').text());
-  console.log($('rate'));
-  $('#coin').on('keyup keypress', function () {
-    let coin = Math.abs(parseInt($('#coin').val()));
-    //  console.lg
-    console.log(coin);
-    if ($('#coin').val() === "") {
-      console.log('hello');
-      $('#rate').text('0 MMK');
-    } else {
-      $('#rate').text(coin * rate + " MMK");
+  disableAppendBox();
 
-    }
-  });
-
-
+ 
   /*
  * Create : Aung Min Khant(17/1/2022)
  * Update :
@@ -54,6 +34,7 @@ $(document).ready(function (e) {
     var inputFile = e.target.files[0];
     var url = window.URL.createObjectURL(inputFile);
     imgOne.attr("src", url);
+    $('#hide1').val("");
   });
 
   var photoTwo = $("#photo2");
@@ -63,6 +44,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgTwo.attr("src", url);
+    $('#hide2').val("");
   });
 
   var photoThree = $("#photo3");
@@ -72,6 +54,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgThree.attr("src", url);
+    $('#hide3').val("");
   });
 
   var photoFour = $("#photo4");
@@ -81,6 +64,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgFour.attr("src", url);
+    $('#hide4').val("");
   });
 
   var photoFive = $("#photo5");
@@ -90,6 +74,7 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgFive.attr("src", url);
+    $('#hide5').val("");
   });
 
   var photoSix = $("#photo6");
@@ -99,8 +84,11 @@ $(document).ready(function (e) {
     console.log(inputFile);
     var url = window.URL.createObjectURL(inputFile);
     imgSix.attr("src", url);
+    $('#hide6').val("");
   });
 
+
+  
   /*
  * Create : Aung Min Khant(17/1/2022)
  * Update :
@@ -118,6 +106,21 @@ $(document).ready(function (e) {
     
   }
 
+  $('.delete').on('click',function(){
+    
+
+        $(this).closest(`.deleteForm`).remove();
+        let found = false;
+        for (let int = 0; int < countArray.length; int++) if (countArray[int] == this.id) found = true;
+        if (!found) {
+          countDiv = document.getElementsByClassName('appendCount').length;
+          countArray.push(parseInt(this.id));
+          console.log(countDiv);
+          enable(countDiv);
+        }
+      
+  });
+
   $(".plusBox").click(function () {
     let countDiv = document.getElementsByClassName('appendCount').length;
     count = countArray[0];
@@ -125,7 +128,7 @@ $(document).ready(function (e) {
     disable(countDiv);
 
     if (countDiv < 6) {
-      let input = `<div class="d-flex mt-3 appendCount" id="deleteForm" >
+      let input = `<div class="d-flex mt-3 appendCount deleteForm">
           <div class="form-group d-flex mx-3">
               <label for="category" class="col-form-label titles">Category</label>
           <select name="category${count}" id="category" class="form-select mx-2">
@@ -146,17 +149,17 @@ $(document).ready(function (e) {
 
       $(".append").append(input);
       countArray.shift();
-      console.log(countArray);
+      // console.log(countArray);
       // To delete form
       $('.delete').click(function (e) {
 
-        $(this).closest(`#deleteForm`).remove();
+        $(this).closest(`.deleteForm`).remove();
         let found = false;
         for (let int = 0; int < countArray.length; int++) if (countArray[int] == this.id) found = true;
         if (!found) {
           countDiv = document.getElementsByClassName('appendCount').length;
           countArray.push(parseInt(this.id));
-          console.log(countDiv);
+          
           enable(countDiv);
         }
       });
@@ -180,6 +183,14 @@ $(document).ready(function (e) {
     }
   }
 
-
+  //to disable append box when append data is full
+  function disableAppendBox(){
+    let countDiv = document.getElementsByClassName('appendCount').length;
+    if(countDiv == 6){  
+      $(".plusBox").css('visibility', 'hidden');
+    }else{
+      $(".plusBox").css('visibility', 'visible');
+    }
+  }
 });
 

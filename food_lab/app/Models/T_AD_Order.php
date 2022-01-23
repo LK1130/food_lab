@@ -54,7 +54,6 @@ class T_AD_Order extends Model
         return $ordertransactionDetail;
     }
 
-
     /* Create:Zarni(2022/01/16) 
     * Update: 
     * This is function is to show the data of admin ordertransactionList
@@ -67,10 +66,13 @@ class T_AD_Order extends Model
             'Start OrderTransactions'
         ]);
 
-        $ordertransactions = T_AD_Order::join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
+        $ordertransactions = T_AD_Order::select('*', DB::raw('t_ad_order.id AS orderid'))
+            ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_payment', 'm_payment.id', '=', 't_ad_order.payment')
             ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->orderby('t_ad_order.order_date', 'DESC')
+            ->orderby('t_ad_order.order_time', 'DESC')
             ->where('t_ad_order.del_flg', 0)
             ->paginate(10);
 
@@ -94,6 +96,7 @@ class T_AD_Order extends Model
 
         $dashboardtrans = T_AD_Order::join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_payment', 'm_payment.id', '=', 't_ad_order.payment')
+            ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
             ->where('t_ad_order.del_flg', 0)
             ->limit(5)
             ->get();
@@ -125,6 +128,43 @@ class T_AD_Order extends Model
 
         return $transcount;
     }
+
+    /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of admin Dashboard TodayOrder Count
+    * Return 
+    */
+    public function Todayordercount()
+    {
+
+        $currentdate = Carbon::now()->day;
+        $currentmonth = Carbon::now()->month;
+        $currentyear = Carbon::now()->year;
+        $todayorder = T_AD_Order::where(DB::raw(('day(order_date)')), $currentdate)
+            ->where(DB::raw(('month(order_date)')), $currentmonth)
+            ->where(DB::raw(('year(order_date)')), $currentyear)
+            ->count();
+        return $todayorder;
+    }
+    /* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the data of User's TransactionDetail
+    * Return 
+    */
+    public function Usertransaction($id)
+    {
+
+        $userdetail = T_AD_Order::join('m_payment', 'm_payment.id', '=', 't_ad_order.payment')
+            ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
+            ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->where('t_ad_order.del_flg', 0)
+            ->where('t_ad_order.customer_id', '=', $id)
+            ->paginate(10);
+
+        return $userdetail;
+    }
+
+
 
     public function orderDaily()
     {

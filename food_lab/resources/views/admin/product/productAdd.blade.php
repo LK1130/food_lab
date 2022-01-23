@@ -38,9 +38,9 @@
                                      </div>
                                   
                                      <div class="form-group mx-4 mt-2">
-                                     <input type="file" name="photo1" id="photoone" class="form-control files">
+                                     <input type="file" name="photo1" id="photoone" class="form-control files" accept="image/*">
                                      @error('photo1')
-                                     <li class="text-danger ">At least One Product Photo is required.</li>
+                                     <li class="text-danger ">{{ __('messageAMK.Product Photo is required') }}</li>
                                      @enderror
                                     </div>
                                  </div>
@@ -49,7 +49,7 @@
                                         <img id="img2" class="img-thumbnail" src="" alt="">
                                     </div>
                                     <div class="form-group mx-4 mt-2">
-                                    <input type="file" name="photo2"  id="phototwo" class="form-control files">
+                                    <input type="file" name="photo2"  id="phototwo" class="form-control files" accept="image/*">
                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-10">
@@ -58,7 +58,7 @@
                                     </div>
                                     
                                     <div class="form-group mx-4 mt-2">
-                                    <input type="file" name="photo3" id="photothree" class="form-control files">
+                                    <input type="file" name="photo3" id="photothree" class="form-control files" accept="image/*">
                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-10">
@@ -67,7 +67,7 @@
                                     </div>
                                   
                                     <div class="form-group mx-4 mt-2">
-                                    <input type="file" name="photo4" id="photofour" class="form-control files">
+                                    <input type="file" name="photo4" id="photofour" class="form-control files" accept="image/*">
                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-10">
@@ -76,7 +76,7 @@
                                     </div>
                                    
                                     <div class="form-group mx-4 mt-2 mb-3">
-                                    <input type="file" name="photo5" id="photofive" class="form-control files">
+                                    <input type="file" name="photo5" id="photofive" class="form-control files" accept="image/*">
                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-10">
@@ -85,7 +85,7 @@
                                     </div>
                                   
                                     <div class="form-group mx-4 mt-2 mb-3">
-                                    <input type="file" name="photo6" id="photosix"class="form-control files">
+                                    <input type="file" name="photo6" id="photosix"class="form-control files" accept="image/*">
                                    </div>
                                 </div>
                              </div>
@@ -95,17 +95,17 @@
                     <div class="mt-2 col-md-5 col-sm-10">
                         <div class="form-group">
                             <label for="pname" class="form-label titles">{{ __('messageAMK.ProductName') }}</label>
-                            <input type="text" name="pname" id="pname" class="form-control inputs"  required>
+                            <input type="text" name="pname" id="pname" class="form-control inputs" value="{{ old('pname') }}" >
                             @error('pname')
-                                <li class="text-danger ">{{ $message }}</li>
+                                <li class="text-danger ">{{ __("messageAMK.ProductName is required") }}</li>
                                 @enderror
                         </div>
                         <div class="form-group">
                             <label for="ptaste" class="form-label titles">{{ __('messageAMK.Taste') }}</label>
                             <select name="ptaste" id="ptaste" class="form-select selects" required>
-                                <option value="0" selected disabled>Choose Taste</option>
+                                {{-- <option value="0" selected disabled>Choose Taste</option> --}}
                                 @foreach ($mTaste as $item)
-                                    <option value="{{ $item->taste }}">{{ $item->taste }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->taste }}</option>
                                 @endforeach
                                
                             </select>
@@ -113,28 +113,30 @@
                         <div class="form-group ">
                             <label for="ptype" class="form-label titles">{{ __('messageAMK.Type') }}</label>
                             <select name="ptype" id="ptype" class="form-select selects" required>
-                                <option value="0" selected disabled>Choose Type</option>
+                                {{-- <option value="0" selected disabled>Choose Type</option> --}}
                                @foreach ($mFav as $item)
-                               <option value="{{ $item->favourite_food }}">{{ $item->favourite_food }}</option>
+                               <option value="{{ $item->id }}">{{ $item->favourite_food }}</option>
                                @endforeach
                             </select>
                         </div>
                         <div class="form-group ">
                             <label for="coin" class="form-label titles">{{ __('messageAMK.CoinAmount') }}</label>
-                            <input type="number" name="coin" id="coin" class="form-control inputs" min="0" required>
+                            <input type="number" name="coin" id="coin" class="form-control inputs" min="0" value="{{ old('coin') }}">
                             @error('coin')
-                            <li class="text-danger ">{{ $message }}</li>
+                            <li class="text-danger ">{{ __("messageAMK.Coin must be filled and negative sign can't assign.") }}</li>
                             @enderror
                             <div class="d-flex justify-content-center">
-                                <p class="mx-3 mt-2 fs-4 fw-bold amounts text-danger" id="rate">{{ $rates->rate }} MMK</p>
+                                <p class="mx-3 mt-2 fs-4 fw-bold amounts text-danger" id="rate">0 MMK</p>
                             </div>
                            
                         </div>
                         <div class="form-group">
                             <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
-                            <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" required>
+                            <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" value="{{ old('list') }}">
                             </textarea>
-                           
+                            @error('list')
+                            <li class="text-danger ">{{ __("messageAMK.Product's ingredient list is required.") }}</li>
+                            @enderror
                         </div>
 
                         <div class="d-flex justify-content-between  mt-4 mx-2">
@@ -143,7 +145,7 @@
                                 
                                 </div>
                                 <div class="mt-2">
-                                    <input type="checkbox" name="avaliable" id="avaliable" class="custombox" value="1">
+                                    <input type="checkbox" name="avaliable" id="avaliable" class="custombox" checked value="1">
                                 </div>
                         </div>
                     </div>
@@ -158,6 +160,9 @@
                             <label for="pdesc" class="form-label titles">{{ __('messageAMK.Description') }}</label>
                             <textarea name="pdesc" id="pdesc" class="form-control" cols="30" rows="10"></textarea>
                         </div>
+                        @error('pdesc')
+                        <li class="text-danger ">{{ __("messageAMK.Product's Description is required.") }}</li>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -185,10 +190,28 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-end mb-4">
-                <button type="reset" class="resetBtn">{{ __('messageAMK.Reset') }}</button>
-                <button type="submit" class="submitBtn">{{ __('messageAMK.Submit') }}</button>
-            </div>
+
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-end mb-4">
+                        <div class="col-md-6">
+                            <button class="backBtn"><a href="/productList" class="back">{{ __('messageAMK.Back') }}</a></button>
+                        </div>
+                        <div class="col-md-3">
+                        <button type="reset" class="resetBtn">{{ __('messageAMK.Reset') }}</button>
+                        
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="submitBtn">{{ __('messageAMK.Submit') }}</button>
+                        </div>
+                    </div>
+                </div>
+               
+            
         </form>
      </div>
+     <script>
+        var rate = @json($rates->rate);
+
+    </script>
+    <script src="{{ URL::asset('js/adminProductCalculate.js') }}"></script>
 @endsection

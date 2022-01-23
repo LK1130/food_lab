@@ -20,13 +20,13 @@ Monthly Sales
 <div class="col-md-10">
    <div class="mt-4">
     <!-- Daily Sales Button -->
-    <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  inactive btncust">Daily Sale</button></a>
+    <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  inactive btncust">Daily</button></a>
     <!--Monthly Sales Button -->
-    <a href="monthlyChart" class="me-5"><button id="monthlySales"  class="btn text-light active btncust">Monthly Sale</button></a>
+    <a href="monthlyChart" class="me-5"><button id="monthlySales"  class="btn text-light active btncust">Monthly</button></a>
     <!-- Yearly Sales Button -->
-    <a href="yearlyChart" class="me-5"><button id="yearlySales"  class="btn text-light inactive btncust">Yearly Sale</button></a>
+    <a href="yearlyChart" class="me-5"><button id="yearlySales"  class="btn text-light inactive btncust">Yearly</button></a>
     <!-- Range Sales Button -->
-    <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light inactive btncust">Range Sale</button></a>  
+    <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light inactive btncust">Range</button></a>  
   </div>
   <!-- For Daily Chart-->
     <div id="lineChart">

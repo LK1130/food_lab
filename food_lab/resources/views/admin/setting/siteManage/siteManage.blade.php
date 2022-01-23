@@ -60,7 +60,7 @@
             <div class="rowInput">
                 <label for="policy">{{__('messageZY.privacy')}}</label>
                 <div class="input-group mb-3">
-                    <input type="text" id="policy" name="policy" value="{{$siteInfo==null ? '' :  $siteInfo->privacy_policy }}">
+                    <textarea id="policy" name="policy">{{ $siteInfo==null ? '' :  $siteInfo->privacy_policy }}</textarea>
                                 @error('policy')
                                 <li class="text-danger ">{{ $message }}</li>
                                 @enderror

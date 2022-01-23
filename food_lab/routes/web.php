@@ -8,7 +8,6 @@ use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\CoinController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\FavtypeController;
@@ -21,10 +20,12 @@ use App\Http\Controllers\SuggestController;
 use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
+use Illuminate\Routing\RouteGroup;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +36,15 @@ use App\Http\Controllers\TransactionController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
+//_________________________________Admin Routes_________________________
 */
 //admin login
 Route::get('/admin', [AdminController::class, 'loginPage']);
 Route::post('/admin', [AdminController::class, 'loginForm']);
-
 // admin logout 
 Route::get('/adminlogout', [AdminController::class, 'logout']);
+Route::group(['middleware' => ['checkAdmin']],function(){
 
 //admin/setting/loginManage
 Route::resource('adminLogin', LoginController::class);
@@ -63,7 +66,6 @@ Route::resource('decision', DecisionController::class);
 //admin/setting/newsManage
 Route::resource('news', NewsController::class);
 
-
 Route::get('dashboard', function () {
     return View('admin.dashboard');
 });
@@ -84,8 +86,18 @@ Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransa
  * Customer Info
  */
 Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
+Route::get('searchname',[customerInfoController::class,'customerSearch']);
+Route::get('searchid',[customerInfoController::class,'customeridSearch']);
 Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
-
+/**
+ * Customer Report
+ */
+Route::get('customerReport',function(){
+    return view('admin.report.customerreport');
+});
+Route::get('reportreplies',function(){
+    return view('admin.report.reportreply');
+});
 /**
  * For Product Form page
  */
@@ -108,7 +120,8 @@ Route::get('coinListing', [CoinController::class, 'list']);
 Route::get('rateHistory', [CoinController::class, 'rateHistory']);
 Route::get('rateChange', [CoinController::class, 'rateChange']);
 Route::post('rateStore', [CoinController::class, 'rateStore']);
-Route::get('makeDecision', [CoinController::class, 'decision']);
+Route::get('makeDecision/{id}', [CoinController::class, 'decision']);
+Route::post('decided',[CoinController::class,'makeDecision']);
 
 //_________________________________End Admin Coin Routes_________________________
 
@@ -137,7 +150,7 @@ Route::get('rangeChart', function () {
     return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
 });
 Route::post('rangeChart', [SalesController::class, 'rangeChart']);
-
+});
 
 //_________________________________Customer Routes_________________________
 
@@ -188,6 +201,17 @@ Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
  * For Login Page
  */
 Route::get('/login', [CustomerController::class, 'login']);
+
+
+/*
+ * For deliery info page
+*/
+Route::get('/deliveryInfo', function () {
+    return View('customer.deliveryInfo');
+});
+Route::get('/cart', function () {
+    return View('customer.cart');
+});
 
 /*
  * For Login Form

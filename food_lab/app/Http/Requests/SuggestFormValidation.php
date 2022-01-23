@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class SuggestFormValidation extends FormRequest
 {
@@ -23,9 +24,16 @@ class SuggestFormValidation extends FormRequest
      */
     public function rules()
     {
+        Log::channel('customerlog')->info('SuggestFormValidation Request', [
+            'start rules'
+        ]);
+
+        Log::channel('customerlog')->info('SuggestFormValidation Request', [
+            'end rules'
+        ]);
         return [
             'type' => 'required | digits_between:1,5',
-            'details' => 'required'
+            'details' => 'required | max:255'
         ];
     }
 }

@@ -47,7 +47,7 @@
                                 </td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
-                                    <a href="makeDecision"><button class="btn btn-outline-success"><i
+                                    <a href="makeDecision/{{$item->chargeid }}"><button class="btn btn-outline-success"><i
                                                 class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>
@@ -77,7 +77,7 @@
                             <th scope="col">Customer ID</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Request Coin</th>
-                            <th scope="col">Request DateTime</th>
+                            <th scope="col">Approved Time</th>
                             <th scope="col">Last Decision By</th>
                             <th scope="col"></th>
                         </tr>
@@ -89,8 +89,7 @@
                                 <td scope="col">{{ $item->customerID }}</td>
                                 <td scope="col">{{ $item->nickname }}</td>
                                 <td scope="col">{{ $item->request_coin }}</td>
-                                <td scope="col">{{ \Carbon\Carbon::parse($item->request_datetime)->diffForHumans() }}
-                                </td>
+                                <td scope="col">{{ \Carbon\Carbon::parse($item->updatetime)->diffForHumans() }}</td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
                                     <a href=""><button class="btn btn-outline-primary"><i
@@ -121,7 +120,7 @@
                             <th scope="col">Customer ID</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Request Coin</th>
-                            <th scope="col">Request DateTime</th>
+                            <th scope="col">Decided Time</th>
                             <th scope="col">Last Decision By</th>
                             <th scope="col"></th>
                         </tr>
@@ -133,11 +132,10 @@
                                 <td scope="col">{{ $item->customerID }}</td>
                                 <td scope="col">{{ $item->nickname }}</td>
                                 <td scope="col">{{ $item->request_coin }}</td>
-                                <td scope="col">{{ \Carbon\Carbon::parse($item->request_datetime)->diffForHumans() }}
-                                </td>
+                                <td scope="col">{{ \Carbon\Carbon::parse($item->updatetime)->diffForHumans() }}</td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
-                                    <a href=""><button class="btn btn-outline-warning"><i
+                                    <a href="makeDecision/{{$item->chargeid }}"><button class="btn btn-outline-warning"><i
                                                 class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>
@@ -165,7 +163,7 @@
                             <th scope="col">Customer ID</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Request Coin</th>
-                            <th scope="col">Request DateTime</th>
+                            <th scope="col">Reject Time</th>
                             <th scope="col">Last Decision By</th>
                             <th scope="col"></th>
                         </tr>
@@ -177,8 +175,7 @@
                                 <td scope="col">{{ $item->customerID }}</td>
                                 <td scope="col">{{ $item->nickname }}</td>
                                 <td scope="col">{{ $item->request_coin }}</td>
-                                <td scope="col">{{ \Carbon\Carbon::parse($item->request_datetime)->diffForHumans() }}
-                                </td>
+                               <td scope="col">{{ \Carbon\Carbon::parse($item->updatetime)->diffForHumans() }} </td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
                                     <a href=""><button class="btn btn-outline-light"><i

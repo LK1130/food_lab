@@ -30,7 +30,7 @@
         </div>
 
         {{-- start register header --}}
-        <div class="d-flex ms-5 register-headers">
+        <div class="d-flex ms-5 mb-3 register-headers">
             <div>
                 <p class="fw-bolder pb-3 creates">{{ __('messageMK.createAccount') }}</p>
                 <div class="d-flex justify-content-around align-items-center text-white sign-withs">
@@ -38,7 +38,6 @@
                     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                     </fb:login-button>
                 </div>
-                <p class="text-center fw-bolder py-2 creates">{{ __('messageMK.OR') }}</p>
             </div>
             <div class="welcome-registers">
                 <p class="text-center creates">{{ __('messageMK.welcomeFrom') }} <span class="d-block ms-5 ps-5">{{ __('messageMK.ourFoodLab') }}</span></p>
@@ -159,7 +158,7 @@
                 </div>
                 {{-- end modal--}}
             </form>
-            <div>
+            <div class="access-imgs">
                 <img src="{{ url('img/menu3.png') }}" width="90%"/>
             </div>
         </div>

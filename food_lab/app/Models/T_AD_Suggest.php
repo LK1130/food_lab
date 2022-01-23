@@ -70,10 +70,16 @@ class T_AD_Suggest extends Model
         Log::channel('customerlog')->info('T_AD_Suggest Model', [
             'start customerSuggest'
         ]);
-        $suggest = T_AD_Suggest::create([
-            'suggest_type' => $request->type,
-            'message' => $request->details
-        ]);
+        // $suggest = T_AD_Suggest::create([
+        //     'suggest_type' => $request->input('type'),
+        //     'message' => $request->input('details')
+        // ]);
+
+        $suggest = new T_AD_Suggest();
+        $suggest->suggest_type = $request['type'];
+        $suggest->message = $request['details'];
+        $suggest->save();
+
         Log::channel('customerlog')->info('T_AD_Suggest Model', [
             'end customerSuggest'
         ]);

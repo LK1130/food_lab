@@ -24,27 +24,31 @@
 
     {{-- Start Footer Section --}}
     <footer>
-        <div class="pt-3 ps-3 footer-infos">
-            <div class="d-flex align-items-center">
-                <img src="{{ url('img/logo.png') }}" class="pe-3"/>
-                <p class="fw-bolder">Food Lab</p>
+        <div class="pt-5 ps-3 footer-infos">
+            <div class="d-flex align-items-center footer-logos">
+                <img src="{{ url('storage/logo/siteLog.png') }}"/>
+                <p class="fw-bolder footer-names">{{ $name->site_name }}</p>
             </div>
-            <div class="d-flex flex-wrap justify-content-around align-items-start mt-4 footer-details">
+            <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
                 <div class="footer-navs">
                     <p><a href="/">{{ __('messageMK.home') }}</a></p>
                     <p><a href="#">{{ __('messageMK.aboutus') }}</a></p>
                     <p><a href="#">{{ __('messageMK.products') }}</a></p>
                     <p><a href="">{{ __('messageMK.buy coin') }}</a></p>
                     <p><a href="#">{{ __('messageMK.inform') }}</a></p>
-                    <p><a href="/access">{{ __('messageMK.access') }}</a></p>
-                    <p><a href="#">{{ __('messageMK.profile') }}</a></p>
+                    @if (!session()->has('customerId'))
+                        <p><a href="/access">{{ __('messageMK.access') }}</a></p>
+                        <p><a href="#">{{ __('messageMK.profile') }}</a></p>
+                    @endif
                 </div>
-                <div>
-                    <p>{{ __('messageMK.feedback') }}</p>
-                    <p><a href="#">{{ __('messageMK.contact') }}</a></p>
-                    <p><a href="/suggest">{{ __('messageMK.suggest') }}</a></p>
-                    <p><a href="/report">{{ __('messageMK.report') }}</a></p>
-                </div>
+                @if (session()->has('customerId'))
+                    <div>
+                        <p>{{ __('messageMK.feedback') }}</p>
+                        <p><a href="#">{{ __('messageMK.contact') }}</a></p>
+                        <p><a href="/suggest">{{ __('messageMK.suggest') }}</a></p>
+                        <p><a href="/report">{{ __('messageMK.report') }}</a></p>
+                    </div>
+                @endif
                 <div>
                     <div>
                         <p>{{ __('messageMK.information') }}</p>
@@ -53,7 +57,7 @@
                     </div>
                     <div class="mt-4">
                         <p>{{ __('messageMK.othesite') }}</p>
-                        <p><a href="#">{{ __('messageMK.sitelink') }}</a></p>
+                        <p class="sitelinks"><a href="#">{{ __('messageMK.sitelink') }}</a></p>
                     </div>
                 </div>
                 <div>

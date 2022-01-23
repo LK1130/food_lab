@@ -38,7 +38,11 @@ class AdminPasswrodRule implements Rule
         if ($hasAccount !== null) {
             session()->forget('name');
             $id = $hasAccount->id;
-            session(['adminId' => $id, 'role' => $hasAccount->ad_role]);
+            session([
+                'adminId' => $id, 
+                'role' => $hasAccount->ad_role,
+                'ad_name' => $hasAccount->ad_name,
+            ]);
             $checkAccount->updateLoginTime($id);
 
             Log::channel('adminlog')->info('AdminPasswrodRule', [
