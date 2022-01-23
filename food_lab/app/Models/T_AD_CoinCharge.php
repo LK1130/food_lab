@@ -89,16 +89,31 @@ class T_AD_CoinCharge extends Model
       'Start listing'
     ]);
 
-    $result =  T_AD_CoinCharge::select('*',
-      DB::raw('t_ad_coincharge.id AS chargeid'),
-      DB::raw('t_ad_coincharge.updated_at AS updatetime'))
-      ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-      ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
-      ->where('decision_status', $status)
-      ->where('t_ad_coincharge.del_flg', 0)
-      ->orderby('request_datetime', 'desc')
-      ->paginate(10, ['*'], $category);
+    if ($status == 1)
+      $result =  T_AD_CoinCharge::select(
+        '*',
+        DB::raw('t_ad_coincharge.id AS chargeid'),
+        DB::raw('t_ad_coincharge.updated_at AS updatetime')
+      )
+        ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
+        ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
+        ->where('decision_status', $status)
+        ->where('t_ad_coincharge.del_flg', 0)
+        ->orderby('request_datetime', 'desc')
+        ->paginate(10, ['*'], $category);
 
+    if ($status == 2 || $status == 3 || $status == 4)
+      $result =  T_AD_CoinCharge::select(
+        '*',
+        DB::raw('t_ad_coincharge.id AS chargeid'),
+        DB::raw('t_ad_coincharge.updated_at AS updatetime')
+      )
+        ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
+        ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
+        ->where('decision_status', $status)
+        ->where('t_ad_coincharge.del_flg', 0)
+        ->orderby('updatetime', 'desc')
+        ->paginate(10, ['*'], $category);
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'End listing'
     ]);
@@ -125,7 +140,9 @@ class T_AD_CoinCharge extends Model
       DB::raw('m_decision_status.id AS statusid'),
       DB::raw('t_ad_coincharge.id AS chargeid')
     )
+
       ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
+      ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
       ->where('t_ad_coincharge.del_flg', 0)
       ->where('t_ad_coincharge.id', $chargeid)
@@ -172,7 +189,7 @@ class T_AD_CoinCharge extends Model
     * Parameters : no
     * Return : photo path
     */
-  public function setChargeDecision($chargeid)
+  public function setChargeDecision($chargeid, $decision)
   {
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'Start setChargeDecision'
@@ -180,7 +197,7 @@ class T_AD_CoinCharge extends Model
 
     T_AD_CoinCharge::where('del_flg', 0)
       ->where('id', $chargeid)
-      ->update(['decision_status'=> 2]);
+      ->update(['decision_status' => $decision]);
 
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
@@ -201,8 +218,7 @@ class T_AD_CoinCharge extends Model
       'Start findChargeById'
     ]);
 
-    $result = T_AD_CoinCharge::select('decision_status')
-      ->where('del_flg', 0)
+    $result = T_AD_CoinCharge::where('del_flg', 0)
       ->where('id', $chargeid)
       ->first();
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
