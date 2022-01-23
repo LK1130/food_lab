@@ -59,11 +59,11 @@
                 <div>
                     <p>{{ __('messageMK.powerby') }}</p>
                     <p>Team x</p>
-                    <p><a href="">https://www.teamx.com</a></p>
+                    <p class="mailTeams"><a href="mailto:https://www.teamx.com">https://www.teamx.com</a></p>
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center copys">
+        <div class="copys">
             <p>Copy right by Food Lab</p>
         </div>
     </footer>

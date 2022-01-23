@@ -1,8 +1,8 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
 @section('google')
-    {{--  <link href="../../tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
-    <script src="../../tagsinput/js/bootstrap-tagsinput.min.js"></script>  --}}
+    <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ url('js/bootstrap-tagsinput.min.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async></script>
@@ -14,6 +14,7 @@
 
 @section('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url('js/adminProductTagsInput.js') }}"></script>
 @endsection
 
 @section('body')
@@ -68,22 +69,22 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <select class="form-select" id="addressNo" name="addressNo">
-                        <option selected>{{ __('messageMK.address(No)') }}</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select selects" id="addressNo" name="addressNo">
+                        <option  class="township-options" selected>{{ __('messageMK.address(No)') }}</option>
+                        <option  class="township-options" value="1">One</option>
+                        <option  class="township-options" value="2">Two</option>
+                        <option  class="township-options" value="3">Three</option>
                     </select>
                     @error('addressNo')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <select class="form-select" id="addressTownship" name="addressTownship" >
-                        <option selected>{{ __('messageMK.address(Township)') }}</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select selects" id="addressTownship" name="addressTownship" >
+                        <option class="township-options" selected>{{ __('messageMK.address(Township)') }}</option>
+                        <option class="township-options" value="1">One</option>
+                        <option class="township-options" value="2">Two</option>
+                        <option class="township-options" value="3">Three</option>
                     </select>
                     @error('addressTownship')
                     <span class="text-danger">{{ $message }}</span>
@@ -123,13 +124,13 @@
                     <div class="modal-dialog">
                         <div class="modal-content contents">
                             <div class="modal-header justify-content-end">
-                                {{--  <button type="submit" class="submits">Skip</button>  --}}
+                                <button type="submit" class="submits">Skip</button>
                             </div>
                             <div class="modal-body">
                                 <fieldset class="border border-3">
-                                    <legend class="modal-headers">Favourite Menu</legend>
+                                    <legend class="modal-headers">Favourite Type</legend>
                                     <div class="m-3">
-                                        <input type="text" class="modal-inputs" name="menu" value="chinese,korea,myanmar,japan" data-role="tagsinput" id="tags" class="form-control">
+                                        <input type="text" class="modal-inputs" name="type" value="chinese,korea,myanmar,japan" data-role="tagsinput" id="tags" class="form-control">
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3">

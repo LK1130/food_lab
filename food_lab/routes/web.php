@@ -159,11 +159,14 @@ Route::get('/report', [CustomerController::class, 'report']);
 /*
  * From Report Page to store form data in database
 */
-Route::post('/report', [CustomerController::class, 'reportData']);
+Route::post('/report', [CustomerController::class, 'reportForm']);
 
 /*
  * For Suggest Page */
 Route::get('/suggest', [CustomerController::class, 'suggest']);
+
+// For Suggest Form 
+Route::post('/suggest', [CustomerController::class, 'suggestForm']);
 
 /*
  * For Access Page

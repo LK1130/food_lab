@@ -26,11 +26,11 @@ class RegisterValidation extends FormRequest
      */
     public function rules()
     {
-        Log::channel('customerlog')->info('RegisterValidation Request',[
+        Log::channel('customerlog')->info('RegisterValidation Request', [
             'start rules'
         ]);
 
-        Log::channel('customerlog')->info('RegisterValidation Request',[
+        Log::channel('customerlog')->info('RegisterValidation Request', [
             'end rules'
         ]);
         return [
@@ -41,7 +41,10 @@ class RegisterValidation extends FormRequest
             'addressTownship' => 'required | max:11',
             'addressCity' => 'required | max:128',
             'password' => 'required | min:6 | max:30',
-            'cPassword' => 'required | same:password'
+            'cPassword' => 'required | same:password',
+            'type' => 'min:0',
+            'taste' => 'min:0',
+            'note' => 'min:0'
         ];
     }
 }

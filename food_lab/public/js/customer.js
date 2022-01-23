@@ -1,31 +1,7 @@
+let navbuttons = document.querySelector('.nav-buttons');
 let prices = document.querySelectorAll('.prices');
-
-let news = document.querySelectorAll('.news');
-
-let importantNew = function() {
-    for (let i = 0; i < news.length; i++) {
-        let category = news[i].getAttribute('id');
-        switch (category) {
-            case '1':
-                news[i].style.color = 'green';
-                break;
-            case '2':
-                news[i].style.color = 'red';
-                break;
-            case '3':
-                news[i].style.color = 'blue';
-                break;
-            case '4':
-                news[i].style.color = 'red';
-                break;
-            case '5':
-                news[i].style.color = 'black';
-                break;
-        }
-    }
-}
-
-importantNew();
+let news = document.querySelectorAll('.news'),
+    marquee = document.querySelector("marquee");
 // Start Access Section
 // start register
 let username = document.getElementById('username'),
@@ -45,6 +21,41 @@ let cpeye = document.querySelector('.cpwd-eye'),
     cpeyeSlash = document.querySelector('.cpwd-eye-slash');
 // end register
 // End Access Section
+
+let importantNew = function() {
+    if (news.length != 0) {
+        for (let i = 0; i < news.length; i++) {
+            let category = news[i].getAttribute('id');
+            switch (category) {
+                case '1':
+                    news[i].style.color = 'green';
+                    break;
+                case '2':
+                    news[i].style.color = 'red';
+                    break;
+                case '3':
+                    news[i].style.color = 'blue';
+                    break;
+                case '4':
+                    news[i].style.color = 'red';
+                    break;
+                case '5':
+                    news[i].style.color = 'black';
+                    break;
+            }
+        }
+    } else {
+        marquee.style.display = 'none';
+    }
+
+}
+
+importantNew();
+
+navbuttons.addEventListener('click', function() {
+    console.log('hay');
+    navbuttons.classList.toggle('changes');
+})
 
 /*
  * Create : Min Khant(13/1/2022)
@@ -166,4 +177,12 @@ function testAPI() { // Testing Graph API after login.  See statusChangeCallback
         console.warn('Thanks for logging in, ' + response.name + '! and Email is ' + response.email);
     });
 }
+
+createAccs.addEventListener('click', function() {
+    (function($) {
+        "use strict";
+        operate();
+    })(window.jQuery);
+})
+
 // End Access Section

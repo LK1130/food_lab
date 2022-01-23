@@ -120,9 +120,9 @@ class T_CU_Customer extends Model
       $customer->address1 = $data['addressNo'];
       $customer->address2 = $data['addressTownship'];
       $customer->address3 = $data['addressCity'];
-      // $customer->fav_type = 'something';
-      // $customer->taste = $data['taste'];
-      // $customer->allergic = $data['note'];
+      $customer->fav_type = $data['type'];
+      $customer->taste = $data['taste'];
+      $customer->allergic = $data['note'];
       $customer->save();
 
       //insert customerLogin
@@ -141,42 +141,6 @@ class T_CU_Customer extends Model
     ]);
     return true;
   }
-
-
-  /*
-      * Create : Min Khant(19/1/2022)
-      * Update :
-      * Explain of function : To store input data  from google register
-      * Prarameter : no
-      * return :
-    */
-  //    public function googleRegister($data)
-  //    {
-  //        Log::channel('customerlog')->info('T_CU_Customer Model',[
-  //            'start googleRegister'
-  //        ]);
-  //
-  //        $custmerID = $this->generatCustomerId($data);
-  //
-  //        DB::transcation(function () use($data,$custmerID){
-  //           $customer = new T_CU_Customer();
-  //           $customer->customerID = $custmerID;
-  //           $customer->nickname = $data['name'];
-  //           $customer->save();
-  //
-  //           $customerLogin = new M_CU_Customer_Login();
-  //           $customerLogin->email = $data['email'];
-  //           $customerLogin->password = 12345;
-  //           $customerLogin->customer_id =  $customer->id;
-  //           $customerLogin->verify_code = 'no need';
-  //           $customerLogin->save();
-  //        });
-  //
-  //        Log::channel('customerlog')->info('T_CU_Customer Model',[
-  //            'end googleRegister'
-  //        ]);
-  //
-  //    }
 
 
   public function customerLogin()

@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use App\Http\Requests\SuggestFormValidation;
 use App\Mail\VerifyMail;
 use App\Models\AdNews;
 use App\Models\M_AD_News;
 use App\Models\M_CU_Customer_Login;
+use App\Models\M_Product;
+use App\Models\M_Suggest;
 use App\Models\M_Township;
+use App\Models\T_AD_Order;
+use App\Models\T_AD_OrderDetail;
+use App\Models\T_AD_Report;
+use App\Models\T_AD_Suggest;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -72,10 +79,15 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start report'
         ]);
+
+        $customerid = session()->get('customerId');
+        $order = new T_AD_Order();
+        $orderlists = $order->orderId($customerid);
+
         Log::channel('customerlog')->info('Customer Controller', [
             'end report'
         ]);
-        return view('customer.report');
+        return view('customer.report', ['orderlists' => $orderlists]);
     }
 
     /*
@@ -85,11 +97,13 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : View report Blade
      * */
-    public function  reportData()
+    public function  reportForm()
     {
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start reportData'
         ]);
+        $report = new T_AD_Report();
+
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end reportData'
         ]);
@@ -109,10 +123,35 @@ class CustomerController extends Controller
             'start suggest'
         ]);
 
+        $data = new M_Suggest();
+        $type = $data->suggestType();
+
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end suggest'
         ]);
-        return view('customer.suggest');
+        return view('customer.suggest', ['types' => $type]);
+    }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : To stroe data from suggest form
+     * Prarameter : no
+     * return : 
+     * */
+    public function suggestForm(SuggestFormValidation $request)
+    {
+        Log::channel('customerlog')->info('CustomerController', [
+            'start suggestForm'
+        ]);
+
+        $validated = $request->validated();
+        $suggest = new T_AD_Suggest();
+        $suggest->customerSuggest($validated);
+
+        Log::channel('customerlog')->info('CustomerController', [
+            'end suggestForm'
+        ]);
     }
 
     /*
@@ -146,8 +185,6 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start register'
         ]);
-
-        return dd($request);
 
         $validated = $request->validated();
 
@@ -269,11 +306,11 @@ class CustomerController extends Controller
             return redirect('/');
         }
         session()->forget('customerId');
-        
+
         Log::channel('customerlog')->info('Customer Controller', [
             'end loginForm'
         ]);
-        
+
         return view('customer.mail.checkMail');
     }
 }

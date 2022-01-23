@@ -1,14 +1,8 @@
-@extends('COMMON.layout.layout_customer')
-
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css"/>
-@endsection
+@extends('COMMON.layout.layout_cusotmer_2')
 
 @section('title','Food Lab')
 
-@section('header')
+@section('body')
     {{-- Start Report Form Section --}}
     <section class="forms">
         <div class="d-flex ps-5 py-4">
@@ -20,17 +14,17 @@
             </div>
         </div>
         
-        <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-center align-items-center reports">
             <p class="fw-bolder form-headers">{{ __('messageMK.reportForm') }}</p>
             <form action="/report" method="post">
                 @csrf
                 <div class="d-flex pb-3">
                     <label class="fw-bold">{{ __('messageMK.reportOrder') }}</label>
                     <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected disabled>Open this select menu</option>
+                        @foreach ($orderlists as $orderlist)
+                            <option value="{{ $orderlist->id }}">#{{ $orderlist->id }} {{ $orderlist->order_date }} {{  $orderlist->order_time }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="d-flex  pb-3">

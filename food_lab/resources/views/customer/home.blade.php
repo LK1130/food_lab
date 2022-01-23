@@ -31,8 +31,10 @@
             <span class="comapanynames">{{  __('messageMK.food lab') }}</span>
         </a>
 
-        <button class="navbar-toggler bg-danger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon bg-white"></span>
+        <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="bg-light line1"></div>
+            <div class="bg-light line2"></div>
+            <div class="bg-light line3"></div>
         </button>
 
         <div class="collapse navbar-collapse text-uppercase fw-bolder" id="navbarNav">
@@ -216,7 +218,7 @@
         <p class="fw-bolder text-center pt-5 pb-3 del-infos">{{ __('messageMK.Delivery Information') }}</p>
         <div class="row">
             {{-- start delivery Informaiton--}}
-            <div class="col-lg-6 col-md-12 township-infos">
+            <div class="col-12 township-infos">
                 <div class="row justify-content-center align-items-center text-center text-white">
                     <p class="col-5 fw-bolder">{{ __('messageMK.townships') }}</p>
                     <p class="col-2 pt-2"><i class="fas fa-arrow-right"></i></p>
@@ -226,14 +228,15 @@
                     <div class="row justify-content-center align-items-center text-center text-white">
                         <p class="col-5">{{ $township->township_name }}</p>
                         <p class="col-2 pt-2"><i class="fas fa-arrow-right"></i></p>
-                        <p class="col-5"><span class="prices">{{ $township->delivery_price }}</span> Ks</p>
+                        @if($township->delivery_price == 0)
+                            <p class="col-5"><span class="prices">Free</span></p>
+                        @else
+                            <p class="col-5"><span class="prices">{{ $township->delivery_price }}</span> Ks</p>
+                        @endif
                     </div>
                 @endforeach
             </div>
             {{-- end delivery Informaiton--}}
-            <div class="col-6">
-                <img src="{{ url('img/deilvery.png') }}" width="100%" alt="delivery"/>
-            </div>
         </div>
     </section>
     {{-- End Delivery Section --}}
@@ -258,7 +261,7 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="col-9">
-                                <p><span class="d-block">09876543211</span><span class="d-block">097788665544</span></p>
+                                <p><a href="tel:09876543211" class="d-block">09876543211</a><a href="tel:097788665544" class="d-block">097788665544</a></p>
                             </div>
                         </div>
                         <div class="row ps-5">
@@ -266,7 +269,7 @@
                                 <p><i class="fas fa-envelope"></i></p>
                             </div>
                             <div class="col-9">
-                                <p>www.foodlab2022@gmail.com</p>
+                                <a href="mailto:www.foodlab2022@gmail.com">www.foodlab2022@gmail.com</a>
                             </div>
                         </div>
                     </div>

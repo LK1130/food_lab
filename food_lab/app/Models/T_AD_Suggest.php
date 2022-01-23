@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class T_AD_Suggest extends Model
 {
@@ -55,5 +56,26 @@ class T_AD_Suggest extends Model
         $admin = T_AD_Suggest::find($id);
         $admin->del_flg = 1;
         $admin->save();
+    }
+
+    /*
+     * Create : Min Khant(22/1/2022)
+     * Update :
+     * Explain of function : to store data from suggest form
+     * Prarameter : no
+     * return : 
+     * */
+    public function customerSuggest($request)
+    {
+        Log::channel('customerlog')->info('T_AD_Suggest Model', [
+            'start customerSuggest'
+        ]);
+        $suggest = T_AD_Suggest::create([
+            'suggest_type' => $request->type,
+            'message' => $request->details
+        ]);
+        Log::channel('customerlog')->info('T_AD_Suggest Model', [
+            'end customerSuggest'
+        ]);
     }
 }

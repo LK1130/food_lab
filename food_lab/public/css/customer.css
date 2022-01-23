@@ -1,5 +1,30 @@
 /*start navbar*/
 
+.nav-buttons {
+    background-color: var(--primary-color);
+}
+
+.line1,
+.line2,
+.line3 {
+    width: 20px;
+    height: 3px;
+    margin: 5px;
+    transition: all 0.4s;
+}
+
+.changes .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.changes .line2 {
+    opacity: 0;
+}
+
+.changes .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 .navs {
     background-color: var(--bg-color);
     font-size: 1.1rem;
@@ -63,6 +88,12 @@
     position: absolute;
     top: 100%;
     left: 100%;
+}
+
+@media (max-width: 720px) {
+    .welcomes {
+        min-height: 60vh;
+    }
 }
 
 
@@ -209,11 +240,19 @@
     margin-right: 20px;
 }
 
+.company-details a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
 .maps {
     border-radius: 10px;
 }
 
 @media (max-width: 720px) {
+    .contacts {
+        min-height: 70vh;
+    }
     .maps {
         display: none;
     }
@@ -246,17 +285,22 @@
 /*End Policy Section*/
 
 
-/*Start Report Form Section */
+/*Start Report and Suggest Form Section */
 
 .forms {
-    min-height: 81vh;
+    min-height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg6.png");
+}
+
+.reports,
+.suggests {
+    min-height: 70vh;
 }
 
 .form-headers {
     font-size: 2.5rem;
     color: var(--primary-color);
-    margin-top: 2%;
+    margin: 0 0 4% 0;
 }
 
 form {
@@ -269,9 +313,28 @@ form div label {
     color: var(--text-color);
 }
 
+.errors {
+    position: relative;
+}
+
+.error-spans {
+    position: absolute;
+    left: 20%;
+    top: 100%;
+}
+
 form div input,
-button {
-    font-size: 1.5rem;
+button,
+.selects {
+    font-size: 1.1rem !important;
+}
+
+.selects {
+    color: var(--text-color) !important;
+}
+
+.township-options {
+    color: var( --bg2-color) !important;
 }
 
 form div .btn {
@@ -296,8 +359,14 @@ form div .cancels {
     padding: 10px 20px;
 }
 
+@media (max-width: 720px) {
+    form div label {
+        font-size: 0.9rem;
+    }
+}
 
-/*End Report Form Section*/
+
+/*End Report and Suggest Form Section*/
 
 
 /*Start Access Section*/

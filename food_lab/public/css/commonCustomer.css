@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+textarea {
+    resize: none;
+}
+
 :root {
     --primary-color: #FF470B;
     --secondary-color: #ff6600;
@@ -117,6 +121,10 @@ footer {
     color: var(--text-color);
 }
 
+.footer-details .mailTeams {
+    text-decoration: underline;
+}
+
 .footer-details a:hover {
     color: var(--primary-color);
 }
@@ -135,6 +143,20 @@ footer {
     color: var(--primary-color);
     font-size: 1.5rem;
     font-weight: bold;
+    position: relative;
+}
+
+.copys p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width:720px) {
+    .copys p {
+        font-size: 1rem;
+    }
 }
 
 
