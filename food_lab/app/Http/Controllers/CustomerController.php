@@ -35,12 +35,26 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : View Home Blade
      * */
-    public function foodlab()
+    public function home()
     {
-        $sessionCustomerId = session()->get('customerId'); //need to change
         Log::channel('customerlog')->info('Customer Controller', [
             'Start foodlab'
         ]);
+        $messageLimited = [];
+        $tracksLimited = [];
+        $userinfo = null;
+
+        if (session()->has('customerId')) {
+            $sessionCustomerId = session('customerId');
+            $messages = new M_AD_CoinCharge_Message();
+            $messageLimited = $messages->informMessage($sessionCustomerId);
+
+            $tracks = new M_AD_Track();
+            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
+
+            $user = new T_CU_Customer();
+            $userinfo = $user->loginUser($sessionCustomerId);
+        }
 
         $townships = new M_Township();
         $townshipnames = $townships->townshipDetails();
@@ -49,14 +63,6 @@ class CustomerController extends Controller
         $newDatas = $news->news();
         $newsLimited = $news->newsLimited();
 
-        $messages = new M_AD_CoinCharge_Message();
-        $messageLimited = $messages->informMessage($sessionCustomerId);
-
-        $tracks = new M_AD_Track();
-        $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-
-        $user = new T_CU_Customer();
-        $userinfo = $user->loginUser($sessionCustomerId);
 
         $site = new M_Site();
         $name = $site->siteName();
@@ -69,27 +75,18 @@ class CustomerController extends Controller
 
         $product = new M_Product();
         $productInfos = $product->productInfo();
-        if ($userinfo === null) {
-            Log::channel('adminlog')->info("CustomerController", [
-                'End foodlab(error)'
-            ]);
-            return view('errors.404');
-        } else {
-            Log::channel('adminlog')->info("CustomerController", [
-                'End foodlab'
-            ]);
-            return view('customer.home', [
-                'townships' => $townshipnames,
-                'news' => $newDatas,
-                'user' => $userinfo,
-                'limitednews' => $newsLimited,
-                'limitedmessages' => $messageLimited,
-                'limitedtracks' => $tracksLimited,
-                'name' => $name,
-                'productInfos' => $productInfos,
-                'nav' => 'home'
-            ]);
-        }
+        
+        return view('customer.home', [
+            'townships' => $townshipnames,
+            'news' => $newDatas,
+            'user' => $userinfo,
+            'limitednews' => $newsLimited,
+            'limitedmessages' => $messageLimited,
+            'limitedtracks' => $tracksLimited,
+            'name' => $name,
+            'productInfos' => $productInfos,
+            'nav' => 'home'
+        ]);
     }
 
     /*

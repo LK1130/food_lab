@@ -194,7 +194,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 /*
  * For customer home page
 */
-Route::get('/', [CustomerController::class, 'foodlab']);
+Route::get('/', [CustomerController::class, 'home']);
 
 /*
  * For Policy Info Page

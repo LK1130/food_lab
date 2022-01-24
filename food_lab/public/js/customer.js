@@ -1,17 +1,6 @@
-let prices = document.querySelectorAll(".prices");
-
-// Start Access Section
-// start register
-let username = document.getElementById("username"),
-    phone = document.getElementById("phone"),
-    email = document.getElementById("email"),
-    addressNo = document.getElementById("addressNo"),
-    addressTownship = document.getElementById("addressTownship"),
-    addressCity = document.getElementById("addressCity"),
-    password = document.getElementById("password");
 let navbuttons = document.querySelector(".nav-buttons");
 let prices = document.querySelectorAll(".prices");
-let news = document.querySelectorAll(".news"),
+let importantnews = document.querySelectorAll(".importantnews"),
     marquee = document.querySelector("marquee");
 // Start Access Section
 // start register
@@ -33,25 +22,25 @@ let cpeye = document.querySelector(".cpwd-eye"),
 // end register
 // End Access Section
 
-let importantNew = function () {
-    if (news.length != 0) {
-        for (let i = 0; i < news.length; i++) {
-            let category = news[i].getAttribute("id");
+let importantNew = function() {
+    if (importantnews.length != 0) {
+        for (let i = 0; i < importantnews.length; i++) {
+            let category = importantnews[i].getAttribute("id");
             switch (category) {
                 case "1":
-                    news[i].style.color = "green";
+                    importantnews[i].style.color = "green";
                     break;
                 case "2":
-                    news[i].style.color = "red";
+                    importantnews[i].style.color = "red";
                     break;
                 case "3":
-                    news[i].style.color = "blue";
+                    importantnews[i].style.color = "blue";
                     break;
                 case "4":
-                    news[i].style.color = "red";
+                    importantnews[i].style.color = "red";
                     break;
                 case "5":
-                    news[i].style.color = "black";
+                    importantnews[i].style.color = "black";
                     break;
             }
         }
@@ -62,8 +51,7 @@ let importantNew = function () {
 
 importantNew();
 
-navbuttons.addEventListener("click", function () {
-    console.log("hay");
+navbuttons.addEventListener("click", function() {
     navbuttons.classList.toggle("changes");
 });
 
@@ -90,17 +78,6 @@ for (let i = 0; i < prices.length; i++) {
     prices[i].textContent = addCommas(prices[i].textContent);
 }
 
-// Start Access Section
-// start register
-// username.addEventListener('keypress',function (event){
-//    let character = username.value;
-//    if(character.length+1 < 6){
-//        console.log('hay');
-//    }
-// });
-// end register
-// End Access Section
-
 /*
  * Create : zayar(17/1/2022)
  * Update :
@@ -108,21 +85,17 @@ for (let i = 0; i < prices.length; i++) {
  * Prarameter : no
  * return : toggle
  * */
-firstClick();
-back();
-function firstClick() {
-    document
-        .getElementById("profileButton")
-        .addEventListener("click", function () {
-            document.getElementById("profileAlert").style.visibility =
-                "visible";
-        });
-}
-function back() {
-    document.getElementById("back").addEventListener("click", function () {
-        document.getElementById("profileAlert").style.visibility = "hidden";
-    });
-}
+
+
+
+document.getElementById("profileButton").addEventListener("click", function() {
+    console.log('hay');
+    document.getElementById("profileAlert").style.display = 'block';
+});
+
+document.getElementById("back").addEventListener("click", function() {
+    document.getElementById("profileAlert").style.display = "none";
+});
 
 /*
  * Create : zayar(23/1/2022)
@@ -131,23 +104,16 @@ function back() {
  * Prarameter : no
  * return : toggle
  * */
-firstClickInform();
+document.getElementById("informButton").addEventListener("click", function() {
+    document.getElementById("informAlert").style.display = "block";
+});
 
-function firstClickInform() {
-    document
-        .getElementById("informButton")
-        .addEventListener("click", function () {
-            document.getElementById("informAlert").style.visibility = "visible";
-        });
-}
 clickInformBack();
 
 function clickInformBack() {
-    document
-        .getElementById("backInform")
-        .addEventListener("click", function () {
-            document.getElementById("informAlert").style.visibility = "hidden";
-        });
+    document.getElementById("backInform").addEventListener("click", function() {
+        document.getElementById("informAlert").style.visibility = "hidden";
+    });
 }
 /*
  * Create : zayar(23/1/2022)
@@ -157,6 +123,7 @@ function clickInformBack() {
  * return : toggle
  * */
 initialInformAlert();
+
 function initialInformAlert() {
     document.getElementById("forNews").removeAttribute("id");
     document.getElementById("clickNews").style.borderBottom = "1px solid black";
@@ -172,7 +139,7 @@ function initialInformAlert() {
 clickNews();
 
 function clickNews() {
-    document.getElementById("clickNews").addEventListener("click", function () {
+    document.getElementById("clickNews").addEventListener("click", function() {
         document.getElementsByClassName("forMessages")[0].id = "forMessages";
         document.getElementsByClassName("forTracks")[0].id = "forTracks";
         document.getElementById("forNews").removeAttribute("id");
@@ -187,63 +154,59 @@ function clickNews() {
 clickMessages();
 
 function clickMessages() {
-    document
-        .getElementById("clickMessages")
-        .addEventListener("click", function () {
-            document.getElementsByClassName("forNews")[0].id = "forNews";
-            document.getElementsByClassName("forTracks")[0].id = "forTracks";
-            document.getElementById("forMessages").removeAttribute("id");
+    document.getElementById("clickMessages").addEventListener("click", function() {
+        document.getElementsByClassName("forNews")[0].id = "forNews";
+        document.getElementsByClassName("forTracks")[0].id = "forTracks";
+        document.getElementById("forMessages").removeAttribute("id");
 
-            document.getElementById("clickMessages").style.borderBottom =
-                "1px solid black";
-            document.getElementById("clickNews").style.borderBottom = "";
-            document.getElementById("clickTracks").style.borderBottom = "";
-            // document.getElementsByClassName("informAlert")[0].style.height =
-            //     "60vh";
-        });
+        document.getElementById("clickMessages").style.borderBottom =
+            "1px solid black";
+        document.getElementById("clickNews").style.borderBottom = "";
+        document.getElementById("clickTracks").style.borderBottom = "";
+        // document.getElementsByClassName("informAlert")[0].style.height =
+        //     "60vh";
+    });
 }
 
 clickTracks();
 
 function clickTracks() {
-    document
-        .getElementById("clickTracks")
-        .addEventListener("click", function () {
-            document.getElementsByClassName("forNews")[0].id = "forNews";
-            document.getElementsByClassName("forMessages")[0].id =
-                "forMessages";
-            document.getElementById("forTracks").removeAttribute("id");
+    document.getElementById("clickTracks").addEventListener("click", function() {
+        document.getElementsByClassName("forNews")[0].id = "forNews";
+        document.getElementsByClassName("forMessages")[0].id =
+            "forMessages";
+        document.getElementById("forTracks").removeAttribute("id");
 
-            // document.getElementsByClassName("informAlert")[0].style.height =
-            //     "70vh";
-            document.getElementById("clickMessages").style.borderBottom = "";
-            document.getElementById("clickNews").style.borderBottom = "";
-            document.getElementById("clickTracks").style.borderBottom =
-                "1px solid black";
-        });
+        // document.getElementsByClassName("informAlert")[0].style.height =
+        //     "70vh";
+        document.getElementById("clickMessages").style.borderBottom = "";
+        document.getElementById("clickNews").style.borderBottom = "";
+        document.getElementById("clickTracks").style.borderBottom =
+            "1px solid black";
+    });
 }
 
 // for password eye icon addEventListener
-peyeSlash.addEventListener("click", function () {
+peyeSlash.addEventListener("click", function() {
     peyeSlash.style.display = "none";
     peye.style.display = "block";
     password.setAttribute("type", "text");
 });
 
-peye.addEventListener("click", function () {
+peye.addEventListener("click", function() {
     peye.style.display = "none";
     peyeSlash.style.display = "block";
     password.setAttribute("type", "password");
 });
 
 // for confirm password eye icon addEventListener
-cpeyeSlash.addEventListener("click", function () {
+cpeyeSlash.addEventListener("click", function() {
     cpeyeSlash.style.display = "none";
     cpeye.style.display = "block";
     cpassword.setAttribute("type", "text");
 });
 
-cpeye.addEventListener("click", function () {
+cpeye.addEventListener("click", function() {
     cpeye.style.display = "none";
     cpeyeSlash.style.display = "block";
     cpassword.setAttribute("type", "password");
@@ -268,11 +231,11 @@ function onSignIn(googleUser) {
         type: "POST",
         url: "/google",
         data: userData,
-        success: function (res) {
+        success: function(res) {
             username.value = res.name;
             email.value = res.email;
         },
-        error: function (err) {
+        error: function(err) {
             console.log(err);
         },
     });
@@ -295,13 +258,13 @@ function statusChangeCallback(response) {
 
 function checkLoginState() {
     // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function (response) {
+    FB.getLoginStatus(function(response) {
         // See the onlogin handler
         statusChangeCallback(response);
     });
 }
 
-window.fbAsyncInit = function () {
+window.fbAsyncInit = function() {
     FB.init({
         appId: "4571537182964313",
         cookie: true, // Enable cookies to allow the server to access the session.
@@ -309,7 +272,7 @@ window.fbAsyncInit = function () {
         version: "v7.0", // Use this Graph API version for this call.
     });
 
-    FB.getLoginStatus(function (response) {
+    FB.getLoginStatus(function(response) {
         // Called after the JS SDK has been initialized.
         statusChangeCallback(response); // Returns the login status.
     });
@@ -318,18 +281,18 @@ window.fbAsyncInit = function () {
 function testAPI() {
     // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log("Welcome!  Fetching your information.... ");
-    FB.api("/me", function (response) {
+    FB.api("/me", function(response) {
         console.warn(
             "Thanks for logging in, " +
-                response.name +
-                "! and Email is " +
-                response.email
+            response.name +
+            "! and Email is " +
+            response.email
         );
     });
 }
 
-createAccs.addEventListener("click", function () {
-    (function ($) {
+createAccs.addEventListener("click", function() {
+    (function($) {
         "use strict";
         operate();
     })(window.jQuery);

@@ -17,6 +17,7 @@ textarea {
     --coin-color: #ffd233;
 }
 
+
 /*Start Header*/
 
 .headers {
@@ -25,22 +26,30 @@ textarea {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
 }
 
+
 /*start navbar*/
+
 .navcontainer {
     position: relative;
 }
+
 .navs {
     background-color: var(--bg-color);
     font-size: 1.1rem;
 }
 
+
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
+
+
 /*start Profile Alert box*/
+
 #profileAlert {
     position: absolute;
     z-index: 999;
@@ -49,27 +58,31 @@ textarea {
     background-color: rgba(0, 0, 0, 0.952);
     top: 100%;
     right: 0;
-    visibility: hidden;
+    display: none;
 }
 
 .profileAlertHeader {
     color: var(--primary-color);
 }
+
 .userProfile {
     margin-left: 17vh;
     margin-right: 17vh;
     font-weight: bold;
     font-size: 1.5rem;
 }
+
 .userProfileDiv {
     width: 10vh;
 }
+
 .profileAlertBody {
     width: 100%;
     height: 50vh;
     color: var(--secondary-color);
     font-size: 1.1rem;
 }
+
 .editProfile {
     background-color: var(--text-color);
     color: var(--secondary-color);
@@ -79,18 +92,20 @@ textarea {
     background-color: var(--primary-color);
     color: var(--text-color);
 }
+
 #back {
     cursor: pointer;
 }
+
 #back:hover {
     color: var(--primary-color) !important;
 }
+
 @media only screen and (max-width: 720px) {
     .userProfile {
         font-size: 1.2rem !important;
         width: 50vw !important;
     }
-
     #profileAlert {
         width: 47vh;
     }
@@ -108,13 +123,19 @@ textarea {
         margin-right: 10vw;
     }
 }
+
+
 /*end profile alert */
+
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
+
+
 /*start inform Alert box*/
+
 .informAlert {
     position: absolute;
     z-index: 999;
@@ -122,13 +143,15 @@ textarea {
     height: max-content;
     background-color: rgb(255, 255, 255);
     top: 20%;
-    margin-left: 54vw;
+    right: 5%;
     border-radius: 1.4vh;
-    visibility: hidden;
+    display: none;
 }
+
 .hiddenAlert {
-    visibility: hidden;
+    display: none;
 }
+
 #backInform {
     width: 5vw;
     height: 5vh;
@@ -136,6 +159,7 @@ textarea {
     color: var(--primary-color);
     cursor: pointer;
 }
+
 .headerInform {
     margin: auto;
 }
@@ -143,6 +167,7 @@ textarea {
 .infromTitle {
     cursor: pointer;
 }
+
 .alertButton {
     background-color: rgb(167, 175, 166);
     text-align: center;
@@ -150,6 +175,7 @@ textarea {
     margin-left: auto;
     color: white;
 }
+
 .forNews,
 .forMessages,
 .forTracks {
@@ -158,15 +184,19 @@ textarea {
     margin: auto;
     gap: 2.5vh;
 }
+
 #forNews {
     display: none !important;
 }
+
 #forMessages {
     display: none !important;
 }
+
 #forTracks {
     display: none !important;
 }
+
 .news,
 .messages,
 .tracks {
@@ -175,6 +205,7 @@ textarea {
     border-radius: 1vh;
     background-color: rgb(189, 173, 158);
 }
+
 .news img {
     max-width: 22%;
     margin-right: auto;
@@ -186,15 +217,18 @@ textarea {
     margin-right: 1vw;
     margin-left: 1vw;
 }
+
 .newsColumnDiv {
     margin-right: 10vw;
 }
+
 .green {
     background-color: rgb(16, 136, 0);
     text-align: center;
     width: 7vw;
     color: white;
 }
+
 .texts {
     color: var(--primary-color);
 }
@@ -211,7 +245,9 @@ textarea {
     color: var(--text-color);
 }
 
+
 /*end navbar*/
+
 
 /*start carousel*/
 
@@ -262,6 +298,7 @@ textarea {
     width: 100%;
 }
 
+
 /*end carousel*/
 
 @media (max-width: 720px) {
@@ -273,7 +310,9 @@ textarea {
     }
 }
 
+
 /*End Header*/
+
 
 /*Start Footer Section*/
 
@@ -283,8 +322,7 @@ footer {
 
 .footer-infos {
     min-height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-        url("/img/bg5.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg5.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -322,7 +360,7 @@ footer {
     color: var(--primary-color);
 }
 
-.footer-details .footer-navs > *,
+.footer-details .footer-navs>*,
 .footer-details div:nth-of-type(2) p:first-of-type,
 .footer-details div:nth-of-type(3) p:first-of-type,
 .footer-details div:last-of-type p:first-of-type {
@@ -345,8 +383,8 @@ footer {
 
 <<<<<<< HEAD
 /*End Footer Section*/
-=======
-.copys p {
+
+=======.copys p {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -361,4 +399,5 @@ footer {
 
 
 /*End Footer Section*/
->>>>>>> dc4ce2ec17cf055c5386d6907567e8646f9619f8
+
+>>>>>>>dc4ce2ec17cf055c5386d6907567e8646f9619f8
