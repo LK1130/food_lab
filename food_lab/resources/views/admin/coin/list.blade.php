@@ -95,7 +95,7 @@
                                 <td scope="col">{{ \Carbon\Carbon::parse($item->updatetime)->diffForHumans() }}</td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
-                                    <a href=""><button class="btn btn-outline-primary"><i
+                                    <a href="makeReDecision/{{$item->chargeid }}"><button class="btn btn-outline-primary"><i
                                                 class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>
@@ -159,7 +159,7 @@
         <div class="row">
             <div class="col">
                 <div class="fw-bold mb-4 mt-4 title">{{ __('messageLK.Reject') }} ({{ $reject->total() }})</div>
-                <table class="table me-5 tbcust">
+                <table class="table me-5 table-secondary tbcust">
                     <thead>
                         <tr class="tableth">
                             {{-- <th scope="col" class="no" >No.</th> --}}
@@ -181,7 +181,7 @@
                                <td scope="col">{{ \Carbon\Carbon::parse($item->updatetime)->diffForHumans() }} </td>
                                 <td scope="col">{{ $item->ad_name }}</td>
                                 <td>
-                                    <a href=""><button class="btn btn-outline-light"><i
+                                    <a href=""><button class="btn btn-outline-secondary"><i
                                                 class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>

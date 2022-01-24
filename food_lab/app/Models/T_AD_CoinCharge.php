@@ -221,9 +221,7 @@ class T_AD_CoinCharge extends Model
     $result = T_AD_CoinCharge::where('del_flg', 0)
       ->where('id', $chargeid)
       ->first();
-    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
-      $result
-    ]);
+
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'End findChargeById'

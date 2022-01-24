@@ -119,12 +119,24 @@ class T_AD_CoinCharge_Finance extends Model
             'Start setChargeFinance'
         ]);
 
-        T_AD_CoinCharge_Finance::where('del_flg', 0)
+       $result= T_AD_CoinCharge_Finance::where('del_flg', 0)
         ->where('charge_id', $chargeid)
-        ->update([
-            'payment_type' => $payment,
-            'amount' => $amount
-        ]);
+        ->get();
+
+        if(count($result) == 0){
+            $coin_finance = new T_AD_CoinCharge_Finance();
+            $coin_finance->charge_id = $chargeid;
+            $coin_finance->payment_type = $payment;
+            $coin_finance->amount = $amount;
+            $coin_finance->save();
+        }else{
+            T_AD_CoinCharge_Finance::where('del_flg', 0)
+            ->where('charge_id', $chargeid)
+            ->update([
+                'payment_type' => $payment,
+                'amount' => $amount
+            ]);
+        }
 
         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
             'End setChargeFinance'

@@ -197,7 +197,7 @@ class M_Product extends Model
             'start productInfo'
         ]);
         $products = M_Product::select(['id', 'product_name', 'coin'])
-            ->where('available', '=', 0)
+            ->where('avaliable', '=', 0)
             ->where('del_flg', '=', 0)
             ->get();
         Log::channel('customerlog')->info('M_Product Model', [
