@@ -264,12 +264,19 @@
 
 /*Start Policy Section*/
 
+.policys {
+    min-height: 100vh;
+    position: relative;
+}
+
 .policy-infos {
     font-size: 1.4rem;
-    margin-left: 15%;
-    margin-top: 3%;
     letter-spacing: 0.5px;
     word-spacing: 0.5px;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
 }
 
 .policyheaders {

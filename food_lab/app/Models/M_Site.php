@@ -154,4 +154,26 @@ class M_Site extends Model
         ]);
         return $name;
     }
+
+    /*
+     * Create : Min Khant(23/1/2022)
+     * Update :
+     * Explain of function : to get policy data
+     * Prarameter : no
+     * return : plicy
+     * */
+    public function policy()
+    {
+        Log::channel('customerlog')->info('M_Site Model', [
+            'start policy'
+        ]);
+        $policys = M_Site::select('privacy_policy')
+            ->where('del_flg', '=', 0)
+            ->orderBy('id', 'desc')
+            ->first();
+        Log::channel('customerlog')->info('M_Site Model', [
+            'end policy'
+        ]);
+        return $policys;
+    }
 }
