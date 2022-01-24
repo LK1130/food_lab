@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_Township extends Model
 {
     public $table = 'm_township';
     use HasFactory;
     /*
-    * Create:zayar(2022/01/15) 
-    * Update: 
+    * Create:zayar(2022/01/15)
+    * Update:
     * This function is used to store township.
     */
 
@@ -24,8 +25,8 @@ class M_Township extends Model
         $admin->save();
     }
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to show township edit view.
    */
 
@@ -34,8 +35,8 @@ class M_Township extends Model
         return M_Township::find($id);
     }
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to update township.
    */
 
@@ -48,8 +49,8 @@ class M_Township extends Model
         $admin->save();
     }
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to update del_flg to 1.
    */
     public function townshipDelete($id)
@@ -67,7 +68,16 @@ class M_Township extends Model
      * */
     public function townshipDetails()
     {
-        return M_Township::where('del_flg', '=', '0')
-            ->get();
+        Log::channel('customerlog')->info('M_Township Model',[
+            'start townshipDetails'
+        ]);
+
+        $townships = M_Township::where('del_flg', '=', '0')
+                    ->get();
+
+        Log::channel('customerlog')->info('M_Township Model',[
+            'end townshipDetails'
+        ]);
+        return $townships;
     }
 }

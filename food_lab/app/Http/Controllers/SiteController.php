@@ -35,6 +35,7 @@ class SiteController extends Controller
             'policy' => 'required|min:10|max:255',
             'maintenance' => 'required|numeric|min:1|max:1'
         ]);
+
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $file->storeAs('siteLogo', $file->getClientOriginalName());

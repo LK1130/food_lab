@@ -5,14 +5,15 @@
 @endsection
 
 @section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ URL::asset('css/adminDashbord.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/admincustomerInfo.css') }}">
+
 @endsection
 
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ URL::asset('js/orderTransaction.js') }}"></script>
+    <script src="{{ URL::asset('js/customerInfo.js') }}"></script>
 @endsection
 
 
@@ -21,9 +22,10 @@
         <div class="status text title fw-bold mb-4 mt-4">Customer Info</div>
         <form action="">
             <div class="d-flex">
-                <input type="text" class="form-control cusinput border border-dark">
-                <span class="mx-3"><button class="btn bybtns text-light btnstext">By Nickname</button></span>
-                <span><button class="btn bybtns text-light btnstext">By ID</button></span>
+                <input type="text" class="form-control cusinput border border-dark" id="search" required>
+                <span class="mx-3"><button class="btn bybtns text-light btnstext" id="searchname">By
+                        Nickname</button></span>
+                <span><button class="btn bybtns text-light btnstext" id="searchid">By ID</button></span>
             </div>
         </form>
         <div class="row mt-4">
@@ -39,17 +41,19 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="searchlist">
                         @foreach ($t_cu_customer as $list1)
-                            <tr class="tablecolor1 tablerows">
+                            <tr class="tablecolor1 tablerows orglist text-light" id="orglist">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list1->nickname }}</td>
                                 <td>{{ $list1->customerID }}</td>
                                 <td>{{ $list1->phone }}</td>
                                 <td>{{ $list1->address3 }}</td>
                                 <td>
-                                    <a href="customerinfoDetail"><button class="btn tablerows btn-outline-light"><i
-                                                class="bi bi-arrow-right"></i></button></a>
+                                    <a href="customerinfoDetail?id={{ $list1->id }}">
+                                        <button class="btn tablerows btn-outline-light"><i
+                                                class="bi bi-arrow-right"></i></button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_Taste extends Model
 {
-    public $table = 'm_taste';
     use HasFactory;
+    public $table = 'm_taste';
     /*
     * Create:zayar(2022/01/15) 
     * Update: 
@@ -65,5 +66,27 @@ class M_Taste extends Model
     public function allTastes()
     {
         return M_Taste::where('del_flg', '=', 0)->get();
+    }
+
+
+    /*
+    * Create : Aung Min Khant(20/1/2022)
+    * Update :
+    * Explain of function : To get  all data from m_taste 
+    * parament : none
+    * return get data
+    * */
+    public function getTasteAll()
+    {
+
+        Log::channel('adminlog')->info("M_Taste Model", [
+            'Start all Data'
+        ]);
+        $mTaste = M_Taste::all();
+
+        Log::channel('adminlog')->info("M_Taste Model", [
+            'End all Data'
+        ]);
+        return  $mTaste;
     }
 }

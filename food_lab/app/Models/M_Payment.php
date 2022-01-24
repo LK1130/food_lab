@@ -15,6 +15,17 @@ class M_Payment extends Model
     * This function is used to store payment.
     */
 
+    public function getPayment()
+    {
+        return M_Payment::all();
+    }
+
+    /*
+    * Create:zayar(2022/01/15) 
+    * Update: 
+    * This function is used to store payment.
+    */
+
     public function paymentAdd($validate)
     {
         $admin = new M_Payment();

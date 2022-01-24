@@ -313,6 +313,7 @@ INSERT INTO `m_taste` (`id`, `taste`, `note`, `del_flg`, `created_at`) VALUES
 CREATE TABLE `m_township` (
   `id` bigint NOT NULL,
   `township_name` varchar(255) NOT NULL,
+  `state_id` bigint NOT NULL,
   `delivery_price` int NOT NULL,
   `note` varchar(255) DEFAULT NULL,
   `del_flg` int NOT NULL DEFAULT '0',
@@ -415,6 +416,8 @@ CREATE TABLE `t_ad_contact` (
 
 CREATE TABLE `t_ad_evd` (
   `id` bigint NOT NULL COMMENT 'Row of Id',
+  `link_id` bigint NOT NULL COMMENT 'Link for related id',
+  `order_id` bigint NOT NULL COMMENT 'Sequence for photo',
   `path` varchar(255) NOT NULL COMMENT 'Path of ScreenShot',
   `note` varchar(255) DEFAULT NULL COMMENT 'note',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
@@ -533,7 +536,7 @@ CREATE TABLE `t_cu_customer` (
 CREATE TABLE `m_cu_customer_login` (
   `id` int NOT NULL COMMENT 'ID of Row',
   `email` varchar(128) NOT NULL COMMENT 'Email',
-  `password` varchar(30) NOT NULL COMMENT 'Password',
+  `password` varchar(40) NOT NULL COMMENT 'Password',
   `verify` int NOT NULL DEFAULT '0' COMMENT 'verify or not',
   `verify_code` varchar(128) NOT NULL COMMENT 'verify code',
   `customer_id` bigint NOT NULL COMMENT 'customer id',
@@ -958,37 +961,7 @@ ALTER TABLE `t_ad_report`
 --
 ALTER TABLE `m_cu_customer_login`
   ADD CONSTRAINT `m_cu_customer_login_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jan 14, 2022 at 10:10 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `food_lab_db`
---
 
 -- --------------------------------------------------------
 
@@ -1003,12 +976,13 @@ CREATE TABLE `m_product` (
   `product_taste` int(11) NOT NULL COMMENT 'Taste of Product',
   `coin` int(11) NOT NULL COMMENT 'Product coin value',
   `amount` int(11) NOT NULL COMMENT 'Amount Of Prouduct',
+  `list` varchar(255) NOT NULL COMMENT 'Ingredient List',
   `description` varchar(255) NOT NULL COMMENT 'Product Description',
   `avaliable` int(11) NOT NULL COMMENT 'Avaliable or not',
   `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
 --
 -- Indexes for dumped tables
@@ -1029,36 +1003,6 @@ ALTER TABLE `m_product`
 --
 ALTER TABLE `m_product`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID of Row';
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jan 14, 2022 at 10:10 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `food_lab_db`
---
 
 -- --------------------------------------------------------
 
@@ -1076,7 +1020,7 @@ CREATE TABLE `m_product_detail` (
   `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created Timestamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated Timestamp'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
 --
 -- Indexes for dumped tables
@@ -1108,8 +1052,13 @@ ALTER TABLE `m_product_detail`
 --
 ALTER TABLE `m_product_detail`
   ADD CONSTRAINT `m_product_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `m_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `m_state` (
+  `id` bigint(20) NOT NULL COMMENT 'Row of Id',
+  `state_name` varchar(255) NOT NULL COMMENT 'State',
+  `note` varchar(255) DEFAULT NULL COMMENT 'note',
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
+);

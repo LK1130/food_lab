@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_AD_News extends Model
 {
     public $table = 'm_ad_news';
     use HasFactory;
     /*
-    * Create:zayar(2022/01/15) 
-    * Update: 
+    * Create:zayar(2022/01/15)
+    * Update:
     * This function is used to show news add view.
     */
 
@@ -20,8 +21,8 @@ class M_AD_News extends Model
         return M_News_Category::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to store news.
    */
 
@@ -36,8 +37,8 @@ class M_AD_News extends Model
         $admin->save();
     }
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to show news edit view.
    */
 
@@ -50,8 +51,8 @@ class M_AD_News extends Model
     }
 
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to update news.
    */
 
@@ -65,8 +66,8 @@ class M_AD_News extends Model
         $admin->save();
     }
     /*
-   * Create:zayar(2022/01/15) 
-   * Update: 
+   * Create:zayar(2022/01/15)
+   * Update:
    * This function is used to update del_flg to 1.
    */
     public function newsDelete($id)
@@ -87,8 +88,15 @@ class M_AD_News extends Model
      * */
     public function news()
     {
-        return M_AD_News::where('del_flg', '=', '0')
-            ->get();
+        Log::channel('customerlog')->info('M_AD_News Model',[
+            'start news'
+        ]);
+        $news = M_AD_News::where('del_flg', '=', '0')
+                ->get();
+        Log::channel('customerlog')->info('M_AD_News Model',[
+            'end news'
+        ]);
+        return $news;
     }
 
     /*

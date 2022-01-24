@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class M_Site extends Model
 {
@@ -129,5 +130,50 @@ class M_Site extends Model
             $siteFirst->maintenance = $request->input('maintenance');
             $siteFirst->save();
         }
+    }
+
+    /*
+     * Create : Min Khant(23/1/2022)
+     * Update :
+     * Explain of function : to get site name
+     * Prarameter : no
+     * return : site name
+     * */
+    public function siteName()
+    {
+        Log::channel('customerlog')->info('M_Site Model', [
+            'start siteName'
+        ]);
+        $name = M_Site::select('site_name')
+            ->where('del_flg', '=', 0)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        Log::channel('customerlog')->info('M_Site Model', [
+            'end siteName'
+        ]);
+        return $name;
+    }
+
+    /*
+     * Create : Min Khant(23/1/2022)
+     * Update :
+     * Explain of function : to get policy data
+     * Prarameter : no
+     * return : plicy
+     * */
+    public function policy()
+    {
+        Log::channel('customerlog')->info('M_Site Model', [
+            'start policy'
+        ]);
+        $policys = M_Site::select('privacy_policy')
+            ->where('del_flg', '=', 0)
+            ->orderBy('id', 'desc')
+            ->first();
+        Log::channel('customerlog')->info('M_Site Model', [
+            'end policy'
+        ]);
+        return $policys;
     }
 }

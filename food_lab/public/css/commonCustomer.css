@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+textarea {
+    resize: none;
+}
+
 :root {
     --primary-color: #ff470b;
     --secondary-color: #ff6600;
@@ -289,6 +293,17 @@ footer {
     font-size: 1.3rem;
 }
 
+.footer-logos {
+    position: relative;
+}
+
+.footer-names {
+    position: absolute;
+    top: 50%;
+    left: 7%;
+    transform: translateY(-50%);
+}
+
 .footer-infos div:first-of-type p.fw-bolder {
     font-size: 2rem;
     color: var(--primary-color);
@@ -297,6 +312,10 @@ footer {
 .footer-details a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+.footer-details .mailTeams {
+    text-decoration: underline;
 }
 
 .footer-details a:hover {
@@ -311,12 +330,35 @@ footer {
     color: var(--primary-color);
 }
 
+.sitelinks {
+    padding-left: 2.5px;
+}
+
 .copys {
     background: url("/img/bg2.png");
     min-height: 10vh;
     color: var(--primary-color);
     font-size: 1.5rem;
     font-weight: bold;
+    position: relative;
 }
 
+<<<<<<< HEAD
 /*End Footer Section*/
+=======
+.copys p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width:720px) {
+    .copys p {
+        font-size: 1rem;
+    }
+}
+
+
+/*End Footer Section*/
+>>>>>>> dc4ce2ec17cf055c5386d6907567e8646f9619f8

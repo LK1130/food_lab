@@ -3,7 +3,7 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 
 @section('script')
@@ -16,13 +16,63 @@
     {{--  Start Marquee  --}}
     <marquee class="pt-1">
         @foreach ($news as $new)
-        <p class="d-inline mx-5">{{  $new->detail }}</p>
+        <p class="d-inline mx-5 news" id="{{ $new->category }}">{{  $new->title }}</p>
         @endforeach
     </marquee>
     {{--  End Marquee  --}}
 @endsection
 
 @section('header')
+     {{--  start navbar  --}}
+     <nav class="navbar navbar-expand-lg container-fluid py-3">
+
+        <a href="/" class="navbar-brand d-lg-none">
+            <img src="{{ url('storage/logo/siteLog.png') }}"  class="pe-2"/>
+            <span class="comapanynames">{{ $name->site_name }}</span>
+        </a>
+
+        <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="bg-light line1"></div>
+            <div class="bg-light line2"></div>
+            <div class="bg-light line3"></div>
+        </button>
+
+        <div class="collapse navbar-collapse text-uppercase fw-bolder" id="navbarNav">
+            <ul class="navbar-nav w-100 justify-content-around align-items-center border-0 rounded py-3 navs">
+                <li class="nav-item">
+                    <a class="nav-link texts actives" href="#">{{ __('messageMK.home') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link texts" href="#">{{  __('messageMK.products') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link texts" href="#">{{ __('messageMK.buy coin') }}</a>
+                </li>
+                <li class="nav-item companys">
+                    <a href="/" class="navbar-brand d-lg-inline">
+                        <img src="{{ url('storage/logo/siteLog.png') }}"  class="pe-2"/>
+                        <span class="comapanynames">{{  $name->site_name  }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link texts" href="#">{{ __('messageMK.inform') }}</a>
+                </li>
+                @if (session()->has('customerId'))
+                    <li class="nav-item">
+                        <p class="nav-link texts  mt-3"><i class="fas fa-user-circle fs-2"></i></p>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link texts" href="/access">{{ __('messageMK.access') }}</a>
+                    </li>
+                @endif
+                <li class="nav-item">
+                    <p class="nav-link texts mt-3"><i class="fas fa-shopping-cart fs-3"></i></p>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {{--  end navbar  --}}
 
 
     {{--  start carousel  --}}
@@ -99,30 +149,18 @@
             <legend class="seller-headers">{{ __('messageMK.bestselleritems') }}</legend>
 
             {{--start items--}}
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5">
-                <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
+            @forelse ($productInfos as $productInfo)
+                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5" id="{{ $productInfo->id }}">
+                    <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1"/>
+                    <p class="fs-3 pt-2 text-uppercase">{{ $productInfo->product_name }}</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $productInfo->coin }}</p>
+                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                </div>
+            @empty
+                <div class="text-center">
+                    <p class="fs-2 fw-bolder my-3">No product</p>
+                </div>
+            @endforelse
             {{--end items--}}
 
         </fieldset>
@@ -130,39 +168,41 @@
     {{-- End Best Seller Item Section --}}
 
     {{-- Start Recommand Item Section --}}
-    <section class="recommand-items">
-        <fieldset class="d-flex flex-wrap justify-content-around align-items-center border border-3 text-light recommands">
-            <legend class="seller-headers">{{ __('messageMK.recommanditems') }}</legend>
+    @if (session()->has('customerId'))
+        <section class="recommand-items">
+            <fieldset class="d-flex flex-wrap justify-content-around align-items-center border border-3 text-light recommands">
+                <legend class="seller-headers">{{ __('messageMK.recommanditems') }}</legend>
 
-            {{--start items--}}
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5">
-                <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
-                <p class="fs-3 pt-2">Item1</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-            </div>
-            {{--end items--}}
+                {{--start items--}}
+                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5">
+                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
+                    <p class="fs-3 pt-2">Item1</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
+                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
+                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
+                    <p class="fs-3 pt-2">Item1</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
+                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
+                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
+                    <p class="fs-3 pt-2">Item1</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
+                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
+                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1"/>
+                    <p class="fs-3 pt-2">Item1</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
+                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                </div>
+                {{--end items--}}
 
-        </fieldset>
-    </section>
+            </fieldset>
+        </section>
+    @endif
     {{-- End Recommand Item Section --}}
 
     {{-- Start Delivery Section --}}
@@ -170,7 +210,7 @@
         <p class="fw-bolder text-center pt-5 pb-3 del-infos">{{ __('messageMK.Delivery Information') }}</p>
         <div class="row">
             {{-- start delivery Informaiton--}}
-            <div class="col-lg-6 col-md-12 township-infos">
+            <div class="col-12 township-infos">
                 <div class="row justify-content-center align-items-center text-center text-white">
                     <p class="col-5 fw-bolder">{{ __('messageMK.townships') }}</p>
                     <p class="col-2 pt-2"><i class="fas fa-arrow-right"></i></p>
@@ -180,14 +220,15 @@
                     <div class="row justify-content-center align-items-center text-center text-white">
                         <p class="col-5">{{ $township->township_name }}</p>
                         <p class="col-2 pt-2"><i class="fas fa-arrow-right"></i></p>
-                        <p class="col-5"><span class="prices">{{ $township->delivery_price }}</span> Ks</p>
+                        @if($township->delivery_price == 0)
+                            <p class="col-5"><span class="prices">Free</span></p>
+                        @else
+                            <p class="col-5"><span class="prices">{{ $township->delivery_price }}</span> Ks</p>
+                        @endif
                     </div>
                 @endforeach
             </div>
             {{-- end delivery Informaiton--}}
-            <div class="col-6">
-                <img src="{{ url('img/deilvery.png') }}" width="100%" alt="delivery"/>
-            </div>
         </div>
     </section>
     {{-- End Delivery Section --}}
@@ -212,7 +253,7 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="col-9">
-                                <p><span class="d-block">09876543211</span><span class="d-block">097788665544</span></p>
+                                <p><a href="tel:09876543211" class="d-block">09876543211</a><a href="tel:097788665544" class="d-block">097788665544</a></p>
                             </div>
                         </div>
                         <div class="row ps-5">
@@ -220,7 +261,7 @@
                                 <p><i class="fas fa-envelope"></i></p>
                             </div>
                             <div class="col-9">
-                                <p>www.foodlab2022@gmail.com</p>
+                                <a href="mailto:www.foodlab2022@gmail.com">www.foodlab2022@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -232,5 +273,56 @@
         </div>
     </section>
     {{-- End Contact Section --}}
+
+    {{-- Start Footer Section --}}
+    <footer>
+        <div class="pt-5 ps-3 footer-infos">
+            <div class="d-flex align-items-center footer-logos">
+                <img src="{{ url('storage/logo/siteLog.png') }}"/>
+                <p class="fw-bolder footer-names">{{ $name->site_name }}</p>
+            </div>
+            <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
+                <div class="footer-navs">
+                    <p><a href="/">{{ __('messageMK.home') }}</a></p>
+                    <p><a href="#">{{ __('messageMK.aboutus') }}</a></p>
+                    <p><a href="#">{{ __('messageMK.products') }}</a></p>
+                    <p><a href="">{{ __('messageMK.buy coin') }}</a></p>
+                    <p><a href="#">{{ __('messageMK.inform') }}</a></p>
+                    @if (!session()->has('customerId'))
+                        <p><a href="/access">{{ __('messageMK.access') }}</a></p>
+                        <p><a href="#">{{ __('messageMK.profile') }}</a></p>
+                    @endif
+                </div>
+                @if (session()->has('customerId'))
+                    <div>
+                        <p>{{ __('messageMK.feedback') }}</p>
+                        <p><a href="#">{{ __('messageMK.contact') }}</a></p>
+                        <p><a href="/suggest">{{ __('messageMK.suggest') }}</a></p>
+                        <p><a href="/report">{{ __('messageMK.report') }}</a></p>
+                    </div>
+                @endif
+                <div>
+                    <div>
+                        <p>{{ __('messageMK.information') }}</p>
+                        <p><a href="/policyinfo">{{ __('messageMK.privacy') }}</a></p>
+                        <p><a href="#">{{ __('messageMK.deliveryinfo') }}</a></p>
+                    </div>
+                    <div class="mt-4">
+                        <p>{{ __('messageMK.othesite') }}</p>
+                        <p class="sitelinks"><a href="#">{{ __('messageMK.sitelink') }}</a></p>
+                    </div>
+                </div>
+                <div>
+                    <p>{{ __('messageMK.powerby') }}</p>
+                    <p>Team x</p>
+                    <p class="mailTeams"><a href="mailto:https://www.teamx.com">https://www.teamx.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="copys">
+            <p>Copy right by Food Lab</p>
+        </div>
+    </footer>
+    {{-- End Footer Section --}}
 
 @endsection

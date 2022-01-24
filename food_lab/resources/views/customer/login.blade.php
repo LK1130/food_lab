@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- fontawasome css 1 --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- custom css 2--}}
-    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <script src="{{ asset('js/app.js') }}"></script>
-    {{-- custom js 1--}}
-    <script src="{{ url('js/customer.js') }}" type="text/javascript"></script>
-    <title>Food Lab</title>
-</head>
-<body>
-    {{-- Start Access Section--}}
-    <section class="accesses">
+@extends('COMMON.layout.layout_cusotmer_2')
+
+@section('body')
+    {{-- Start Login Section--}}
+    <section class="login">
         <div class="d-flex ps-5 py-4">
             <div class="me-4 mt-3">
-                <i class="fas fa-arrow-left text-white arrows"></i>
+                <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div>
                 <img src="{{ url('/img/logo.png') }}" alt="logo"/>
@@ -30,37 +15,44 @@
         {{-- start register header --}}
         <div class="d-flex ms-5 register-headers">
             <div class="welcome-registers">
-                <p class="text-center creates">Welcome From <span class="d-block ms-5 ps-5">Our Food Lab</span></p>
+                <p class="text-center creates">{{ __('messageMK.welcomeFrom') }} <span class="d-block ms-5 ps-5">{{ __('messageMK.ourFoodLab') }}</span></p>
             </div>
             <div>
-                <p class="fw-bolder pb-3 creates">Create Account</p>
+                <p class="fw-bolder pb-3 creates">{{ __('messageMK.signinForm') }}</p>
             </div>
         </div>
         {{-- end register header --}}
 
         {{-- start register form --}}
         <div class="d-flex register-forms">
-            <form action="#" method="post" class="d-flex flex-column align-items-center justify-content-start">
-                @csrf
-                <input type="text" id="username" class="form-control" name="username" placeholder="Full Name" autocomplete="off"/>
-                <input type="text" id="phone" class="form-control" name="phone" placeholder="Phone"  autocomplete="off"/>
-                <input type="email" id="email" class="form-control" name="email" placeholder="email" autocomplete="off"/>
-                <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="Address(No)" autocomplete="off"/>
-                <input type="text" id="addressTownship" class="form-control" name="addressTownship" placeholder="Address(Township)" autocomplete="off"/>
-                <input type="text" id="addressCity" class="form-control" name="addressCity" placeholder="address(City)" autocomplete="off"/>
-                <input type="password" id="password" class="form-control" name="password" placeholder="Password" autocomplete="off"/>
-                <input type="password" id="cPassword" class="form-control" name="cPassword" placeholder="Confirm Password" autocomplete="off"/>
-                <input type="submit" class="form-control text-center" value="Create Account"/>
-            </form>
-            <div>
+            <div  class="access-imgs">
                 <img src="{{ url('img/menu3.png') }}" width="90%"/>
             </div>
+            <form action="/login" method="post" class="d-flex flex-column align-items-center justify-content-center">
+                @csrf
+                <div class="inputs">
+                    <input type="email" id="email" class="form-control" name="email" placeholder="{{ __('messageMK.email') }}" value="{{ old('email') }}" autocomplete="off"/>
+                    @error('email')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="inputs passwords">
+                    <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('messageMK.password') }}" value="{{ old('password') }}" autocomplete="off"/>
+                    <i class="fas fa-eye-slash pwd-eye-slash"></i>
+                    <i class="far fa-eye pwd-eye"></i>
+                    @error('password')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="inputs">
+                    <input type="submit" class="form-control text-center createAccs" value="{{ __('messageMK.signIn') }}"/>
+                </div>
+                <div class="ms-5 py-2 have-accs">
+                    <p>{{ __('messageMK.Ifyoudoesn\'thaveAnyaccount') }} ? <a href="/access" class="ms-3">{{ __('messageMK.signUpHere') }}</a></p>
+                </div>
+            </form>
         </div>
         {{-- end register form --}}
-
-        <div class="ms-5 py-2 have-accs">
-            <p>If you doesn't have Any account ? <a href="/register" class="ms-3">Sign Up here</a></p>
-        </div>
     </section>
-    {{-- End Access Section--}}
-</body>
+    {{-- End Login Section--}}
+@endsection

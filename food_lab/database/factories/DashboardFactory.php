@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\DashBoard;
+use App\Models\T_CU_Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DashboardFactory extends Factory
 {
-    protected $model = DashBoard::class;
+    protected $model = T_CU_Customer::class;
     /**
      * Define the model's default state.
      *

@@ -10,6 +10,10 @@
 @endsection
 
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+        integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 @endsection
 
@@ -35,7 +39,7 @@
                     </span>
                 </button></a>
             {{-- Report --}}
-            <a href="#">
+            <a href="customerReport">
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -50,30 +54,30 @@
         <div class="row align-items-start me-4">
             <div class="col a ">
                 <div class="text-center pb-3">
-                    <p class=" numbers">10</p>
+                    <p class=" numbers tcount">{{ $tcount }}</p>
                     <p class="detail">{{ __('messageZN.Total Transaction') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers">20</p>
+                    <p class=" numbers cuscount">{{ $cuscount }}</p>
                     <p class="detail">{{ __('messageZN.Total User Register') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="customerInfo" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers">1500</p>
+                    <p class=" numbers coinrate">{{ $coinrate->rate }}</p>
                     <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers">12</p>
+                    <p class=" numbers">{{ $todaycount }}</p>
                     <p class="detail">{{ __('messageZN.Today Order') }}</p>
-                    <a href="" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
             <div class="col a ms-3">
@@ -94,45 +98,29 @@
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Transaction List') }}</div>
                 <table class="table boxshad">
                     <thead>
-                        <tr class="tableheader tablerows">
+                        <tr class="tableheader tablerows ">
                             <th scope="col">No.</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">UserID</th>
-                            <th scope="col">Product ID</th>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Date&Time</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>M12231</td>
-                            <td>P12312</td>
-                            <td>12/1/2022 <br>
-                                12:12
-                            </td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>M12231</td>
-                            <td>P12312</td>
-                            <td>12/1/2022 <br>
-                                12:12
-                            </td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>M12231</td>
-                            <td>P12312</td>
-                            <td>12/1/2022 <br>
-                                12:12
-                            </td>
-                        </tr>
+                        @foreach ($orderdetail as $list2)
+                            <tr class="tablecolor1 tablerows">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $list2->customerID }}</td>
+                                <td>{{ $list2->payment_name }}</td>
+                                <td>{{ $list2->status }}</td>
+                                <td>{{ $list2->order_date }} {{ $list2->order_time }}
+                                </td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
-                <a href="" class="d-flex justify-content-end"><button
+                <a href="orderTransaction" class=""><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
             <div class="col-md-6">
@@ -143,9 +131,9 @@
                         <tr class="tableheader tablerows">
                             <th scope="col">No.</th>
                             <th scope="col">Username</th>
-                            <th scope="col">UserID</th>
+                            <th scope="col">Cus. ID</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Phone No.</th>
+                            <th scope="col">Ph No.</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -161,8 +149,7 @@
 
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">{{ $t_cu_customer->links() }}</div>
-                <a href="" class="d-flex justify-content-end"><button
+                <a href="customerInfo" class=""><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
         </div>
@@ -176,35 +163,25 @@
                             <th scope="col">No.</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Product ID</th>
-                            <th scope="col">Coin</th>
-                            <th scope="col">Tpye</th>
+                            <th scope="col">Coin/amount</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Taste</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">1</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">2</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">3</th>
-                            <td>Chicken Fries</td>
-                            <td>C12312</td>
-                            <td>200</td>
-                            <td>Chicken</td>
-                        </tr>
+                        @foreach ($product as $list3)
+                            <tr class="tablecolor1 tablerows">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $list3->product_name }}</td>
+                                <td>C12312</td>
+                                <td>{{ $list3->coin }}/{{ $list3->amount }}</td>
+                                <td>{{ $list3->favourite_food }}</td>
+                                <td>{{ $list3->taste }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <a href="" class="d-flex justify-content-end"><button
+                <a href="/productList" class="d-flex justify-content-end"><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
             <div class="col-md-6">
@@ -214,40 +191,37 @@
                     <thead>
                         <tr class="tableheader tablerows">
                             <th scope="col">No.</th>
-                            <th scope="col">Username</th>
+                            <th scope="col">Customer ID</th>
                             <th scope="col">Approve By</th>
                             <th scope="col">Coin Amount</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>200</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>200</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr class="tablecolor1 tablerows">
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>200</td>
-                            <td>Pending</td>
-                        </tr>
+                        @foreach ($coincharge as $list4)
+                            <tr class="tablecolor1 tablerows">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $list4->customerID }}</td>
+                                <td>{{ $list4->ad_name }}</td>
+                                <td>{{ $list4->request_coin }}</td>
+                                <td>{{ $list4->status }}</td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
-                <a href="" class="d-flex justify-content-end"><button
+                <a href="" class=""><button
                         class="btn seemore text-light ">{{ __('messageZN.See More') }}</button></a>
             </div>
         </div>
 
-
+        <script>
+            // for transaction count
+            var tcount = @json($tcount);
+            // for customer count
+            var cuscount = @json($cuscount);
+            // for coinrate
+            var coinrate = @json($coinrate->rate);
+        </script>
+        <script src="{{ URL::asset('js/admindashboard.js') }}"></script>
     @endsection
