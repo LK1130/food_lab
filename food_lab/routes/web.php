@@ -19,6 +19,8 @@ use App\Http\Controllers\SuggestController;
 use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
+use App\Http\Controllers\CustomerProfileController;
+use App\Http\Controllers\CustomerProfileUpdate;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\TransactionController;
 
@@ -33,14 +35,27 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-//admin/setting/loginManage
+//_________________________________start loginManage_________________________/
+
 Route::resource('adminLogin', LoginController::class);
-//admin/setting/coinRate
+
+//_________________________________end loginManage_________________________/
+
+//_________________________________start coinManage_________________________/
+
 Route::resource('coinrate', CoinController::class);
-//admin/setting/siteManage
+
+//_________________________________end coinManage_________________________/
+
+//_________________________________start siteManage_________________________/
+
 Route::get('siteManage', [SiteController::class, 'siteManage']);
 Route::post('siteManage/store', [SiteController::class, 'store']);
-//admin/setting/appManage
+
+//_________________________________end siteManage_________________________/
+
+//_________________________________start appManage_________________________/
+
 Route::resource('app', AppController::class);
 Route::resource('township', TownshipController::class);
 Route::resource('payment', PaymentController::class);
@@ -50,8 +65,16 @@ Route::resource('suggest', SuggestController::class);
 Route::resource('favtype', FavtypeController::class);
 Route::resource('orderstatus', OrderStatusController::class);
 Route::resource('decision', DecisionController::class);
-//admin/setting/newsManage
+
+//_________________________________end appManage_________________________/
+
+//_________________________________start newsManage_________________________/
+
 Route::resource('news', NewsController::class);
+
+//_________________________________end newsManage_________________________/
+
+
 
 Route::get('dashboard', function () {
     return View('admin.dashboard');
@@ -161,3 +184,21 @@ Route::post('/access', [CustomerController::class, 'register']);
  * For Login Page
  */
 Route::get('/login', [CustomerController::class, 'login']);
+
+/*
+ * For Edit Profile Page
+ * zayar
+ */
+Route::resource('editprofile', CustomerProfileController::class);
+
+
+/*
+ * For Update Profile Page
+ * zayar
+ */
+Route::resource('updateprofile', CustomerProfileUpdate::class);
+/*
+ * For Update Profile
+ * zayar
+ */
+Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);

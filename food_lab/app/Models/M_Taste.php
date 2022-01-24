@@ -56,4 +56,14 @@ class M_Taste extends Model
         $admin->del_flg = 1;
         $admin->save();
     }
+    /*
+   * Create:zayar(2022/01/15) 
+   * Update: 
+   * This function is used to get all taste.
+   */
+
+    public function allTastes()
+    {
+        return M_Taste::where('del_flg', '=', 0)->get();
+    }
 }

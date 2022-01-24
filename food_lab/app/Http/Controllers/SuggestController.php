@@ -7,6 +7,7 @@ use App\Http\Requests\SuggestValidation;
 use App\Models\SuggestModel;
 use App\Models\T_AD_Suggest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SuggestController extends Controller
 {
@@ -18,6 +19,12 @@ class SuggestController extends Controller
 
     public function create()
     {
+        Log::channel('adminlog')->info("SuggestController", [
+            'Start create'
+        ]);
+        Log::channel('adminlog')->info("SuggestController", [
+            'End create'
+        ]);
         return view('admin.setting.appManage.suggestAdd');
     }
     /*
@@ -28,9 +35,15 @@ class SuggestController extends Controller
 
     public function store(SuggestValidation $request)
     {
+        Log::channel('adminlog')->info("SuggestController", [
+            'Start store'
+        ]);
         $validate = $request->validated();
         $admin = new T_AD_Suggest();
         $admin->suggestAdd($validate);
+        Log::channel('adminlog')->info("SuggestController", [
+            'End store'
+        ]);
         return redirect('siteManage');
     }
     /*
@@ -41,9 +54,22 @@ class SuggestController extends Controller
 
     public function show($id)
     {
+        Log::channel('adminlog')->info("SuggestController", [
+            'Start show'
+        ]);
         $admin = new T_AD_Suggest();
         $admins = $admin->suggestEditView($id);
-        return view('admin.setting.appManage.suggestEdit', ['suggest' => $admins]);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End show(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End show'
+            ]);
+            return view('admin.setting.appManage.suggestEdit', ['suggest' => $admins]);
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -53,10 +79,25 @@ class SuggestController extends Controller
 
     public function update(SuggestValidation $request, $id)
     {
-        $validate = $request->validated();
+        Log::channel('adminlog')->info("SuggestController", [
+            'Start update'
+        ]);
         $admin = new T_AD_Suggest();
-        $admin->suggestEdit($validate, $id);
-        return redirect('siteManage');
+        $admins = $admin->suggestEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End update(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $validate = $request->validated();
+            $admin = new T_AD_Suggest();
+            $admin->suggestEdit($validate, $id);
+            Log::channel('adminlog')->info("SuggestController", [
+                'End update'
+            ]);
+            return redirect('siteManage');
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -65,8 +106,23 @@ class SuggestController extends Controller
     */
     public function destroy($id)
     {
+        Log::channel('adminlog')->info("SuggestController", [
+            'Start destroy'
+        ]);
         $admin = new T_AD_Suggest();
-        $admin->suggestDelete($id);
-        return redirect('siteManage');
+        $admins = $admin->suggestEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End destroy(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $admin = new T_AD_Suggest();
+            $admin->suggestDelete($id);
+            Log::channel('adminlog')->info("SuggestController", [
+                'End destroy'
+            ]);
+            return redirect('siteManage');
+        }
     }
 }

@@ -90,4 +90,19 @@ class M_AD_News extends Model
         return M_AD_News::where('del_flg', '=', '0')
             ->get();
     }
+
+    /*
+     * Create : zayar(24/1/2022)
+     * Update :
+     * Explain of function : To show  news for users in inform alert box
+     * Prarameter : no
+     * return : news
+     * */
+    public function newsLimited()
+    {
+        return M_AD_News::where('m_ad_news.del_flg', 0)
+            ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
+            ->limit(3)
+            ->get();
+    }
 }

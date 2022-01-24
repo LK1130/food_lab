@@ -24,6 +24,7 @@
 
 @section('header')
 
+
     {{--  start carousel  --}}
     <div id="carouselExampleIndicators" class="carousel slide carousels" data-bs-ride="">
         <div class="carousel-indicators">
@@ -83,6 +84,7 @@
 @endsection
 
 @section('section')
+
 
     {{--Start Welcome Section--}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes">

@@ -1,40 +1,118 @@
-@extends('COMMON.layout.layout_customer')
+@extends('COMMON.layout.layout_customer_without_navbar')
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('css/updateProfile.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('css/customerUpdateProfile.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
+
+@section('script')
+<script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script src="{{ url('js/updateProfile.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('title','Update Profile')
 
-@section('header')
-    {{-- Start Report Form Section --}}
-    <section>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <p class="fw-bolder forms">{{ __('messageMK.suggestForm') }}</p>
-            <form action="/suggest" method="post">
-                @csrf
-                <div class="d-flex">
-                    <label class="fw-bold">{{ __('messageMK.suggestionType') }}</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="d-flex">
-                    <label class="fw-bold" id="details">{{ __('messageMK.suggestDetails') }}</label>
-                    <textarea class="form-control" id="details"></textarea>
+@section('body')
+    {{-- Start Profile Edit Section --}}
+<div class="body">
 
-                </div>
-                <div class="float-end">
-                    <button type="submit" class="btn me-5">{{ __('messageMK.suggest') }}</button>
-                    <a href="/" type="reset" class="btn me-5 cancels">{{ __('messageMK.cancel') }}</a>
-                </div>
-            </form>
+    <div class="editProfile absolute">
+        <div class="headerEditProfile absolute ms-5 mt-5">
+            <a href="{{ url('/') }}"><i class="fas fa-arrow-circle-left fs-1 me-4 text-light" ></i></a>
+            <a href="{{ url('/') }}"><img src="{{ url('img/logo.png') }}" /></a>
         </div>
-    </section>
-    {{-- End Report Form Section --}}
+        <div class="titleEditProfile absolute d-flex justify-content-center ">
+            <p class="fw-bold">Update Profile</p>
+        </div>
+        <div class="welcome absolute ">
+            <p class="fw-bold">Welcome From</p>
+            <p class="fw-bold foodLab">Our Food Lab</p>
+        </div>
+    </div>
+    @if ($errors->any())
+        <input type="text" value="1" id="error" class="hide">
+        @else
+        <input type="text" value="0" id="error" class="hide">
+    @endif
+    
+    <div class="alertBox" id="alertBox">
+        <i class="fas fa-arrow-circle-left fs-1 mt-3 ms-3 text-light" id="back"></i>
+        <form action="{{ route('updateprofile.update',$user->id)}}" method="POST" >
+            @csrf
+            @method('PUT')
+        <div class="absolute d-flex flex-column justify-content-center alertUpdate">
+            @error('oldpassword')
+                    <span><i class="fas fa-exclamation-circle fs-3 mt-2 errorPassword text-danger" ></i></span>
+                    @enderror
+            <p class="InputTitle" id="old">Old Password</p>
+            <div class="d-flex  me-3 ms-3  infos">
+                <div class="InputParentAlert">
+                    <input type="text" name="oldpassword"  class="InputChild" autocomplete="off">
+                    
+                </div>
+            </div>
+            @error('newpassword')
+                    <span><i class="fas fa-exclamation-circle fs-3 mt-2 errorPassword text-danger" ></i></span>
+                    @enderror
+            <p class="InputTitle" id="new">New Password</p>
+            <div class="d-flex  me-3 ms-3  infos">
+                
+                <div class="InputParentAlert">
+                    
+                    <input type="text" name="newpassword"  class="InputChild" autocomplete="off">
+                </div>
+            </div>
+            @error('confirmpassword')
+                    <span><i class="fas fa-exclamation-circle fs-3 mt-2 errorPassword text-danger" ></i></span>
+                    @enderror
+            <p class="InputTitle" id="confirm">Confirm New Password</p>
+            <div class="d-flex  me-3 ms-3  infos">
+                <div class="InputParentAlert">
+                    <input type="text" name="confirmpassword"  class="InputChild" autocomplete="off">
+                    
+                </div>
+            </div>
+            
+        </div>
+        <button class="btn updateButtonAlert " id="updatePassword">Update Password</button>
+    </form>
+    </div>
+        <div class="bodyEditProfile absolute">
+            
+            <div class="d-flex me-3 ms-3   infos">
+                <i class="fas fa-user fs-3 me-4 mt-2 text-light" ></i>
+                <div class="InputParent">
+                    <input type="text" name="username" id="username" class="InputChild" value="{{ $user->nickname }}" disabled> 
+                </div>
+            </div>
+            <div class="d-flex  me-3 ms-3  infos">
+                <i class="fas fa-phone-alt fs-3 me-4 mt-2 text-light" ></i>
+                <div class="InputParent">
+                    <input type="number" name="phonenumber" id="phonenumber" class="InputChild" value="{{ $user->phone }}" disabled>
+                </div>
+            </div>
+            <div class="d-flex  me-3 ms-3  infos">
+                <i class="fas fa-address-book fs-3 me-4 mt-2 text-light" ></i>
+                <div class="InputParent">
+                    <input type="text"  id="address" class="InputChild" value="{{ $user->township_name }}/{{ $user->state_name }}/ ({{ $user->address3 }})" disabled>
+                </div>
+            </div>
+            <div class="d-flex  me-3 ms-3  infos">
+                <i class="fas fa-envelope fs-3 me-4 mt-2 text-light" ></i>
+                <div class="InputParent">
+                    <input type="text" name="email" id="email" class="InputChild" value="{{ $user->email }}" disabled>
+                </div>
+            </div>
+            <div class="d-flex  me-3   infos">
+                
+                <div class="InputParent">
+                    <button class="btn updateButton me-5" id="changePassword">Change Password</button>
+                </div>
+            </div>
+            
+        </div>
+</div>
+
+    {{-- End Profile Edit Section --}}
 @endsection
