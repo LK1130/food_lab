@@ -69,10 +69,14 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start policy'
         ]);
+        $msite = new M_Site();
+        $policys = $msite->policy();
+
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end policy'
         ]);
-        return view('customer.policyInfo');
+
+        return view('customer.policyInfo', ['policys' => $policys]);
     }
 
     /*
@@ -87,15 +91,21 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start report'
         ]);
+        if (session()->has('customerId')) {
+            $customerid = session()->get('customerId');
+            $order = new T_AD_Order();
+            $orderlists = $order->orderId($customerid);
 
-        $customerid = session()->get('customerId');
-        $order = new T_AD_Order();
-        $orderlists = $order->orderId($customerid);
-
+            Log::channel('customerlog')->info('Customer Controller', [
+                'end report'
+            ]);
+            return view('customer.report', ['orderlists' => $orderlists]);
+        }
         Log::channel('customerlog')->info('Customer Controller', [
             'end report'
         ]);
-        return view('customer.report', ['orderlists' => $orderlists]);
+
+        return redirect('/');
     }
 
     /*
@@ -133,14 +143,19 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'start suggest'
         ]);
+        if (session()->has('cutomerId')) {
+            $data = new M_Suggest();
+            $type = $data->suggestType();
 
-        $data = new M_Suggest();
-        $type = $data->suggestType();
-
+            Log::channel('customerlog')->info('CustomerController', [
+                'end suggest'
+            ]);
+            return view('customer.suggest', ['types' => $type]);
+        }
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'
         ]);
-        return view('customer.suggest', ['types' => $type]);
+        return redirect('/');
     }
 
     /*
@@ -179,11 +194,16 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start access'
         ]);
-
+        if (!session()->has('customerId')) {
+            Log::channel('customerlog')->info('Customer Controller', [
+                'end access'
+            ]);
+            return view('customer.register');
+        }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'
         ]);
-        return view('customer.register');
+        return redirect('/');
     }
 
     /*
@@ -287,12 +307,18 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start login'
         ]);
+        if (!session()->has('customerId')) {
+            Log::channel('customerlog')->info('Customer Controller', [
+                'end login'
+            ]);
 
+            return view('customer.login');
+        }
         Log::channel('customerlog')->info('Customer Controller', [
             'end login'
         ]);
 
-        return view('customer.login');
+        return redirect('/');
     }
 
     /*

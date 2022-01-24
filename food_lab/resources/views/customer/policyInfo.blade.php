@@ -10,15 +10,20 @@
 
 @section('header')
     {{-- Start Policy Section --}}
-    <section>
+    <section class="policys">
+        <div class="d-flex ps-5 py-4">
+            <div class="me-4 mt-3">
+                <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
+            </div>
+            <div>
+                <img src="{{ url('storage/logo/siteLog.png') }}" alt="logo"/>
+            </div>
+        </div>
+
         <div class="text-white fw-bolder policy-infos">
             <p class="policyheaders">{{ __('messageMK.policyInfo') }}</p>
             <div class="ps-5 mt-4">
-                <p><i class="fas fa-star pe-3"></i>{{ __('messageMK.used1') }}</p>
-                <p><i class="fas fa-star pe-3"></i>{{ __('messageMK.transfer1') }}</p>
-                <p><i class="fas fa-star pe-3"></i>{{ __('messageMK.transfer2') }}</p>
-                <p><i class="fas fa-star pe-3"></i>{{ __('messageMK.transfer3') }}</p>
-                <p><i class="fas fa-star pe-3"></i>{{ __('messageMK.used2') }}</p>
+                <p><i class="fas fa-star pe-3"></i>{{ $policys->privacy_policy }}</p>
             </div>
         </div>
     </section>
