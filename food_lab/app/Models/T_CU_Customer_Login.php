@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
-class T_AD_CoinRate_History extends Model
+class T_CU_Customer_Login extends Model
 {
-    public $table = 't_ad_coinrate_history';
+    public $table = 't_cu_customer_login';
     use HasFactory;
-
 }

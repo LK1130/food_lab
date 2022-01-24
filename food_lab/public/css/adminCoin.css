@@ -112,6 +112,8 @@
     width: 12rem;
 }
 
+
+
 @media only screen and (max-width: 720px) {
     .mobile_block {
         flex-direction: column;

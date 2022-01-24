@@ -147,6 +147,10 @@ class CoinController extends Controller
         $m_ad_coinrate = new M_AD_CoinRate();
         $rate = $m_ad_coinrate->getRate();
 
+        //Get History
+        $t_ad_coincharge_decision_history = new T_AD_CoinCharge_Decision_History();
+        $history = $t_ad_coincharge_decision_history->findHistoryById($id);
+
         Log::channel('adminlog')->info("CoinController", [
             'End decision'
         ]);
@@ -155,10 +159,104 @@ class CoinController extends Controller
             'Cdetail' => $chargeDetail,
             'paymentlist' => $paymentList,
             'path' => $path,
-            'rate' => $rate->rate
+            'rate' => $rate->rate,
+            'history' => $history
         ]);
     }
 
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : charge id
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function reDecision($id)
+    {
+        Log::channel('adminlog')->info("CoinController",
+            [
+                'Start decision'
+            ]
+        );
+        // Get Coin Detail Info
+        $t_ad_coincharge = new T_AD_CoinCharge();
+        $chargeDetail = $t_ad_coincharge->chargeDetail($id);
+
+        if ($chargeDetail == null) abort(404);
+
+        // Get Payment List for Payment Select Box
+        $m_payment = new M_Payment();
+        $paymentList = $m_payment->getPayment();
+
+        $path = $t_ad_coincharge->getChargePhoto($id);
+        //if ($path == null) abort(500);
+
+        $m_ad_coinrate = new M_AD_CoinRate();
+        $rate = $m_ad_coinrate->getRate();
+
+        //Get History
+        $t_ad_coincharge_decision_history = new T_AD_CoinCharge_Decision_History();
+        $history = $t_ad_coincharge_decision_history->findHistoryById($id);
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End decision'
+        ]);
+
+        return view('admin.coin.redecision', [
+            'Cdetail' => $chargeDetail,
+            'paymentlist' => $paymentList,
+            'path' => $path,
+            'rate' => $rate->rate,
+            'history' => $history
+        ]);
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : charge id
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function detailCharge($id)
+    {
+        Log::channel('adminlog')->info("CoinController",
+            [
+                'Start decision'
+            ]
+        );
+        // Get Coin Detail Info
+        $t_ad_coincharge = new T_AD_CoinCharge();
+        $chargeDetail = $t_ad_coincharge->chargeDetail($id);
+
+        if ($chargeDetail == null) abort(404);
+
+        // Get Payment List for Payment Select Box
+        $m_payment = new M_Payment();
+        $paymentList = $m_payment->getPayment();
+
+        $path = $t_ad_coincharge->getChargePhoto($id);
+        //if ($path == null) abort(500);
+
+        $m_ad_coinrate = new M_AD_CoinRate();
+        $rate = $m_ad_coinrate->getRate();
+
+        //Get History
+        $t_ad_coincharge_decision_history = new T_AD_CoinCharge_Decision_History();
+        $history = $t_ad_coincharge_decision_history->findHistoryById($id);
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End decision'
+        ]);
+
+        return view('admin.coin.detail', [
+            'Cdetail' => $chargeDetail,
+            'paymentlist' => $paymentList,
+            'path' => $path,
+            'rate' => $rate->rate,
+            'history' => $history
+        ]);
+    }
 
     /*
     * Create : linn(2022/01/17) 
@@ -184,17 +282,19 @@ class CoinController extends Controller
 
         DB::transaction(
             function () use ($request) {
-
-                // Record History
+                $common = new Variable;
+            
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $charge = $t_ad_coincharge->findChargeById($request->chargeId);
 
                 //Double Check
-                $m_ad_coinrate = new M_AD_CoinRate();
-                $rate = $m_ad_coinrate->getRate()->rate;
-                if ((int)$request->amount / (int)$rate != (int)$charge->request_coin)
-                    return back()->withErrors(['message' => 'Transcation Not Correct.Try Again']);
-
+                if ($request->decision == $common->APPROVE) {
+                    $m_ad_coinrate = new M_AD_CoinRate();
+                    $rate = $m_ad_coinrate->getRate()->rate;
+                    if ((int)$request->amount / (int)$rate != (int)$charge->request_coin)
+                        return back()->withErrors(['message' => 'Transcation Not Correct.Try Again']);
+                }
+                  // Record History
                 $t_ad_coincharge_decision_history = new T_AD_CoinCharge_Decision_History();
                 $t_ad_coincharge_decision_history->setDecisionHistory(
                     $request->chargeId,
@@ -207,13 +307,69 @@ class CoinController extends Controller
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
 
-                // Add Finance
-                $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
-                $t_ad_Coincharage_finance->setChargeFinance(
+                // Add Finance only approve
+                if ($request->decision == $common->APPROVE) {
+                    $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
+                    $t_ad_Coincharage_finance->setChargeFinance(
+                        $request->chargeId,
+                        $request->amount,
+                        $request->payment
+                    );
+                }
+            }
+        );
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End makeDecision'
+        ]);
+
+        return redirect('/coinListing');
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to Approve Waiting Reject.
+    * Parameters : no
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function makeReDecision(Request $request)
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start makeDecision'
+        ]);
+
+        $request->validate([
+            'note' => 'required',
+            'decision' => 'required',
+            'chargeId' => 'required'
+        ]);
+
+        DB::transaction(
+            function () use ($request) {
+                $common = new Variable;
+
+                $t_ad_coincharge = new T_AD_CoinCharge();
+                $charge = $t_ad_coincharge->findChargeById($request->chargeId);
+
+                // Record History
+                $t_ad_coincharge_decision_history = new T_AD_CoinCharge_Decision_History();
+                $t_ad_coincharge_decision_history->setDecisionHistory(
                     $request->chargeId,
-                    $request->amount,
-                    $request->payment
+                    $charge->decision_status,
+                    $request->decision,
+                    $request->note
                 );
+
+                // Set Status
+                $t_ad_coincharge = new T_AD_CoinCharge();
+                $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
+
+                // Add Finance only approve
+                if ($request->decision == $common->WAITING) {
+                    $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
+                    $t_ad_Coincharage_finance->reSetFinance($request->chargeId);
+                }
             }
         );
 

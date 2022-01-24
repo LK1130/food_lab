@@ -57,16 +57,27 @@ class M_Taste extends Model
         $admin->del_flg = 1;
         $admin->save();
     }
+    /*
+   * Create:zayar(2022/01/15) 
+   * Update: 
+   * This function is used to get all taste.
+   */
+
+    public function allTastes()
+    {
+        return M_Taste::where('del_flg', '=', 0)->get();
+    }
 
 
-      /*
+    /*
     * Create : Aung Min Khant(20/1/2022)
     * Update :
     * Explain of function : To get  all data from m_taste 
     * parament : none
     * return get data
     * */
-    public function getTasteAll(){
+    public function getTasteAll()
+    {
 
         Log::channel('adminlog')->info("M_Taste Model", [
             'Start all Data'
@@ -78,5 +89,4 @@ class M_Taste extends Model
         ]);
         return  $mTaste;
     }
-
 }

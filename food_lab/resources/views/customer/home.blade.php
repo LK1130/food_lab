@@ -83,6 +83,7 @@
 
 @section('section')
 
+
     {{--Start Welcome Section--}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes">
         <p class="fs-1 fw-bolder welcometexts">{{ __('messageMK.Welcome Our Food Lab') }}</p>

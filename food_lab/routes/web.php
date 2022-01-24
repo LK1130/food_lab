@@ -20,6 +20,8 @@ use App\Http\Controllers\SuggestController;
 use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
+use App\Http\Controllers\CustomerProfileController;
+use App\Http\Controllers\CustomerProfileUpdate;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
@@ -54,6 +56,27 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('siteManage', [SiteController::class, 'siteManage']);
     Route::post('siteManage/store', [SiteController::class, 'store']);
     //admin/setting/appManage
+    //_________________________________start loginManage_________________________/
+
+    Route::resource('adminLogin', LoginController::class);
+
+    //_________________________________end loginManage_________________________/
+
+    //_________________________________start coinManage_________________________/
+
+    Route::resource('coinrate', CoinController::class);
+
+    //_________________________________end coinManage_________________________/
+
+    //_________________________________start siteManage_________________________/
+
+    Route::get('siteManage', [SiteController::class, 'siteManage']);
+    Route::post('siteManage/store', [SiteController::class, 'store']);
+
+    //_________________________________end siteManage_________________________/
+
+    //_________________________________start appManage_________________________/
+
     Route::resource('app', AppController::class);
     Route::resource('township', TownshipController::class);
     Route::resource('payment', PaymentController::class);
@@ -65,6 +88,17 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::resource('decision', DecisionController::class);
     //admin/setting/newsManage
     Route::resource('news', NewsController::class);
+
+
+    //_________________________________end appManage_________________________/
+
+    //_________________________________start newsManage_________________________/
+
+    Route::resource('news', NewsController::class);
+
+    //_________________________________end newsManage_________________________/
+
+
 
     Route::get('dashboard', function () {
         return View('admin.dashboard');
@@ -122,6 +156,9 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::post('rateStore', [CoinController::class, 'rateStore']);
     Route::get('makeDecision/{id}', [CoinController::class, 'decision']);
     Route::post('decided', [CoinController::class, 'makeDecision']);
+    Route::get('makeReDecision/{id}', [CoinController::class, 'reDecision']);
+    Route::post('redecided', [CoinController::class, 'makeReDecision']);
+    Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
 
     //_________________________________End Admin Coin Routes_________________________
 
@@ -202,6 +239,23 @@ Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
  */
 Route::get('/login', [CustomerController::class, 'login']);
 
+/*
+ * For Edit Profile Page
+ * zayar
+ */
+Route::resource('editprofile', CustomerProfileController::class);
+
+
+/*
+ * For Update Profile Page
+ * zayar
+ */
+Route::resource('updateprofile', CustomerProfileUpdate::class);
+/*
+ * For Update Profile
+ * zayar
+ */
+Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
 
 /*
  * For deliery info page

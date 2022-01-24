@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use App\Http\Requests\UpdateProfileValidation;
 use App\Http\Requests\ReportFormValidation;
 use App\Http\Requests\SuggestFormValidation;
 use App\Mail\VerifyMail;
 use App\Models\AdNews;
+use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_News;
+use App\Models\M_AD_Track;
 use App\Models\M_CU_Customer_Login;
 use App\Models\M_Product;
 use App\Models\M_Site;
@@ -27,13 +30,14 @@ class CustomerController extends Controller
 {
     /*
      * Create : Min Khant(10/1/2022)
-     * Update :
+     * Update : zayar(24/1/2022)
      * Explain of function : For call view customer home page
      * Prarameter : no
      * return : View Home Blade
      * */
     public function foodlab()
     {
+        $sessionCustomerId = session()->get('customerId'); //need to change
         Log::channel('customerlog')->info('Customer Controller', [
             'Start foodlab'
         ]);
@@ -43,6 +47,16 @@ class CustomerController extends Controller
 
         $news = new M_AD_News();
         $newDatas = $news->news();
+        $newsLimited = $news->newsLimited();
+
+        $messages = new M_AD_CoinCharge_Message();
+        $messageLimited = $messages->informMessage($sessionCustomerId);
+
+        $tracks = new M_AD_Track();
+        $tracksLimited = $tracks->trackLimited($sessionCustomerId);
+
+        $user = new T_CU_Customer();
+        $userinfo = $user->loginUser($sessionCustomerId);
 
         $site = new M_Site();
         $name = $site->siteName();
@@ -50,11 +64,32 @@ class CustomerController extends Controller
         $product = new M_Product();
         $productInfos = $product->productInfo();
 
-        Log::channel('customerlog')->info('Customer Controller', [
-            'End foodlab'
-        ]);
+        $site = new M_Site();
+        $name = $site->siteName();
 
-        return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas, 'name' => $name, 'productInfos' => $productInfos, 'nav' => 'home']);
+        $product = new M_Product();
+        $productInfos = $product->productInfo();
+        if ($userinfo === null) {
+            Log::channel('adminlog')->info("CustomerController", [
+                'End foodlab(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("CustomerController", [
+                'End foodlab'
+            ]);
+            return view('customer.home', [
+                'townships' => $townshipnames,
+                'news' => $newDatas,
+                'user' => $userinfo,
+                'limitednews' => $newsLimited,
+                'limitedmessages' => $messageLimited,
+                'limitedtracks' => $tracksLimited,
+                'name' => $name,
+                'productInfos' => $productInfos,
+                'nav' => 'home'
+            ]);
+        }
     }
 
     /*

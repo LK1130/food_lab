@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryValidation;
 use App\Models\CategoryModel;
 use App\Models\M_News_Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -18,6 +19,12 @@ class CategoryController extends Controller
 
     public function create()
     {
+        Log::channel('adminlog')->info("CategoryController", [
+            'Start create'
+        ]);
+        Log::channel('adminlog')->info("CategoryController", [
+            'End create'
+        ]);
         return view('admin.setting.appManage.categoryAdd');
     }
     /*
@@ -28,9 +35,15 @@ class CategoryController extends Controller
 
     public function store(CategoryValidation $request)
     {
+        Log::channel('adminlog')->info("CategoryController", [
+            'Start store'
+        ]);
         $validate = $request->validated();
         $admin = new M_News_Category();
         $admin->categoryAdd($validate);
+        Log::channel('adminlog')->info("CategoryController", [
+            'End create'
+        ]);
         return redirect('siteManage');
     }
     /*
@@ -41,9 +54,22 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        Log::channel('adminlog')->info("CategoryController", [
+            'Start show'
+        ]);
         $admin = new M_News_Category();
         $admins = $admin->categoryEditView($id);
-        return view('admin.setting.appManage.categoryEdit', ['category' => $admins]);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("CategoryController", [
+                'End show(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("CategoryController", [
+                'End show'
+            ]);
+            return view('admin.setting.appManage.categoryEdit', ['category' => $admins]);
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -53,10 +79,25 @@ class CategoryController extends Controller
 
     public function update(CategoryValidation $request, $id)
     {
-        $validate = $request->validated();
+        Log::channel('adminlog')->info("CategoryController", [
+            'Start Update'
+        ]);
         $admin = new M_News_Category();
-        $admin->categoryEdit($validate, $id);
-        return redirect('siteManage');
+        $admins = $admin->categoryEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("CategoryController", [
+                'End update(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $validate = $request->validated();
+            $admin = new M_News_Category();
+            $admin->categoryEdit($validate, $id);
+            Log::channel('adminlog')->info("CategoryController", [
+                'End Update'
+            ]);
+            return redirect('siteManage');
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -65,8 +106,24 @@ class CategoryController extends Controller
     */
     public function destroy($id)
     {
+        Log::channel('adminlog')->info("CategoryController", [
+            'Start Destory'
+        ]);
         $admin = new M_News_Category();
-        $admin->categoryDelete($id);
-        return redirect('siteManage');
+        $admins = $admin->categoryEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("CategoryController", [
+                'End destroy(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $admin = new M_News_Category();
+            $admin->categoryDelete($id);
+
+            Log::channel('adminlog')->info("CategoryController", [
+                'End destroy'
+            ]);
+            return redirect('siteManage');
+        }
     }
 }

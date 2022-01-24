@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url("/img/UpdateProfile4.png");
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    resize: both;
+    background-color: #2d2d2d;
+}
+.headerEditProfile {
+    position: absolute;
+}
+.titleEditProfile {
+    position: absolute;
+    margin-left: 39vw;
+    margin-top: 8%;
+    font-size: 2.8rem;
+    letter-spacing: 0.1rem;
+}
+.bodyEditProfile {
+    position: absolute;
+    width: 80%;
+    height: 55vh;
+    margin-top: 17%;
+    margin-left: 10%;
+    flex-wrap: wrap;
+}
+.updateButton {
+    width: 25vw;
+    height: 6vh;
+    border-radius: 1.2vh;
+    margin-left: 4.3vw;
+    background-color: var(--primary-color);
+    color: white;
+    margin-right: 3vh;
+}
+.bodyEditProfile div label {
+    color: white;
+}
+.titleEditProfile p {
+    color: var(--primary-color);
+}
+.infos {
+    height: 7vh;
+}
+.InputParent {
+    width: 25vw;
+    height: 6vh;
+    background-color: rgba(107, 106, 97, 0.808);
+    border-radius: 1.2vh;
+}
+.InputChild {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 83, 255, 0);
+    border-style: none;
+    color: white;
+    font-size: 1.2rem;
+}
+.editButton {
+    margin-left: 23vw;
+    margin-top: 1.5vh;
+}
+@media (max-width: 720px) {
+    .titleEditProfile {
+        position: absolute;
+        margin-left: 36vw;
+        margin-top: 20%;
+        font-size: 1.5rem;
+    }
+    .bodyEditProfile {
+        flex-direction: column !important;
+        margin-top: 25vh;
+        gap: 3vh;
+    }
+    .updateButton {
+        margin-left: 10vw;
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .editButton {
+        margin-left: 20vw;
+        margin-top: 1.5vh;
+    }
+}

@@ -70,7 +70,7 @@
                     </li>
                     @if (session()->has('customerId'))
                         <li class="nav-item">
-                            <p class="nav-link texts  mt-3"><i class="fas fa-user-circle fs-2"></i></p>
+                            <p class="nav-link texts mt-3"  id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
                         </li>
                     @else
                         <li class="nav-item">
@@ -84,6 +84,142 @@
             </div>
         </nav>
         {{--  end navbar  --}}
+                {{--  /*
+    * Create:zayar(2022/01/17) 
+* Update: 
+*/  --}}
+{{--  start profile alert box  --}}
+
+<div id="profileAlert">
+    <div class="d-flex flex-row justify-content-center profileAlertHeader">   
+        <i class="fas fa-arrow-circle-left fs-4 mt-2 text-light" id="back"></i>
+        <p class="userProfile">User Profile</p>
+        <i class="fas fa-edit fs-4 mt-2 text-light"></i>
+    </div>
+    <div  class="profileAlertBody">
+        <div class="d-flex flex-column justify-content-center align-items-center ">
+            <i class="far fa-user-circle fs-1 text-light"></i>
+            <p class="mt-3"><i class="fas fa-coins text-warning fs-1"></i> <span class=" fw-bolder ms-2 text-light"> 300</span> </p>
+            <p class="fw-bolder  profileAlertHeader">{{ $user->nickname }}</p>
+            <p class="fw-bolder  profileAlertHeader">{{ $user->phone }}</p>
+            <p class="fw-bolder  profileAlertHeader">{{ $user->email }}</p>
+            <p class="fw-bolder  profileAlertHeader">{{ $user->township_name }}/{{ $user->state_name }}/ ({{ $user->address3 }})</p>
+            <div class="d-flex flex-row mt-3">
+                <a href="{{ route('editprofile.index') }}"><button class="btn fs-5 me-3 editProfile">Edit Profile</button></a>
+                <a href="{{ route('updateprofile.index') }}"><button class="btn fs-5 ms-3 updatePassword">Change Password</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+
+        </nav>
+        {{--  end navbar  --}}
+                                {{--  /*
+* Create:zayar(2022/01/22) 
+* Update: 
+*/  --}}
+{{--  start inform alert box  --}}
+
+<div id="informAlert" class="informAlert">
+    <i class="fas fa-arrow-circle-left fs-1  mt-1" id="backInform"></i>
+    
+    <div class="headerInform d-flex flex-row justify-content-center align-items-center w-50 mt-2">
+        <div class="ms-2 me-5">
+            <p class="fw-bolder fs-5  infromTitle" id="clickNews">News</p>
+        </div>
+        <div class="ms-2 me-2">
+            <p class="fw-bolder fs-5 infromTitle" id="clickMessages">Messages</p>
+        </div>
+        <div class="ms-5 me-2">
+            <p class="fw-bolder fs-5 infromTitle" id="clickTracks">Track</p>
+        </div>
+    </div>
+    <div class="forNews d-flex flex-column" id="forNews">
+        @forelse ($limitednews as $limitednew)
+        <div class="news d-flex flex-row justify-content-center align-items-center">
+            <img src="/storage/newsImage/{{ $limitednew->source }}" alt="">
+            <p class="fs-6 fw-bolder mt-2 me-auto">{{ $limitednew->title }} ({{ $limitednew->detail }})</p>
+        </div>
+        @empty
+        <div class="news d-flex flex-row justify-content-center align-items-center">
+            <p class="fs-6 fw-bolder mt-2 me-auto">{{__('messageZY.nocategory')}} </p>
+        </div>
+        @endforelse
+        <button class="btn mb-2 alertButton" > More</button>
+    </div>
+    <div class="forMessages d-flex flex-column" id="forMessages">
+        @forelse ($limitedmessages as $limitedmessage)
+        <div class="messages d-flex flex-row justify-content-center align-items-center">
+            <p class="fs-6 fw-bolder me-auto ms-3 mt-3">{{ $limitedmessage->title }}</p>
+            <div class="d-flex flex-column ">
+                <p class="fs-5 fw-bolder me-4 ms-auto mt-2 rounded green">{{ $limitedmessage->status }}</p>
+                <p class=" fw-bold  mb-1 me-3">{{ $limitedmessage->created_at }}</p>
+            </div>
+        </div>
+        @empty
+        <div class="news d-flex flex-row justify-content-center align-items-center">
+            <p class="fs-6 fw-bolder mt-2 me-auto">{{__('messageZY.nocategory')}} </p>
+        </div>
+        @endforelse
+        <button class="btn mb-2 alertButton" > More</button>
+    </div>
+    <div class="forTracks d-flex flex-column" id="forTracks">
+        @forelse ($limitedtracks as $limitedtrack)
+        <div class="tracks d-flex flex-row justify-content-center align-items-center">
+            <img src="/storage/newsImage/Dogecoin-Transparent.png" alt="" >
+            <div class="d-flex flex-column w-100 me-3 mt-4">
+                <p class=" fw-bolder  ">{{ $limitedtrack->product_name }} </p>
+                <p class=" fw-bold ">{{ $limitedtrack->coin }}  coin</p>
+            </div>
+            <div class="d-flex flex-column me-3 w-100 mt-4">
+                <p class="fs-5 fw-bolder rounded green">{{ $limitedtrack->status }} </p>
+                <p class=" fw-bold  mb-3 ">{{ $limitedtrack->created_at }} </p>
+            </div>
+        </div>
+        @empty
+        <div class="news d-flex flex-row justify-content-center align-items-center">
+            <p class="fs-6 fw-bolder mt-2 me-auto">{{__('messageZY.nocategory')}} </p>
+        </div>
+        @endforelse
+        {{--  <div class="tracks d-flex flex-row justify-content-center align-items-center">
+            <img src="/storage/newsImage/Dogecoin-Transparent.png" alt="" >
+            <div class="d-flex flex-column w-100 me-3 mt-4">
+                <p class=" fw-bolder  ">Spicy Noodle </p>
+                <p class=" fw-bold ">200 coin</p>
+            </div>
+            <div class="d-flex flex-column me-3 w-100 mt-4">
+                <p class="fs-5 fw-bolder    rounded green">Approved</p>
+                <p class=" fw-bold  mb-3 ">2022-2-15 8:30 pm</p>
+            </div>
+        </div>
+        <div class="tracks d-flex flex-row justify-content-center align-items-center">
+            <img src="/storage/newsImage/Dogecoin-Transparent.png" alt="" >
+            <div class="d-flex flex-column w-100 me-3 mt-4">
+                <p class=" fw-bolder  ">Spicy Noodle </p>
+                <p class=" fw-bold ">200 coin</p>
+            </div>
+            <div class="d-flex flex-column me-3 w-100 mt-4">
+                <p class="fs-5 fw-bolder    rounded green">Approved</p>
+                <p class=" fw-bold  mb-3 ">2022-2-15 8:30 pm</p>
+            </div>
+        </div>
+        <div class="tracks d-flex flex-row justify-content-center align-items-center">
+            <img src="/storage/newsImage/Dogecoin-Transparent.png" alt="" >
+            <div class="d-flex flex-column w-100 me-3 mt-4">
+                <p class=" fw-bolder  ">Spicy Noodle </p>
+                <p class=" fw-bold ">200 coin</p>
+            </div>
+            <div class="d-flex flex-column me-3 w-100 mt-4">
+                <p class="fs-5 fw-bolder    rounded green">Approved</p>
+                <p class=" fw-bold  mb-3 ">2022-2-15 8:30 pm</p>
+            </div>
+        </div>  --}}
+        <button class="btn mb-2 alertButton" > More</button>
+    </div>
+    {{--  end inform alert box  --}}
+    </div>
         @yield('header')
     </header>
     {{--End Header--}}
