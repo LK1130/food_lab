@@ -238,7 +238,7 @@ class T_CU_Customer extends Model
 
       ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->join('m_township', 'm_township.id', '=', 't_cu_customer.address1')
-      ->join('m_states', 'm_states.id', '=', 't_cu_customer.address2')
+      ->join('m_state', 'm_state.id', '=', 't_cu_customer.address2')
       ->join('m_fav_type', 'm_fav_type.id', '=', 't_cu_customer.fav_type')
       // ->join('m_taste', 'm_taste.id', '=', 't_cu_customer.taste')
       ->first();
