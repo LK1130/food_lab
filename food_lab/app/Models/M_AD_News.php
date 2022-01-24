@@ -18,6 +18,12 @@ class M_AD_News extends Model
 
     public function newsAddView()
     {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsAddView'
+        ]);
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsAddView'
+        ]);
         return M_News_Category::where('del_flg', '=', 0)->get();
     }
     /*
@@ -28,6 +34,9 @@ class M_AD_News extends Model
 
     public function newsAdd($request, $siteLogo)
     {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsAdd'
+        ]);
         $admin = new M_AD_News();
         $admin->title = $request->input('title');
         $admin->source = $siteLogo;
@@ -35,6 +44,9 @@ class M_AD_News extends Model
         $admin->category = $request->input('category');
         $admin->write_by = 1; //need to change
         $admin->save();
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsAdd'
+        ]);
     }
     /*
    * Create:zayar(2022/01/15)
@@ -44,6 +56,12 @@ class M_AD_News extends Model
 
     public function newsEditView($id)
     {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsEditView'
+        ]);
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsEditView'
+        ]);
         return  M_AD_News::where('m_ad_news.id', $id)
             ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
@@ -58,12 +76,18 @@ class M_AD_News extends Model
 
     public function newsEdit($request, $id)
     {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsEdit'
+        ]);
         $admin = M_AD_News::find($id);
         $admin->title = $request->input('title');
         $admin->detail = $request->input('detail');
         $admin->category = $request->input('category');
         $admin->write_by = 1; //need to change
         $admin->save();
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsEdit'
+        ]);
     }
     /*
    * Create:zayar(2022/01/15)
@@ -72,9 +96,15 @@ class M_AD_News extends Model
    */
     public function newsDelete($id)
     {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsDelete'
+        ]);
         $admin = M_AD_News::find($id);
         $admin->del_flg = 1;
         $admin->save();
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsDelete'
+        ]);
     }
 
     use HasFactory;
@@ -88,12 +118,12 @@ class M_AD_News extends Model
      * */
     public function news()
     {
-        Log::channel('customerlog')->info('M_AD_News Model',[
+        Log::channel('customerlog')->info('M_AD_News Model', [
             'start news'
         ]);
         $news = M_AD_News::where('del_flg', '=', '0')
-                ->get();
-        Log::channel('customerlog')->info('M_AD_News Model',[
+            ->get();
+        Log::channel('customerlog')->info('M_AD_News Model', [
             'end news'
         ]);
         return $news;
@@ -108,6 +138,12 @@ class M_AD_News extends Model
      * */
     public function newsLimited()
     {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsLimited'
+        ]);
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsLimited'
+        ]);
         return M_AD_News::where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->limit(3)

@@ -18,10 +18,16 @@ class T_AD_Suggest extends Model
 
     public function suggestAdd($validate)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestAdd'
+        ]);
         $admin = new T_AD_Suggest();
         $admin->suggest_type = $validate['suggest_type'];
         $admin->note = $validate['note'];
         $admin->save();
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestAdd'
+        ]);
     }
     /*
    * Create:zayar(2022/01/15) 
@@ -31,6 +37,12 @@ class T_AD_Suggest extends Model
 
     public function suggestEditView($id)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestEditView'
+        ]);
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestEditView'
+        ]);
         return T_AD_Suggest::find($id);
     }
     /*
@@ -41,10 +53,16 @@ class T_AD_Suggest extends Model
 
     public function suggestEdit($validate, $id)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestEdit'
+        ]);
         $admin = T_AD_Suggest::find($id);
         $admin->suggest_type = $validate['suggest_type'];
         $admin->note = $validate['note'];
         $admin->save();
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestEdit'
+        ]);
     }
     /*
    * Create:zayar(2022/01/15) 
@@ -53,9 +71,15 @@ class T_AD_Suggest extends Model
    */
     public function suggestDelete($id)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestDelete'
+        ]);
         $admin = T_AD_Suggest::find($id);
         $admin->del_flg = 1;
         $admin->save();
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestDelete'
+        ]);
     }
 
     /*

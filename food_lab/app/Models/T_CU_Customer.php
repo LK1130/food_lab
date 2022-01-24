@@ -234,8 +234,10 @@ class T_CU_Customer extends Model
     */
   public function loginUser($sessionCustomerId)
   {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start loginUser'
+    ]);
     $search = T_CU_Customer::find($sessionCustomerId)
-
       ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->join('m_township', 'm_township.id', '=', 't_cu_customer.address1')
       ->join('m_states', 'm_states.id', '=', 't_cu_customer.address2')
@@ -243,8 +245,14 @@ class T_CU_Customer extends Model
       // ->join('m_taste', 'm_taste.id', '=', 't_cu_customer.taste')
       ->first();
     if ($search === null) {
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'End loginUser'
+      ]);
       return null;
     } else {
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'End loginUser'
+      ]);
       return $search;
     }
   }
@@ -257,9 +265,15 @@ class T_CU_Customer extends Model
     */
   public function oldPassword($id)
   {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start oldPassword'
+    ]);
     $admin = T_CU_Customer::find($id)
       ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->value('password');
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End oldPassword'
+    ]);
     return $admin;
   }
   /*
@@ -271,12 +285,18 @@ class T_CU_Customer extends Model
     */
   public function updatePassword($id, $validate)
   {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start updatePassword'
+    ]);
     $admin = T_CU_Customer_Login::where('customer_id', '=', $id)
       // ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->first();
     $admin->password = $validate['newpassword'];
 
     $admin->save();
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End updatePassword'
+    ]);
   }
   /*
       * Create : zayar(21/1/2022)
@@ -287,11 +307,17 @@ class T_CU_Customer extends Model
     */
   public function updateProfile($id, $validate)
   {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start updateProfile'
+    ]);
     $admin = T_CU_Customer_Login::where('customer_id', '=', $id)
       // ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->first();
     $admin->password = $validate['newpassword'];
 
     $admin->save();
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End updateProfile'
+    ]);
   }
 }

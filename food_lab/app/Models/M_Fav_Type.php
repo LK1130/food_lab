@@ -18,10 +18,16 @@ class M_Fav_Type extends Model
 
   public function favTypeAdd($validate)
   {
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'Start favTypeAdd'
+    ]);
     $admin = new M_Fav_Type();
     $admin->favourite_food = $validate['favourite_food'];
     $admin->note = $validate['note'];
     $admin->save();
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'End favTypeAdd'
+    ]);
   }
   /*
   * Create:zayar(2022/01/15) 
@@ -31,6 +37,12 @@ class M_Fav_Type extends Model
 
   public function favTypeEditView($id)
   {
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'Start favTypeEditView'
+    ]);
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'End favTypeEditView'
+    ]);
     return M_Fav_Type::find($id);
   }
   /*
@@ -41,10 +53,16 @@ class M_Fav_Type extends Model
 
   public function favTypeEdit($validate, $id)
   {
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'Start favTypeEdit'
+    ]);
     $admin = M_Fav_Type::find($id);
     $admin->favourite_food = $validate['favourite_food'];
     $admin->note = $validate['note'];
     $admin->save();
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'End favTypeEdit'
+    ]);
   }
   /*
   * Create:zayar(2022/01/15) 
@@ -53,9 +71,15 @@ class M_Fav_Type extends Model
   */
   public function favTypeDelete($id)
   {
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'Start favTypeDelete'
+    ]);
     $admin = M_Fav_Type::find($id);
     $admin->del_flg = 1;
     $admin->save();
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'End favTypeDelete'
+    ]);
   }
   /*
    * Create:zayar(2022/01/15) 
@@ -65,7 +89,13 @@ class M_Fav_Type extends Model
 
   public function allType()
   {
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'Start allType'
+    ]);
     return M_Fav_Type::where('del_flg', '=', 0)->get();
+    Log::channel('adminlog')->info("M_Fav_Type Model", [
+      'End allType'
+    ]);
   }
 
 

@@ -2,15 +2,15 @@ let prices = document.querySelectorAll(".prices");
 
 // Start Access Section
 // start register
-let username = document.getElementById("username"),
-    phone = document.getElementById("phone"),
-    email = document.getElementById("email"),
-    addressNo = document.getElementById("addressNo"),
-    addressTownship = document.getElementById("addressTownship"),
-    addressCity = document.getElementById("addressCity"),
-    password = document.getElementById("password");
+// let username = document.getElementById("username"),
+//     phone = document.getElementById("phone"),
+//     email = document.getElementById("email"),
+//     addressNo = document.getElementById("addressNo"),
+//     addressTownship = document.getElementById("addressTownship"),
+//     addressCity = document.getElementById("addressCity"),
+//     password = document.getElementById("password");
 let navbuttons = document.querySelector(".nav-buttons");
-let prices = document.querySelectorAll(".prices");
+
 let news = document.querySelectorAll(".news"),
     marquee = document.querySelector("marquee");
 // Start Access Section
