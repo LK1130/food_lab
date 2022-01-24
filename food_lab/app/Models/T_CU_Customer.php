@@ -61,86 +61,90 @@ class T_CU_Customer extends Model
 
     return $cuscount;
   }
-        /*
+  /*
       * Create : Zar Ni(15/1/2022)
       * Update :
       * Explain of function : To get data for DashboardCuctomerCount
       * Prarameter : no
       * return :
     */
-    public function customerInfoList(){
+  public function customerInfoList()
+  {
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'Start customerInfoList'
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start customerInfoList'
     ]);
 
-      $customerlist = T_CU_Customer::where('t_cu_customer.del_flg',0)
+    $customerlist = T_CU_Customer::where('t_cu_customer.del_flg', 0)
       ->paginate(10);
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'End customerInfoList'
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End customerInfoList'
     ]);
 
-      return $customerlist;
-    }
+    return $customerlist;
+  }
 
-    /*
+  /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer search names
       * Prarameter : no
       * return :
     */
-    public function cusSearch($request){
+  public function cusSearch($request)
+  {
 
-      $cusSearch = T_CU_Customer::where('nickname','Like','%'.$request->input('nickname').'%')
-      ->where('t_cu_customer.del_flg',0)
+    $cusSearch = T_CU_Customer::where('nickname', 'Like', '%' . $request->input('nickname') . '%')
+      ->where('t_cu_customer.del_flg', 0)
       ->get();
-      
-      return $cusSearch;
-    }
-    /*
+
+    return $cusSearch;
+  }
+  /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer id search
       * Prarameter : no
       * return :
     */
-    public function cusidSearch($request){
+  public function cusidSearch($request)
+  {
 
-      $cusidSearch = T_CU_Customer::where('customerID','Like','%'.$request->input('id').'%')
-      ->where('t_cu_customer.del_flg',0)
+    $cusidSearch = T_CU_Customer::where('customerID', 'Like', '%' . $request->input('id') . '%')
+      ->where('t_cu_customer.del_flg', 0)
       ->get();
 
-      return $cusidSearch;
-    }
-    /*
+    return $cusidSearch;
+  }
+  /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer id search
       * Prarameter : no
       * return :
     */
-    public function customerDetail($id){
-      $cusDetail = T_CU_Customer::
-      select ('*',DB::raw('t_cu_customer.id AS cid'))
-      ->where('t_cu_customer.del_flg',0)
-      ->where('t_cu_customer.id','=' ,$id)
+  public function customerDetail($id)
+  {
+    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
+      ->where('t_cu_customer.del_flg', 0)
+      ->where('t_cu_customer.id', '=', $id)
       ->first();
-      // Log::critical('asdasd',[$cusDetail]);
-      return $cusDetail;
-    }
+    // Log::critical('asdasd',[$cusDetail]);
+    return $cusDetail;
+  }
+
   /*
       * Create : Min Khant(15/1/2022)
       * Update :
-      * Explain of function : To generate customer Id
-      * Prarameter : user info
-      * return : customer id
+      * Explain of function : To store input data  from Register page
+      * Prarameter : no
+      * return :
     */
-  private function generatCustomerId($data)
+  public  function customerData($data, $key)
   {
     Log::channel('customerlog')->info('T_CU_Customer Model', [
-      'start generatCustomerId'
+      'start customerData'
     ]);
 
     //for generate customer id
@@ -158,32 +162,8 @@ class T_CU_Customer extends Model
       $charLength = rand(0, strlen($characters) - 1);
       $generateKey .= $characters[$charLength];
     }
-  }
-    /*
 
-    $customerId = "$firstStr$lastStr$firstemail$firstPwd$lastPwd$day$hour$generateKey";
-
-    Log::channel('customerlog')->info('T_CU_Customer Model', [
-      'end generatCustomerId'
-    ]);
-
-    return $customerId;
-  }
-
-  /*
-      * Create : Min Khant(15/1/2022)
-      * Update :
-      * Explain of function : To store input data  from Register page
-      * Prarameter : no
-      * return :
-    */
-  public  function customerData($data, $key)
-  {
-    Log::channel('customerlog')->info('T_CU_Customer Model', [
-      'start customerData'
-    ]);
-
-    $customerId = $this->generatCustomerId($data);
+    $customerId = $generateKey;
 
     DB::transaction(function () use ($customerId, $data, $key) {
       //insert customer
@@ -221,5 +201,4 @@ class T_CU_Customer extends Model
   {
     return $this->hasOne('App\Models\M_CU_Customer_Login');
   }
-
 }

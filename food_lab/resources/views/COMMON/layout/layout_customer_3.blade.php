@@ -64,7 +64,6 @@
     {{--End Header--}}
 
     @yield('section')
-    
 
 
 </body>

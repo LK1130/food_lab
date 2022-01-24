@@ -44,112 +44,112 @@ Route::get('/admin', [AdminController::class, 'loginPage']);
 Route::post('/admin', [AdminController::class, 'loginForm']);
 // admin logout 
 Route::get('/adminlogout', [AdminController::class, 'logout']);
-Route::group(['middleware' => ['checkAdmin']],function(){
+Route::group(['middleware' => ['checkAdmin']], function () {
 
-//admin/setting/loginManage
-Route::resource('adminLogin', LoginController::class);
-//admin/setting/coinRate
-Route::resource('coinrate', CoinController::class);
-//admin/setting/siteManage
-Route::get('siteManage', [SiteController::class, 'siteManage']);
-Route::post('siteManage/store', [SiteController::class, 'store']);
-//admin/setting/appManage
-Route::resource('app', AppController::class);
-Route::resource('township', TownshipController::class);
-Route::resource('payment', PaymentController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('taste', TasteController::class);
-Route::resource('suggest', SuggestController::class);
-Route::resource('favtype', FavtypeController::class);
-Route::resource('orderstatus', OrderStatusController::class);
-Route::resource('decision', DecisionController::class);
-//admin/setting/newsManage
-Route::resource('news', NewsController::class);
+    //admin/setting/loginManage
+    Route::resource('adminLogin', LoginController::class);
+    //admin/setting/coinRate
+    Route::resource('coinrate', CoinController::class);
+    //admin/setting/siteManage
+    Route::get('siteManage', [SiteController::class, 'siteManage']);
+    Route::post('siteManage/store', [SiteController::class, 'store']);
+    //admin/setting/appManage
+    Route::resource('app', AppController::class);
+    Route::resource('township', TownshipController::class);
+    Route::resource('payment', PaymentController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('taste', TasteController::class);
+    Route::resource('suggest', SuggestController::class);
+    Route::resource('favtype', FavtypeController::class);
+    Route::resource('orderstatus', OrderStatusController::class);
+    Route::resource('decision', DecisionController::class);
+    //admin/setting/newsManage
+    Route::resource('news', NewsController::class);
 
-Route::get('dashboard', function () {
-    return View('admin.dashboard');
-});
-Route::get('orderTransaction', function () {
-    return View('admin.transactions.orderTransaction');
-});
-Route::get('coinchargeList', function () {
-    return View('admin.transactions.coinchargeList');
-});
-/**
- * For Dashboard & Transaction
- */
-Route::get('dashboard', [DashboardController::class, 'dashboardList']);
-Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
-Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
-Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
-/**
- * Customer Info
- */
-Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
-Route::get('searchname',[customerInfoController::class,'customerSearch']);
-Route::get('searchid',[customerInfoController::class,'customeridSearch']);
-Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
-/**
- * Customer Report
- */
-Route::get('customerReport',function(){
-    return view('admin.report.customerreport');
-});
-Route::get('reportreplies',function(){
-    return view('admin.report.reportreply');
-});
-/**
- * For Product Form page
- */
-Route::resource('product', ProductController::class);
-//Prouduct List
-Route::get('productList', [ProductListController::class, 'showList']);
+    Route::get('dashboard', function () {
+        return View('admin.dashboard');
+    });
+    Route::get('orderTransaction', function () {
+        return View('admin.transactions.orderTransaction');
+    });
+    Route::get('coinchargeList', function () {
+        return View('admin.transactions.coinchargeList');
+    });
+    /**
+     * For Dashboard & Transaction
+     */
+    Route::get('dashboard', [DashboardController::class, 'dashboardList']);
+    Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
+    Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
+    Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
+    /**
+     * Customer Info
+     */
+    Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
+    Route::get('searchname', [customerInfoController::class, 'customerSearch']);
+    Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
+    Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
+    /**
+     * Customer Report
+     */
+    Route::get('customerReport', function () {
+        return view('admin.report.customerreport');
+    });
+    Route::get('reportreplies', function () {
+        return view('admin.report.reportreply');
+    });
+    /**
+     * For Product Form page
+     */
+    Route::resource('product', ProductController::class);
+    //Prouduct List
+    Route::get('productList', [ProductListController::class, 'showList']);
 
-//For customer home page
-Route::get('/', [CustomerController::class, 'foodlab']);
-//admin/setting/loginManage
-Route::resource('adminLogin', LoginController::class);
+    //For customer home page
+    Route::get('/', [CustomerController::class, 'foodlab']);
+    //admin/setting/loginManage
+    Route::resource('adminLogin', LoginController::class);
 
-//admin/setting/coinRate
-Route::resource('coinrate', CoinController::class);
-
-
-//_________________________________Start Admin Coin Routes_________________________
-
-Route::get('coinListing', [CoinController::class, 'list']);
-Route::get('rateHistory', [CoinController::class, 'rateHistory']);
-Route::get('rateChange', [CoinController::class, 'rateChange']);
-Route::post('rateStore', [CoinController::class, 'rateStore']);
-Route::get('makeDecision/{id}', [CoinController::class, 'decision']);
-Route::post('decided',[CoinController::class,'makeDecision']);
-
-//_________________________________End Admin Coin Routes_________________________
+    //admin/setting/coinRate
+    Route::resource('coinrate', CoinController::class);
 
 
+    //_________________________________Start Admin Coin Routes_________________________
 
-//_________________________________Chart Routes_________________________
-/**
- * For Daily SalesChart show
- */
-Route::get('dailyChart', [SalesController::class, 'dailyChart']);
+    Route::get('coinListing', [CoinController::class, 'list']);
+    Route::get('rateHistory', [CoinController::class, 'rateHistory']);
+    Route::get('rateChange', [CoinController::class, 'rateChange']);
+    Route::post('rateStore', [CoinController::class, 'rateStore']);
+    Route::get('makeDecision/{id}', [CoinController::class, 'decision']);
+    Route::post('decided', [CoinController::class, 'makeDecision']);
 
-/**
- * For Monthly SalesChart show
- */
-Route::get('monthlyChart', [SalesController::class, 'monthlyChart']);
+    //_________________________________End Admin Coin Routes_________________________
 
-/**
- * For Yearly SalesChart show
- */
-Route::get('yearlyChart', [SalesController::class, 'yearlyChart']);
 
-/**
- * For Range Chart show
- */
-Route::get('rangeChart', function () {
-    return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
-});
-Route::post('rangeChart', [SalesController::class, 'rangeChart']);
+
+    //_________________________________Chart Routes_________________________
+    /**
+     * For Daily SalesChart show
+     */
+    Route::get('dailyChart', [SalesController::class, 'dailyChart']);
+
+    /**
+     * For Monthly SalesChart show
+     */
+    Route::get('monthlyChart', [SalesController::class, 'monthlyChart']);
+
+    /**
+     * For Yearly SalesChart show
+     */
+    Route::get('yearlyChart', [SalesController::class, 'yearlyChart']);
+
+    /**
+     * For Range Chart show
+     */
+    Route::get('rangeChart', function () {
+        return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
+    });
+    Route::post('rangeChart', [SalesController::class, 'rangeChart']);
 });
 
 //_________________________________Customer Routes_________________________

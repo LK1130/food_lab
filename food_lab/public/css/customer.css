@@ -523,9 +523,10 @@ form div .cancels {
     border-bottom: 3px solid var(--primary-color);
 }
 
-.modal-inputs {
+.modal-inputs,
+.modal-selects {
     width: 100%;
-    background-color: #FFFFFF !important;
+    background-color: transparent !important;
     color: black !important;
     border-radius: 0px !important;
     padding: 0 !important;

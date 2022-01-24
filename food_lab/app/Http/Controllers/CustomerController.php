@@ -54,7 +54,7 @@ class CustomerController extends Controller
             'End foodlab'
         ]);
 
-        return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas, 'name' => $name, 'productInfos' => $productInfos]);
+        return view('customer.home', ['townships' => $townshipnames, 'news' => $newDatas, 'name' => $name, 'productInfos' => $productInfos, 'nav' => 'home']);
     }
 
     /*
@@ -233,12 +233,14 @@ class CustomerController extends Controller
         $customer = new T_CU_Customer();
         $createAccount = $customer->customerData($validated, $generateKey);
 
+        $msite = new M_Site();
+        $siteName = $msite->siteName();
+
         //send verify mail
         if ($createAccount) {
             $mail = [
-                'title' => 'Mail Send From Laravel',
                 'name' => $validated['username'],
-                'body' => 'Mail Testing From laravel',
+                'siteName' => $siteName->site_name,
                 'verifyLink' => $generateKey
             ];
             Mail::to($validated['email'])->send(new VerifyMail($mail));

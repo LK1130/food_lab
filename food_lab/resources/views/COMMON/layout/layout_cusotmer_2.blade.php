@@ -19,7 +19,6 @@
 </head>
 <body>
     @yield('body')
-
     {{--  google api   --}}
     @yield('google')
     {{--  facebook api   --}}

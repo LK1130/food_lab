@@ -19,13 +19,13 @@ class VerifyMail extends Mailable
      */
     public function __construct($data)
     {
-        Log::channel('customerlog')->info('VerifyMail Mail',[
+        Log::channel('customerlog')->info('VerifyMail Mail', [
             'start __construct'
         ]);
 
         $this->mail = $data;
 
-        Log::channel('customerlog')->info('VerifyMail Mail',[
+        Log::channel('customerlog')->info('VerifyMail Mail', [
             'end __construct'
         ]);
     }
@@ -37,20 +37,19 @@ class VerifyMail extends Mailable
      */
     public function build()
     {
-        Log::channel('customerlog')->info('VerifyMail Mail',[
-           'start build'
+        Log::channel('customerlog')->info('VerifyMail Mail', [
+            'start build'
         ]);
 
-        Log::channel('customerlog')->info('VerifyMail Mail',[
+        Log::channel('customerlog')->info('VerifyMail Mail', [
             'end build'
         ]);
 
-        return $this->subject('Mail Testing')
+        return $this->subject('Verify Mail')
             ->view('customer.mail.verify')
             ->with([
-                'title' => $this->mail['title'],
                 'name' => $this->mail['name'],
-                'body' => $this->mail['body'],
+                'siteName' => $this->mail['siteName'],
                 'link' => $this->mail['verifyLink']
             ]);
     }
