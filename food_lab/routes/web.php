@@ -124,6 +124,7 @@ Route::get('makeDecision/{id}', [CoinController::class, 'decision']);
 Route::post('decided',[CoinController::class,'makeDecision']);
 Route::get('makeReDecision/{id}', [CoinController::class, 'reDecision']);
 Route::post('redecided', [CoinController::class, 'makeReDecision']);
+Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
 
 //_________________________________End Admin Coin Routes_________________________
 

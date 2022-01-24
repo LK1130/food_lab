@@ -83,29 +83,25 @@
                         @csrf
                         <div class="row">
                             <div class="col-4">
-                                <div class="fs-5 fw-bold">Requested Coin</div>
-                                <div class="fs-1 ms-5" id="reqCoin"> {{ $Cdetail->request_coin }}</div>
-                            </div>
-                            <div class="col-4">
-                                <div class="fs-5 fw-bold">Approve Coin</div>
-                                <div class="fs-1 ms-5" id="appCoin"></div>
+                                <div class="fs-5 fw-bold">Approved Coin</div>
+                                <div class="fs-1 ms-5 text-success" id="reqCoin"> {{ $Cdetail->request_coin }}</div>
                             </div>
                         </div>
-                        <div class="fs-5 fw-bold">Received Amount</div>
+                        {{-- <div class="fs-5 fw-bold">Received Amount</div>
                         <div class="input-group mb-3 received_amount">
                             <input type="number" class="form-control" id="recAmt" name="amount"
                                 placeholder="Received Amount" aria-label="Recipient's username"
                                 aria-describedby="checkBtn" />
-                        </div>
+                        </div> --}}
                         @error('amount')
                             <li class="text-danger ">{{ $message }}</li>
                         @enderror
-                        <label class="fs-5 fw-bold"> Payment By</label>
+                        {{-- <label class="fs-5 fw-bold"> Payment By</label>
                         <select class="form-select request_pay" aria-label="Default select example" name="payment">
                             @foreach ($paymentlist as $payment)
                                 <option value="{{ $payment->id }}">{{ $payment->payment_name }}</option>
                             @endforeach
-                        </select>
+                        </select> --}}
                         @error('payment')
                             <li class="text-danger ">{{ $message }}</li>
                         @enderror
@@ -117,8 +113,8 @@
                                 <li class="text-danger ">{{ $message }}</li>
                             @enderror
                         </div>
-                        <button type="submit" id="waiting" class="btn btn-primary btn-lg  me-5 ms-5">Waiting</button>
-                        <button type="submit" id="reject" class="btn btn-danger btn-lg  ms-5">Reject</button>
+                        <button type="submit" id="waiting" class="btn btn-warning btn-lg  me-5 ms-5">Waiting</button>
+                        <button type="submit" id="reject" class="btn btn-secondary btn-lg  ms-5">Reject</button>
                     </form>
                 </div>
                 {{-- End Decision Making --}}

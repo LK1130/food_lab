@@ -48,7 +48,9 @@
                             <li class="detail_list fs-5 fw-bold"> Customer ID</li>
                             <li class="detail_list fs-5 fw-bold"> Request Date Time</li>
                             <li class="detail_list fs-5 fw-bold"> Time From Now</li>
+                            <li class="detail_list fs-5 fw-bold"> Request Coin</li>
                             <li class="detail_list fs-5 fw-bold"> Current Decision</li>
+                            <li class="detail_list fs-5 fw-bold"> </li>
                         </div>
                         <div class="col">
                             <li class="detail_list fs-5"> : {{ $Cdetail->nickname }}</li>
@@ -59,25 +61,31 @@
                             <li class="detail_list fs-5"> : {{ $Cdetail->request_datetime }}</li>
                             <li class="detail_list fs-5"> :
                                 {{ \Carbon\Carbon::parse($Cdetail->request_datetime)->diffForHumans() }}</li>
+
+                            <li class="detail_list fs-5"> : {{ $Cdetail->request_coin }}</li>
                             @if ($Cdetail->statusid == 1)
                                 <li class="detail_list fs-5 fw-bold text-success"> : {{ $Cdetail->status }}</li>
+                                <li class="detail_list fs-5">
+                                <button class="btn btn-rimary"><a href="/makeDecision/{{ $Cdetail->chargeid }}" class="btn btn-primary" ><i class="bi bi-pencil-square"></i> Edit</a></button>
+                                </li>
+                            @elseif($Cdetail->statusid == 2)
+                                <li class="detail_list fs-5 fw-bold text-info"> : {{ $Cdetail->status }}</li>
+                                <li class="detail_list fs-5">
+                                <button class="btn btn-rimary"><a href="/makeReDecision/{{ $Cdetail->chargeid }}" class="btn btn-primary" ><i class="bi bi-pencil-square"></i> Edit</a></button>
+                                </li>
                             @elseif($Cdetail->statusid == 3)
                                 <li class="detail_list fs-5 fw-bold text-warning"> : {{ $Cdetail->status }}</li>
+                                <li class="detail_list fs-5">
+                                <button class="btn btn-rimary"><a href="/makeDecision/{{ $Cdetail->chargeid }}" class="btn btn-primary" ><i class="bi bi-pencil-square"></i> Edit</a></button>
+                                </li>
+                            @elseif($Cdetail->statusid == 4)
+                                <li class="detail_list fs-5 fw-bold text-secondary"> : {{ $Cdetail->status }}</li>
                             @endif
+
                         </div>
                     </div>
                 </div>
 
-                <div class="make_decision ">
-                    <label class="fs-4 fw-bold mt-4 text-danger"> Make Decision</label>
-                    <div class="form-check request_decision_check ms-5">
-                        <input class="form-check-input" type="checkbox" value="" id="decision" onchange="decision()"
-                            @if ($errors->any()) checked @endif>
-                        <label class="form-check-label fs-5" for="decision">
-                            Decision
-                        </label>
-                    </div>
-                </div>
                 {{-- End User Request --}}
                 {{-- Start Decision Making --}}
                 <div class="mt-4 mb-4 decisiondiv">
@@ -156,9 +164,9 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         let rate = @json($rate);
         let chargeId = @json($Cdetail->chargeid)
     </script>
-    <script src="{{ URL::asset('js/adminCoinDecision.js') }}"></script>
+    <script src="{{ URL::asset('js/adminCoinDecision.js') }}"></script> --}}
 @endsection
