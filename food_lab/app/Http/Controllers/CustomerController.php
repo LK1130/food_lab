@@ -13,9 +13,12 @@ use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_News;
 use App\Models\M_AD_Track;
 use App\Models\M_CU_Customer_Login;
+use App\Models\M_Fav_Type;
 use App\Models\M_Product;
 use App\Models\M_Site;
+use App\Models\M_State;
 use App\Models\M_Suggest;
+use App\Models\M_Taste;
 use App\Models\M_Township;
 use App\Models\T_AD_Order;
 use App\Models\T_AD_OrderDetail;
@@ -283,10 +286,22 @@ class CustomerController extends Controller
             'start access'
         ]);
         if (!session()->has('customerId')) {
+            $mTownship = new M_Township();
+            $townshipnames = $mTownship->townshipDetails();
+
+            $mstate = new M_State();
+            $staenames = $mstate->stateName();
+
+            $mFavType = new M_Fav_Type();
+            $types = $mFavType->type();
+
+            $mTaste = new M_Taste();
+            $tastenames = $mTaste->taste();
+
             Log::channel('customerlog')->info('Customer Controller', [
                 'end access'
             ]);
-            return view('customer.register');
+            return view('customer.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'

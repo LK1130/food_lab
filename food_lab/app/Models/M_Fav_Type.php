@@ -98,10 +98,6 @@ class M_Fav_Type extends Model
     ]);
   }
 
-
-
-
-
   /*
     * Create : Aung Min Khant(20/1/2022)
     * Update :
@@ -121,5 +117,26 @@ class M_Fav_Type extends Model
       'End all Data'
     ]);
     return  $mType;
+  }
+
+  /*
+     * Create : Min Khant(24/1/2022)
+     * Update :
+     * Explain of function : to get fav type data
+     * Prarameter : no
+     * return : fav type
+     * */
+  public function type()
+  {
+    Log::channel('customerlog')->info('M_Fav_Type Modal', [
+      'start type'
+    ]);
+
+    $typenames = M_Fav_Type::where('del_flg', 0)->get();
+
+    Log::channel('customerlog')->info('M_Fav_Type Modal', [
+      'end type'
+    ]);
+    return $typenames;
   }
 }

@@ -1,56 +1,71 @@
-/*start navbar*/
+/* Start Header  */
 
-.nav-buttons {
-    background-color: var(--primary-color);
+/*start carousel*/
+
+.carousels {
+    min-height: 100%;
 }
 
-.line1,
-.line2,
-.line3 {
-    width: 20px;
-    height: 3px;
-    margin: 5px;
-    transition: all 0.4s;
+.items {
+    min-height: 85vh;
 }
 
-.changes .line1 {
-    transform: rotate(-45deg) translate(-5px, 6px);
+.abouts {
+    background-color: red;
 }
 
-.changes .line2 {
-    opacity: 0;
+.menuphotos {
+    background-color: blue;
 }
 
-.changes .line3 {
-    transform: rotate(45deg) translate(-5px, -6px);
+.tastes {
+    margin-left: 15%;
+    margin-bottom: 10%;
+    color: var(--text-color);
 }
 
-.navs {
-    background-color: var(--bg-color);
-    font-size: 1.1rem;
-}
-
-.texts {
+.delivery-infos {
+    margin-left: 40%;
     color: var(--primary-color);
 }
 
-.texts:hover {
+.delivery-btns {
+    background-color: var(--primary-color);
     color: var(--text-color);
+    border: 2px groove transparent;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 45%;
+    margin-top: 20px;
 }
 
-.actives {
-    border-bottom: 1px solid var(--primary-color);
+.delivery-btns:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border: 2px groove var(--primary-color);
 }
 
-.comapanynames {
-    color: var(--text-color);
+.carousel-photos {
+    width: 100%;
 }
 
-.navs i {
-    cursor: pointer;
+@media (max-width: 720px) {
+    .companys {
+        display: none;
+    }
+    .menus {
+        max-width: 100px;
+    }
+    .delivery-btns {
+        font-size: 0.9rem;
+    }
 }
 
 /*end navbar*/
+
+/*end carousel*/
+
+/* End Header  */
 
 /*Start Welcome Section*/
 
@@ -189,33 +204,31 @@
 
 /*start delivery Informaiton*/
 
-.township-infos div p {
-    font-size: 1.2rem;
+.del-headers {
+    font-size: 1.9rem;
 }
 
-.township-infos div p:first-of-type,
-.township-infos div p:nth-of-type(2) {
+.del-headers:first-of-type {
     color: var(--primary-color);
 }
 
-.township-infos div:first-of-type p {
-    font-size: 2rem;
-}
-
-.township-names {
-    font-size: 1.1rem;
-}
-
-.deliverys img {
-    width: 60%;
-    padding-left: 5vw;
+.townships,
+.prices {
+    font-size: 1.2rem;
 }
 
 /*end delivery Informaiton*/
 
 @media (max-width: 720px) {
-    .deliverys img {
-        display: none;
+    .del-infos {
+        font-size: 1.8rem;
+    }
+    .del-headers {
+        font-size: 1.4rem;
+    }
+    .townships,
+    .prices {
+        font-size: 0.9rem;
     }
 }
 
@@ -239,9 +252,11 @@
 }
 
 .company-details {
+    font-size: 1.2rem;
+}
+
+.company-details i {
     font-size: 1.5rem;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 .company-details a {
@@ -259,6 +274,12 @@
     }
     .maps {
         display: none;
+    }
+    .company-infos p.fw-bolder {
+        font-size: 1.8rem;
+    }
+    .company-details {
+        font-size: 0.9rem;
     }
 }
 
@@ -678,12 +699,19 @@ form div .cancels {
 }
 
 .modal-inputs,
-.modal-selects {
+.modal-selects,
+.modal-body textarea {
     width: 100%;
     background-color: transparent !important;
-    color: black !important;
+    color: var(--text-color) !important;
+    border: none !important;
     border-radius: 0px !important;
     padding: 0 !important;
+    outline: none;
+}
+
+.modal-selects option {
+    color: black !important;
 }
 
 /* end modal  */
@@ -729,3 +757,89 @@ form div .cancels {
 }
 
 /*End Access Section*/
+
+/*Start Footer Section*/
+
+footer {
+    min-height: 100vh;
+}
+
+.footer-infos {
+    min-height: 90vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url("/img/bg5.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.footer-logos {
+    position: relative;
+}
+
+.footer-names {
+    font-size: 2rem;
+    color: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    left: 13vw;
+    transform: translateY(-50%);
+}
+
+.footer-details a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.footer-details .mailTeams {
+    text-decoration: underline;
+}
+
+.footer-details a:hover {
+    color: var(--primary-color);
+}
+
+.footer-details .footer-navs > *,
+.footer-details div:nth-of-type(2) p:first-of-type,
+.footer-details div:nth-of-type(3) p:first-of-type,
+.footer-details div:last-of-type p:first-of-type {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.sitelinks {
+    padding-left: 2.5px;
+}
+
+.copys {
+    background: url("/img/bg2.png");
+    min-height: 10vh;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+}
+
+/*End Footer Section*/
+
+.copys p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 720px) {
+    .copys p {
+        font-size: 1rem;
+    }
+    .footer-names {
+        font-size: 1.5rem;
+        left: 23vw;
+    }
+}
+
+/*End Footer Section*/
