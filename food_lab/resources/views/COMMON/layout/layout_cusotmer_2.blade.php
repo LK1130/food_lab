@@ -15,7 +15,8 @@
     @yield('js')
     {{-- custom js 1--}}
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
-    <title>Food Lab</title>
+    @yield('css')
+    <title>@yield('title')</title>
 </head>
 <body>
     @yield('body')

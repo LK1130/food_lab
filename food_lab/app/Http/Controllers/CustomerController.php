@@ -72,6 +72,7 @@ class CustomerController extends Controller
         $product = new M_Product();
         $productInfos = $product->productInfo();
 
+
         return view('customer.home', [
             'townships' => $townshipnames,
             'news' => $newDatas,
@@ -84,7 +85,67 @@ class CustomerController extends Controller
             'nav' => 'home'
         ]);
     }
+    /*
+     * Create : zayar(25/1/2022)
+     * Update :
+     * Explain of function : For news page
+     * Prarameter : no
+     * return : View news Blade
+     * */
+    public function news()
+    {
+        $messageLimited = [];
+        $tracksLimited = [];
+        $userinfo = null;
 
+        if (session()->has('customerId')) {
+            $sessionCustomerId = session('customerId');
+            $messages = new M_AD_CoinCharge_Message();
+            $messageLimited = $messages->informMessage($sessionCustomerId);
+
+            $tracks = new M_AD_Track();
+            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
+
+            $user = new T_CU_Customer();
+            $userinfo = $user->loginUser($sessionCustomerId);
+        }
+
+        $townships = new M_Township();
+        $townshipnames = $townships->townshipDetails();
+
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $newsLimited = $news->newsLimited();
+
+
+        $site = new M_Site();
+        $name = $site->siteName();
+
+        $product = new M_Product();
+        $productInfos = $product->productInfo();
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'start news'
+        ]);
+        $news = new M_AD_News();
+        $allnews = $news->newsAll();
+
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'end news'
+        ]);
+
+        return view('customer.news', [
+            'allnews' => $allnews,
+            'townships' => $townshipnames,
+            'news' => $newDatas,
+            'user' => $userinfo,
+            'limitednews' => $newsLimited,
+            'limitedmessages' => $messageLimited,
+            'limitedtracks' => $tracksLimited,
+            'name' => $name,
+            'productInfos' => $productInfos,
+            'nav' => 'inform'
+        ]);
+    }
     /*
      * Create : Min Khant(13/1/2022)
      * Update :
@@ -260,7 +321,6 @@ class CustomerController extends Controller
         ]);
 
         $validated = $request->validated();
-
         //generate key
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $generateKey = '';
@@ -333,7 +393,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end verifyLink'
             ]);
-            return redirect('/');
+            return redirect('/login');
         }
     }
 

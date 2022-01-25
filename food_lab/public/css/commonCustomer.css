@@ -17,7 +17,6 @@ textarea {
     --coin-color: #ffd233;
 }
 
-
 /*Start Header*/
 
 .headers {
@@ -28,7 +27,6 @@ textarea {
     background-position: center;
     position: relative;
 }
-
 
 /*start navbar*/
 
@@ -91,15 +89,12 @@ textarea {
     cursor: pointer;
 }
 
-
 /*end navbar*/
-
 
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
-
 
 /*start Profile Alert box*/
 
@@ -177,15 +172,12 @@ textarea {
     }
 }
 
-
 /*end profile alert */
-
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
-
 
 /*start inform Alert box*/
 
@@ -195,12 +187,14 @@ textarea {
     width: 55vh;
     height: max-content;
     background-color: rgb(255, 255, 255);
-    top: 20%;
-    right: 5%;
+    top: 15%;
+    right: 18%;
     border-radius: 1.4vh;
     display: none;
 }
-
+#informButton {
+    cursor: pointer;
+}
 .hiddenAlert {
     display: none;
 }
@@ -275,11 +269,35 @@ textarea {
     margin-right: 10vw;
 }
 
-.green {
-    background-color: rgb(16, 136, 0);
-    text-align: center;
-    width: 7vw;
-    color: white;
+@media (max-width: 720px) {
+    .informAlert {
+        position: absolute;
+        z-index: 999;
+        width: 35vh;
+        height: max-content;
+        background-color: rgb(255, 255, 255);
+        top: 15%;
+        right: 12%;
+        border-radius: 1.4vh;
+        display: none;
+    }
+
+    .news,
+    .messages,
+    .tracks {
+        width: 100%;
+        height: 8vh;
+        border-radius: 1vh;
+        background-color: rgb(189, 173, 158);
+    }
+    .alertButton {
+        background-color: rgb(167, 175, 166);
+        text-align: center;
+        width: 17vw;
+        text-align: center;
+        margin-left: auto;
+        color: white;
+    }
 }
 
 .texts {
@@ -300,8 +318,6 @@ textarea {
     color: var(--text-color);
 }
 
-
 /*end navbar*/
-
 
 /*End Header*/

@@ -136,6 +136,9 @@
                                         <input type="text" class="modal-inputs" name="type" value="@foreach ($types as $type)
                                             {{ $type->favourite_food }},
                                         @endforeach" data-role="tagsinput" id="tags" class="form-control">
+                                        @error('type')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">
@@ -149,12 +152,16 @@
                                                 <option disabled>No data</option>
                                             @endforelse
                                         </select>
+                                        @error('taste')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">
                                     <legend  class="modal-headers">Note</legend>
                                     <div class="m-3">
                                         <textarea name="note"></textarea>
+                                        
                                     </div>
                                 </fieldset>
                             </div>

@@ -8,6 +8,7 @@
 
 @section('script')
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
+    <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('title','Food Lab')

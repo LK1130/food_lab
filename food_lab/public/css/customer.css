@@ -1,6 +1,5 @@
 /* Start Header  */
 
-
 /*start carousel*/
 
 .carousels {
@@ -62,18 +61,18 @@
     }
 }
 
+/*end navbar*/
 
 /*end carousel*/
 
-
 /* End Header  */
-
 
 /*Start Welcome Section*/
 
 .welcomes {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg1.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url("/img/bg1.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -111,9 +110,7 @@
     }
 }
 
-
 /*End Welcome Section*/
-
 
 /*Start Best Seller Item Section*/
 
@@ -131,7 +128,11 @@
 
 .sellers {
     min-width: 95%;
-    background: linear-gradient( 120deg, rgba(0, 0, 0, 1) 30%, rgba(245, 0, 0, 0.5) 60%);
+    background: linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 1) 30%,
+        rgba(245, 0, 0, 0.5) 60%
+    );
     border-radius: 20px;
 }
 
@@ -151,7 +152,11 @@
 
 .recommands {
     min-width: 95%;
-    background: linear-gradient( 120deg, rgba(245, 0, 0, 0.5) 30%, rgba(0, 0, 0, 1) 60%);
+    background: linear-gradient(
+        120deg,
+        rgba(245, 0, 0, 0.5) 30%,
+        rgba(0, 0, 0, 1) 60%
+    );
     border-radius: 20px;
 }
 
@@ -172,15 +177,18 @@
     border: 2px groove var(--primary-color);
 }
 
-
 /*End Best Seller Item Section*/
-
 
 /*Start Delivery Section*/
 
 .deliverys {
     min-height: 100vh;
-    background: linear-gradient( 360deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.7) 90%), url("/img/bg3.png");
+    background: linear-gradient(
+            360deg,
+            rgba(0, 0, 0, 0.7) 10%,
+            rgba(0, 0, 0, 0.7) 90%
+        ),
+        url("/img/bg3.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -193,7 +201,6 @@
     letter-spacing: 2px;
     word-spacing: 2px;
 }
-
 
 /*start delivery Informaiton*/
 
@@ -210,7 +217,6 @@
     font-size: 1.2rem;
 }
 
-
 /*end delivery Informaiton*/
 
 @media (max-width: 720px) {
@@ -226,9 +232,7 @@
     }
 }
 
-
 /*End Delivery Section*/
-
 
 /*Start Contact Section */
 
@@ -279,10 +283,167 @@
     }
 }
 
-
 /*End Contact Section */
 
+/*
+    * Create:zayar(2022/01/17) 
+    * Update: 
+    */
+/*start Profile Alert box*/
+/* #profileAlert {
+    position: absolute;
+    z-index: 999;
+    width: 67vh;
+    height: 70vh;
+    background-color: rgba(0, 0, 0, 0.952);
+    top: 100%;
+    right: 0;
+    visibility: hidden;
+}
 
+.profileAlertHeader {
+    color: var(--primary-color);
+}
+.userProfile {
+    margin-left: 17vh;
+    margin-right: 17vh;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.userProfileDiv {
+    width: 10vh;
+}
+#informButton {
+    cursor: pointer;
+}
+.profileAlertBody {
+    width: 100%;
+    height: 50vh;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+.editProfile {
+    background-color: var(--text-color);
+    color: var(--secondary-color);
+}
+
+.updatePassword {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+#back {
+    cursor: pointer;
+}
+#back:hover {
+    color: var(--primary-color) !important;
+}
+@media only screen and (max-width: 720px) {
+    .userProfile {
+        font-size: 1.2rem !important;
+        width: 50vw !important;
+    }
+
+    #profileAlert {
+        width: 47vh;
+    }
+    #profileAlert {
+        left: 2vw !important;
+    }
+    .profileAlertBody {
+        font-size: 1rem !important;
+    }
+    .userProfile {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .profileAlertHeader {
+        margin-right: 10vw;
+    }
+}
+/*end profile alert */
+
+/*
+    * Create:zayar(2022/01/22) 
+    * Update: 
+    */
+/*start inform Alert box*/
+/*.informAlert {
+    position: absolute;
+    z-index: 999;
+    width: 55vh;
+    height: max-content;
+    background-color: rgb(255, 255, 255);
+    top: 20%;
+    margin-left: 30vw;
+    border-radius: 1.4vh;
+}
+
+#backInform {
+    width: 5vw;
+    height: 5vh;
+    margin-left: 1vw;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+.headerInform {
+    margin: auto;
+}
+
+.infromTitle {
+    cursor: pointer;
+}
+.alertButton {
+    background-color: rgb(167, 175, 166);
+    text-align: center;
+    width: 7vw;
+    margin-left: auto;
+    color: white;
+}
+.forNews,
+.forMessages,
+.forTracks {
+    height: 70%;
+    width: 90%;
+    margin: auto;
+    gap: 2.5vh;
+}
+#forNews {
+    display: none !important;
+}
+#forMessages {
+    display: none !important;
+}
+#forTracks {
+    display: none !important;
+}
+.news,
+.messages,
+.tracks {
+    width: 100%;
+    height: 15vh;
+    border-radius: 1vh;
+    background-color: rgb(189, 173, 158);
+}
+.news img {
+    max-width: 22%;
+    margin-right: auto;
+    margin-left: 1vw;
+}
+
+.tracks img {
+    max-width: 22%;
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+.newsColumnDiv {
+    margin-right: 10vw;
+}
+.green {
+    background-color: rgb(16, 136, 0);
+    text-align: center;
+    width: 7vw;
+    color: white;
+}*/
 /*Start Policy Section*/
 
 .policys {
@@ -305,19 +466,18 @@
     color: var(--primary-color);
 }
 
-.policy-infos div>* {
+.policy-infos div > * {
     padding-bottom: 10px;
 }
 
-
 /*End Policy Section*/
-
 
 /*Start Report and Suggest Form Section */
 
 .forms {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg6.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/img/bg6.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -365,7 +525,7 @@ button,
 }
 
 .township-options {
-    color: var( --bg2-color) !important;
+    color: var(--bg2-color) !important;
 }
 
 form div .btn {
@@ -396,9 +556,7 @@ form div .cancels {
     }
 }
 
-
 /*End Report and Suggest Form Section*/
-
 
 /*Start Access Section*/
 
@@ -412,7 +570,6 @@ form div .cancels {
 .arrows {
     font-size: 2rem;
 }
-
 
 /*start register header*/
 
@@ -434,7 +591,7 @@ form div .cancels {
     margin-right: 10px;
 }
 
-.sign-withs>* {
+.sign-withs > * {
     background: var(--bg-color);
     font-size: 1rem;
     color: var(--text-color);
@@ -461,9 +618,7 @@ form div .cancels {
     }
 }
 
-
 /*end register header*/
-
 
 /*start register form*/
 
@@ -523,7 +678,6 @@ form div .cancels {
     word-spacing: 2px;
 }
 
-
 /* start modal  */
 
 .modals {
@@ -531,8 +685,8 @@ form div .cancels {
 }
 
 .contents {
-    background-color: #2D2D2D;
-    border: 1px solid #FFFFFF;
+    background-color: #2d2d2d;
+    border: 1px solid #ffffff;
     border-radius: 5px;
 }
 
@@ -560,9 +714,7 @@ form div .cancels {
     color: black !important;
 }
 
-
 /* end modal  */
-
 
 /*end register form*/
 
@@ -577,12 +729,11 @@ form div .cancels {
     text-decoration: none;
 }
 
-
 /*Start Login Section*/
 
 .login {
     min-height: 100vh;
-    background: url('/img/bg8.png');
+    background: url("/img/bg8.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -591,10 +742,9 @@ form div .cancels {
     min-width: 40%;
 }
 
-
 /*End Login Section*/
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
     .access-imgs {
         display: none;
     }
@@ -606,9 +756,7 @@ form div .cancels {
     }
 }
 
-
 /*End Access Section*/
-
 
 /*Start Footer Section*/
 
@@ -618,7 +766,8 @@ footer {
 
 .footer-infos {
     min-height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg5.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url("/img/bg5.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -653,7 +802,7 @@ footer {
     color: var(--primary-color);
 }
 
-.footer-details .footer-navs>*,
+.footer-details .footer-navs > *,
 .footer-details div:nth-of-type(2) p:first-of-type,
 .footer-details div:nth-of-type(3) p:first-of-type,
 .footer-details div:last-of-type p:first-of-type {
@@ -674,7 +823,6 @@ footer {
     position: relative;
 }
 
-
 /*End Footer Section*/
 
 .copys p {
@@ -684,7 +832,7 @@ footer {
     transform: translate(-50%, -50%);
 }
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
     .copys p {
         font-size: 1rem;
     }
@@ -693,6 +841,5 @@ footer {
         left: 23vw;
     }
 }
-
 
 /*End Footer Section*/

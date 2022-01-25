@@ -21,7 +21,7 @@ let cpeye = document.querySelector(".cpwd-eye"),
 // end register
 // End Access Section
 
-let importantNew = function() {
+let importantNew = function () {
     if (importantnews.length != 0) {
         for (let i = 0; i < importantnews.length; i++) {
             let category = importantnews[i].getAttribute("id");
@@ -50,7 +50,7 @@ let importantNew = function() {
 
 importantNew();
 
-navbuttons.addEventListener("click", function() {
+navbuttons.addEventListener("click", function () {
     navbuttons.classList.toggle("changes");
 });
 
@@ -78,26 +78,26 @@ for (let i = 0; i < prices.length; i++) {
 }
 
 // for password eye icon addEventListener
-peyeSlash.addEventListener("click", function() {
+peyeSlash.addEventListener("click", function () {
     peyeSlash.style.display = "none";
     peye.style.display = "block";
     password.setAttribute("type", "text");
 });
 
-peye.addEventListener("click", function() {
+peye.addEventListener("click", function () {
     peye.style.display = "none";
     peyeSlash.style.display = "block";
     password.setAttribute("type", "password");
 });
 
 // for confirm password eye icon addEventListener
-cpeyeSlash.addEventListener("click", function() {
+cpeyeSlash.addEventListener("click", function () {
     cpeyeSlash.style.display = "none";
     cpeye.style.display = "block";
     cpassword.setAttribute("type", "text");
 });
 
-cpeye.addEventListener("click", function() {
+cpeye.addEventListener("click", function () {
     cpeye.style.display = "none";
     cpeyeSlash.style.display = "block";
     cpassword.setAttribute("type", "password");
@@ -122,11 +122,11 @@ function onSignIn(googleUser) {
         type: "POST",
         url: "/google",
         data: userData,
-        success: function(res) {
+        success: function (res) {
             username.value = res.name;
             email.value = res.email;
         },
-        error: function(err) {
+        error: function (err) {
             console.log(err);
         },
     });
@@ -149,13 +149,13 @@ function statusChangeCallback(response) {
 
 function checkLoginState() {
     // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function(response) {
+    FB.getLoginStatus(function (response) {
         // See the onlogin handler
         statusChangeCallback(response);
     });
 }
 
-window.fbAsyncInit = function() {
+window.fbAsyncInit = function () {
     FB.init({
         appId: "4571537182964313",
         cookie: true, // Enable cookies to allow the server to access the session.
@@ -163,7 +163,7 @@ window.fbAsyncInit = function() {
         version: "v7.0", // Use this Graph API version for this call.
     });
 
-    FB.getLoginStatus(function(response) {
+    FB.getLoginStatus(function (response) {
         // Called after the JS SDK has been initialized.
         statusChangeCallback(response); // Returns the login status.
     });
@@ -172,18 +172,18 @@ window.fbAsyncInit = function() {
 function testAPI() {
     // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log("Welcome!  Fetching your information.... ");
-    FB.api("/me", function(response) {
+    FB.api("/me", function (response) {
         console.warn(
             "Thanks for logging in, " +
-            response.name +
-            "! and Email is " +
-            response.email
+                response.name +
+                "! and Email is " +
+                response.email
         );
     });
 }
 
-createAccs.addEventListener("click", function() {
-    (function($) {
+createAccs.addEventListener("click", function () {
+    (function ($) {
         "use strict";
         operate();
     })(window.jQuery);
