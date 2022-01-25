@@ -27,6 +27,8 @@
                 <span class="comapanynames">{{ $name->site_name }}</span>
             </a>
 
+            <p class="nav-link d-lg-none profiles texts"  id="profileButton2"><i class="fas fa-user-circle fs-2"></i></p>
+
             <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="bg-light line1"></div>
                 <div class="bg-light line2"></div>
@@ -73,7 +75,7 @@
                     </li>
                     @if (session()->has('customerId'))
                         <li class="nav-item">
-                            <p class="nav-link texts mt-3"  id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
+                            <p class="nav-link texts"  id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
                         </li>
                     @else
                         <li class="nav-item">
@@ -81,7 +83,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <p class="nav-link texts mt-3"><i class="fas fa-shopping-cart fs-3"></i></p>
+                        <p class="nav-link texts"><i class="fas fa-shopping-cart fs-3"></i></p>
                     </li>
                 </ul>
             </div>

@@ -53,7 +53,7 @@ return [
     'fullName' => 'Full Name',
     'phone' => 'Phone',
     'email' => 'Email',
-    'address(No)' => 'Address(No)',
+    'address(State)' => 'address(State)',
     'address(Township)' => 'Address(Township)',
     'address(City)' => 'Address(City)',
     'password' => 'Password',

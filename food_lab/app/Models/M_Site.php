@@ -146,7 +146,6 @@ class M_Site extends Model
         ]);
         $name = M_Site::select('site_name')
             ->where('del_flg', '=', 0)
-            ->orderBy('id', 'desc')
             ->first();
 
         Log::channel('customerlog')->info('M_Site Model', [

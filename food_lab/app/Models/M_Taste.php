@@ -89,4 +89,19 @@ class M_Taste extends Model
         ]);
         return  $mTaste;
     }
+
+
+    public function taste()
+    {
+        Log::channel('customerlog')->info('M_Taste Modal', [
+            'start taste'
+        ]);
+
+        $tastenames = M_Taste::where('del_flg', 0)->get();
+
+        Log::channel('customerlog')->info('M_Taste Modal', [
+            'end taste'
+        ]);
+        return $tastenames;
+    }
 }
