@@ -27,15 +27,18 @@
                 <span class="comapanynames">{{ $name->site_name }}</span>
             </a>
 
-            <p class="nav-link d-lg-none profiles texts" id="profileButton2"><i class="fas fa-user-circle fs-2"></i></p>
-
-            <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
+            <div class="d-flex">
+                @if (session()->has('customerId'))
+                    <p class="nav-link d-lg-none me-3 texts" id="profileButton2"><i class="fas fa-user-circle fs-2"></i></p>
+                @endif
+                <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <div class="bg-light line1"></div>
                 <div class="bg-light line2"></div>
                 <div class="bg-light line3"></div>
             </button>
+            </div>
 
             <div class="collapse navbar-collapse text-uppercase fw-bolder" id="navbarNav">
                 <ul class="navbar-nav w-100 justify-content-around align-items-center border-0 rounded py-3 navs">

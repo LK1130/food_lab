@@ -171,9 +171,9 @@ class T_CU_Customer extends Model
       $customer->customerID = $customerId;
       $customer->nickname = $data['username'];
       $customer->phone = $data['phone'];
-      $customer->address1 = $data['addressState'];
-      $customer->address2 = $data['addressTownship'];
-      $customer->address3 = $data['addressCity'];
+      $customer->address1 = $data['addressNo'];
+      $customer->address2 = $data['addressState'];
+      $customer->address3 = $data['addressTownship'];
       $customer->fav_type = $data['type'];
       $customer->taste = $data['taste'];
       $customer->allergic = $data['note'];

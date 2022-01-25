@@ -321,6 +321,7 @@ class CustomerController extends Controller
         ]);
 
         $validated = $request->validated();
+
         //generate key
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $generateKey = '';

@@ -17,6 +17,7 @@ textarea {
     --coin-color: #ffd233;
 }
 
+
 /*Start Header*/
 
 .headers {
@@ -27,6 +28,7 @@ textarea {
     background-position: center;
     position: relative;
 }
+
 
 /*start navbar*/
 
@@ -69,14 +71,6 @@ textarea {
     font-size: 1.1rem;
 }
 
-.texts {
-    color: var(--primary-color);
-}
-
-.texts:hover {
-    color: var(--text-color);
-}
-
 .actives {
     border-bottom: 1px solid var(--primary-color);
 }
@@ -85,16 +79,33 @@ textarea {
     color: var(--text-color);
 }
 
+.profiles {
+    font-size: 1.3rem;
+}
+
 .navs i {
     cursor: pointer;
 }
 
+#profileButton {
+    display: block;
+}
+
+@media (max-width:720px) {
+    #profileButton {
+        display: none;
+    }
+}
+
+
 /*end navbar*/
+
 
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
+
 
 /*start Profile Alert box*/
 
@@ -172,12 +183,15 @@ textarea {
     }
 }
 
+
 /*end profile alert */
+
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
+
 
 /*start inform Alert box*/
 
@@ -192,9 +206,11 @@ textarea {
     border-radius: 1.4vh;
     display: none;
 }
+
 #informButton {
     cursor: pointer;
 }
+
 .hiddenAlert {
     display: none;
 }
@@ -281,7 +297,6 @@ textarea {
         border-radius: 1.4vh;
         display: none;
     }
-
     .news,
     .messages,
     .tracks {
@@ -318,6 +333,8 @@ textarea {
     color: var(--text-color);
 }
 
+
 /*end navbar*/
+
 
 /*End Header*/

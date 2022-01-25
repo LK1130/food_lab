@@ -55,7 +55,7 @@ return [
     'email' => 'Email',
     'address(State)' => 'address(State)',
     'address(Township)' => 'Address(Township)',
-    'address(City)' => 'Address(City)',
+    'address(No)' => 'Address(No)',
     'password' => 'Password',
     'confirmPassword' => 'Confirm Password',
     'alreadyHaveAnAccount' => 'Already Have An Account ?',
@@ -64,4 +64,9 @@ return [
     'signIn' => 'Sign in',
     'Ifyoudoesn\'thaveAnyaccount' => 'If you doesn\'t have Any account',
     'signUpHere' => 'Sign Up Here',
+    'Skip' => 'Skip',
+    'favouriteType' => 'Favourite Type',
+    'favouriteTaste' => 'Favourite Taste',
+    'Note' => 'Note',
+    'submit' => 'Submit'
 ];
