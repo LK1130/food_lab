@@ -66,13 +66,6 @@ class CustomerController extends Controller
         $newDatas = $news->news();
         $newsLimited = $news->newsLimited();
 
-
-        $site = new M_Site();
-        $name = $site->siteName();
-
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
-
         $site = new M_Site();
         $name = $site->siteName();
 
