@@ -149,4 +149,24 @@ class M_AD_News extends Model
             ->limit(3)
             ->get();
     }
+
+    /*
+     * Create : zayar(25/1/2022)
+     * Update :
+     * Explain of function : To show  news for users in news page
+     * Prarameter : no
+     * return : news
+     * */
+    public function newsAll()
+    {
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsLimited'
+        ]);
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsLimited'
+        ]);
+        return M_AD_News::where('m_ad_news.del_flg', 0)
+            ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
+            ->get();
+    }
 }

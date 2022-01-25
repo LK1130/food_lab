@@ -269,7 +269,7 @@
     * Update: 
     */
 /*start Profile Alert box*/
-#profileAlert {
+/* #profileAlert {
     position: absolute;
     z-index: 999;
     width: 67vh;
@@ -346,20 +346,17 @@
     * Update: 
     */
 /*start inform Alert box*/
-.informAlert {
+/*.informAlert {
     position: absolute;
     z-index: 999;
     width: 55vh;
     height: max-content;
     background-color: rgb(255, 255, 255);
     top: 20%;
-    margin-left: 54vw;
+    margin-left: 30vw;
     border-radius: 1.4vh;
-    visibility: hidden;
 }
-.hiddenAlert {
-    visibility: hidden;
-}
+
 #backInform {
     width: 5vw;
     height: 5vh;
@@ -425,7 +422,7 @@
     text-align: center;
     width: 7vw;
     color: white;
-}
+}*/
 /*Start Policy Section*/
 
 .policys {
@@ -680,9 +677,10 @@ form div .cancels {
     border-bottom: 3px solid var(--primary-color);
 }
 
-.modal-inputs {
+.modal-inputs,
+.modal-selects {
     width: 100%;
-    background-color: #ffffff !important;
+    background-color: transparent !important;
     color: black !important;
     border-radius: 0px !important;
     padding: 0 !important;

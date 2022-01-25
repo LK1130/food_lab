@@ -137,14 +137,14 @@ class T_CU_Customer extends Model
   /*
       * Create : Min Khant(15/1/2022)
       * Update :
-      * Explain of function : To generate customer Id
-      * Prarameter : user info
-      * return : customer id
+      * Explain of function : To store input data  from Register page
+      * Prarameter : no
+      * return :
     */
-  private function generatCustomerId($data)
+  public  function customerData($data, $key)
   {
     Log::channel('customerlog')->info('T_CU_Customer Model', [
-      'start generatCustomerId'
+      'start customerData'
     ]);
 
     //for generate customer id
@@ -162,32 +162,7 @@ class T_CU_Customer extends Model
       $charLength = rand(0, strlen($characters) - 1);
       $generateKey .= $characters[$charLength];
     }
-  }
-  /*
-
-    $customerId = "$firstStr$lastStr$firstemail$firstPwd$lastPwd$day$hour$generateKey";
-
-    Log::channel('customerlog')->info('T_CU_Customer Model', [
-      'end generatCustomerId'
-    ]);
-
-    return $customerId;
-  }
-
-  /*
-      * Create : Min Khant(15/1/2022)
-      * Update :
-      * Explain of function : To store input data  from Register page
-      * Prarameter : no
-      * return :
-    */
-  public  function customerData($data, $key)
-  {
-    Log::channel('customerlog')->info('T_CU_Customer Model', [
-      'start customerData'
-    ]);
-
-    $customerId = $this->generatCustomerId($data);
+    $customerId = $generateKey;
 
     DB::transaction(function () use ($customerId, $data, $key) {
       //insert customer
@@ -202,7 +177,9 @@ class T_CU_Customer extends Model
       $customer->taste = $data['taste'];
       $customer->allergic = $data['note'];
       $customer->save();
-
+      Log::channel('customerlog')->info('password', [
+        md5(sha1($data['password']))
+      ]);
       //insert customerLogin
       $customerLogin = new M_CU_Customer_Login();
       $customerLogin->email = $data['email'];
@@ -238,7 +215,7 @@ class T_CU_Customer extends Model
       'Start loginUser'
     ]);
     $search = T_CU_Customer::find($sessionCustomerId)
-      ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
+      ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->join('m_township', 'm_township.id', '=', 't_cu_customer.address1')
       ->join('m_state', 'm_state.id', '=', 't_cu_customer.address2')
       ->join('m_fav_type', 'm_fav_type.id', '=', 't_cu_customer.fav_type')
@@ -269,7 +246,7 @@ class T_CU_Customer extends Model
       'Start oldPassword'
     ]);
     $admin = T_CU_Customer::find($id)
-      ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
+      ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->value('password');
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End oldPassword'
@@ -289,7 +266,7 @@ class T_CU_Customer extends Model
       'Start updatePassword'
     ]);
     $admin = T_CU_Customer_Login::where('customer_id', '=', $id)
-      // ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
+      // ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->first();
     $admin->password = $validate['newpassword'];
 
@@ -311,7 +288,7 @@ class T_CU_Customer extends Model
       'Start updateProfile'
     ]);
     $admin = T_CU_Customer_Login::where('customer_id', '=', $id)
-      // ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
+      // ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->first();
     $admin->password = $validate['newpassword'];
 

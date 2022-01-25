@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class T_CU_Customer_Login extends Model
 {
-    public $table = 't_cu_customer_login';
+    public $table = 'm_cu_customer_login';
     use HasFactory;
 }

@@ -1,17 +1,6 @@
-let prices = document.querySelectorAll(".prices");
-
-// Start Access Section
-// start register
-// let username = document.getElementById("username"),
-//     phone = document.getElementById("phone"),
-//     email = document.getElementById("email"),
-//     addressNo = document.getElementById("addressNo"),
-//     addressTownship = document.getElementById("addressTownship"),
-//     addressCity = document.getElementById("addressCity"),
-//     password = document.getElementById("password");
 let navbuttons = document.querySelector(".nav-buttons");
-
-let news = document.querySelectorAll(".news"),
+let prices = document.querySelectorAll(".prices");
+let importantnews = document.querySelectorAll(".importantnews"),
     marquee = document.querySelector("marquee");
 // Start Access Section
 // start register
@@ -34,24 +23,24 @@ let cpeye = document.querySelector(".cpwd-eye"),
 // End Access Section
 
 let importantNew = function () {
-    if (news.length != 0) {
-        for (let i = 0; i < news.length; i++) {
-            let category = news[i].getAttribute("id");
+    if (importantnews.length != 0) {
+        for (let i = 0; i < importantnews.length; i++) {
+            let category = importantnews[i].getAttribute("id");
             switch (category) {
                 case "1":
-                    news[i].style.color = "green";
+                    importantnews[i].style.color = "green";
                     break;
                 case "2":
-                    news[i].style.color = "red";
+                    importantnews[i].style.color = "red";
                     break;
                 case "3":
-                    news[i].style.color = "blue";
+                    importantnews[i].style.color = "blue";
                     break;
                 case "4":
-                    news[i].style.color = "red";
+                    importantnews[i].style.color = "red";
                     break;
                 case "5":
-                    news[i].style.color = "black";
+                    importantnews[i].style.color = "black";
                     break;
             }
         }
@@ -63,7 +52,6 @@ let importantNew = function () {
 importantNew();
 
 navbuttons.addEventListener("click", function () {
-    console.log("hay");
     navbuttons.classList.toggle("changes");
 });
 
@@ -88,139 +76,6 @@ function addCommas(nStr) {
 
 for (let i = 0; i < prices.length; i++) {
     prices[i].textContent = addCommas(prices[i].textContent);
-}
-
-// Start Access Section
-// start register
-// username.addEventListener('keypress',function (event){
-//    let character = username.value;
-//    if(character.length+1 < 6){
-//        console.log('hay');
-//    }
-// });
-// end register
-// End Access Section
-
-/*
- * Create : zayar(17/1/2022)
- * Update :
- * Explain of function : To toggle profile alert
- * Prarameter : no
- * return : toggle
- * */
-firstClick();
-back();
-function firstClick() {
-    document
-        .getElementById("profileButton")
-        .addEventListener("click", function () {
-            document.getElementById("profileAlert").style.visibility =
-                "visible";
-        });
-}
-function back() {
-    document.getElementById("back").addEventListener("click", function () {
-        document.getElementById("profileAlert").style.visibility = "hidden";
-    });
-}
-
-/*
- * Create : zayar(23/1/2022)
- * Update :
- * Explain of function : To toggle inform alert
- * Prarameter : no
- * return : toggle
- * */
-firstClickInform();
-
-function firstClickInform() {
-    document
-        .getElementById("informButton")
-        .addEventListener("click", function () {
-            document.getElementById("informAlert").style.visibility = "visible";
-        });
-}
-clickInformBack();
-
-function clickInformBack() {
-    document
-        .getElementById("backInform")
-        .addEventListener("click", function () {
-            document.getElementById("informAlert").style.visibility = "hidden";
-        });
-}
-/*
- * Create : zayar(23/1/2022)
- * Update :
- * Explain of function : for initial ifrom alert
- * Prarameter : no
- * return : toggle
- * */
-initialInformAlert();
-function initialInformAlert() {
-    document.getElementById("forNews").removeAttribute("id");
-    document.getElementById("clickNews").style.borderBottom = "1px solid black";
-}
-
-/*
- * Create : zayar(23/1/2022)
- * Update :
- * Explain of function : To toggle inform alert headers
- * Prarameter : no
- * return : toggle
- * */
-clickNews();
-
-function clickNews() {
-    document.getElementById("clickNews").addEventListener("click", function () {
-        document.getElementsByClassName("forMessages")[0].id = "forMessages";
-        document.getElementsByClassName("forTracks")[0].id = "forTracks";
-        document.getElementById("forNews").removeAttribute("id");
-        // document.getElementsByClassName("informAlert")[0].style.height = "60vh";
-        document.getElementById("clickMessages").style.borderBottom = "";
-        document.getElementById("clickNews").style.borderBottom =
-            "1px solid black";
-        document.getElementById("clickTracks").style.borderBottom = "";
-    });
-}
-
-clickMessages();
-
-function clickMessages() {
-    document
-        .getElementById("clickMessages")
-        .addEventListener("click", function () {
-            document.getElementsByClassName("forNews")[0].id = "forNews";
-            document.getElementsByClassName("forTracks")[0].id = "forTracks";
-            document.getElementById("forMessages").removeAttribute("id");
-
-            document.getElementById("clickMessages").style.borderBottom =
-                "1px solid black";
-            document.getElementById("clickNews").style.borderBottom = "";
-            document.getElementById("clickTracks").style.borderBottom = "";
-            // document.getElementsByClassName("informAlert")[0].style.height =
-            //     "60vh";
-        });
-}
-
-clickTracks();
-
-function clickTracks() {
-    document
-        .getElementById("clickTracks")
-        .addEventListener("click", function () {
-            document.getElementsByClassName("forNews")[0].id = "forNews";
-            document.getElementsByClassName("forMessages")[0].id =
-                "forMessages";
-            document.getElementById("forTracks").removeAttribute("id");
-
-            // document.getElementsByClassName("informAlert")[0].style.height =
-            //     "70vh";
-            document.getElementById("clickMessages").style.borderBottom = "";
-            document.getElementById("clickNews").style.borderBottom = "";
-            document.getElementById("clickTracks").style.borderBottom =
-                "1px solid black";
-        });
 }
 
 // for password eye icon addEventListener

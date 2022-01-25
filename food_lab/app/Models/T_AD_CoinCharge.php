@@ -142,7 +142,7 @@ class T_AD_CoinCharge extends Model
     )
 
       ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-      ->join('t_cu_customer_login', 't_cu_customer_login.customer_id', '=', 't_cu_customer.id')
+      ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
       ->where('t_ad_coincharge.del_flg', 0)
       ->where('t_ad_coincharge.id', $chargeid)

@@ -48,6 +48,14 @@ Route::post('/admin', [AdminController::class, 'loginForm']);
 Route::get('/adminlogout', [AdminController::class, 'logout']);
 Route::group(['middleware' => ['checkAdmin']], function () {
 
+    //admin/setting/loginManage
+    Route::resource('adminLogin', LoginController::class);
+    //admin/setting/coinRate
+    Route::resource('coinrate', CoinController::class);
+    //admin/setting/siteManage
+    Route::get('siteManage', [SiteController::class, 'siteManage']);
+    Route::post('siteManage/store', [SiteController::class, 'store']);
+    //admin/setting/appManage
     //_________________________________start loginManage_________________________/
 
     Route::resource('adminLogin', LoginController::class);
@@ -78,6 +86,9 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::resource('favtype', FavtypeController::class);
     Route::resource('orderstatus', OrderStatusController::class);
     Route::resource('decision', DecisionController::class);
+    //admin/setting/newsManage
+    Route::resource('news', NewsController::class);
+
 
     //_________________________________end appManage_________________________/
 
@@ -183,7 +194,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 /*
  * For customer home page
 */
-Route::get('/', [CustomerController::class, 'foodlab']);
+Route::get('/', [CustomerController::class, 'home']);
 
 /*
  * For Policy Info Page
@@ -245,7 +256,11 @@ Route::resource('updateprofile', CustomerProfileUpdate::class);
  * zayar
  */
 Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
-
+/*
+ * For Update Profile
+ * zayar
+ */
+Route::get('/news', [CustomerController::class, 'news']);
 /*
  * For deliery info page
 */

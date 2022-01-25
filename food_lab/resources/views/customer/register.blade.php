@@ -126,16 +126,16 @@
                                 <button type="submit" class="submits">Skip</button>
                             </div>
                             <div class="modal-body">
-                                <fieldset class="border border-3">
+                                <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">Favourite Type</legend>
                                     <div class="m-3">
                                         <input type="text" class="modal-inputs" name="type" value="chinese,korea,myanmar,japan" data-role="tagsinput" id="tags" class="form-control">
                                     </div>
                                 </fieldset>
-                                <fieldset class="border border-3">
+                                <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">Favourite taste</legend>
                                     <div class="m-3">
-                                        <select class="form-select" name="taste">
+                                        <select class="modal-selects" name="taste">
                                             <option selected>Favourite your Taste</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -143,7 +143,7 @@
                                         </select>
                                     </div>
                                 </fieldset>
-                                <fieldset class="border border-3">
+                                <fieldset class="border border-3 rounded">
                                     <legend  class="modal-headers">Note</legend>
                                     <div class="m-3">
                                         <textarea class="form-control" name="note"></textarea>
