@@ -91,11 +91,11 @@ return [
     'reset' => 'Reset',
     'chosenimage' => 'Chosen Image',
     'back' => 'Back',
-    'category' => 'Category',
-    'category' => 'Category',
-    'category' => 'Category',
+    'new' => 'News',
+    'message' => 'Messages',
+    'track' => 'Tracks',
 
-    'category' => 'Category',
+    'more' => 'More',
     'category' => 'Category',
     'category' => 'Category',
 

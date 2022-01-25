@@ -1,0 +1,32 @@
+.news-container {
+    margin: auto;
+    width: 90%;
+    height: 65vh;
+    background-color: rgba(101, 102, 102, 0.199);
+}
+.news-container .title {
+    color: var(--secondary-color);
+}
+.news {
+    width: 90%;
+    background-color: rgb(216, 211, 193);
+    max-height: 15vh;
+    margin: auto;
+}
+.news img {
+    width: 6vw;
+}
+.backNews {
+    margin-left: 70vw;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+.allNews {
+    height: 80%;
+    overflow-y: scroll;
+}
+@media (max-width: 720px) {
+    .news img {
+        width: 9vw;
+    }
+}

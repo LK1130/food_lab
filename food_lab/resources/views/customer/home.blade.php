@@ -8,6 +8,7 @@
 
 @section('script')
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
+    <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('title','Food Lab')
@@ -160,13 +161,13 @@
             {{-- start delivery Informaiton--}}
             <div class="col-12 township-infos">
                 <div class="row justify-content-center align-items-center text-center text-white">
-                    <p class="col-5 fw-bolder">{{ __('messageMK.townships') }}</p>
+                    <p class="col-5 fw-bolder del-headers">{{ __('messageMK.townships') }}</p>
                     <p class="col-2 pt-2"><i class="fas fa-arrow-right"></i></p>
-                    <p class="col-5 fw-bolder">{{ __('messageMK.prices') }}</p>
+                    <p class="col-5 fw-bolder del-headers">{{ __('messageMK.prices') }}</p>
                 </div>
                 @foreach($townships as $township)
                     <div class="row justify-content-center align-items-center text-center text-white">
-                        <p class="col-5">{{ $township->township_name }}</p>
+                        <p class="col-5 townships">{{ $township->township_name }}</p>
                         <p class="col-2 pt-2"><i class="fas fa-arrow-right"></i></p>
                         @if($township->delivery_price == 0)
                             <p class="col-5"><span class="prices">Free</span></p>
@@ -189,26 +190,26 @@
                     <p class="fw-bolder mb-5">{{ __('messageMK.getcontact') }}</p>
                     <div class="company-details">
                         <div class="row">
-                            <div class="col-3 d-flex justify-content-center align-items-start">
+                            <div class="col-2 text-center">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <div class="col-9">
+                            <div class="col-10">
                                 <p> 3rd floor,Myanmar Plazzar, Kabar Aye Pagoda Rd, Yangon</p>
                             </div>
                         </div>
-                        <div class="row ps-3">
-                            <div class="col-3 d-flex justify-content-center align-items-start">
+                        <div class="row">
+                            <div class="col-2 text-center">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <div class="col-9">
+                            <div class="col-10">
                                 <p><a href="tel:09876543211" class="d-block">09876543211</a><a href="tel:097788665544" class="d-block">097788665544</a></p>
                             </div>
                         </div>
-                        <div class="row ps-5">
-                            <div class="col-3 d-flex justify-content-center align-items-start">
+                        <div class="row">
+                            <div class="col-2 text-center">
                                 <p><i class="fas fa-envelope"></i></p>
                             </div>
-                            <div class="col-9">
+                            <div class="col-10">
                                 <a href="mailto:www.foodlab2022@gmail.com">www.foodlab2022@gmail.com</a>
                             </div>
                         </div>
@@ -238,7 +239,6 @@
                     <p><a href="#">{{ __('messageMK.inform') }}</a></p>
                     @if (!session()->has('customerId'))
                         <p><a href="/access">{{ __('messageMK.access') }}</a></p>
-                        <p><a href="#">{{ __('messageMK.profile') }}</a></p>
                     @endif
                 </div>
                 @if (session()->has('customerId'))
@@ -268,7 +268,7 @@
             </div>
         </div>
         <div class="copys">
-            <p>Copy right by Food Lab</p>
+            <p>Copy right by {{  $name->site_name  }}</p>
         </div>
     </footer>
     {{-- End Footer Section --}}

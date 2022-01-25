@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
     @yield('css')
@@ -23,15 +23,22 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="{{ url('storage/logo/siteLog.png') }}"  class="pe-2"/>
+                <img src="{{ url('storage/logo/siteLog.png') }}" class="pe-2" />
                 <span class="comapanynames">{{ $name->site_name }}</span>
             </a>
 
-            <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="d-flex">
+                @if (session()->has('customerId'))
+                    <p class="nav-link d-lg-none me-3 texts" id="profileButton2"><i class="fas fa-user-circle fs-2"></i></p>
+                @endif
+                <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <div class="bg-light line1"></div>
                 <div class="bg-light line2"></div>
                 <div class="bg-light line3"></div>
             </button>
+            </div>
 
             <div class="collapse navbar-collapse text-uppercase fw-bolder" id="navbarNav">
                 <ul class="navbar-nav w-100 justify-content-around align-items-center border-0 rounded py-3 navs">
@@ -39,41 +46,41 @@
                         <li class="nav-item">
                             <a class="nav-link texts actives" href="#">{{ __('messageMK.home') }}</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
                             <a class="nav-link texts" href="#">{{ __('messageMK.home') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'product')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="#">{{  __('messageMK.products') }}</a>
+                            <a class="nav-link texts actives" href="#">{{ __('messageMK.products') }}</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="#">{{  __('messageMK.products') }}</a>
+                            <a class="nav-link texts" href="#">{{ __('messageMK.products') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'coin')
                         <li class="nav-item">
                             <a class="nav-link texts actives" href="#">{{ __('messageMK.buy coin') }}</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
                             <a class="nav-link texts" href="#">{{ __('messageMK.buy coin') }}</a>
                         </li>
                     @endif
                     <li class="nav-item companys">
                         <a href="/" class="navbar-brand d-lg-inline">
-                            <img src="{{ url('storage/logo/siteLog.png') }}"  class="pe-2"/>
-                            <span class="comapanynames">{{  $name->site_name  }}</span>
+                            <img src="{{ url('storage/logo/siteLog.png') }}" class="pe-2" />
+                            <span class="comapanynames">{{ $name->site_name }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <p class="nav-link texts">{{ __('messageMK.inform') }}</p>
+                        <p class="nav-link texts" id="informButton">{{ __('messageMK.inform') }}</p>
                     </li>
                     @if (session()->has('customerId'))
                         <li class="nav-item">
-                            <p class="nav-link texts mt-3"  id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
+                            <p class="nav-link texts" id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
                         </li>
                     @else
                         <li class="nav-item">
@@ -81,7 +88,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <p class="nav-link texts mt-3"><i class="fas fa-shopping-cart fs-3"></i></p>
+                        <p class="nav-link texts"><i class="fas fa-shopping-cart fs-3"></i></p>
                     </li>
                 </ul>
             </div>
@@ -131,7 +138,7 @@
 
             <div class="headerInform d-flex flex-row justify-content-center align-items-center w-50 mt-2">
                 <div class="ms-2 me-5">
-                    <p class="fw-bolder fs-5  infromTitle" id="clickNews">News</p>
+                    <p class="fw-bolder fs-5  infromTitle" id="clickNews">{{ __('messageMK.access') }}</p>
                 </div>
                 <div class="ms-2 me-2">
                     <p class="fw-bolder fs-5 infromTitle" id="clickMessages">Messages</p>
@@ -152,7 +159,7 @@
                         <p class="fs-6 fw-bolder mt-2 me-auto">{{ __('messageZY.nocategory') }} </p>
                     </div>
                 @endforelse
-                <button class="btn mb-2 alertButton"> More</button>
+                <a href="/news" class="ms-auto"><button class="btn mb-2 alertButton"> More</button></a>
             </div>
             <div class="forMessages d-flex flex-column" id="forMessages">
                 @forelse ($limitedmessages as $limitedmessage)
@@ -169,7 +176,7 @@
                         <p class="fs-6 fw-bolder mt-2 me-auto">{{ __('messageZY.nocategory') }} </p>
                     </div>
                 @endforelse
-                <button class="btn mb-2 alertButton"> More</button>
+                <a href="/news" class="ms-auto"><button class="btn mb-2 alertButton"> More</button></a>
             </div>
             <div class="forTracks d-flex flex-column" id="forTracks">
                 @forelse ($limitedtracks as $limitedtrack)
@@ -189,7 +196,7 @@
                         <p class="fs-6 fw-bolder mt-2 me-auto">{{ __('messageZY.nocategory') }} </p>
                     </div>
                 @endforelse
-                <button class="btn mb-2 alertButton"> More</button>
+                <a href="/news" class="ms-auto"><button class="btn mb-2 alertButton"> More</button></a>
             </div>
             {{-- end inform alert box --}}
         </div>
