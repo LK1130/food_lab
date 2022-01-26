@@ -1062,3 +1062,41 @@ CREATE TABLE `m_state` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
 );
+
+CREATE TABLE `t_cu_coin_customer` (
+  `id` int NOT NULL COMMENT 'ID of Row',
+  `customer_id` bigint NOT NULL COMMENT 'Customer ID',
+  `remain_coin` int NOT NULL DEFAULT '0' COMMENT 'Remain Coin',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'updated timestamp'
+) ;
+
+ALTER TABLE `t_cu_coin_customer`
+  ADD PRIMARY KEY (`id`);
+  
+ ALTER TABLE `t_cu_coin_customer`
+  ADD CONSTRAINT `t_cu_coin_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+CREATE TABLE `t_cu_coin_customer_history` (
+  `id` int NOT NULL COMMENT 'ID of Row',
+  `customer_id` bigint NOT NULL COMMENT 'Customer ID',
+  `add_coin` int NOT NULL DEFAULT '0' COMMENT 'Add Coin',
+  `balance_coin` int NOT NULL DEFAULT '0' COMMENT 'Remain Balance Coin',
+  `last_control_by` bigint(20) NOT NULL COMMENT 'Last Time Controly By',
+  `by_action` int NOT NULL COMMENT '0:Charge , 1: Add Directly',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'updated timestamp'
+) ;
+
+ALTER TABLE `t_cu_coin_customer_history`
+  ADD PRIMARY KEY (`id`);
+  
+ ALTER TABLE `t_cu_coin_customer_history`
+  ADD CONSTRAINT `t_cu_coin_customer_history_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON 
+  UPDATE CASCADE,
+ADD CONSTRAINT `t_cu_coin_customer_history_ibfk_2` FOREIGN KEY (`last_control_by`) REFERENCES `m_ad_login` (`id`) ON DELETE CASCADE ON 
+  UPDATE CASCADE;
+
