@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\BuycoinController;
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
@@ -271,3 +272,8 @@ Route::get('/cart', function () {
  * For Login Form
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
+
+/*
+For Buy Coin Page
+*/
+Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);

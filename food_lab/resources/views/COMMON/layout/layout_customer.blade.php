@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
     @yield('css')
@@ -23,11 +23,13 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="{{ url('storage/logo/siteLog.png') }}"  class="pe-2"/>
+                <img src="{{ url('storage/logo/siteLog.png') }}" class="pe-2" />
                 <span class="comapanynames">{{ $name->site_name }}</span>
             </a>
 
-            <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <div class="bg-light line1"></div>
                 <div class="bg-light line2"></div>
                 <div class="bg-light line3"></div>
@@ -39,33 +41,33 @@
                         <li class="nav-item">
                             <a class="nav-link texts actives" href="#">{{ __('messageMK.home') }}</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
                             <a class="nav-link texts" href="#">{{ __('messageMK.home') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'product')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="#">{{  __('messageMK.products') }}</a>
+                            <a class="nav-link texts actives" href="#">{{ __('messageMK.products') }}</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="#">{{  __('messageMK.products') }}</a>
+                            <a class="nav-link texts" href="#">{{ __('messageMK.products') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'coin')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="#">{{ __('messageMK.buy coin') }}</a>
+                            <a class="nav-link texts actives" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="#">{{ __('messageMK.buy coin') }}</a>
+                            <a class="nav-link texts" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
                         </li>
                     @endif
                     <li class="nav-item companys">
                         <a href="/" class="navbar-brand d-lg-inline">
-                            <img src="{{ url('storage/logo/siteLog.png') }}"  class="pe-2"/>
-                            <span class="comapanynames">{{  $name->site_name  }}</span>
+                            <img src="{{ url('storage/logo/siteLog.png') }}" class="pe-2" />
+                            <span class="comapanynames">{{ $name->site_name }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -73,7 +75,8 @@
                     </li>
                     @if (session()->has('customerId'))
                         <li class="nav-item">
-                            <p class="nav-link texts mt-3"  id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
+                            <p class="nav-link texts mt-3" id="profileButton"><i class="fas fa-user-circle fs-2"></i>
+                            </p>
                         </li>
                     @else
                         <li class="nav-item">

@@ -68,7 +68,7 @@
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers coinrate">{{ $coinrate->rate }}</p>
+                    <p class=" numbers coinrate">{{ $coinrate->rate }} </p>
                     <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
                     <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>

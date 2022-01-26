@@ -13,8 +13,15 @@ textarea {
     --secondary-color: #ff6600;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
+    --text-color2: #000000;
     --bg2-color: black;
     --coin-color: #ffd233;
+    --coinRulebg: #ff0000;
+    --fileicon-color: #ffffff;
+    --cancelbtn-textcolor: #ff0000;
+    --cancelbtn-color:#ffffff;
+    --submitbtn-color: #ff0000;
+    --submitbtn-textcolor:#ffffff;
 }
 
 
@@ -381,10 +388,8 @@ footer {
     position: relative;
 }
 
-<<<<<<< HEAD
 /*End Footer Section*/
-
-=======.copys p {
+.copys p {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -399,5 +404,3 @@ footer {
 
 
 /*End Footer Section*/
-
->>>>>>>dc4ce2ec17cf055c5386d6907567e8646f9619f8
