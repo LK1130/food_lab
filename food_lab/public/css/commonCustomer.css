@@ -32,10 +32,6 @@ textarea {
 
 /*start navbar*/
 
-.navcontainer {
-    position: relative;
-}
-
 .navs {
     background-color: var(--bg-color);
     font-size: 1.1rem;
@@ -64,11 +60,6 @@ textarea {
 
 .changes .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
-}
-
-.navs {
-    background-color: var(--bg-color);
-    font-size: 1.1rem;
 }
 
 .actives {

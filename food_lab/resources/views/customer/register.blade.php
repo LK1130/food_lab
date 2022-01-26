@@ -136,18 +136,15 @@
                                 <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">{{ __('messageMK.favouriteType') }}</legend>
                                     <div class="m-3">
-                                        <input type="text" class="modal-inputs" name="type" value="@foreach ($types as $type)
+                                        <input type="text" class="modal-inputs @error('type') border-danger @enderror" name="type" value="@foreach ($types as $type)
                                             {{ $type->favourite_food }},
                                         @endforeach" data-role="tagsinput" id="tags" class="form-control">
-                                        @error('type')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">{{ __('messageMK.favouriteTaste') }}</legend>
                                     <div class="m-3">
-                                        <select class="modal-selects" name="taste">
+                                        <select class="modal-selects  @error('taste') border-danger @enderror" name="taste">
                                             <option selected disabled>Favourite your Taste</option>
                                             @forelse ($tastenames as $tastename)
                                                 <option value="{{ $tastename->id }}">{{ $tastename->taste }}</option>
@@ -155,16 +152,12 @@
                                                 <option disabled>No data</option>
                                             @endforelse
                                         </select>
-                                        @error('taste')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">
                                     <legend  class="modal-headers">{{ __('messageMK.Note') }}</legend>
-                                    <div class="m-3">
+                                    <div class="m-3  @error('note') border-danger @enderror">
                                         <textarea name="note"></textarea>
-                                        
                                     </div>
                                 </fieldset>
                             </div>

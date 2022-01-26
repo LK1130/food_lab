@@ -332,7 +332,7 @@ class CustomerController extends Controller
 
         //Call T_CU_Customer for insert customer data
         $customer = new T_CU_Customer();
-        $createAccount = $customer->customerData($validated, $generateKey);
+        $createAccount = $customer->customerData($request, $generateKey);
 
         $msite = new M_Site();
         $siteName = $msite->siteName();
