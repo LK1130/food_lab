@@ -33,13 +33,14 @@ class RegisterValidation extends FormRequest
         Log::channel('customerlog')->info('RegisterValidation Request', [
             'end rules'
         ]);
+
         return [
             'username' => 'required | min:6 | max:30',
             'phone' => 'required | max:11 ',
             'email' => ['required', ' max:128 ', 'email', new CheckMail()],
-            'addressNo' => 'required | max:11',
+            'addressNo' => 'required | max:128',
             'addressTownship' => 'required | max:11',
-            'addressCity' => 'required | max:128',
+            'addressState' => 'required | max:11',
             'password' => 'required | min:6 | max:30',
             'cPassword' => 'required | same:password',
             'type' => 'min:0',

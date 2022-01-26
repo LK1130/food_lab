@@ -257,7 +257,11 @@ Route::resource('updateprofile', CustomerProfileUpdate::class);
  * zayar
  */
 Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
-
+/*
+ * For Update Profile
+ * zayar
+ */
+Route::get('/news', [CustomerController::class, 'news']);
 /*
  * For deliery info page
 */

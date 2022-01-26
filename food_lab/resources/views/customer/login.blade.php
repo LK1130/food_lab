@@ -1,5 +1,11 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
+@section('js')
+    <script src="{{ url('js/customerLogin.js') }}" type="text/javascript" defer></script>
+@endsection
+
+@section('title','Food Lab')
+
 @section('body')
     {{-- Start Login Section--}}
     <section class="login">

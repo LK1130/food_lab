@@ -13,9 +13,12 @@ use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_News;
 use App\Models\M_AD_Track;
 use App\Models\M_CU_Customer_Login;
+use App\Models\M_Fav_Type;
 use App\Models\M_Product;
 use App\Models\M_Site;
+use App\Models\M_State;
 use App\Models\M_Suggest;
+use App\Models\M_Taste;
 use App\Models\M_Township;
 use App\Models\T_AD_Order;
 use App\Models\T_AD_OrderDetail;
@@ -63,19 +66,13 @@ class CustomerController extends Controller
         $newDatas = $news->news();
         $newsLimited = $news->newsLimited();
 
-
         $site = new M_Site();
         $name = $site->siteName();
 
         $product = new M_Product();
         $productInfos = $product->productInfo();
 
-        $site = new M_Site();
-        $name = $site->siteName();
 
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
-        
         return view('customer.home', [
             'townships' => $townshipnames,
             'news' => $newDatas,
@@ -88,7 +85,67 @@ class CustomerController extends Controller
             'nav' => 'home'
         ]);
     }
+    /*
+     * Create : zayar(25/1/2022)
+     * Update :
+     * Explain of function : For news page
+     * Prarameter : no
+     * return : View news Blade
+     * */
+    public function news()
+    {
+        $messageLimited = [];
+        $tracksLimited = [];
+        $userinfo = null;
 
+        if (session()->has('customerId')) {
+            $sessionCustomerId = session('customerId');
+            $messages = new M_AD_CoinCharge_Message();
+            $messageLimited = $messages->informMessage($sessionCustomerId);
+
+            $tracks = new M_AD_Track();
+            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
+
+            $user = new T_CU_Customer();
+            $userinfo = $user->loginUser($sessionCustomerId);
+        }
+
+        $townships = new M_Township();
+        $townshipnames = $townships->townshipDetails();
+
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $newsLimited = $news->newsLimited();
+
+
+        $site = new M_Site();
+        $name = $site->siteName();
+
+        $product = new M_Product();
+        $productInfos = $product->productInfo();
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'start news'
+        ]);
+        $news = new M_AD_News();
+        $allnews = $news->newsAll();
+
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'end news'
+        ]);
+
+        return view('customer.news', [
+            'allnews' => $allnews,
+            'townships' => $townshipnames,
+            'news' => $newDatas,
+            'user' => $userinfo,
+            'limitednews' => $newsLimited,
+            'limitedmessages' => $messageLimited,
+            'limitedtracks' => $tracksLimited,
+            'name' => $name,
+            'productInfos' => $productInfos,
+            'nav' => 'inform'
+        ]);
+    }
     /*
      * Create : Min Khant(13/1/2022)
      * Update :
@@ -227,10 +284,22 @@ class CustomerController extends Controller
             'start access'
         ]);
         if (!session()->has('customerId')) {
+            $mTownship = new M_Township();
+            $townshipnames = $mTownship->townshipDetails();
+
+            $mstate = new M_State();
+            $staenames = $mstate->stateName();
+
+            $mFavType = new M_Fav_Type();
+            $types = $mFavType->type();
+
+            $mTaste = new M_Taste();
+            $tastenames = $mTaste->taste();
+
             Log::channel('customerlog')->info('Customer Controller', [
                 'end access'
             ]);
-            return view('customer.register');
+            return view('customer.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'
@@ -325,7 +394,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end verifyLink'
             ]);
-            return redirect('/');
+            return redirect('/login');
         }
     }
 

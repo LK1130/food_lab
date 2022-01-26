@@ -38,6 +38,9 @@ class LoginPassword implements Rule
             $hasAcc = new M_CU_Customer_Login();
             $correct = $hasAcc->loginPassword($mail, $value);
 
+            Log::channel('customerlog')->info('correct', [
+                $correct
+            ]);
             if (count($correct) > 0) {
                 session(['verify' => $correct[0]['verify'], 'customerId' => $correct[0]['customer_id']]);
 

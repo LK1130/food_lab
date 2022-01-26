@@ -11,6 +11,8 @@ use App\Models\M_Payment;
 use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_CoinCharge_Decision_History;
 use App\Models\T_AD_CoinCharge_Finance;
+use App\Models\T_CU_Coin_Customer;
+use App\Models\T_CU_Coin_Customer_History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -173,7 +175,8 @@ class CoinController extends Controller
     */
     public function reDecision($id)
     {
-        Log::channel('adminlog')->info("CoinController",
+        Log::channel('adminlog')->info(
+            "CoinController",
             [
                 'Start decision'
             ]
@@ -220,7 +223,8 @@ class CoinController extends Controller
     */
     public function detailCharge($id)
     {
-        Log::channel('adminlog')->info("CoinController",
+        Log::channel('adminlog')->info(
+            "CoinController",
             [
                 'Start decision'
             ]
@@ -283,7 +287,7 @@ class CoinController extends Controller
         DB::transaction(
             function () use ($request) {
                 $common = new Variable;
-            
+
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $charge = $t_ad_coincharge->findChargeById($request->chargeId);
 
@@ -294,7 +298,7 @@ class CoinController extends Controller
                     if ((int)$request->amount / (int)$rate != (int)$charge->request_coin)
                         return back()->withErrors(['message' => 'Transcation Not Correct.Try Again']);
                 }
-                  // Record History
+                // Record History
                 $t_ad_coincharge_decision_history = new T_AD_CoinCharge_Decision_History();
                 $t_ad_coincharge_decision_history->setDecisionHistory(
                     $request->chargeId,
@@ -307,7 +311,7 @@ class CoinController extends Controller
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
 
-                // Add Finance only approve
+                // Add only approve
                 if ($request->decision == $common->APPROVE) {
                     $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
                     $t_ad_Coincharage_finance->setChargeFinance(
@@ -315,6 +319,14 @@ class CoinController extends Controller
                         $request->amount,
                         $request->payment
                     );
+
+                    // Set Coin History
+                    $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
+                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, $request->amount, $request->note);
+
+                    // Set Coin Table
+                    $t_cu_coin_customer = new T_CU_Coin_Customer();
+                    $t_cu_coin_customer->setCoin($charge->customer_id, $request->amount);
                 }
             }
         );
@@ -365,9 +377,20 @@ class CoinController extends Controller
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
 
-                // Add Finance only approve
+                // Reset if waiting
                 if ($request->decision == $common->WAITING) {
                     $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
+                    $subAmount =  $t_ad_Coincharage_finance->getFinance($request->chargeId);
+
+                    // Set Coin History
+                    $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
+                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, -($subAmount->amount), $request->note);
+
+                    // Set Coin Table
+                    $t_cu_coin_customer = new T_CU_Coin_Customer();
+                    $t_cu_coin_customer->setCoin($charge->customer_id,- ($subAmount->amount));
+
+                    // reset Finance Table
                     $t_ad_Coincharage_finance->reSetFinance($request->chargeId);
                 }
             }

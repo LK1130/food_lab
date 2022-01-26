@@ -1,8 +1,6 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
 @section('google')
-    <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{ url('js/bootstrap-tagsinput.min.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async></script>
@@ -13,9 +11,14 @@
 @endsection
 
 @section('js')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ url('js/adminProductTagsInput.js') }}"></script>
+    <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="{{ url('js/bootstrap-tagsinput.min.js') }}" defer></script>
+    <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
+    <script src="{{ url('js/customerRegister.js') }}" type="text/javascript" defer></script>
 @endsection
+
+@section('title','Food Lab')
 
 @section('body')
     {{-- Start Access Section--}}
@@ -68,31 +71,35 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <select class="form-select selects" id="addressNo" name="addressNo">
-                        <option  class="township-options" selected>{{ __('messageMK.address(No)') }}</option>
-                        <option  class="township-options" value="1">One</option>
-                        <option  class="township-options" value="2">Two</option>
-                        <option  class="township-options" value="3">Three</option>
-                    </select>
+                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(No)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
                     @error('addressNo')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
                     <select class="form-select selects" id="addressTownship" name="addressTownship" >
-                        <option class="township-options" selected>{{ __('messageMK.address(Township)') }}</option>
-                        <option class="township-options" value="1">One</option>
-                        <option class="township-options" value="2">Two</option>
-                        <option class="township-options" value="3">Three</option>
+                        <option class="township-options" selected disabled>{{ __('messageMK.address(Township)') }}</option>
+                        @forelse ($townshipnames as $townshipname)
+                            <option class="township-options" value="{{ $townshipname->id }}">{{ $townshipname->township_name }}</option>
+                        @empty
+                            <option disabled>No Township</option>
+                        @endforelse 
                     </select>
                     @error('addressTownship')
-                    <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressCity" class="form-control" name="addressCity" placeholder="{{ __('messageMK.address(City)') }}" value="{{ old('addressCity') }}" autocomplete="off"/>
-                    @error('addressCity')
-                    <span class="text-danger">{{ $message }}</span>
+                    <select class="form-select selects" id="addressState" name="addressState">
+                        <option  class="township-options" value="0" selected>{{ __('messageMK.address(State)') }}</option>
+                        @forelse ($staenames as $staename)
+                            <option  class="township-options" value="{{ $staename->id }}">{{ $staename->state_name }}</option>
+                        @empty
+                            <option  class="township-options" disabled>No data</option>
+                        @endforelse
+                    </select>
+                    @error('addressState')
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
@@ -123,35 +130,46 @@
                     <div class="modal-dialog">
                         <div class="modal-content contents">
                             <div class="modal-header justify-content-end">
-                                <button type="submit" class="submits">Skip</button>
+                                <button type="submit" class="submits">{{ __('messageMK.Skip') }}</button>
                             </div>
                             <div class="modal-body">
                                 <fieldset class="border border-3 rounded">
-                                    <legend class="modal-headers">Favourite Type</legend>
+                                    <legend class="modal-headers">{{ __('messageMK.favouriteType') }}</legend>
                                     <div class="m-3">
-                                        <input type="text" class="modal-inputs" name="type" value="chinese,korea,myanmar,japan" data-role="tagsinput" id="tags" class="form-control">
+                                        <input type="text" class="modal-inputs" name="type" value="@foreach ($types as $type)
+                                            {{ $type->favourite_food }},
+                                        @endforeach" data-role="tagsinput" id="tags" class="form-control">
+                                        @error('type')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">
-                                    <legend class="modal-headers">Favourite taste</legend>
+                                    <legend class="modal-headers">{{ __('messageMK.favouriteTaste') }}</legend>
                                     <div class="m-3">
                                         <select class="modal-selects" name="taste">
-                                            <option selected>Favourite your Taste</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option selected disabled>Favourite your Taste</option>
+                                            @forelse ($tastenames as $tastename)
+                                                <option value="{{ $tastename->id }}">{{ $tastename->taste }}</option>
+                                            @empty
+                                                <option disabled>No data</option>
+                                            @endforelse
                                         </select>
+                                        @error('taste')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">
-                                    <legend  class="modal-headers">Note</legend>
+                                    <legend  class="modal-headers">{{ __('messageMK.Note') }}</legend>
                                     <div class="m-3">
-                                        <textarea class="form-control" name="note"></textarea>
+                                        <textarea name="note"></textarea>
+                                        
                                     </div>
                                 </fieldset>
                             </div>
                             <div class="modal-footer justify-content-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">{{ __('messageMK.submit') }}</button>
                             </div>
                         </div>
                     </div>
