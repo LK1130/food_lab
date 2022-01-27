@@ -19,5 +19,7 @@ return [
     'Range' => 'Range',
     'Product' => 'Product',
     'Quantity' => 'Quantity',
+    'Coin' => 'Coin',
+    'Cash' => 'Cash',
     
 ]; 

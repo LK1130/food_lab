@@ -1,88 +1,69 @@
+// Coin switch
+function leftClick() {
+    var btnSwitch = document.getElementById('btnSwitch');
+    var coinBox = document.querySelectorAll('.coinBox');
+    var cashBox = document.querySelectorAll('.cashBox');
+    var coinDiv = document.querySelectorAll('.coinDiv');
+    var  cashDiv = document.querySelectorAll('.cashDiv');
 
-    // $("#color_mode").on("change", function (event) {
-    //     colorModePreview(event);
-    // })
-    
-
-    function leftClick() {
-        var btnSwitch = document.getElementById('btnSwitch');
-        var coinBox = document.querySelectorAll('.coinBox');
-        var cashBox = document.querySelectorAll('.cashBox');
-        var coinDiv = document.querySelectorAll('.coinDiv');
-        var  cashDiv = document.querySelectorAll('.cashDiv');
-
-        btnSwitch.style.left = '0px';
-        console.log(cashBox.length);
-        for (let index = 0; index < cashBox.length; index++) {
-            cashBox[index].style.display = 'none';
-            
-        }
-        
-        for (let index = 0; index < cashDiv.length; index++) {
-            cashDiv[index].style.display = 'none';
-            
-        }
-        for (let index = 0; index < coinBox.length; index++) {
-            coinBox[index].style.display = 'block';
-            
-        }
-
-        for (let index = 0; index < coinDiv.length; index++) {
-            coinDiv[index].style.display = 'block';
-            
-        }
-      
-    }   
-    
-    function rightClick() {
-        var btnSwitch = document.getElementById('btnSwitch');
-        var coinBox = document.querySelectorAll('.coinBox');
-        var cashBox = document.querySelectorAll('.cashBox');
-        var coinDiv = document.querySelectorAll('.coinDiv');
-        var  cashDiv = document.querySelectorAll('.cashDiv');
-
-        btnSwitch.style.left = '50%';
-        for (let index = 0; index < cashBox.length; index++) {
-            cashBox[index].style.display = 'block';
-            
-        }
-        
-        for (let index = 0; index < cashDiv.length; index++) {
-            cashDiv[index].style.display = 'block';
-            
-        }
-        for (let index = 0; index < coinBox.length; index++) {
-            coinBox[index].style.display = 'none';
-            
-        }
-
-        for (let index = 0; index < coinDiv.length; index++) {
-            coinDiv[index].style.display = 'none';
-            
-        }
+    btnSwitch.style.left = '0px';
+    console.log(cashBox.length);
+    for (let index = 0; index < cashBox.length; index++) {
+        cashBox[index].style.display = 'none';     
     }
-    // $("#colorChange").click(function () {
-    //     if ($("#color-mode").attr("checked") == true) {
-    //         $("#coinSubTotal").hide();
-    //         $("#coinDeliPrice").hide();
-    //         $("#coinTotalPricel").hide();
-    //         $("#itemCoinPrice").hide();
+    for (let index = 0; index < cashDiv.length; index++) {
+        cashDiv[index].style.display = 'none';
+    }
+    for (let index = 0; index < coinBox.length; index++) {
+        coinBox[index].style.display = 'block';     
+    }
+    for (let index = 0; index < coinDiv.length; index++) {
+        coinDiv[index].style.display = 'block';    
+    }
+}   
+// Cash switch
+function rightClick() {
+    var btnSwitch = document.getElementById('btnSwitch');
+    var coinBox = document.querySelectorAll('.coinBox');
+    var cashBox = document.querySelectorAll('.cashBox');
+    var coinDiv = document.querySelectorAll('.coinDiv');
+    var  cashDiv = document.querySelectorAll('.cashDiv');
 
-    //         $("#subTotal").show();
-    //         $("#deliPrice").show();
-    //         $("#totalPricel").show();
-    //         $("#itemPrice").show();
-            
-    //     } else if ($("#color-mode").attr("checked") == false) {
-    //         $("#subTotal").hide();
-    //         $("#deliPrice").hide();
-    //         $("#totalPricel").hide();
-    //         $("#itemPrice").hide();
+    btnSwitch.style.left = '50%';
+    for (let index = 0; index < cashBox.length; index++) {
+        cashBox[index].style.display = 'block';    
+    }    
+    for (let index = 0; index < cashDiv.length; index++) {
+        cashDiv[index].style.display = 'block';
+    }
+    for (let index = 0; index < coinBox.length; index++) {
+        coinBox[index].style.display = 'none';    
+    }
+    for (let index = 0; index < coinDiv.length; index++) {
+        coinDiv[index].style.display = 'none';    
+    }
+}
+//Quantity Adjust
+$(document).ready(function () { 
+    $(".plus").click(function() {
+        var increase = $(".num").text();
+        var increaseNum = parseInt(increase )+parseInt(1);
+        if ( increaseNum <10) { 
+            $(".num").text(increaseNum);   
+        }else{
+            alert("You can buy this product in 9 times.");
+        }
+    });    
+    $(".minus").click(function() {
+        var decrease= $(".num").text();
+        var decreaseNum = parseInt(decrease)-parseInt(1);
+        if ( decreaseNum > 0) { 
+            $(".num").text(decreaseNum); 
+        }else{
+            alert("Please buy this product again!");
+        }
+    });   
+});
 
-    //         $("#coinSubTotal").show();
-    //         $("#coinDeliPrice").show();
-    //         $("#coinTotalPricel").show();
-    //         $("#itemCoinPrice").show();
-    //     }
-    // });
+
 

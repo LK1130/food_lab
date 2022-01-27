@@ -10,6 +10,7 @@
 @endsection
 
 @section('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     {{--  jquery cdn  --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     {{--  coin icon cdn  --}}
@@ -32,8 +33,8 @@
             <div class="form-box ">
                 <div class="button-box ">
                     <div id="btnSwitch"></div>
-                        <button type="button" class="toggle-btn" onclick="leftClick()" >Coin</button>
-                        <button type="button" class="toggle-btn" onclick="rightClick()">COD</button>
+                        <button type="button" class="toggle-btn" onclick="leftClick()" >{{ __('messageCPPK.Coin') }}</button>
+                        <button type="button" class="toggle-btn" onclick="rightClick()">{{ __('messageCPPK.Cash') }}</button>
                 </div>
             </div>
         </div>
