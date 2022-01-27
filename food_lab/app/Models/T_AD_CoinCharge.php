@@ -171,7 +171,6 @@ class T_AD_CoinCharge extends Model
 
     $result =  T_AD_Evd::select('path')
       ->where('del_flg', 0)
-      ->where('charge_id', $chargeid)
       ->first();
 
 

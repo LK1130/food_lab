@@ -159,6 +159,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('makeReDecision/{id}', [CoinController::class, 'reDecision']);
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
+    Route::get('addCoin', [CoinController::class, 'addCoin']);
 
     //_________________________________End Admin Coin Routes_________________________
 
