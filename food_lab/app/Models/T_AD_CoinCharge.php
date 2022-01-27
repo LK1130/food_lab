@@ -41,41 +41,40 @@ class T_AD_CoinCharge extends Model
     * This is function is to show the data of admin DashboardminiCoinchargeList
     * Return 
     */
-  public function Dashboardminicoin()
-  {
+    public function Dashboardminicoin(){
 
-    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
-      'Start Dashboardminicoin'
-    ]);
+      Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
+        'Start Dashboardminicoin'
+      ]);
 
-    $dashboardcoin = T_AD_CoinCharge::join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
-      ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
-      ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-      ->where('t_ad_coincharge.del_flg', 0)
-      ->orderby('t_ad_coincharge.request_datetime', 'DESC')
-      ->limit(5)
-      ->get();
+        $dashboardcoin = T_AD_CoinCharge::
+        join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
+        ->join('m_decision_status','m_decision_status.id','=','t_ad_coincharge.decision_status')
+        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
+        ->where('t_ad_coincharge.del_flg',0)
+        ->orderby('t_ad_coincharge.request_datetime','DESC')
+        ->limit(5)
+        ->get();
 
-    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
-      'End Dashboardminicoin'
-    ]);
+        Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
+          'End Dashboardminicoin'
+        ]);
 
-    return $dashboardcoin;
-  }
+        return $dashboardcoin;
+    }
 
-  public function UsercoinchargeList($id)
-  {
+      public function UsercoinchargeList($id){
 
-    $usercoin = T_AD_CoinCharge::join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
-      ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
-      ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-      ->where('t_ad_coincharge.del_flg', 0)
-      ->where('t_ad_coincharge.customer_id', '=', $id)
-      ->paginate(10);
-
-    return $usercoin;
-  }
-
+        $usercoin = T_AD_CoinCharge::
+        join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
+        ->join('m_decision_status','m_decision_status.id','=','t_ad_coincharge.decision_status')
+        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
+        ->where('t_ad_coincharge.del_flg',0)
+        ->where('t_ad_coincharge.customer_id','=',$id)
+        ->paginate(10,['*'],'customerCoin');
+        
+        return $usercoin;
+      }
   /*
     * Create : linn(2022/01/16) 
     * Update : 

@@ -17,19 +17,39 @@
 
 @section('body')
     <div class="col-md-10">
+        <a href="customerInfo"><button class="btn btncust1 text-light mt-4">Back</button></a>
         <div class="status text title fw-bold mb-4 mt-4">Customer Info Detail</div>
         <div class="row">
             <div class="col-md-12">
-                <div class="border border-dark text-center">
-                    <li class="lidisplay mt-3 detail"><b>Customer Name</b> :{{ $cusdetail->nickname }} </li>
-                    <li class="lidisplay  detail"> <b>Customer ID</b> :{{ $cusdetail->customerID }} </li>
-                    <li class="lidisplay  detail"><b>Nickname</b> : {{ $cusdetail->nickname }}</li>
-                    <li class="lidisplay  detail"> <b>Date of Birth</b> :12.1.1991</li>
-                    <li class="lidisplay  detail"><b>Phone No.</b> :{{ $cusdetail->phone }} </li>
-                    <li class="lidisplay mb-3  detail"> <b>Address</b> : {{ $cusdetail->address3 }}
-                    </li>
+                <div class="border border-dark">
+                    <div class="d-flex justify-content-center my-3">
+                        <div>
+                            <p class="lidisplay  detail"><b>Customer Name</b></p>
+                            <p class="lidisplay  detail"><b>Customer ID</b></p>
+                            <p class="lidisplay  detail"><b>Nickname</b></p>
+                            <p class="lidisplay  detail"><b>Date of Birth</b></p>
+                            <p class="lidisplay  detail"><b>Phone No.</b></p>
+                            <p class="lidisplay  detail"><b>Address</b></p>
+                        </div>
+                        <div class="mx-2">
+                            <p class="lidisplay  detail">:</p>
+                            <p class="lidisplay  detail">:</p>
+                            <p class="lidisplay  detail">:</p>
+                            <p class="lidisplay  detail">:</p>
+                            <p class="lidisplay  detail">:</p>
+                            <p class="lidisplay  detail">:</p>
+                        </div>
+                        <div>
+                            <p class="lidisplay  detail">{{ $cusdetail->nickname }}</p>
+                            <p class="lidisplay  detail">{{ $cusdetail->customerID }}</p>
+                            <p class="lidisplay  detail">{{ $cusdetail->nickname }}</p>
+                            <p class="lidisplay  detail">12.1.1991</p>
+                            <p class="lidisplay  detail">{{ $cusdetail->phone }}</p>
+                            <p class="lidisplay  detail">{{ $cusdetail->address3 }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
+                <div class="row d-flex flex-wrap">
                     <div class="col-md-6 mt-5">
                         <div class="status text tableheaders fw-bold mt-6">Order History</div>
                         <table class="table boxshad">
@@ -61,7 +81,16 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center">{{ $t_ad_order->links() }}</div>
+                        @if ($t_ad_order->hasPages())
+                            <div class="d-flex justify-content-center">
+                                {{ $t_ad_order->appends([
+                                        'id' => $t_ad_order[0]->customer_id,
+                                        'customerCoin' => $cuscoin->currentPage(),
+                                    ])->links() }}
+                            </div>
+
+                        @endif
+
                     </div>
                     <div class="col-md-6 mt-5">
                         <div class="status text fs-3 fw-bold mt-6">Coin Charge History</div>
@@ -69,7 +98,7 @@
                             <thead>
                                 <tr class="tableheader tablerows">
                                     <th scope="col">No.</th>
-                                    <th scope="col">UserID</th>
+                                    <th scope="col">Customer ID</th>
                                     <th scope="col">Coin Amount</th>
                                     <th scope="col">Approve By</th>
                                     <th scope="col">Request Time</th>
@@ -90,7 +119,15 @@
 
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center">{{ $cuscoin->links() }}</div>
+                        @if ($cuscoin->hasPages())
+                            <div class="d-flex justify-content-center">
+                                {{ $cuscoin->appends([
+                                        'id' => $t_ad_order[0]->customer_id,
+                                        'customerTrans' => $t_ad_order->currentPage(),
+                                    ])->links() }}
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
