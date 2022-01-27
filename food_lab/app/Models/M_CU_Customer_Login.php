@@ -14,7 +14,7 @@ class M_CU_Customer_Login extends Model
     /*
       * Create : Min Khant(15/1/2022)
       * Update :
-      * Explain of function : To store input data  from Register page
+      * Explain of function : 
       * Prarameter : no
       * return :
     */
@@ -32,14 +32,14 @@ class M_CU_Customer_Login extends Model
     */
     public function updateVerifyCode($key)
     {
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'start updateVerifyCode'
         ]);
 
         $verify = M_CU_Customer_Login::where('verify_code', $key)
-                ->update(['verify' => 1]);
+            ->update(['verify' => 1]);
 
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'end updateVerifyCode'
         ]);
 
@@ -55,49 +55,67 @@ class M_CU_Customer_Login extends Model
     */
     public function checkMail($mail)
     {
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'start checkMail'
         ]);
 
         $hasMail = M_CU_Customer_Login::where('email', $mail)
-        ->get();
+            ->get();
 
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'end checkMail'
         ]);
 
         return $hasMail;
     }
 
+    /*
+      * Create : Min Khant(16/1/2022)
+      * Update :
+      * Explain of function : To check email from login form
+      * Prarameter : no
+      * return : customer info
+    */
     public function loginMail($mail)
     {
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'start  loginMail'
         ]);
 
-        $correct = M_CU_Customer_Login::where('email','=',$mail)
-                    ->get();
+        $correct = M_CU_Customer_Login::where('email', '=', $mail)
+            ->get();
 
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'end  loginMail'
         ]);
         return $correct;
     }
 
-    public function loginPassword($mail,$pwd)
+    /*
+      * Create : Min Khant(16/1/2022)
+      * Update :
+      * Explain of function : To check email and password from login form 
+      * Prarameter : no
+      * return : customer info
+    */
+    public function loginPassword($mail, $pwd)
     {
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'start loginPassword'
         ]);
 
-        $correct = M_CU_Customer_Login::where('email','=',$mail)
-                    ->where('password','=',md5(sha1($pwd)))
-                    ->get();
+        Log::channel('customerlog')->info('MD5', [
+            md5(sha1($pwd))
+        ]);
 
-        Log::channel('customerlog')->info('M_CU_Customer_Login Model',[
+        $correct = M_CU_Customer_Login::where('email', '=', $mail)
+            // ->where('password', '=', md5(sha1($pwd)))
+            ->get();
+
+        Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
             'end loginPassword'
         ]);
+
         return $correct;
     }
-
 }

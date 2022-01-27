@@ -1,4 +1,4 @@
-@extends('COMMON.layout.layout_customer_3')
+@extends('COMMON.layout.layout_cusotmer_2')
 
 @section('css')
     <link href="css/commonCustomer.css" rel="stylesheet" type="text/css"/>
@@ -9,7 +9,7 @@
     
 @endsection
 
-@section('script')
+@section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     {{--  jquery cdn  --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
 
 @section('title','Cart')
 
-@section('header')
+@section('body')
     {{-- Start Cart Section --}}
     <h3 class="cartTitle">{{ __('messageCPPK.yourCart') }}</h3>
     <div class="cart">

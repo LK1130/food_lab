@@ -13,7 +13,29 @@ class M_Product extends Model
     public $table = 'm_product';
 
     /*
-    * Create : Aung Min Khant(21/1/2022)
+    * Create : Min Khant(14/1/2022)
+    * Update :
+    * Explain of function : To get product data
+    * Prarameter : no
+    * return : 
+    */
+    public function products($id)
+    {
+        Log::channel('customerlog')->info('M_Product Model', [
+            'start products'
+        ]);
+
+        $product = M_Product::select(['id', 'product_name'])
+            ->where('id', '=', $id)
+            ->where('del_flg', '=', 0)
+            ->first();
+
+        Log::channel('customerlog')->info('M_Product Model', [
+            'end products'
+        ]);
+    }
+
+    /* Create : Aung Min Khant(21/1/2022)
     * Update :
     * Explain of function : To getall data from m_product databse and m_fav_type and m_taste
     * parament : none
@@ -26,10 +48,10 @@ class M_Product extends Model
             'Start Product List'
         ]);
         $product = DB::table('m_product')
-            ->select ('*',DB::raw('m_product.id AS pid'))
-            ->join('m_fav_type','m_fav_type.id','=','m_product.product_type')
-            ->join('m_taste','m_taste.id','=','m_product.product_taste')
-            ->where('m_product.del_flg',0)
+            ->select('*', DB::raw('m_product.id AS pid'))
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->where('m_product.del_flg', 0)
             ->paginate(10);
 
         Log::channel('adminlog')->info("M_Product Model", [
@@ -46,8 +68,6 @@ class M_Product extends Model
     * parament : request from product add form
     * return save data
     * */
-
-
     public function saveData($request)
     {
 
@@ -75,6 +95,7 @@ class M_Product extends Model
         ]);
         return $product;
     }
+
 
     /*
     * Create : Aung Min Khant(20/1/2022)
@@ -144,17 +165,17 @@ class M_Product extends Model
       * Prarameter : no
       * return :
     */
-    public function DashboardproductList(){
-        
+    public function DashboardproductList()
+    {
+
         Log::channel('adminlog')->info("M_Product Model", [
             'Start DashboardproductList'
         ]);
 
-        $dashboardproduct = M_Product::
-        join('m_taste','m_taste.id','=','m_product.product_taste')
-        ->join('m_fav_type','m_fav_type.id','=','m_product.product_type')
-        ->limit(5)
-        ->get();
+        $dashboardproduct = M_Product::join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->limit(5)
+            ->get();
 
         Log::channel('adminlog')->info("M_Product Model", [
             'End DashboardproductList'
@@ -163,4 +184,25 @@ class M_Product extends Model
         return $dashboardproduct;
     }
 
+    /*
+     * Create : Min Khant(23/1/2022)
+     * Update :
+     * Explain of function : get product data
+     * Prarameter : no
+     * return : product data
+     * */
+    public function productInfo()
+    {
+        Log::channel('customerlog')->info('M_Product Model', [
+            'start productInfo'
+        ]);
+        $products = M_Product::select(['id', 'product_name', 'coin'])
+            ->where('avaliable', '=', 0)
+            ->where('del_flg', '=', 0)
+            ->get();
+        Log::channel('customerlog')->info('M_Product Model', [
+            'end productInfo'
+        ]);
+        return $products;
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\OrderValidation;
 use App\Models\M_Order_Status;
 use App\Models\OrderStatusModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OrderStatusController extends Controller
 {
@@ -18,6 +19,12 @@ class OrderStatusController extends Controller
 
     public function create()
     {
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'Start create'
+        ]);
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'End create'
+        ]);
         return view('admin.setting.appManage.orderStatusAdd');
     }
     /*
@@ -28,9 +35,15 @@ class OrderStatusController extends Controller
 
     public function store(OrderValidation $request)
     {
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'Start store'
+        ]);
         $validate = $request->validated();
         $admin = new M_Order_Status();
         $admin->orderStatusAdd($validate);
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'End store'
+        ]);
         return redirect('siteManage');
     }
     /*
@@ -41,9 +54,22 @@ class OrderStatusController extends Controller
 
     public function show($id)
     {
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'Start show'
+        ]);
         $admin = new M_Order_Status();
         $admins =  $admin->orderStatusEditView($id);
-        return view('admin.setting.appManage.orderStatusEdit', ['orderstatus' => $admins]);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("OrderStatusController", [
+                'End show(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("OrderStatusController", [
+                'End show'
+            ]);
+            return view('admin.setting.appManage.orderStatusEdit', ['orderstatus' => $admins]);
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -53,10 +79,25 @@ class OrderStatusController extends Controller
 
     public function update(OrderValidation $request, $id)
     {
-        $validate = $request->validated();
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'Start update'
+        ]);
         $admin = new M_Order_Status();
-        $admin->orderStatusEdit($validate, $id);
-        return redirect('siteManage');
+        $admins =  $admin->orderStatusEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("OrderStatusController", [
+                'End update(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $validate = $request->validated();
+            $admin = new M_Order_Status();
+            $admin->orderStatusEdit($validate, $id);
+            Log::channel('adminlog')->info("OrderStatusController", [
+                'End update'
+            ]);
+            return redirect('siteManage');
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -65,8 +106,23 @@ class OrderStatusController extends Controller
     */
     public function destroy($id)
     {
+        Log::channel('adminlog')->info("OrderStatusController", [
+            'Start destroy'
+        ]);
         $admin = new M_Order_Status();
-        $admin->orderStatusDelete($id);
-        return redirect('siteManage');
+        $admins =  $admin->orderStatusEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("OrderStatusController", [
+                'End destroy(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $admin = new M_Order_Status();
+            $admin->orderStatusDelete($id);
+            Log::channel('adminlog')->info("OrderStatusController", [
+                'End destroy'
+            ]);
+            return redirect('siteManage');
+        }
     }
 }
