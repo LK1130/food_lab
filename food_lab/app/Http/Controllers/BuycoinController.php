@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CoinChargeVali;
 use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_AD_News;
@@ -12,6 +13,7 @@ use App\Models\M_Site;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class BuycoinController extends Controller
 {
@@ -71,5 +73,25 @@ class BuycoinController extends Controller
             'coinrateData'=> $coinrateDatas
         ]);
     }
-    
+    /*
+     * Create : Zaw Phyo(26/1/2022)
+     * Update :
+     * Explain of function : To Upload Customer Coin Charge Request
+     * Prarameter : no
+     * return : View buyCoin blade
+     * */
+
+     public function coinrequestUpload(CoinChargeVali $request){
+         Log::channel('customerlog')->info('Buycoin Controller', [
+            'Start coinrequestUpload'
+        ]);
+
+        $bcustomerID =session("customerId");
+        
+
+        Log::channel('customerlog')->info('Buycoin Controller', [
+            'End coinrequestUpload'
+        ]);
+
+     }
 }

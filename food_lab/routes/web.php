@@ -281,3 +281,4 @@ Route::post('/login', [CustomerController::class, 'loginForm']);
 For Buy Coin Page
 */
 Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
