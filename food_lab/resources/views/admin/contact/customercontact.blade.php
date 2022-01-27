@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Customer Report
+    Customer Contact
 @endsection
 
 @section('css')
@@ -19,7 +19,7 @@
             <div class="back">
                 <a href="dashboard"><button class="btn btncust1 text-light">Back</button></a>
             </div>
-            {{-- Suggest --}}
+            {{-- Noti --}}
             <a href="customerSuggest">
                 <button type="button" class="btn btn-lg btn-outline-dark position-relative mx-3 fs-4">
                     <i class="bi bi-bell"></i>
@@ -40,13 +40,13 @@
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{ $rpcount }}
+                        13
                     </span>
                 </button></a>
         </div>
         {{-- Top Noti End --}}
 
-        <div class="status text title fw-bold mb-4">Customer Reports</div>
+        <div class="status text title fw-bold mb-4">Customer Contacts</div>
         <div class="row">
             <div class="col-md-12">
                 <table class="table boxshad me-5">
@@ -54,21 +54,19 @@
                         <tr class="tableheader tablerows">
                             <th scope="col">No.</th>
                             <th scope="col">Customer ID</th>
-                            <th scope="col">Order ID</th>
                             <th scope="col">Message</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($report as $rp)
+                        @foreach ($contact as $con)
                             <tr class="tablecolor1 text-light tablerows">
                                 <th scope="row">1</th>
-                                <td>{{ $rp->customerID }}</td>
-                                <td>{{ $rp->id }}</td>
-                                <td>{{ $rp->report_message }}</td>
+                                <td>{{ $con->customerID }}</td>
+                                <td>{{ $con->message }}</td>
                                 <td>
-                                    @if ($rp->reply == null)
-                                        <a href="reportreplies?id={{ $rp->ID }}">
+                                    @if ($con->reply == null)
+                                        <a href="contactreplies?id={{ $con->ID }}">
                                             <button class="btn btn-primary">Reply</button></a>
                                     @else
                                         Done !
@@ -77,7 +75,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>

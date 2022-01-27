@@ -21,6 +21,7 @@ use App\Http\Controllers\TasteController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductListController;
@@ -92,12 +93,21 @@ Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDe
 /**
  * Customer Report
  */
-Route::get('customerReport',function(){
-    return view('admin.report.customerreport');
-});
-Route::get('reportreplies',function(){
-    return view('admin.report.reportreply');
-});
+Route::get('customerReport',[NotificationController::class,'customerReport']);
+Route::post('reportrp/{id}',[NotificationController::class,'reportRp']);
+Route::get('reportreplies',[NotificationController::class,'customerreportReply']);
+/**
+ * Customer Contact
+ */
+Route::get('customerContact',[NotificationController::class,'customerContact']);
+Route::post('conrp/{id}',[NotificationController::class,'contrpy']);
+Route::get('contactreplies',[NotificationController::class,'customercontactReply']);
+/**
+ * Customer Suggest
+ */
+Route::get('customerSuggest',[NotificationController::class,'customerSuggest']);
+Route::post('sugrp/{id}',[NotificationController::class,'cusRpy']);
+Route::get('suggestreplies',[NotificationController::class,'customersuggestReply']);
 /**
  * For Product Form page
  */

@@ -29,14 +29,14 @@
                 <table class="table boxshad me-5">
                     <thead>
                         <tr class="tableheader tablerows">
-                            <th scope="col">No.</th>
-                            <th scope="col">Customer ID</th>
-                            <th scope="col">Payment</th>
-                            <th scope="col">GrandTotal Coin</th>
-                            <th scope="col">GrandTotal Cash</th>
-                            <th scope="col">Order Status</th>
-                            <th scope="col">Last Control By</th>
-                            <th scope="col">Date&Time</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col">{{ __('messageZN.Payment') }}</th>
+                            <th scope="col">{{ __('messageZN.GrandTotalcoin') }}</th>
+                            <th scope="col">{{ __('messageZN.GrandTotalcash') }}</th>
+                            <th scope="col">{{ __('messageZN.Order Status') }}</th>
+                            <th scope="col">{{ __('messageZN.Last Control') }}</th>
+                            <th scope="col">{{ __('messageZN.Date&Time') }}</th>
                             <th></th>
                         </tr>
                     </thead>

@@ -19,7 +19,7 @@
 
 @section('body')
     <div class="col-md-10">
-        <div class="status text title fw-bold mb-4 mt-4">Customer Info</div>
+        <div class="status text title fw-bold mb-4 mt-4">{{ __('messageZN.Customer Info') }}</div>
         <form action="">
             <div class="d-flex">
                 <input type="text" class="form-control cusinput border border-dark" id="search" required>
@@ -33,18 +33,18 @@
                 <table class="table boxshad ">
                     <thead>
                         <tr class="tableheader tablerows">
-                            <th scope="col">No.</th>
-                            <th scope="col">Nickname</th>
-                            <th scope="col">CustomerID</th>
-                            <th scope="col">Phone No.</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.Nickname') }}</th>
+                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col">{{ __('messageZN.Phoneno') }}</th>
+                            <th scope="col">{{ __('messageZN.Address') }}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="searchlist">
-                        @foreach ($t_cu_customer as $list1)
+                        @foreach ($t_cu_customer as $key => $list1)
                             <tr class="tablecolor1 tablerows orglist text-light" id="orglist">
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th scope="row">{{ $t_cu_customer->firstItem() + $key }}</th>
                                 <td>{{ $list1->nickname }}</td>
                                 <td>{{ $list1->customerID }}</td>
                                 <td>{{ $list1->phone }}</td>

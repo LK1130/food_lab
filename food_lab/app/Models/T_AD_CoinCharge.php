@@ -70,7 +70,7 @@ class T_AD_CoinCharge extends Model
         ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
         ->where('t_ad_coincharge.del_flg',0)
         ->where('t_ad_coincharge.customer_id','=',$id)
-        ->paginate(10);
+        ->paginate(10,['*'],'customerCoin');
         
         return $usercoin;
       }

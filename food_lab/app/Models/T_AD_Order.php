@@ -66,7 +66,7 @@ class T_AD_Order extends Model
         ]);
         
         $ordertransactions=T_AD_Order::
-         select('*', DB::raw('t_ad_order.id AS orderid'))
+        select('*', DB::raw('t_ad_order.id AS orderid'))
         ->join('t_cu_customer','t_cu_customer.id','=','t_ad_order.customer_id')
         ->join('m_payment','m_payment.id','=','t_ad_order.payment')
         ->join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
@@ -135,6 +135,10 @@ class T_AD_Order extends Model
     */
         public function Todayordercount(){
 
+            Log::channel('adminlog')->info("T_AD_Order Model", [
+                'Start Todayordercount'
+            ]);
+
             $currentdate = Carbon::now()->day;
             $currentmonth = Carbon::now()->month;
             $currentyear = Carbon::now()->year;
@@ -143,6 +147,10 @@ class T_AD_Order extends Model
             ->where(DB::raw(('year(order_date)')), $currentyear)
             ->count();
             return $todayorder;
+
+            Log::channel('adminlog')->info("T_AD_Order Model", [
+                'End Todayordercount'
+            ]);
         }
         /* Create:Zarni(2022/01/16) 
     * Update: 
@@ -151,6 +159,10 @@ class T_AD_Order extends Model
     */
     public function Usertransaction($id){
 
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start Usertransaction'
+        ]);
+
         $userdetail = T_AD_Order::
         
         join('m_payment','m_payment.id','=','t_ad_order.payment')
@@ -158,9 +170,13 @@ class T_AD_Order extends Model
         ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
         ->where('t_ad_order.del_flg',0)
         ->where('t_ad_order.customer_id','=',$id)
-        ->paginate(10);
+        ->paginate(10,['*'],'customerTrans');
 
         return $userdetail;
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End Usertransaction'
+        ]);
     }
 
 
