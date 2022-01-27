@@ -5,15 +5,20 @@
    --bg2-color: black;
    --coin-color: #FFD233;
 }
-.header{
-   background-image: url('/img/cart.png');
+
+body {
+   min-height: 100vh;
+   min-width: 100vw;
+   background: radial-gradient(99.42% 194.92% at 0% 1.32%, #000000 26.49%, #000000 49.21%, #000000 82.28%);
+   position: relative;
 }
- /* Start Cart Section */
+
 .cartTitle{
    color: var(--primary-color);
    font-weight: bold;
    font-size: 2rem;
    margin-left: 1.5rem;
+   padding-top: 2rem;
 }
 
 .itemTitle{
