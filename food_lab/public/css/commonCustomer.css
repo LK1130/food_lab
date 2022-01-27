@@ -4,13 +4,17 @@
     padding: 0;
 }
 
+textarea {
+    resize: none;
+}
+
 :root {
-    --primary-color: #FF470B;
+    --primary-color: #ff470b;
     --secondary-color: #ff6600;
     --bg-color: rgba(255, 255, 255, 0.2);
-    --text-color: #FFFFFF;
+    --text-color: #ffffff;
     --bg2-color: black;
-    --coin-color: #FFD233;
+    --coin-color: #ffd233;
 }
 
 
@@ -18,124 +22,310 @@
 
 .headers {
     min-height: 100vh;
-    background-image: url('/img/Home.png');
+    background-image: url("/img/Home.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
 }
 
 
-/*start carousel*/
+/*start navbar*/
 
-.carousels {
-    min-height: 100%;
+.navs {
+    background-color: var(--bg-color);
+    font-size: 1.1rem;
 }
 
-.items {
-    min-height: 85vh;
-}
-
-.abouts {
-    background-color: red;
-}
-
-.menuphotos {
-    background-color: blue;
-}
-
-.tastes {
-    margin-left: 15%;
-    margin-bottom: 10%;
-    color: var(--text-color);
-}
-
-.delivery-infos {
-    margin-left: 40%;
-    color: var(--primary-color);
-}
-
-.delivery-btns {
+.nav-buttons {
     background-color: var(--primary-color);
+}
+
+.line1,
+.line2,
+.line3 {
+    width: 20px;
+    height: 3px;
+    margin: 5px;
+    transition: all 0.4s;
+}
+
+.changes .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.changes .line2 {
+    opacity: 0;
+}
+
+.changes .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.actives {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.comapanynames {
     color: var(--text-color);
-    border: 2px groove transparent;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-left: 45%;
-    margin-top: 20px;
 }
 
-.delivery-btns:hover {
-    background-color: var(--text-color);
-    color: var(--primary-color);
-    border: 2px groove var(--primary-color);
-}
-
-.carousel-photos {
-    width: 100%;
-}
-
-
-/*end carousel*/
-
-@media(max-width: 720px) {
-    .companys {
-        display: none;
-    }
-    .menus {
-        max-width: 100px;
-    }
-}
-
-
-/*End Header*/
-
-
-/*Start Footer Section*/
-
-footer {
-    min-height: 100vh;
-}
-
-.footer-infos {
-    min-height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/img/bg5.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: var(--text-color);
-    font-weight: bold;
+.profiles {
     font-size: 1.3rem;
 }
 
-.footer-infos div:first-of-type p.fw-bolder {
-    font-size: 2rem;
+.navs i {
+    cursor: pointer;
+}
+
+#profileButton {
+    display: block;
+}
+
+@media (max-width:720px) {
+    #profileButton {
+        display: none;
+    }
+}
+
+
+/*end navbar*/
+
+
+/*
+    * Create:zayar(2022/01/17) 
+    * Update: 
+    */
+
+
+/*start Profile Alert box*/
+
+#profileAlert {
+    position: absolute;
+    z-index: 999;
+    width: 67vh;
+    height: 70vh;
+    background-color: rgba(0, 0, 0, 0.952);
+    top: 100%;
+    right: 0;
+    display: none;
+}
+
+.profileAlertHeader {
     color: var(--primary-color);
 }
 
-.footer-details a {
-    text-decoration: none;
+.userProfile {
+    margin-left: 17vh;
+    margin-right: 17vh;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.userProfileDiv {
+    width: 10vh;
+}
+
+.profileAlertBody {
+    width: 100%;
+    height: 50vh;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.editProfile {
+    background-color: var(--text-color);
+    color: var(--secondary-color);
+}
+
+.updatePassword {
+    background-color: var(--primary-color);
     color: var(--text-color);
 }
 
-.footer-details a:hover {
-    color: var(--primary-color);
+#back {
+    cursor: pointer;
 }
 
-.footer-details .footer-navs>*,
-.footer-details div:nth-of-type(2) p:first-of-type,
-.footer-details div:nth-of-type(3) p:first-of-type,
-.footer-details div:last-of-type p:first-of-type {
-    font-size: 1.6rem;
-    color: var(--primary-color);
+#back:hover {
+    color: var(--primary-color) !important;
 }
 
-.copys {
-    background: url("/img/bg2.png");
-    min-height: 10vh;
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: bold;
+@media only screen and (max-width: 720px) {
+    .userProfile {
+        font-size: 1.2rem !important;
+        width: 50vw !important;
+    }
+    #profileAlert {
+        width: 47vh;
+    }
+    #profileAlert {
+        left: 2vw !important;
+    }
+    .profileAlertBody {
+        font-size: 1rem !important;
+    }
+    .userProfile {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .profileAlertHeader {
+        margin-right: 10vw;
+    }
 }
 
 
-/*End Footer Section*/
+/*end profile alert */
+
+
+/*
+    * Create:zayar(2022/01/22) 
+    * Update: 
+    */
+
+
+/*start inform Alert box*/
+
+.informAlert {
+    position: absolute;
+    z-index: 999;
+    width: 55vh;
+    height: max-content;
+    background-color: rgb(255, 255, 255);
+    top: 15%;
+    right: 18%;
+    border-radius: 1.4vh;
+    display: none;
+}
+
+#informButton {
+    cursor: pointer;
+}
+
+.hiddenAlert {
+    display: none;
+}
+
+#backInform {
+    width: 5vw;
+    height: 5vh;
+    margin-left: 1vw;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.headerInform {
+    margin: auto;
+}
+
+.infromTitle {
+    cursor: pointer;
+}
+
+.alertButton {
+    background-color: rgb(167, 175, 166);
+    text-align: center;
+    width: 7vw;
+    margin-left: auto;
+    color: white;
+}
+
+.forNews,
+.forMessages,
+.forTracks {
+    height: 70%;
+    width: 90%;
+    margin: auto;
+    gap: 2.5vh;
+}
+
+#forNews {
+    display: none !important;
+}
+
+#forMessages {
+    display: none !important;
+}
+
+#forTracks {
+    display: none !important;
+}
+
+.news,
+.messages,
+.tracks {
+    width: 100%;
+    height: 15vh;
+    border-radius: 1vh;
+    background-color: rgb(189, 173, 158);
+}
+
+.news img {
+    max-width: 22%;
+    margin-right: auto;
+    margin-left: 1vw;
+}
+
+.tracks img {
+    max-width: 22%;
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+
+.newsColumnDiv {
+    margin-right: 10vw;
+}
+
+@media (max-width: 720px) {
+    .informAlert {
+        position: absolute;
+        z-index: 999;
+        width: 35vh;
+        height: max-content;
+        background-color: rgb(255, 255, 255);
+        top: 15%;
+        right: 12%;
+        border-radius: 1.4vh;
+        display: none;
+    }
+    .news,
+    .messages,
+    .tracks {
+        width: 100%;
+        height: 8vh;
+        border-radius: 1vh;
+        background-color: rgb(189, 173, 158);
+    }
+    .alertButton {
+        background-color: rgb(167, 175, 166);
+        text-align: center;
+        width: 17vw;
+        text-align: center;
+        margin-left: auto;
+        color: white;
+    }
+}
+
+.texts {
+    color: var(--primary-color);
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.texts:hover {
+    color: var(--text-color);
+}
+
+.actives {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.comapanynames {
+    color: var(--text-color);
+}
+
+
+/*end navbar*/
+
+
+/*End Header*/

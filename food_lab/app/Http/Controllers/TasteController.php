@@ -7,6 +7,7 @@ use App\Http\Requests\TasteValidation;
 use App\Models\M_Taste;
 use App\Models\TasteModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TasteController extends Controller
 {
@@ -18,6 +19,12 @@ class TasteController extends Controller
 
     public function create()
     {
+        Log::channel('adminlog')->info("TasteController", [
+            'Start create'
+        ]);
+        Log::channel('adminlog')->info("TasteController", [
+            'End create'
+        ]);
         return view('admin.setting.appManage.tasteAdd');
     }
     /*
@@ -28,10 +35,16 @@ class TasteController extends Controller
 
     public function store(TasteValidation $request)
     {
+        Log::channel('adminlog')->info("TasteController", [
+            'Start store'
+        ]);
         $validate = $request->validated();
         $admin = new M_Taste();
         $admin->tasteAdd($validate);
         return redirect('siteManage');
+        Log::channel('adminlog')->info("TasteController", [
+            'End store'
+        ]);
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -41,9 +54,22 @@ class TasteController extends Controller
 
     public function show($id)
     {
+        Log::channel('adminlog')->info("TasteController", [
+            'Start show'
+        ]);
         $admin = new M_Taste();
         $admins = $admin->tasteEditView($id);
-        return view('admin.setting.appManage.tasteEdit', ['taste' => $admins]);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End show(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End show'
+            ]);
+            return view('admin.setting.appManage.tasteEdit', ['taste' => $admins]);
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -53,10 +79,25 @@ class TasteController extends Controller
 
     public function update(TasteValidation $request, $id)
     {
-        $validate = $request->validated();
+        Log::channel('adminlog')->info("TasteController", [
+            'Start update'
+        ]);
         $admin = new M_Taste();
-        $admin->tasteEdit($validate, $id);
-        return redirect('siteManage');
+        $admins = $admin->tasteEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End update(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End update'
+            ]);
+            $validate = $request->validated();
+            $admin = new M_Taste();
+            $admin->tasteEdit($validate, $id);
+            return redirect('siteManage');
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -65,8 +106,23 @@ class TasteController extends Controller
     */
     public function destroy($id)
     {
+        Log::channel('adminlog')->info("TasteController", [
+            'Start destroy'
+        ]);
         $admin = new M_Taste();
-        $admin->tasteDelete($id);
-        return redirect('siteManage');
+        $admins = $admin->tasteEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End destroy(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("SuggestController", [
+                'End destroy'
+            ]);
+            $admin = new M_Taste();
+            $admin->tasteDelete($id);
+            return redirect('siteManage');
+        }
     }
 }

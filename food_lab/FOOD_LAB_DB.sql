@@ -313,6 +313,7 @@ INSERT INTO `m_taste` (`id`, `taste`, `note`, `del_flg`, `created_at`) VALUES
 CREATE TABLE `m_township` (
   `id` bigint NOT NULL,
   `township_name` varchar(255) NOT NULL,
+  `state_id` bigint NOT NULL,
   `delivery_price` int NOT NULL,
   `note` varchar(255) DEFAULT NULL,
   `del_flg` int NOT NULL DEFAULT '0',
@@ -416,6 +417,7 @@ CREATE TABLE `t_ad_contact` (
 CREATE TABLE `t_ad_evd` (
   `id` bigint NOT NULL COMMENT 'Row of Id',
   `link_id` bigint NOT NULL COMMENT 'Link for related id',
+  `order_id` bigint NOT NULL COMMENT 'Sequence for photo',
   `path` varchar(255) NOT NULL COMMENT 'Path of ScreenShot',
   `note` varchar(255) DEFAULT NULL COMMENT 'note',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
@@ -961,8 +963,6 @@ ALTER TABLE `m_cu_customer_login`
   ADD CONSTRAINT `m_cu_customer_login_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -1052,8 +1052,51 @@ ALTER TABLE `m_product_detail`
 --
 ALTER TABLE `m_product_detail`
   ADD CONSTRAINT `m_product_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `m_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `m_state` (
+  `id` bigint(20) NOT NULL COMMENT 'Row of Id',
+  `state_name` varchar(255) NOT NULL COMMENT 'State',
+  `note` varchar(255) DEFAULT NULL COMMENT 'note',
+  `del_flg` int(11) NOT NULL DEFAULT 0 COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created TimeStamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
+);
+
+CREATE TABLE `t_cu_coin_customer` (
+  `id` int NOT NULL COMMENT 'ID of Row',
+  `customer_id` bigint NOT NULL COMMENT 'Customer ID',
+  `remain_coin` int NOT NULL DEFAULT '0' COMMENT 'Remain Coin',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'updated timestamp'
+) ;
+
+ALTER TABLE `t_cu_coin_customer`
+  ADD PRIMARY KEY (`id`);
+  
+ ALTER TABLE `t_cu_coin_customer`
+  ADD CONSTRAINT `t_cu_coin_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+CREATE TABLE `t_cu_coin_customer_history` (
+  `id` int NOT NULL COMMENT 'ID of Row',
+  `customer_id` bigint NOT NULL COMMENT 'Customer ID',
+  `add_coin` int NOT NULL DEFAULT '0' COMMENT 'Add Coin',
+  `balance_coin` int NOT NULL DEFAULT '0' COMMENT 'Remain Balance Coin',
+  `last_control_by` bigint(20) NOT NULL COMMENT 'Last Time Controly By',
+  `by_action` int NOT NULL COMMENT '0:Charge , 1: Add Directly',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created timestamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'updated timestamp'
+) ;
+
+ALTER TABLE `t_cu_coin_customer_history`
+  ADD PRIMARY KEY (`id`);
+  
+ ALTER TABLE `t_cu_coin_customer_history`
+  ADD CONSTRAINT `t_cu_coin_customer_history_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `t_cu_customer` (`id`) ON DELETE CASCADE ON 
+  UPDATE CASCADE,
+ADD CONSTRAINT `t_cu_coin_customer_history_ibfk_2` FOREIGN KEY (`last_control_by`) REFERENCES `m_ad_login` (`id`) ON DELETE CASCADE ON 
+  UPDATE CASCADE;
+

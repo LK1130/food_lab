@@ -7,6 +7,7 @@ use App\Http\Requests\TownshipValidation;
 use App\Models\M_Township;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TownshipController extends Controller
 {
@@ -17,6 +18,12 @@ class TownshipController extends Controller
     */
     public function create()
     {
+        Log::channel('adminlog')->info("TownshipController", [
+            'Start create'
+        ]);
+        Log::channel('adminlog')->info("TownshipController", [
+            'End create'
+        ]);
         return view('admin.setting.appManage.townshipAdd');
     }
 
@@ -27,9 +34,15 @@ class TownshipController extends Controller
     */
     public function store(TownshipValidation $request)
     {
+        Log::channel('adminlog')->info("TownshipController", [
+            'Start store'
+        ]);
         $validate = $request->validated();
         $admin = new M_Township();
         $admin->townshipAdd($validate);
+        Log::channel('adminlog')->info("TownshipController", [
+            'End store'
+        ]);
         return redirect('siteManage');
     }
 
@@ -40,9 +53,22 @@ class TownshipController extends Controller
     */
     public function show($id)
     {
+        Log::channel('adminlog')->info("TownshipController", [
+            'Start show'
+        ]);
         $admin = new M_Township();
         $admins = $admin->townshipEditView($id);
-        return view('admin.setting.appManage.townshipEdit', ['township' => $admins]);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("TownshipController", [
+                'End show(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("TownshipController", [
+                'End show'
+            ]);
+            return view('admin.setting.appManage.townshipEdit', ['township' => $admins]);
+        }
     }
 
     /*
@@ -52,10 +78,25 @@ class TownshipController extends Controller
     */
     public function update(TownshipValidation $request, $id)
     {
-        $validate = $request->validated();
+        Log::channel('adminlog')->info("TownshipController", [
+            'Start update'
+        ]);
         $admin = new M_Township();
-        $admin->townshipEdit($validate, $id);
-        return redirect('siteManage');
+        $admins = $admin->townshipEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("TownshipController", [
+                'End update(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("TownshipController", [
+                'End update'
+            ]);
+            $validate = $request->validated();
+            $admin = new M_Township();
+            $admin->townshipEdit($validate, $id);
+            return redirect('siteManage');
+        }
     }
 
     /*
@@ -65,8 +106,23 @@ class TownshipController extends Controller
     */
     public function destroy($id)
     {
+        Log::channel('adminlog')->info("TownshipController", [
+            'Start destroy'
+        ]);
         $admin = new M_Township();
-        $admin->townshipDelete($id);
-        return redirect('siteManage');
+        $admins = $admin->townshipEditView($id);
+        if ($admins === null) {
+            Log::channel('adminlog')->info("TownshipController", [
+                'End destroy(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("TownshipController", [
+                'End destroy'
+            ]);
+            $admin = new M_Township();
+            $admin->townshipDelete($id);
+            return redirect('siteManage');
+        }
     }
 }

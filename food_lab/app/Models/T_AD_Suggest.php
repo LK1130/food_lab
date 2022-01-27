@@ -20,10 +20,16 @@ class T_AD_Suggest extends Model
 
     public function suggestAdd($validate)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestAdd'
+        ]);
         $admin = new T_AD_Suggest();
         $admin->suggest_type = $validate['suggest_type'];
         $admin->note = $validate['note'];
         $admin->save();
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestAdd'
+        ]);
     }
     /*
    * Create:zayar(2022/01/15) 
@@ -33,6 +39,12 @@ class T_AD_Suggest extends Model
 
     public function suggestEditView($id)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestEditView'
+        ]);
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestEditView'
+        ]);
         return T_AD_Suggest::find($id);
     }
     /*
@@ -43,10 +55,16 @@ class T_AD_Suggest extends Model
 
     public function suggestEdit($validate, $id)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestEdit'
+        ]);
         $admin = T_AD_Suggest::find($id);
         $admin->suggest_type = $validate['suggest_type'];
         $admin->note = $validate['note'];
         $admin->save();
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestEdit'
+        ]);
     }
     /*
    * Create:zayar(2022/01/15) 
@@ -55,9 +73,42 @@ class T_AD_Suggest extends Model
    */
     public function suggestDelete($id)
     {
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'Start suggestDelete'
+        ]);
         $admin = T_AD_Suggest::find($id);
         $admin->del_flg = 1;
         $admin->save();
+        Log::channel('adminlog')->info("T_AD_Suggest Model", [
+            'End suggestDelete'
+        ]);
+    }
+
+    /*
+     * Create : Min Khant(22/1/2022)
+     * Update :
+     * Explain of function : to store data from suggest form
+     * Prarameter : no
+     * return : 
+     * */
+    public function customerSuggest($request)
+    {
+        Log::channel('customerlog')->info('T_AD_Suggest Model', [
+            'start customerSuggest'
+        ]);
+        // $suggest = T_AD_Suggest::create([
+        //     'suggest_type' => $request->input('type'),
+        //     'message' => $request->input('details')
+        // ]);
+
+        $suggest = new T_AD_Suggest();
+        $suggest->suggest_type = $request['type'];
+        $suggest->message = $request['details'];
+        $suggest->save();
+
+        Log::channel('customerlog')->info('T_AD_Suggest Model', [
+            'end customerSuggest'
+        ]);
     }
     /*
    * Create:Zar Ni(2022/01/22) 

@@ -14,6 +14,6 @@ class CoinListSeeder extends Seeder
      */
     public function run()
     {
-        T_AD_CoinCharge::factory(1000)->create();
+        T_AD_CoinCharge::factory(10000)->create();
     }
 }
