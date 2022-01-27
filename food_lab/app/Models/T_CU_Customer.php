@@ -164,6 +164,7 @@ class T_CU_Customer extends Model
     }
 
     $customerId = $firstStr . $lastStr . $firstemail . $firstPwd . $lastPwd . $day . $hour . $generateKey;
+
     if ($data->has('type') && $data->has('taste') && $data->has('note')) {
       DB::transaction(function () use ($customerId, $data, $key) {
         //insert customer
@@ -174,6 +175,9 @@ class T_CU_Customer extends Model
         $customer->address1 = $data['addressNo'];
         $customer->address2 = $data['addressState'];
         $customer->address3 = $data['addressTownship'];
+        $customer->fav_type = $data['type'];
+        $customer->taste = $data['taste'];
+        $customer->allergic = $data['note'];
         $customer->save();
 
         //insert customerLogin
@@ -196,9 +200,6 @@ class T_CU_Customer extends Model
         $customer->address1 = $data['addressNo'];
         $customer->address2 = $data['addressState'];
         $customer->address3 = $data['addressTownship'];
-        $customer->fav_type = $data['type'];
-        $customer->taste = $data['taste'];
-        $customer->allergic = $data['note'];
         $customer->save();
 
         //insert customerLogin
