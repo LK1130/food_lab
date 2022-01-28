@@ -114,7 +114,6 @@
                             @enderror
                         </div>
                         <button type="submit" id="waiting" class="btn btn-warning btn-lg  me-5 ms-5">Waiting</button>
-                        <button type="submit" id="reject" class="btn btn-secondary btn-lg  ms-5">Reject</button>
                     </form>
                 </div>
                 {{-- End Decision Making --}}

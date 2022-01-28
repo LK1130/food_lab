@@ -5,14 +5,18 @@
  * Prarameter : no
  * return : toggle
  * */
-if (sessionHas === true) {
+if (sessionHas) {
     console.log(sessionHas);
     document
         .getElementById("profileButton")
         .addEventListener("click", function () {
             document.getElementById("profileAlert").style.display = "block";
         });
-
+    document
+        .getElementById("profileButton2")
+        .addEventListener("click", function () {
+            document.getElementById("profileAlert").style.display = "block";
+        });
     document.getElementById("back").addEventListener("click", function () {
         document.getElementById("profileAlert").style.display = "none";
     });

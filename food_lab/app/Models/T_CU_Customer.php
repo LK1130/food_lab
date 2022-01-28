@@ -95,45 +95,69 @@ class T_CU_Customer extends Model
     */
   public function cusSearch($request)
   {
+    
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'Start cusSearch'
+    ]);
 
-    $cusSearch = T_CU_Customer::where('nickname', 'Like', '%' . $request->input('nickname') . '%')
-      ->where('t_cu_customer.del_flg', 0)
+      $cusSearch = T_CU_Customer::where('nickname','Like','%'.$request->input('nickname').'%')
+      ->where('t_cu_customer.del_flg',0)
       ->get();
+      
+      return $cusSearch;
 
-    return $cusSearch;
-  }
-  /*
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'End cusSearch'
+    ]);
+    }
+    /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer id search
       * Prarameter : no
       * return :
     */
-  public function cusidSearch($request)
-  {
+    public function cusidSearch($request){
+      
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'Start cusidSearch'
+    ]);
 
     $cusidSearch = T_CU_Customer::where('customerID', 'Like', '%' . $request->input('id') . '%')
       ->where('t_cu_customer.del_flg', 0)
       ->get();
 
-    return $cusidSearch;
-  }
-  /*
+      return $cusidSearch;
+
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'End cusidSearch'
+      ]);
+    }
+    /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer id search
       * Prarameter : no
       * return :
     */
-  public function customerDetail($id)
-  {
-    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
-      ->where('t_cu_customer.del_flg', 0)
-      ->where('t_cu_customer.id', '=', $id)
+    public function customerDetail($id){
+
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'Start customerDetail'
+      ]);
+
+      $cusDetail = T_CU_Customer::
+      select ('*',DB::raw('t_cu_customer.id AS cid'))
+      ->where('t_cu_customer.del_flg',0)
+      ->where('t_cu_customer.id','=' ,$id)
       ->first();
-    // Log::critical('asdasd',[$cusDetail]);
-    return $cusDetail;
-  }
+      // Log::critical('asdasd',[$cusDetail]);
+      return $cusDetail;
+
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        'End customerDetail'
+      ]);
+    }
   /*
       * Create : Min Khant(15/1/2022)
       * Update :
@@ -164,33 +188,54 @@ class T_CU_Customer extends Model
     }
 
     $customerId = $firstStr . $lastStr . $firstemail . $firstPwd . $lastPwd . $day . $hour . $generateKey;
+    if ($data->has('type') && $data->has('taste') && $data->has('note')) {
+      DB::transaction(function () use ($customerId, $data, $key) {
+        //insert customer
+        $customer = new T_CU_Customer();
+        $customer->customerID = $customerId;
+        $customer->nickname = $data['username'];
+        $customer->phone = $data['phone'];
+        $customer->address1 = $data['addressNo'];
+        $customer->address2 = $data['addressState'];
+        $customer->address3 = $data['addressTownship'];
+        $customer->save();
 
-    DB::transaction(function () use ($customerId, $data, $key) {
-      //insert customer
-      $customer = new T_CU_Customer();
-      $customer->customerID = $customerId;
-      $customer->nickname = $data['username'];
-      $customer->phone = $data['phone'];
-      $customer->address1 = $data['addressState'];
-      $customer->address2 = $data['addressTownship'];
-      $customer->address3 = $data['addressCity'];
-      $customer->fav_type = $data['type'];
-      $customer->taste = $data['taste'];
-      $customer->allergic = $data['note'];
-      $customer->save();
-      Log::channel('customerlog')->info('password', [
-        md5(sha1($data['password']))
-      ]);
-      //insert customerLogin
-      $customerLogin = new M_CU_Customer_Login();
-      $customerLogin->email = $data['email'];
-      $customerLogin->password = md5(sha1($data['password']));
-      $customerLogin->customer_id =  $customer->id;
-      $customerLogin->verify_code = $key;
-      $customerLogin->save();
+        //insert customerLogin
+        $customerLogin = new M_CU_Customer_Login();
+        $customerLogin->email = $data['email'];
+        $customerLogin->password = md5(sha1($data['password']));
+        $customerLogin->customer_id =  $customer->id;
+        $customerLogin->verify_code = $key;
+        $customerLogin->save();
 
-      // $customer->customerLogin()->save($customerLogin);
-    });
+        // $customer->customerLogin()->save($customerLogin);
+      });
+    } else {
+      DB::transaction(function () use ($customerId, $data, $key) {
+        //insert customer
+        $customer = new T_CU_Customer();
+        $customer->customerID = $customerId;
+        $customer->nickname = $data['username'];
+        $customer->phone = $data['phone'];
+        $customer->address1 = $data['addressNo'];
+        $customer->address2 = $data['addressState'];
+        $customer->address3 = $data['addressTownship'];
+        $customer->fav_type = $data['type'];
+        $customer->taste = $data['taste'];
+        $customer->allergic = $data['note'];
+        $customer->save();
+
+        //insert customerLogin
+        $customerLogin = new M_CU_Customer_Login();
+        $customerLogin->email = $data['email'];
+        $customerLogin->password = md5(sha1($data['password']));
+        $customerLogin->customer_id =  $customer->id;
+        $customerLogin->verify_code = $key;
+        $customerLogin->save();
+
+        // $customer->customerLogin()->save($customerLogin);
+      });
+    }
 
     Log::channel('customerlog')->info('T_CU_Customer Model', [
       'end customerData'

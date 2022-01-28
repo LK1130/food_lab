@@ -29,18 +29,18 @@
                 <table class="table boxshad me-5">
                     <thead>
                         <tr class="tableheader tablerows">
-                            <th scope="col">No.</th>
-                            <th scope="col">Customer ID</th>
-                            <th scope="col">Coin Amount</th>
-                            <th scope="col">Decision By</th>
-                            <th scope="col">Request Time</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col">{{ __('messageZN.CoinA') }}</th>
+                            <th scope="col">{{ __('messageZN.Decisionby') }}</th>
+                            <th scope="col">{{ __('messageZN.Request time') }}</th>
+                            <th scope="col">{{ __('messageZN.Status') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($t_ad_coincharge as $coincharge)
+                        @foreach ($t_ad_coincharge as $key => $coincharge)
                             <tr class="tablecolor1 text-light tablerows">
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th scope="row">{{ $t_ad_coincharge->firstItem() + $key }}</th>
                                 <td>{{ $coincharge->customerID }}</td>
                                 <td>{{ $coincharge->request_coin }}</td>
                                 <td>{{ $coincharge->ad_name }}</td>

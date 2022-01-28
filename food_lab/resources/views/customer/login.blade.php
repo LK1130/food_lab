@@ -1,5 +1,11 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
+@section('js')
+    <script src="{{ url('js/customerLogin.js') }}" type="text/javascript" defer></script>
+@endsection
+
+@section('title','Food Lab')
+
 @section('body')
     {{-- Start Login Section--}}
     <section class="login">
@@ -47,8 +53,8 @@
                 <div class="inputs">
                     <input type="submit" class="form-control text-center createAccs" value="{{ __('messageMK.signIn') }}"/>
                 </div>
-                <div class="ms-5 py-2 have-accs">
-                    <p>{{ __('messageMK.Ifyoudoesn\'thaveAnyaccount') }} ? <a href="/access" class="ms-3">{{ __('messageMK.signUpHere') }}</a></p>
+                <div class="py-2 have-accs">
+                    <p>{{ __('messageMK.Ifyoudoesn\'thaveAnyaccount') }} ? <a href="/access" class="ms-2">{{ __('messageMK.signUpHere') }}</a></p>
                 </div>
             </form>
         </div>

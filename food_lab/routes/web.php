@@ -23,6 +23,7 @@ use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CustomerProfileUpdate;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductListController;
@@ -124,14 +125,23 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
     Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
     /**
-     * Customer Report
-     */
-    Route::get('customerReport', function () {
-        return view('admin.report.customerreport');
-    });
-    Route::get('reportreplies', function () {
-        return view('admin.report.reportreply');
-    });
+ * Customer Report
+ */
+Route::get('customerReport',[NotificationController::class,'customerReport']);
+Route::post('reportrp/{id}',[NotificationController::class,'reportRp']);
+Route::get('reportreplies',[NotificationController::class,'customerreportReply']);
+/**
+ * Customer Contact
+ */
+Route::get('customerContact',[NotificationController::class,'customerContact']);
+Route::post('conrp/{id}',[NotificationController::class,'contrpy']);
+Route::get('contactreplies',[NotificationController::class,'customercontactReply']);
+/**
+ * Customer Suggest
+ */
+Route::get('customerSuggest',[NotificationController::class,'customerSuggest']);
+Route::post('sugrp/{id}',[NotificationController::class,'cusRpy']);
+Route::get('suggestreplies',[NotificationController::class,'customersuggestReply']);
     /**
      * For Product Form page
      */
@@ -159,6 +169,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('makeReDecision/{id}', [CoinController::class, 'reDecision']);
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
+    Route::get('addCoin', [CoinController::class, 'addCoin']);
 
     //_________________________________End Admin Coin Routes_________________________
 

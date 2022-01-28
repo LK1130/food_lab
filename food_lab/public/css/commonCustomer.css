@@ -30,10 +30,6 @@ textarea {
 
 /*start navbar*/
 
-.navcontainer {
-    position: relative;
-}
-
 .navs {
     background-color: var(--bg-color);
     font-size: 1.1rem;
@@ -64,19 +60,6 @@ textarea {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-.navs {
-    background-color: var(--bg-color);
-    font-size: 1.1rem;
-}
-
-.texts {
-    color: var(--primary-color);
-}
-
-.texts:hover {
-    color: var(--text-color);
-}
-
 .actives {
     border-bottom: 1px solid var(--primary-color);
 }
@@ -85,8 +68,22 @@ textarea {
     color: var(--text-color);
 }
 
+.profiles {
+    font-size: 1.3rem;
+}
+
 .navs i {
     cursor: pointer;
+}
+
+#profileButton {
+    display: block;
+}
+
+@media (max-width: 720px) {
+    #profileButton {
+        display: none;
+    }
 }
 
 /*end navbar*/
@@ -154,7 +151,7 @@ textarea {
 @media only screen and (max-width: 720px) {
     #profileAlert {
         position: absolute;
-        width: 50vw;
+        width: 55vw;
         margin-right: 20vw;
     }
     .userProfile {
@@ -162,6 +159,13 @@ textarea {
         margin-right: 0;
         font-size: 1.2rem !important;
         width: 60vw !important;
+    }
+    .editProfile {
+        font-size: 0.8rem !important;
+    }
+
+    .updatePassword {
+        font-size: 0.8rem !important;
     }
     /* .userProfile {
         font-size: 1.2rem !important;
@@ -206,9 +210,11 @@ textarea {
     border-radius: 1.4vh;
     display: none;
 }
+
 #informButton {
     cursor: pointer;
 }
+
 .hiddenAlert {
     display: none;
 }
@@ -305,7 +311,6 @@ textarea {
         border-radius: 1.4vh;
         display: none;
     }
-
     .news,
     .messages,
     .tracks {
