@@ -74,11 +74,11 @@
                     @endif
                     @if ($nav == 'coin')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="#">{{ __('messageMK.buy coin') }}</a>
+                            <a class="nav-link texts actives" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="#">{{ __('messageMK.buy coin') }}</a>
+                            <a class="nav-link texts" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
                         </li>
                     @endif
                     <li class="nav-item companys">
