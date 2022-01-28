@@ -23,6 +23,7 @@ use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
@@ -217,3 +218,15 @@ Route::get('/cart', function () {
  * For Login Form
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
+
+
+/*
+ * For Product Detail Form
+ */
+Route::get('productDetail',[ProductDetailController::class,'detail']);
+
+
+/*
+ * For Product
+ */
+Route::get('productList',[ProductDetailController::class,'productList']);

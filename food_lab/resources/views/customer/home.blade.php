@@ -318,7 +318,7 @@
             </div>
         </div>
         <div class="copys">
-            <p>Copy right by Food Lab</p>
+            <p></p>
         </div>
     </footer>
     {{-- End Footer Section --}}

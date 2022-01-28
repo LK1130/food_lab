@@ -11,9 +11,12 @@ textarea {
 :root {
     --primary-color: #FF470B;
     --secondary-color: #ff6600;
+    --product-color : #FF0B1A;
+    --btn-color : #FF280B;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #FFFFFF;
     --bg2-color: black;
+    --bg3-color: white;
     --coin-color: #FFD233;
 }
 
