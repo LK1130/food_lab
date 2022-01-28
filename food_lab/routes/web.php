@@ -171,6 +171,7 @@ Route::get('suggestreplies',[NotificationController::class,'customersuggestReply
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
+    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
 
