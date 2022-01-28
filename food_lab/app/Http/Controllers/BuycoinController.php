@@ -17,6 +17,7 @@ use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class BuycoinController extends Controller
 {
@@ -94,11 +95,15 @@ class BuycoinController extends Controller
         ]);
 
         $coinChargeFormdata=$request->validated();
+        $file= $request->file('fileimage');
+        $filepath=$file->store('coinCharge');
+
+        
 
         $bcustomerID =session("customerId");
         
         $cucoindata = new T_AD_CoinCharge();
-        $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID);
+        $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID,$filepath);
 
 
         Log::channel('customerlog')->info('Buycoin Controller', [
