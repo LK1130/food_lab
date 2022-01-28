@@ -215,11 +215,16 @@ class T_CU_Customer extends Model
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'Start loginUser'
     ]);
-    $search = T_CU_Customer::find($sessionCustomerId)
-      ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
+    Log::channel('adminlog')->info("ok", [
+      $sessionCustomerId
+    ]);
+    $search = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
+      ->where('t_cu_customer.id', '=', $sessionCustomerId)
+
+      ->join('m_cu_customer_login', 'm_cu_customer_login.id', '=', 't_cu_customer.id')
       ->join('m_township', 'm_township.id', '=', 't_cu_customer.address1')
       ->join('m_state', 'm_state.id', '=', 't_cu_customer.address2')
-      ->join('m_fav_type', 'm_fav_type.id', '=', 't_cu_customer.fav_type')
+      // ->join('m_fav_type', 'm_fav_type.id', '=', 't_cu_customer.fav_type')
       // ->join('m_taste', 'm_taste.id', '=', 't_cu_customer.taste')
       ->first();
     if ($search === null) {
@@ -230,6 +235,9 @@ class T_CU_Customer extends Model
     } else {
       Log::channel('adminlog')->info("T_CU_Customer Model", [
         'End loginUser'
+      ]);
+      Log::channel('adminlog')->info("T_CU_Customer Model", [
+        $search
       ]);
       return $search;
     }
@@ -246,13 +254,19 @@ class T_CU_Customer extends Model
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'Start oldPassword'
     ]);
-    $admin = T_CU_Customer::find($id)
-      ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
-      ->value('password');
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      $id
+    ]);
+    $admin = M_CU_Customer_Login::where('customer_id', '=', $id)
+      ->where('del_flg', '=', 0)
+      ->first();
+    if ($admin == null) {
+      abort(500);
+    }
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End oldPassword'
     ]);
-    return $admin;
+    return $admin->password;
   }
   /*
       * Create : zayar(21/1/2022)

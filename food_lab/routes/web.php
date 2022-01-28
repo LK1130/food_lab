@@ -257,10 +257,22 @@ Route::resource('updateprofile', CustomerProfileUpdate::class);
  */
 Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
 /*
- * For Update Profile
+ * For news page
  * zayar
  */
 Route::get('/news', [CustomerController::class, 'news']);
+
+/*
+ * For messages page
+ * zayar
+ */
+Route::get('/messages', [CustomerController::class, 'message']);
+/*
+/*
+ * For tracks page
+ * zayar
+ */
+Route::get('/tracks', [CustomerController::class, 'tracks']);
 /*
  * For deliery info page
 */
@@ -275,3 +287,8 @@ Route::get('/cart', function () {
  * For Login Form
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
+
+/*
+ * For logging out
+ */
+Route::get('/logout', [CustomerController::class, 'logout']);
