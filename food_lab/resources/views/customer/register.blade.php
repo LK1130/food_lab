@@ -71,12 +71,6 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(No)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
-                    @error('addressNo')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="inputs">
                     <select class="form-select selects" id="addressTownship" name="addressTownship" >
                         <option class="township-options" selected disabled>{{ __('messageMK.address(Township)') }}</option>
                         @forelse ($townshipnames as $townshipname)
@@ -100,6 +94,12 @@
                     </select>
                     @error('addressState')
                         <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="inputs">
+                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(street)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
+                    @error('addressNo')
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
