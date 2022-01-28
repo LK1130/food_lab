@@ -24,8 +24,10 @@ use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CustomerProfileUpdate;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
@@ -125,14 +127,23 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
     Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
     /**
-     * Customer Report
-     */
-    Route::get('customerReport', function () {
-        return view('admin.report.customerreport');
-    });
-    Route::get('reportreplies', function () {
-        return view('admin.report.reportreply');
-    });
+ * Customer Report
+ */
+Route::get('customerReport',[NotificationController::class,'customerReport']);
+Route::post('reportrp/{id}',[NotificationController::class,'reportRp']);
+Route::get('reportreplies',[NotificationController::class,'customerreportReply']);
+/**
+ * Customer Contact
+ */
+Route::get('customerContact',[NotificationController::class,'customerContact']);
+Route::post('conrp/{id}',[NotificationController::class,'contrpy']);
+Route::get('contactreplies',[NotificationController::class,'customercontactReply']);
+/**
+ * Customer Suggest
+ */
+Route::get('customerSuggest',[NotificationController::class,'customerSuggest']);
+Route::post('sugrp/{id}',[NotificationController::class,'cusRpy']);
+Route::get('suggestreplies',[NotificationController::class,'customersuggestReply']);
     /**
      * For Product Form page
      */
@@ -160,6 +171,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('makeReDecision/{id}', [CoinController::class, 'reDecision']);
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
+    Route::get('addCoin', [CoinController::class, 'addCoin']);
 
     //_________________________________End Admin Coin Routes_________________________
 
@@ -258,10 +270,22 @@ Route::resource('updateprofile', CustomerProfileUpdate::class);
  */
 Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
 /*
- * For Update Profile
+ * For news page
  * zayar
  */
 Route::get('/news', [CustomerController::class, 'news']);
+
+/*
+ * For messages page
+ * zayar
+ */
+Route::get('/messages', [CustomerController::class, 'message']);
+/*
+/*
+ * For tracks page
+ * zayar
+ */
+Route::get('/tracks', [CustomerController::class, 'tracks']);
 /*
  * For deliery info page
 */
@@ -282,3 +306,18 @@ For Buy Coin Page
 */
 Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
 Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
+
+/*
+ * For Product Detail Form
+ */
+Route::get('productDetail',[ProductDetailController::class,'detail']);
+
+
+/*
+ * For Product
+ */
+Route::get('productList',[ProductDetailController::class,'productList']);
+/*
+ * For logging out
+ */
+Route::get('/logout', [CustomerController::class, 'logout']);

@@ -4,11 +4,11 @@ var coinAmount=document.getElementsByClassName("coinAmount");
 var codAmount=document.getElementsByClassName("codAmount");
 
 coin.addEventListener("click" , () =>{
-    coinAmount.style.display = "inline";
-    coinAmount.style.position= "relative";
+    coinAmount[0].style.display = "inline";
+    coinAmount[0].style.position= "relative";
 });
 
 cod.addEventListener("click" , () =>{
-    codAmount.style.display = "inline"; 
-    codAmount.style.position= "relative";
+    codAmount[0].style.display = "inline"; 
+    codAmount[0].style.position= "relative";
 });

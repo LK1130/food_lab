@@ -26,20 +26,25 @@
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageZN.Order Transaction Detail') }}</div>
         <div class="row ">
             <div class="col-md-12 roow">
+
                 <div class="border border-dark p-3 ">
                     <div class="row position-relative ">
                         {{-- Name And ID --}}
                         <div class="col-md-6">
                             <div class="text-start ms-5 fs-4">
-                                <li class="lidisplay"><b>Customer Name</b> : {{ $order->nickname }}</li>
-                                <li class="lidisplay"> <b>Customer ID</b> :{{ $order->customerID }} </li>
+                                <li class="lidisplay"><b>{{ __('messageZN.CustomerName') }}</b> :
+                                    {{ $order->nickname }}</li>
+                                <li class="lidisplay"> <b>{{ __('messageZN.Customer ID') }}</b>
+                                    :{{ $order->customerID }} </li>
                             </div>
                         </div>
                         {{-- Order Id And Date --}}
                         <div class="col-md-6">
                             <div class="text-end me-5 fs-4">
-                                <li class="lidisplay"> <b>OrderID</b> :{{ $order->orderid }}</li>
-                                <li class="lidisplay"><b>Date</b> : {{ $order->order_date }}
+                                <li class="lidisplay"> <b>{{ __('messageZN.OrderID') }}</b> :{{ $order->orderid }}
+                                </li>
+                                <li class="lidisplay"><b>{{ __('messageZN.Date') }}</b> :
+                                    {{ $order->order_date }}
                                     {{ $order->order_time }}</li>
                             </div>
                         </div>
@@ -49,13 +54,13 @@
                                 <table class="table boxshad ms-2 mt-5">
                                     <thead>
                                         <tr class="tableheader fs-5">
-                                            <th scope="col">No.</th>
-                                            <th scope="col">Product Name</th>
-                                            <th scope="col">ProductID</th>
-                                            <th scope="col">Coin</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Total Coin</th>
-                                            <th scope="col">Total Cash</th>
+                                            <th scope="col">{{ __('messageZN.No') }}</th>
+                                            <th scope="col">{{ __('messageZN.Product Name') }}</th>
+                                            <th scope="col">{{ __('messageZN.Product ID') }}</th>
+                                            <th scope="col">{{ __('messageZN.Coin') }}</th>
+                                            <th scope="col">{{ __('messageZN.Quantity') }}</th>
+                                            <th scope="col">{{ __('messageZN.Totalcoin') }}</th>
+                                            <th scope="col">{{ __('messageZN.Totalcash') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,24 +85,24 @@
                     <div class="row position-relative">
                         <div class="col-md-4">
                             <div class="text-start ms-5 fs-4 position-absolute bottom-0 start-0">
-                                <p> <b>Last Control By</b> :{{ $order->ad_name }} </p>
+                                <p> <b>{{ __('messageZN.Last Control') }}</b> :{{ $order->ad_name }} </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="text-center position-absolute bottom-0 start-50 translate-middle-x ">
-                                <li class="lidisplay fs-4"><b>ORDER STATUS</b></li>
+                                <li class="lidisplay fs-4"><b>{{ __('messageZN.Order Status') }}</b></li>
                                 <li class="lidisplay fs-4">{{ $order->status }}</li>
                             </div>
                         </div>
                         <div class="col-md-4 ">
                             <div class="text-end position-absolute bottom-0 end-0">
-                                <li class="lidisplay fs-5 me-4"><b>Delivery Fees</b> : 1,000</li>
+                                <li class="lidisplay fs-5 me-4"><b>{{ __('messageZN.Delivery') }}</b> : 1,000</li>
                                 @if ($order->grandtotal_coin > 0)
-                                    <li class="lidisplay fs-3 me-4"><b>Grand Toatl Coin </b> :
+                                    <li class="lidisplay fs-3 me-4"><b>{{ __('messageZN.GrandTotalcoin') }} </b> :
                                         {{ $order->grandtotal_coin }}
                                     </li>
                                 @else
-                                    <li class="lidisplay fs-3 me-4"><b>Grand Total Cash</b> :
+                                    <li class="lidisplay fs-3 me-4"><b>{{ __('messageZN.GrandTotalcash') }}</b> :
                                         {{ $order->grandtotal_cash }}
                                     </li>
                                 @endif
@@ -107,6 +112,7 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
 

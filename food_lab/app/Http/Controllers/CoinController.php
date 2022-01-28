@@ -13,6 +13,7 @@ use App\Models\T_AD_CoinCharge_Decision_History;
 use App\Models\T_AD_CoinCharge_Finance;
 use App\Models\T_CU_Coin_Customer;
 use App\Models\T_CU_Coin_Customer_History;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -384,11 +385,11 @@ class CoinController extends Controller
 
                     // Set Coin History
                     $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
-                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, -($subAmount->amount), $request->note);
+                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, - ($subAmount->amount), $request->note);
 
                     // Set Coin Table
                     $t_cu_coin_customer = new T_CU_Coin_Customer();
-                    $t_cu_coin_customer->setCoin($charge->customer_id,- ($subAmount->amount));
+                    $t_cu_coin_customer->setCoin($charge->customer_id, - ($subAmount->amount));
 
                     // reset Finance Table
                     $t_ad_Coincharage_finance->reSetFinance($request->chargeId);
@@ -402,6 +403,20 @@ class CoinController extends Controller
 
         return redirect('/coinListing');
     }
+
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : charge id
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function addCoin()
+    {
+        return View('admin.coin.add');
+    }
+
 
     /*
     * Create:zayar(2022/01/12) 

@@ -40,7 +40,7 @@ class CustomerInfoController extends Controller
         // return $trans;
         $coin = new T_AD_CoinCharge();
         $cuscoin = $coin->UsercoinchargeList($request->input('id'));
-
+        
         return view('admin.customerInfo.customerinfoDetail',['cusdetail'=>$cusdetail,'t_ad_order'=>$trans,'cuscoin'=>$cuscoin]);
     }
 

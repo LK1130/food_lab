@@ -9,6 +9,7 @@ use App\Models\M_Product;
 use App\Models\M_Product_Detail;
 use App\Models\M_Taste;
 use App\Models\T_AD_Evd;
+use App\Models\T_AD_Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -163,13 +164,13 @@ class ProductController extends Controller
             $finalProduct = $product->saveData($request);
 
             $productDetail = new M_Product_Detail();
-            $evd = new T_AD_Evd();
+            $phd = new T_AD_Photo();
             // Log::critical("array", [$labels, $images, $allValues]);
 
             for ($x = 0; $x < count($images); $x++) {
 
                 $path = $images[$x]->store('ProductImage');
-                $evd->insertImage($path, $finalProduct,$x+1);
+                $phd->insertImage($path, $finalProduct,$x+1);
             }
             for ($i = 0; $i < count($labels); $i++) {
                 $value = $allValues[$i];
@@ -232,8 +233,8 @@ class ProductController extends Controller
         $mDetail = new M_Product_Detail();
         $mProductDetail = $mDetail->editData($id);
 
-        $tEvd = new T_AD_Evd();
-        $evd = $tEvd->editEvd($id);
+        $tPhd = new T_AD_Photo();
+        $phd = $tPhd->editEvd($id);
         
         
 
@@ -241,17 +242,17 @@ class ProductController extends Controller
         $rates = $mrate->getRate();
 
 
-        session(['1' => $tEvd->getPhoto(1,$product->id)]);
-        session(['2' => $tEvd->getPhoto(2,$product->id)]);
-        session(['3' => $tEvd->getPhoto(3,$product->id)]);
-        session(['4' => $tEvd->getPhoto(4,$product->id)]);
-        session(['5' => $tEvd->getPhoto(5,$product->id)]);
-        session(['6' => $tEvd->getPhoto(6,$product->id)]);
+        session(['1' => $tPhd->getPhoto(1,$product->id)]);
+        session(['2' => $tPhd->getPhoto(2,$product->id)]);
+        session(['3' => $tPhd->getPhoto(3,$product->id)]);
+        session(['4' => $tPhd->getPhoto(4,$product->id)]);
+        session(['5' => $tPhd->getPhoto(5,$product->id)]);
+        session(['6' => $tPhd->getPhoto(6,$product->id)]);
         Log::channel('adminlog')->info("Product Controller", [
             'End edit Data'
         ]);
         // return $product_detail;
-        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $product, "pdetails" => $mProductDetail, 'evd' => $evd,'rates'=>$rates]);
+        return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $product, "pdetails" => $mProductDetail, 'phd' => $phd,'rates'=>$rates]);
     }
 
     /**
@@ -339,32 +340,32 @@ class ProductController extends Controller
 
             $productDetail = new M_Product_Detail();
             $productDetail->deleteData($id);
-            $evd = new T_AD_Evd();
+            $phd = new T_AD_Photo();
 
             if($request->input('hide1')  == "" &&  $request->hasFile('photo1')){ 
                 $path = $request->file('photo1')->store('ProductImage');
-              $evd->insertImage($path,$product,1);
+              $phd->insertImage($path,$product,1);
             }
             if($request->input('hide2') == "" && $request->hasFile('photo2')){
                 $path = $request->file('photo2')->store('ProductImage');
-              $evd->insertImage($path,$product,2);
+              $phd->insertImage($path,$product,2);
             }
 
             if($request->input('hide3') == "" && $request->hasFile('photo3')){
                 $path = $request->file('photo3')->store('ProductImage');
-              $evd->insertImage($path,$product,3);
+              $phd->insertImage($path,$product,3);
             }
             if($request->input('hide4') == "" && $request->hasFile('photo4')){
                 $path = $request->file('photo4')->store('ProductImage');
-              $evd->insertImage($path,$product,4);
+              $phd->insertImage($path,$product,4);
             }
             if($request->input('hide5') == "" && $request->hasFile('photo5')){
                 $path = $request->file('photo5')->store('ProductImage');
-              $evd->insertImage($path,$product,5);
+              $phd->insertImage($path,$product,5);
             }
             if($request->input('hide6') == "" && $request->hasFile('photo6')){
                 $path = $request->file('photo6')->store('ProductImage');
-              $evd->insertImage($path,$product,6);
+              $phd->insertImage($path,$product,6);
             }
 
             

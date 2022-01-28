@@ -11,10 +11,14 @@ textarea {
 :root {
     --primary-color: #ff470b;
     --secondary-color: #ff6600;
+    --product-color : #FF0B1A;
+    --btn-color : #FF280B;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
     --text-color2: #000000;
     --bg2-color: black;
+    --bg3-color: white;
+    --coin-color: #FFD233;
     --coin-color: #ffd233;
     --coinRulebg: #ff0000;
     --fileicon-color: #ffffff;
@@ -23,7 +27,6 @@ textarea {
     --submitbtn-color: #ff0000;
     --submitbtn-textcolor:#ffffff;
 }
-
 
 /*Start Header*/
 
@@ -35,7 +38,6 @@ textarea {
     background-position: center;
     position: relative;
 }
-
 
 /*start navbar*/
 
@@ -89,21 +91,18 @@ textarea {
     display: block;
 }
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
     #profileButton {
         display: none;
     }
 }
 
-
 /*end navbar*/
-
 
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
-
 
 /*start Profile Alert box*/
 
@@ -157,14 +156,35 @@ textarea {
 #back:hover {
     color: var(--primary-color) !important;
 }
-
+#logout {
+    cursor: pointer;
+}
 @media only screen and (max-width: 720px) {
+    #profileAlert {
+        position: absolute;
+        width: 55vw;
+        margin-right: 20vw;
+    }
     .userProfile {
+        margin-left: 0;
+        margin-right: 0;
         font-size: 1.2rem !important;
-        width: 50vw !important;
+        width: 60vw !important;
+    }
+    .editProfile {
+        font-size: 0.8rem !important;
+    }
+
+    .updatePassword {
+        font-size: 0.8rem !important;
+    }
+    /* .userProfile {
+        font-size: 1.2rem !important;
+        width: 60vw !important;
     }
     #profileAlert {
-        width: 47vh;
+        width: 65vw;
+        margin-left: 20vw;
     }
     #profileAlert {
         left: 2vw !important;
@@ -178,18 +198,15 @@ textarea {
     }
     .profileAlertHeader {
         margin-right: 10vw;
-    }
+    } */
 }
 
-
 /*end profile alert */
-
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
-
 
 /*start inform Alert box*/
 
@@ -223,6 +240,8 @@ textarea {
 
 .headerInform {
     margin: auto;
+    width: max-content;
+    gap: 6vw;
 }
 
 .infromTitle {
@@ -236,7 +255,15 @@ textarea {
     margin-left: auto;
     color: white;
 }
-
+.green {
+    background-color: green;
+}
+.yellow {
+    background-color: yellow;
+}
+.red {
+    background-color: red;
+}
 .forNews,
 .forMessages,
 .forTracks {
@@ -287,11 +314,11 @@ textarea {
     .informAlert {
         position: absolute;
         z-index: 999;
-        width: 35vh;
+        width: 45vh;
         height: max-content;
         background-color: rgb(255, 255, 255);
         top: 15%;
-        right: 12%;
+        right: 25vw;
         border-radius: 1.4vh;
         display: none;
     }
@@ -299,7 +326,7 @@ textarea {
     .messages,
     .tracks {
         width: 100%;
-        height: 8vh;
+        height: fit-content;
         border-radius: 1vh;
         background-color: rgb(189, 173, 158);
     }
@@ -310,6 +337,9 @@ textarea {
         text-align: center;
         margin-left: auto;
         color: white;
+    }
+    .headerInform {
+        gap: 4vw;
     }
 }
 
@@ -331,9 +361,9 @@ textarea {
     color: var(--text-color);
 }
 
-
 /*end navbar*/
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 /*start carousel*/
@@ -487,3 +517,6 @@ footer {
 =======
 /*End Header*/
 >>>>>>> 3d399cd1ea8deca25653557de090be1d1fd09265
+=======
+/*End Header*/
+>>>>>>> 867a44dfa251e87ad45a62291a250b52db198e9c
