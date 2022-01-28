@@ -13,6 +13,7 @@ use App\Models\T_AD_CoinCharge_Decision_History;
 use App\Models\T_AD_CoinCharge_Finance;
 use App\Models\T_CU_Coin_Customer;
 use App\Models\T_CU_Coin_Customer_History;
+use App\Models\T_CU_Customer;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -415,6 +416,31 @@ class CoinController extends Controller
     public function addCoin()
     {
         return View('admin.coin.add');
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to search Customer By Customer ID.
+    * Parameters : charge id
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function searchCustomer(Request $request)
+    {
+        $t_cu_customer = new T_CU_Customer();
+        $customer = $t_cu_customer->searchByID($request->id);
+
+        if ($customer == null) {
+            return response()->json([
+                'error' => 1,
+            ]);
+        }
+        return response()->json([
+            'nickname' => $customer->nickname,
+            'cid' => $customer->nickname,
+            'coin' => number_format($customer->remain_coin),
+            'phone' => $customer->phone,
+        ]);
     }
 
 

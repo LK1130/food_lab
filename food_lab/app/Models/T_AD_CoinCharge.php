@@ -168,10 +168,16 @@ class T_AD_CoinCharge extends Model
       'Start getChargePhoto'
     ]);
 
+    $evd_id = T_AD_CoinCharge::find($chargeid);
+
+    if($evd_id == null) abort(500);
+
     $result =  T_AD_Evd::select('path')
+      ->where('id',$evd_id->request_evd_ID)
       ->where('del_flg', 0)
       ->first();
 
+    if ($result == null) abort(500);
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'End getChargePhoto'
