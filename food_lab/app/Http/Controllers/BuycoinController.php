@@ -10,6 +10,7 @@ use App\Models\M_AD_News;
 use App\Models\M_AD_Track;
 use App\Models\M_Product;
 use App\Models\M_Site;
+use App\Models\T_AD_CoinCharge;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -86,8 +87,12 @@ class BuycoinController extends Controller
             'Start coinrequestUpload'
         ]);
 
+        $coinChargeFormdata=$request->validated();
+
         $bcustomerID =session("customerId");
         
+        $cucoindata = new T_AD_CoinCharge();
+        $cucoincharge = $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID);
 
         Log::channel('customerlog')->info('Buycoin Controller', [
             'End coinrequestUpload'

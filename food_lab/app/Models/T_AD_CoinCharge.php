@@ -229,4 +229,13 @@ class T_AD_CoinCharge extends Model
 
     return $result;
   }
+
+  public function customerCoinCharge($coin,$customerID){
+
+    $curequestcoindata = new T_AD_CoinCharge();
+    $curequestcoindata->request_coin=$coin['coinput'];
+    $curequestcoindata->customer_id=$customerID;
+    $curequestcoindata->request_evd_ID='testingphotos';
+    $curequestcoindata->save();
+  } 
 }

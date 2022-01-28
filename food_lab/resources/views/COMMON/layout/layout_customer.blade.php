@@ -29,12 +29,8 @@
 
             <div class="d-flex">
                 @if (session()->has('customerId'))
-<<<<<<< HEAD
-                    <p class="nav-link d-lg-none me-3 texts" id="profileButton2"><i class="fas fa-user-circle fs-2"></i>
+                    <p class="nav-link d-lg-none me-3 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p>
-=======
-                    <p class="nav-link d-lg-none me-3 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i></p>
->>>>>>> b4df3bdaf97b5c9f3f954142c12ae9ac6bee120b
                 @endif
                 <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
