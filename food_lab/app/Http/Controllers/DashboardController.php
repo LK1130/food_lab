@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_Product;
 use App\Models\T_AD_CoinCharge;
+use App\Models\T_AD_Contact;
 use App\Models\T_AD_Order;
+use App\Models\T_AD_Report;
+use App\Models\T_AD_Suggest;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,17 +47,17 @@ class DashboardController extends Controller
 
         $product = new M_Product();
         $dashproduct = $product->DashboardproductList();
-        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate,'todaycount'=>$todayorder,'product'=>$dashproduct]);
+
+        $cussuggest= new T_AD_Suggest();
+        $sugcount = $cussuggest->suggestcount();
+
+        $cuscontact = new T_AD_Contact();
+        $conCount = $cuscontact->contactCount();
+
+        $cusreport = new T_AD_Report();
+        $rpcount = $cusreport->reportCount();
+        
+        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate,'todaycount'=>$todayorder,'product'=>$dashproduct,'sugcount'=>$sugcount,'concount'=>$conCount,'rpcount'=>$rpcount]);
     }
     
-        /*
-    * Create:zarni(2022/01/12) 
-    * Update: 
-    * This is function is to show Order Transaction.
-    * Return is view (ordertransaction.blade.php)
-    */
-    public function orderTransaction()
-    {
-        return view('admin.transactions.orderTransaction');
-    }
 }

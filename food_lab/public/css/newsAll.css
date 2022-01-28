@@ -29,4 +29,7 @@
     .news img {
         width: 9vw;
     }
+    .news {
+        height: 15vh;
+    }
 }
