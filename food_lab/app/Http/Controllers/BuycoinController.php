@@ -8,9 +8,11 @@ use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_AD_News;
 use App\Models\M_AD_Track;
+use App\Models\M_Payment;
 use App\Models\M_Product;
 use App\Models\M_Site;
 use App\Models\T_AD_CoinCharge;
+use App\Models\T_AD_Evd;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -59,6 +61,9 @@ class BuycoinController extends Controller
         $site = new M_Site();
         $name = $site->siteName();
 
+        $paymentdata= new M_Payment();
+        $paymentAccounts = $paymentdata->paymentAcoounts();
+
         Log::channel('customerlog')->info('Buycoin Controller', [
             'End customerBuycoin'
         ]);
@@ -71,7 +76,8 @@ class BuycoinController extends Controller
             'limitedmessages' => $messageLimited,
             'limitedtracks' => $tracksLimited,
             'name' => $name,
-            'coinrateData'=> $coinrateDatas
+            'coinrateData'=> $coinrateDatas,
+            'paymentAccount'=>$paymentAccounts
         ]);
     }
     /*
@@ -92,11 +98,16 @@ class BuycoinController extends Controller
         $bcustomerID =session("customerId");
         
         $cucoindata = new T_AD_CoinCharge();
-        $cucoincharge = $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID);
+        $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID);
+
 
         Log::channel('customerlog')->info('Buycoin Controller', [
             'End coinrequestUpload'
         ]);
 
+        return redirect('/buycoin');
+
      }
+
+     
 }

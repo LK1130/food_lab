@@ -127,4 +127,9 @@ class T_AD_Evd extends Model
     //         'End update Data'
     //     ]);
     // }
+
+    public function coinChargeconnect(){
+        return $this->hasOne("App\Models\T_AD_CoinCharge");
+    }
+
 }

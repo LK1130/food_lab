@@ -93,7 +93,7 @@
                                 {{ __('messageMK.inform') }}
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ $count }}
+                                    {{-- {{ $count }} --}}
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </p>
@@ -104,7 +104,7 @@
                                 {{ __('messageMK.inform') }}
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ $count }}
+                                    {{-- {{ $count }} --}}
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </p>
@@ -197,7 +197,7 @@
                             {{ __('messageZY.more') }}</button></a>
                 </div>
                 <div class="forMessages d-flex flex-column" id="forMessages">
-                    @forelse ($limitedmessages as $limitedmessage)
+                    {{-- @forelse ($limitedmessages as $limitedmessage)
                         @php
                             $allcolor = ['yellow', 'green', 'yellow', 'red'];
                             $statusMessage = $limitedmessage->decision_status;
@@ -217,7 +217,7 @@
                         <div class="news d-flex flex-row justify-content-center align-items-center">
                             <p class="fs-6 fw-bolder mt-2 me-auto">{{ __('messageZY.nomessage') }} </p>
                         </div>
-                    @endforelse
+                    @endforelse --}}
                     <a href="/messages" class="ms-auto"><button class="btn mb-2 alertButton">
                             {{ __('messageZY.more') }}</button></a>
                 </div>

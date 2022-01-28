@@ -33,7 +33,7 @@
                     <div class="col-8 d-flex choosephoto">
                         <span class="col-4"><i class="fileUpload far fa-file-alt"></i> Choose Photo</span>
                         <div class="col-6">
-                            <input class="fileuploadInput form-control" type="file" id="formFile" name="fileinput">
+                            <input class="fileuploadInput form-control" type="file" id="formFile" name="fileimage">
                         </div>
                     </div>
                     <button type="submit" class="submitbtn btn btn-danger">Submit</button>
@@ -48,6 +48,17 @@
                     <li>This coin can be used only on this website</li>
                     <li>This coin cannot be transfered</li>
                 </ul>
+                <h2 class="coinRule">Payment Accounts</h2>
+                <table>
+                    <ul class="coinList">
+                        @forelse ($paymentAccount as $accounts)
+                            <li>{{ $accounts->payment_name }} <span><i class="fas fa-arrow-right"></i></span>
+                                {{ $accounts->account_name }}</li>
+                        @empty
+
+                        @endforelse
+                    </ul>
+                </table>
                 <hr class="coinRulehr">
                 <h2 class="coinCalculator">Coin Calculator</h2>
                 <div class="coinCaldiv">
