@@ -96,7 +96,8 @@
                         <div class="fs-5 fw-bold">Received Amount</div>
                         <div class="input-group mb-3 received_amount">
                             <input type="number" class="form-control" id="recAmt" name="amount"
-                                placeholder="Received Amount" aria-label="Recipient's username" aria-describedby="checkBtn"/>
+                                placeholder="Received Amount" aria-label="Recipient's username"
+                                aria-describedby="checkBtn" />
                         </div>
                         @error('amount')
                             <li class="text-danger ">{{ $message }}</li>
@@ -118,12 +119,40 @@
                                 <li class="text-danger ">{{ $message }}</li>
                             @enderror
                         </div>
-                        <button type="submit" id="approve" class="btn btn-success btn-lg  me-5">Approve</button>
-                        <button type="submit" id="waiting" class="btn btn-primary btn-lg  me-5 ms-5">Waiting</button>
-                        <button type="submit" id="reject" class="btn btn-danger btn-lg  ms-5">Reject</button>
+                        <button type="submit" id="approve" class="btn btn-info btn-lg  me-5">Approve</button>
+                        <button type="submit" id="waiting" class="btn btn-warning btn-lg  me-5 ms-5">Waiting</button>
+                        <button type="submit" id="reject" class="btn btn-secondary btn-lg  ms-5">Reject</button>
                     </form>
                 </div>
                 {{-- End Decision Making --}}
+
+                {{-- Start History --}}
+                @if (count($history)>0)
+                    <label for="" class="fw-bold fs-4 fw-bold mt-3">Decision History</label>
+                @endif
+
+                @foreach ($history as $item)
+                    <div class="alert alert-primary mt-3" role="alert">
+                        <div class="fs-5">
+                            <span class="fs-4 text-dark">{{ $item->ad_name }} </span> changed
+                            @component('COMMON/component/decision', [
+                                'type' => $item->old_status,
+                                'message' => $item->old,
+                                ])
+                            @endcomponent
+                            to
+                            @component('COMMON/component/decision', [
+                                'type' => $item->new_status,
+                                'message' => $item->new,
+                                ])
+                            @endcomponent
+                            at {{ $item->updated_at }}.
+                        </div>
+                        <div class="fs-5">Note: <span class="fs-5 text-muted">{{ $item->note }}</span></div>
+                    </div>
+                @endforeach
+                {{-- End History --}}
+
             </div>
         </div>
     </div>
@@ -131,5 +160,5 @@
         let rate = @json($rate);
         let chargeId = @json($Cdetail->chargeid)
     </script>
-    <script src="{{ URL::asset('js/adminCoin.js') }}"></script>
+    <script src="{{ URL::asset('js/adminCoinDecision.js') }}"></script>
 @endsection

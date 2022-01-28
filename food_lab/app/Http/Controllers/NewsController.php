@@ -8,6 +8,7 @@ use App\Models\M_Site;
 use App\Models\NewsModel;
 use App\Models\SiteManage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NewsController extends Controller
 {
@@ -19,8 +20,14 @@ class NewsController extends Controller
 
     public function index()
     {
+        Log::channel('adminlog')->info("NewsController", [
+            'Start index'
+        ]);
         $app = new M_Site();
         $admins = $app->news();
+        Log::channel('adminlog')->info("NewsController", [
+            'End index'
+        ]);
         return view('admin.setting.newsManage.newsManage', ['news' => $admins]);
     }
     /*
@@ -31,8 +38,14 @@ class NewsController extends Controller
 
     public function create()
     {
+        Log::channel('adminlog')->info("NewsController", [
+            'Start create'
+        ]);
         $app = new M_AD_News();
         $admins = $app->newsAddView();
+        Log::channel('adminlog')->info("NewsController", [
+            'End create'
+        ]);
         return view('admin.setting.newsManage.newsAdd', ['categories' => $admins]);
     }
     /*
@@ -43,6 +56,9 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
+        Log::channel('adminlog')->info("NewsController", [
+            'Start create'
+        ]);
         $request->validate([
             'title' => 'required',
             'category' => 'required',
@@ -59,6 +75,9 @@ class NewsController extends Controller
         $siteLogo = $logo->getClientOriginalName();
         $admin = new M_AD_News();
         $admin->newsAdd($request, $siteLogo);
+        Log::channel('adminlog')->info("NewsController", [
+            'End create'
+        ]);
         return redirect('siteManage');
     }
     /*
@@ -69,12 +88,24 @@ class NewsController extends Controller
 
     public function show($id)
     {
+        Log::channel('adminlog')->info("NewsController", [
+            'Start show'
+        ]);
         $admin = new M_AD_News();
         $news = $admin->newsEditView($id);
-        $site = new M_Site();
-        $categories =  $site->categories();
-        return $news;
-        return view('admin.setting.newsManage.newsEdit', ['news' => $news, 'categories' => $categories]);
+        if ($news === null) {
+            Log::channel('adminlog')->info("FavtypeController", [
+                'End show(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $site = new M_Site();
+            $categories =  $site->categories();
+            Log::channel('adminlog')->info("NewsController", [
+                'End show'
+            ]);
+            return view('admin.setting.newsManage.newsEdit', ['news' => $news, 'categories' => $categories]);
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -84,14 +115,29 @@ class NewsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required',
-            'category' => 'required',
-            'detail' => 'required'
+        Log::channel('adminlog')->info("NewsController", [
+            'Start update'
         ]);
         $admin = new M_AD_News();
-        $admin->newsEdit($request, $id);
-        return redirect('siteManage');
+        $news = $admin->newsEditView($id);
+        if ($news === null) {
+            Log::channel('adminlog')->info("FavtypeController", [
+                'End update(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            $request->validate([
+                'title' => 'required',
+                'category' => 'required',
+                'detail' => 'required'
+            ]);
+            $admin = new M_AD_News();
+            $admin->newsEdit($request, $id);
+            Log::channel('adminlog')->info("NewsController", [
+                'End update'
+            ]);
+            return redirect('siteManage');
+        }
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -101,7 +147,22 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $admin = new M_AD_News();
-        $admin->newsDelete($id);
-        return redirect('siteManage');
+        $news = $admin->newsEditView($id);
+        if ($news === null) {
+            Log::channel('adminlog')->info("FavtypeController", [
+                'End destroy(error)'
+            ]);
+            return view('errors.404');
+        } else {
+            Log::channel('adminlog')->info("NewsController", [
+                'Start destroy'
+            ]);
+            $admin = new M_AD_News();
+            $admin->newsDelete($id);
+            Log::channel('adminlog')->info("NewsController", [
+                'End destroy'
+            ]);
+            return redirect('siteManage');
+        }
     }
 }

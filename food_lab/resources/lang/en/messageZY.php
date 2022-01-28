@@ -91,15 +91,29 @@ return [
     'reset' => 'Reset',
     'chosenimage' => 'Chosen Image',
     'back' => 'Back',
-    'category' => 'Category',
-    'category' => 'Category',
-    'category' => 'Category',
+    'new' => 'News',
+    'message' => 'Messages',
+    'track' => 'Tracks',
 
-    'category' => 'Category',
-    'category' => 'Category',
-    'category' => 'Category',
-
-
-
+    'more' => 'More',
+    'nonews' => 'There is no news.',
+    'notrack' => 'There is no track.',
+    'nomessage' => 'There is no message.',
+    'updateprofile' => 'Update Profile',
+    'welcomfrom' => 'Welcome From',
+    'outfoodlab' => 'Our Food Lab',
+    'oldpassword' => 'Old Password',
+    'newpassword' => 'New Password',
+    'confirmnewpassword' => 'Confirm New Password',
+    'updatepassword' => 'Update Password',
+    'changepassword' => 'Change Password',
+    'editprofile' => 'Edit Profile',
+    'updateprofile' => 'Update Profile',
+    'no' => 'Profile',
+    'editprofile' => 'Profile',
+    'editprofile' => 'Profile',
+    'editprofile' => 'Profile',
+    'editprofile' => 'Profile',
+    'editprofile' => 'Profile',
 
 ];

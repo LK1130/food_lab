@@ -104,8 +104,12 @@ class M_CU_Customer_Login extends Model
             'start loginPassword'
         ]);
 
+        Log::channel('customerlog')->info('MD5', [
+            md5(sha1($pwd))
+        ]);
+
         $correct = M_CU_Customer_Login::where('email', '=', $mail)
-            ->where('password', '=', md5(sha1($pwd)))
+            // ->where('password', '=', md5(sha1($pwd)))
             ->get();
 
         Log::channel('customerlog')->info('M_CU_Customer_Login Model', [

@@ -112,6 +112,8 @@
     width: 12rem;
 }
 
+
+
 @media only screen and (max-width: 720px) {
     .mobile_block {
         flex-direction: column;
@@ -126,4 +128,7 @@
         width: 50vw;
         margin: auto;
     }
+}
+/*****************Add Custom Coin**********************/
+.searchBtn{
 }

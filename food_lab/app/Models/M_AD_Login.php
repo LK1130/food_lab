@@ -45,7 +45,7 @@ class M_AD_Login extends Model
             'start checkPassword'
         ]);
 
-        $hasAccount = M_AD_Login::select(['id', 'ad_role','ad_name'])
+        $hasAccount = M_AD_Login::select(['id', 'ad_role', 'ad_name'])
             ->where('ad_name', $name)
             ->where('ad_password', $password)
             ->first();
@@ -90,12 +90,18 @@ class M_AD_Login extends Model
     */
     public function AdminAdd($validate)
     {
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'Start AdminAdd'
+        ]);
         $admin = new M_AD_Login();
         $admin->ad_name = $validate['username'];
         $admin->ad_password = $validate['password'];
         $admin->ad_role = $validate['role'];
         $admin->ad_login_dt = Carbon::now();
         $admin->save();
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'End AdminAdd'
+        ]);
     }
     /*
    * Create:zayar(2022/01/11) 
@@ -106,6 +112,12 @@ class M_AD_Login extends Model
    */
     public function AdminList()
     {
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'Start AdminList'
+        ]);
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'End AdminList'
+        ]);
         return M_AD_Login::where('del_flg', '=', 0)->paginate(3);
     }
     /*
@@ -118,6 +130,12 @@ class M_AD_Login extends Model
    */
     public function AdminDetail($id)
     {
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'Start AdminDetail'
+        ]);
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'End AdminDetail'
+        ]);
         return M_AD_Login::find($id);
     }
     /*
@@ -129,6 +147,12 @@ class M_AD_Login extends Model
    */
     public function AdminEdit($id)
     {
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'Start AdminEdit'
+        ]);
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'End AdminEdit'
+        ]);
         return M_AD_Login::find($id);
     }
     /*
@@ -141,11 +165,17 @@ class M_AD_Login extends Model
    */
     public function AdminUpdate($validate, $id)
     {
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'Start AdminUpdate'
+        ]);
         $admin = M_AD_Login::find($id);
         $admin->ad_name = $validate['username'];
         $admin->ad_password = $validate['password'];
         $admin->ad_role = $validate['role'];
         $admin->save();
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'End AdminUpdate'
+        ]);
     }
     /*
    * Create:zayar(2022/01/11) 
@@ -156,8 +186,14 @@ class M_AD_Login extends Model
    */
     public function AdminDelete($id)
     {
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'Start AdminDelete'
+        ]);
         $admin = M_AD_Login::find($id);
         $admin->del_flg = 1;
         $admin->save();
+        Log::channel('adminlog')->info("M_AD_Login Model", [
+            'End AdminDelete'
+        ]);
     }
 }

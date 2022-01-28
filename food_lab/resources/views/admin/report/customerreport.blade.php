@@ -6,37 +6,41 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ URL::asset('css/adminOrdertransaction.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/adminnoties.css') }}">
 @endsection
 
 @section('script')
 @endsection
 @section('body')
     <div class="col-md-10">
+
         {{-- Top Noti Start --}}
         <div class="d-flex justify-content-end bd-highlight mx-5 my-4">
-            {{-- Noti --}}
-            <a href="#">
+            <div class="back">
+                <a href="dashboard"><button class="btn btncust1 text-light">Back</button></a>
+            </div>
+            {{-- Suggest --}}
+            <a href="customerSuggest">
                 <button type="button" class="btn btn-lg btn-outline-dark position-relative mx-3 fs-4">
                     <i class="bi bi-bell"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        14
+                        {{ $sugcount }}
                     </span>
                 </button></a>
             {{-- Contact --}}
-            <a href="#">
+            <a href="customerContact">
                 <button type="button" class="btn btn-lg lg btn-outline-dark position-relative mx-3 fs-4">
                     <i class="bi bi-book"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        12
+                        {{ $concount }}
                     </span>
                 </button></a>
             {{-- Report --}}
-            <a href="#">
+            <a href="customerReport">
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        13
+                        {{ $rpcount }}
                     </span>
                 </button></a>
         </div>
@@ -51,21 +55,29 @@
                             <th scope="col">No.</th>
                             <th scope="col">Customer ID</th>
                             <th scope="col">Order ID</th>
-                            <th scope="col">Suggest Type</th>
                             <th scope="col">Message</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tablecolor1 text-light tablerows">
-                            <th scope="row">1</th>
-                            <td>U12312</td>
-                            <td>O123123</td>
-                            <td>Delivery</td>
-                            <td>Nout kya</td>
-                            <td><a href="reportreplies">
-                                    <button class="btn btn-primary">Reply</button></a></td>
-                        </tr>
+                        @foreach ($report as $rp)
+                            <tr class="tablecolor1 text-light tablerows">
+                                <th scope="row">1</th>
+                                <td>{{ $rp->customerID }}</td>
+                                <td>{{ $rp->id }}</td>
+                                <td>{{ $rp->report_message }}</td>
+                                <td>
+                                    @if ($rp->reply == null)
+                                        <a href="reportreplies?id={{ $rp->ID }}">
+                                            <button class="btn btn-primary">Reply</button></a>
+                                    @else
+                                        Done !
+                                    @endif
+
+                                </td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
