@@ -132,7 +132,7 @@ $(document).ready(function (e) {
           <div class="form-group d-flex mx-3">
               <label for="category" class="col-form-label titles">Category</label>
           <select name="category${count}" id="category" class="form-select mx-2">
-              <option value="0" selected disabled>Select category</option>
+           
               <option value="1">Selected Box</option>
               <option value="2">Checked Box</option>
           </select>

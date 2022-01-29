@@ -3,7 +3,11 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
+<<<<<<< HEAD
 use App\Http\Controllers\CartController;
+=======
+use App\Http\Controllers\BuycoinController;
+>>>>>>> 5929cc2eece5831007ec6d6f100e0ef08deca1df
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
@@ -27,6 +31,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
@@ -171,6 +176,8 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
+    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
+    Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
 
@@ -295,6 +302,22 @@ Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
 
+/*
+For Buy Coin Page
+*/
+Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
+
+/*
+ * For Product Detail Form
+ */
+Route::get('productDetail',[ProductDetailController::class,'detail']);
+
+
+/*
+ * For Product
+ */
+Route::get('productList',[ProductDetailController::class,'productList']);
 /*
  * For logging out
  */
