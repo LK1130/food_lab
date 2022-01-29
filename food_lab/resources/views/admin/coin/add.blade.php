@@ -27,13 +27,11 @@
 
         <div class="row mt-4">
             <div class="col-7">
-                <form action="" class="">
                     <div class="d-flex align-items-center">
                         <span class="fs-5 w-10 me-3">CustomerID: </span> <input type="text"
                             class="form-control border border-dark searchBtn" id="customerID" required>
                         <span><button class="btn text-light active btncust" id="search">Search</button></span>
                     </div>
-                </form>
             </div>
             <div class="col">
                 <div class="d-flex align-items-center">
@@ -43,15 +41,16 @@
         </div>
         <div class="row">
             <div class="col">
-                <form action="" method="POST">
+                <form action="addCoinCustomer" method="POST" id="addCoinForm">
+                    @csrf
                     <div class="border border-dark p-4">
-                        <li class="lidisplay fs-4"><b>Nickname</b> :<span id="nickname"></span> </li>
+                        <li class="lidisplay fs-4"><b>Nickname</b> : <span id="nickname"></span> </li>
                         <li class="lidisplay fs-4"> <b>Customer ID</b> : <span id="cid"></span> </li>
                         <li class="lidisplay fs-3 text-warning "> <b>Coin : <span id="coin"></span> </b> </li>
                         <li class="lidisplay fs-4"><b>Phone No.</b> : <span id="phone"></span> </li>
 
                         {{-- Add Coin --}}
-                        <div class="fs-5 fw-bold">Add Coin</div>
+                        <div class="fs-5 fw-bold mt-4">Add Coin</div>
                         <div class="input-group mb-3 received_amount">
                             <input type="number" class="form-control" id="recAmt" name="amount"
                                 aria-label="Recipient's username" aria-describedby="checkBtn" />

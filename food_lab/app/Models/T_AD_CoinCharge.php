@@ -193,7 +193,7 @@ class T_AD_CoinCharge extends Model
     * Parameters : no
     * Return : photo path
     */
-  public function setChargeDecision($chargeid, $decision)
+  public function setChargeDecision($chargeid, $decision,$isRedecision = 0)
   {
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'Start setChargeDecision'
@@ -201,7 +201,11 @@ class T_AD_CoinCharge extends Model
 
     T_AD_CoinCharge::where('del_flg', 0)
       ->where('id', $chargeid)
-      ->update(['decision_status' => $decision]);
+      ->update([
+        'decision_status' => $decision,
+        'decision_by' => session('adminId'),
+        're_decision' => $isRedecision
+      ]);
 
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [

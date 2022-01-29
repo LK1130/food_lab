@@ -377,7 +377,7 @@ class CoinController extends Controller
 
                 // Set Status
                 $t_ad_coincharge = new T_AD_CoinCharge();
-                $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
+                $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision, 1);
 
                 // Reset if waiting
                 if ($request->decision == $common->WAITING) {
@@ -427,6 +427,9 @@ class CoinController extends Controller
     */
     public function searchCustomer(Request $request)
     {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start searchCustomer'
+        ]);
         $t_cu_customer = new T_CU_Customer();
         $customer = $t_cu_customer->searchByID($request->id);
 
@@ -435,14 +438,61 @@ class CoinController extends Controller
                 'error' => 1,
             ]);
         }
+        Log::channel('adminlog')->info("CoinController", [
+            'End searchCustomer'
+        ]);
         return response()->json([
             'nickname' => $customer->nickname,
-            'cid' => $customer->nickname,
+            'cid' => $customer->customerID,
             'coin' => number_format($customer->remain_coin),
             'phone' => $customer->phone,
         ]);
     }
 
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to add coin to customer.
+    * Parameters : Request 
+    * Return : view('admin.coin.addCoin')
+    */
+    public function addCoinCustomer(Request $request)
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start addCoinCustomer'
+        ]);
+
+
+        $request->validate([
+            'note' => 'required',
+            'amount' => 'required',
+            'customerid' => 'required'
+        ]);
+
+        DB::transaction(
+            function () use ($request) {
+                $t_cu_customer = new T_CU_Customer();
+                $customer = $t_cu_customer->searchByCustomerID($request->customerid);
+
+                if ($customer == null) abort(500);
+
+                // Set Coin History
+                $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
+                $t_cu_coin_customer_history->setCoinHistory($customer->id, $request->amount, $request->note);
+
+                // Set Coin Table
+                $t_cu_coin_customer = new T_CU_Coin_Customer();
+                $t_cu_coin_customer->setCoin($customer->id, $request->amount);
+            }
+        );
+
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End addCoinCustomer'
+        ]);
+
+        return redirect('addCoin');
+    }
 
     /*
     * Create:zayar(2022/01/12) 
