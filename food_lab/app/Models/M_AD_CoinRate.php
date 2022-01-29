@@ -26,9 +26,11 @@ class M_AD_CoinRate extends Model
             'Start coinHistory'
         ]);
 
-        $result= T_AD_CoinRate_History::where('t_ad_coinrate_history.del_flg', '=', 0)
+        $result= T_AD_CoinRate_History::select('*',DB::raw('t_ad_coinrate_history.created_at AS created'))
+        ->where('t_ad_coinrate_history.del_flg', '=', 0)
         ->join('m_ad_login', 'm_ad_login.id','=','t_ad_coinrate_history.change_by')
-        ->paginate(3);
+        ->orderBy('t_ad_coinrate_history.created_at','DESC')
+        ->paginate(10);
 
         Log::channel('adminlog')->info("M_AD_CoinRate Model", [
             'End coinHistory'
