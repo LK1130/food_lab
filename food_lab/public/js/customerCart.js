@@ -60,7 +60,7 @@ $(document).ready(function () {
         if ( decreaseNum > 0) { 
             $(".num").text(decreaseNum); 
         }else{
-            alert("Please buy this product again!");
+            alert("If you don't want to buy this product,please click delete button.");
         }
     });   
 });

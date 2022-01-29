@@ -8,7 +8,7 @@
 
 body {
    min-height: 100vh;
-   min-width: 100vw;
+   min-width: 100%;
    background: radial-gradient(99.42% 194.92% at 0% 1.32%, #000000 26.49%, #000000 49.21%, #000000 82.28%);
    position: relative;
 }

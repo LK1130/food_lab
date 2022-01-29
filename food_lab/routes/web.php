@@ -267,6 +267,8 @@ Route::get('/news', [CustomerController::class, 'news']);
 Route::get('/deliveryInfo', function () {
     return View('customer.deliveryInfo');
 });
+
+
 Route::get('/cart', function () {
     return View('customer.cart');
 });
