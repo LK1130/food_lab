@@ -12,172 +12,126 @@
     --bg2-color: black;
     --coin-color: #FFD233;
 }
+
+
 /*Start Header*/
 
-body{
+body {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url("/img/checkout.jpeg");
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/checkout.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-.logo{
-   margin-top: 1em;
-   margin-left: 45%;
+
+.logo {
+    margin-top: 1em;
+    margin-left: 45%;
 }
+
 .comapanynames {
     color: var(--text-color);
     font-size: x-large;
     padding-top: 1em;
 }
-.heading{
+
+.heading {
     color: var(--primary-color);
     font-size: xx-large;
-    margin-left: 1em;
 }
-.formDisplay{
-    width: 50%;
-    height: 35em;
+
+.formDisplay {
+    min-width: 60% !important;
     border: 0.2em solid var(--text-color);
     border-radius: 2em;
-    margin-top: 2em;
-    margin-left: 24em;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(22, 21, 21, 0.8))
- }
- .controlForm{
-    display: inline;
+}
+
+.forms {
+    width: 100%;
+}
+
+.labels {
+    width: 40%;
+}
+
+.inputs {
     width: 60%;
+}
+
+.controlForm {
+    width: 90%;
     padding: 0.375rem 2.25rem 0.375rem 0.75rem;
     font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
     border-radius: 0.25rem;
-    margin-left: 10em;
+    border: none;
+    outline: none;
+    resize: none;
 }
-#details{
-    margin-top: 0.3em;
-    padding-left: 5em;
+
+#details {
     font-size: x-large;
     color: var(--primary-color);
 }
-.formDiv{
-    display: flex;
-    flex-direction:column;
-    height: 5em;
-    margin-top: 0.5em;
+
+input[type='radio'],
+.cursor {
+    cursor: pointer;
 }
-.formDiv1{
-    display: flex;
-    flex-direction:column;
-    height: 7em;
-    margin-top: 0.5em;
-}
-#name,#phone{
-    margin-top: 1em; 
-}
-#address{
-    margin-left:10em; 
-    margin-top: 1em; 
-}
-.radioBtn{
-    margin-left:9em; 
-    display: flex;
-    flex-direction: row;
-    margin-top: 0.8em;
-}
-.cod{
-    margin-left:5em; 
-    color: var(--primary-color);
-    font-size: x-large;
-} 
-.coin{
-    margin-left:3em; 
-    color: var(--primary-color);
-    font-size: x-large;
-}  
+
 .amount {
-    display: flex;
-    flex-direction: row;
-} 
-.amountDiv{
-   margin-left: 10em;
-   margin-top:1em ;
-   width: 6em;
-   height: 4em;
-   background-color: black;
-   border: 0.1em solid var(--text-color);
-   color: var(--primary-color);
-} 
-.coinAmount{
+    width: 30%;
+    background-color: #FFFFFF;
+}
+
+.hide {
     display: none;
-} 
-.codAmount{
-    display: none;
-} 
-.btnStyle{
-    display: flex;
-    flex-direction: row;
-    margin-top: 1em;
-    margin-left: 4em;
-} 
+}
+
+.moneys {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    padding: 10px 0;
+    margin-bottom: 0 !important;
+}
+
 .cancels {
-    background-color:var(--text-color);
+    background-color: var(--text-color);
     color: var(--primary-color);
     font-weight: bold;
     font-size: large;
     border: 2px groove transparent;
     padding: 10px 20px;
     border-radius: 0.3em;
-    margin-top: 0.3em;
-    margin-left: 8em;
 }
+
 .order {
-    background-color:var(--primary-color);
+    background-color: var(--primary-color);
     color: var(--text-color);
     font-weight: bold;
     font-size: large;
     border: 2px groove transparent;
     padding: 10px 20px;
     border-radius: 0.3em;
-    margin-top: 0.3em;
-    margin-left: 7em;
 }
+
 @media (max-width: 720px) {
-    .formDisplay{  
-        width: 80%;
-        margin-left: 3em;
+    .heading {
+        font-size: x-large;
     }
-    .formDiv{
-        width: 100%;
-        padding-left: 1em;
+    #details {
+        font-size: larger;
     }
-    .formDiv1{
-        width: 100%;
-        padding-left: 1em;
+    .moneys {
+        font-size: 0.8rem;
+        padding: 5px;
     }
-    #details{
-        padding-left: 1em;
+    .cancels,
+    .order {
+        font-size: small;
+        padding: 5px 10px;
     }
-    .controlForm{
-        width: 80%;
-        margin-left: 3em;
-    }
-    #address{
-        width: 80%;
-        margin-left: 3em;
-    }
-    .radioBtn{
-        margin-left:1em; 
-    }
-    .amountDiv{
-        margin-left: 5em;
-     } 
-    .btnStyle{
-        margin-left: 1em;
-    } 
-    .cancels{
-        margin-left: 4em;
-    } 
 }

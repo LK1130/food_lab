@@ -1,4 +1,4 @@
-@extends('COMMON.layout.layout_customer_3')
+@extends('COMMON.layout.layout_cusotmer_2')
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -7,55 +7,78 @@
     <link rel="stylesheet"  href= "css/customerDeliveryInfo.css"/>
 @endsection
 
-@section('script')
-    <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
+@section('js')
     <script src="js/customerDeliveryInfo.js" type="text/javascript" defer></script>
 @endsection
 
 @section('title','Deliver Information')
 
-@section('section')
-<h1 class="heading">Delivery Information</h1>
-<section class="formDisplay">
-   <div class="d-flex flex-column justify-content-center align-items-center">
-       
-       <form action="/suggest" method="post">
-           @csrf
-           <div class="d-flex formDiv">
-               <label class="fw-bold" id="details">Name</label>
-               <input type="text" class="controlForm" id="name"></input>
-           </div>
-           <div class="d-flex formDiv">
-               <label class="fw-bold" id="details">Phone</label>
-               <input type="text" class="controlForm" id="phone"></input>
-           </div>
-           <div class="d-flex formDiv1">
-               <label class="fw-bold" id="details">Address</label>
-               <textarea class="controlForm" id="address"></textarea>
-           </div>
-           <div class="d-flex formDiv">
-               <label class="fw-bold" id="details">Payment</label>
-               <div class="radioBtn">
-                   <div class="form-check form-check-inline coin">
-                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                       <label class="form-check-label" for="inlineRadio1">Coin</label>
-                   </div>
-                   <div class="form-check form-check-inline cod">
-                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                       <label class="form-check-label" for="inlineRadio2">Cash On Delivery</label>
-                   </div>
-               </div>
-           </div>
-           <div class="d-flex amount">
-               <div class="amountDiv coinAmount"></div>
-               <div class="amountDiv codAmount"></div>
-           </div>
-
-           <div class="btnStyle">
-               <a href="/" type="reset" class="btn me-5 cancels">Cancel</a>
-               <button type="submit" class="order">Order</button>
-           </div>
-       </form>
+@section('body')
+<section>
+    <p class="fs-1 text-white fw-bold text-center pt-4"><img src="{{ url('storage/logo/siteLog.png') }}" alt="Logo"> Food Lab</p>
+    <h1 class="fw-bold ms-4 my-4 heading">Delivery Information</h1>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <form action="/suggest" class="py-3 formDisplay" method="post">
+            @csrf
+            <div class="d-flex mb-4 forms">
+                <div class="text-center labels">
+                    <label class="fw-bold" id="details">Name</label>
+                </div>
+                <div class="inputs">
+                    <input type="text" name='username' class="controlForm" />
+                </div>
+            </div>
+            <div class="d-flex mb-4 forms">
+                <div class="text-center labels">
+                    <label class="fw-bold" id="details">Phone</label>
+                </div>
+                <div class="inputs">
+                    <input type="text" name="phone" class="controlForm"/>
+                </div>
+            </div>
+            <div class="d-flex mb-4 forms">
+                <div class="text-center labels">
+                    <label class="fw-bold" id="details">Address</label>
+                </div>
+                <div class="inputs">
+                    <textarea class="controlForm"></textarea>
+                </div>
+            </div>
+            <div class="d-flex mb-4 forms">
+                <div class="text-center labels">
+                    <label class="fw-bold" id="details">Payment</label>
+                </div>
+                <div class="d-flex justify-content-around align-items-center inputs">
+                    <div>
+                        <input type="radio" id="coin" class="me-3" name="money" value="1" checked/> 
+                        <label for="coin" class="text-white moneys cursor">Coin</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="cash" class="me-3" name="money" value="2"/> 
+                        <label for="cash" class="text-white moneys cursor">Cash On Delivery</label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex mb-4 forms">
+                <div class="text-center labels">
+                </div>
+                <div class="d-flex justify-content-center align-items-center inputs">
+                    <div class="text-center amount coin">
+                        <p class="moneys">10</p>
+                    </div>
+                    <div class="text-center amount cash hide">
+                        <p class="moneys">1000 Ks</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center forms">
+                <div>
+                    <a href="/" type="reset" class="btn me-5 cancels">Cancel</a>
+                    <button type="submit" class="order">Order</button>
+                </div>
+            </div>
+        </form>
+    </div>
    </section>
 @endsection
 
