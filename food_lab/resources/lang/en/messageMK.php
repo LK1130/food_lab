@@ -64,7 +64,7 @@ return [
     'signIn' => 'Sign in',
     'Ifyoudoesn\'thaveAnyaccount' => 'If you doesn\'t have Any account',
     'signUpHere' => 'Sign Up Here',
-    'Skip' => 'Skip',
+    'Skip' => 'Skip For Now',
     'favouriteType' => 'Favourite Type',
     'favouriteTaste' => 'Favourite Taste',
     'Note' => 'Note',

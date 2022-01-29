@@ -41,41 +41,40 @@ class T_AD_CoinCharge extends Model
     * This is function is to show the data of admin DashboardminiCoinchargeList
     * Return 
     */
-  public function Dashboardminicoin()
-  {
+    public function Dashboardminicoin(){
 
-    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
-      'Start Dashboardminicoin'
-    ]);
+      Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
+        'Start Dashboardminicoin'
+      ]);
 
-    $dashboardcoin = T_AD_CoinCharge::join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
-      ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
-      ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-      ->where('t_ad_coincharge.del_flg', 0)
-      ->orderby('t_ad_coincharge.request_datetime', 'DESC')
-      ->limit(5)
-      ->get();
+        $dashboardcoin = T_AD_CoinCharge::
+        join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
+        ->join('m_decision_status','m_decision_status.id','=','t_ad_coincharge.decision_status')
+        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
+        ->where('t_ad_coincharge.del_flg',0)
+        ->orderby('t_ad_coincharge.request_datetime','DESC')
+        ->limit(5)
+        ->get();
 
-    Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
-      'End Dashboardminicoin'
-    ]);
+        Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
+          'End Dashboardminicoin'
+        ]);
 
-    return $dashboardcoin;
-  }
+        return $dashboardcoin;
+    }
 
-  public function UsercoinchargeList($id)
-  {
+      public function UsercoinchargeList($id){
 
-    $usercoin = T_AD_CoinCharge::join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
-      ->join('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
-      ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-      ->where('t_ad_coincharge.del_flg', 0)
-      ->where('t_ad_coincharge.customer_id', '=', $id)
-      ->paginate(10);
-
-    return $usercoin;
-  }
-
+        $usercoin = T_AD_CoinCharge::
+        join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
+        ->join('m_decision_status','m_decision_status.id','=','t_ad_coincharge.decision_status')
+        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
+        ->where('t_ad_coincharge.del_flg',0)
+        ->where('t_ad_coincharge.customer_id','=',$id)
+        ->paginate(10,['*'],'customerCoin');
+        
+        return $usercoin;
+      }
   /*
     * Create : linn(2022/01/16) 
     * Update : 
@@ -96,7 +95,7 @@ class T_AD_CoinCharge extends Model
         DB::raw('t_ad_coincharge.updated_at AS updatetime')
       )
         ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_coincharge.customer_id')
-        ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
+        ->leftjoin('m_ad_login', 'm_ad_login.id', '=', 't_ad_coincharge.decision_by')
         ->where('decision_status', $status)
         ->where('t_ad_coincharge.del_flg', 0)
         ->orderby('request_datetime', 'desc')
@@ -169,11 +168,16 @@ class T_AD_CoinCharge extends Model
       'Start getChargePhoto'
     ]);
 
+    $evd_id = T_AD_CoinCharge::find($chargeid);
+
+    if($evd_id == null) abort(500);
+
     $result =  T_AD_Evd::select('path')
+      ->where('id',$evd_id->request_evd_ID)
       ->where('del_flg', 0)
-      ->where('charge_id', $chargeid)
       ->first();
 
+    if ($result == null) abort(500);
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'End getChargePhoto'
@@ -189,7 +193,7 @@ class T_AD_CoinCharge extends Model
     * Parameters : no
     * Return : photo path
     */
-  public function setChargeDecision($chargeid, $decision)
+  public function setChargeDecision($chargeid, $decision,$isRedecision = 0)
   {
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
       'Start setChargeDecision'
@@ -197,7 +201,11 @@ class T_AD_CoinCharge extends Model
 
     T_AD_CoinCharge::where('del_flg', 0)
       ->where('id', $chargeid)
-      ->update(['decision_status' => $decision]);
+      ->update([
+        'decision_status' => $decision,
+        'decision_by' => session('adminId'),
+        're_decision' => $isRedecision
+      ]);
 
 
     Log::channel('adminlog')->info("T_AD_CoinCharge Model", [
@@ -228,5 +236,31 @@ class T_AD_CoinCharge extends Model
     ]);
 
     return $result;
+  }
+/*
+    * Create : ZPA(2022/01/27) 
+    * Update : 
+    * This function is use to insert customer data and coin data for Coin Charge.
+    * Parameters : $coin= request coin , $customerID = customer ID,
+    * Return : Customer Coin Charge Data
+    */
+  public function customerCoinCharge($coin,$customerID,$filepath){
+
+    DB::transaction(function()use($coin,$customerID,$filepath) {
+        $evdData= new T_AD_Evd();
+        $evdData->path=$filepath;
+        $evdData->save();
+        $curequestcoindata = new T_AD_CoinCharge();
+    $curequestcoindata->request_coin=$coin['coinput'];
+    $curequestcoindata->customer_id=$customerID;
+    $curequestcoindata->decision_status="1";
+    $curequestcoindata->request_evd_ID=$evdData->id;
+    $curequestcoindata->save();
+    // $evdData->coinChargeconnect()->save($curequestcoindata);
+    });
+  } 
+
+  public function evdConnect(){
+    return $this->belongsTo("App\Models\T_AD_Evd");
   }
 }

@@ -519,7 +519,7 @@ CREATE TABLE `t_cu_customer` (
   `login_by_gmail` varchar(255) DEFAULT NULL COMMENT 'Id of Gmail Login',
   `dob` timestamp NULL DEFAULT NULL COMMENT 'Date of Birth',
   `gender` int DEFAULT NULL COMMENT 'Gender of customer',
-  `fav_type` int DEFAULT NULL COMMENT 'Favorite of customer',
+  `fav_type` varchar(255) DEFAULT NULL COMMENT 'Favorite of customer',
   `taste` int DEFAULT NULL COMMENT 'Taste of customer',
   `allergic` varchar(255) DEFAULT NULL COMMENT 'Allergic of customer',
   `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',

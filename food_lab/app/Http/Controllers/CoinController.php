@@ -13,6 +13,8 @@ use App\Models\T_AD_CoinCharge_Decision_History;
 use App\Models\T_AD_CoinCharge_Finance;
 use App\Models\T_CU_Coin_Customer;
 use App\Models\T_CU_Coin_Customer_History;
+use App\Models\T_CU_Customer;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -375,7 +377,7 @@ class CoinController extends Controller
 
                 // Set Status
                 $t_ad_coincharge = new T_AD_CoinCharge();
-                $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
+                $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision, 1);
 
                 // Reset if waiting
                 if ($request->decision == $common->WAITING) {
@@ -384,11 +386,11 @@ class CoinController extends Controller
 
                     // Set Coin History
                     $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
-                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, -($subAmount->amount), $request->note);
+                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, - ($subAmount->amount), $request->note);
 
                     // Set Coin Table
                     $t_cu_coin_customer = new T_CU_Coin_Customer();
-                    $t_cu_coin_customer->setCoin($charge->customer_id,- ($subAmount->amount));
+                    $t_cu_coin_customer->setCoin($charge->customer_id, - ($subAmount->amount));
 
                     // reset Finance Table
                     $t_ad_Coincharage_finance->reSetFinance($request->chargeId);
@@ -401,6 +403,95 @@ class CoinController extends Controller
         ]);
 
         return redirect('/coinListing');
+    }
+
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to show coin change history.
+    * Parameters : charge id
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function addCoin()
+    {
+        return View('admin.coin.add');
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to search Customer By Customer ID.
+    * Parameters : charge id
+    * Return : view('admin.coin.rateHistory')
+    */
+    public function searchCustomer(Request $request)
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start searchCustomer'
+        ]);
+        $t_cu_customer = new T_CU_Customer();
+        $customer = $t_cu_customer->searchByID($request->id);
+
+        if ($customer == null) {
+            return response()->json([
+                'error' => 1,
+            ]);
+        }
+        Log::channel('adminlog')->info("CoinController", [
+            'End searchCustomer'
+        ]);
+        return response()->json([
+            'nickname' => $customer->nickname,
+            'cid' => $customer->customerID,
+            'coin' => number_format($customer->remain_coin),
+            'phone' => $customer->phone,
+        ]);
+    }
+
+    /*
+    * Create : linn(2022/01/17) 
+    * Update : 
+    * This function is use to add coin to customer.
+    * Parameters : Request 
+    * Return : view('admin.coin.addCoin')
+    */
+    public function addCoinCustomer(Request $request)
+    {
+        Log::channel('adminlog')->info("CoinController", [
+            'Start addCoinCustomer'
+        ]);
+
+
+        $request->validate([
+            'note' => 'required',
+            'amount' => 'required',
+            'customerid' => 'required'
+        ]);
+
+        DB::transaction(
+            function () use ($request) {
+                $t_cu_customer = new T_CU_Customer();
+                $customer = $t_cu_customer->searchByCustomerID($request->customerid);
+
+                if ($customer == null) abort(500);
+
+                // Set Coin History
+                $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
+                $t_cu_coin_customer_history->setCoinHistory($customer->id, $request->amount, $request->note);
+
+                // Set Coin Table
+                $t_cu_coin_customer = new T_CU_Coin_Customer();
+                $t_cu_coin_customer->setCoin($customer->id, $request->amount);
+            }
+        );
+
+
+        Log::channel('adminlog')->info("CoinController", [
+            'End addCoinCustomer'
+        ]);
+
+        return redirect('addCoin');
     }
 
     /*

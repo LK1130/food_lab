@@ -22,20 +22,20 @@
     <div class="col-md-10">
         {{-- Top Noti Start --}}
         <div class="d-flex justify-content-end bd-highlight mx-5 my-4">
-            {{-- Noti --}}
-            <a href="#">
+            {{-- Suggest --}}
+            <a href="customerSuggest">
                 <button type="button" class="btn btn-lg btn-outline-dark position-relative mx-3 fs-4">
                     <i class="bi bi-bell"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        14
+                        {{ $sugcount }}
                     </span>
                 </button></a>
             {{-- Contact --}}
-            <a href="#">
+            <a href="customerContact">
                 <button type="button" class="btn btn-lg lg btn-outline-dark position-relative mx-3 fs-4">
                     <i class="bi bi-book"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        12
+                        {{ $concount }}
                     </span>
                 </button></a>
             {{-- Report --}}
@@ -43,7 +43,7 @@
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        13
+                        {{ $rpcount }}
                     </span>
                 </button></a>
         </div>
@@ -68,7 +68,7 @@
             </div>
             <div class="col a ms-3">
                 <div class="text-center pb-3">
-                    <p class=" numbers coinrate">{{ $coinrate->rate }}</p>
+                    <p class=" numbers coinrate">{{ $coinrate->rate }} </p>
                     <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
                     <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
                 </div>
@@ -99,11 +99,11 @@
                 <table class="table boxshad">
                     <thead>
                         <tr class="tableheader tablerows ">
-                            <th scope="col">No.</th>
-                            <th scope="col">Customer ID</th>
-                            <th scope="col">Payment</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Date&Time</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col">{{ __('messageZN.Payment') }}</th>
+                            <th scope="col">{{ __('messageZN.Status') }}</th>
+                            <th scope="col">{{ __('messageZN.Date&Time') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,11 +129,11 @@
                 <table class="table boxshad">
                     <thead>
                         <tr class="tableheader tablerows">
-                            <th scope="col">No.</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Cus. ID</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Ph No.</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.CustomerName') }}</th>
+                            <th scope="col">{{ __('messageZN.Cus ID') }}</th>
+                            <th scope="col">{{ __('messageZN.Address') }}</th>
+                            <th scope="col">{{ __('messageZN.Ph No') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -160,12 +160,12 @@
                 <table class="table boxshad">
                     <thead>
                         <tr class="tableheader tablerows">
-                            <th scope="col">No.</th>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Product ID</th>
-                            <th scope="col">Coin/amount</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Taste</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.Product Name') }}</th>
+                            <th scope="col">{{ __('messageZN.Product ID') }}</th>
+                            <th scope="col">{{ __('messageZN.Coin Amount') }}</th>
+                            <th scope="col">{{ __('messageZN.Type') }}</th>
+                            <th scope="col">{{ __('messageZN.Taste') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -173,7 +173,7 @@
                             <tr class="tablecolor1 tablerows">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list3->product_name }}</td>
-                                <td>C12312</td>
+                                <td>{{ $list3->id }}</td>
                                 <td>{{ $list3->coin }}/{{ $list3->amount }}</td>
                                 <td>{{ $list3->favourite_food }}</td>
                                 <td>{{ $list3->taste }}</td>
@@ -190,11 +190,11 @@
                 <table class="table boxshad">
                     <thead>
                         <tr class="tableheader tablerows">
-                            <th scope="col">No.</th>
-                            <th scope="col">Customer ID</th>
-                            <th scope="col">Approve By</th>
-                            <th scope="col">Coin Amount</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">{{ __('messageZN.No') }}</th>
+                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col">{{ __('messageZN.Approve By') }}</th>
+                            <th scope="col">{{ __('messageZN.CoinA') }}</th>
+                            <th scope="col">{{ __('messageZN.Status') }}</th>
                         </tr>
                     </thead>
                     <tbody>
