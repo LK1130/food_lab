@@ -3,13 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
-<<<<<<< HEAD
 use App\Http\Controllers\CartController;
-=======
 use App\Http\Controllers\BuycoinController;
->>>>>>> 5929cc2eece5831007ec6d6f100e0ef08deca1df
 use App\Http\Controllers\CategoryController;
-use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
