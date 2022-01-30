@@ -28,6 +28,7 @@ use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
 
@@ -310,7 +311,8 @@ Route::get('productDetail',[ProductDetailController::class,'detail']);
 /*
  * For Product
  */
-Route::get('productList',[ProductDetailController::class,'productList']);
+Route::get('productLists',[ProductDetailController::class,'productList']);
+Route::post('searchCategory',[ProductSearchController::class,'searchByCategory']); 
 /*
  * For logging out
  */

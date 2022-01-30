@@ -69,7 +69,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="#">{{ __('messageMK.products') }}</a>
+                            <a class="nav-link texts" href="/productLists">{{ __('messageMK.products') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'coin')
@@ -104,7 +104,7 @@
                                 {{ __('messageMK.inform') }}
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ $count }}
+                                    {{-- {{ $count }} --}}
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </p>

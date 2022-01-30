@@ -1,3 +1,5 @@
+ const main  =  document.getElementById('mainimg');
+
 $(document).ready(function(){
     $('.count').prop('disabled', true);
        $(document).on('click','.plus',function(){
@@ -13,4 +15,21 @@ $(document).ready(function(){
                 $('.count').val(1);
             }
         });
+    
+    let count = 0;
+    $('.btns').click(function(e){
+      
+       let text =  $('#count').text();
+    
+        $('#count').text($('.count').val());
+        e.preventDefault();
+    })
+
+    $()
  });
+
+function changeImage(img){
+
+    main.src = img.src;
+    //  this.src = img.src;
+}
