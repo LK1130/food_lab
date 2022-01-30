@@ -99,4 +99,18 @@ class M_Payment extends Model
             'End paymentDelete'
         ]);
     }
+ /*
+   * Create:Zaw Phyo (2022/01/28) 
+   * Update: 
+   * This function is used to pull out Payment Accounts.
+   * Return : Payment Accounts.
+   */
+    public function paymentAcoounts(){
+        Log::channel('adminlog')->info("M_Payment Model", [
+            'Start paymentAccounts'
+        ]);
+
+        $paymentAccounts = M_Payment::where('del_flg',0)->get();
+        return $paymentAccounts;
+    }
 }

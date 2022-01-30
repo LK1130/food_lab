@@ -1,13 +1,9 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
-@section('google')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async></script>
-@endsection
-
-@section('facebook')
-{{--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>--}}
+@section('css')
+        {{-- custom css 2 --}}
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('js')
@@ -19,6 +15,16 @@
 @endsection
 
 @section('title','Food Lab')
+
+@section('google')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async></script>
+@endsection
+
+@section('facebook')
+{{--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>--}}
+@endsection
 
 @section('body')
     {{-- Start Access Section--}}

@@ -3,8 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\BuycoinController;
 use App\Http\Controllers\CategoryController;
-use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -127,23 +128,23 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
     Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
     /**
- * Customer Report
- */
-Route::get('customerReport',[NotificationController::class,'customerReport']);
-Route::post('reportrp/{id}',[NotificationController::class,'reportRp']);
-Route::get('reportreplies',[NotificationController::class,'customerreportReply']);
-/**
- * Customer Contact
- */
-Route::get('customerContact',[NotificationController::class,'customerContact']);
-Route::post('conrp/{id}',[NotificationController::class,'contrpy']);
-Route::get('contactreplies',[NotificationController::class,'customercontactReply']);
-/**
- * Customer Suggest
- */
-Route::get('customerSuggest',[NotificationController::class,'customerSuggest']);
-Route::post('sugrp/{id}',[NotificationController::class,'cusRpy']);
-Route::get('suggestreplies',[NotificationController::class,'customersuggestReply']);
+     * Customer Report
+     */
+    Route::get('customerReport', [NotificationController::class, 'customerReport']);
+    Route::post('reportrp/{id}', [NotificationController::class, 'reportRp']);
+    Route::get('reportreplies', [NotificationController::class, 'customerreportReply']);
+    /**
+     * Customer Contact
+     */
+    Route::get('customerContact', [NotificationController::class, 'customerContact']);
+    Route::post('conrp/{id}', [NotificationController::class, 'contrpy']);
+    Route::get('contactreplies', [NotificationController::class, 'customercontactReply']);
+    /**
+     * Customer Suggest
+     */
+    Route::get('customerSuggest', [NotificationController::class, 'customerSuggest']);
+    Route::post('sugrp/{id}', [NotificationController::class, 'cusRpy']);
+    Route::get('suggestreplies', [NotificationController::class, 'customersuggestReply']);
     /**
      * For Product Form page
      */
@@ -172,6 +173,8 @@ Route::get('suggestreplies',[NotificationController::class,'customersuggestReply
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
+    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
+    Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
 
@@ -289,18 +292,18 @@ Route::get('/tracks', [CustomerController::class, 'tracks']);
 /*
  * For deliery info page
 */
-Route::get('/deliveryInfo', function () {
-    return View('customer.deliveryInfo');
-});
-Route::get('/cart', function () {
-    return View('customer.cart');
-});
-
+Route::get('/cart', [CartController::class, 'cart']);
+Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
 /*
  * For Login Form
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
 
+/*
+For Buy Coin Page
+*/
+Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
 
 /*
  * For Product Detail Form
