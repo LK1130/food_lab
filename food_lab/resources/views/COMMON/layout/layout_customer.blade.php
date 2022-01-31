@@ -69,7 +69,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="#">{{ __('messageMK.products') }}</a>
+                            <a class="nav-link texts" href="/productLists">{{ __('messageMK.products') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'coin')

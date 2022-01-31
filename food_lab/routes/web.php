@@ -6,7 +6,6 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BuycoinController;
 use App\Http\Controllers\CategoryController;
-use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +30,7 @@ use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
 
@@ -277,7 +277,7 @@ Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']
  * For news page
  * zayar
  */
-Route::get('/news', [CustomerController::class, 'news']);
+Route::get('/customerNews', [CustomerController::class, 'news']);
 
 /*
  * For messages page
@@ -314,12 +314,14 @@ Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
  * For Product Detail Form
  */
 Route::get('productDetail',[ProductDetailController::class,'detail']);
+Route::post('cartsession',[CartController::class,'getData']);
 
 
 /*
  * For Product
  */
-Route::get('productList',[ProductDetailController::class,'productList']);
+Route::get('productLists',[ProductDetailController::class,'productList']);
+Route::post('searchCategory',[ProductSearchController::class,'searchByCategory']); 
 /*
  * For logging out
  */

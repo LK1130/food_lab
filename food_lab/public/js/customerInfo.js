@@ -16,7 +16,7 @@ $(document).ready(function () {
         });
         e.preventDefault();
         var formdata = { nickname: $("#search").val() };
-
+       
         $.ajax({
             type: "GET",
             url: "searchname",

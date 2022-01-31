@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Models\AdminLogin;
+use App\Models\M_AD_Login;
 use Illuminate\Contracts\Validation\Rule;
 
 class CheckName implements Rule
@@ -33,7 +34,7 @@ class CheckName implements Rule
     */
     public function passes($attribute, $value)
     {
-        $admin = AdminLogin::where('ad_name', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_AD_Login::where('ad_name', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

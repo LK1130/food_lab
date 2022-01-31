@@ -32,7 +32,7 @@ class AdminController extends Controller
 
     /*
       * Create : Min Khant(20/1/2022)
-      * Update :
+      * Update : zayar(31/1/2022)
       * Explain of function : To check admin login username and password
       * Prarameter : $request
       * return : redirect dashboard
