@@ -23,9 +23,10 @@
                     class="btn text-light inactive btncust">{{ __('messageLK.CoinHistory') }}</button></a>
         </div>
         {{-- Starts Form --}}
-        <a href="{{ url('coinrate') }}"><button class="change" id="back">{{ __('messageZY.back') }}</button></a>
         <form action="rateStore" method="POST" enctype="multipart/form-data">
+            <div class="col-5">
             @include('COMMON.component.coinRateAdd')
+            </div>
         </form>
 
     </div>

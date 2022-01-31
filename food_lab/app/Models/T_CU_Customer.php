@@ -410,11 +410,11 @@ class T_CU_Customer extends Model
   }
 
   /*
-      * Create : Linn Ko(20/1/2022)
+      * Create : Min Khant(28/1/2022)
       * Update :
-      * Explain of function : To show customer search names
+      * Explain of function : To get customer info
       * Prarameter : no
-      * return :
+      * return : customer info
     */
   public function customerInformation($id)
   {
@@ -454,5 +454,31 @@ class T_CU_Customer extends Model
       'End deliveryTownship'
     ]);
     return $township;
+  }
+  /*
+    * Create : Cherry(30/1/2022)
+    * Update :
+    * Explain of function : To get state and township
+    * Prarameter : $userID
+    * return : deliTownship
+    */
+
+  public function deliTownship($userID)
+  {
+
+    Log::channel('adminlog')->info("T_CU_Customer", [
+      'Start deliTownship'
+    ]);
+
+    $deliInfo = T_CU_Customer::select('*', DB::raw('t_cu_customer.id'))
+      ->where('t_cu_customer.id', '=', $userID)
+      ->join('m_township', 'm_township.id', '=', 't_cu_customer.address2')
+      ->join('m_state', 'm_state.id', '=', 't_cu_customer.address1')
+      ->first();
+
+    Log::channel('adminlog')->info("T_CU_Customer", [
+      'end deliTownship'
+    ]);
+    return $deliInfo;
   }
 }

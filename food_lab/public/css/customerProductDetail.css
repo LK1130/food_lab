@@ -138,6 +138,7 @@
 
 .customBlock{
     width: 9vw !important;
+    cursor: pointer;
     /* height: 10vh !important; */
 }
 

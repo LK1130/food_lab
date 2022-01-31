@@ -69,7 +69,7 @@ class T_AD_Photo extends Model
             t_ad_photo
             WHERE
             t_ad_photo.link_id = $id AND
-            t_ad_photo.del_flg =0 
+            t_ad_photo.del_flg = 0 
             ORDER BY
             t_ad_photo.order_id")
         );
