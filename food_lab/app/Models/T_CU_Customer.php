@@ -197,9 +197,9 @@ class T_CU_Customer extends Model
         $customer->customerID = $customerId;
         $customer->nickname = $data['username'];
         $customer->phone = $data['phone'];
-        $customer->address1 = $data['addressNo'];
-        $customer->address2 = $data['addressState'];
-        $customer->address3 = $data['addressTownship'];
+        $customer->address1 = $data['addressState'];
+        $customer->address2 = $data['addressTownship'];
+        $customer->address3 = $data['addressNo'];
         $customer->fav_type = $data['type'];
         $customer->taste = $data['taste'];
         $customer->allergic = $data['note'];
@@ -222,9 +222,9 @@ class T_CU_Customer extends Model
         $customer->customerID = $customerId;
         $customer->nickname = $data['username'];
         $customer->phone = $data['phone'];
-        $customer->address1 = $data['addressNo'];
-        $customer->address2 = $data['addressState'];
-        $customer->address3 = $data['addressTownship'];
+        $customer->address1 = $data['addressState'];
+        $customer->address2 = $data['addressTownship'];
+        $customer->address3 = $data['addressNo'];
         $customer->save();
 
         //insert customerLogin
@@ -408,4 +408,32 @@ class T_CU_Customer extends Model
 
     return $result;
   }
+
+   /*
+    * Create : Cherry(30/1/2022)
+    * Update :
+    * Explain of function : To get state and township
+    * Prarameter : $userID
+    * return : deliTownship
+    */
+    
+    public function deliTownship($userID)
+    {
+
+        Log::channel('adminlog')->info("T_CU_Customer", [
+            'Start deliTownship'
+        ]);
+
+        $deliInfo = T_CU_Customer::select('*', DB::raw('t_cu_customer.id'))
+        ->where('t_cu_customer.id', '=', $userID)
+        ->join('m_township', 'm_township.id', '=', 't_cu_customer.address2')
+        ->join('m_state', 'm_state.id', '=', 't_cu_customer.address1')
+        ->first();
+
+        Log::channel('adminlog')->info("T_CU_Customer", [
+          'end deliTownship'
+        ]);
+        return $deliInfo;
+        
+    }
 }

@@ -3,11 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
-<<<<<<< HEAD
 use App\Http\Controllers\CartController;
-=======
 use App\Http\Controllers\BuycoinController;
->>>>>>> 5929cc2eece5831007ec6d6f100e0ef08deca1df
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
@@ -27,6 +24,7 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CustomerProfileUpdate;
+use App\Http\Controllers\DeliveryInfoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
@@ -293,22 +291,14 @@ Route::get('/messages', [CustomerController::class, 'message']);
  */
 Route::get('/tracks', [CustomerController::class, 'tracks']);
 /*
+ * For cart page
+*/
+Route::get('/cart', [CartController::class, 'cart']);
+// Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
+/*
  * For deliery info page
 */
-<<<<<<< HEAD
-Route::get('/deliveryInfo', function () {
-    return View('customer.deliveryInfo');
-});
-
-
-Route::get('/cart', function () {
-    return View('customer.cart');
-});
-
-=======
-Route::get('/cart', [CartController::class, 'cart']);
-Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
->>>>>>> 8b344e82f9d38470032fc658b7f4cefb893e71ac
+Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
 /*
  * For Login Form
  */

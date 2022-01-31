@@ -15,47 +15,47 @@
 
 @section('body')
 <section>
-    <p class="fs-1 text-white fw-bold text-center pt-4"><img src="{{ url('storage/logo/siteLog.png') }}" alt="Logo"> Food Lab</p>
-    <h1 class="fw-bold ms-4 my-4 heading">Delivery Information</h1>
+    <p class="fs-1 text-white fw-bold text-center pt-4"><img src="{{ url('storage/logo/siteLog.png') }}" alt="Logo">{{ __('messageCPPK.Food Lab') }}</p>
+    <h1 class="fw-bold ms-4 my-4 heading">{{ __('messageCPPK.Delivery Information') }}</h1>
     <div class="d-flex flex-column justify-content-center align-items-center">
         <form action="/suggest" class="py-3 formDisplay" method="post">
             @csrf
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
-                    <label class="fw-bold" id="details">Name</label>
+                    <label class="fw-bold" id="details">{{ __('messageCPPK.Name') }}</label>
                 </div>
                 <div class="inputs">
-                    <input type="text" name='username' class="controlForm" />
+                    <input type="text" name='username' class="controlForm" value="{{$deliInfo->nickname }}" disabled/>
                 </div>
             </div>
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
-                    <label class="fw-bold" id="details">Phone</label>
+                    <label class="fw-bold" id="details">{{ __('messageCPPK.Phone') }}</label>
                 </div>
                 <div class="inputs">
-                    <input type="text" name="phone" class="controlForm"/>
+                    <input type="text" name="phone" class="controlForm" value="{{$deliInfo->phone }}"/>
                 </div>
             </div>
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
-                    <label class="fw-bold" id="details">Address</label>
+                    <label class="fw-bold" id="details">{{ __('messageCPPK.Address') }}</label>
                 </div>
                 <div class="inputs">
-                    <textarea class="controlForm"></textarea>
+                    <textarea class="controlForm" disabled>{{ $deliInfo->address3}} , {{ $deliInfo->township_name }} , {{ $deliInfo->state_name }}</textarea>
                 </div>
             </div>
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
-                    <label class="fw-bold" id="details">Payment</label>
+                    <label class="fw-bold" id="details">{{ __('messageCPPK.Payment') }}</label>
                 </div>
                 <div class="d-flex justify-content-around align-items-center inputs">
                     <div>
-                        <input type="radio" id="coin" class="me-3" name="money" value="1" checked/> 
-                        <label for="coin" class="text-white moneys cursor">Coin</label>
+                        <input type="radio" id="coin" class="me-3" name="money" value="0" checked/> 
+                        <label for="coin" class="text-white moneys cursor">{{ __('messageCPPK.Coin') }}</label>
                     </div>
                     <div>
-                        <input type="radio" id="cash" class="me-3" name="money" value="2"/> 
-                        <label for="cash" class="text-white moneys cursor">Cash On Delivery</label>
+                        <input type="radio" id="cash" class="me-3" name="money" value="1"/> 
+                        <label for="cash" class="text-white moneys cursor">{{ __('messageCPPK.Cash') }}</label>
                     </div>
                 </div>
             </div>
@@ -73,8 +73,8 @@
             </div>
             <div class="d-flex justify-content-center align-items-center forms">
                 <div>
-                    <a href="/" type="reset" class="btn me-5 cancels">Cancel</a>
-                    <button type="submit" class="order">Order</button>
+                    <a href="/cart" type="reset" class="btn me-5 cancels">{{ __('messageCPPK.Cancle') }}</a>
+                    <button type="submit" class="order">{{ __('messageCPPK.Order') }}</button>
                 </div>
             </div>
         </form>
