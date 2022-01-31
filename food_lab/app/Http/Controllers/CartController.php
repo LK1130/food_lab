@@ -52,4 +52,42 @@ class CartController extends Controller
 
         return View('customer.deliveryInfo');
     }
+
+    /*
+     * Create :Aung Min Khant(31/1/2022)
+     * Update :
+     * Explain of function : add session data 
+     * Prarameter : no
+     * return : View deliveryInfo blade
+     * */
+
+    public function getData(Request $request){
+
+        Log::channel('adminlog')->info('CartController', [
+            'start detail info'
+        ]);
+        
+        $count = $request->input('qty');
+        Log::critical("count",[$count]);
+        session(["cart" => "[{
+                'pid' : 1,
+                'q': 2,
+                'value': [{
+                        'label': 'A kyaw',
+                        'value': 'Egg'
+                    },
+                    {
+                        'label': 'A po',
+                        'value': 'Chill,Lemon,nananpin
+                    }
+                ]
+            } ]" ]);
+        Log::channel('customerlog')->info('CartController', [
+            'end detail info'
+        ]);
+
+
+        // return View('customer.cart');
+        
+    }
 }

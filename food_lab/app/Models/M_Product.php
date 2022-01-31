@@ -211,7 +211,7 @@ class M_Product extends Model
         ->where('m_product.avaliable',1)
         ->where('m_product.del_flg', 0)
         ->first();
-   
+        // dd($product);
 
         Log::channel('adminlog')->info("M_Product Model", [
             'End search data'
@@ -239,12 +239,24 @@ class M_Product extends Model
         // ->where('m_product.avaliable',1)
         // ->where('m_product.del_flg',0)
         // ->get();
-
-        $product = M_Product::select(['*'])
-        ->where('product_type','=',(int)$request)
-        ->where('avaliable', '=', 1)
-        ->where('del_flg', '=', 0)
+        
+        $product = DB::table('m_product')
+        ->select(['*'], DB::raw('m_product.id'))
+        // ->join('m_product_detail', 'm_product_detail.product_id', '=', 'm_product.id')
+        ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
+        ->where('m_product.product_type','=',(int)$request)
+        ->where('m_product.avaliable',1)
+        ->where('t_ad_photo.order_id',1)
+        ->where('t_ad_photo.del_flg',0)
+        ->where('m_product.del_flg', 0)
+        ->orderBy('m_product.id')
         ->get();
+        // $product = M_Product::select(['*'])
+        // ->where('product_type','=',(int)$request)
+        // ->where('avaliable', '=', 1)
+        // ->where('del_flg', '=', 0)
+        // ->get();
+        
       
             // dd($product);
 

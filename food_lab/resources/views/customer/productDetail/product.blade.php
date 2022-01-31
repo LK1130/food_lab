@@ -127,16 +127,16 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
+        <div id="byCategory" class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
             @foreach( $products as $item)
                 
-            <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+            {{-- <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
                 <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
                 <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
-            </div>
+            </div> --}}
 
 
             @endforeach
@@ -156,7 +156,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
+        <div  class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
             
             @foreach( $products as $item)
                 

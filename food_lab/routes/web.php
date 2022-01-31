@@ -309,6 +309,7 @@ Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
  * For Product Detail Form
  */
 Route::get('productDetail',[ProductDetailController::class,'detail']);
+Route::post('cartsession',[CartController::class,'getData']);
 
 
 /*

@@ -24,6 +24,20 @@ $(document).ready(function () {
             data: formdata,
             dataType: "json",
             success: function (data) {
+                let count = 0;
+
+                for (const list of data) {
+                    
+                    $('#byCategory').append(
+                        `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+                        <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
+                        <p class="fs-3 pt-2">${ list.product_name }</p>
+                        <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin }</p>
+                        <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
+                        <a href=""><button type="button" class="btn shopbtns"> Shop Now</button></a>
+                    </div>`
+                    )
+                }
                 console.log(data);
             },
             error: function(data){
