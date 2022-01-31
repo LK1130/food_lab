@@ -50,6 +50,7 @@ class CustomerController extends Controller
         $trackcount = 0;
         if (session()->has('customerId')) {
             $sessionCustomerId = session()->get('customerId');
+
             $messages = new M_AD_CoinCharge_Message();
             $messageLimited = $messages->informMessage($sessionCustomerId);
             $allmessage = $messages->allMessage($sessionCustomerId);
@@ -62,6 +63,8 @@ class CustomerController extends Controller
 
             $user = new T_CU_Customer();
             $userinfo = $user->loginUser($sessionCustomerId);
+            $custoemrInfo = $user->customerInformation($sessionCustomerId);
+            // return dd($custoemrInfo[0]['fav_type']);
             Log::channel('customerlog')->info('Customer Controller', [
                 $userinfo
             ]);
@@ -79,9 +82,11 @@ class CustomerController extends Controller
         $site = new M_Site();
         $name = $site->siteName();
 
+        $tAdOrderDetail = new T_AD_OrderDetail();
+        $sellProducts = $tAdOrderDetail->bestSellItems();
+
         $product = new M_Product();
         $productInfos = $product->productInfo();
-
 
         return view('customer.home', [
             'townships' => $townshipnames,
@@ -91,7 +96,7 @@ class CustomerController extends Controller
             'limitedmessages' => $messageLimited,
             'limitedtracks' => $tracksLimited,
             'name' => $name,
-            'productInfos' => $productInfos,
+            'sellProducts' => $sellProducts,
             'count' => $informBadgeCount,
             'nav' => 'home'
         ]);

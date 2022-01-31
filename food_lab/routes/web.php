@@ -3,11 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
-<<<<<<< HEAD
 use App\Http\Controllers\CartController;
-=======
 use App\Http\Controllers\BuycoinController;
->>>>>>> 5929cc2eece5831007ec6d6f100e0ef08deca1df
 use App\Http\Controllers\CategoryController;
 use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
@@ -176,7 +173,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
-    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
+    Route::post('searchCustomer', [CoinController::class, 'searchCustomer']);
     Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
@@ -292,10 +289,13 @@ Route::get('/messages', [CustomerController::class, 'message']);
  * zayar
  */
 Route::get('/tracks', [CustomerController::class, 'tracks']);
+
 /*
  * For deliery info page
 */
 Route::get('/cart', [CartController::class, 'cart']);
+Route::post('/cart', [CartController::class, 'cartDetail']);
+
 Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
 /*
  * For Login Form
@@ -306,18 +306,18 @@ Route::post('/login', [CustomerController::class, 'loginForm']);
 For Buy Coin Page
 */
 Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
-Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
+Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
 
 /*
  * For Product Detail Form
  */
-Route::get('productDetail',[ProductDetailController::class,'detail']);
+Route::get('productDetail', [ProductDetailController::class, 'detail']);
 
 
 /*
  * For Product
  */
-Route::get('productList',[ProductDetailController::class,'productList']);
+Route::get('productList', [ProductDetailController::class, 'productList']);
 /*
  * For logging out
  */

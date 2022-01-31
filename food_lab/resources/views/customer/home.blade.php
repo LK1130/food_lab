@@ -113,12 +113,12 @@
             <legend class="seller-headers">{{ __('messageMK.bestselleritems') }}</legend>
 
             {{-- start items --}}
-            @forelse ($productInfos as $productInfo)
+            @forelse ($sellProducts as $sellProduct)
                 <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5"
-                    id="{{ $productInfo->id }}">
+                    id="{{ $sellProduct->product_id }}">
                     <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1" />
-                    <p class="fs-3 pt-2 text-uppercase">{{ $productInfo->product_name }}</p>
-                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $productInfo->coin }}</p>
+                    <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
                     <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
                 </div>
             @empty

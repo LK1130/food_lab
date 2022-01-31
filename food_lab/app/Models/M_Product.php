@@ -25,7 +25,7 @@ class M_Product extends Model
             'start products'
         ]);
 
-        $product = M_Product::select(['id', 'product_name'])
+        $product = M_Product::select(['id', 'product_name', 'coin', 'amount'])
             ->where('id', '=', $id)
             ->where('del_flg', '=', 0)
             ->first();
@@ -33,6 +33,8 @@ class M_Product extends Model
         Log::channel('customerlog')->info('M_Product Model', [
             'end products'
         ]);
+
+        return $product;
     }
 
     /* Create : Aung Min Khant(21/1/2022)

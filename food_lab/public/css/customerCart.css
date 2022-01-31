@@ -121,6 +121,14 @@ body {
     transform: translateX(-50%);
 }
 
+.fa-coins {
+    color: gold;
+}
+
+.delete {
+    cursor: pointer;
+}
+
 .calculateitem {
     display: flex;
     flex-direction: column;
@@ -172,7 +180,6 @@ body {
     /* font-weight: 400; */
     color: var(--text-color);
     margin-bottom: 0 !important;
-    /* padding-top: 0.3rem; */
 }
 
 .quantityDiv {
@@ -185,9 +192,7 @@ body {
 }
 
 .wrapper {
-    /* height: 40px; */
     max-width: 50%;
-    /* margin-left: 30%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,28 +231,15 @@ body {
 }
 
 .coinBox {
-    /* width: 70%;
-    height: 60%;
-    text-align: center; */
     color: var(--text-color);
     font-size: 1.5rem;
-    /*font-weight: 400; */
     display: block;
-    /* margin-top: 0.5rem;
-    padding-top: 0.2rem;
-    text-align: center; */
 }
 
 .cashBox {
-    /* width: 70%;
-    height: 60%; */
     color: var(--text-color);
-    font-size: 1.5rem;
-    /*font-weight: 400; */
+    font-size: 1.3rem;
     display: none;
-    /* margin-top: 0.5rem;
-    padding-top: 0.2rem;
-    text-align: center; */
 }
 
 
@@ -366,6 +358,7 @@ body {
     font-size: large;
     border-radius: 0.3em;
     padding: 10px 20px;
+    margin-bottom: 0 !important;
 }
 
 
