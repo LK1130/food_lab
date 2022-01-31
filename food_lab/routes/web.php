@@ -125,23 +125,23 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
     Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
     /**
- * Customer Report
- */
-Route::get('customerReport',[NotificationController::class,'customerReport']);
-Route::post('reportrp/{id}',[NotificationController::class,'reportRp']);
-Route::get('reportreplies',[NotificationController::class,'customerreportReply']);
-/**
- * Customer Contact
- */
-Route::get('customerContact',[NotificationController::class,'customerContact']);
-Route::post('conrp/{id}',[NotificationController::class,'contrpy']);
-Route::get('contactreplies',[NotificationController::class,'customercontactReply']);
-/**
- * Customer Suggest
- */
-Route::get('customerSuggest',[NotificationController::class,'customerSuggest']);
-Route::post('sugrp/{id}',[NotificationController::class,'cusRpy']);
-Route::get('suggestreplies',[NotificationController::class,'customersuggestReply']);
+     * Customer Report
+     */
+    Route::get('customerReport', [NotificationController::class, 'customerReport']);
+    Route::post('reportrp/{id}', [NotificationController::class, 'reportRp']);
+    Route::get('reportreplies', [NotificationController::class, 'customerreportReply']);
+    /**
+     * Customer Contact
+     */
+    Route::get('customerContact', [NotificationController::class, 'customerContact']);
+    Route::post('conrp/{id}', [NotificationController::class, 'contrpy']);
+    Route::get('contactreplies', [NotificationController::class, 'customercontactReply']);
+    /**
+     * Customer Suggest
+     */
+    Route::get('customerSuggest', [NotificationController::class, 'customerSuggest']);
+    Route::post('sugrp/{id}', [NotificationController::class, 'cusRpy']);
+    Route::get('suggestreplies', [NotificationController::class, 'customersuggestReply']);
     /**
      * For Product Form page
      */
@@ -271,7 +271,7 @@ Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']
  * For news page
  * zayar
  */
-Route::get('/news', [CustomerController::class, 'news']);
+Route::get('/customerNews', [CustomerController::class, 'news']);
 
 /*
  * For messages page
