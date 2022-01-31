@@ -78,6 +78,43 @@ class M_Product_Detail extends Model
         return $mProductDetail;
     }
 
+   
+
+    /*
+    * Create : Aung Min Khant(28/1/2022)
+    * Update :
+    * Explain of function : search data by id and send to product detail page
+    * parameter : $request form product list
+    * return product Detail
+    * */
+
+    public function searchDataById($id)
+    {
+
+        Log::channel('adminlog')->info("M_Product_Detail Model", [
+            'Start search detail data'
+        ]);
+
+        $mProductDetail = DB::select(
+            DB::raw("SELECT
+            m_product_detail.category,m_product_detail.label,m_product_detail.order,m_product_detail.value
+        FROM
+            m_product_detail
+        WHERE
+            m_product_detail.product_id = $id AND
+            m_product_detail.del_flg = 0
+        
+         ORDER BY 
+            m_product_detail.id     
+        ")
+        );
+
+        Log::channel('adminlog')->info("M_Product_Detail Model", [
+            'End search detail data'
+        ]);
+
+        return $mProductDetail;
+    }
 
     /*
     * Create : Aung Min Khant(19/1/2022)

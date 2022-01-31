@@ -290,6 +290,7 @@
             </div>
         </div>
         <div class="copys">
+            <p></p>
             <p>Copy right by {{ $name->site_name }}</p>
         </div>
     </footer>

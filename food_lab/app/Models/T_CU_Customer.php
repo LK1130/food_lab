@@ -95,69 +95,70 @@ class T_CU_Customer extends Model
     */
   public function cusSearch($request)
   {
-    
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'Start cusSearch'
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start cusSearch'
     ]);
 
-      $cusSearch = T_CU_Customer::where('nickname','Like','%'.$request->input('nickname').'%')
-      ->where('t_cu_customer.del_flg',0)
+    $cusSearch = T_CU_Customer::where('nickname', 'Like', '%' . $request->input('nickname') . '%')
+      ->where('t_cu_customer.del_flg', 0)
       ->get();
-      
-      return $cusSearch;
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'End cusSearch'
+    return $cusSearch;
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End cusSearch'
     ]);
-    }
-    /*
+  }
+  /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer id search
       * Prarameter : no
       * return :
     */
-    public function cusidSearch($request){
-      
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'Start cusidSearch'
+  public function cusidSearch($request)
+  {
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start cusidSearch'
     ]);
 
     $cusidSearch = T_CU_Customer::where('customerID', 'Like', '%' . $request->input('id') . '%')
       ->where('t_cu_customer.del_flg', 0)
       ->get();
 
-      return $cusidSearch;
+    return $cusidSearch;
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'End cusidSearch'
-      ]);
-    }
-    /*
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End cusidSearch'
+    ]);
+  }
+  /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer id search
       * Prarameter : no
       * return :
     */
-    public function customerDetail($id){
+  public function customerDetail($id)
+  {
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'Start customerDetail'
-      ]);
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start customerDetail'
+    ]);
 
-      $cusDetail = T_CU_Customer::
-      select ('*',DB::raw('t_cu_customer.id AS cid'))
-      ->where('t_cu_customer.del_flg',0)
-      ->where('t_cu_customer.id','=' ,$id)
+    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
+      ->where('t_cu_customer.del_flg', 0)
+      ->where('t_cu_customer.id', '=', $id)
       ->first();
-      // Log::critical('asdasd',[$cusDetail]);
-      return $cusDetail;
+    // Log::critical('asdasd',[$cusDetail]);
+    return $cusDetail;
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'End customerDetail'
-      ]);
-    }
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End customerDetail'
+    ]);
+  }
   /*
       * Create : Min Khant(15/1/2022)
       * Update :
@@ -188,6 +189,7 @@ class T_CU_Customer extends Model
     }
 
     $customerId = $firstStr . $lastStr . $firstemail . $firstPwd . $lastPwd . $day . $hour . $generateKey;
+
     if ($data->has('type') && $data->has('taste') && $data->has('note')) {
       DB::transaction(function () use ($customerId, $data, $key) {
         //insert customer
@@ -198,6 +200,9 @@ class T_CU_Customer extends Model
         $customer->address1 = $data['addressNo'];
         $customer->address2 = $data['addressState'];
         $customer->address3 = $data['addressTownship'];
+        $customer->fav_type = $data['type'];
+        $customer->taste = $data['taste'];
+        $customer->allergic = $data['note'];
         $customer->save();
 
         //insert customerLogin
@@ -220,9 +225,6 @@ class T_CU_Customer extends Model
         $customer->address1 = $data['addressNo'];
         $customer->address2 = $data['addressState'];
         $customer->address3 = $data['addressTownship'];
-        $customer->fav_type = $data['type'];
-        $customer->taste = $data['taste'];
-        $customer->allergic = $data['note'];
         $customer->save();
 
         //insert customerLogin
@@ -356,5 +358,54 @@ class T_CU_Customer extends Model
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End updateProfile'
     ]);
+  }
+
+  /*
+      * Create : Linn Ko(20/1/2022)
+      * Update :
+      * Explain of function : To show customer search names
+      * Prarameter : no
+      * return :
+    */
+  public function searchByID($id)
+  {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start searchByID'
+    ]);
+
+    $result = T_CU_Customer::where('customerID', $id)
+    ->leftjoin('t_cu_coin_customer', 't_cu_coin_customer.customer_id','t_cu_customer.id')
+    ->where('t_cu_customer.del_flg', 0)
+    ->first();
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End searchByID'
+    ]);
+
+    return $result;
+  }
+
+  /*
+      * Create : Linn Ko(20/1/2022)
+      * Update :
+      * Explain of function : To show customer search names
+      * Prarameter : no
+      * return :
+    */
+  public function searchByCustomerID($id)
+  {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start searchByCustomerID'
+    ]);
+
+    $result = T_CU_Customer::where('customerID', $id)
+      ->where('del_flg', 0)
+      ->first();
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End searchByCustomerID'
+    ]);
+
+    return $result;
   }
 }

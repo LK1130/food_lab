@@ -1,5 +1,11 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
+@section('css')
+        {{-- custom css 2 --}}
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('js')
     <script src="{{ url('js/customerLogin.js') }}" type="text/javascript" defer></script>
 @endsection

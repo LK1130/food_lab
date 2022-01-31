@@ -3,8 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\BuycoinController;
 use App\Http\Controllers\CategoryController;
-use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
 
@@ -170,6 +173,8 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
+    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
+    Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
 
@@ -287,18 +292,30 @@ Route::get('/tracks', [CustomerController::class, 'tracks']);
 /*
  * For deliery info page
 */
-Route::get('/deliveryInfo', function () {
-    return View('customer.deliveryInfo');
-});
-Route::get('/cart', function () {
-    return View('customer.cart');
-});
-
+Route::get('/cart', [CartController::class, 'cart']);
+Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
 /*
  * For Login Form
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
 
+/*
+For Buy Coin Page
+*/
+Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
+
+/*
+ * For Product Detail Form
+ */
+Route::get('productDetail',[ProductDetailController::class,'detail']);
+
+
+/*
+ * For Product
+ */
+Route::get('productLists',[ProductDetailController::class,'productList']);
+Route::post('searchCategory',[ProductSearchController::class,'searchByCategory']); 
 /*
  * For logging out
  */

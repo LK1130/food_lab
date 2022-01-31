@@ -739,10 +739,12 @@ form div .cancels {
     outline: 0;
 }
 
-.bootstrap-tagsinput .label-info {
+.bootstrap-tagsinput .tag {
     background-color: #ffffff;
-    padding: 3px 5px;
-    border-radius: 2px;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px;
 }
 
 
