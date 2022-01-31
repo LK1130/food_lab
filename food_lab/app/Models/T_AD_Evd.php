@@ -128,6 +128,13 @@ class T_AD_Evd extends Model
     //     ]);
     // }
 
+    /*
+    * Create : Zaw Phyo(28/1/2022)
+    * Update :
+    * Explain of function : Foreign Key Link to T_AD_CoinCharge
+    * return 
+    */
+
     public function coinChargeconnect(){
         return $this->hasOne("App\Models\T_AD_CoinCharge");
     }
