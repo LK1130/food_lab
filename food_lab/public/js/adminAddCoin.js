@@ -35,7 +35,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 resetData();
-
                 if (data.error == 1) {
                     Swal.fire({
                         icon: 'error',
@@ -55,6 +54,31 @@ $(document).ready(function () {
             error: function (data) {
                 window.location = "/error";
             },
+        });
+    });
+
+    $("#approve").click(function (event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: "Are You Sure Want to Add Coin?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            backdrop: false,
+            showDenyButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+            denyButtonText: "Cancel",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "customerid")
+                    .attr("value", $("#cid").text())
+                    .appendTo("#addCoinForm");
+                form.submit();
+            }
         });
     });
 });

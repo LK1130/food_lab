@@ -12,9 +12,6 @@
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('css')
-    {{-- custom css 2 --}}
-    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('js')
     {{-- custom js 1 --}}

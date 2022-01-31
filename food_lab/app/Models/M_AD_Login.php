@@ -47,7 +47,7 @@ class M_AD_Login extends Model
 
         $hasAccount = M_AD_Login::select(['id', 'ad_role', 'ad_name'])
             ->where('ad_name', $name)
-            ->where('ad_password', $password)
+            ->where('ad_password', md5(sha1($password)))
             ->first();
 
         Log::channel('adminlog')->info('M_AD_Login Model', [
@@ -95,7 +95,7 @@ class M_AD_Login extends Model
         ]);
         $admin = new M_AD_Login();
         $admin->ad_name = $validate['username'];
-        $admin->ad_password = $validate['password'];
+        $admin->ad_password = md5(sha1($validate['password']));
         $admin->ad_role = $validate['role'];
         $admin->ad_login_dt = Carbon::now();
         $admin->save();

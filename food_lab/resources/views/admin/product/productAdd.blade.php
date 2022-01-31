@@ -133,6 +133,7 @@
                         <div class="form-group">
                             <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
                             <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" value="{{ old('list') }}">
+                                {{ old('list') }}
                             </textarea>
                             @error('list')
                             <li class="text-danger ">{{ __("messageAMK.Product's ingredient list is required.") }}</li>
@@ -158,7 +159,9 @@
                     <div class="col-md-10 col-sm-12">
                         <div class="form-group mt-3">
                             <label for="pdesc" class="form-label titles">{{ __('messageAMK.Description') }}</label>
-                            <textarea name="pdesc" id="pdesc" class="form-control" cols="30" rows="10"></textarea>
+                            <textarea name="pdesc" id="pdesc" class="form-control" cols="30" rows="10">
+                                {{ old('pdesc') }}
+                            </textarea>
                         </div>
                         @error('pdesc')
                         <li class="text-danger ">{{ __("messageAMK.Product's Description is required.") }}</li>

@@ -21,7 +21,7 @@
 @section('body')
     <div class="col-md-10">
         {{-- Top Noti Start --}}
-        <div class="d-flex justify-content-end bd-highlight mx-5 my-4">
+        <div class="d-flex justify-content-end bd-highlight mt-4">
             {{-- Suggest --}}
             <a href="customerSuggest">
                 <button type="button" class="btn btn-lg btn-outline-dark position-relative mx-3 fs-4">
@@ -50,7 +50,7 @@
         {{-- Top Noti End --}}
 
         {{-- Status Start --}}
-        <div class="status text title fw-bold mb-4">{{ __('messageZN.Status') }}</div>
+        <div class="status text title fw-bold mb-2">{{ __('messageZN.Status') }}</div>
         <div class="row align-items-start me-4">
             <div class="col a ">
                 <div class="text-center pb-3">
@@ -91,8 +91,8 @@
         </div>
         {{-- Status End --}}
         {{-- Listing Start --}}
-        <div class="status text fs-2 fw-bold mb-4 mt-5">{{ __('messageZN.Listing') }}</div>
-        <div class="row">
+        {{-- <div class="status text fs-2 fw-bold mb-4 mt-5">{{ __('messageZN.Listing') }}</div> --}}
+        <div class="row mt-4">
             <div class="col-md-6">
                 {{-- Transaction List --}}
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Transaction List') }}</div>

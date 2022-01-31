@@ -361,7 +361,7 @@ class T_CU_Customer extends Model
   }
 
   /*
-      * Create : Zar Ni(20/1/2022)
+      * Create : Linn Ko(20/1/2022)
       * Update :
       * Explain of function : To show customer search names
       * Prarameter : no
@@ -374,12 +374,36 @@ class T_CU_Customer extends Model
     ]);
 
     $result = T_CU_Customer::where('customerID', $id)
-    ->join('t_cu_coin_customer', 't_cu_coin_customer.customer_id','t_cu_customer.id')
+    ->leftjoin('t_cu_coin_customer', 't_cu_coin_customer.customer_id','t_cu_customer.id')
     ->where('t_cu_customer.del_flg', 0)
     ->first();
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End searchByID'
+    ]);
+
+    return $result;
+  }
+
+  /*
+      * Create : Linn Ko(20/1/2022)
+      * Update :
+      * Explain of function : To show customer search names
+      * Prarameter : no
+      * return :
+    */
+  public function searchByCustomerID($id)
+  {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start searchByCustomerID'
+    ]);
+
+    $result = T_CU_Customer::where('customerID', $id)
+      ->where('del_flg', 0)
+      ->first();
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End searchByCustomerID'
     ]);
 
     return $result;
