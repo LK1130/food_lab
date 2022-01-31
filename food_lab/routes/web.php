@@ -276,7 +276,7 @@ Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']
  * For news page
  * zayar
  */
-Route::get('/news', [CustomerController::class, 'news']);
+Route::get('/customerNews', [CustomerController::class, 'news']);
 
 /*
  * For messages page

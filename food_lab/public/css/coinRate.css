@@ -7,17 +7,21 @@
     width: 12vw;
     font-size: var(--btntextsize) !important;
     border: 1px black solid;
+    background-color: var(--inactivebtn);
+}
+.btncust:hover {
+    background-color: var(--btns);
 }
 .active {
-    background-color: var(--btns);
+    background-color: var(--btns) !important;
 }
 .navBar {
     display: flex;
-    align-items: center;
-    justify-content: center;
+
     flex-direction: row;
     gap: 7vh;
-    margin-top: 6vh;
+    margin-top: 4vh;
+    margin-left: 17vw;
 }
 
 .headerButton {

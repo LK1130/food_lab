@@ -1100,3 +1100,19 @@ ALTER TABLE `t_cu_coin_customer_history`
 ADD CONSTRAINT `t_cu_coin_customer_history_ibfk_2` FOREIGN KEY (`last_control_by`) REFERENCES `m_ad_login` (`id`) ON DELETE CASCADE ON 
   UPDATE CASCADE;
 
+CREATE TABLE `t_ad_photo` (
+  `id` bigint NOT NULL COMMENT 'Row of Id',
+  `link_id` bigint NOT NULL COMMENT 'Link for related id',
+  `order_id` bigint NOT NULL COMMENT 'Sequence for photo',
+  `path` varchar(255) NOT NULL COMMENT 'Path of ScreenShot',
+  `note` varchar(255) DEFAULT NULL COMMENT 'note',
+  `del_flg` int NOT NULL DEFAULT '0' COMMENT 'Deleted or not',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created TimeStamp',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Updated TimeStamp'
+) ;
+
+ALTER TABLE `t_ad_photo`
+  ADD PRIMARY KEY (`id`);
+  
+  ALTER TABLE `t_ad_photo`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'Row of Id';
