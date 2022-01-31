@@ -33,23 +33,23 @@ class CartController extends Controller
         return View('customer.cart');
     }
 
-    /*
-     * Create : Min Khant(28/1/2022)
-     * Update :
-     * Explain of function : For call view customer delivery info page
-     * Prarameter : no
-     * return : View deliveryInfo blade
-     * */
-    public function deliveryInfo()
-    {
-        Log::channel('customerlog')->info('CartController', [
-            'start deliveryInfo'
-        ]);
+    // /*
+    //  * Create : Min Khant(28/1/2022)
+    //  * Update :
+    //  * Explain of function : For call view customer delivery info page
+    //  * Prarameter : no
+    //  * return : View deliveryInfo blade
+    //  * */
+    // public function deliveryInfo()
+    // {
+    //     Log::channel('customerlog')->info('CartController', [
+    //         'start deliveryInfo'
+    //     ]);
 
-        Log::channel('customerlog')->info('CartController', [
-            'end deliveryInfo'
-        ]);
+    //     Log::channel('customerlog')->info('CartController', [
+    //         'end deliveryInfo'
+    //     ]);
 
-        return View('customer.deliveryInfo');
-    }
+    //     return View('customer.deliveryInfo');
+    // }
 }
