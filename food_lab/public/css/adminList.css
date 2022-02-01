@@ -48,7 +48,8 @@
 }
 .tableHeader {
     background-color: var(--dashboardminlistingheader);
-    font-size: var(--tableheader);
+    font-size: var(--tablerow);
+    font-weight: bold;
 }
 .tableChile {
     background-color: var(--tablecolor1);
@@ -118,4 +119,7 @@ label {
     margin-left: 23vw;
 
     text-align: center;
+}
+#delete {
+    cursor: pointer;
 }

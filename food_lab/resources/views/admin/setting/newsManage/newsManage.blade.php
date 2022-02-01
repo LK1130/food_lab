@@ -54,14 +54,15 @@
                     <td class="tdBlack">{{ $new->detail }}</td>
                     <td class="tdBlack">{{ $new->category_name }}</td>
                     <td><input type="checkbox"></td>
-                    <td><a href="{{ route('news.show', $new->id) }}"><button
-                                class="btn btn-primary btn-sm">{{ __('messageZY.edit') }}</button></a></td>
+                    <td><a href="{{ route('news.show', $new->id) }}">
+                            <ion-icon name="create-outline" class="fs-2 ">
+                            </ion-icon>
+                        </a></td>
                     <td>
                         <form action="{{ route('news.destroy', $new->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
-                                class="btn btn-danger btn-sm delete">{{ __('messageZY.delete') }}</button>
+                            <ion-icon name="trash-outline" class="fs-2 text-danger" id="delete"></ion-icon>
                         </form>
                     </td>
                 </tr>
@@ -76,7 +77,8 @@
                 </tr>
             @endforelse
             <div class="newsbutton1"><a href="{{ route('news.create') }}"><button
-                        class="btn btn-success">{{ __('messageZY.add') }}</button></a></div>
+                        class="btn text-light addAdminButton active btncust mt-5">{{ __('messageZY.add') }}</button></a>
+            </div>
 
         </table>
         <div class="w-25 h-25 d-flex pages">{{ $news->links() }}</div>

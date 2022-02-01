@@ -25,7 +25,10 @@
                 class="btn text-light   btncust">{{ __('messageZY.siteManager') }}</button></a>
     </div>
     {{-- Starts Form --}}
+    <a href="{{ url('adminLogin') }}"><button class="checked btn text-light addAdminButton active btncust "
+            id="appBack3">{{ __('messageZY.back') }}</button></a>
     <div class="adminAddForm">
+
         <form action="{{ route('adminLogin.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <p class="formHeader">{{ __('messageZY.addAdmin') }} </p>
@@ -41,8 +44,6 @@
                     <label for="password">{{ __('messageZY.password') }}</label>
                     <ion-icon name="eye-off-outline" id="icon"></ion-icon>
                     <input type="password" class="form-control" id="password" name="password">
-
-
                     @error('password')
                         <li class="text-danger ">{{ $message }}</li>
                     @enderror
@@ -59,15 +60,21 @@
                         <li class="text-danger ">{{ $message }}</li>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="addadmin">{{ __('messageZY.addAdmin') }}</button>
-                    <input type="reset" value="{{ __('messageZY.reset') }}" class="reset">
-
+                <div class="form-group mt-4">
+                    <label for="validation">{{ __('messageZY.valid') }}</label>
+                    <input type="checkbox" class="mt-2" id="validate" checked>
+                    @error('validate')
+                        <li class="text-danger ">{{ $message }}</li>
+                    @enderror
+                </div>
+                <div class="form-group ">
+                    <button type="submit"
+                        class="btn text-light addAdminButton active btncust mt-4">{{ __('messageZY.addAdmin') }}</button>
                 </div>
             </div>
+            <input type="text" id="validateInteger" value="" name="validate">
         </form>
-        <a href="{{ url('adminLogin') }}"><button class="checked  "
-                id="back">{{ __('messageZY.back') }}</button></a>
+
     </div>
 
 @endsection

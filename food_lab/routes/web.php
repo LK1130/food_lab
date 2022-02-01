@@ -93,7 +93,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     //admin/setting/newsManage
     Route::resource('news', NewsController::class);
 
-
+    Route::get('adminValidate/{id}', [AdminController::class, 'adminValidate']);
     //_________________________________end appManage_________________________/
 
     //_________________________________start newsManage_________________________/
@@ -173,7 +173,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
-    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
+    Route::post('searchCustomer', [CoinController::class, 'searchCustomer']);
     Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
@@ -303,19 +303,19 @@ Route::post('/login', [CustomerController::class, 'loginForm']);
 For Buy Coin Page
 */
 Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
-Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
+Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
 
 /*
  * For Product Detail Form
  */
-Route::get('productDetail',[ProductDetailController::class,'detail']);
+Route::get('productDetail', [ProductDetailController::class, 'detail']);
 
 
 /*
  * For Product
  */
-Route::get('productLists',[ProductDetailController::class,'productList']);
-Route::post('searchCategory',[ProductSearchController::class,'searchByCategory']); 
+Route::get('productLists', [ProductDetailController::class, 'productList']);
+Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
 /*
  * For logging out
  */
