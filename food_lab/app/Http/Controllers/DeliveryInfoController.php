@@ -42,5 +42,4 @@ class DeliveryInfoController extends Controller
 
         return View('customer.deliveryInfo',['deliInfo'=>$deliInfo]);
     }
-    
 }

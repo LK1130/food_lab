@@ -294,9 +294,10 @@ Route::get('/tracks', [CustomerController::class, 'tracks']);
  * For cart page
 */
 Route::get('/cart', [CartController::class, 'cart']);
-// Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
+
 /*
  * For deliery info page
+ * cherry
 */
 Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
 /*
