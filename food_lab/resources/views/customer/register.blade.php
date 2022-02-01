@@ -77,19 +77,6 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <select class="form-select selects" id="addressTownship" name="addressTownship" >
-                        <option class="township-options" selected disabled>{{ __('messageMK.address(Township)') }}</option>
-                        @forelse ($townshipnames as $townshipname)
-                            <option class="township-options" value="{{ $townshipname->id }}">{{ $townshipname->township_name }}</option>
-                        @empty
-                            <option disabled>No Township</option>
-                        @endforelse 
-                    </select>
-                    @error('addressTownship')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="inputs">
                     <select class="form-select selects" id="addressState" name="addressState">
                         <option  class="township-options" value="0" selected>{{ __('messageMK.address(State)') }}</option>
                         @forelse ($staenames as $staename)
@@ -99,6 +86,19 @@
                         @endforelse
                     </select>
                     @error('addressState')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="inputs">
+                    <select class="form-select selects" id="addressTownship" name="addressTownship" >
+                        <option class="township-options" selected disabled>{{ __('messageMK.address(Township)') }}</option>
+                        @forelse ($townshipnames as $townshipname)
+                            <option class="township-options" value="{{ $townshipname->id }}">{{ $townshipname->township_name }}</option>
+                        @empty
+                            <option disabled>No Township</option>
+                        @endforelse 
+                    </select>
+                    @error('addressTownship')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -142,9 +142,8 @@
                                 <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">{{ __('messageMK.favouriteType') }}</legend>
                                     <div class="m-3">
-                                        <input type="text" class="modal-inputs @error('type') border-danger @enderror" name="type" value="@foreach ($types as $type)
-                                            {{ $type->favourite_food }},
-                                        @endforeach" data-role="tagsinput" id="tags" class="form-control">
+                                        <input type="text" class="modal-inputs @error('type') border-danger @enderror" name="type" 
+                                        value="@foreach ($types as $type){{ $type->favourite_food }},@endforeach" data-role="tagsinput" id="tags" class="form-control">
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">

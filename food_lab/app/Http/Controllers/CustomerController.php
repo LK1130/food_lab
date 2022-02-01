@@ -45,11 +45,14 @@ class CustomerController extends Controller
         ]);
         $messageLimited = [];
         $tracksLimited = [];
+        $recomProducts = [];
         $userinfo = null;
         $messagecount = 0;
         $trackcount = 0;
+
         if (session()->has('customerId')) {
             $sessionCustomerId = session()->get('customerId');
+
             $messages = new M_AD_CoinCharge_Message();
             $messageLimited = $messages->informMessage($sessionCustomerId);
             $allmessage = $messages->allMessage($sessionCustomerId);
@@ -62,6 +65,18 @@ class CustomerController extends Controller
 
             $user = new T_CU_Customer();
             $userinfo = $user->loginUser($sessionCustomerId);
+            $custoemrInfo = $user->customerInformation($sessionCustomerId);
+
+            $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
+            $mFavType = new M_Fav_Type();
+            $product = new M_Product();
+
+            foreach ($favTypes as $favType) {
+                $id = $mFavType->customerFavType($favType);
+                $eachProduct = $product->customerFavType($id['id']);
+                array_push($recomProducts, $eachProduct);
+            }
+
             Log::channel('customerlog')->info('Customer Controller', [
                 $userinfo
             ]);
@@ -79,9 +94,8 @@ class CustomerController extends Controller
         $site = new M_Site();
         $name = $site->siteName();
 
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
-
+        $tAdOrderDetail = new T_AD_OrderDetail();
+        $sellProducts = $tAdOrderDetail->bestSellItems();
 
         return view('customer.home', [
             'townships' => $townshipnames,
@@ -91,7 +105,8 @@ class CustomerController extends Controller
             'limitedmessages' => $messageLimited,
             'limitedtracks' => $tracksLimited,
             'name' => $name,
-            'productInfos' => $productInfos,
+            'sellProducts' => $sellProducts,
+            'recomProducts' => $recomProducts,
             'count' => $informBadgeCount,
             'nav' => 'home'
         ]);
@@ -457,7 +472,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end access'
             ]);
-            return view('customer.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
+            return view('customer.access.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'
@@ -573,7 +588,7 @@ class CustomerController extends Controller
                 'end login'
             ]);
 
-            return view('customer.login');
+            return view('customer.access.login');
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end login'
@@ -611,7 +626,7 @@ class CustomerController extends Controller
             'end loginForm'
         ]);
 
-        return view('customer.mail.checkMail');
+        return view('customer.access.checkMail');
     }
 
     /*

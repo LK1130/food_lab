@@ -23,6 +23,7 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CustomerProfileUpdate;
+use App\Http\Controllers\DeliveryInfoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
@@ -289,11 +290,18 @@ Route::get('/messages', [CustomerController::class, 'message']);
  * zayar
  */
 Route::get('/tracks', [CustomerController::class, 'tracks']);
+
+/*
+ * For cart page
+*/
+Route::get('/cart', [CartController::class, 'cart']);
+Route::post('/cart', [CartController::class, 'cartDetail']);
+Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+
 /*
  * For deliery info page
 */
-Route::get('/cart', [CartController::class, 'cart']);
-Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
+Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
 /*
  * For Login Form
  */
@@ -309,6 +317,7 @@ Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
  * For Product Detail Form
  */
 Route::get('productDetail', [ProductDetailController::class, 'detail']);
+Route::post('cartsession', [CartController::class, 'getData']);
 
 
 /*

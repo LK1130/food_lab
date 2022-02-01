@@ -197,9 +197,9 @@ class T_CU_Customer extends Model
         $customer->customerID = $customerId;
         $customer->nickname = $data['username'];
         $customer->phone = $data['phone'];
-        $customer->address1 = $data['addressNo'];
-        $customer->address2 = $data['addressState'];
-        $customer->address3 = $data['addressTownship'];
+        $customer->address1 = $data['addressState'];
+        $customer->address2 = $data['addressTownship'];
+        $customer->address3 = $data['addressNo'];
         $customer->fav_type = $data['type'];
         $customer->taste = $data['taste'];
         $customer->allergic = $data['note'];
@@ -222,9 +222,9 @@ class T_CU_Customer extends Model
         $customer->customerID = $customerId;
         $customer->nickname = $data['username'];
         $customer->phone = $data['phone'];
-        $customer->address1 = $data['addressNo'];
-        $customer->address2 = $data['addressState'];
-        $customer->address3 = $data['addressTownship'];
+        $customer->address1 = $data['addressState'];
+        $customer->address2 = $data['addressTownship'];
+        $customer->address3 = $data['addressNo'];
         $customer->save();
 
         //insert customerLogin
@@ -374,9 +374,9 @@ class T_CU_Customer extends Model
     ]);
 
     $result = T_CU_Customer::where('customerID', $id)
-    ->leftjoin('t_cu_coin_customer', 't_cu_coin_customer.customer_id','t_cu_customer.id')
-    ->where('t_cu_customer.del_flg', 0)
-    ->first();
+      ->leftjoin('t_cu_coin_customer', 't_cu_coin_customer.customer_id', 't_cu_customer.id')
+      ->where('t_cu_customer.del_flg', 0)
+      ->first();
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End searchByID'
@@ -407,5 +407,80 @@ class T_CU_Customer extends Model
     ]);
 
     return $result;
+  }
+
+  /*
+      * Create : Min Khant(28/1/2022)
+      * Update :
+      * Explain of function : To get customer info
+      * Prarameter : no
+      * return : customer info
+    */
+  public function customerInformation($id)
+  {
+    Log::channel('customerlog')->info("T_CU_Customer Model", [
+      'Start customerInformation'
+    ]);
+
+    $result = T_CU_Customer::where('id', $id)
+      ->where('del_flg', 0)
+      ->get();
+
+    Log::channel('customerlog')->info("T_CU_Customer Model", [
+      'End customerInformation'
+    ]);
+
+    return $result;
+  }
+
+
+
+  /*
+      * Create : Min Khant(29/1/2022)
+      * Update :
+      * Explain of function : To get Customer's township
+      * Prarameter : customer id
+      * return : township
+    */
+  public function deliveryTownship($id)
+  {
+    Log::channel('customerlog')->info("T_CU_Customer Model", [
+      'Start deliveryTownship'
+    ]);
+
+    $township = T_CU_Customer::select('address2')
+      ->where('id', $id)
+      ->first();
+
+    Log::channel('customerlog')->info("T_CU_Customer Model", [
+      'End deliveryTownship'
+    ]);
+    return $township;
+  }
+  /*
+    * Create : Cherry(30/1/2022)
+    * Update :
+    * Explain of function : To get state and township
+    * Prarameter : $userID
+    * return : deliTownship
+    */
+
+  public function deliTownship($userID)
+  {
+
+    Log::channel('adminlog')->info("T_CU_Customer", [
+      'Start deliTownship'
+    ]);
+
+    $deliInfo = T_CU_Customer::select('*', DB::raw('t_cu_customer.id'))
+      ->where('t_cu_customer.id', '=', $userID)
+      ->join('m_township', 'm_township.id', '=', 't_cu_customer.address2')
+      ->join('m_state', 'm_state.id', '=', 't_cu_customer.address1')
+      ->first();
+
+    Log::channel('adminlog')->info("T_CU_Customer", [
+      'end deliTownship'
+    ]);
+    return $deliInfo;
   }
 }

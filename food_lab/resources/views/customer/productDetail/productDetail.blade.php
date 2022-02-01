@@ -2,6 +2,7 @@
 
 
 @section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,7 +15,7 @@
 
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ url('js/productDetail.js') }}" type="text/javascript" defer></script>
+   
 @endsection
 
 @section('title', 'Food Lab')
@@ -44,7 +45,7 @@
 
 
         {{-- // need to insert --}}
-        <a href="/" class="position-relative d-lg-none me-5">
+        <a href="/cart"  class="position-relative d-lg-none me-5 cart1">
             <i class="fas fa-shopping-cart mr-2 fs-2 texts cart"></i> <span
                 id="count" class="position-absolute top-0 start-120 translate-middle  badge badge-circle badge-danger leftside"></span>
 
@@ -88,7 +89,7 @@
                     </li>
                 @endif
                 <li class="nav-item">
-                    <p class="nav-link texts mt-3"><i class="fas fa-shopping-cart fs-3"></i></p>
+                    <a class="nav-link texts mt-3 cart1" href="/cart" ><i class="fas fa-shopping-cart fs-3"></i></a>
                 </li>
             </ul>
         </div>
@@ -138,7 +139,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-10 ms-auto">
-                                            <form action="" enctype="multipart/form-data">
+                                            <form action="/cartOne" method="POST" enctype="multipart/form-data">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-md-10 col-sm-10 m-auto mt-2">
                                                         <p class="pdname">{{ $productId->product_name }}</p>
@@ -206,94 +208,59 @@
 
 
                                 @php
-                                    $count = 0;
-                                    $label = '';
-                                    
-                                    $count1 = 0;
-                                    $count2 = 0;
-                                    
-                                @endphp
-                                <div class="container-fluid mt-5">
-                                    <div class="row">
-                                        @for ($i = 0; $i < count($detail); $i++)
-
-                                        {{-- <p class="text-light fs-2">{{ $count }} </p> --}}
-                                            <p class="text-light fs-2">{{ $count1 }} </p>   
-                                            {{-- <p class="text-light fs-2">{{ $count2 }} </p> --}}
-                                            <p class="text-light fs-2">{{ $i }} </p> 
-                                            @php
-                                                $label = $detail[$i]->label;
-                                                // $count2 =0;
-                                            @endphp
-                                         
-                                            
-                                            <div class="col-md-3 d-flex ms-auto">
-                                                <p class="ptopping">{{ $detail[$i]->label }}</p>
-                                            </div>
-                                            <div class="col-md-8 col-sm-10  d-flex flex-wrap ">
-
-                                                @foreach ($detail as $item1)
-                                                    @if ($label == $item1->label && $item1->category == 2)
-
-                                                        <div class="col-md-3 col-sm-2 form-check m-2">
-                                                            <input type="checkbox" name="check" id="" class="form-check-input "
-                                                                value="{{ $item1->order }}">
-                                                            <label for="" class="form-check-label labels">{{ $item1->value }}</label>
-                                                        </div>
-
-                                                        @php
-                                                            $count1++;
-                                                        @endphp
-                                                    @endif
-                                                    
-                                                    @if ($item1->label == $label && $item1->category === 1)
-                                                        {{-- <p>{{ $item2->label }}</p> --}}
+                                $count = 0;
+                                $label = '';
+                                $countId = 1;
+                            @endphp
+                            <div class="container-fluid mt-5">
+                                <div class="row">
+                                    @for ($i = 0; $i < count($detail); $i++)
+                                        @php
+                                            $label = $detail[$i]->label;
+                                        @endphp
+                                        <div class="col-md-3 d-flex ms-auto lab">
+                                            <p class="ptopping  ptop">{{ $detail[$i]->label }}</p>
+                                        </div>
+                                        <div class="col-md-8 col-sm-10  d-flex flex-wrap ">
+                                            @foreach ($detail as $item1)
+                                                @if ($label == $item1->label && $item1->category == 2)
+                                                    <div class="col-md-3 col-sm-2 form-check m-2">
+                                                        <input type="checkbox" name="check{{ $countId }}" id="" class="form-check-input "
+                                                            value="{{ $item1->value }}">
+                                                        <label for="" class="form-check-label labels">{{ $item1->value }}</label>
+                                                    </div>
+                                                    @php
+                                                        $count++;
+                                                        $countId++;
+                                                    @endphp
+                                                @elseif ($item1->label == $label && $item1->category === 1)
+                                                    <div class="col-md-3 col-sm-2  m-2">
+                                                        <select name="select{{ $countId }}" id="" class="form-select">
+                                                            @php
                                                            
-                                                        <div class="col-md-3 col-sm-2  m-2">
-                                                            <select name="select" id="" class="form-select">
-                                                              @foreach ($detail as $item2)
-                                                              @if ($item2->label == $label && $item2->category === 1)
-                                                              <option value="{{ $item2->order }}">{{ $item2->value }}</option>
-                                                              @php
-                                                            //   $count1 = 1;
-                                                            // for category 2  count
-                                                              $count1++;   
-                                                            //   $count1 = $count2;
-                                                                
-                                                             @endphp
-                                                              @endif
-                                                                
-                                                              @endforeach
-                                                            
-                                                            </select>
-                                                        </div>
-                                                        
-                                                        @php
-                                                            $count1++;
-                                                        @endphp
-                                                        {{-- <p class="fs-2 text-light"> {{$count1  }} + {{  $count2 }}</p> --}}
-                                                        {{-- @if ($item1->label == $label) --}}
-                                                        {{-- @continue --}}
-                                                        @break
-                                                        {{-- @endif --}}
-                                                        
-                                                    @endif
-                                                   
-                                                @endforeach
-
-                                              
-                                            </div>
-                                            @php
-                                                // $count = $count1 $count2;
-                                                
-                                                $i = $count1;
-                                                // $count = 0;
-                                            @endphp
-
-                                          
-                                        @endfor
-                                    </div>
+                                                            $countId++;
+                                                            @endphp
+                                                            @foreach ($detail as $item2)
+                                                                @if ($item2->label == $label && $item2->category === 1)
+                                                                    <option value="{{ $item2->order }}">{{ $item2->value }}</option>
+                                                                    @php
+                                                                        $count++;
+                                                                        
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    @break
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        @php
+                                            $i = $count;
+                                        @endphp
+                                    @endfor
                                 </div>
+                            </div>
 
                                 {{-- </div>
                             </div> --}}
@@ -319,10 +286,10 @@
 
                             <script>
                               
-
-                             
+                                let pid = @json($productId->pid);
+                                console.log(pid);
                                
                             </script>
                             
-                           
+                            <script src="{{ url('js/productDetail.js') }}" type="text/javascript" defer></script>
                         @endsection
