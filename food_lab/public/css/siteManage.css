@@ -102,7 +102,7 @@ button {
 #maintenance {
     position: absolute;
     left: 82vh;
-    top: 76.5vh;
+    top: 80vh;
 }
 .save {
     background-color: var(--btns);
@@ -144,28 +144,29 @@ button {
     margin-right: 10vh;
 }
 .table {
-    height: fit-content;
-    max-height: 45vh;
     max-width: 80%;
-    display: inline-block;
-    overflow: auto;
     margin-top: 4vh;
     box-shadow: 5px 5px 7px black;
 }
 .tablediv {
     display: flex;
     flex-direction: column;
-    width: 89vh;
+    width: 90vh;
     max-width: 50%;
 }
 .tableHeader {
-    background-color: var(--tablecolor1);
-    font-size: var(--tableheader);
+    background-color: var(--dashboardminlistingheader);
+    font-size: var(--tablerow);
+    font-weight: bold;
+    height: 7vh;
+    margin-left: 4vw;
 }
 .tableChile {
-    background-color: var(--tablecolor2);
-    height: 5vh;
+    background-color: var(--tablecolor1);
+    height: 7vh;
+    margin-left: 4vw;
 }
+
 .tdWhite {
     color: var(--white) !important;
     font-size: var(--tablerow);

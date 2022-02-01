@@ -62,7 +62,11 @@ class T_AD_CoinCharge extends Model
 
         return $dashboardcoin;
     }
-
+/* Create:Zarni(2022/01/16) 
+    * Update: 
+    * This is function is to show the coincharge Data for Customerinfo Detail
+    * Return 
+    */
       public function UsercoinchargeList($id){
 
         $usercoin = T_AD_CoinCharge::

@@ -17,7 +17,7 @@
         <div class="rowInput">
             <label for="note">{{ __('messageZY.note') }}</label>
             <div class="input-group mb-3">
-                <textarea name="note"  class="form-control" id="note" rows="10"></textarea>
+                <textarea name="note" class="form-control" id="note" rows="10"></textarea>
 
                 @error('note')
                     <li class="text-danger ">{{ $message }}</li>
@@ -25,4 +25,3 @@
             </div>
         </div>
         <button type="submit" class="btn btncust text-light active">{{ __('messageZY.change') }}</button>
-        <input type="reset" value="{{ __('messageZY.reset') }}" class="btn btncust text-light active">

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/commonAdmincss.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/adminList.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 @endsection
 
@@ -32,33 +33,44 @@
         <tr class="tableHeader">
             <td>{{ __('messageZY.number') }}</td>
             <td>{{ __('messageZY.username') }}</td>
-            <td>{{ __('messageZY.password') }}</td>
+            <td>{{ __('messageZY.validation') }}</td>
             <td>{{ __('messageZY.role') }}</td>
             <th></th>
             <th></th>
-            <th></th>
+
         </tr>
         @php
             $count = 1;
+            $valid = '';
         @endphp
         @forelse ($admins as $admin)
-
+            @if ($admin->ad_valid == '0')
+                @php
+                    $valid = 'No';
+                @endphp
+            @else
+                @php
+                    $valid = 'Yes';
+                @endphp
+            @endif
             <tr class="tableChile">
 
                 <td class="tdBlack">{{ $count++ }}</td>
                 <td class="tdBlack">{{ $admin->ad_name }}</td>
-                <td class="tdWhite">{{ $admin->ad_password }}</td>
-                <td class="tdWhite">{{ $admin->ad_role }} </td>
-                <td><a href="{{ route('adminLogin.show', $admin->id) }}"><button
-                            class="btn btn-secondary">{{ __('messageZY.detail') }}</button></a></td>
-                <td><a href="{{ route('adminLogin.edit', $admin->id) }}"><button
-                            class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+                <td class="tdBlack ">{{ $valid }}
+                </td>
+                <td class="tdBlack">{{ $admin->ad_role }} </td>
+
+                <td><a href="{{ route('adminLogin.edit', $admin->id) }}">
+                        <ion-icon name="create-outline" class="fs-2 ">
+                        </ion-icon>
+                    </a></td>
                 <td>
                     <form action="{{ route('adminLogin.destroy', $admin->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger" id="delete">{{ __('messageZY.delete') }}</button>
+                        <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                     </form>
                 </td>
             </tr>

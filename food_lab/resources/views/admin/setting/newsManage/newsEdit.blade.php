@@ -70,8 +70,9 @@
                     @enderror
                 </div>
                 <div class="form-group ml-5">
-                    <button type="submit" class="btn btn-success btn-lg m-4">{{ __('messageZY.save') }}</button>
-                    <button type="reset" class="btn btn-success btn-lg m-4">{{ __('messageZY.reset') }}</button>
+                    <button type="submit"
+                        class="btn text-light addAdminButton active btncust m-4">{{ __('messageZY.save') }}</button>
+
                 </div>
             </div>
         </form>

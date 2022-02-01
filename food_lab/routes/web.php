@@ -94,7 +94,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     //admin/setting/newsManage
     Route::resource('news', NewsController::class);
 
-
+    Route::get('adminValidate/{id}', [AdminController::class, 'adminValidate']);
     //_________________________________end appManage_________________________/
 
     //_________________________________start newsManage_________________________/
