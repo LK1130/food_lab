@@ -4,7 +4,7 @@ $(document).ready(function () {
      * Update:
      * This function is used show confirm alert to delete.
      */
-    $("#delete").click(function (event) {
+    $(".delete").click(function (event) {
         var form = $(this).closest("form");
         var name = $(this).data("name");
         event.preventDefault();

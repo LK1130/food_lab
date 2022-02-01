@@ -14,7 +14,7 @@
         <div class="mt-4">
             <a href="" class="me-5"><button
                     class="btn text-light  active btncust">{{ __('messageLK.Listing') }}</button></a>
-            <a href="" class="me-5"><button
+            <a href="addCoin" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.AddCoin') }}</button></a>
             <a href="rateChange" class="me-5"><button
                     class="btn text-light  inactive btncust">{{ __('messageLK.CoinRate') }}</button></a>

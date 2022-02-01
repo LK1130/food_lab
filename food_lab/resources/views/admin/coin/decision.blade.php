@@ -21,7 +21,7 @@
             <div class="col-3">
                 <div class="evd_photo">
                     @isset($path->path)
-                        <img src="{{ URL::asset('/storage/coinCharge/' . $path->path) }}"
+                        <img src="{{ URL::asset('/storage/' . $path->path) }}"
                             class="rounded  d-block border border-danger border-1 rounded" alt="...">
                     @endisset
                     @empty($path->path)
@@ -127,7 +127,7 @@
                 {{-- End Decision Making --}}
 
                 {{-- Start History --}}
-                @if (count($history)>0)
+                @if (count($history) > 0)
                     <label for="" class="fw-bold fs-4 fw-bold mt-3">Decision History</label>
                 @endif
 

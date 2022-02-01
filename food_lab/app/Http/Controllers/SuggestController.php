@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SuggestValidation;
+use App\Models\M_Suggest;
 use App\Models\SuggestModel;
 use App\Models\T_AD_Suggest;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class SuggestController extends Controller
             'Start store'
         ]);
         $validate = $request->validated();
-        $admin = new T_AD_Suggest();
+        $admin = new M_Suggest();
         $admin->suggestAdd($validate);
         Log::channel('adminlog')->info("SuggestController", [
             'End store'

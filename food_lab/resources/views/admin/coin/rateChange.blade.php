@@ -15,7 +15,7 @@
         <div class="mt-4">
             <a href="coinListing" class="me-5"><button
                     class="btn text-light inactive btncust">{{ __('messageLK.Listing') }}</button></a>
-            <a href="" class="me-5"><button
+            <a href="addCoin" class="me-5"><button
                     class="btn text-light inactive btncust">{{ __('messageLK.AddCoin') }}</button></a>
             <a href="" class="me-5"><button
                     class="btn text-light active btncust">{{ __('messageLK.CoinRate') }}</button></a>
@@ -23,9 +23,10 @@
                     class="btn text-light inactive btncust">{{ __('messageLK.CoinHistory') }}</button></a>
         </div>
         {{-- Starts Form --}}
-        <a href="{{ url('coinrate') }}"><button class="change" id="back">{{ __('messageZY.back') }}</button></a>
         <form action="rateStore" method="POST" enctype="multipart/form-data">
+            <div class="col-5">
             @include('COMMON.component.coinRateAdd')
+            </div>
         </form>
 
     </div>

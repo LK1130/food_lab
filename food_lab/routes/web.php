@@ -3,8 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\BuycoinController;
 use App\Http\Controllers\CategoryController;
-use Facade\FlareClient\View;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -22,11 +23,14 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CustomerProfileUpdate;
+use App\Http\Controllers\DeliveryInfoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
 
@@ -90,7 +94,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     //admin/setting/newsManage
     Route::resource('news', NewsController::class);
 
-
+    Route::get('adminValidate/{id}', [AdminController::class, 'adminValidate']);
     //_________________________________end appManage_________________________/
 
     //_________________________________start newsManage_________________________/
@@ -125,23 +129,23 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
     Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
     /**
- * Customer Report
- */
-Route::get('customerReport',[NotificationController::class,'customerReport']);
-Route::post('reportrp/{id}',[NotificationController::class,'reportRp']);
-Route::get('reportreplies',[NotificationController::class,'customerreportReply']);
-/**
- * Customer Contact
- */
-Route::get('customerContact',[NotificationController::class,'customerContact']);
-Route::post('conrp/{id}',[NotificationController::class,'contrpy']);
-Route::get('contactreplies',[NotificationController::class,'customercontactReply']);
-/**
- * Customer Suggest
- */
-Route::get('customerSuggest',[NotificationController::class,'customerSuggest']);
-Route::post('sugrp/{id}',[NotificationController::class,'cusRpy']);
-Route::get('suggestreplies',[NotificationController::class,'customersuggestReply']);
+     * Customer Report
+     */
+    Route::get('customerReport', [NotificationController::class, 'customerReport']);
+    Route::post('reportrp/{id}', [NotificationController::class, 'reportRp']);
+    Route::get('reportreplies', [NotificationController::class, 'customerreportReply']);
+    /**
+     * Customer Contact
+     */
+    Route::get('customerContact', [NotificationController::class, 'customerContact']);
+    Route::post('conrp/{id}', [NotificationController::class, 'contrpy']);
+    Route::get('contactreplies', [NotificationController::class, 'customercontactReply']);
+    /**
+     * Customer Suggest
+     */
+    Route::get('customerSuggest', [NotificationController::class, 'customerSuggest']);
+    Route::post('sugrp/{id}', [NotificationController::class, 'cusRpy']);
+    Route::get('suggestreplies', [NotificationController::class, 'customersuggestReply']);
     /**
      * For Product Form page
      */
@@ -169,6 +173,9 @@ Route::get('suggestreplies',[NotificationController::class,'customersuggestReply
     Route::get('makeReDecision/{id}', [CoinController::class, 'reDecision']);
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
+    Route::get('addCoin', [CoinController::class, 'addCoin']);
+    Route::post('searchCustomer', [CoinController::class, 'searchCustomer']);
+    Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
 
@@ -267,21 +274,58 @@ Route::resource('updateprofile', CustomerProfileUpdate::class);
  */
 Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
 /*
- * For Update Profile
+ * For news page
  * zayar
  */
-Route::get('/news', [CustomerController::class, 'news']);
+Route::get('/customerNews', [CustomerController::class, 'news']);
+
+/*
+ * For messages page
+ * zayar
+ */
+Route::get('/messages', [CustomerController::class, 'message']);
+/*
+/*
+ * For tracks page
+ * zayar
+ */
+Route::get('/tracks', [CustomerController::class, 'tracks']);
+
+/*
+ * For cart page
+*/
+Route::get('/cart', [CartController::class, 'cart']);
+Route::post('/cart', [CartController::class, 'cartDetail']);
+Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+
 /*
  * For deliery info page
 */
-Route::get('/deliveryInfo', function () {
-    return View('customer.deliveryInfo');
-});
-Route::get('/cart', function () {
-    return View('customer.cart');
-});
-
+Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
 /*
  * For Login Form
  */
 Route::post('/login', [CustomerController::class, 'loginForm']);
+
+/*
+For Buy Coin Page
+*/
+Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
+
+/*
+ * For Product Detail Form
+ */
+Route::get('productDetail', [ProductDetailController::class, 'detail']);
+Route::post('cartsession', [CartController::class, 'getData']);
+
+
+/*
+ * For Product
+ */
+Route::get('productLists', [ProductDetailController::class, 'productList']);
+Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
+/*
+ * For logging out
+ */
+Route::get('/logout', [CustomerController::class, 'logout']);

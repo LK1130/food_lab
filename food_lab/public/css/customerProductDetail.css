@@ -1,0 +1,289 @@
+/*start navbar*/
+
+
+.headers {
+    min-height: 100vh;
+    background-image: url('/img/bg10.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav-buttons {
+    background-color: var(--primary-color);
+}
+
+.line1,
+.line2,
+.line3 {
+    width: 20px;
+    height: 3px;
+    margin: 5px;
+    transition: all 0.4s;
+}
+
+.changes .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.changes .line2 {
+    opacity: 0;
+}
+
+.changes .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.navs {
+    background-color: var(--bg-color);
+    font-size: 1.1rem;
+}
+
+.texts {
+    color: var(--primary-color);
+}
+
+.texts:hover {
+    color: var(--text-color);
+}
+
+.actives {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.comapanynames {
+    color: var(--text-color);
+}
+
+.leftside{
+    left: 130% !important;
+    font-size: 1rem;
+    padding: 2px;
+    border-radius: 50%;
+    color: var(--product-color);
+}
+
+
+.navs i {
+    cursor: pointer;
+}
+
+
+/*end navbar*/
+
+/* Detail Section */
+
+.arrows{
+    
+}
+
+.details{
+    font-size: 3.3rem;
+    color: var(--text-color);
+}
+
+.pdname{
+    font-size: 2.7rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.images{
+    width: 100% !important;
+    /* height: 14vh; */
+}
+
+
+.pcoin,.pamount,.ptype,.ptaste,.pingredients,.pdesc,.ptopping{
+    font-size: 2rem;
+    color: var(--product-color);
+    font-weight: bold;
+}
+
+.coins{
+    font-size: 2rem;
+
+    color: var(--text-color);
+}
+.amount{
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.type{
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.taste{
+    font-size: 2rem;
+    margin-left: 5.8rem;
+    color: var(--text-color);
+}
+
+.ingredients{
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+.desc{
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+.inputs{
+    width: 15% !important;
+}
+
+
+.customBlock{
+    width: 9vw !important;
+    cursor: pointer;
+    /* height: 10vh !important; */
+}
+
+
+/* product + -  */
+.qty .count {
+    color : black;
+    width: 30%;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+   font-size: 1.5rem;
+   margin: auto;
+    color:  red;
+    margin-left: 0.8rem;
+    text-align: center;
+  
+    }
+.qty .minus {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: red;
+    margin: auto;
+    margin-right: 0.8rem;
+    text-align: center;
+  
+}
+
+.qty{
+    margin-right: 5rem;
+}
+
+
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{  
+    border: 0;
+    width: 4%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
+
+.btns{
+    background: var(--btn-color) ;
+    color: var(--text-color);
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.labels{
+    font-size: 1.2rem;
+    text-align: center;
+    /* font-weight: bold */
+    color: var(--text-color);
+}
+
+#note:focus,#note:active{
+    outline: none;
+}
+#note{
+    resize: none;
+}
+
+.copy{
+    font-size: 1.5rem;
+    color: var(--product-color);
+}
+
+
+
+@media only screen and (max-width: 720px){
+
+    .images{
+        width: 100% !important;
+        /* height: 16vh; */
+    }
+    .details{
+        font-size: xx-large;
+    }
+
+    
+    .pcoin,.pamount,.ptype,.ptaste,.pingredients,.pdesc,.ptopping{
+    font-size: 1.7rem;
+  
+    font-weight: bold;
+    }
+
+    .type{
+        font-size: 1.5rem;
+        
+    }
+
+    
+    .coins{
+        font-size: 1.5rem;
+    
+    }
+    .amount{
+        font-size: 1.5rem;
+      
+    }
+    
+    
+    .taste{
+        font-size: 1.5rem;
+    }
+    
+    .ingredients{
+        font-size: 1.3rem;
+     
+    }
+    
+    .desc{
+        font-size: 1.3rem;
+       
+    }
+
+    .customBlock{
+        width: 70% !important;
+    }
+
+    .inputs{
+        width: 15% !important;
+    }
+
+    .qty{
+        width: 35% !important;
+    }
+
+  
+
+
+    
+}

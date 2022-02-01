@@ -19,15 +19,14 @@
 .numbers {
     font-size: calc(var(--fontsize4) - 0.3rem) !important;
 }
-.seemore {
-    margin-bottom: 10vh !important;
-}
+
 .tableheader {
     background-color: var(--dashboardminlistingheader) !important;
 }
 .tablecolor1 {
     background-color: var(--tablecolor1);
 }
+
 .boxshad {
     box-shadow: 3px 3px 10px silver;
 }

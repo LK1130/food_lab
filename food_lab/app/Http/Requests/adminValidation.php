@@ -34,7 +34,8 @@ class AdminValidation extends FormRequest
         return [
             'username' => ['required', 'min:8', 'max:16', new CheckName()],
             'password' => ['required', 'min:8', 'max:16'],
-            'role' => ['required', new OnlyDefinedOption()]
+            'role' => ['required', new OnlyDefinedOption()],
+            'validate' => ['required']
         ];
     }
 }

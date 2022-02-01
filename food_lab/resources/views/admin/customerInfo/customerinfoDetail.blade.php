@@ -49,8 +49,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 mt-5 ">
+                <div class="row tabe">
+                    <div class="col-md-6 mt-5 tablelist">
                         <div class="status text tableheaders fw-bold mt-6">Order History</div>
                         <table class="table boxshad">
                             <tr class="tableheader tablerows">
@@ -89,7 +89,7 @@
                         @endif
 
                     </div>
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-6 mt-5 tablelist">
                         <div class="status text fs-3 fw-bold mt-6">Coin Charge History</div>
                         <table class="table boxshad">
                             <thead>

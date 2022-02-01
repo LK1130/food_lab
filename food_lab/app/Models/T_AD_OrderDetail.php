@@ -67,4 +67,31 @@ class T_AD_OrderDetail extends Model
 
         return $top;
     }
+    /*
+     * Create : Min Khant(31/1/2022)
+     * Update : 
+     * Explain of function : Get best sell product
+     * Prarameter : no
+     * return : product
+     * */
+    public function bestSellItems()
+    {
+        Log::channel('customerlog')->info('T_AD_OrderDetail Model', [
+            'start bestSellItems'
+        ]);
+
+        $prodcuts = T_AD_OrderDetail::select('product_id', 'product_name', 'coin', 'amount', DB::raw('SUM(quantity) AS total'))
+            ->join('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
+            ->where('t_ad_orderdetail.del_flg', 0)
+            ->where('m_product.del_flg', 0)
+            ->groupBy('product_id')
+            ->orderBy('total', 'DESC')
+            ->limit(3)
+            ->get();
+
+        Log::channel('customerlog')->info('T_AD_OrderDetail Model', [
+            'end bestSellItems'
+        ]);
+        return $prodcuts;
+    }
 }

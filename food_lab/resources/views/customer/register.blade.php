@@ -1,13 +1,9 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
-@section('google')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async></script>
-@endsection
-
-@section('facebook')
-{{--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>--}}
+@section('css')
+        {{-- custom css 2 --}}
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('js')
@@ -19,6 +15,16 @@
 @endsection
 
 @section('title','Food Lab')
+
+@section('google')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="google-signin-client_id" content="608465627296-6kuk054hln5v9k61t8d7vkpo7jqej6u7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async></script>
+@endsection
+
+@section('facebook')
+{{--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>--}}
+@endsection
 
 @section('body')
     {{-- Start Access Section--}}
@@ -71,9 +77,16 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(No)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
-                    @error('addressNo')
-                    <span class="text-danger">{{ $message }}</span>
+                    <select class="form-select selects" id="addressState" name="addressState">
+                        <option  class="township-options" value="0" selected>{{ __('messageMK.address(State)') }}</option>
+                        @forelse ($staenames as $staename)
+                            <option  class="township-options" value="{{ $staename->id }}">{{ $staename->state_name }}</option>
+                        @empty
+                            <option  class="township-options" disabled>No data</option>
+                        @endforelse
+                    </select>
+                    @error('addressState')
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
@@ -90,16 +103,9 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <select class="form-select selects" id="addressState" name="addressState">
-                        <option  class="township-options" value="0" selected>{{ __('messageMK.address(State)') }}</option>
-                        @forelse ($staenames as $staename)
-                            <option  class="township-options" value="{{ $staename->id }}">{{ $staename->state_name }}</option>
-                        @empty
-                            <option  class="township-options" disabled>No data</option>
-                        @endforelse
-                    </select>
-                    @error('addressState')
-                        <span class="text-danger">{{ $message }}</span>
+                    <input type="text" id="addressNo" class="form-control" name="addressNo" placeholder="{{ __('messageMK.address(street)') }}" value="{{ old('addressNo') }}" autocomplete="off"/>
+                    @error('addressNo')
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
@@ -136,9 +142,8 @@
                                 <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">{{ __('messageMK.favouriteType') }}</legend>
                                     <div class="m-3">
-                                        <input type="text" class="modal-inputs @error('type') border-danger @enderror" name="type" value="@foreach ($types as $type)
-                                            {{ $type->favourite_food }},
-                                        @endforeach" data-role="tagsinput" id="tags" class="form-control">
+                                        <input type="text" class="modal-inputs @error('type') border-danger @enderror" name="type" 
+                                        value="@foreach ($types as $type){{ $type->favourite_food }},@endforeach" data-role="tagsinput" id="tags" class="form-control">
                                     </div>
                                 </fieldset>
                                 <fieldset class="border border-3 rounded">

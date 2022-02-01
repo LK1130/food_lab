@@ -16,9 +16,10 @@ class CustomerProfileUpdate extends Controller
         Log::channel('adminlog')->info("CustomerProfileUpdate", [
             'Start index'
         ]);
-        $sessionCustomerId = "qwer1234"; //need to change
+        $sessionCustomerId = session()->get('customerId');
         $user = new T_CU_Customer();
         $userinfo = $user->loginUser($sessionCustomerId);
+
         if ($userinfo === null) {
             Log::channel('adminlog')->info("CustomerProfileUpdate", [
                 'End index(error)'
@@ -41,7 +42,10 @@ class CustomerProfileUpdate extends Controller
         $admin = new T_CU_Customer();
         $oldPassword = $admin->oldPassword($id);
         $validate = $request->validated();
-        if ($oldPassword == $validate['oldpassword']) {
+        Log::channel('adminlog')->info("old", [
+            $oldPassword
+        ]);
+        if ($oldPassword == md5(sha1($validate['oldpassword']))) {
             $admin = new T_CU_Customer();
             $admin->updatePassword($id, $validate);
             Log::channel('adminlog')->info("CustomerProfileUpdate", [

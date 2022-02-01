@@ -23,3 +23,13 @@
     border: 1px black solid;
     background-color: var(--btns) !important;
 }
+@media (max-width: 1446px) {
+    .tabe {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .tablelist {
+        width: 100%;
+    }
+}

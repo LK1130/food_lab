@@ -7,17 +7,21 @@
     width: 12vw;
     font-size: var(--btntextsize) !important;
     border: 1px black solid;
+    background-color: var(--inactivebtn);
+}
+.btncust:hover {
+    background-color: var(--btns);
 }
 .active {
-    background-color: var(--btns);
+    background-color: var(--btns) !important;
 }
 .navBar {
     display: flex;
-    align-items: center;
-    justify-content: center;
+
     flex-direction: row;
     gap: 7vh;
-    margin-top: 6vh;
+    margin-top: 4vh;
+    margin-left: 17vw;
 }
 
 .headerButton {
@@ -43,11 +47,12 @@
     box-shadow: 5px 5px 7px black;
 }
 .tableHeader {
-    background-color: var(--tablecolor1);
-    font-size: var(--tableheader);
+    background-color: var(--dashboardminlistingheader);
+    font-size: var(--tablerow);
+    font-weight: bold;
 }
 .tableChile {
-    background-color: var(--tablecolor2);
+    background-color: var(--tablecolor1);
 }
 .formHeader {
     font-size: var(--title);
@@ -114,4 +119,7 @@ label {
     margin-left: 23vw;
 
     text-align: center;
+}
+#delete {
+    cursor: pointer;
 }

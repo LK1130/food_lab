@@ -41,11 +41,11 @@
                                 <div class="col-md-6 col-sm-10">
                                     <div class="mx-5 mt-4 p-4 blocks">
                                         <img id="img1" class="img-thumbnail"
-                                            src="@isset($evd[0]->path)/storage/{{ $evd[0]->path }}@endisset">
+                                            src="@isset($phd[0]->path)/storage/{{ $phd[0]->path }}@endisset">
                                         </div>
                                         <div class="form-group mx-4 mt-2 mb-2">
-                                            <input type="file" name="photo1" id="photo1" class="form-control files" value="@isset($evd[0]->path)/storage/{{ $evd[0]->path }}@endisset">
-                                            <input type="hidden" name="hide1" id="hide1" value="@isset($evd[0]->path){{ $evd[0]->path }}@endisset">
+                                            <input type="file" name="photo1" id="photo1" class="form-control files" value="@isset($phd[0]->path)/storage/{{ $phd[0]->path }}@endisset">
+                                            <input type="hidden" name="hide1" id="hide1" value="@isset($phd[0]->path){{ $phd[0]->path }}@endisset">
                                         
                                         </div>
                                     </div>
@@ -53,60 +53,60 @@
                                     <div class="col-md-6 col-sm-10">
                                         <div class="mx-5 mt-4 p-4 blocks">
                                             <img id="img2" class="img-thumbnail"
-                                                src="@isset($evd[1]->path)/storage/{{ $evd[1]->path }}@endisset"
+                                                src="@isset($phd[1]->path)/storage/{{ $phd[1]->path }}@endisset"
                                                     >
                                             </div>
                                             <div class="form-group mx-4 mt-2 mb-2">
                                                 <input type="file" name="photo2" id="photo2" class="form-control files">
-                                                <input type="hidden" name="hide2" id="hide2" value="@isset($evd[1]->path){{ $evd[1]->path }}@endisset">
+                                                <input type="hidden" name="hide2" id="hide2" value="@isset($phd[1]->path){{ $phd[1]->path }}@endisset">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6 col-sm-10">
                                             <div class="mx-5 mt-4 p-4 blocks">
                                                 <img id="img3" class="img-thumbnail"
-                                                    src="@isset($evd[2]->path)/storage/{{ $evd[2]->path }}@endisset"
+                                                    src="@isset($phd[2]->path)/storage/{{ $phd[2]->path }}@endisset"
                                                         >
                                                 </div>
                                                 <div class="form-group mx-4 mt-2 mb-2">
                                                     <input type="file" name="photo3" id="photo3" class="form-control files">
-                                                    <input type="hidden" name="hide3" id="hide3" value="@isset($evd[2]->path){{ $evd[2]->path }}@endisset">
+                                                    <input type="hidden" name="hide3" id="hide3" value="@isset($phd[2]->path){{ $phd[2]->path }}@endisset">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 col-sm-10">
                                                 <div class="mx-5 mt-4 p-4 blocks">
                                                     <img id="img4" class="img-thumbnail"
-                                                        src="@isset($evd[3]->path)/storage/{{ $evd[3]->path }}@endisset"
+                                                        src="@isset($phd[3]->path)/storage/{{ $phd[3]->path }}@endisset"
                                                             >
                                                     </div>
                                                     <div class="form-group mx-4 mt-2 mb-2">
                                                         <input type="file" name="photo4" id="photo4" class="form-control files">
-                                                        <input type="hidden" name="hide4" id="hide4" value="@isset($evd[3]->path){{ $evd[3]->path }}@endisset">
+                                                        <input type="hidden" name="hide4" id="hide4" value="@isset($phd[3]->path){{ $phd[3]->path }}@endisset">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6 col-sm-10">
                                                     <div class="mx-5 mt-4 p-4 blocks">
                                                         <img id="img5" class="img-thumbnail"
-                                                            src="@isset($evd[4]->path)/storage/{{ $evd[4]->path }}@endisset"
+                                                            src="@isset($phd[4]->path)/storage/{{ $phd[4]->path }}@endisset"
                                                                 >
                                                         </div>
                                                         <div class="form-group mx-4 mt-2 mb-2">
                                                             <input type="file" name="photo5" id="photo5" class="form-control files">
-                                                            <input type="hidden" name="hide5" id="hide5" value="@isset($evd[4]->path){{ $evd[4]->path }}@endisset">
+                                                            <input type="hidden" name="hide5" id="hide5" value="@isset($phd[4]->path){{ $phd[4]->path }}@endisset">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6 col-sm-10">
                                                         <div class="mx-5 mt-4 p-4 blocks">
                                                             <img id="img6" class="img-thumbnail"
-                                                                src="@isset($evd[5]->path)/storage/{{ $evd[5]->path }}@endisset"
+                                                                src="@isset($phd[5]->path)/storage/{{ $phd[5]->path }}@endisset"
                                                                     >
                                                             </div>
                                                             <div class="form-group mx-4 mt-2 mb-2">
                                                                 <input type="file" name="photo6" id="photo6" class="form-control files">
-                                                                <input type="hidden" name="hide6" id="hide6" value="@isset($evd[5]->path){{ $evd[5]->path }}@endisset">
+                                                                <input type="hidden" name="hide6" id="hide6" value="@isset($phd[5]->path){{ $phd[5]->path }}@endisset">
                                                             </div>
                                                         </div>
 
@@ -275,7 +275,7 @@
                             </div>
                             <script>
                                 var startCount = @json(count($pdetails) + 1);
-                                var file = @json($evd[0]->path);
+                                var file = @json($phd[0]->path);
                                 console.log(file);
                                 var rate = @json($rates->rate);
                             </script>
