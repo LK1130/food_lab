@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class T_AD_OrderDetail extends Model
@@ -30,7 +31,13 @@ class T_AD_OrderDetail extends Model
 
         return $productIds;
     }
-
+     /*
+    * Create : Zar Ni(14/1/2022)
+    * Update :
+    * Explain of function : Product data for OrderTransaction Detail
+    * Prarameter : no
+    * return : 
+    */
     public function orderDetail($id)
     {
 
@@ -39,5 +46,25 @@ class T_AD_OrderDetail extends Model
             ->where('t_ad_orderdetail.del_flg', 0)
             ->paginate(7);
         return $orderDetail;
+    }
+     /*
+    * Create : Zar Ni (14/1/2022)
+    * Update :
+    * Explain of function : To get Top 3 product
+    * Prarameter : no
+    * return : 
+    */
+
+    public function topthree(){
+        $top = T_AD_OrderDetail::select('product_id','product_name',DB::raw('count(*) AS count'))
+        ->join('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
+        ->where('t_ad_orderdetail.del_flg', 0)
+        ->where('m_product.del_flg',0)
+        ->groupBy('product_id')
+        ->limit(3)
+        ->orderBy('count','DESC')
+        ->get();
+
+        return $top;
     }
 }

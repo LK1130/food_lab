@@ -196,11 +196,21 @@ class T_AD_Suggest extends Model
 
         $rp = T_AD_Suggest::where('id',$id)
         ->update(['reply'=>$request]);
-
+        return $rp;
+        
         Log::channel('adminlog')->info("T_AD_Suggest Model", [
             'End sugRpy'
         ]);
-
-        return $rp;
+    }
+    /*
+   * Create:Zar Ni(2022/01/25) 
+   * Update: 
+   * This function is for send emal to customer.
+   */
+    public function cussuggestMail($id){
+        $sugmail = T_AD_Suggest::select(['customer_id','reply'])
+        ->where('id',$id)
+        ->first();
+        return $sugmail;
     }
 }

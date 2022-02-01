@@ -99,6 +99,8 @@ class T_AD_Order extends Model
             ->join('m_payment', 'm_payment.id', '=', 't_ad_order.payment')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
             ->where('t_ad_order.del_flg', 0)
+            ->orderby('t_ad_order.order_date','DESC')
+            ->orderby('t_ad_order.order_time','DESC')
             ->limit(5)
             ->get();
 
@@ -182,7 +184,6 @@ class T_AD_Order extends Model
             'End Usertransaction'
         ]);
     }
-
 
 
     public function orderDaily()

@@ -20,11 +20,11 @@
 .detail {
     font-size: var(--detail);
 }
-.tableheaders {
-    font-size: var(--tableheader);
+.tableheader {
+    background-color: var(--dashboardminlistingheader) !important;
 }
-.tablerows {
-    font-size: var(--tablerow);
+.tablecolor1 {
+    background-color: var(--tablecolor1);
 }
 .btncust1 {
     margin: 10px;

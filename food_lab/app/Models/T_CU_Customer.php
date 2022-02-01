@@ -30,6 +30,7 @@ class T_CU_Customer extends Model
       'Start DashboardMinicus'
     ]);
     $dashboardcus = T_CU_Customer::limit(5)
+      ->where('del_flg',0)
       ->get();
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
@@ -54,8 +55,7 @@ class T_CU_Customer extends Model
 
     $cuscount = T_CU_Customer::where('t_cu_customer.del_flg', 0)
       ->count('t_cu_customer.id');
-
-
+      
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End Dashboardcuscount'
     ]);
@@ -158,6 +158,20 @@ class T_CU_Customer extends Model
         'End customerDetail'
       ]);
     }
+ /*
+      * Create : Zar Ni(20/1/2022)
+      * Update :
+      * Explain of function : get nickname for sending email.
+      * Prarameter : no
+      * return :
+    */
+    public function suggestmailnickname($id){
+      $sugmail = T_CU_Customer::select('nickname')
+        ->where('id',$id)
+        ->first();
+        return $sugmail;
+    }
+
   /*
       * Create : Min Khant(15/1/2022)
       * Update :

@@ -106,6 +106,12 @@ class T_AD_Report extends Model
 
         return $rpreply;
     }
+    public function customerreportMail($id){
+        $cusreport = T_AD_Report::select('customer_id')
+        ->where('id',$id)
+        ->first();
+        return $cusreport;
+    }
     /*
      * Create : Min Khant(13/1/2022)
      * Update :

@@ -16,10 +16,6 @@
 .tablerows {
     font-size: var(--tablerow);
 }
-.custable {
-    display: flex;
-    flex-wrap: wrap;
-}
 .btncust1 {
     margin: 10px;
     width: 12vw;

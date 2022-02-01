@@ -4,7 +4,7 @@
     font-family: sans-serif;
 }
 
-.dash{
+.dash {
     background-color: var(--btns) !important;
     color: var(--white) !important;
 }
@@ -54,4 +54,7 @@ a {
 }
 .tablerows {
     font-size: var(--tablerow);
+}
+.stat {
+    height: auto;
 }

@@ -57,7 +57,9 @@ return [
     'By nickname'=>'By Nickname',
     'By ID'=>'By ID',
     'Nickname'=>'Nickname',
-    'Phoneno'=>'Phone No.'
+    'Phoneno'=>'Phone No.',
+    'Customers List'=>'Customers List',
+    'Last Desicionby'=>'Last Desicion By'
 
 
 ];
