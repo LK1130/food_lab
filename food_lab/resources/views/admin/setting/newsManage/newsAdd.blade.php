@@ -25,9 +25,11 @@
                 class="btn text-light  active btncust">{{ __('messageZY.siteManager') }}</button></a>
     </div>
     {{-- Starts Form --}}
+
     <div class="adminAddForm">
-        <div id="back2"><a href="{{ url('siteManage') }}"><button
-                    class="btn btn-lg buttonBack">{{ __('messageZY.back') }}</button></a></div>
+        <div id="back2"><a href="{{ url('news') }}"><button
+                    class="btn text-light addAdminButton active btncust ">{{ __('messageZY.back') }}</button></a>
+        </div>
         <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <p class="formHeader">{{ __('messageZY.addnews') }}</p>
@@ -64,7 +66,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg m-4">{{ __('messageZY.save') }}</button>
+                    <button type="submit"
+                        class="btn text-light addAdminButton active btncust btn-lg m-4">{{ __('messageZY.save') }}</button>
                 </div>
             </div>
         </form>

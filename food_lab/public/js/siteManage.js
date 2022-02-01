@@ -1,20 +1,19 @@
 $(document).ready(function () {
     onChange();
     checked();
-    console.log("Asdf");
+    initial();
+
     /*
      * Create:zayar(2022/01/13)
      * Update:
      * This function is used to toggle the App Management , Site Management and news Management.
      */
+
     function onChange() {
         $("#select").change(function () {
             var selected = $("#select").val();
             window.location.replace(selected);
             console.log(url);
-            if ($("#maintenance").is(":checked")) {
-                $("#mvalue").val(1);
-            } else $("#mvalue").val(0);
         });
     }
     /*
@@ -22,11 +21,14 @@ $(document).ready(function () {
      * Update:
      * This function is used to check if maintenance checkbox is checked or not.
      */
+    function initial() {
+        if ($("#maintenance").is(":checked")) {
+            $("#mvalue").val(1);
+        } else $("#mvalue").val(0);
+    }
     function checked() {
         $("#maintenance").click(function () {
-            if ($("#maintenance").is(":checked")) {
-                $("#mvalue").val(1);
-            } else $("#mvalue").val(0);
+            initial();
         });
     }
     /*

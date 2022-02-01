@@ -8,6 +8,8 @@
 @endsection
 
 @section('js')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/customerDeliveryInfo.js" type="text/javascript" defer></script>
 @endsection
 
@@ -33,7 +35,7 @@
                     <label class="fw-bold"id="details">{{ __('messageCPPK.Phone') }}</label>
                 </div>
                 <div class="inputs">
-                    <input type="text" name="phone" class="controlForm" value="{{$deliInfo->phone }}"/>
+                    <input type="text" name="phone" class="controlForm phone" value="{{$deliInfo->phone }}"/>
                 </div>
             </div>
             <div class="d-flex mb-4 forms">
@@ -55,11 +57,11 @@
                 </div>
                 <div class="d-flex justify-content-around align-items-center inputs">
                     <div>
-                        <input type="radio" id="coin" class="me-3" name="money" value="0" checked/> 
+                        <input type="radio" id="coin" class="me-3 vouncher" name="money" value="0" checked/> 
                         <label for="coin" class="text-white moneys cursor">{{ __('messageCPPK.Coin') }}</label>
                     </div>
                     <div>
-                        <input type="radio" id="cash" class="me-3" name="money" value="1"/> 
+                        <input type="radio" id="cash" class="me-3 vouncher" name="money" value="1"/> 
                         <label for="cash" class="text-white moneys cursor">{{ __('messageCPPK.Cash') }}</label>
                     </div>
                 </div>
@@ -69,10 +71,10 @@
                 </div>
                 <div class="d-flex justify-content-center align-items-center inputs">
                     <div class="text-center amount coin">
-                        <p class="moneys">10</p>
+                        <p class="moneys">{{ $grandCoin }}</p>
                     </div>
                     <div class="text-center amount cash hide">
-                        <p class="moneys">1000 Ks</p>
+                        <p class="moneys">{{ $grandCash }} Ks</p>
                     </div>
                 </div>
             </div>

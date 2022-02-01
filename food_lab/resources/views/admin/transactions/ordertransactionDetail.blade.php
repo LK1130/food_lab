@@ -17,12 +17,8 @@
 
 @section('body')
     <div class="col-md-10">
-        <div class="mt-4">
-            <a href="orderTransaction" class="me-5"><button
-                    class="btn  text-light fs-4 topbtns btncust">{{ __('messageZN.Order Transaction') }}</button></a>
-            <a href="coinchargeList"><button
-                    class="btn  inactive text-light fs-4 topbtns">{{ __('messageZN.Coin Charge List') }}</button></a>
-        </div>
+
+        <a href="orderTransaction"><button class="btn btncust text-light mt-4">Back</button></a>
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageZN.Order Transaction Detail') }}</div>
         <div class="row ">
             <div class="col-md-12 roow">
@@ -35,7 +31,9 @@
                                 <li class="lidisplay"><b>{{ __('messageZN.CustomerName') }}</b> :
                                     {{ $order->nickname }}</li>
                                 <li class="lidisplay"> <b>{{ __('messageZN.Customer ID') }}</b>
-                                    :{{ $order->customerID }} </li>
+                                    :<a
+                                        href="customerinfoDetail?id={{ $order->customer_id }}">{{ $order->customerID }}</a>
+                                </li>
                             </div>
                         </div>
                         {{-- Order Id And Date --}}
@@ -65,7 +63,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($orderdetail as $list)
-                                            <tr class="tablecolor1 text-light fs-5">
+                                            <tr class="tablecolor1 fs-5">
                                                 <th scope="row">1</th>
                                                 <td>{{ $list->product_name }}</td>
                                                 <td>{{ $list->product_id }}</td>

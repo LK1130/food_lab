@@ -33,7 +33,7 @@ class SiteController extends Controller
         $request->validate([
             'name' => 'required|min:0|max:15',
             'policy' => 'required|min:10|max:255',
-            'maintenance' => 'required|numeric|min:1|max:1'
+            'maintenance' => 'required|numeric|min:0|max:1'
         ]);
 
         if ($request->hasFile('logo')) {
