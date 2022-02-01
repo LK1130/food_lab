@@ -20,7 +20,7 @@
     <p class="fs-1 text-white fw-bold text-center pt-4"><img src="{{ url('storage/logo/siteLog.png') }}" alt="Logo">{{ __('messageCPPK.Food Lab') }}</p>
     <h1 class="fw-bold ms-4 my-4 heading">{{ __('messageCPPK.Delivery Information') }}</h1>
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <form action="/suggest" class="py-3 formDisplay" method="post">
+        <form action="/insertOrder" class="py-3 formDisplay" method="post">
             @csrf
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
@@ -32,7 +32,7 @@
             </div>
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
-                    <label class="fw-bold" id="details">{{ __('messageCPPK.Phone') }}</label>
+                    <label class="fw-bold"id="details">{{ __('messageCPPK.Phone') }}</label>
                 </div>
                 <div class="inputs">
                     <input type="text" name="phone" class="controlForm phone" value="{{$deliInfo->phone }}"/>
@@ -44,6 +44,11 @@
                 </div>
                 <div class="inputs">
                     <textarea class="controlForm" disabled>{{ $deliInfo->address3}} , {{ $deliInfo->township_name }} , {{ $deliInfo->state_name }}</textarea>
+                    
+                    <p class="fs-6 text-start text-danger">click this button to change name and address.  
+                        <a href="/" class="btn btn-warning btn-sm"> User Profile</a></a>
+                    </p>
+   
                 </div>
             </div>
             <div class="d-flex mb-4 forms">

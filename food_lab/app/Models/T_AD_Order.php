@@ -34,7 +34,7 @@ class T_AD_Order extends Model
     public function ordertransactionDetails($id)
     {
 
-        Log::channel('adminlog')->info("T_AD_Order Model", [
+        Log::channel('adminlog')->info("T_AD_Order", [
             'Start ordertransactionDetails'
         ]);
 
@@ -47,7 +47,7 @@ class T_AD_Order extends Model
             ->where('t_ad_order.id', '=', $id)
             ->first();
 
-        Log::channel('adminlog')->info("T_AD_Order Model", [
+        Log::channel('adminlog')->info("T_AD_Order", [
             'End ordertransactionDetails'
         ]);
 
