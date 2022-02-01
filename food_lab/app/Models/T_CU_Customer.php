@@ -433,6 +433,8 @@ class T_CU_Customer extends Model
     return $result;
   }
 
+
+
   /*
       * Create : Min Khant(29/1/2022)
       * Update :

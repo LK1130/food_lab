@@ -139,4 +139,28 @@ class M_Fav_Type extends Model
     ]);
     return $typenames;
   }
+
+  /*
+     * Create : Min Khant(1/2/2022)
+     * Update :
+     * Explain of function : to get customer fav type id
+     * Prarameter : no
+     * return : fav type id
+     * */
+  public function customerFavType($type)
+  {
+    Log::channel('customerlog')->info('M_Fav_Type Modal', [
+      'start type'
+    ]);
+
+    $typeId = M_Fav_Type::select('id')
+      ->where('favourite_food', $type)
+      ->where('del_flg', 0)
+      ->first();
+
+    Log::channel('customerlog')->info('M_Fav_Type Modal', [
+      'end type'
+    ]);
+    return $typeId;
+  }
 }

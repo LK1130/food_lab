@@ -46,10 +46,13 @@
             </div>
 
             {{-- Start Added Buy Products  --}}
+            @php
+                $i = 1;
+            @endphp
             @foreach ($products as $product)
-                <div class="row justify-content-center align-items-center mt-3 products" id="{{ $product['id'] }}">
+                <div class="row justify-content-center align-items-center mt-3 products">
                     <div class="col-1 text-center">
-                        <ion-icon name="close-sharp" class="fs-1 delete"></ion-icon>
+                        <ion-icon name="close-sharp" class="fs-1 delete" id="{{ $i++ }}"></ion-icon>
                     </div>
                     <div class="col-3">
                         <img src="img/menu.png" alt = "" style="width: 80%"/>

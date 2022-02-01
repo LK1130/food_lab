@@ -14,6 +14,7 @@ let order = document.querySelector('.order'),
     products = document.querySelectorAll('.products'),
     nums = document.querySelectorAll('.num');
 
+
 // let load = () => {
 //     totalCoin = totalCoin.textContent;
 //     totalCash = totalCash.textContent;
@@ -72,9 +73,25 @@ function rightClick() {
 
 
 $(document).on('click', '.delete', (e) => {
-    console.log(e.originalEvent.path[6].id);
-    let productId = e.originalEvent.path[6].id;
+    console.log(e.originalEvent.path[3].id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: '/deleteProduct',
+        data: { 'id': e.originalEvent.path[3].id },
+        success: function(res) {
+            window.location.href = '/cart';
+        },
+        error: function(err) {
+            console.error(err);
+        }
+    })
 })
+
 
 let calAmount = () => {
     let productTotalCoin = 0,
@@ -127,6 +144,7 @@ $(document).on('click', '.plus', function(e) {
         eachCash = 0,
         productCoin = 0,
         productCash = 0;
+
     if (quantity.textContent < 9) {
         eachCoin = coin.textContent / quantity.textContent;
         eachCash = cash.textContent / quantity.textContent;
@@ -149,30 +167,28 @@ $(document).on('click', '.plus', function(e) {
 order.addEventListener('click', function() {
     let cart = [],
         product = {};
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-        }
-    });
+
     for (let i = 0; i < products.length; i++) {
-        console.log(products[i].getAttribute('id'));
         product = {
-            "pid": products[i].getAttribute('id'),
             "q": nums[i].textContent
         };
         cart.push(product);
     }
 
-    console.log(cart);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $.ajax({
         type: "POST",
         url: "/cart",
         data: { 'cart': cart },
         success: function(res) {
-            console.log(res);
+            window.location.href = '/deliveryInfo';
         },
         error: function(err) {
             console.error(err);
         }
-    })
+    });
 });

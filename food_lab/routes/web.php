@@ -296,6 +296,7 @@ Route::get('/tracks', [CustomerController::class, 'tracks']);
 */
 Route::get('/cart', [CartController::class, 'cart']);
 Route::post('/cart', [CartController::class, 'cartDetail']);
+Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
 
 /*
  * For deliery info page
