@@ -302,6 +302,7 @@ Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
  * For deliery info page
 */
 Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
 /*
  * For Login Form
  */
