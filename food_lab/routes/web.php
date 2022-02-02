@@ -293,6 +293,7 @@ Route::get('/tracks', [CustomerController::class, 'tracks']);
 
 /*
  * For cart page
+ * min khant
 */
 Route::get('/cart', [CartController::class, 'cart']);
 Route::post('/cart', [CartController::class, 'cartDetail']);
@@ -300,8 +301,10 @@ Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
 
 /*
  * For deliery info page
+ * cherry
 */
 Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
 /*
  * For Login Form
  */

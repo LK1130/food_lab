@@ -32,21 +32,28 @@
                             <th scope="col">{{ __('messageZN.No') }}</th>
                             <th scope="col">{{ __('messageZN.Customer ID') }}</th>
                             <th scope="col">{{ __('messageZN.CoinA') }}</th>
-                            <th scope="col">{{ __('messageZN.Decisionby') }}</th>
+                            <th scope="col">{{ __('messageZN.Last Desicionby') }}</th>
                             <th scope="col">{{ __('messageZN.Request time') }}</th>
                             <th scope="col">{{ __('messageZN.Status') }}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($t_ad_coincharge as $key => $coincharge)
-                            <tr class="tablecolor1 text-light tablerows">
+                            <tr class="tablecolor1  tablerows">
                                 <th scope="row">{{ $t_ad_coincharge->firstItem() + $key }}</th>
                                 <td>{{ $coincharge->customerID }}</td>
                                 <td>{{ $coincharge->request_coin }}</td>
                                 <td>{{ $coincharge->ad_name }}</td>
-                                <td>{{ $coincharge->request_datetime }}
+                                <td>{{ \Carbon\Carbon::parse($coincharge->request_datetime)->diffForHumans() }}
                                 </td>
                                 <td>{{ $coincharge->status }}</td>
+                                <td>
+                                    <a href="">
+                                        <button class="btn tablerows btn-outline-light"><i
+                                                class="bi bi-arrow-right"></i></button>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
 
