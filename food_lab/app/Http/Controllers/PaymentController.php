@@ -45,7 +45,7 @@ class PaymentController extends Controller
         Log::channel('adminlog')->info("PaymentController", [
             'End store'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
 
     /*
@@ -99,7 +99,7 @@ class PaymentController extends Controller
             Log::channel('adminlog')->info("PaymentController", [
                 'End update'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 
@@ -126,7 +126,7 @@ class PaymentController extends Controller
             Log::channel('adminlog')->info("PaymentController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

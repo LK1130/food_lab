@@ -171,7 +171,7 @@ class M_AD_Login extends Model
         ]);
         $admin = M_AD_Login::find($id);
         $admin->ad_name = $validate['username'];
-        $admin->ad_password = $validate['password'];
+        $admin->ad_password =  md5(sha1($validate['password']));
         $admin->ad_role = $validate['role'];
         $admin->ad_valid = $validate['validate'];
         $admin->save();
