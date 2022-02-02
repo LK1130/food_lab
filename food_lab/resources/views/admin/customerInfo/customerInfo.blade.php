@@ -48,7 +48,8 @@
                                 <td>{{ $list1->nickname }}</td>
                                 <td>{{ $list1->customerID }}</td>
                                 <td>{{ $list1->phone }}</td>
-                                <td>{{ $list1->address3 }}</td>
+                                <td>{{ $list1->state_name }} {{ $list1->township_name }} {{ $list1->address3 }}
+                                </td>
                                 <td>
                                     <a href="customerinfoDetail?id={{ $list1->id }}">
                                         <button class="btn tablerows btn-outline-dark"><i

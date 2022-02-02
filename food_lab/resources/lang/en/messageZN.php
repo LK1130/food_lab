@@ -12,7 +12,7 @@ return [
     'Status'=>'Status',
     'Total Transaction'=>'Total Transaction',
     'See More Detail'=>'See More Detail',
-    'Total User Register'=>'Total User Register',
+    'Total Register'=>'Total Register',
     'Coin Rate'=>'Coin Rate',
     'Today Order'=>'Today Order',
     'Top 3'=>'Top 3',
