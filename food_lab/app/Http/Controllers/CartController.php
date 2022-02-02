@@ -44,13 +44,19 @@ class CartController extends Controller
             //                 "value": "Chill,Lemon,nananpin"
             //             }
             //         ]
-            //     },{                    
-            //         "pid": 12,
-            //         "q": 10
             //     },
             //     {                    
             //         "pid": 1,
-            //         "q": 5
+            //         "q": 5,
+            //         "value": [{
+            //                 "label": "A kyaw",
+            //                 "value": "Egg"
+            //             },
+            //             {
+            //                 "label": "A po",
+            //                 "value": "Chill,Lemon,nananpin"
+            //             }
+            //         ]
             //     }
             // ]']);
             $products = [];
@@ -101,7 +107,7 @@ class CartController extends Controller
 
     /*
      * Create : Min Khant(28/1/2022)
-     * Update :
+     * Update :admin
      * Explain of function : get product info , calculate total amount and store session product detail
      * Prarameter : no
      * return : no
@@ -141,23 +147,40 @@ class CartController extends Controller
         // change quantity in session data  and cal total coin,cash
         for ($i = 0; $i < count($postProducts); $i++) {
             $productArrays[$i]['q'] = $postProducts[$i]['q'];
-            $totalCoin += ($products[$i]['coin'] * $postProducts[$i]['q']);
-            $totalCash += ($products[$i]['amount'] * $postProducts[$i]['q']);
+
+            $productCoin = $products[$i]['coin'] * $postProducts[$i]['q'];
+            $productCash = $products[$i]['amount'] * $postProducts[$i]['q'];
+            $productArrays[$i]['coin'] = $productCoin;
+            $productArrays[$i]['cash'] = $productCash;
+
+            $totalCoin += $productCoin;
+            $totalCash += $productCash;
         }
         $grandCoin = $totalCoin + $delCoin;
-        $gradnCash = $totalCash + $delCash;
+        $grandCash = $totalCash + $delCash;
 
         // store session product 
         $storeProduct = json_encode($productArrays);
-        session(['cart' => $storeProduct, 'grandCoin' => $grandCoin, 'grandCash' => $gradnCash]);
+        session(['cart' => $storeProduct, 'grandCoin' => $grandCoin, 'grandCash' => $grandCash]);
 
         Log::channel('custoerlog')->info('CartController', [
             'end cartDetail'
         ]);
     }
 
+    /*
+     * Create : Min Khant(1/2/2022)
+     * Update :admin
+     * Explain of function : delete session product 
+     * Prarameter : no
+     * return : no
+     * */
     public function deleteProduct()
     {
+        Log::channel('custoemrlog')->info('CartController', [
+            'start deleteProduct'
+        ]);
+
         $sessionProduct = [];
         $productArrays = json_decode(session('cart'), true);
         $id = $_POST['id'];
@@ -165,8 +188,11 @@ class CartController extends Controller
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
+
         session(['cart' => json_encode($sessionProduct)]);
-        // $this->cart();
+        Log::channel('custoemrlog')->info('CartController', [
+            'end deleteProduct'
+        ]);
     }
 
 

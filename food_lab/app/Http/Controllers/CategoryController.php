@@ -44,7 +44,7 @@ class CategoryController extends Controller
         Log::channel('adminlog')->info("CategoryController", [
             'End create'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -96,7 +96,7 @@ class CategoryController extends Controller
             Log::channel('adminlog')->info("CategoryController", [
                 'End Update'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -123,7 +123,7 @@ class CategoryController extends Controller
             Log::channel('adminlog')->info("CategoryController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

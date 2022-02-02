@@ -41,7 +41,7 @@ class TasteController extends Controller
         $validate = $request->validated();
         $admin = new M_Taste();
         $admin->tasteAdd($validate);
-        return redirect('siteManage');
+        return redirect('app');
         Log::channel('adminlog')->info("TasteController", [
             'End store'
         ]);
@@ -96,7 +96,7 @@ class TasteController extends Controller
             $validate = $request->validated();
             $admin = new M_Taste();
             $admin->tasteEdit($validate, $id);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -122,7 +122,7 @@ class TasteController extends Controller
             ]);
             $admin = new M_Taste();
             $admin->tasteDelete($id);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

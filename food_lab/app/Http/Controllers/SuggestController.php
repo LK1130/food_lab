@@ -45,7 +45,7 @@ class SuggestController extends Controller
         Log::channel('adminlog')->info("SuggestController", [
             'End store'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -58,7 +58,7 @@ class SuggestController extends Controller
         Log::channel('adminlog')->info("SuggestController", [
             'Start show'
         ]);
-        $admin = new T_AD_Suggest();
+        $admin = new M_Suggest();
         $admins = $admin->suggestEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("SuggestController", [
@@ -83,7 +83,7 @@ class SuggestController extends Controller
         Log::channel('adminlog')->info("SuggestController", [
             'Start update'
         ]);
-        $admin = new T_AD_Suggest();
+        $admin = new M_Suggest();
         $admins = $admin->suggestEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("SuggestController", [
@@ -92,12 +92,12 @@ class SuggestController extends Controller
             return view('errors.404');
         } else {
             $validate = $request->validated();
-            $admin = new T_AD_Suggest();
+            $admin = new M_Suggest();
             $admin->suggestEdit($validate, $id);
             Log::channel('adminlog')->info("SuggestController", [
                 'End update'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -123,7 +123,7 @@ class SuggestController extends Controller
             Log::channel('adminlog')->info("SuggestController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }
