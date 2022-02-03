@@ -44,7 +44,7 @@ class CustomerInfoController extends Controller
         return view('admin.customerInfo.customerinfoDetail',['cusdetail'=>$cusdetail,'t_ad_order'=>$trans,'cuscoin'=>$cuscoin]);
     }
 
-     /*
+    /*
       * Create : Zar Ni(20/1/2022)
       * Update :
       * Explain of function : To show customer name search

@@ -18,7 +18,7 @@ class CoinchargeTransaction extends Controller
     public function coinchargeList(){
         $coin = new T_AD_CoinCharge();
         $coincharge = $coin->coinchargeLists();
-
+        
         return view('admin.transactions.coinchargeList',['t_ad_coincharge'=>$coincharge]);
     }
 }

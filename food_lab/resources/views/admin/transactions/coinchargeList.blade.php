@@ -32,21 +32,38 @@
                             <th scope="col">{{ __('messageZN.No') }}</th>
                             <th scope="col">{{ __('messageZN.Customer ID') }}</th>
                             <th scope="col">{{ __('messageZN.CoinA') }}</th>
-                            <th scope="col">{{ __('messageZN.Decisionby') }}</th>
+                            <th scope="col">{{ __('messageZN.Last Desicionby') }}</th>
                             <th scope="col">{{ __('messageZN.Request time') }}</th>
                             <th scope="col">{{ __('messageZN.Status') }}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($t_ad_coincharge as $key => $coincharge)
-                            <tr class="tablecolor1 text-light tablerows">
+                            <tr class="tablecolor1  tablerows">
                                 <th scope="row">{{ $t_ad_coincharge->firstItem() + $key }}</th>
-                                <td>{{ $coincharge->customerID }}</td>
+                                <td><a
+                                        href="customerinfoDetail?id={{ $coincharge->customer_id }}">{{ $coincharge->customerID }}</a>
+                                </td>
                                 <td>{{ $coincharge->request_coin }}</td>
                                 <td>{{ $coincharge->ad_name }}</td>
-                                <td>{{ $coincharge->request_datetime }}
+                                <td>{{ \Carbon\Carbon::parse($coincharge->request_datetime)->diffForHumans() }}
                                 </td>
-                                <td>{{ $coincharge->status }}</td>
+                                @if ($coincharge->status == 'Request')
+                                    <td class="text-success ">{{ $coincharge->status }}</td>
+                                @elseif ($coincharge->status == 'Approve')
+                                    <td class="text-info">{{ $coincharge->status }}</td>
+                                @elseif ($coincharge->status == 'Waiting')
+                                    <td class="text-warning stshadow">{{ $coincharge->status }}</td>
+                                @elseif ($coincharge->status == 'Reject')
+                                    <td class="text-secondary ">{{ $coincharge->status }}</td>
+                                @endif
+                                <td>
+                                    <a href="detailCharge/{{ $coincharge->chargeid }}">
+                                        <button class="btn tablerows btn-outline-dark"><i
+                                                class="bi bi-arrow-right"></i></button>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
 

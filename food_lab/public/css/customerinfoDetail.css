@@ -16,14 +16,20 @@
 .tablerows {
     font-size: var(--tablerow);
 }
-.custable {
-    display: flex;
-    flex-wrap: wrap;
-}
 .btncust1 {
     margin: 10px;
     width: 12vw;
     font-size: var(--btntextsize) !important;
     border: 1px black solid;
     background-color: var(--btns) !important;
+}
+@media (max-width: 1446px) {
+    .tabe {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .tablelist {
+        width: 100%;
+    }
 }

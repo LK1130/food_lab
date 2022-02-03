@@ -118,4 +118,12 @@ class M_CU_Customer_Login extends Model
 
         return $correct;
     }
+
+    public function suggestMail($id){
+
+        $suggest = M_CU_Customer_Login::select('email')
+        ->where('customer_id',$id)
+        ->first();
+        return $suggest;
+    }
 }

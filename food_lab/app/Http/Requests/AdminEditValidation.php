@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CheckName;
+use App\Rules\AdminEditCheckName;
 use App\Rules\OnlyDefinedOption;
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class AdminValidation extends FormRequest
+class AdminEditValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +23,11 @@ class AdminValidation extends FormRequest
      *
      * @return array
      */
-    /*
-    * Create:zayar(2022/01/10) 
-    * Update: 
-    * This is function is used to validate user request.
-    */
     public function rules()
     {
+
         return [
-            'username' => ['required', 'min:8', 'max:16', new CheckName()],
+            'username' => ['required', 'min:8', 'max:16', new AdminEditCheckName()],
             'password' => ['required', 'min:8', 'max:16'],
             'role' => ['required', new OnlyDefinedOption()],
             'validate' => ['required']

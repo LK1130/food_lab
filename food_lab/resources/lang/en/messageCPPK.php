@@ -2,6 +2,7 @@
 
 return [
     // cart
+    'Food Lab' => 'Food Lab',
     'yourCart' => 'YOUR CART',
     'originalTotal' => 'Original Total',
     'DeliveryFee' => 'Delivery Fee',
@@ -21,5 +22,15 @@ return [
     'Quantity' => 'Quantity',
     'Coin' => 'Coin',
     'Cash' => 'Cash',
+    'Name' => 'Name',
+    'Phone' => 'Phone',
+    'Address' => 'Address',
+    'Cancle' => 'Cancle',
+    'Order' => 'Order',
+    'Payment' => 'Payment',
+    'Delivery Information' => 'Delivery Information',
+
+   
     
+
 ]; 

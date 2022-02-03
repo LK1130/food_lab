@@ -21,7 +21,8 @@
     <div class="navBar">
         <a href="{{ url('adminLogin') }}"><button
                 class="btn text-light btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button class="btn text-light btncust">{{ __('messageZY.coinRate') }}</button></a>
+        <a href="{{ url('coinrate') }}"><button
+                class="btn text-light btncust">{{ __('messageZY.coinRate') }}</button></a>
         <a href="{{ url('siteManage') }}"><button
                 class="btn text-light  active btncust">{{ __('messageZY.siteManager') }}</button></a>
     </div>
@@ -51,18 +52,19 @@
                     @forelse ($townships as $township)
 
                         <tr class="tableChile">
-                            <td class="tdWhite">{{ $count++ }}</td>
-                            <td class="tdWhite">{{ $township->township_name }}</td>
-                            <td class="tdWhite">{{ $township->delivery_price }}</td>
-                            <td class="tdWhite">{{ $township->note }} </td>
-                            <td><a href="{{ route('township.show', $township->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+                            <td class="tdBlack">{{ $count++ }}</td>
+                            <td class="tdBlack">{{ $township->township_name }}</td>
+                            <td class="tdBlack">{{ $township->delivery_price }}</td>
+                            <td class="tdBlack">{{ $township->note }} </td>
+                            <td><a href="{{ route('township.show', $township->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
                             <td>
                                 <form action="{{ route('township.destroy', $township->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -76,16 +78,9 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('township.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
                 </table>
+                <a href="{{ route('township.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.payment') }}</h2>
@@ -105,16 +100,17 @@
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $countpayment++ }}</td>
                             <td class="tdBlack">{{ $payment->payment_name }}</td>
-                            <td class="tdWhite">{{ $payment->account_name }}</td>
-                            <td class="tdWhite">{{ $payment->note }} </td>
-                            <td><a href="{{ route('payment.show', $payment->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+                            <td class="tdBlack">{{ $payment->account_name }}</td>
+                            <td class="tdBlack">{{ $payment->note }} </td>
+                            <td><a href="{{ route('payment.show', $payment->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
                             <td>
                                 <form action="{{ route('payment.destroy', $payment->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -128,16 +124,10 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('payment.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('payment.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.category') }}</h2>
@@ -146,7 +136,7 @@
                         <th>{{ __('messageZY.number') }}</th>
                         <th>{{ __('messageZY.categoryname') }}</th>
                         <th>{{ __('messageZY.note') }}</th>
-                        <th></th>
+
                         <th></th>
                         <th></th>
                     </tr>
@@ -157,17 +147,18 @@
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $countcategory++ }}</td>
                             <td class="tdBlack">{{ $category->category_name }}</td>
-                            <td class="tdWhite">{{ $category->note }} </td>
-                            <td></td>
+                            <td class="tdBlack">{{ $category->note }} </td>
 
-                            <td><a href="{{ route('category.show', $category->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+
+                            <td><a href="{{ route('category.show', $category->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
                             <td>
                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -181,24 +172,22 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('category.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('category.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.taste') }}</h2>
                 <table class="table">
-                    <tr class="tableHeader">
+                    <tr class="tableHeader w-100">
                         <th>{{ __('messageZY.number') }}</th>
+                        <th></th>
                         <th>{{ __('messageZY.taste') }}</th>
                         <th>{{ __('messageZY.note') }}</th>
+                        <th class="my-2"></th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -212,20 +201,25 @@
                     @forelse ($tastes as $taste)
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $counttaste++ }}</td>
+                            <th></th>
                             <td class="tdBlack">{{ $taste->taste }}</td>
-                            <td class="tdWhite">{{ $taste->note }} </td>
+                            <td class="tdBlack">{{ $taste->note }} </td>
                             <td></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <td><a href="{{ route('taste.show', $taste->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><a href="{{ route('taste.show', $taste->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
                             <td>
                                 <form action="{{ route('taste.destroy', $taste->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -239,19 +233,10 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('taste.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('taste.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.suggest') }}</h2>
@@ -271,16 +256,17 @@
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $countsuggest++ }}</td>
                             <td class="tdBlack">{{ $suggest->suggest_type }}</td>
-                            <td class="tdWhite">{{ $suggest->note }} </td>
+                            <td class="tdBlack">{{ $suggest->note }} </td>
                             <td></td>
-                            <td><a href="{{ route('suggest.show', $suggest->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+                            <td><a href="{{ route('suggest.show', $suggest->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
                             <td>
                                 <form action="{{ route('suggest.destroy', $suggest->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -294,16 +280,10 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('suggest.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('suggest.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.favfood') }}</h2>
@@ -323,16 +303,17 @@
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $countfav++ }}</td>
                             <td class="tdBlack">{{ $favtype->favourite_food }}</td>
-                            <td class="tdWhite">{{ $favtype->note }} </td>
+                            <td class="tdBlack">{{ $favtype->note }} </td>
                             <td></td>
-                            <td><a href="{{ route('favtype.show', $favtype->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+                            <td><a href="{{ route('favtype.show', $favtype->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
                             <td>
                                 <form action="{{ route('favtype.destroy', $favtype->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -346,16 +327,10 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('favtype.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('favtype.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.orderstatus') }}</h2>
@@ -367,6 +342,8 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     @php
                         $countorder = 1;
@@ -375,18 +352,17 @@
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $countorder++ }}</td>
                             <td class="tdBlack">{{ $orderstatusa->status }}</td>
-                            <td class="tdWhite">{{ $orderstatusa->note }} </td>
+                            <td class="tdBlack">{{ $orderstatusa->note }} </td>
                             <td></td>
-                            <td><a href="{{ route('orderstatus.show', $orderstatusa->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
+                            <td></td>
                             <td>
-                                <form action="{{ route('orderstatus.destroy', $orderstatusa->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
-                                </form>
+                                <a href="{{ route('orderstatus.show', $orderstatusa->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a>
                             </td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     @empty
                         <tr class="tableChile">
@@ -398,16 +374,10 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('orderstatus.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('orderstatus.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
             <div class="tablediv">
                 <h2>{{ __('messageZY.decision') }} </h2>
@@ -419,6 +389,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                     @php
                         $countdecision = 1;
@@ -427,18 +398,14 @@
                         <tr class="tableChile">
                             <td class="tdBlack">{{ $countdecision++ }}</td>
                             <td class="tdBlack">{{ $decision->status }}</td>
-                            <td class="tdWhite">{{ $decision->note }} </td>
+                            <td class="tdBlack">{{ $decision->note }} </td>
                             <td></td>
-                            <td><a href="{{ route('decision.show', $decision->id) }}"><button
-                                        class="btn btn-primary">{{ __('messageZY.edit') }}</button></a></td>
-                            <td>
-                                <form action="{{ route('decision.destroy', $decision->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
-                                </form>
-                            </td>
+                            <td></td>
+                            <td><a href="{{ route('decision.show', $decision->id) }}">
+                                    <ion-icon name="create-outline" class="fs-2 ">
+                                    </ion-icon>
+                                </a></td>
+                            <td></td>
                         </tr>
                     @empty
                         <tr class="tableChile">
@@ -450,16 +417,10 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    <tr class="tableChile">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="{{ route('decision.create') }}"><button
-                                    class="btn btn-success">{{ __('messageZY.add') }}</button></a></td>
-                    </tr>
+
                 </table>
+                <a href="{{ route('decision.create') }}" class="me-auto"><button
+                        class="btn text-light addAdminButton active btncust">{{ __('messageZY.add') }}</button></a>
             </div>
         </div>
 

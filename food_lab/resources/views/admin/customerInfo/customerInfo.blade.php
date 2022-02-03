@@ -43,15 +43,16 @@
                     </thead>
                     <tbody class="searchlist">
                         @foreach ($t_cu_customer as $key => $list1)
-                            <tr class="tablecolor1 tablerows orglist text-light" id="orglist">
+                            <tr class="tablecolor1 tablerows orglist" id="orglist">
                                 <th scope="row">{{ $t_cu_customer->firstItem() + $key }}</th>
                                 <td>{{ $list1->nickname }}</td>
                                 <td>{{ $list1->customerID }}</td>
                                 <td>{{ $list1->phone }}</td>
-                                <td>{{ $list1->address3 }}</td>
+                                <td>{{ $list1->state_name }} {{ $list1->township_name }} {{ $list1->address3 }}
+                                </td>
                                 <td>
                                     <a href="customerinfoDetail?id={{ $list1->id }}">
-                                        <button class="btn tablerows btn-outline-light"><i
+                                        <button class="btn tablerows btn-outline-dark"><i
                                                 class="bi bi-arrow-right"></i></button>
                                     </a>
                                 </td>

@@ -50,8 +50,13 @@
                 <label for="logo">{{ __('messageZY.sitelogo') }}</label>
                 <div class="showImageInitial">
                     <h2>{{ __('messageZY.sitecurrentimg') }}</h2>
-                    <img id="imgInitial" src="/storage/siteLogo/{{ $siteInfo == null ? '' : $siteInfo->site_logo }}"
-                        class="py-2 px-2" />
+                    <img id="imgInitial" @if ($siteInfo == null)
+                    src="{{ url('img/logo.png') }}"
+                @else
+                    src="/storage/siteLogo/{{ $siteInfo->site_logo }}"
+                    @endif
+
+                    class="py-2 px-2" />
                 </div>
                 <div class="showImageChange">
                     <h2>{{ __('messageZY.yourimage') }}</h2>
@@ -64,8 +69,12 @@
             <div class="rowInput">
                 <label for="policy">{{ __('messageZY.privacy') }}</label>
                 <div class="input-group mb-3">
-                    <textarea id="policy"
-                        name="policy">{{ $siteInfo == null ? '' : $siteInfo->privacy_policy }}</textarea>
+                    <div class="form-floating">
+                        <textarea id="policy" class="form-control"
+                            name="policy">{{ $siteInfo == null ? '' : $siteInfo->privacy_policy }}</textarea>
+                        <label for="policy" class="fs-6">{{ __('messageZY.privacy') }}</label>
+                    </div>
+
                     @error('policy')
                         <li class="text-danger ">{{ $message }}</li>
                     @enderror
@@ -80,10 +89,14 @@
                     @else
                         <input type="checkbox" id="maintenance" checked>
                     @endif
+                    @error('maintenance')
+                        <li class="text-danger ">{{ $message }}</li>
+                    @enderror
                     <input type="text" id="mvalue" value="" name="maintenance">
                 </div>
             </div>
-            <button type="submit" class="save">{{ __('messageZY.save') }}</button>
+            <button type="submit"
+                class="btn text-light addAdminButton active btncust ms-4">{{ __('messageZY.save') }}</button>
         </form>
     </div>
 

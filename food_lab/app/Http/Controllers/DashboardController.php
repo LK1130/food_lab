@@ -8,6 +8,7 @@ use App\Models\M_Product;
 use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_Contact;
 use App\Models\T_AD_Order;
+use App\Models\T_AD_OrderDetail;
 use App\Models\T_AD_Report;
 use App\Models\T_AD_Suggest;
 use App\Models\T_CU_Customer;
@@ -37,10 +38,11 @@ class DashboardController extends Controller
         $transcount1 = $tcount->Dashboardtranscount();
         
         $cuscount = new T_CU_Customer();
-        $customercount = $cuscount->Dashboardcuscount();
+        $customercount =number_format($cuscount->Dashboardcuscount()) ;
 
         $rateofcoin =new M_AD_CoinRate();
         $coinrate = $rateofcoin->DashboardCoinrate();
+        $coinrate['rate'] = number_format($coinrate['rate']);
 
         $today = new T_AD_Order();
         $todayorder = $today->Todayordercount();
@@ -56,8 +58,10 @@ class DashboardController extends Controller
 
         $cusreport = new T_AD_Report();
         $rpcount = $cusreport->reportCount();
-        
-        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate,'todaycount'=>$todayorder,'product'=>$dashproduct,'sugcount'=>$sugcount,'concount'=>$conCount,'rpcount'=>$rpcount]);
+
+        $top =new T_AD_OrderDetail();
+        $top3 =$top->topthree();    
+        return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate,'todaycount'=>$todayorder,'product'=>$dashproduct,'sugcount'=>$sugcount,'concount'=>$conCount,'rpcount'=>$rpcount,'top'=>$top3]);
     }
     
 }

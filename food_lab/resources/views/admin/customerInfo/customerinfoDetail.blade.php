@@ -24,10 +24,8 @@
                 <div class="border border-dark">
                     <div class="d-flex justify-content-center my-3">
                         <div>
-                            <p class="lidisplay  detail"><b>Customer Name</b></p>
-                            <p class="lidisplay  detail"><b>Customer ID</b></p>
                             <p class="lidisplay  detail"><b>Nickname</b></p>
-                            <p class="lidisplay  detail"><b>Date of Birth</b></p>
+                            <p class="lidisplay  detail"><b>Customer ID</b></p>
                             <p class="lidisplay  detail"><b>Phone No.</b></p>
                             <p class="lidisplay  detail"><b>Address</b></p>
                         </div>
@@ -36,27 +34,25 @@
                             <p class="lidisplay  detail">:</p>
                             <p class="lidisplay  detail">:</p>
                             <p class="lidisplay  detail">:</p>
-                            <p class="lidisplay  detail">:</p>
-                            <p class="lidisplay  detail">:</p>
                         </div>
                         <div>
                             <p class="lidisplay  detail">{{ $cusdetail->nickname }}</p>
                             <p class="lidisplay  detail">{{ $cusdetail->customerID }}</p>
-                            <p class="lidisplay  detail">{{ $cusdetail->nickname }}</p>
-                            <p class="lidisplay  detail">12.1.1991</p>
                             <p class="lidisplay  detail">{{ $cusdetail->phone }}</p>
-                            <p class="lidisplay  detail">{{ $cusdetail->address3 }}</p>
+                            <p class="lidisplay  detail">
+                                {{ $cusdetail->state_name }} {{ $cusdetail->township_name }}
+                                {{ $cusdetail->address3 }}
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="row d-flex flex-wrap">
-                    <div class="col-md-6 mt-5">
+                <div class="row tabe">
+                    <div class="col-md-6 mt-5 tablelist">
                         <div class="status text tableheaders fw-bold mt-6">Order History</div>
                         <table class="table boxshad">
                             <tr class="tableheader tablerows">
                                 <th scope="col">No.</th>
-                                <th scope="col">Customer ID</th>
-                                <th scope="col">Payment</th>
+                                <th scope="col">Pay Type</th>
                                 <th scope="col">GrandTotal Coin</th>
                                 <th scope="col">GrandTotal Cash</th>
                                 <th scope="col">Order Status</th>
@@ -66,16 +62,18 @@
                             </thead>
                             <tbody>
                                 @foreach ($t_ad_order as $trans)
-                                    <tr class="tablecolor1 text-light tablerows">
+                                    <tr class="tablecolor1 tablerows">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $trans->customer_id }}</td>
-                                        <td>{{ $trans->payment_name }}</td>
-                                        <td>{{ $trans->grandtotal_coin }}</td>
-                                        <td>{{ $trans->grandtotal_cash }}</td>
+                                        @if ($trans->payment == 0)
+                                            <td>Coin</td>
+                                        @else
+                                            <td>C.O.D</td>
+                                        @endif
+                                        <td class="text-center">{{ $trans->grandtotal_coin }}</td>
+                                        <td class="text-center">{{ $trans->grandtotal_cash }}</td>
                                         <td>{{ $trans->status }}</td>
                                         <td>{{ $trans->ad_name }}</td>
-                                        <td>{{ $trans->order_date }} <br>
-                                            {{ $trans->order_time }}
+                                        <td>{{ \Carbon\Carbon::parse($trans->order_date)->diffForHumans() }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -92,13 +90,12 @@
                         @endif
 
                     </div>
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-6 mt-5 tablelist">
                         <div class="status text fs-3 fw-bold mt-6">Coin Charge History</div>
                         <table class="table boxshad">
                             <thead>
                                 <tr class="tableheader tablerows">
                                     <th scope="col">No.</th>
-                                    <th scope="col">Customer ID</th>
                                     <th scope="col">Coin Amount</th>
                                     <th scope="col">Approve By</th>
                                     <th scope="col">Request Time</th>
@@ -107,13 +104,21 @@
                             </thead>
                             <tbody>
                                 @foreach ($cuscoin as $coin)
-                                    <tr class="tablecolor1 text-light tablerows">
+                                    <tr class="tablecolor1 tablerows">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $coin->customerID }}</td>
                                         <td>{{ $coin->request_coin }}</td>
                                         <td>{{ $coin->ad_name }}</td>
-                                        <td>{{ $coin->request_datetime }}</td>
-                                        <td>{{ $coin->status }}</td>
+                                        <td> {{ \Carbon\Carbon::parse($coin->request_datetime)->diffForHumans() }}
+                                        </td>
+                                        @if ($coin->status == 'Request')
+                                            <td class="text-success">{{ $coin->status }}</td>
+                                        @elseif ($coin->status == 'Approve')
+                                            <td class="text-info">{{ $coin->status }}</td>
+                                        @elseif ($coin->status == 'Waiting')
+                                            <td class="text-warning">{{ $coin->status }}</td>
+                                        @elseif ($coin->status == 'Reject')
+                                            <td class="text-secondary">{{ $coin->status }}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
 
