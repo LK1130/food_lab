@@ -47,10 +47,13 @@
             @endif
 
             <div class="d-flex">
+                <a href="/" class="d-lg-none pt-2 me-3 texts"><i class="fas fa-shopping-cart fs-3"></i></a>
+
                 @if (session()->has('customerId'))
-                    <p class="nav-link d-lg-none me-3 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
+                    <p class="nav-link d-lg-none me-5 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p>
                 @endif
+
                 <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -129,7 +132,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <p class="nav-link texts"><i class="fas fa-shopping-cart fs-3"></i></p>
+                        <a href="/" class="nav-link texts" id="cartButton"><i class="fas fa-shopping-cart fs-3"></i></a>
                     </li>
                 </ul>
             </div>
