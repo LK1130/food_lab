@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url('js/commonCustomer.js') }}" type="text/javascript" defer></script>
     <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
@@ -16,7 +17,14 @@
 </head>
 
 <body>
-    @yield('marquee')
+
+    {{-- Start Marquee --}}
+    <marquee class="pt-1">
+        @foreach ($news as $new)                
+            <p class="d-inline mx-5 importantnews" id="{{ $new->category }}">{{ $new->title }}</p>
+        @endforeach
+    </marquee>
+    {{-- End Marquee --}}
 
     {{-- Start Header --}}
     <header class="headers">
@@ -222,7 +230,7 @@
                             {{ __('messageZY.more') }}</button></a>
                 </div>
                 <div class="forTracks d-flex flex-column" id="forTracks">
-                    @forelse ($limitedtracks as $limitedtrack)
+                    {{--  @forelse ($limitedtracks as $limitedtrack)
                         @php
                             $allcolor = ['yellow', 'red', 'green', 'red', 'green', 'green'];
                             $statusMessage = $limitedtrack->order_status;
@@ -230,7 +238,7 @@
                         @endphp
                         <div class="tracks d-flex flex-row justify-content-center align-items-center">
                             <img src="/storage/newsImage/Dogecoin-Transparent.png" alt=""> {{-- need to change --}}
-                            <div class="d-flex flex-column w-100 me-3 mt-4">
+                            {{-- <div class="d-flex flex-column w-100 me-3 mt-4">
                                 <p class=" fw-bolder  ">{{ $limitedtrack->product_name }} </p>
                                 <p class=" fw-bold ">{{ $limitedtrack->coin }} {{ __('messageZY.coin') }}</p>
                             </div>
@@ -244,7 +252,7 @@
                         <div class="news d-flex flex-row justify-content-center align-items-center">
                             <p class="fs-6 fw-bolder mt-2 me-auto">{{ __('messageZY.notrack') }} </p>
                         </div>
-                    @endforelse
+                    @endforelse  --}}
                     <a href="/tracks" class="ms-auto"><button class="btn mb-2 alertButton">
                             {{ __('messageZY.more') }}</button></a>
                 </div>

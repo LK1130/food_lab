@@ -16,16 +16,6 @@
 
 @section('title', 'Food Lab')
 
-@section('marquee')
-    {{-- Start Marquee --}}
-    <marquee class="pt-1">
-        @foreach ($news as $new)
-            <p class="d-inline mx-5 importantnews" id="{{ $new->category }}">{{ $new->title }}</p>
-        @endforeach
-    </marquee>
-    {{-- End Marquee --}}
-@endsection
-
 @section('header')
     {{-- start carousel --}}
     <div id="carouselExampleIndicators" class="carousel slide carousels" data-bs-ride="">

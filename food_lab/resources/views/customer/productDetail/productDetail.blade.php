@@ -20,17 +20,6 @@
 
 @section('title', 'Food Lab')
 
-@section('marquee')
-    {{-- Start Marquee --}}
-    <marquee class="pt-1">
-        {{-- @foreach ($news as $new) --}}
-        {{-- <p class="d-inline mx-5 news" id="{{ $new->category }}">{{  $new->title }}</p> --}}
-        {{-- <p class="d-inline mx-5 news">Hello</p> --}}
-        {{-- @endforeach --}}
-    </marquee>
-    {{-- End Marquee --}}
-@endsection
-
 @section('header')
     {{-- start navbar --}}
     <nav class="navbar navbar-expand-lg container-fluid py-3">
