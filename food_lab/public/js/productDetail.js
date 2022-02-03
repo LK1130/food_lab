@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.count').prop('disabled', true);
     $(document).on('click', '.plus', function () {
 
-        if ($('.count').val() < 5) {
+        if ($('.count').val() < 9) {
             $('.count').val(parseInt($('.count').val()) + 1);
 
         }
@@ -34,25 +34,81 @@ $(document).ready(function () {
             },
         });
         e.preventDefault();
-        var formdata = { pid: pid, qty: $("#qty").val(), };
+      
         console.log(formdata);
-        console.log($("input[type='checkbox']:checked").val());
+
         let status = [];
+        let values = [];
+      
+        let text;
+        let allLabels = [];
+        
+        $('.ptop').each(function(){
+            allLabels.push($(this).text());
+         });
+
         $('input[type=checkbox]:checked').each(function () 
         {
-             status = (this.checked ? $(this).val() : ""); 
-            
-             let text = $(this).parent().parent().siblings(".lab").find('.ptop').text();
-               console.log(text);
-            });
-          
-        var checkedValues = $('input:checkbox:checked').map(function() {
-            
-                return $(this).parent().parent().siblings().children().find('.ptop');
-            }).get();
-        console.log(checkedValues);
-            console.log(status);
+            text =$(this).parent().parent().prev().find('.ptop').text(); 
+            status = this.checked ? $(this).val() : ""; 
 
+    
+            for (let index = 0; index < allLabels.length; index++) {
+                if(allLabels[index] ==  text){
+                    console.log(text);
+                    
+                   var obj =  {
+                        label: text,
+                        value: status
+                    };
+                  
+                    values.push(obj);
+                    console.log(values);
+                
+                }
+            }
+            
+            });
+            $("select option:selected").each(function(){
+                text =$(this).parent().parent().parent().prev().find('.ptop').text(); 
+                status = this.selected ? $(this).val() : ""; 
+
+                for (let index = 0; index < allLabels.length; index++) {
+                    if(allLabels[index] ==  text){
+                        console.log(text);
+                        
+                       var obj =  {
+                            label: text,
+                            value: status
+                        };
+                
+                        values.push(obj);
+                        console.log(values);
+                    
+                    }
+                }
+               
+            });
+           const sessionValue = [];
+            // obj array looping
+           values.forEach(function(item){
+               var existing = sessionValue.filter(function(v,i){
+                   return v.label == item.label;
+               })
+               if(existing.length){
+                   var existingIndex =  sessionValue.indexOf(existing[0]);
+                   sessionValue[existingIndex].value = sessionValue[existingIndex].value.concat(',',item.value)    
+               }else{
+                   if(typeof item.value == 'String')
+                    item.value = [item.value];
+                    sessionValue.push(item);
+               }
+           })
+           console.log(sessionValue);
+            console.log(values);
+          
+            var formdata = { pid: pid, qty: $("#qty").val(), value : sessionValue };
+            console.log(formdata);
         $.ajax({
             type: "POST",
             url: "cartsession",

@@ -236,13 +236,14 @@
                                                 @elseif ($item1->label == $label && $item1->category === 1)
                                                     <div class="col-md-3 col-sm-2  m-2">
                                                         <select name="select{{ $countId }}" id="" class="form-select">
+                                                            <option value="0" selected disabled>Choose any type</option>
                                                             @php
                                                            
                                                             $countId++;
                                                             @endphp
                                                             @foreach ($detail as $item2)
                                                                 @if ($item2->label == $label && $item2->category === 1)
-                                                                    <option value="{{ $item2->order }}">{{ $item2->value }}</option>
+                                                                    <option value="{{ $item2->value }}">{{ $item2->value }}</option>
                                                                     @php
                                                                         $count++;
                                                                         
