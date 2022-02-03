@@ -78,7 +78,7 @@ class NewsController extends Controller
         Log::channel('adminlog')->info("NewsController", [
             'End create'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -136,7 +136,7 @@ class NewsController extends Controller
             Log::channel('adminlog')->info("NewsController", [
                 'End update'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -162,7 +162,7 @@ class NewsController extends Controller
             Log::channel('adminlog')->info("NewsController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

@@ -26,8 +26,6 @@
                         <div>
                             <p class="lidisplay  detail"><b>Nickname</b></p>
                             <p class="lidisplay  detail"><b>Customer ID</b></p>
-                            <p class="lidisplay  detail"><b>Nickname</b></p>
-                            <p class="lidisplay  detail"><b>Date of Birth</b></p>
                             <p class="lidisplay  detail"><b>Phone No.</b></p>
                             <p class="lidisplay  detail"><b>Address</b></p>
                         </div>
@@ -36,16 +34,15 @@
                             <p class="lidisplay  detail">:</p>
                             <p class="lidisplay  detail">:</p>
                             <p class="lidisplay  detail">:</p>
-                            <p class="lidisplay  detail">:</p>
-                            <p class="lidisplay  detail">:</p>
                         </div>
                         <div>
                             <p class="lidisplay  detail">{{ $cusdetail->nickname }}</p>
                             <p class="lidisplay  detail">{{ $cusdetail->customerID }}</p>
-                            <p class="lidisplay  detail">{{ $cusdetail->nickname }}</p>
-                            <p class="lidisplay  detail">12.1.1991</p>
                             <p class="lidisplay  detail">{{ $cusdetail->phone }}</p>
-                            <p class="lidisplay  detail">{{ $cusdetail->address3 }}</p>
+                            <p class="lidisplay  detail">
+                                {{ $cusdetail->state_name }} {{ $cusdetail->township_name }}
+                                {{ $cusdetail->address3 }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +64,11 @@
                                 @foreach ($t_ad_order as $trans)
                                     <tr class="tablecolor1 tablerows">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $trans->payment_name }}</td>
+                                        @if ($trans->payment == 0)
+                                            <td>Coin</td>
+                                        @else
+                                            <td>C.O.D</td>
+                                        @endif
                                         <td class="text-center">{{ $trans->grandtotal_coin }}</td>
                                         <td class="text-center">{{ $trans->grandtotal_cash }}</td>
                                         <td>{{ $trans->status }}</td>
@@ -109,7 +110,15 @@
                                         <td>{{ $coin->ad_name }}</td>
                                         <td> {{ \Carbon\Carbon::parse($coin->request_datetime)->diffForHumans() }}
                                         </td>
-                                        <td>{{ $coin->status }}</td>
+                                        @if ($coin->status == 'Request')
+                                            <td class="text-success">{{ $coin->status }}</td>
+                                        @elseif ($coin->status == 'Approve')
+                                            <td class="text-info">{{ $coin->status }}</td>
+                                        @elseif ($coin->status == 'Waiting')
+                                            <td class="text-warning">{{ $coin->status }}</td>
+                                        @elseif ($coin->status == 'Reject')
+                                            <td class="text-secondary">{{ $coin->status }}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
 

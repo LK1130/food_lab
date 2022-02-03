@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FavouriteValidation;
 use App\Models\FavTypeModel;
 use App\Models\M_AD_Track;
+use App\Models\M_Fav_Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -39,12 +40,12 @@ class FavtypeController extends Controller
             'Start store'
         ]);
         $validate = $request->validated();
-        $admin = new M_AD_Track();
+        $admin = new M_Fav_Type();
         $admin->favTypeAdd($validate);
         Log::channel('adminlog')->info("FavtypeController", [
             'End store'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -57,7 +58,7 @@ class FavtypeController extends Controller
         Log::channel('adminlog')->info("FavtypeController", [
             'Start show'
         ]);
-        $admin = new M_AD_Track();
+        $admin = new M_Fav_Type();
         $admins = $admin->favTypeEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("FavtypeController", [
@@ -82,7 +83,7 @@ class FavtypeController extends Controller
         Log::channel('adminlog')->info("FavtypeController", [
             'Start update'
         ]);
-        $admin = new M_AD_Track();
+        $admin = new M_Fav_Type();
         $admins = $admin->favTypeEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("FavtypeController", [
@@ -91,12 +92,12 @@ class FavtypeController extends Controller
             return view('errors.404');
         } else {
             $validate = $request->validated();
-            $admin = new M_AD_Track();
+            $admin = new M_Fav_Type();
             $admin->favTypeEdit($validate, $id);
             Log::channel('adminlog')->info("FavtypeController", [
                 'End update'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -110,7 +111,7 @@ class FavtypeController extends Controller
         Log::channel('adminlog')->info("FavtypeController", [
             'Start destroy'
         ]);
-        $admin = new M_AD_Track();
+        $admin = new M_Fav_Type();
         $admins = $admin->favTypeEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("FavtypeController", [
@@ -118,12 +119,12 @@ class FavtypeController extends Controller
             ]);
             return view('errors.404');
         } else {
-            $admin = new M_AD_Track();
+            $admin = new M_Fav_Type();
             $admin->favTypeDelete($id);
             Log::channel('adminlog')->info("FavtypeController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

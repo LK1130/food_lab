@@ -29,8 +29,11 @@ class T_CU_Customer extends Model
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'Start DashboardMinicus'
     ]);
-    $dashboardcus = T_CU_Customer::limit(5)
-      ->where('del_flg',0)
+    $dashboardcus = T_CU_Customer::leftjoin('m_state','m_state.id','=','t_cu_customer.address1')
+      ->leftjoin('m_township','m_township.id','=','t_cu_customer.address2')
+      ->limit(5)
+      ->where('t_cu_customer.del_flg',0)
+      ->orderBy('t_cu_customer.created_at','desc')
       ->get();
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
@@ -76,7 +79,11 @@ class T_CU_Customer extends Model
       'Start customerInfoList'
     ]);
 
-    $customerlist = T_CU_Customer::where('t_cu_customer.del_flg', 0)
+    $customerlist = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS id'))
+    ->leftjoin('m_state','m_state.id','=','t_cu_customer.address1')
+    ->leftjoin('m_township','m_township.id','=','t_cu_customer.address2')
+      ->where('t_cu_customer.del_flg', 0)
+      ->orderBy('t_cu_customer.created_at','desc')
       ->paginate(10);
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
@@ -148,7 +155,9 @@ class T_CU_Customer extends Model
       'Start customerDetail'
     ]);
 
-    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
+    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS id'))
+      ->leftjoin('m_state','m_state.id','=','t_cu_customer.address1')
+      ->leftjoin('m_township','m_township.id','=','t_cu_customer.address2')
       ->where('t_cu_customer.del_flg', 0)
       ->where('t_cu_customer.id', '=', $id)
       ->first();

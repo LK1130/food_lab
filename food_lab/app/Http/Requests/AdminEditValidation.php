@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AdminEditCheckName;
+use App\Rules\OnlyDefinedOption;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdminEditValidation extends FormRequest
@@ -23,10 +25,11 @@ class AdminEditValidation extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'username' => ['required', 'min:8', 'max:16'],
+            'username' => ['required', 'min:8', 'max:16', new AdminEditCheckName()],
             'password' => ['required', 'min:8', 'max:16'],
-            'role' => ['required'],
+            'role' => ['required', new OnlyDefinedOption()],
             'validate' => ['required']
         ];
     }
