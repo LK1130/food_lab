@@ -261,8 +261,16 @@ Route::get('/login', [CustomerController::class, 'login']);
  * zayar
  */
 Route::resource('editprofile', CustomerProfileController::class);
-
-
+/*
+ * For ajax 
+ * zayar
+ */
+Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
+/*
+ * For news get initial 
+ * zayar
+ */
+Route::get('getnews', [CustomerController::class, 'getNews']);
 /*
  * For Update Profile Page
  * zayar
