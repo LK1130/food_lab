@@ -6,8 +6,10 @@
  * return :
  */
 $(document).ready(function () {
+    $('.typebtns').hide();
+    $('.tastebtns').hide();
     $("#selectpicker1").change(function (e) {
-        console.log($('#selectpicker1').val());
+        // console.log($('#selectpicker1').val());
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -17,28 +19,42 @@ $(document).ready(function () {
         });
         e.preventDefault();
         var formdata = { type: $("#selectpicker1").val() };
-        console.log(formdata);
+        // console.log(formdata);
         $.ajax({
             type: "POST",
             url: "searchCategory",
             data: formdata,
             dataType: "json",
             success: function (data) {
+                $("#byCategory").empty();
                 let count = 0;
 
                 for (const list of data) {
+                    if(count < 4){
+                        $('#byCategory').append(
+                            `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+                            <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
+                            <p class="fs-3 pt-2">${ list.product_name }</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin }</p>
+                            <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
+                            <a href=""><button type="button" class="btn shopbtns"> Shop Now</button></a>
+                        </div>`
+                        )
+                    }
+                    count++;
+                
+                    if(count > 3){
+                        $('.typebtns').show('slow');
                     
-                    $('#byCategory').append(
-                        `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-                        <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
-                        <p class="fs-3 pt-2">${ list.product_name }</p>
-                        <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin }</p>
-                        <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                        <a href=""><button type="button" class="btn shopbtns"> Shop Now</button></a>
-                    </div>`
-                    )
+                    }else{
+                        $('.typebtns').hide('slow');
+                    }
                 }
-                console.log(data);
+                if(count == 0 ){
+                    $('.typebtns').hide('slow');
+                }
+                console.log(count);
+               
             },
             error: function(data){
                 console.log(data);
@@ -53,7 +69,7 @@ $(document).ready(function () {
      * Prarameter : no
      * return :
      */
-    $("#selectpicker2").click(function (e) {
+    $("#selectpicker2").change(function (e) {
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -62,16 +78,50 @@ $(document).ready(function () {
             },
         });
         e.preventDefault();
-        var formdata = { id: $("#search").val() };
+        var formdata = { type: $("#selectpicker2").val() };
          
         $.ajax({
-            type: "GET",
-            url: "searchid",
+            type: "POST",
+            url: "searchTaste",
             data: formdata,
             dataType: "json",
             success: function (data) {
+                $("#byTaste").empty();
+                let count = 0;
+
+                for (const list of data) {
+                    if(count < 4){
+                        $('#byTaste').append(
+                            `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+                            <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
+                            <p class="fs-3 pt-2">${ list.product_name }</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin }</p>
+                            <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
+                            <a href=""><button type="button" class="btn shopbtns"> Shop Now</button></a>
+                        </div>`
+                        )
+                    }
+                    count++;
+                    if(count > 4){
+                        $('.tastebtns').show('slow');
+                    
+                    }else{
+                        $('.tastebtns').hide('slow');
+                    }
+                   
+                }
+                if(count == 0 ){
+                    $('.typebtns').hide('slow');
+                }
               
+                console.log(count);
+
+               
             },
+            error: function(data){
+                console.log(data);
+            }
+            
         });
     });
 });

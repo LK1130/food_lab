@@ -16,11 +16,11 @@
 @section('body')
     {{-- Starts Header Buttons --}}
     <div class="navBar">
-        <a href="{{ url('adminLogin') }}"><button
+        <a href="{{ url('adminLogin') }}" class="me-5"><button
                 class="btn text-light  active btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button
+        <a href="{{ url('coinrate') }}" class="me-5"><button
                 class="btn text-light   btncust">{{ __('messageZY.coinRate') }}</button></a>
-        <a href="{{ url('siteManage') }}"><button
+        <a href="{{ url('siteManage') }}" class="me-5"><button
                 class="btn text-light  btncust">{{ __('messageZY.siteManager') }}</button></a>
     </div>
     {{-- Starts Form --}}

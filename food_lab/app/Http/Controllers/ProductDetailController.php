@@ -38,6 +38,7 @@ class ProductDetailController extends Controller
 
         $product = new M_Product();
         $productId = $product->searchById($request->input('id'));
+        if($productId == null)abort(404);
 
         $pPhoto = new T_AD_Photo();
         $productPhoto = $pPhoto->editEvd($request->input('id'));
