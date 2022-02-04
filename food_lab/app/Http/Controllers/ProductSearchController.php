@@ -20,11 +20,33 @@ class ProductSearchController extends Controller
 
         $products = new M_Product();
         $product  = $products->searchByType($request->input('type'));
-        // if($product == null) abort(404);
+        if($product == null) abort(404);
         // dd($product);
 
         Log::channel('adminlog')->info("Product Search Controller", [
             'End search by type'
+        ]);
+
+        return response()
+        ->json(
+        $product
+        );
+    }
+
+
+    public function searchByTaste(Request $request){
+
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'Start search by taste'
+        ]);
+
+        $products = new M_Product();
+        $product  = $products->searchByTaste($request->input('type'));
+        if($product == null) abort(404);
+        
+
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'End search by taste'
         ]);
 
         return response()
