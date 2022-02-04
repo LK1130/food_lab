@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Log;
 
 class ProductDetailController extends Controller
 {
-    public function detail(Request $request){
+    public function detail(Request $request)
+    {
 
         Log::channel('customerlog')->info('ProductDetail Controller', [
             'Start Product'
@@ -47,17 +48,19 @@ class ProductDetailController extends Controller
 
         $mDetail = new M_Product_Detail();
         $detail = $mDetail->searchDataById($request->input('id'));
-        if($detail == null)abort(404);
-            // dd($detail);
+
+        if ($detail == null) abort(404);
+        // dd($detail);
 
         Log::channel('customerlog')->info('ProductDetail Controller', [
             'End Product'
         ]);
 
-        return View('customer.productDetail.productDetail',['name' => $name, 'productInfos' => $productInfos,'productId' => $productId,'photos'=> $productPhoto,'detail'=>$detail,'nav' => 'home','limitednews' => $newsLimited]);
+        return View('customer.productDetail.productDetail', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'productId' => $productId, 'photos' => $productPhoto, 'detail' => $detail, 'nav' => 'home', 'limitednews' => $newsLimited]);
     }
 
-    public function productList(){
+    public function productList()
+    {
 
         Log::channel('customerlog')->info('ProductDetail Controller', [
             'Start get product'
@@ -74,14 +77,13 @@ class ProductDetailController extends Controller
         $newDatas = $news->news();
         $newsCount = count($newDatas);
         $newsLimited = $news->newsLimited();
-         
+
         $site = new M_Site();
         $name = $site->siteName();
 
         $product = new M_Product();
         $productInfos = $product->productInfo();
         $allProducts = $product->showProductList();
-        
 
         $fav = new  M_Fav_Type();
         $mFav = $fav->getTypeAll();
@@ -93,11 +95,6 @@ class ProductDetailController extends Controller
             'End get product'
         ]);
 
-        return View('customer.productDetail.product',['name' => $name, 'productInfos' => $productInfos,'products' => $allProducts,'mFav' => $mFav, 'mTaste' => $mTaste,'nav' => 'home','limitednews' => $newsLimited]);
+        return View('customer.productDetail.product', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'products' => $allProducts, 'mFav' => $mFav, 'mTaste' => $mTaste, 'nav' => 'home', 'limitednews' => $newsLimited]);
     }
-
-
-    
-
-    
 }
