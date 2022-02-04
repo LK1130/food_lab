@@ -153,7 +153,12 @@
                     <a href="/logout"><i class="fas fa-sign-out-alt fs-4 mt-2 text-light" id="logout"></i></a>
                 </div>
                 <div class="profileAlertBody" id="profileAlertBody">
-
+                    <div class="d-flex flex-row mt-3 ms-5">
+                        <a href="{{ route('editprofile.index') }}"><button class="btn fs-5 me-3 editProfile">Edit
+                                Profile</button></a>
+                        <a href="{{ route('updateprofile.index') }}"><button
+                                class="btn fs-5 ms-3 updatePassword">Change Password</button></a>
+                    </div>
                 </div>
             </div>
 
