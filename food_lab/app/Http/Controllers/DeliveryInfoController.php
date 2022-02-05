@@ -32,6 +32,7 @@ class DeliveryInfoController extends Controller
         if ($deliInfo === null) {
             Log::channel('adminlog')->info("T_CU_Customer Model", [
                 'End deliTownship'
+                
             ]);
             return redirect('error/404');
         }

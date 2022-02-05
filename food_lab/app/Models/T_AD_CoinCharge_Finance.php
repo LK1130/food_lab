@@ -13,7 +13,7 @@ class T_AD_CoinCharge_Finance extends Model
 {
     public $table = 't_ad_coincharge_finance';
     use HasFactory;
-
+    
     public function coinDaily()
     {
         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
