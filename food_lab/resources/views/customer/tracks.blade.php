@@ -10,7 +10,7 @@
 
 @section('script')
     {{-- <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script> --}}
-    <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
+
 @endsection
 
 @section('title', 'Food Lab')
@@ -18,14 +18,14 @@
 
     <div class="news-container">
         <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.track') }}</p>
-        <div class="allNews">
+        <div class="allNews ">
             @forelse ($alltracks as $alltrack)
                 @php
                     $allcolor = ['yellow', 'red', 'green', 'red', 'green', 'green'];
                     $statusMessage = $alltrack->order_status;
                     $messagecolor = $allcolor[$statusMessage - 1];
                 @endphp
-                <div class="news d-flex flex-row justify-content-center align-items-center">
+                <div class="news d-flex flex-row justify-content-center align-items-center my-4">
                     <img src="/storage/newsImage/Dogecoin-Transparent.png" alt=""> {{-- need to change --}}
                     <div class="d-flex flex-column w-100 ms-5 mt-4">
                         <p class=" fw-bolder fs-5 ">{{ $alltrack->product_name }} </p>
@@ -38,6 +38,14 @@
                     </div>
                 </div>
             @empty
+                <div class="news d-flex flex-row justify-content-center align-items-center my-4">
+
+                    <div class="d-flex flex-column w-100 ms-5 mt-4">
+                        <p class=" fw-bolder fs-5 ">{{ __('messageZY.notrack') }} </p>
+
+                    </div>
+
+                </div>
             @endforelse
         </div>
         <a href="/"><button class="btn fs-5  mt-5 backNews">{{ __('messageZY.back') }}</button></a>

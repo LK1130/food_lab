@@ -11,8 +11,8 @@ textarea {
 :root {
     --primary-color: #ff470b;
     --secondary-color: #ff6600;
-    --product-color : #FF0B1A;
-    --btn-color : #FF280B;
+    --product-color: #FF0B1A;
+    --btn-color: #FF280B;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
     --text-color2: #000000;
@@ -23,10 +23,11 @@ textarea {
     --coinRulebg: #ff0000;
     --fileicon-color: #ffffff;
     --cancelbtn-textcolor: #ff0000;
-    --cancelbtn-color:#ffffff;
+    --cancelbtn-color: #ffffff;
     --submitbtn-color: #ff0000;
-    --submitbtn-textcolor:#ffffff;
+    --submitbtn-textcolor: #ffffff;
 }
+
 
 /*Start Header*/
 
@@ -38,6 +39,7 @@ textarea {
     background-position: center;
     position: relative;
 }
+
 
 /*start navbar*/
 
@@ -87,22 +89,27 @@ textarea {
     cursor: pointer;
 }
 
-#profileButton {
+#profileButton,
+#cartButton {
     display: block;
 }
 
 @media (max-width: 720px) {
-    #profileButton {
+    #profileButton,
+    #cartButton {
         display: none;
     }
 }
 
+
 /*end navbar*/
+
 
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
+
 
 /*start Profile Alert box*/
 
@@ -156,9 +163,11 @@ textarea {
 #back:hover {
     color: var(--primary-color) !important;
 }
+
 #logout {
     cursor: pointer;
 }
+
 @media only screen and (max-width: 720px) {
     #profileAlert {
         position: absolute;
@@ -174,7 +183,6 @@ textarea {
     .editProfile {
         font-size: 0.8rem !important;
     }
-
     .updatePassword {
         font-size: 0.8rem !important;
     }
@@ -201,12 +209,15 @@ textarea {
     } */
 }
 
+
 /*end profile alert */
+
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
+
 
 /*start inform Alert box*/
 
@@ -255,15 +266,19 @@ textarea {
     margin-left: auto;
     color: white;
 }
+
 .green {
     background-color: green;
 }
+
 .yellow {
     background-color: yellow;
 }
+
 .red {
     background-color: red;
 }
+
 .forNews,
 .forMessages,
 .forTracks {
@@ -361,11 +376,10 @@ textarea {
     color: var(--text-color);
 }
 
+
 /*end navbar*/
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
+<<<<<<< HEAD <<<<<<< HEAD
 /*start carousel*/
 
 .carousels {
@@ -498,7 +512,9 @@ footer {
     position: relative;
 }
 
+
 /*End Footer Section*/
+
 .copys p {
     position: absolute;
     top: 50%;
@@ -514,9 +530,11 @@ footer {
 
 
 /*End Footer Section*/
+
 =======
 /*End Header*/
->>>>>>> 3d399cd1ea8deca25653557de090be1d1fd09265
-=======
+
+>>>>>>>3d399cd1ea8deca25653557de090be1d1fd09265=======
 /*End Header*/
->>>>>>> 867a44dfa251e87ad45a62291a250b52db198e9c
+
+>>>>>>>867a44dfa251e87ad45a62291a250b52db198e9c

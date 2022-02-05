@@ -95,39 +95,39 @@
 
 
 .pcoin,.pamount,.ptype,.ptaste,.pingredients,.pdesc,.ptopping{
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--product-color);
     font-weight: bold;
 }
 
 .coins{
-    font-size: 2rem;
+    font-size: 1.6rem;
 
     color: var(--text-color);
 }
 .amount{
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--text-color);
 }
 
 .type{
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--text-color);
 }
 
 .taste{
-    font-size: 2rem;
-    margin-left: 5.8rem;
+    font-size: 1.6rem;
+    /* margin-left: 5.8rem; */
     color: var(--text-color);
 }
 
 .ingredients{
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: var(--text-color);
 }
 
 .desc{
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: var(--text-color);
 }
 
@@ -135,11 +135,14 @@
     width: 15% !important;
 }
 
+.mainblocks{
+
+}
 
 .customBlock{
-    width: 9vw !important;
+    width: 30% !important;
     cursor: pointer;
-    /* height: 10vh !important; */
+   
 }
 
 
@@ -223,6 +226,7 @@ input:disabled{
 
 
 
+
 @media only screen and (max-width: 720px){
 
     .images{
@@ -235,29 +239,28 @@ input:disabled{
 
     
     .pcoin,.pamount,.ptype,.ptaste,.pingredients,.pdesc,.ptopping{
-    font-size: 1.7rem;
-  
-    font-weight: bold;
+        font-size: 1.3rem;
+        font-weight: bold;
     }
 
     .type{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         
     }
 
     
     .coins{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     
     }
     .amount{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
       
     }
     
     
     .taste{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .ingredients{

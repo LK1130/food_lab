@@ -43,7 +43,7 @@ class TownshipController extends Controller
         Log::channel('adminlog')->info("TownshipController", [
             'End store'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
 
     /*
@@ -95,7 +95,7 @@ class TownshipController extends Controller
             $validate = $request->validated();
             $admin = new M_Township();
             $admin->townshipEdit($validate, $id);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 
@@ -122,7 +122,7 @@ class TownshipController extends Controller
             ]);
             $admin = new M_Township();
             $admin->townshipDelete($id);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

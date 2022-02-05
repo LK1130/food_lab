@@ -44,7 +44,7 @@ class OrderStatusController extends Controller
         Log::channel('adminlog')->info("OrderStatusController", [
             'End store'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -96,33 +96,7 @@ class OrderStatusController extends Controller
             Log::channel('adminlog')->info("OrderStatusController", [
                 'End update'
             ]);
-            return redirect('siteManage');
-        }
-    }
-    /*
-    * Create:zayar(2022/01/15) 
-    * Update: 
-    * This function is used to update del_flg to 1.
-    */
-    public function destroy($id)
-    {
-        Log::channel('adminlog')->info("OrderStatusController", [
-            'Start destroy'
-        ]);
-        $admin = new M_Order_Status();
-        $admins =  $admin->orderStatusEditView($id);
-        if ($admins === null) {
-            Log::channel('adminlog')->info("OrderStatusController", [
-                'End destroy(error)'
-            ]);
-            return view('errors.404');
-        } else {
-            $admin = new M_Order_Status();
-            $admin->orderStatusDelete($id);
-            Log::channel('adminlog')->info("OrderStatusController", [
-                'End destroy'
-            ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

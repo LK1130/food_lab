@@ -64,8 +64,7 @@
                                 <form action="{{ route('township.destroy', $township->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -111,8 +110,7 @@
                                 <form action="{{ route('payment.destroy', $payment->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -160,7 +158,7 @@
                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <ion-icon name="trash-outline" class="fs-2 text-danger" id="delete"></ion-icon>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -221,8 +219,7 @@
                                 <form action="{{ route('taste.destroy', $taste->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -269,8 +266,7 @@
                                 <form action="{{ route('suggest.destroy', $suggest->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>
@@ -317,8 +313,7 @@
                                 <form action="{{ route('favtype.destroy', $favtype->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger delete">{{ __('messageZY.delete') }}</button>
+                                    <ion-icon name="trash-outline" class="fs-2 text-danger delete"></ion-icon>
                                 </form>
                             </td>
                         </tr>

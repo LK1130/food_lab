@@ -62,38 +62,38 @@
 
         {{-- Status Start --}}
         <div class="status text title fw-bold mb-2">{{ __('messageZN.Status') }}</div>
-        <div class="row align-items-start me-4">
-            <div class="col a stat">
-                <div class="text-center pb-3">
+        <div class="row align-items-start me-4 stbox">
+            <div class="col a stats">
+                <div class="text-center  stat ">
                     <p class=" numbers tcount">{{ $tcount }}</p>
-                    <p class="detail">{{ __('messageZN.Total Transaction') }}</p>
-                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <p class="detail dep">{{ __('messageZN.Total Transaction') }}</p>
+                    <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
-            <div class="col a ms-3 stat">
-                <div class="text-center pb-3">
+            <div class="col a ms-3 ">
+                <div class="text-center pb-4 stat">
                     <p class=" numbers cuscount">{{ $cuscount }}</p>
-                    <p class="detail">{{ __('messageZN.Total User Register') }}</p>
-                    <a href="customerInfo" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <p class="detail">{{ __('messageZN.Total Register') }}</p>
+                    <a href="customerInfo" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
-            <div class="col a ms-3 stat">
-                <div class="text-center pb-3">
-                    <p class=" numbers coinrate">{{ $coinrate->rate }} </p>
+            <div class="col a ms-3 ">
+                <div class="text-center pb-3 stat">
+                    <p class=" numbers coinrate" id="coin">{{ $coinrate->rate }} </p>
                     <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
-                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
-            <div class="col a ms-3 stat">
-                <div class="text-center pb-3">
+            <div class="col a ms-3 ">
+                <div class="text-center pb-3 stat">
                     <p class=" numbers">{{ $todaycount }}</p>
                     <p class="detail">{{ __('messageZN.Today Order') }}</p>
-                    <a href="orderTransaction" class="fs-5">{{ __('messageZN.See More Detail') }}</a>
+                    <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                 </div>
             </div>
-            <div class="col a ms-3 stat">
-                <div class="text-center ">
-                    <h3 class=" pb-2">{{ __('messageZN.Top 3') }}</h3>
+            <div class="col a ms-3 ">
+                <div class="text-center stats">
+                    <h3 class=" pb-1 pt-2">{{ __('messageZN.Top 3') }}</h3>
                     @forelse ($top as $top3)
                         <p class="detail ">{{ $loop->iteration }}.{{ $top3->product_name }}</p>
                     @empty
@@ -106,7 +106,7 @@
         {{-- Listing Start --}}
         {{-- <div class="status text fs-2 fw-bold mb-4 mt-5">{{ __('messageZN.Listing') }}</div> --}}
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-6 tablelist">
                 {{-- Transaction List --}}
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Transaction List') }}</div>
                 <table class="table boxshad">
@@ -124,7 +124,11 @@
                             <tr class="tablecolor1 tablerows">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list2->customerID }}</td>
-                                <td>{{ $list2->payment_name }}</td>
+                                @if ($list2->payment == 0)
+                                    <td>Coin</td>
+                                @else
+                                    <td>C.O.D</td>
+                                @endif
                                 <td>{{ $list2->status }}</td>
                                 <td>
                                     {{ \Carbon\Carbon::parse($list2->order_date)->diffForHumans() }}
@@ -137,7 +141,7 @@
                 <a href="orderTransaction" class=""><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 tablelist">
                 {{-- Customer Info --}}
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Customers List') }}</div>
                 <table class="table boxshad">
@@ -156,7 +160,8 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $list1->nickname }}</td>
                                 <td>{{ $list1->customerID }}</td>
-                                <td>{{ $list1->address3 }}</td>
+                                <td>{{ $list1->state_name }} {{ $list1->township_name }} {{ $list1->address3 }}
+                                </td>
                                 <td>{{ $list1->phone }}</td>
                             </tr>
                         @endforeach
@@ -168,7 +173,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 tablelist">
                 {{-- Product List --}}
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Product List') }}</div>
                 <table class="table boxshad">
@@ -196,7 +201,7 @@
                 <a href="/productList" class="d-flex justify-content-end"><button
                         class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 tablelist">
                 {{-- Coin Charge List --}}
                 <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Coin Charge List') }}</div>
                 <table class="table boxshad">
@@ -216,13 +221,22 @@
                                 <td>{{ $list4->customerID }}</td>
                                 <td>{{ $list4->ad_name }}</td>
                                 <td>{{ $list4->request_coin }}</td>
-                                <td>{{ $list4->status }}</td>
+                                @if ($list4->status == 'Request')
+                                    <td class="text-success ">{{ $list4->status }}</td>
+                                @elseif ($list4->status == 'Approve')
+                                    <td class="text-info ">{{ $list4->status }}</td>
+                                @elseif ($list4->status == 'Waiting')
+                                    <td class="text-warning stshadow">{{ $list4->status }}</td>
+                                @elseif ($list4->status == 'Reject')
+                                    <td class="text-secondary ">{{ $list4->status }}</td>
+                                @endif
+
                             </tr>
                         @endforeach
 
                     </tbody>
                 </table>
-                <a href="" class=""><button
+                <a href="coinchargeList" class=""><button
                         class="btn seemore text-light ">{{ __('messageZN.See More') }}</button></a>
             </div>
         </div>

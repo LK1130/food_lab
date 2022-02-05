@@ -15,14 +15,6 @@
 .active {
     background-color: var(--btns) !important;
 }
-.navBar {
-    display: flex;
-
-    flex-direction: row;
-    gap: 7vh;
-    margin-top: 4vh;
-    margin-left: 17vw;
-}
 
 .headerButton {
     width: 12vw;
@@ -41,9 +33,6 @@
     color: var(--bs-white);
 }
 .table {
-    width: 70%;
-    margin-left: 23%;
-    margin-top: 8%;
     box-shadow: 5px 5px 7px black;
 }
 .tableHeader {

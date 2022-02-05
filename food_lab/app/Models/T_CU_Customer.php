@@ -30,7 +30,7 @@ class T_CU_Customer extends Model
       'Start DashboardMinicus'
     ]);
     $dashboardcus = T_CU_Customer::limit(5)
-      ->where('del_flg',0)
+      ->where('del_flg', 0)
       ->get();
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
@@ -55,7 +55,7 @@ class T_CU_Customer extends Model
 
     $cuscount = T_CU_Customer::where('t_cu_customer.del_flg', 0)
       ->count('t_cu_customer.id');
-      
+
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End Dashboardcuscount'
     ]);
@@ -76,7 +76,11 @@ class T_CU_Customer extends Model
       'Start customerInfoList'
     ]);
 
-    $customerlist = T_CU_Customer::where('t_cu_customer.del_flg', 0)
+    $customerlist = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS id'))
+      ->leftjoin('m_state', 'm_state.id', '=', 't_cu_customer.address1')
+      ->leftjoin('m_township', 'm_township.id', '=', 't_cu_customer.address2')
+      ->where('t_cu_customer.del_flg', 0)
+      ->orderBy('t_cu_customer.created_at', 'desc')
       ->paginate(10);
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
@@ -108,6 +112,30 @@ class T_CU_Customer extends Model
 
     Log::channel('adminlog')->info("T_CU_Customer Model", [
       'End cusSearch'
+    ]);
+  }
+  /*
+      * Create : zayar(03/2/2022)
+      * Update :
+      * Explain of function : To show customer search detail
+      * Prarameter : no
+      * return :
+    */
+  public function cusDetailSearch($sessionCustomerId)
+  {
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start cusDetailSearch'
+    ]);
+
+    $cusSearch = T_CU_Customer::where('id', $sessionCustomerId)
+      ->where('t_cu_customer.del_flg', 0)
+      ->get();
+
+    return $cusSearch;
+
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End cusDetailSearch'
     ]);
   }
   /*
@@ -148,17 +176,19 @@ class T_CU_Customer extends Model
       'Start customerDetail'
     ]);
 
-    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
+    $cusDetail = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS id'))
+      ->leftjoin('m_state', 'm_state.id', '=', 't_cu_customer.address1')
+      ->leftjoin('m_township', 'm_township.id', '=', 't_cu_customer.address2')
       ->where('t_cu_customer.del_flg', 0)
       ->where('t_cu_customer.id', '=', $id)
       ->first();
     // Log::critical('asdasd',[$cusDetail]);
     return $cusDetail;
 
-      Log::channel('adminlog')->info("T_CU_Customer Model", [
-        'End customerDetail'
-      ]);
-    }
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End customerDetail'
+    ]);
+  }
   /*
       * Create : Zar Ni(20/1/2022)
       * Update :
@@ -166,12 +196,13 @@ class T_CU_Customer extends Model
       * Prarameter : no
       * return :
     */
-    public function suggestmailnickname($id){
-      $sugmail = T_CU_Customer::select('nickname')
-        ->where('id',$id)
-        ->first();
-        return $sugmail;
-    }
+  public function suggestmailnickname($id)
+  {
+    $sugmail = T_CU_Customer::select('nickname')
+      ->where('id', $id)
+      ->first();
+    return $sugmail;
+  }
 
   /*
       * Create : Min Khant(15/1/2022)
@@ -374,6 +405,38 @@ class T_CU_Customer extends Model
     ]);
   }
 
+  /*
+      * Create : zayar(04/2/2022)
+      * Update :
+      * Explain of function : To update user profile
+      * Prarameter : no
+      * return :
+    */
+  public function editProfile($validate, $id)
+  {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start editProfile'
+    ]);
+    Log::channel('adminlog')->info("dfser", [
+      $validate['username'] . $id
+    ]);
+    $customer = T_CU_Customer::find($id);
+    $customer->nickname = $validate['username'];
+    $customer->bio = $validate['bio'];
+    $customer->phone = $validate['phonenumber'];
+    $customer->address1 = $validate['township'];
+    $customer->address2 = $validate['state'];
+    $customer->address3 = $validate['addressNumber'];
+    $customer->fav_type = $validate['favtype'];
+    $customer->taste = $validate['Taste'];
+    $customer->allergic = $validate['Allergic'];
+
+
+    $customer->save();
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End editProfile'
+    ]);
+  }
   /*
       * Create : Linn Ko(20/1/2022)
       * Update :

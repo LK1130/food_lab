@@ -19,17 +19,18 @@
     <script src="{{ URL::asset('js/adminList.js') }}"></script>
 @endsection
 @section('body')
+   <div class="col-md-10">
     {{-- Starts Header Buttons --}}
-    <div class="navBar">
-        <a href="{{ url('adminLogin') }}"><button
+    <div class="mt-4">
+        <a href="{{ url('adminLogin') }}" class="me-5"><button
                 class="btn text-light  active btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button
+        <a href="{{ url('coinrate') }}" class="me-5"><button
                 class="btn text-light   btncust">{{ __('messageZY.coinRate') }}</button></a>
-        <a href="{{ url('siteManage') }}"><button
+        <a href="{{ url('siteManage') }}" class="me-5"><button
                 class="btn text-light   btncust">{{ __('messageZY.siteManager') }}</button></a>
     </div>
     {{-- Starts Table --}}
-    <table class="table">
+    <table class="table mt-5">
         <tr class="tableHeader">
             <td>{{ __('messageZY.number') }}</td>
             <td>{{ __('messageZY.username') }}</td>
@@ -83,5 +84,5 @@
     <a href="{{ route('adminLogin.create') }}" class="addAdminButton"><button
             class="btn text-light addAdminButton active btncust">{{ __('messageZY.addAdmin') }}</button></a>
 
-
+   </div>
 @endsection

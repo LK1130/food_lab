@@ -59,7 +59,7 @@ class DeliveryInfoController extends Controller
 
         $userID = session('customerId');
 
-        $productArrays = json_decode(session('cart'), true);
+        $productArrays = session('cart');
         $deliTownshipInfo = new T_CU_Customer();
         $deliInfo = $deliTownshipInfo->deliveryTownship($userID);
         $township = $deliInfo['address2'];
