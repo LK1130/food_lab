@@ -52,7 +52,7 @@ class M_Product_Detail extends Model
     {
 
         Log::channel('adminlog')->info("M_Product_Detail Model", [
-            'Start restore data'
+            'Start editdata'
         ]);
 
         $mProductDetail = DB::select(
@@ -72,7 +72,7 @@ class M_Product_Detail extends Model
         );
 
         Log::channel('adminlog')->info("M_Product_Detail Model", [
-            'End restore data'
+            'End editdata'
         ]);
 
         return $mProductDetail;
@@ -92,7 +92,7 @@ class M_Product_Detail extends Model
     {
 
         Log::channel('adminlog')->info("M_Product_Detail Model", [
-            'Start search detail data'
+            'Start searchdatabyid'
         ]);
 
         $mProductDetail = DB::select(
@@ -110,7 +110,7 @@ class M_Product_Detail extends Model
         );
 
         Log::channel('adminlog')->info("M_Product_Detail Model", [
-            'End search detail data'
+            'End searchdatabyid'
         ]);
 
         return $mProductDetail;

@@ -3,28 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_AD_News;
 use App\Models\M_Product;
+use App\Models\M_Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class ProductSearchController extends Controller
 {
     
-
+     /*
+    * Create : Aung Min Khant(30/1/2022)
+    * Update :
+    * Explain of function : search by category for product  
+    * parameter : $request from product view with ajax
+    * return data product with json
+    * */
 
     public function searchByCategory(Request $request){
 
-        Log::channel('adminlog')->info("Product Search Controller", [
-            'Start search by type'
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'Start searchByCategory'
         ]);
 
         $products = new M_Product();
         $product  = $products->searchByType($request->input('type'));
         if($product == null) abort(404);
-        // dd($product);
+        
 
-        Log::channel('adminlog')->info("Product Search Controller", [
-            'End search by type'
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'End searchByCategory'
+        ]);
+
+        return response()
+        ->json(
+        $product
+        );
+    }
+
+     /*
+    * Create : Aung Min Khant(30/1/2022)
+    * Update :
+    * Explain of function : search by taste for product  
+    * parameter : $request from product view with ajax
+    * return data product with json
+    * */
+
+    public function searchByTaste(Request $request){
+
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'Start searchByTaste'
+        ]);
+
+        $products = new M_Product();
+        $product  = $products->searchByTaste($request->input('type'));
+        if(count($product) == 0) abort(404);
+        
+
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'End searchByTaste'
         ]);
 
         return response()
@@ -34,24 +71,72 @@ class ProductSearchController extends Controller
     }
 
 
-    public function searchByTaste(Request $request){
+     /*
+    * Create : Aung Min Khant(30/1/2022)
+    * Update :
+    * Explain of function : get id from product page and shown by specific type 
+    * parameter : $request id from product 
+    * return data product
+    * */
+    public function listbyType(Request  $request){
 
         Log::channel('adminlog')->info("ProductSearchController", [
-            'Start search by taste'
+            'Start listbyType'
         ]);
 
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $newsCount = count($newDatas);
+        $newsLimited = $news->newsLimited();
+
+        $site = new M_Site();
+        $name = $site->siteName();
+
         $products = new M_Product();
-        $product  = $products->searchByTaste($request->input('type'));
-        if($product == null) abort(404);
+        $product  = $products->searchByType($request->input('id'));
+        if(count($product) == 0) abort(404);
         
 
         Log::channel('adminlog')->info("ProductSearchController", [
-            'End search by taste'
+            'End listbyType'
+        ]);
+        return View('customer.productDetail.listproduct',['name' => $name, 'news' => $newDatas,'nav' => 'product', 'limitednews' => $newsLimited,'products' => $product]);
+        
+    }
+
+
+     /*
+    * Create : Aung Min Khant(30/1/2022)
+    * Update :
+    * Explain of function : get id from product page and shown by specific taste
+    * parameter : $request id from product 
+    * return data product
+    * */
+    public function listbyTaste(Request  $request){
+
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'Start listbyTaste'
         ]);
 
-        return response()
-        ->json(
-        $product
-        );
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $newsCount = count($newDatas);
+        $newsLimited = $news->newsLimited();
+
+        $site = new M_Site();
+        $name = $site->siteName();
+
+      
+
+        $products = new M_Product();
+        $product  = $products->searchByTaste($request->input('id'));
+        if(count($product) == 0) abort(404);
+       
+
+        Log::channel('adminlog')->info("ProductSearchController", [
+            'End listbyTaste'
+        ]);
+        return View('customer.productDetail.listproduct',['name' => $name, 'news' => $newDatas,'nav' => 'product', 'limitednews' => $newsLimited,'products' => $product]);
+        
     }
 }

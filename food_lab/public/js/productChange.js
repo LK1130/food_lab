@@ -9,7 +9,7 @@ $(document).ready(function () {
     $('.typebtns').hide();
     $('.tastebtns').hide();
     $("#selectpicker1").change(function (e) {
-        // console.log($('#selectpicker1').val());
+       
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -19,7 +19,9 @@ $(document).ready(function () {
         });
         e.preventDefault();
         var formdata = { type: $("#selectpicker1").val() };
-        // console.log(formdata);
+        let id = $('#selectpicker1').val();
+        let newUrl = `menutype?id=${id}`;
+        $('#typetag').attr('href',newUrl);
         $.ajax({
             type: "POST",
             url: "searchCategory",
@@ -53,7 +55,7 @@ $(document).ready(function () {
                 if(count == 0 ){
                     $('.typebtns').hide('slow');
                 }
-                console.log(count);
+               
                
             },
             error: function(data){
@@ -61,6 +63,7 @@ $(document).ready(function () {
             }
         });
     });
+
 
     /*
      * Create : Aung Min Khant(29/1/2022)
@@ -79,7 +82,9 @@ $(document).ready(function () {
         });
         e.preventDefault();
         var formdata = { type: $("#selectpicker2").val() };
-         
+        let id = $('#selectpicker2').val();
+        let newUrl = `menutaste?id=${id}`;
+        $('#tastetag').attr('href',newUrl);
         $.ajax({
             type: "POST",
             url: "searchTaste",
