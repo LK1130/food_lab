@@ -147,7 +147,7 @@ class SalesController extends Controller
      * Update :
      * Explain of function : For showing data charts between start date and end date
      * Prarmeter : no
-     * return : 
+     * return : 'admin.salesChart.rangeSale'
      * */
     public function rangeChart(RangeChart $request)
     {   

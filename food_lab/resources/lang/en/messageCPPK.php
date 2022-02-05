@@ -25,12 +25,22 @@ return [
     'Name' => 'Name',
     'Phone' => 'Phone',
     'Address' => 'Address',
-    'Cancle' => 'Cancle',
+    'Cancel' => 'Cancel',
+    'Submit' => 'Submit',
     'Order' => 'Order',
     'Payment' => 'Payment',
     'Delivery Information' => 'Delivery Information',
+    'No' => 'No',
+    'Date' => 'Date',
+    'Coin Amount' => 'Coin Amount',
+    'Coin Amount List' => 'Coin Amount List',
+    'Order Amount' => 'Order Amount',
+    'Order Amount List' => 'Order Amount List',
+    'Coin Charge' => 'Coin Charge',
+    'Choose Photo' => 'Choose Photo',
+    'Payment Accounts' => 'Payment Accounts',
+    'Coin Rule' => 'Coin Rule',
+    'Coin Calculator' => 'Coin Calculator',
 
-   
-    
 
 ]; 

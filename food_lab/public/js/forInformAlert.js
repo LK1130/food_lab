@@ -35,7 +35,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#alertCount").text(data["alertcount"]);
 
-                $(".profileAlertBody").append(
+                $(".profileAlertBody").prepend(
                     `
                     <div class="d-flex flex-column justify-content-center align-items-center ">
                     <i class="far fa-user-circle fs-1 text-light"></i>
@@ -45,12 +45,7 @@ $(document).ready(function () {
                     <p class="fw-bolder  profileAlertHeader">${data["detail"]["email"]}</p>
                     <p class="fw-bolder  profileAlertHeader">${data["detail"]["phone"]}</p>
                     <p class="fw-bolder  profileAlertHeader">${data["detail"]["township_name"]} , ${data["detail"]["state_name"]} , ${data["detail"]["address3"]}</p>
-                    <div class="d-flex flex-row mt-3">
-                        <a href="{{ route('editprofile.index') }}"><button class="btn fs-5 me-3 editProfile">Edit
-                                Profile</button></a>
-                        <a href="{{ route('updateprofile.index') }}"><button
-                                class="btn fs-5 ms-3 updatePassword">Change Password</button></a>
-                    </div>
+                    
                 </div>
                         `
                 );

@@ -406,6 +406,38 @@ class T_CU_Customer extends Model
   }
 
   /*
+      * Create : zayar(04/2/2022)
+      * Update :
+      * Explain of function : To update user profile
+      * Prarameter : no
+      * return :
+    */
+  public function editProfile($validate, $id)
+  {
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'Start editProfile'
+    ]);
+    Log::channel('adminlog')->info("dfser", [
+      $validate['username'] . $id
+    ]);
+    $customer = T_CU_Customer::find($id);
+    $customer->nickname = $validate['username'];
+    $customer->bio = $validate['bio'];
+    $customer->phone = $validate['phonenumber'];
+    $customer->address1 = $validate['township'];
+    $customer->address2 = $validate['state'];
+    $customer->address3 = $validate['addressNumber'];
+    $customer->fav_type = $validate['favtype'];
+    $customer->taste = $validate['Taste'];
+    $customer->allergic = $validate['Allergic'];
+
+
+    $customer->save();
+    Log::channel('adminlog')->info("T_CU_Customer Model", [
+      'End editProfile'
+    ]);
+  }
+  /*
       * Create : Linn Ko(20/1/2022)
       * Update :
       * Explain of function : To show customer search names
