@@ -16,51 +16,47 @@
 @endsection
 @section('body')
     {{-- Starts Header Buttons --}}
-    <div class="navBar">
-        <a href="{{ url('adminLogin') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.coinRate') }}</button></a>
-        <a href="{{ url('siteManage') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.siteManager') }}</button></a>
-    </div>
-    {{-- Starts Form --}}
-    <a href="{{ route('app.index') }}"><button class="btn text-light  active btncust mt-5"
-            id="appBack2">{{ __('messageZY.back') }}</button></a>
-    <div class="adminAddForm">
-        <form action="{{ route('payment.update', $payment->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <p class="formHeader">{{ __('messageZY.editpayment') }} </p>
-            <div>
-                <div class="form-group">
-                    <label for="paymentname">{{ __('messageZY.paymentname') }}</label>
-                    <input type="text" class="form-control" id="paymentname" name="payment_name"
-                        value="{{ $payment->payment_name }}">
-                    @error('payment_name')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="accountname">{{ __('messageZY.accountname') }}</label>
-                    <input type="number" class="form-control" id="accountname" name="accountname"
-                        value="{{ $payment->account_name }}">
-                    @error('accountname')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="note">{{ __('messageZY.note') }}</label>
-                    <input type="text" class="form-control" id="name" name="note" value="{{ $payment->note }}">
-                    @error('note')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <button class="btn text-light  active btncust mt-5">{{ __('messageZY.save') }}</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    <div class="col-md-10 ">
+        <div class="mt-4">
+            <a href="{{ route('app.index') }}"><button
+                    class="btn text-light active btncust">{{ __('messageZY.back') }}</button></a>
+        </div>
+        {{-- Starts Form --}}
 
+        <div class="adminAddForm">
+            <form action="{{ route('payment.update', $payment->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <p class="formHeader">{{ __('messageZY.editpayment') }} </p>
+                <div>
+                    <div class="form-group">
+                        <label for="paymentname">{{ __('messageZY.paymentname') }}</label>
+                        <input type="text" class="form-control" id="paymentname" name="payment_name"
+                            value="{{ $payment->payment_name }}">
+                        @error('payment_name')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="accountname">{{ __('messageZY.accountname') }}</label>
+                        <input type="number" class="form-control" id="accountname" name="accountname"
+                            value="{{ $payment->account_name }}">
+                        @error('accountname')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="note">{{ __('messageZY.note') }}</label>
+                        <input type="text" class="form-control" id="name" name="note" value="{{ $payment->note }}">
+                        @error('note')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <button class="btn text-light  active btncust mt-5">{{ __('messageZY.save') }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection

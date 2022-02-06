@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Models\FavTypeModel;
+use App\Models\M_Fav_Type;
 use Illuminate\Contracts\Validation\Rule;
 
 class CheckFavourite implements Rule
@@ -26,7 +27,7 @@ class CheckFavourite implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = FavTypeModel::where('favourite_food', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_Fav_Type::where('favourite_food', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

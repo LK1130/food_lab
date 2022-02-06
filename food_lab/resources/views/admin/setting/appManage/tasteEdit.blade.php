@@ -17,42 +17,38 @@
 @endsection
 @section('body')
     {{-- Starts Header Buttons --}}
-    <div class="navBar">
-        <a href="{{ url('adminLogin') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.coinRate') }}</button></a>
-        <a href="{{ url('siteManage') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.siteManager') }}</button></a>
-    </div>
-    {{-- Starts Form --}}
-    <a href="{{ route('app.index') }}"><button class="btn text-light  active btncust mt-5"
-            id="appBack">{{ __('messageZY.back') }}</button></a>
-    <div class="adminAddForm">
-        <form action="{{ route('taste.update', $taste->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <p class="formHeader">{{ __('messageZY.edittaste') }} </p>
-            <div>
-                <div class="form-group">
-                    <label for="taste">{{ __('messageZY.taste') }}</label>
-                    <input type="text" class="form-control" id="taste" name="taste" value="{{ $taste->taste }}">
-                    @error('taste')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="note">{{ __('messageZY.note') }}</label>
-                    <input type="text" class="form-control" id="name" name="note" value="{{ $taste->note }}">
-                    @error('note')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <button class="btn text-light  active btncust mt-5">{{ __('messageZY.save') }}</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    <div class="col-md-10 ">
+        <div class="mt-4">
+            <a href="{{ route('app.index') }}"><button
+                    class="btn text-light active btncust">{{ __('messageZY.back') }}</button></a>
+        </div>
+        {{-- Starts Form --}}
 
+        <div class="adminAddForm">
+            <form action="{{ route('taste.update', $taste->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <p class="formHeader">{{ __('messageZY.edittaste') }} </p>
+                <div>
+                    <div class="form-group">
+                        <label for="taste">{{ __('messageZY.taste') }}</label>
+                        <input type="text" class="form-control" id="taste" name="taste" value="{{ $taste->taste }}">
+                        @error('taste')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="note">{{ __('messageZY.note') }}</label>
+                        <input type="text" class="form-control" id="name" name="note" value="{{ $taste->note }}">
+                        @error('note')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <button class="btn text-light  active btncust mt-5">{{ __('messageZY.save') }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection

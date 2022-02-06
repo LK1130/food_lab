@@ -17,17 +17,11 @@
 @endsection
 @section('body')
 
-
-
     <div class="col-md-10">
         {{-- Starts Header Buttons --}}
-        <div class="navBar">
-            <a href="{{ url('adminLogin') }}"><button
-                    class="btn text-light   btncust">{{ __('messageZY.loginManage') }}</button></a>
-            <a href="{{ url('coinrate') }}"><button
-                    class="btn text-light  active btncust">{{ __('messageZY.coinRate') }}</button></a>
-            <a href="{{ url('siteManage') }}"><button
-                    class="btn text-light   btncust">{{ __('messageZY.siteManager') }}</button></a>
+        <div class="mt-4 ">
+            <a href="{{ url()->previous() }}"><button
+                    class="checked btn text-light  active btncust ">{{ __('messageZY.back') }}</button></a>
         </div>
         {{-- Starts Form --}}
         <form action="{{ route('coinrate.store') }}" method="POST" enctype="multipart/form-data">

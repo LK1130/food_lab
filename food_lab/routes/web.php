@@ -87,7 +87,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::resource('payment', PaymentController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('taste', TasteController::class);
-    Route::resource('suggest', SuggestController::class);
+    Route::resource('suggestAdmin', SuggestController::class);
     Route::resource('favtype', FavtypeController::class);
     Route::resource('orderstatus', OrderStatusController::class);
     Route::resource('decision', DecisionController::class);
