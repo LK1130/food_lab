@@ -41,10 +41,10 @@ class TasteController extends Controller
         $validate = $request->validated();
         $admin = new M_Taste();
         $admin->tasteAdd($validate);
-        return redirect('app');
         Log::channel('adminlog')->info("TasteController", [
             'End store'
         ]);
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 

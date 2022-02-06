@@ -84,25 +84,26 @@ button {
 }
 .select {
     width: 12%;
-    height: 4vh;
+    height: 6vh;
     margin-left: 80%;
 }
 #site {
-    margin-left: 20%;
+    margin-left: 5%;
     margin-top: 2%;
 }
+
 #app {
-    margin-left: 17%;
+    margin-left: 1%;
     margin-top: 2%;
 }
-#news {
-    margin-left: 17%;
-    margin-top: 2%;
-}
+
 #maintenance {
     position: absolute;
-    left: 82vh;
-    top: 80vh;
+    left: 18vw;
+    top: 1.3vh;
+}
+.name {
+    width: 10vw !important;
 }
 .save {
     background-color: var(--btns);
@@ -113,6 +114,9 @@ button {
     border-radius: 1vh;
 }
 #mvalue {
+    visibility: hidden;
+}
+.hide {
     visibility: hidden;
 }
 #imgInitial,
@@ -143,7 +147,8 @@ button {
 .showImageChange h2 {
     margin-right: 10vh;
 }
-.table {
+.tableApp {
+    width: fit-content;
     max-width: 80%;
     margin-top: 4vh;
     box-shadow: 5px 5px 7px black;
@@ -151,8 +156,36 @@ button {
 .tablediv {
     display: flex;
     flex-direction: column;
-    width: 90vh;
+
+    width: 45%;
     max-width: 50%;
+}
+.leftSide {
+    margin-right: 9vw;
+}
+.payment {
+    margin-right: 7.9vw;
+}
+.category {
+    margin-right: 9.5vw;
+}
+.taste {
+    margin-right: 9vw;
+}
+.suggest {
+    margin-right: 7.8vw;
+}
+.favtype {
+    margin-right: 10.3vw;
+}
+.orderstatus {
+    margin-right: 7.9vw;
+}
+.decision {
+    margin-right: 8vw;
+}
+.table {
+    box-shadow: 3px 3px 10px silver;
 }
 .tableHeader {
     background-color: var(--dashboardminlistingheader);
@@ -166,7 +199,11 @@ button {
     height: 7vh;
     margin-left: 4vw;
 }
+.table2 {
+    width: fit-content;
 
+    box-shadow: 5px 5px 7px black;
+}
 .tdWhite {
     color: var(--white) !important;
     font-size: var(--tablerow);
@@ -174,18 +211,22 @@ button {
 .tdBlack {
     font-size: var(--tablerow);
 }
+.addAdminButton {
+    text-align: center;
+    margin-left: 67vw;
+}
 .tables {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    gap: 4vh;
+    width: 120%;
+    gap: 1vw;
     margin-top: 5%;
 }
 .newstable {
-    width: 70%;
-    margin-left: 6%;
-    margin-top: 4%;
+    width: 100% !important;
+    height: 33.8vh;
+    margin-top: 0.7%;
     box-shadow: 5px 5px 7px black;
 }
 .newstr {
@@ -204,4 +245,7 @@ button {
 .pages {
     margin-top: 3vh;
     margin-left: 32%;
+}
+.checkbox {
+    position: relative;
 }

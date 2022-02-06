@@ -313,7 +313,7 @@ class T_CU_Customer extends Model
     $search = T_CU_Customer::select('*', DB::raw('t_cu_customer.id AS cid'))
       ->where('t_cu_customer.id', '=', $sessionCustomerId)
 
-      ->join('m_cu_customer_login', 'm_cu_customer_login.id', '=', 't_cu_customer.id')
+      ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->join('m_township', 'm_township.id', '=', 't_cu_customer.address1')
       ->join('m_state', 'm_state.id', '=', 't_cu_customer.address2')
       // ->join('m_fav_type', 'm_fav_type.id', '=', 't_cu_customer.fav_type')

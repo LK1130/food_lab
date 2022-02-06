@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\M_Township;
 use App\Models\TownshipModel;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -26,7 +27,7 @@ class CheckTownship implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = TownshipModel::where('township_name', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_Township::where('township_name', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }
