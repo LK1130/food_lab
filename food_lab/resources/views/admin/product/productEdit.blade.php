@@ -44,7 +44,7 @@
                                             src="@isset($phd[0]->path)/storage/{{ $phd[0]->path }}@endisset">
                                         </div>
                                         <div class="form-group mx-4 mt-2 mb-2">
-                                            <input type="file" name="photo1" id="photo1" class="form-control files" value="@isset($phd[0]->path)/storage/{{ $phd[0]->path }}@endisset">
+                                            <input type="file" name="photo1" id="photo1" class="form-control files" value="@isset($phd[0]->path)/storage/{{ $phd[0]->path }}@endisset" accept="image/*">
                                             <input type="hidden" name="hide1" id="hide1" value="@isset($phd[0]->path){{ $phd[0]->path }}@endisset">
                                         
                                         </div>
@@ -57,7 +57,7 @@
                                                     >
                                             </div>
                                             <div class="form-group mx-4 mt-2 mb-2">
-                                                <input type="file" name="photo2" id="photo2" class="form-control files">
+                                                <input type="file" name="photo2" id="photo2" class="form-control files" accept="image/*">
                                                 <input type="hidden" name="hide2" id="hide2" value="@isset($phd[1]->path){{ $phd[1]->path }}@endisset">
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@
                                                         >
                                                 </div>
                                                 <div class="form-group mx-4 mt-2 mb-2">
-                                                    <input type="file" name="photo3" id="photo3" class="form-control files">
+                                                    <input type="file" name="photo3" id="photo3" class="form-control files" accept="image/*">
                                                     <input type="hidden" name="hide3" id="hide3" value="@isset($phd[2]->path){{ $phd[2]->path }}@endisset">
                                                 </div>
                                             </div>
@@ -81,7 +81,7 @@
                                                             >
                                                     </div>
                                                     <div class="form-group mx-4 mt-2 mb-2">
-                                                        <input type="file" name="photo4" id="photo4" class="form-control files">
+                                                        <input type="file" name="photo4" id="photo4" class="form-control files" accept="image/*">
                                                         <input type="hidden" name="hide4" id="hide4" value="@isset($phd[3]->path){{ $phd[3]->path }}@endisset">
                                                     </div>
                                                 </div>
@@ -93,7 +93,7 @@
                                                                 >
                                                         </div>
                                                         <div class="form-group mx-4 mt-2 mb-2">
-                                                            <input type="file" name="photo5" id="photo5" class="form-control files">
+                                                            <input type="file" name="photo5" id="photo5" class="form-control files" accept="image/*">
                                                             <input type="hidden" name="hide5" id="hide5" value="@isset($phd[4]->path){{ $phd[4]->path }}@endisset">
                                                         </div>
                                                     </div>
@@ -105,7 +105,7 @@
                                                                     >
                                                             </div>
                                                             <div class="form-group mx-4 mt-2 mb-2">
-                                                                <input type="file" name="photo6" id="photo6" class="form-control files">
+                                                                <input type="file" name="photo6" id="photo6" class="form-control files" accept="image/*">
                                                                 <input type="hidden" name="hide6" id="hide6" value="@isset($phd[5]->path){{ $phd[5]->path }}@endisset">
                                                             </div>
                                                         </div>
@@ -169,12 +169,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
-                                                    <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" required>{{ $products->list }}
-                                                                            </textarea>
-
-                                                </div>
+                                               
 
                                                 <div class="d-flex justify-content-between  mt-4 mx-2">
                                                     <div class="mx-2">
@@ -197,6 +192,14 @@
                                     {{-- Product Description --}}
                                     <div class="container-fluid mb-4">
                                         <div class="row">
+                                            <div class="col-md-7 col-sm-7">
+                                                <div class="form-group mt-3">
+                                                    <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
+                                                    <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" required>{{ $products->list }}
+                                                                            </textarea>
+
+                                                </div>
+                                            </div>
                                             <div class="col-md-10 col-sm-12">
                                                 <div class="form-group mt-3">
                                                     <label for="pdesc" class="form-label titles">{{ __('messageAMK.Description') }}</label>
@@ -231,8 +234,9 @@
                                                                              
                                                                                 @if ($detail->category == 1)
                                                                                     <option value="1" selected>Selected Box</option>
-
+                                                                                    <option value="2" >Checked Box</option>
                                                                                 @else
+                                                                                <option value="1" >Selected Box</option>
                                                                                     <option value="2" selected>Checked Box</option>
                                                                                 @endif
                                                                             </select>
@@ -263,7 +267,7 @@
                                                 <button class="backBtn"><a href="/productList" class="back">{{ __('messageAMK.Back') }}</a></button>
                                             </div>
                                             <div class="col-md-3">
-                                            <button type="reset" class="resetBtn">{{ __('messageAMK.Reset') }}</button>
+                                            <button type="reset" onclick='location.reload();' class="resetBtn">{{ __('messageAMK.Reset') }}</button>
                                             
                                             </div>
                                             <div class="col-md-3">

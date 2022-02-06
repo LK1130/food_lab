@@ -335,8 +335,11 @@ Route::post('cartsession', [CartController::class, 'getData']);
  * For Product
  */
 Route::get('productLists', [ProductDetailController::class, 'productList']);
+// Route::get('menu',[ProductDetailController::class,'eachList'] );
 Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
 Route::post('searchTaste', [ProductSearchController::class, 'searchByTaste']);
+Route::get('menutype',[ProductSearchController::class,'listByType']);
+Route::get('menutaste',[ProductSearchController::class,'listByTaste']);
 /*
  * For logging out
  */

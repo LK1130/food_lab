@@ -19,7 +19,7 @@
 
 @section('body')
 <div class="col-md-10">
-      <div class="mt-4">
+    <div class="mt-4">
     <!-- Daily Sales Button -->
     <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  inactive btncust">{{ __('messageCPPK.Daily') }}</button></a>
     <!--Monthly Sales Button -->
@@ -29,7 +29,6 @@
     <!-- Range Sales Button -->
     <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light active btncust">{{ __('messageCPPK.Range') }}</button></a>  
   </div>
-  <h3 id="saleCaption">{{ __('messageCPPK.Range Sales') }}</h3>
     <!-- For Range Sale Search -->
     <form action="/rangeChart" method="Post">
       @csrf
@@ -41,9 +40,10 @@
           <!-- For  End Range Search -->
           <input id="appt-date" class="toRangeCount"  type="date" name="toDate"></input>
           <!-- Search Btn -->
-          <button type="submit" class="btn btn-primary btn-lg" id="rangeSearchSubmit">Search</button>
+          <span class="mx-3"><button class="btn btncust" id="rangeSearchSubmit">Search</button></span>
         </div>
         <div>
+          <br></br>
           @if ($errors->has('fromDate'))
           <span class="text-danger errorShow">First Input Box({{ $errors->first('fromDate') }})</span>
           @endif

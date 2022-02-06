@@ -10,6 +10,11 @@ coinInput.addEventListener("keyup" , function (){
     mmkInput.value= aftercoinSum;
     coinChargeinput.value=coinInput.value; 
 })
+coinChargeinput.addEventListener("keyup" , function (){
+    aftercoinSum = coinChargeinput.value * coinRate.innerHTML;
+    mmkInput.value= aftercoinSum;
+    coinInput.value=coinChargeinput.value; 
+})
 
 mmkInput.addEventListener("keyup" , function (){
     aftermmkSum = mmkInput.value/coinRate.innerHTML;
