@@ -306,4 +306,86 @@ class T_AD_Order extends Model
 
         return $orderID;
     }
+
+
+ /*
+    * Create : Zaw(2022/02/22) 
+    * Update : 
+    * This function is use to 
+    * Parameters :
+    * Return : 
+    */
+    public function orderDailyList()
+    {
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start orderDailyList'
+        ]);
+
+        $currentYear = Carbon::now()->year;
+        $currentMonth = Carbon::now()->month;
+
+        $order = T_AD_Order::select(
+            DB::raw('order_date as date'),
+            DB::raw(('day(order_date) as day')),
+            DB::raw('count(id) as totalorder'),
+        )
+            ->where(DB::raw('month(order_date)'), $currentMonth)
+            ->where(DB::raw('year(order_date)'), $currentYear)
+            ->orderBy(DB::raw('order_date'), 'ASC')
+            ->groupBy('date')
+            ->paginate(10);
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End orderDailyList'
+        ]);
+
+        return $order;
+    }
+
+    public function ordermonthlyList()
+    {
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start ordermonthlyList'
+        ]);
+
+        $current = Carbon::now()->year;
+        $order = T_AD_Order::select(
+
+            DB::raw('year(order_date) as year'),
+            DB::raw('monthname(order_date) as month'),
+            DB::raw('count(id) as totalorder'),
+        )
+            ->where(DB::raw('year(order_date)'), $current)
+            ->groupBy('year')
+            ->groupBy('month')
+            ->paginate(10);
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End ordermonthlyList'
+        ]);
+
+        return $order;
+    }
+
+    public function orderyearlyList()
+    {
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start orderYearly'
+        ]);
+
+        $current = Carbon::now()->year;
+        $order = T_AD_Order::select(
+            DB::raw('year(order_date) as year'),
+            DB::raw('count(id) as totalorder'),
+        )
+            ->orderBy(DB::raw('year(order_date)'), 'ASC')
+            ->groupBy('year')
+            ->paginate(10);
+
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End orderYearly'
+        ]);
+
+        return $order;
+    }
 }
