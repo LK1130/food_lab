@@ -305,7 +305,6 @@ class T_AD_Order extends Model
         return $orderID;
     }
 
-<<<<<<< HEAD
 
  /*
     * Create : Zaw(2022/02/22) 
@@ -386,7 +385,7 @@ class T_AD_Order extends Model
         ]);
 
         return $order;
-=======
+    }
     /*
     * Create : Cherry(1/2/2022)
     * Update : Min Khant(1/2/2022)
@@ -427,6 +426,5 @@ class T_AD_Order extends Model
         Log::channel('customerlog')->info('T_AD_Order Model', [
             'end customerOrder'
         ]);
->>>>>>> b1caf5c3f88990f05d95d1b4b8311d727cbf09d3
     }
 }
