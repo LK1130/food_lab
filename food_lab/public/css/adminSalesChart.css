@@ -83,16 +83,6 @@
 }
 /*For Range Search Submit*/
 #rangeSearchSubmit{
-<<<<<<< HEAD
-    width: 12vw;
-    font-size: var(--btntextsize)!important;
-    border :1px black solid;
-    margin-left: 3em;
-    background-color: var(--color1);
-    color: var(--color3);
-    padding: 0.2em;
-    /* font-size: 1em; */
-=======
 
     background-color: var(--color1);
     color: var(--color3);
@@ -100,7 +90,6 @@
     margin-top: 0.1rem;
     margin-left: 2rem;
     font-size: 1em;
->>>>>>> b1caf5c3f88990f05d95d1b4b8311d727cbf09d3
 }
 .errorShow{
     margin-left: 4em;

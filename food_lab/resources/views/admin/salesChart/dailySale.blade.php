@@ -5,18 +5,6 @@
 @endsection
 
 @section('css')
-<<<<<<< HEAD
-    <!-- Join Css -->
-    <link rel="stylesheet" href="css/adminSalesChart.css" />
-@endsection
-
-@section('script')
-    <!-- For Jquary Cdn-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!-- For Apex Charts Cdn-->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-=======
 <!-- Join Css -->
 <link rel="stylesheet"  href= "css/adminSalesChart.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -32,7 +20,6 @@
 integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
->>>>>>> b1caf5c3f88990f05d95d1b4b8311d727cbf09d3
 @endsection
 
 @section('body')
@@ -116,15 +103,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         </div>
     </div>
-<<<<<<< HEAD
 
     <!-- For Sending Array to DailyChart.js -->
-=======
-    
-  </div>
-</div>
-     <!-- For Sending Array to DailyChart.js -->
->>>>>>> b1caf5c3f88990f05d95d1b4b8311d727cbf09d3
     <script>
         // For Sending Order Array to Order dailyChart.js
         var orderArray = @json($orderArray);
