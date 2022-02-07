@@ -24,7 +24,7 @@
 @section('header')
 
     <div class="container-fluid">
-        <div class="d-flex mt-2">
+        <div class="d-flex mt-2 align-items-baseline">
             <a href="/productLists">
                 <i class="fas fa-arrow-left fs-2 text-white arrows"></i>
             </a>
