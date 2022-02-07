@@ -46,7 +46,7 @@ class VerifyMail extends Mailable
         ]);
 
         return $this->subject('Verify Mail')
-            ->view('customer.mail.verify')
+            ->view('customer.access.verify')
             ->with([
                 'name' => $this->mail['name'],
                 'siteName' => $this->mail['siteName'],

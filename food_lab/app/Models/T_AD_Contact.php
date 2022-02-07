@@ -104,4 +104,16 @@ class T_AD_Contact extends Model
         
         return $cont;
     }
+     /*
+   * Create:Zar Ni(2022/01/25) 
+   * Update: 
+   * This function is for reply to customer.
+   */
+    public function cuscontactMail($id){
+        $contactmail = T_AD_Contact::select(['customer_id','reply'])
+        ->where('id',$id)
+        ->first();
+        return $contactmail;
+    }
+
 }

@@ -78,7 +78,7 @@ class NewsController extends Controller
         Log::channel('adminlog')->info("NewsController", [
             'End create'
         ]);
-        return redirect('siteManage');
+        return redirect('news');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -86,13 +86,16 @@ class NewsController extends Controller
     * This function is used to show news  edit view.
     */
 
-    public function show($id)
+    public function show($newsid)
     {
         Log::channel('adminlog')->info("NewsController", [
             'Start show'
         ]);
         $admin = new M_AD_News();
-        $news = $admin->newsEditView($id);
+        $news = $admin->newsEditView($newsid);
+        Log::channel('adminlog')->info("news", [
+            $news
+        ]);
         if ($news === null) {
             Log::channel('adminlog')->info("FavtypeController", [
                 'End show(error)'
@@ -136,7 +139,7 @@ class NewsController extends Controller
             Log::channel('adminlog')->info("NewsController", [
                 'End update'
             ]);
-            return redirect('siteManage');
+            return redirect('news');
         }
     }
     /*
@@ -162,7 +165,7 @@ class NewsController extends Controller
             Log::channel('adminlog')->info("NewsController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('news');
         }
     }
 }

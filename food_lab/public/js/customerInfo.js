@@ -16,7 +16,7 @@ $(document).ready(function () {
         });
         e.preventDefault();
         var formdata = { nickname: $("#search").val() };
-       
+
         $.ajax({
             type: "GET",
             url: "searchname",
@@ -36,12 +36,10 @@ $(document).ready(function () {
                                 <td>${list.phone}</td>
                                 <td>${list.address3}</td>
                                 <td>
-                                    <form action="customerinfoDetail/" .${
-                                        list.id
-                                    }>
-                                        <button class="btn tablerows btn-outline-light"><i
+                                <a href="customerinfoDetail?id=${list.id}">
+                                        <button class="btn tablerows btn-outline-dark"><i
                                                 class="bi bi-arrow-right"></i></button>
-                                    </form>
+                                    </a>
                                 </td>
                             </tr>
                         `
@@ -87,12 +85,10 @@ $(document).ready(function () {
                                 <td>${list.phone}</td>
                                 <td>${list.address3}</td>
                                 <td>
-                                    <form action="customerinfoDetail/" .${
-                                        list.id
-                                    }>
-                                        <button class="btn tablerows btn-outline-light"><i
-                                                class="bi bi-arrow-right"></i></button>
-                                    </form>
+                                <a href="customerinfoDetail?id=${list.id}">
+                                <button class="btn tablerows btn-outline-dark"><i
+                                        class="bi bi-arrow-right"></i></button>
+                            </a>
                                 </td>
                             </tr>
                         `

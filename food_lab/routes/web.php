@@ -23,6 +23,7 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\customerInfoController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CustomerProfileUpdate;
+use App\Http\Controllers\DeliveryInfoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTransactionController;
@@ -86,14 +87,14 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::resource('payment', PaymentController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('taste', TasteController::class);
-    Route::resource('suggest', SuggestController::class);
+    Route::resource('suggestAdmin', SuggestController::class);
     Route::resource('favtype', FavtypeController::class);
     Route::resource('orderstatus', OrderStatusController::class);
     Route::resource('decision', DecisionController::class);
     //admin/setting/newsManage
     Route::resource('news', NewsController::class);
 
-
+    Route::get('adminValidate/{id}', [AdminController::class, 'adminValidate']);
     //_________________________________end appManage_________________________/
 
     //_________________________________start newsManage_________________________/
@@ -173,7 +174,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::post('redecided', [CoinController::class, 'makeReDecision']);
     Route::get('detailCharge/{id}', [CoinController::class, 'detailCharge']);
     Route::get('addCoin', [CoinController::class, 'addCoin']);
-    Route::post('searchCustomer',[CoinController::class,'searchCustomer']);
+    Route::post('searchCustomer', [CoinController::class, 'searchCustomer']);
     Route::post('addCoinCustomer', [CoinController::class, 'addCoinCustomer']);
 
     //_________________________________End Admin Coin Routes_________________________
@@ -260,8 +261,16 @@ Route::get('/login', [CustomerController::class, 'login']);
  * zayar
  */
 Route::resource('editprofile', CustomerProfileController::class);
-
-
+/*
+ * For ajax 
+ * zayar
+ */
+Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
+/*
+ * For news get initial 
+ * zayar
+ */
+Route::get('getnews', [CustomerController::class, 'getNews']);
 /*
  * For Update Profile Page
  * zayar
@@ -289,11 +298,21 @@ Route::get('/messages', [CustomerController::class, 'message']);
  * zayar
  */
 Route::get('/tracks', [CustomerController::class, 'tracks']);
+
 /*
- * For deliery info page
+ * For cart page
+ * min khant
 */
 Route::get('/cart', [CartController::class, 'cart']);
-Route::get('/deliveryInfo', [CartController::class, 'deliveryInfo']);
+Route::post('/cart', [CartController::class, 'cartDetail']);
+Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+
+/*
+ * For deliery info page
+ * cherry
+*/
+Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
 /*
  * For Login Form
  */
@@ -303,20 +322,24 @@ Route::post('/login', [CustomerController::class, 'loginForm']);
 For Buy Coin Page
 */
 Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
-Route::post('/buycoinForm',[BuycoinController::class,'coinrequestUpload']);
+Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
 
 /*
  * For Product Detail Form
  */
-Route::get('productDetail',[ProductDetailController::class,'detail']);
-Route::post('cartsession',[CartController::class,'getData']);
+Route::get('productDetail', [ProductDetailController::class, 'detail']);
+Route::post('cartsession', [CartController::class, 'getData']);
 
 
 /*
  * For Product
  */
-Route::get('productLists',[ProductDetailController::class,'productList']);
-Route::post('searchCategory',[ProductSearchController::class,'searchByCategory']); 
+Route::get('productLists', [ProductDetailController::class, 'productList']);
+// Route::get('menu',[ProductDetailController::class,'eachList'] );
+Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
+Route::post('searchTaste', [ProductSearchController::class, 'searchByTaste']);
+Route::get('menutype',[ProductSearchController::class,'listByType']);
+Route::get('menutaste',[ProductSearchController::class,'listByTaste']);
 /*
  * For logging out
  */

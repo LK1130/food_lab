@@ -16,16 +16,6 @@
 
 @section('title', 'Food Lab')
 
-@section('marquee')
-    {{-- Start Marquee --}}
-    <marquee class="pt-1">
-        @foreach ($news as $new)
-            <p class="d-inline mx-5 importantnews" id="{{ $new->category }}">{{ $new->title }}</p>
-        @endforeach
-    </marquee>
-    {{-- End Marquee --}}
-@endsection
-
 @section('header')
     {{-- start carousel --}}
     <div id="carouselExampleIndicators" class="carousel slide carousels" data-bs-ride="">
@@ -113,12 +103,12 @@
             <legend class="seller-headers">{{ __('messageMK.bestselleritems') }}</legend>
 
             {{-- start items --}}
-            @forelse ($productInfos as $productInfo)
+            @forelse ($sellProducts as $sellProduct)
                 <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5"
-                    id="{{ $productInfo->id }}">
+                    id="{{ $sellProduct->product_id }}">
                     <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1" />
-                    <p class="fs-3 pt-2 text-uppercase">{{ $productInfo->product_name }}</p>
-                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $productInfo->coin }}</p>
+                    <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
+                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
                     <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
                 </div>
             @empty
@@ -138,34 +128,18 @@
             <fieldset
                 class="d-flex flex-wrap justify-content-around align-items-center border border-3 text-light recommands">
                 <legend class="seller-headers">{{ __('messageMK.recommanditems') }}</legend>
-
                 {{-- start items --}}
-                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5">
-                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1" />
-                    <p class="fs-3 pt-2">Item1</p>
-                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-                </div>
-                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1" />
-                    <p class="fs-3 pt-2">Item1</p>
-                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-                </div>
-                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1" />
-                    <p class="fs-3 pt-2">Item1</p>
-                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-                </div>
-                <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3  py-5">
-                    <img src="{{ url('img/menu2.png') }}" alt="bestitem1" />
-                    <p class="fs-3 pt-2">Item1</p>
-                    <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> 45</p>
-                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
-                </div>
+                @foreach ($recomProducts as $recomProduct)
+                    @foreach ($recomProduct as $product)
+                        <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5" id="{{ $product->id }}">
+                            <img src="{{ url('img/menu2.png') }}" alt="bestitem1" />
+                            <p class="fs-3 pt-2">{{$product->product_name }}</p>
+                            <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $product->coin }}</p>
+                            <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                        </div>
+                    @endforeach
+                @endforeach
                 {{-- end items --}}
-
             </fieldset>
         </section>
     @endif

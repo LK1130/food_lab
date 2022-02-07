@@ -2,6 +2,7 @@
 
 return [
     // cart
+    'Food Lab' => 'Food Lab',
     'yourCart' => 'YOUR CART',
     'originalTotal' => 'Original Total',
     'DeliveryFee' => 'Delivery Fee',
@@ -21,5 +22,25 @@ return [
     'Quantity' => 'Quantity',
     'Coin' => 'Coin',
     'Cash' => 'Cash',
-    
+    'Name' => 'Name',
+    'Phone' => 'Phone',
+    'Address' => 'Address',
+    'Cancel' => 'Cancel',
+    'Submit' => 'Submit',
+    'Order' => 'Order',
+    'Payment' => 'Payment',
+    'Delivery Information' => 'Delivery Information',
+    'No' => 'No',
+    'Date' => 'Date',
+    'Coin Amount' => 'Coin Amount',
+    'Coin Amount List' => 'Coin Amount List',
+    'Order Amount' => 'Order Amount',
+    'Order Amount List' => 'Order Amount List',
+    'Coin Charge' => 'Coin Charge',
+    'Choose Photo' => 'Choose Photo',
+    'Payment Accounts' => 'Payment Accounts',
+    'Coin Rule' => 'Coin Rule',
+    'Coin Calculator' => 'Coin Calculator',
+
+
 ]; 

@@ -41,10 +41,10 @@ class TasteController extends Controller
         $validate = $request->validated();
         $admin = new M_Taste();
         $admin->tasteAdd($validate);
-        return redirect('siteManage');
         Log::channel('adminlog')->info("TasteController", [
             'End store'
         ]);
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -96,7 +96,7 @@ class TasteController extends Controller
             $validate = $request->validated();
             $admin = new M_Taste();
             $admin->tasteEdit($validate, $id);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -122,7 +122,7 @@ class TasteController extends Controller
             ]);
             $admin = new M_Taste();
             $admin->tasteDelete($id);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

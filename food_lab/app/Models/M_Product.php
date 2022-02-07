@@ -25,7 +25,7 @@ class M_Product extends Model
             'start products'
         ]);
 
-        $product = M_Product::select(['id', 'product_name'])
+        $product = M_Product::select(['id', 'product_name', 'coin', 'amount'])
             ->where('id', '=', $id)
             ->where('del_flg', '=', 0)
             ->first();
@@ -33,6 +33,8 @@ class M_Product extends Model
         Log::channel('customerlog')->info('M_Product Model', [
             'end products'
         ]);
+
+        return $product;
     }
 
     /* Create : Aung Min Khant(21/1/2022)
@@ -161,7 +163,8 @@ class M_Product extends Model
     * return product data
     * */
 
-    public function showProductList(){
+    public function showProductList()
+    {
 
 
         Log::channel('adminlog')->info("M_Product_ Model", [
@@ -172,13 +175,14 @@ class M_Product extends Model
             ->select(['*'], DB::raw('m_product.id'))
             // ->join('m_product_detail', 'm_product_detail.product_id', '=', 'm_product.id')
             ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
-            ->where('m_product.avaliable',1)
-            ->where('t_ad_photo.order_id',1)
-            ->where('t_ad_photo.del_flg',0)
+            ->where('m_product.avaliable', 1)
+            ->where('t_ad_photo.order_id', 1)
+            ->where('t_ad_photo.del_flg', 0)
             ->where('m_product.del_flg', 0)
             ->orderBy('m_product.id')
+            ->take(4)
             ->get();
- 
+
 
         Log::channel('adminlog')->info("M_Product_ Model", [
             'End show product Data'
@@ -187,7 +191,7 @@ class M_Product extends Model
         return $product;
     }
 
-     /*
+    /*
     * Create : Aung Min Khant(28/1/2022)
     * Update :
     * Explain of function : To search product data to customer product page
@@ -195,7 +199,8 @@ class M_Product extends Model
     * return product data
     * */
 
-    public function searchById($id){
+    public function searchById($id)
+    {
 
         Log::channel('adminlog')->info("M_Product Model", [
             'Start search data'
@@ -204,13 +209,13 @@ class M_Product extends Model
 
 
         $product = DB::table('m_product')
-        ->select('*', DB::raw('m_product.id AS pid'))
-        ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
-        ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
-        ->where('m_product.id',$id)
-        ->where('m_product.avaliable',1)
-        ->where('m_product.del_flg', 0)
-        ->first();
+            ->select('*', DB::raw('m_product.id AS pid'))
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->where('m_product.id', $id)
+            ->where('m_product.avaliable', 1)
+            ->where('m_product.del_flg', 0)
+            ->first();
         // dd($product);
 
         Log::channel('adminlog')->info("M_Product Model", [
@@ -221,7 +226,7 @@ class M_Product extends Model
     }
 
 
-      /*
+    /*
     * Create : Aung Min Khant(28/1/2022)
     * Update :
     * Explain of function : To search product data to customer product page
@@ -229,36 +234,26 @@ class M_Product extends Model
     * return product data
     * */
 
-    public function searchByType($request){
+    public function searchByType($request)
+    {
 
         Log::channel('adminlog')->info("M_Product Model", [
             'Start search by type'
         ]);
 
-        // $product = M_Product::where('m_product.product_type','=',$request->input('type'))
-        // ->where('m_product.avaliable',1)
-        // ->where('m_product.del_flg',0)
-        // ->get();
-        
         $product = DB::table('m_product')
-        ->select(['*'], DB::raw('m_product.id'))
-        // ->join('m_product_detail', 'm_product_detail.product_id', '=', 'm_product.id')
-        ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
-        ->where('m_product.product_type','=',(int)$request)
-        ->where('m_product.avaliable',1)
-        ->where('t_ad_photo.order_id',1)
-        ->where('t_ad_photo.del_flg',0)
-        ->where('m_product.del_flg', 0)
-        ->orderBy('m_product.id')
-        ->get();
-        // $product = M_Product::select(['*'])
-        // ->where('product_type','=',(int)$request)
-        // ->where('avaliable', '=', 1)
-        // ->where('del_flg', '=', 0)
-        // ->get();
+            ->select(['*'], DB::raw('m_product.id'))
+            ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->where('m_product.product_type', '=', (int)$request)
+            ->where('m_product.avaliable', 1)
+            ->where('t_ad_photo.order_id', 1)
+            ->where('t_ad_photo.del_flg', 0)
+            ->where('m_product.del_flg', 0)
+            ->orderBy('m_product.id')
+            ->get();
         
-      
-            // dd($product);
 
         Log::channel('adminlog')->info("M_Product Model", [
             'End search by type'
@@ -267,7 +262,44 @@ class M_Product extends Model
         return $product;
     }
 
-    
+
+     /*
+    * Create : Aung Min Khant(28/1/2022)
+    * Update :
+    * Explain of function : To search product data to customer product page
+    * parament : none
+    * return product data
+    * */
+
+    public function searchByTaste($request)
+    {
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start search by taste'
+        ]);
+
+        $product = DB::table('m_product')
+            ->select(['*'], DB::raw('m_product.id'))
+            ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
+            ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
+            ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
+            ->where('m_product.product_taste', '=', (int)$request)
+            ->where('m_product.avaliable', 1)
+            ->where('t_ad_photo.order_id', 1)
+            ->where('t_ad_photo.del_flg', 0)
+            ->where('m_product.del_flg', 0)
+            ->orderBy('m_product.id')
+            ->get();
+        
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End search by taste'
+        ]);
+
+        return $product;
+    }
+
+
 
 
     public function productDetail()
@@ -303,7 +335,7 @@ class M_Product extends Model
     }
 
 
-    
+
 
     /*
      * Create : Min Khant(23/1/2022)
@@ -325,5 +357,36 @@ class M_Product extends Model
             'end productInfo'
         ]);
         return $products;
+    }
+
+    /*
+      * Create : Min Khant(1/2/2022)
+      * Update :
+      * Explain of function : To get customer fav product data
+      * Prarameter : no
+      * return : customer fav product data
+    */
+    public function customerFavType($id)
+    {
+        Log::channel('customerlog')->info("T_CU_Customer Model", [
+            'Start customerInformation'
+        ]);
+
+        $result = DB::table('m_product')
+        ->select(['*'], DB::raw('m_product.id'))
+        ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
+        ->where('m_product.avaliable', 1)
+        ->where('t_ad_photo.order_id', 1)
+        ->where('t_ad_photo.del_flg', 0)
+        ->where('m_product.del_flg', 0)
+        ->where('m_product.product_type', $id)
+        ->orderBy('m_product.id')
+        ->get();
+           
+        Log::channel('customerlog')->info("T_CU_Customer Model", [
+            'End customerInformation'
+        ]);
+
+        return $result;
     }
 }

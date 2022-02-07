@@ -41,7 +41,7 @@
     color: var(--bs-white);
 }
 .adminAddForm {
-    margin-left: 28%;
+    margin-left: 10%;
     margin-top: 4%;
 }
 
@@ -83,23 +83,74 @@ button {
     border: 1px solid black;
 }
 #back {
-    margin-left: 65vh;
-    margin-bottom: 5vh;
-    width: 10%;
+    position: absolute;
+    margin-left: 15vw;
+    margin-top: 53.2vh;
+    /* width: 10%;
     height: 5vh;
+    background-color: var(--btns);
+    border: 1px solid black;
+    color: var(--white);
+    border-radius: 1vh; */
+}
+#backAdminEdit {
+    position: absolute !important;
+    margin-left: 45vw !important;
+    margin-top: 61.5vh !important;
+}
+#appBack {
+    position: absolute;
+    left: 47vw;
+    top: 56.4vh;
+
     background-color: var(--btns);
     border: 1px solid black;
     color: var(--white);
     border-radius: 1vh;
 }
+#appBack2 {
+    position: absolute;
+    left: 47vw;
+    top: 67.5vh;
+
+    background-color: var(--btns);
+    border: 1px solid black;
+    color: var(--white);
+    border-radius: 1vh;
+}
+#appBack3 {
+    position: absolute;
+    left: 47vw;
+    top: 79vh;
+
+    background-color: var(--btns);
+    border: 1px solid black;
+    color: var(--white);
+    border-radius: 1vh;
+}
+#appBack4 {
+    position: absolute;
+    left: 47vw;
+    top: 81vh;
+
+    background-color: var(--btns);
+    border: 1px solid black;
+    color: var(--white);
+    border-radius: 1vh;
+}
+#validate {
+    position: absolute;
+    right: 45vw;
+    top: 1vh;
+}
 #back2 {
     position: absolute;
-    margin-left: 25vh;
-    bottom: 4.7vh;
-    width: 5.5%;
+    margin-left: 40vh;
+    bottom: 4vh;
+    /* width: 5.5%;
     height: 7vh;
     background-color: var(--btns) !important;
-    border-radius: 1vh;
+    border-radius: 1vh; */
 }
 .buttonBack {
     color: var(--white) !important;
@@ -107,10 +158,13 @@ button {
 #icon {
     cursor: pointer;
     position: absolute;
-    margin-top: 3.3%;
-    margin-left: 37%;
-    width: 3%;
-    height: 3%;
+    width: 3.5vw;
+    height: 3.5vh;
+    top: 22%;
+    right: 37vw;
+}
+.relative {
+    position: relative;
 }
 .selectcategory {
     width: 12%;

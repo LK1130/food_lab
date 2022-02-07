@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\M_Suggest;
 use App\Models\SuggestModel;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -26,7 +27,7 @@ class CheckSuggest implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = SuggestModel::where('suggest_type', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_Suggest::where('suggest_type', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

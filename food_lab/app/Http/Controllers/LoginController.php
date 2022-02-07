@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminEditValidation;
 use App\Http\Requests\adminValidation;
 use App\Models\AdminLogin;
 use App\Models\M_AD_Login;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -112,6 +114,10 @@ class LoginController extends Controller
         ]);
         $model = new M_AD_Login();
         $find = $model->AdminDetail($id);
+        $oldname = $find["ad_name"];
+        session(['oldname' => $oldname]);
+        $model = new M_AD_Login();
+        $find = $model->AdminDetail($id);
         if ($find === null) {
             Log::channel('adminlog')->info("LoginController", [
                 'End edit(error)'
@@ -134,13 +140,16 @@ class LoginController extends Controller
     * $id is used searching this adminid.
     * Return is view (adminList.blade.php)
     */
-    public function update(AdminValidation $request, $id)
+    public function update(AdminEditValidation $request, $id)
     {
         Log::channel('adminlog')->info("LoginController", [
             'Start update'
         ]);
+
         $model = new M_AD_Login();
         $find = $model->AdminDetail($id);
+
+
         if ($find === null) {
             Log::channel('adminlog')->info("LoginController", [
                 'End update(error)'
@@ -153,6 +162,7 @@ class LoginController extends Controller
             Log::channel('adminlog')->info("LoginController", [
                 'End update'
             ]);
+            session()->forget('oldname');
             return redirect('adminLogin');
         }
     }

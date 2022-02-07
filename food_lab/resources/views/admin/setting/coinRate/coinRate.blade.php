@@ -17,17 +17,20 @@
 @endsection
 @section('body')
     {{-- Starts Header Buttons --}}
-    <div class="navBar">
-        <a href="{{ url('adminLogin') }}"><button
-                class="btn text-light   btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button
-                class="btn text-light active btncust">{{ __('messageZY.coinRate') }}</button></a>
-        <a href="{{ url('siteManage') }}"><button
-                class="btn text-light   btncust">{{ __('messageZY.siteManager') }}</button></a>
-    </div>
 
-    @include('COMMON.component.coinRateHistory')
-    <a href="{{ route('coinrate.create') }}">
-        <button class="addAdminButton">{{ __('messageZY.change') }}</button>
-    </a>
+    <div class="col-md-10 ">
+
+        <div class="mt-4">
+            <a href="{{ url('adminLogin') }}" class="me-5"><button
+                    class="btn text-light   btncust">{{ __('messageZY.loginManage') }}</button></a>
+            <a href="{{ url('coinrate') }}" class="me-5"><button
+                    class="btn text-light active btncust">{{ __('messageZY.coinRate') }}</button></a>
+            <a href="{{ url('siteManage') }}" class="me-5"><button
+                    class="btn text-light   btncust">{{ __('messageZY.siteManager') }}</button></a>
+        </div>
+        @include('COMMON.component.coinRateHistory')
+        <a href="{{ route('coinrate.create') }}" class="addAdminButton">
+            <button class="btn text-light  active btncust ">{{ __('messageZY.change') }}</button>
+        </a>
+    </div>
 @endsection

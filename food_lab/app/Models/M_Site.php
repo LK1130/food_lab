@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class M_Site extends Model
@@ -106,7 +107,7 @@ class M_Site extends Model
         Log::channel('adminlog')->info("M_Site Model", [
             'End suggests'
         ]);
-        return T_AD_Suggest::where('del_flg', '=', 0)->get();
+        return M_Suggest::where('del_flg', '=', 0)->get();
     }
     /*
    * Create:zayar(2022/01/13) 
@@ -166,7 +167,8 @@ class M_Site extends Model
         Log::channel('adminlog')->info("M_Site Model", [
             'End news'
         ]);
-        return M_AD_News::where('m_ad_news.del_flg', 0)
+        return M_AD_News::select('*', DB::raw('m_ad_news.id AS newsid'))
+            ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->paginate(3);
     }
@@ -181,7 +183,7 @@ class M_Site extends Model
         Log::channel('adminlog')->info("M_Site Model", [
             'Start saveSiteUpdate'
         ]);
-        $siteFirst = M_Site::where('del_flg', '=', 0)->orderBy('id', 'desc')->first();
+        $siteFirst = M_Site::where('del_flg', '=', 0)->first();
         if ($siteFirst === null) {
             $site = new M_Site();
             $site->site_name = $request->input('name');

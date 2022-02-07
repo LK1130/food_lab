@@ -6,8 +6,13 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/customerEditProfile.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
 @endsection
-
+@section('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="{{ url('js/bootstrap-tagsinput.min.js') }}" defer></script>
+    <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
+@endsection
 @section('title', 'Edit Profile')
 
 @section('body')
@@ -20,28 +25,31 @@
         <div class="titleEditProfile d-flex justify-content-center ">
             <p class="fw-bold">{{ __('messageZY.editprofile') }}</p>
         </div>
-        <form action="">
+        <form action="{{ route('editprofile.update', $user->cid) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="bodyEditProfile d-flex flex-row justify-content-center">
 
                 <div class="d-flex me-3 ms-3 mt-0 mb-1 infos">
                     <i class="fas fa-user fs-3 me-4 mt-2 text-light"></i>
                     <div class="InputParent">
                         <input type="text" name="username" id="username" class="InputChild"
-                            value="{{ $user->nickname }}">
+                            value="{{ $user->nickname }}" autocomplete="off">
                     </div>
                 </div>
                 <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                     <i class="fas fa-pen-square fs-3 me-4 mt-2 text-light"></i>
                     <div class="InputParent">
-                        <input type="text" name="nickname" id="nickname" class="InputChild" value="{{ $user->bio }}">
+                        <input type="text" name="bio" id="nickname" class="InputChild" value="{{ $user->bio }}"
+                            autocomplete="off">
                     </div>
                 </div>
                 <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                     <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
                     <div class="InputParent">
-                        <select name="Taste" id="Taste" class="InputChild">
+                        <select name="township" id="Taste" class="InputChild">
                             @php
-                                $userTownship = $user->township;
+                                $userTownship = $user->address1;
                             @endphp
                             @forelse($townships as $township)
                                 @if ($userTownship == $township->id)
@@ -53,38 +61,65 @@
                                     </option>
                                 @endif
                             @empty
-                                <option>{{ __('messageZY.notaste') }} .</option>
+                                <option>{{ __('messageZY.notownship') }} .</option>
                             @endforelse
-
                         </select>
+                    </div>
+                </div>
+                <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                    <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
+                    <div class="InputParent">
+                        <select name="state" id="Taste" class="InputChild">
+                            @php
+                                $userState = $user->address2;
+                            @endphp
+                            @forelse($states as $state)
+                                @if ($userState == $state->id)
+                                    <option value="{{ $state->id }}" class="text-dark" selected>
+                                        {{ $state->state_name }}</option>
+                                @else
+                                    <option value="{{ $state->id }}" class="text-dark">
+                                        {{ $state->state_name }}
+                                    </option>
+                                @endif
+                            @empty
+                                <option>{{ __('messageZY.notownship') }} .</option>
+                            @endforelse
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                    <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
+                    <div class="InputParent">
+                        <input type="text" name="addressNumber" id="addressNumber" class="InputChild"
+                            value="{{ $user->address3 }}" autocomplete="off">
                     </div>
                 </div>
                 <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                     <i class="fas fa-phone-alt fs-3 me-4 mt-2 text-light"></i>
                     <div class="InputParent">
                         <input type="number" name="phonenumber" id="phonenumber" class="InputChild"
-                            value="{{ $user->phone }}">
+                            value="{{ $user->phone }}" autocomplete="off">
                     </div>
                 </div>
                 <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                     <i class="fas fa-envelope fs-3 me-4 mt-2 text-light"></i>
                     <div class="InputParent">
-                        <input type="text" name="email" id="email" class="InputChild" value="{{ $user->email }}">
+                        <input type="text" id="email" class="InputChild" value="{{ $user->email }}" readonly>
                     </div>
                 </div>
 
-                <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                <div class="d-flex  me-3 ms-3 mt-0 mb-2 infos" id="favType">
                     <i class="fas fa-grin-hearts fs-3 me-4 mt-2 text-light"></i>
-                    <div class="InputParent">
-                        <input type="text" name="Likes" id="Likes" class="InputChild" data-role="tagsinput"
-                            value="{{ $user->favourite_food }}">
+                    <div class="InputParent" id="favType2">
+                        <input type="text" name="favtype" value="{{ $user->fav_type }}" data-role="tagsinput">
                     </div>
                 </div>
                 <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                     <i class="fas fa-dizzy fs-3 me-4 mt-2 text-light"></i>
                     <div class="InputParent">
                         <input type="text" name="Allergic" id="Allergic" class="InputChild"
-                            value="{{ $user->allergic }}">
+                            value="{{ $user->allergic }}" autocomplete="off">
                     </div>
                 </div>
                 <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">

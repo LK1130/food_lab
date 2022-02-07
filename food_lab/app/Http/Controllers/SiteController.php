@@ -33,19 +33,22 @@ class SiteController extends Controller
         $request->validate([
             'name' => 'required|min:0|max:15',
             'policy' => 'required|min:10|max:255',
-            'maintenance' => 'required|numeric|min:1|max:1'
+            'maintenance' => 'required|numeric|min:0|max:1'
         ]);
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $file->storeAs('siteLogo', $file->getClientOriginalName());
+            $logo = $request->file('logo');
+            $siteLogo = $logo->getClientOriginalName();
+            $admin = new M_Site();
+            $admin->saveSiteUpdate($request, $siteLogo);
         } else {
-            echo "File Not Received";
+            $logo = $request->input('oldSiteLogo');
+            $admin = new M_Site();
+            $admin->saveSiteUpdate($request, $logo);
         }
-        $logo = $request->file('logo');
-        $siteLogo = $logo->getClientOriginalName();
-        $admin = new M_Site();
-        $admin->saveSiteUpdate($request, $siteLogo);
+
         Log::channel('adminlog')->info("SiteController", [
             'End store'
         ]);

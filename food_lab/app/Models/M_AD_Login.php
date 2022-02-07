@@ -48,6 +48,7 @@ class M_AD_Login extends Model
         $hasAccount = M_AD_Login::select(['id', 'ad_role', 'ad_name'])
             ->where('ad_name', $name)
             ->where('ad_password', md5(sha1($password)))
+            ->where('ad_valid', 1)
             ->first();
 
         Log::channel('adminlog')->info('M_AD_Login Model', [
@@ -97,6 +98,7 @@ class M_AD_Login extends Model
         $admin->ad_name = $validate['username'];
         $admin->ad_password = md5(sha1($validate['password']));
         $admin->ad_role = $validate['role'];
+        $admin->ad_valid = $validate['validate'];
         $admin->ad_login_dt = Carbon::now();
         $admin->save();
         Log::channel('adminlog')->info("M_AD_Login Model", [
@@ -170,8 +172,9 @@ class M_AD_Login extends Model
         ]);
         $admin = M_AD_Login::find($id);
         $admin->ad_name = $validate['username'];
-        $admin->ad_password = $validate['password'];
+        $admin->ad_password =  md5(sha1($validate['password']));
         $admin->ad_role = $validate['role'];
+        $admin->ad_valid = $validate['validate'];
         $admin->save();
         Log::channel('adminlog')->info("M_AD_Login Model", [
             'End AdminUpdate'
@@ -194,6 +197,29 @@ class M_AD_Login extends Model
         $admin->save();
         Log::channel('adminlog')->info("M_AD_Login Model", [
             'End AdminDelete'
+        ]);
+    }
+
+    /*
+   * Create:zayar(2022/01/11) 
+   * Update: 
+   * This is method is used to update del_flg.
+   * $id is admin id.
+   * Return is view (adminList.blade.php).
+   */
+    public function adminValidate($request)
+    {
+
+        Log::channel('adminlog')->info("T_CU_Customer Model", [
+            'Start adminValidate'
+        ]);
+
+        $admin = M_AD_Login::find($request->input('id'));
+        $admin->ad_valid = 0;
+        $admin->save();
+
+        Log::channel('adminlog')->info("T_CU_Customer Model", [
+            'End adminValidate'
         ]);
     }
 }

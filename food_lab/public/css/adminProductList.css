@@ -9,10 +9,14 @@
 }
 
 .tableheader {
-    background-color: var(--tablecolor1) !important;
+    background-color: var(--dashboardminlistingheader) !important;
 }
 .tablecolor1 {
-    background-color: var(--tablecolor2);
+    background-color: var(--tablecolor1);
+}
+
+.tablerows {
+    font-size: var(--tablerow);
 }
 .boxshad {
     box-shadow: 3px 10px 10px silver;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateProfileValidation;
 use App\Models\M_Fav_Type;
 use App\Models\M_State;
 use App\Models\M_Taste;
@@ -57,8 +58,17 @@ class CustomerProfileController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateProfileValidation $request, $id)
     {
-        //
+        Log::channel('adminlog')->info("CustomerProfileController", [
+            'Start update'
+        ]);
+        $validated = $request->validated();
+        $customer = new T_CU_Customer();
+        $customer->editProfile($validated, $id);
+        Log::channel('adminlog')->info("CustomerProfileController", [
+            'End update'
+        ]);
+        return redirect('/');
     }
 }

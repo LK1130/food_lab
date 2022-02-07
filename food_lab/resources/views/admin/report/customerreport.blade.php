@@ -19,29 +19,41 @@
             <div class="back">
                 <a href="dashboard"><button class="btn btncust1 text-light">Back</button></a>
             </div>
+
             {{-- Suggest --}}
             <a href="customerSuggest">
                 <button type="button" class="btn btn-lg btn-outline-dark position-relative mx-3 fs-4">
-                    <i class="bi bi-bell"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{ $sugcount }}
-                    </span>
+                    <i class="bi bi-card-checklist"></i>
+                    @if ($sugcount == 0)
+                    @else
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $sugcount }}
+                        </span>
+                    @endif
                 </button></a>
             {{-- Contact --}}
             <a href="customerContact">
                 <button type="button" class="btn btn-lg lg btn-outline-dark position-relative mx-3 fs-4">
-                    <i class="bi bi-book"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{ $concount }}
-                    </span>
+                    <i class="bi bi-person-lines-fill"></i>
+                    @if ($concount == 0)
+                    @else
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $concount }}
+                        </span>
+                    @endif
+
                 </button></a>
             {{-- Report --}}
             <a href="customerReport">
                 <button type="button" class="btn btn-lg lg btn-outline-danger position-relative mx-3 fs-4">
                     </i><i class="bi bi-exclamation-triangle"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{ $rpcount }}
-                    </span>
+                    @if ($rpcount == 0)
+                    @else
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $rpcount }}
+                        </span>
+                    @endif
+
                 </button></a>
         </div>
         {{-- Top Noti End --}}
@@ -61,7 +73,7 @@
                     </thead>
                     <tbody>
                         @foreach ($report as $rp)
-                            <tr class="tablecolor1 text-light tablerows">
+                            <tr class="tablecolor1 tablerows">
                                 <th scope="row">1</th>
                                 <td>{{ $rp->customerID }}</td>
                                 <td>{{ $rp->id }}</td>

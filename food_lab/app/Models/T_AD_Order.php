@@ -34,7 +34,7 @@ class T_AD_Order extends Model
     public function ordertransactionDetails($id)
     {
 
-        Log::channel('adminlog')->info("T_AD_Order Model", [
+        Log::channel('adminlog')->info("T_AD_Order", [
             'Start ordertransactionDetails'
         ]);
 
@@ -47,7 +47,7 @@ class T_AD_Order extends Model
             ->where('t_ad_order.id', '=', $id)
             ->first();
 
-        Log::channel('adminlog')->info("T_AD_Order Model", [
+        Log::channel('adminlog')->info("T_AD_Order", [
             'End ordertransactionDetails'
         ]);
 
@@ -69,7 +69,6 @@ class T_AD_Order extends Model
         $ordertransactions=T_AD_Order::
         select('*', DB::raw('t_ad_order.id AS orderid'))
         ->join('t_cu_customer','t_cu_customer.id','=','t_ad_order.customer_id')
-        ->join('m_payment','m_payment.id','=','t_ad_order.payment')
         ->join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
         ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
         ->orderby('t_ad_order.order_date','DESC')
@@ -96,9 +95,10 @@ class T_AD_Order extends Model
         ]);
 
         $dashboardtrans = T_AD_Order::join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
-            ->join('m_payment', 'm_payment.id', '=', 't_ad_order.payment')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
             ->where('t_ad_order.del_flg', 0)
+            ->orderby('t_ad_order.order_date','DESC')
+            ->orderby('t_ad_order.order_time','DESC')
             ->limit(5)
             ->get();
 
@@ -138,24 +138,24 @@ class T_AD_Order extends Model
     public function Todayordercount()
     {
 
-            Log::channel('adminlog')->info("T_AD_Order Model", [
-                'Start Todayordercount'
-            ]);
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'Start Todayordercount'
+        ]);
 
-            $currentdate = Carbon::now()->day;
-            $currentmonth = Carbon::now()->month;
-            $currentyear = Carbon::now()->year;
-            $todayorder = T_AD_Order::where(DB::raw(('day(order_date)')), $currentdate)
+        $currentdate = Carbon::now()->day;
+        $currentmonth = Carbon::now()->month;
+        $currentyear = Carbon::now()->year;
+        $todayorder = T_AD_Order::where(DB::raw(('day(order_date)')), $currentdate)
             ->where(DB::raw(('month(order_date)')), $currentmonth)
             ->where(DB::raw(('year(order_date)')), $currentyear)
             ->count();
-            return $todayorder;
+        return $todayorder;
 
-            Log::channel('adminlog')->info("T_AD_Order Model", [
-                'End Todayordercount'
-            ]);
-        }
-        /* Create:Zarni(2022/01/16) 
+        Log::channel('adminlog')->info("T_AD_Order Model", [
+            'End Todayordercount'
+        ]);
+    }
+    /* Create:Zarni(2022/01/16) 
     * Update: 
     * This is function is to show the data of User's TransactionDetail
     * Return 
@@ -169,8 +169,7 @@ class T_AD_Order extends Model
 
         $userdetail = T_AD_Order::
         
-        join('m_payment','m_payment.id','=','t_ad_order.payment')
-        ->join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
+        join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
         ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
         ->where('t_ad_order.del_flg',0)
         ->where('t_ad_order.customer_id','=',$id)
@@ -182,7 +181,6 @@ class T_AD_Order extends Model
             'End Usertransaction'
         ]);
     }
-
 
 
     public function orderDaily()
@@ -307,6 +305,7 @@ class T_AD_Order extends Model
         return $orderID;
     }
 
+<<<<<<< HEAD
 
  /*
     * Create : Zaw(2022/02/22) 
@@ -387,5 +386,47 @@ class T_AD_Order extends Model
         ]);
 
         return $order;
+=======
+    /*
+    * Create : Cherry(1/2/2022)
+    * Update : Min Khant(1/2/2022)
+    * Explain of function : To store custoemr order
+    * Prarameter : no
+    * return : no
+    */
+    public function customerOrder($id, $township, $products, $gCoin, $gCash, $phone)
+    {
+        Log::channel('customerlog')->info('T_AD_Order Model', [
+            'start customerOrder'
+        ]);
+        DB::transaction(function () use ($id, $township, $products, $gCoin, $gCash, $phone) {
+            $tAdOrder = new T_AD_Order();
+            $tAdOrder->customer_id = $id;
+            $tAdOrder->payment = 0;
+            $tAdOrder->township_id = $township;
+            $tAdOrder->ph_number = $phone;
+            $tAdOrder->grandtotal_coin = $gCoin;
+            $tAdOrder->grandtotal_cash = $gCash;
+            $tAdOrder->order_status = 1;
+            $tAdOrder->order_date =  date('Y-m-d');
+            $tAdOrder->order_time = date('H:i:s');
+            $tAdOrder->last_control_by = 0;
+            $tAdOrder->save();
+
+            foreach ($products as $product) {
+                $tAdOrderDetail = new T_AD_OrderDetail();
+                $tAdOrderDetail->order_id = $tAdOrder->id;
+                $tAdOrderDetail->product_id = $product['pid'];
+                $tAdOrderDetail->quantity = $product['q'];
+                $tAdOrderDetail->total_coin = $product['coin'];
+                $tAdOrderDetail->total_cash = $product['cash'];
+                $tAdOrderDetail->note = json_encode($product['value']);
+                $tAdOrderDetail->save();
+            }
+        });
+        Log::channel('customerlog')->info('T_AD_Order Model', [
+            'end customerOrder'
+        ]);
+>>>>>>> b1caf5c3f88990f05d95d1b4b8311d727cbf09d3
     }
 }

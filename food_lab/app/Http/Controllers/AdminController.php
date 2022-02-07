@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminLoginValidation;
+use App\Models\M_AD_Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -70,5 +71,25 @@ class AdminController extends Controller
             'end logout'
         ]);
         return redirect('/admin');
+    }
+    /*
+    * Create:zayar(2022/02/01) 
+    * Update: 
+    * This is function is to validate admin.
+    * $id is used searching this adminid.
+    * Return is view (adminList.blade.php)
+    */
+    public  function adminValidate(Request $request, $id)
+    {
+
+        Log::channel('adminlog')->info("LoginController", [
+            'Start adminValidate'
+        ]);
+        $admin = new M_AD_Login();
+        $admin->adminValidate($id);
+        Log::channel('adminlog')->info("LoginController", [
+            'End adminValidate'
+        ]);
+        return redirect('adminLogin');
     }
 }

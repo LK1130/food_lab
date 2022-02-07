@@ -18,6 +18,7 @@
 @endsection
 
 @section('body')
+<<<<<<< HEAD
     <div class="col-md-10">
         <div class="mt-4">
             <!-- Daily Sales Button -->
@@ -65,6 +66,47 @@
             </div>
             <!-- For  Coin Sale Chart-->
             <div id="chart1">
+=======
+<div class="col-md-10">
+    <div class="mt-4">
+    <!-- Daily Sales Button -->
+    <a href="dailyChart"  class="me-5"><button id="dailySales" class="btn text-light  inactive btncust">{{ __('messageCPPK.Daily') }}</button></a>
+    <!--Monthly Sales Button -->
+    <a href="monthlyChart" class="me-5"><button id="monthlySales"  class="btn text-light inactive btncust">{{ __('messageCPPK.Monthly') }}</button></a>
+    <!-- Yearly Sales Button -->
+    <a href="yearlyChart" class="me-5"><button id="yearlySales"  class="btn text-light inactive btncust">{{ __('messageCPPK.Yearly') }}</button></a>
+    <!-- Range Sales Button -->
+    <a href="rangeChart" class="me-5"><button id="rangeSales"  class="btn text-light active btncust">{{ __('messageCPPK.Range') }}</button></a>  
+  </div>
+    <!-- For Range Sale Search -->
+    <form action="/rangeChart" method="Post">
+      @csrf
+        <div id="rangeSearch">
+          <!-- For  Start Range Search -->
+          <input id="appt-date"  class="fromRangeCount" type="date" name="fromDate"></input>
+          <!-- For Between Symbol -->
+          <h3 id="betweenSymbol">~</h3>
+          <!-- For  End Range Search -->
+          <input id="appt-date" class="toRangeCount"  type="date" name="toDate"></input>
+          <!-- Search Btn -->
+          <span class="mx-3"><button class="btn btncust" id="rangeSearchSubmit">Search</button></span>
+        </div>
+        <div>
+          <br></br>
+          @if ($errors->has('fromDate'))
+          <span class="text-danger errorShow">First Input Box({{ $errors->first('fromDate') }})</span>
+          @endif
+          @if ($errors->has('toDate'))
+          <span class="text-danger errorShow">Second Input Box({{ $errors->first('toDate') }})</span>
+          @endif
+        <div>
+    </form> 
+  <!-- For Yearly Sale Chart-->
+  <div id="lineChart1">
+    <!-- For showing Yearly Chart details-->
+      <!-- For  Order Sale Chart-->
+      <div id="chart">
+>>>>>>> b1caf5c3f88990f05d95d1b4b8311d727cbf09d3
 
             </div>
         </div>

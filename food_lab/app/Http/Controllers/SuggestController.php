@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SuggestValidation;
+use App\Models\M_Suggest;
 use App\Models\SuggestModel;
 use App\Models\T_AD_Suggest;
 use Illuminate\Http\Request;
@@ -39,12 +40,12 @@ class SuggestController extends Controller
             'Start store'
         ]);
         $validate = $request->validated();
-        $admin = new T_AD_Suggest();
+        $admin = new M_Suggest();
         $admin->suggestAdd($validate);
         Log::channel('adminlog')->info("SuggestController", [
             'End store'
         ]);
-        return redirect('siteManage');
+        return redirect('app');
     }
     /*
     * Create:zayar(2022/01/15) 
@@ -57,7 +58,7 @@ class SuggestController extends Controller
         Log::channel('adminlog')->info("SuggestController", [
             'Start show'
         ]);
-        $admin = new T_AD_Suggest();
+        $admin = new M_Suggest();
         $admins = $admin->suggestEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("SuggestController", [
@@ -82,7 +83,7 @@ class SuggestController extends Controller
         Log::channel('adminlog')->info("SuggestController", [
             'Start update'
         ]);
-        $admin = new T_AD_Suggest();
+        $admin = new M_Suggest();
         $admins = $admin->suggestEditView($id);
         if ($admins === null) {
             Log::channel('adminlog')->info("SuggestController", [
@@ -91,12 +92,12 @@ class SuggestController extends Controller
             return view('errors.404');
         } else {
             $validate = $request->validated();
-            $admin = new T_AD_Suggest();
+            $admin = new M_Suggest();
             $admin->suggestEdit($validate, $id);
             Log::channel('adminlog')->info("SuggestController", [
                 'End update'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
     /*
@@ -122,7 +123,7 @@ class SuggestController extends Controller
             Log::channel('adminlog')->info("SuggestController", [
                 'End destroy'
             ]);
-            return redirect('siteManage');
+            return redirect('app');
         }
     }
 }

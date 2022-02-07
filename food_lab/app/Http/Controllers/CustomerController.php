@@ -43,28 +43,22 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'Start foodlab'
         ]);
-        $messageLimited = [];
-        $tracksLimited = [];
-        $userinfo = null;
-        $messagecount = 0;
-        $trackcount = 0;
+
+        $recomProducts = [];
+
+
         if (session()->has('customerId')) {
             $sessionCustomerId = session()->get('customerId');
-            $messages = new M_AD_CoinCharge_Message();
-            $messageLimited = $messages->informMessage($sessionCustomerId);
-            $allmessage = $messages->allMessage($sessionCustomerId);
-            $messagecount = count($allmessage);
-
-            $tracks = new M_AD_Track();
-            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-            $alltracks = $tracks->allTracks($sessionCustomerId);
-            $trackcount = count($alltracks);
-
             $user = new T_CU_Customer();
-            $userinfo = $user->loginUser($sessionCustomerId);
-            Log::channel('customerlog')->info('Customer Controller', [
-                $userinfo
-            ]);
+            $custoemrInfo = $user->customerInformation($sessionCustomerId);
+            $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
+            $mFavType = new M_Fav_Type();
+            $product = new M_Product();
+            foreach ($favTypes as $favType) {
+                $id = $mFavType->customerFavType($favType);
+                $eachProduct = $product->customerFavType($id['id']);
+                array_push($recomProducts, $eachProduct);
+            }
         }
 
         $townships = new M_Township();
@@ -72,27 +66,19 @@ class CustomerController extends Controller
 
         $news = new M_AD_News();
         $newDatas = $news->news();
-        $newsCount = count($newDatas);
-        $newsLimited = $news->newsLimited();
 
-        $informBadgeCount = $newsCount + $trackcount + $messagecount;
         $site = new M_Site();
         $name = $site->siteName();
 
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
-
+        $tAdOrderDetail = new T_AD_OrderDetail();
+        $sellProducts = $tAdOrderDetail->bestSellItems();
 
         return view('customer.home', [
             'townships' => $townshipnames,
             'news' => $newDatas,
-            'user' => $userinfo,
-            'limitednews' => $newsLimited,
-            'limitedmessages' => $messageLimited,
-            'limitedtracks' => $tracksLimited,
             'name' => $name,
-            'productInfos' => $productInfos,
-            'count' => $informBadgeCount,
+            'sellProducts' => $sellProducts,
+            'recomProducts' => $recomProducts,
             'nav' => 'home'
         ]);
     }
@@ -105,62 +91,20 @@ class CustomerController extends Controller
      * */
     public function news()
     {
-        $messageLimited = [];
-        $tracksLimited = [];
-        $userinfo = null;
-        $messagecount = 0;
-        $trackcount = 0;
-        if (session()->has('customerId')) {
-            $sessionCustomerId = session('customerId');
-            $messages = new M_AD_CoinCharge_Message();
-            $messageLimited = $messages->informMessage($sessionCustomerId);
-            $allmessage = $messages->allMessage($sessionCustomerId);
-            $messagecount = count($allmessage);
-
-            $tracks = new M_AD_Track();
-            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-            $alltracks = $tracks->allTracks($sessionCustomerId);
-            $trackcount = count($alltracks);
-
-            $user = new T_CU_Customer();
-            $userinfo = $user->loginUser($sessionCustomerId);
-        }
-
-        $townships = new M_Township();
-        $townshipnames = $townships->townshipDetails();
-
-        $news = new M_AD_News();
-        $newDatas = $news->news();
-        $newsCount = count($newDatas);
-        $newsLimited = $news->newsLimited();
-
-        $informBadgeCount = $newsCount + $trackcount + $messagecount;
         $site = new M_Site();
         $name = $site->siteName();
-
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start news'
         ]);
         $news = new M_AD_News();
         $allnews = $news->newsAll();
-
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end news'
         ]);
-
         return view('customer.news', [
+            'news' => $allnews,
             'allnews' => $allnews,
-            'townships' => $townshipnames,
-            'news' => $newDatas,
-            'user' => $userinfo,
-            'limitednews' => $newsLimited,
-            'limitedmessages' => $messageLimited,
-            'limitedtracks' => $tracksLimited,
             'name' => $name,
-            'productInfos' => $productInfos,
-            'count' => $informBadgeCount,
             'nav' => 'inform'
         ]);
     }
@@ -174,63 +118,29 @@ class CustomerController extends Controller
      * */
     public function message()
     {
-        $messageLimited = [];
-        $tracksLimited = [];
-        $userinfo = null;
         $allmessage = [];
-        $messagecount = 0;
-        $trackcount = 0;
+
         if (session()->has('customerId')) {
             $sessionCustomerId = session('customerId');
             $messages = new M_AD_CoinCharge_Message();
-            $messageLimited = $messages->informMessage($sessionCustomerId);
             $allmessage = $messages->allMessage($sessionCustomerId);
-            $messagecount = count($allmessage);
-
-
-            $tracks = new M_AD_Track();
-            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-            $alltracks = $tracks->allTracks($sessionCustomerId);
-            $trackcount = count($alltracks);
-
-            $user = new T_CU_Customer();
-            $userinfo = $user->loginUser($sessionCustomerId);
         }
-
-        $townships = new M_Township();
-        $townshipnames = $townships->townshipDetails();
-
-        $news = new M_AD_News();
-        $newDatas = $news->news();
-        $newsCount = count($newDatas);
-        $newsLimited = $news->newsLimited();
-
-        $informBadgeCount = $newsCount + $trackcount + $messagecount;
         $site = new M_Site();
         $name = $site->siteName();
-
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
+        $news = new M_AD_News();
+        $allnews = $news->newsAll();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start news'
         ]);
-
-
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end news'
         ]);
 
         return view('customer.messages', [
             'allmessages' => $allmessage,
-            'townships' => $townshipnames,
-            'news' => $newDatas,
-            'user' => $userinfo,
-            'limitednews' => $newsLimited,
-            'limitedmessages' => $messageLimited,
-            'limitedtracks' => $tracksLimited,
+            'news' => $allnews,
             'name' => $name,
-            'productInfos' => $productInfos,
-            'count' => $informBadgeCount,
+
             'nav' => 'inform'
         ]);
     }
@@ -244,63 +154,31 @@ class CustomerController extends Controller
      * */
     public function tracks()
     {
-        $messageLimited = [];
-        $tracksLimited = [];
-        $userinfo = null;
-        $alltracks = [];
-        $messagecount = 0;
-        $trackcount = 0;
-        if (session()->has('customerId')) {
-            $sessionCustomerId = session('customerId');
-            $messages = new M_AD_CoinCharge_Message();
-            $messageLimited = $messages->informMessage($sessionCustomerId);
-            $allmessage = $messages->allMessage($sessionCustomerId);
-            $messagecount = count($allmessage);
-
-
-            $tracks = new M_AD_Track();
-            $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-            $alltracks = $tracks->allTracks($sessionCustomerId);
-            $trackcount = count($alltracks);
-
-            $user = new T_CU_Customer();
-            $userinfo = $user->loginUser($sessionCustomerId);
-        }
-
-        $townships = new M_Township();
-        $townshipnames = $townships->townshipDetails();
-
-        $news = new M_AD_News();
-        $newDatas = $news->news();
-        $newsCount = count($newDatas);
-        $newsLimited = $news->newsLimited();
-
-        $informBadgeCount = $newsCount + $trackcount + $messagecount;
-        $site = new M_Site();
-        $name = $site->siteName();
-
-        $product = new M_Product();
-        $productInfos = $product->productInfo();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start news'
         ]);
+        $alltracks = [];
+        if (session()->has('customerId')) {
 
+            $sessionCustomerId = session('customerId');
+            $tracks = new M_AD_Track();
+            $alltracks = $tracks->allTracks($sessionCustomerId);
+        }
 
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+
+        $site = new M_Site();
+        $name = $site->siteName();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end news'
         ]);
 
         return view('customer.tracks', [
             'alltracks' => $alltracks,
-            'townships' => $townshipnames,
             'news' => $newDatas,
-            'user' => $userinfo,
-            'limitednews' => $newsLimited,
-            'limitedmessages' => $messageLimited,
-            'limitedtracks' => $tracksLimited,
             'name' => $name,
-            'productInfos' => $productInfos,
-            'count' => $informBadgeCount,
+
             'nav' => 'inform'
         ]);
     }
@@ -457,7 +335,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end access'
             ]);
-            return view('customer.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
+            return view('customer.access.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'
@@ -573,7 +451,7 @@ class CustomerController extends Controller
                 'end login'
             ]);
 
-            return view('customer.login');
+            return view('customer.access.login');
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end login'
@@ -611,7 +489,7 @@ class CustomerController extends Controller
             'end loginForm'
         ]);
 
-        return view('customer.mail.checkMail');
+        return view('customer.access.checkMail');
     }
 
     /*
@@ -633,5 +511,33 @@ class CustomerController extends Controller
         ]);
 
         return redirect('/');
+    }
+
+    /*
+      * Create : Min Khant(14/1/2022)
+      * Update :
+      * Explain of function : To logout
+      * Prarameter : no
+      * return : View home
+     * */
+    public function getNews()
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start getNews'
+        ]);
+        $news = new M_AD_News();
+        $newsLimited = $news->newsLimited();
+        $newDatas = $news->news();
+        $newsCount = count($newDatas);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end getNews'
+        ]);
+
+        return response()
+            ->json([
+                'limitednews'
+                => $newsLimited,
+                'alertCount' => $newsCount
+            ]);
     }
 }
