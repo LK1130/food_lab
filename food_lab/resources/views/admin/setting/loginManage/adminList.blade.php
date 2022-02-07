@@ -56,7 +56,7 @@
                 @endif
                 <tr class="tableChile">
 
-                    <td class="tdBlack">{{ $count++ }}</td>
+                    <th class="tdBlack">{{ $count++ }}</td>
                     <td class="tdBlack">{{ $admin->ad_name }}</td>
                     <td class="tdBlack ">{{ $valid }}
                     </td>

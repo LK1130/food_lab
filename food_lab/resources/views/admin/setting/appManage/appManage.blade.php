@@ -54,7 +54,7 @@
                         @forelse ($townships as $township)
 
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $count++ }}</td>
+                                <th class="tdBlack">{{ $count++ }}</td>
                                 <td class="tdBlack">{{ $township->township_name }}</td>
                                 <td class="tdBlack">{{ $township->delivery_price }}</td>
                                 <td class="tdBlack">{{ $township->note }} </td>
@@ -102,7 +102,7 @@
                         @endphp
                         @forelse ($payments as $payment)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $countpayment++ }}</td>
+                                <th class="tdBlack">{{ $countpayment++ }}</td>
                                 <td class="tdBlack">{{ $payment->payment_name }}</td>
                                 <td class="tdBlack">{{ $payment->account_name }}</td>
                                 <td class="tdBlack">{{ $payment->note }} </td>
@@ -151,7 +151,7 @@
                         @endphp
                         @forelse ($categories as $category)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $countcategory++ }}</td>
+                                <th class="tdBlack">{{ $countcategory++ }}</td>
                                 <td class="tdBlack">{{ $category->category_name }}</td>
                                 <td class="tdBlack">{{ $category->note }} </td>
 
@@ -208,7 +208,7 @@
                         @endphp
                         @forelse ($tastes as $taste)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $counttaste++ }}</td>
+                                <th class="tdBlack">{{ $counttaste++ }}</td>
                                 <th></th>
                                 <td class="tdBlack">{{ $taste->taste }}</td>
                                 <td class="tdBlack">{{ $taste->note }} </td>
@@ -264,7 +264,7 @@
                         @endphp
                         @forelse ($suggests as $suggest)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $countsuggest++ }}</td>
+                                <th class="tdBlack">{{ $countsuggest++ }}</td>
                                 <td class="tdBlack">{{ $suggest->suggest_type }}</td>
                                 <td class="tdBlack">{{ $suggest->note }} </td>
                                 <td></td>
@@ -313,7 +313,7 @@
                         @endphp
                         @forelse ($favtypes as $favtype)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $countfav++ }}</td>
+                                <th class="tdBlack">{{ $countfav++ }}</td>
                                 <td class="tdBlack">{{ $favtype->favourite_food }}</td>
                                 <td class="tdBlack">{{ $favtype->note }} </td>
                                 <td></td>
@@ -363,7 +363,7 @@
                         @endphp
                         @forelse ($orderstatus as $orderstatusa)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $countorder++ }}</td>
+                                <th class="tdBlack">{{ $countorder++ }}</td>
                                 <td class="tdBlack">{{ $orderstatusa->status }}</td>
                                 <td class="tdBlack">{{ $orderstatusa->note }} </td>
                                 <td></td>
@@ -408,7 +408,7 @@
                         @endphp
                         @forelse ($decisions as $decision)
                             <tr class="tableChile">
-                                <td class="tdBlack">{{ $countdecision++ }}</td>
+                                <th class="tdBlack">{{ $countdecision++ }}</td>
                                 <td class="tdBlack">{{ $decision->status }}</td>
                                 <td class="tdBlack">{{ $decision->note }} </td>
                                 <td></td>

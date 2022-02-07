@@ -148,41 +148,30 @@ button {
     margin-right: 10vh;
 }
 .tableApp {
-    width: fit-content;
-    max-width: 80%;
-    margin-top: 4vh;
     box-shadow: 5px 5px 7px black;
 }
 .tablediv {
     display: flex;
     flex-direction: column;
-
-    width: 45%;
-    max-width: 50%;
+    width: 40%;
 }
 .leftSide {
-    margin-right: 9vw;
+   
 }
 .payment {
-    margin-right: 7.9vw;
+   
 }
 .category {
-    margin-right: 9.5vw;
 }
 .taste {
-    margin-right: 9vw;
 }
 .suggest {
-    margin-right: 7.8vw;
 }
 .favtype {
-    margin-right: 10.3vw;
 }
 .orderstatus {
-    margin-right: 7.9vw;
 }
 .decision {
-    margin-right: 8vw;
 }
 .table {
     box-shadow: 3px 3px 10px silver;
@@ -196,7 +185,6 @@ button {
 }
 .tableChile {
     background-color: var(--tablecolor1);
-    height: 7vh;
     margin-left: 4vw;
 }
 .table2 {
@@ -221,11 +209,9 @@ button {
     flex-wrap: wrap;
     width: 120%;
     gap: 1vw;
-    margin-top: 5%;
 }
 .newstable {
     width: 100% !important;
-    height: 33.8vh;
     margin-top: 0.7%;
     box-shadow: 5px 5px 7px black;
 }
@@ -248,4 +234,20 @@ button {
 }
 .checkbox {
     position: relative;
+}
+
+h2{
+    text-shadow: 0px 5px 10px silver !important;
+    font-size: var(--tableheader);
+    font-weight: bold;
+}
+
+@media (max-width: 1023px) {
+    .tables{
+        flex-direction: column;
+    }
+
+    .tablediv{
+        width: 77vw;
+    }
 }
