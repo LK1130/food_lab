@@ -44,6 +44,7 @@ class CustomerController extends Controller
             'Start foodlab'
         ]);
 
+
         $recomProducts = [];
 
 
@@ -82,6 +83,7 @@ class CustomerController extends Controller
             'nav' => 'home'
         ]);
     }
+
     /*
      * Create : zayar(25/1/2022)
      * Update :
