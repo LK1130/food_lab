@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Order Transaction Detail
+    Admin | Order Transaction Detail
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
 @section('body')
     <div class="col-md-10">
 
-        <a href="orderTransaction"><button class="btn btncust text-light mt-4">Back</button></a>
+        <a href="orderTransaction"><button class="btn btncust text-light mt-4">{{ __('messageZN.Back') }}</button></a>
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageZN.Order Transaction Detail') }}</div>
         <div class="row ">
             <div class="col-md-12 roow">
@@ -27,10 +27,10 @@
                     <div class="row position-relative ">
                         {{-- Name And ID --}}
                         <div class="col-md-6">
-                            <div class="text-start ms-5 fs-4">
-                                <li class="lidisplay"><b>{{ __('messageZN.CustomerName') }}</b> :
+                            <div class="text-start ms-2 fs-4">
+                                <li class="lidisplay "><b>{{ __('messageZN.Nickname') }}</b> :
                                     {{ $order->nickname }}</li>
-                                <li class="lidisplay"> <b>{{ __('messageZN.Customer ID') }}</b>
+                                <li class="lidisplay "> <b>{{ __('messageZN.Customer ID') }}</b>
                                     :<a
                                         href="customerinfoDetail?id={{ $order->customer_id }}">{{ $order->customerID }}</a>
                                 </li>
@@ -62,7 +62,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($orderdetail as $list)
+                                        @forelse ($orderdetail as $list)
                                             <tr class="tablecolor1 fs-5">
                                                 <th scope="row">1</th>
                                                 <td>{{ $list->product_name }}</td>
@@ -72,7 +72,11 @@
                                                 <td>{{ $list->total_coin }}</td>
                                                 <td>{{ $list->total_cash }}</td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="text-center">There is no Data.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">{{ $orderdetail->links() }}</div>
@@ -82,7 +86,7 @@
                     </div>
                     <div class="row position-relative">
                         <div class="col-md-4">
-                            <div class="text-start ms-5 fs-4 position-absolute bottom-0 start-0">
+                            <div class="text-start ms-4 fs-4 position-absolute bottom-0 start-0">
                                 <p> <b>{{ __('messageZN.Last Control') }}</b> :{{ $order->ad_name }} </p>
                             </div>
                         </div>

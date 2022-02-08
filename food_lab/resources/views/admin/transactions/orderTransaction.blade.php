@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Order Transaction
+    Admin | Order Transaction
 @endsection
 
 @section('css')
@@ -30,32 +30,32 @@
                     <thead>
                         <tr class="tableheader tablerows">
                             <th scope="col">{{ __('messageZN.No') }}</th>
-                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
-                            <th scope="col">{{ __('messageZN.Payment') }}</th>
-                            <th scope="col">{{ __('messageZN.GrandTotalcoin') }}</th>
-                            <th scope="col">{{ __('messageZN.GrandTotalcash') }}</th>
-                            <th scope="col">{{ __('messageZN.Order Status') }}</th>
-                            <th scope="col">{{ __('messageZN.Last Control') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Payment') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.GrandTotalcoin') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.GrandTotalcash') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Order Status') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Last Control') }}</th>
                             <th scope="col">{{ __('messageZN.Date&Time') }}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($t_ad_order as $key => $trans)
+                        @forelse ($t_ad_order as $key => $trans)
                             <tr class="tablecolor1 tablerows">
                                 <th scope="row">{{ $t_ad_order->firstItem() + $key }}</th>
-                                <td><a
+                                <td class="text-center"><a
                                         href="customerinfoDetail?id={{ $trans->customer_id }}">{{ $trans->customerID }}</a>
                                 </td>
                                 @if ($trans->payment == 0)
-                                    <td>Coin</td>
+                                    <td class="text-center">Coin</td>
                                 @else
-                                    <td>C.O.D</td>
+                                    <td class="text-center">C.O.D</td>
                                 @endif
-                                <td>{{ $trans->grandtotal_coin }}</td>
-                                <td>{{ $trans->grandtotal_cash }}</td>
-                                <td>{{ $trans->status }}</td>
-                                <td>{{ $trans->ad_name }}</td>
+                                <td class="text-center">{{ $trans->grandtotal_coin }}</td>
+                                <td class="text-center">{{ $trans->grandtotal_cash }}</td>
+                                <td class="text-center">{{ $trans->status }}</td>
+                                <td class="text-center">{{ $trans->ad_name }}</td>
                                 <td>{{ $trans->order_date }}
                                     {{ $trans->order_time }}
                                 </td>
@@ -66,7 +66,11 @@
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="9" class="text-center">There is no Data.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-center">{{ $t_ad_order->links() }}</div>

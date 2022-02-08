@@ -70,8 +70,8 @@ class T_AD_CoinCharge extends Model
     */
       public function UsercoinchargeList($id){
 
-        $usercoin = T_AD_CoinCharge::
-        join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
+        $usercoin = T_AD_CoinCharge::select('*',DB::raw('t_ad_coincharge.id AS chargeid'))
+        ->join('m_ad_login','m_ad_login.id','=','t_ad_coincharge.decision_by')
         ->join('m_decision_status','m_decision_status.id','=','t_ad_coincharge.decision_status')
         ->join('t_cu_customer','t_cu_customer.id','=','t_ad_coincharge.customer_id')
         ->where('t_ad_coincharge.del_flg',0)

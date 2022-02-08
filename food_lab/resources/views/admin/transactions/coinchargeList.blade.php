@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Coin Charge List
+    Admin | Coin Charge List
 @endsection
 
 @section('css')
@@ -30,43 +30,47 @@
                     <thead>
                         <tr class="tableheader tablerows">
                             <th scope="col">{{ __('messageZN.No') }}</th>
-                            <th scope="col">{{ __('messageZN.Customer ID') }}</th>
-                            <th scope="col">{{ __('messageZN.CoinA') }}</th>
-                            <th scope="col">{{ __('messageZN.Last Desicionby') }}</th>
-                            <th scope="col">{{ __('messageZN.Request time') }}</th>
-                            <th scope="col">{{ __('messageZN.Status') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Customer ID') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.CoinA') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Last Desicionby') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Request time') }}</th>
+                            <th scope="col" class="text-center">{{ __('messageZN.Status') }}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($t_ad_coincharge as $key => $coincharge)
+                        @forelse ($t_ad_coincharge as $key => $coincharge)
                             <tr class="tablecolor1  tablerows">
                                 <th scope="row">{{ $t_ad_coincharge->firstItem() + $key }}</th>
-                                <td><a
+                                <td class="text-center"><a
                                         href="customerinfoDetail?id={{ $coincharge->customer_id }}">{{ $coincharge->customerID }}</a>
                                 </td>
-                                <td>{{ $coincharge->request_coin }}</td>
-                                <td>{{ $coincharge->ad_name }}</td>
-                                <td>{{ \Carbon\Carbon::parse($coincharge->request_datetime)->diffForHumans() }}
+                                <td class="text-center">{{ $coincharge->request_coin }}</td>
+                                <td class="text-center">{{ $coincharge->ad_name }}</td>
+                                <td class="text-center">
+                                    {{ \Carbon\Carbon::parse($coincharge->request_datetime)->diffForHumans() }}
                                 </td>
                                 @if ($coincharge->status == 'Request')
-                                    <td class="text-success ">{{ $coincharge->status }}</td>
+                                    <td class="text-success text-center">{{ $coincharge->status }}</td>
                                 @elseif ($coincharge->status == 'Approve')
-                                    <td class="text-info">{{ $coincharge->status }}</td>
+                                    <td class="text-info text-center">{{ $coincharge->status }}</td>
                                 @elseif ($coincharge->status == 'Waiting')
-                                    <td class="text-warning stshadow">{{ $coincharge->status }}</td>
+                                    <td class="text-warning stshadow text-center">{{ $coincharge->status }}</td>
                                 @elseif ($coincharge->status == 'Reject')
-                                    <td class="text-secondary ">{{ $coincharge->status }}</td>
+                                    <td class="text-secondary text-center">{{ $coincharge->status }}</td>
                                 @endif
-                                <td>
+                                <td class="text-center">
                                     <a href="detailCharge/{{ $coincharge->chargeid }}">
                                         <button class="btn tablerows btn-outline-dark"><i
                                                 class="bi bi-arrow-right"></i></button>
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
-
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">There is no Data.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-center">{{ $t_ad_coincharge->links() }}</div>

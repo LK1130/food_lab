@@ -58,17 +58,23 @@ a {
     -webkit-text-stroke: 0.5px black;
 }
 .stat {
-    height: 26vh;
+    width: 100%;
 }
 .stats {
-    height: 26vh;
+    width: 90%;
+    margin-right: 2vh;
+}
+.notifications {
+    display: flex;
+    justify-content: end;
+    width: 100%;
 }
 @media (max-width: 1380px) {
     .stat {
-        height: 24vh;
+        width: 100%;
     }
     .stats {
-        height: 24vh;
+        width: 100%;
     }
     .numbers {
         font-size: calc(var(--fontsize4) - 1.3rem) !important;
@@ -98,7 +104,14 @@ a {
     .see {
         font-size: calc(var(--detail) - 0.6rem) !important;
     }
+}
+@media (max-width: 700px) {
+    .stbox {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
     .stats {
-        margin-left: 10px;
+        margin-top: 3vh;
     }
 }

@@ -59,7 +59,24 @@ return [
     'Nickname'=>'Nickname',
     'Phoneno'=>'Phone No.',
     'Customers List'=>'Customers List',
-    'Last Desicionby'=>'Last Desicion By'
+    'Last Desicionby'=>'Last Desicion By',
+    'order history'=>'Order History',
+    'pay type'=>'Pay Type',
+    'Date&t'=>'Date&Time',
+    'Coinchargehistory'=>'Coin Charge History',
+    'Reqtime'=>'Request Time',
+    'Back'=>'Back',
+    'Cusinfodetail'=>'Customer Info Detail',
+    'Cuscontactrp'=>'Customer Contact Reply',
+    'message'=>'Message',
+    'reply'=>'Reply',
+    'Customercontact'=>'Customer Contacts',
+    'done'=>'Done !',
+    'cusrp'=>'Customer Reports',
+    'customerreportrp'=>'Customer Report Reply',
+    'cussug'=>'Customer Suggest',
+    'sugtype'=>'Suggest Type',
+    'cussugrp'=>'Customer Suggest Reply'
 
 
 ];

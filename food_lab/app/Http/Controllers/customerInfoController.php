@@ -19,8 +19,18 @@ class CustomerInfoController extends Controller
     * Return is view (customerInfo.blade.php)
     */
     public function customerInfo(){
+
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'Start customerInfo'
+        ]);
+
         $customer1 = new T_CU_Customer();
         $customer = $customer1->customerInfoList();
+
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'End customerInfo'
+        ]);
+
         return view('admin.customerInfo.customerInfo',['t_cu_customer'=>$customer]);
     }
             /*
@@ -30,6 +40,11 @@ class CustomerInfoController extends Controller
     * Return is view (customerinfoDetail.blade.php)
     */
     public function customerinfoDetail(Request $request){
+
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'Start customerinfoDetail'
+        ]);
+
         $customerd =new T_CU_Customer();
         $cusdetail = $customerd->customerDetail($request->input('id'));
         if($cusdetail == null)abort(404);
@@ -41,6 +56,10 @@ class CustomerInfoController extends Controller
         $coin = new T_AD_CoinCharge();
         $cuscoin = $coin->UsercoinchargeList($request->input('id'));
         
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'End customerinfoDetail'
+        ]);
+
         return view('admin.customerInfo.customerinfoDetail',['cusdetail'=>$cusdetail,'t_ad_order'=>$trans,'cuscoin'=>$cuscoin]);
     }
 
@@ -53,9 +72,17 @@ class CustomerInfoController extends Controller
     */
     public function customerSearch(Request $request){
         
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'Start customerSearch'
+        ]);
 
         $cus = new T_CU_Customer();
         $namelist = $cus->cusSearch($request);
+
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'End customerSearch'
+        ]);
+
         return response()
         ->json(
         $namelist
@@ -71,8 +98,17 @@ class CustomerInfoController extends Controller
     */
     public function customeridSearch(Request $request){
 
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'Start customeridSearch'
+        ]);
+
         $customerid = new T_CU_Customer();
         $searchid = $customerid->cusidSearch($request);
+
+        Log::channel('adminlog')->info("CustomerInfoController", [
+            'End customeridSearch'
+        ]);
+
         return response()
         ->json(
         $searchid
