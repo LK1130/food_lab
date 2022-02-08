@@ -28,7 +28,6 @@ class BuycoinController extends Controller
      * Prarameter : no
      * return : View buyCoin blade
      * */
-
     public function customerBuycoin(){
 
         Log::channel('customerlog')->info('Buycoin Controller', [
@@ -88,7 +87,6 @@ class BuycoinController extends Controller
      * Prarameter : no
      * return : View buyCoin blade
      * */
-
      public function coinrequestUpload(CoinChargeVali $request){
          Log::channel('customerlog')->info('Buycoin Controller', [
             'Start coinrequestUpload'
@@ -98,21 +96,15 @@ class BuycoinController extends Controller
         $file= $request->file('fileimage');
         $filepath=$file->store('coinCharge');
 
-        
-
         $bcustomerID =session("customerId");
         
         $cucoindata = new T_AD_CoinCharge();
         $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID,$filepath);
-
 
         Log::channel('customerlog')->info('Buycoin Controller', [
             'End coinrequestUpload'
         ]);
 
         return redirect('/buycoin');
-
      }
-
-     
 }

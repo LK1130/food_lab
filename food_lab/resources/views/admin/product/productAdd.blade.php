@@ -23,7 +23,7 @@
             {{-- Product Form --}}
             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mt-4 mb-4 labels">{{ __('messageAMK.ProductsAdd Form') }}</div>
+            <div class="status text title mt-4 mb-4 labels">{{ __('messageAMK.ProductsAdd Form') }}</div>
             
            
             <div class="container-fluid">
@@ -103,7 +103,6 @@
                         <div class="form-group">
                             <label for="ptaste" class="form-label titles">{{ __('messageAMK.Taste') }}</label>
                             <select name="ptaste" id="ptaste" class="form-select selects" required>
-                                {{-- <option value="0" selected disabled>Choose Taste</option> --}}
                                 @foreach ($mTaste as $item)
                                     <option value="{{ $item->id }}">{{ $item->taste }}</option>
                                 @endforeach
@@ -130,15 +129,7 @@
                             </div>
                            
                         </div>
-                        <div class="form-group">
-                            <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
-                            <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" value="{{ old('list') }}">
-                                {{ old('list') }}
-                            </textarea>
-                            @error('list')
-                            <li class="text-danger ">{{ __("messageAMK.Product's ingredient list is required.") }}</li>
-                            @enderror
-                        </div>
+                        
 
                         <div class="d-flex justify-content-between  mt-4 mx-2">
                                 <div class="mx-2">
@@ -156,12 +147,20 @@
             {{-- Product Description --}}
             <div class="container-fluid mb-4">
                 <div class="row">
+
+                    <div class="col-md-5 col-sm-5">
+                        <div class="form-group">
+                            <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
+                            <textarea type="text" name="list" id="list" class="form-control inputs" rows="5" value="{{ old('list') }}">{{ old('list') }}</textarea>
+                            @error('list')
+                            <li class="text-danger ">{{ __("messageAMK.Product's ingredient list is required.") }}</li>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-md-10 col-sm-12">
                         <div class="form-group mt-3">
                             <label for="pdesc" class="form-label titles">{{ __('messageAMK.Description') }}</label>
-                            <textarea name="pdesc" id="pdesc" class="form-control" cols="30" rows="10">
-                                {{ old('pdesc') }}
-                            </textarea>
+                            <textarea name="pdesc" id="pdesc" class="form-control" cols="30" rows="10">{{ old('pdesc') }}</textarea>
                         </div>
                         @error('pdesc')
                         <li class="text-danger ">{{ __("messageAMK.Product's Description is required.") }}</li>
@@ -182,7 +181,7 @@
                                 </div>
                                 
                                 <div class="row">
-                                    <div class="col-md-12 col-sm-7">
+                                    <div class="col-md-12 col-sm-8">
                                         <div class="append">
 
                                         </div>
@@ -200,7 +199,7 @@
                             <button class="backBtn"><a href="/productList" class="back">{{ __('messageAMK.Back') }}</a></button>
                         </div>
                         <div class="col-md-3">
-                        <button type="reset" class="resetBtn">{{ __('messageAMK.Reset') }}</button>
+                        <button type="button"  onclick='location.reload();'  class="resetBtn">{{ __('messageAMK.Reset') }}</button>
                         
                         </div>
                         <div class="col-md-3">

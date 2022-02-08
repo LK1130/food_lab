@@ -14,7 +14,7 @@ return [
     'inform' => 'Inform',
     'access' => 'Access',
     'TasteOurDeliciousFood' => 'Taste Our Delicious  Food',
-    'welcome' => 'Welcome From Our Food Lab',
+    'welcome' => 'Welcome From Our ',
     'We deliver food as fast as you expert and we care about your time, so that you can grab your food at time' => 'We deliver food as fast as you expert and we care about your time, so that you can grab your food at time.',
     'shopnow' => 'Shop Now',
     'bestselleritems' => 'Best Seller Items',

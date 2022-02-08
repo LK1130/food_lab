@@ -32,6 +32,10 @@ class ProductController extends Controller
 
     public function index()
     {
+        Log::channel('adminlog')->info("ProductController", [
+            'Start index'
+        ]);
+
         $fav = new  M_Fav_Type();
         $mFav = $fav->getTypeAll();
 
@@ -40,6 +44,9 @@ class ProductController extends Controller
 
         $mrate = new M_AD_CoinRate();
         $rates = $mrate->getRate();
+        Log::channel('adminlog')->info("ProductController", [
+            'End index'
+        ]);
 
         return View('admin.product.productAdd', ['mFav' => $mFav, 'mTaste' => $mTaste, 'rates' => $rates, 'active' => 6]);
     }
@@ -71,7 +78,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        Log::channel('adminlog')->info("Product Controller", [
+        Log::channel('adminlog')->info("ProductController", [
             'Start Store Data'
         ]);
 
@@ -165,7 +172,7 @@ class ProductController extends Controller
 
             $productDetail = new M_Product_Detail();
             $phd = new T_AD_Photo();
-            // Log::critical("array", [$labels, $images, $allValues]);
+         
 
             for ($x = 0; $x < count($images); $x++) {
 
@@ -182,7 +189,7 @@ class ProductController extends Controller
         });
 
 
-        Log::channel('adminlog')->info("Product Controller", [
+        Log::channel('adminlog')->info("ProductController", [
             'End Store Data'
         ]);
 
@@ -217,7 +224,7 @@ class ProductController extends Controller
     public function edit($id)
     {
 
-        Log::channel('adminlog')->info("Product Controller", [
+        Log::channel('adminlog')->info("ProductController", [
             'Start edit Data'
         ]);
 
@@ -248,10 +255,10 @@ class ProductController extends Controller
         session(['4' => $tPhd->getPhoto(4,$product->id)]);
         session(['5' => $tPhd->getPhoto(5,$product->id)]);
         session(['6' => $tPhd->getPhoto(6,$product->id)]);
-        Log::channel('adminlog')->info("Product Controller", [
+        Log::channel('adminlog')->info("ProductController", [
             'End edit Data'
         ]);
-        // return $product_detail;
+       
         return View('admin.product.productEdit', ['mFav' => $mFav, 'mTaste' => $mTaste, 'products' => $product, "pdetails" => $mProductDetail, 'phd' => $phd,'rates'=>$rates]);
     }
 
@@ -272,7 +279,7 @@ class ProductController extends Controller
     * */
     public function update(Request $request, $id)
     {
-        Log::channel('adminlog')->info("Product Controller", [
+        Log::channel('adminlog')->info("ProductController", [
             'Start Update Data'
         ]);
 
@@ -280,7 +287,7 @@ class ProductController extends Controller
         $request->validate([
             'pname' => 'required',
             'coin' => 'required|min:0',
-            // 'photo1' => 'required'
+    
         ]);
 
         DB::transaction(function () use ($request, $id) {
@@ -380,8 +387,8 @@ class ProductController extends Controller
         });
 
 
-        Log::channel('adminlog')->info("Product Controller", [
-            'End Update Data'
+        Log::channel('adminlog')->info("ProductController", [
+            'End UpdateData'
         ]);
 
         return  redirect('productList');

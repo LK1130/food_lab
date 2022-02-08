@@ -16,65 +16,67 @@
 @endsection
 @section('body')
     {{-- Starts Header Buttons --}}
-    <div class="navBar">
-        <a href="{{ url('adminLogin') }}"><button
-                class="btn text-light  active btncust">{{ __('messageZY.loginManage') }}</button></a>
-        <a href="{{ url('coinrate') }}"><button
-                class="btn text-light   btncust">{{ __('messageZY.coinRate') }}</button></a>
-        <a href="{{ url('siteManage') }}"><button
-                class="btn text-light   btncust">{{ __('messageZY.siteManager') }}</button></a>
+    <div class="col-md-10 ">
+        <div class="mt-4">
+            <a href="{{ url('adminLogin') }}"><button
+                    class="checked btn text-light  active btncust ">{{ __('messageZY.back') }}</button></a>
+        </div>
+        {{-- Starts Form --}}
+
+        <div class="adminAddForm">
+
+            <form action="{{ route('adminLogin.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <p class="formHeader">{{ __('messageZY.addAdmin') }} </p>
+                <div>
+                    <div class="form-group">
+                        <label for="username">{{ __('messageZY.username') }}</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                        @error('username')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="password">{{ __('messageZY.password') }}</label>
+                        <div class="relative">
+                            <ion-icon name="eye-off-outline" id="icon"></ion-icon>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+
+                        @error('password')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="role">{{ __('messageZY.role') }}</label>
+                        <select class="form-control" id="role" name="role">
+                            <option>{{ __('messageZY.sa') }}</option>
+                            <option>{{ __('messageZY.ad') }}</option>
+                            <option>{{ __('messageZY.ka') }}</option>
+                            <option>{{ __('messageZY.dl') }}</option>
+                        </select>
+                        @error('role')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-4">
+                        <div class="relative">
+                            <label for="validation">{{ __('messageZY.valid') }}</label>
+                            <input type="checkbox" class="mt-2 " id="validate" checked>
+                        </div>
+
+                        @error('validate')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit"
+                            class="btn text-light addAdminButton active btncust mt-4">{{ __('messageZY.addAdmin') }}</button>
+                    </div>
+                </div>
+                <input type="text" id="validateInteger" value="" name="validate">
+            </form>
+
+        </div>
     </div>
-    {{-- Starts Form --}}
-    <a href="{{ url('adminLogin') }}"><button class="checked btn text-light addAdminButton active btncust "
-            id="appBack3">{{ __('messageZY.back') }}</button></a>
-    <div class="adminAddForm">
-
-        <form action="{{ route('adminLogin.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <p class="formHeader">{{ __('messageZY.addAdmin') }} </p>
-            <div>
-                <div class="form-group">
-                    <label for="username">{{ __('messageZY.username') }}</label>
-                    <input type="text" class="form-control" id="username" name="username">
-                    @error('username')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="password">{{ __('messageZY.password') }}</label>
-                    <ion-icon name="eye-off-outline" id="icon"></ion-icon>
-                    <input type="password" class="form-control" id="password" name="password">
-                    @error('password')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="role">{{ __('messageZY.role') }}</label>
-                    <select class="form-control" id="role" name="role">
-                        <option>{{ __('messageZY.sa') }}</option>
-                        <option>{{ __('messageZY.ad') }}</option>
-                        <option>{{ __('messageZY.ka') }}</option>
-                        <option>{{ __('messageZY.dl') }}</option>
-                    </select>
-                    @error('role')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group mt-4">
-                    <label for="validation">{{ __('messageZY.valid') }}</label>
-                    <input type="checkbox" class="mt-2" id="validate" checked>
-                    @error('validate')
-                        <li class="text-danger ">{{ $message }}</li>
-                    @enderror
-                </div>
-                <div class="form-group ">
-                    <button type="submit"
-                        class="btn text-light addAdminButton active btncust mt-4">{{ __('messageZY.addAdmin') }}</button>
-                </div>
-            </div>
-            <input type="text" id="validateInteger" value="" name="validate">
-        </form>
-
-    </div>
-
 @endsection

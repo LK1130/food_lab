@@ -2,6 +2,15 @@ const main = document.getElementById('mainimg');
 
 $(document).ready(function() {
     $('.count').prop('disabled', true);
+    
+ /*
+ * Create : Aung Min Khant(27/1/2022)
+ * Update :
+ * Explain of function : when user click plus and minus amount
+ * Prarameter : no
+ * return : count value
+ */
+
     $(document).on('click', '.plus', function() {
 
         if ($('.count').val() < 9) {
@@ -25,6 +34,14 @@ $(document).ready(function() {
         e.preventDefault();
     })
 
+
+ /*
+ * Create : Aung Min Khant(29/1/2022)
+ * Update :
+ * Explain of function : when user click get selected and checkvalue send with ajax to cart
+ * Prarameter : no
+ * return : form data
+ */
     $(".btns").click(function(e) {
         $.ajaxSetup({
             headers: {
@@ -45,6 +62,7 @@ $(document).ready(function() {
             allLabels.push($(this).text());
         });
 
+        //check value 
         $('input[type=checkbox]:checked').each(function() {
             text = $(this).parent().parent().prev().find('.ptop').text();
             status = this.checked ? $(this).val() : "";
@@ -63,6 +81,7 @@ $(document).ready(function() {
             }
 
         });
+        // selected value
         $("select option:selected").each(function() {
             text = $(this).parent().parent().parent().prev().find('.ptop').text();
             status = this.selected ? $(this).val() : "";
@@ -112,6 +131,14 @@ $(document).ready(function() {
     });
 });
 
+
+/*
+ * Create : Aung Min Khant(30/1/2022)
+ * Update :
+ * Explain of function : To change image main photo 
+ * Prarameter : no
+ * return : change image src
+ */
 function changeImage(img) {
 
     main.src = img.src;

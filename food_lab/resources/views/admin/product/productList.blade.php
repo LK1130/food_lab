@@ -20,7 +20,7 @@
         <div class="status text fs-2 fw-bold mb-4 mt-4">{{ __('messageAMK.ProductList') }}</div>
         <div class="row ">
             <div class="col-md-12 roow">
-                <table class="table boxshad me-5">
+                <table class="table  boxshad me-5">
                     <thead>
                         <tr class="tableheader tablerows">
                             <th scope="col">{{ __('messageAMK.No.') }}</th>
@@ -34,9 +34,10 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($products as $product)
-                            <tr class="tablecolor1 text-light tablerows">
+                    <tbody class="scroll">
+
+                        @forelse ($products as $product)
+                            <tr class="tablecolor1  tablerows">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $product->product_name }}</td>
                                 <td>{{ $product->pid }}</td>
@@ -52,19 +53,20 @@
 
                                 @endif
                                 <td>
-                                    {{-- <a href="{{ route('product.edit',$product->id) }}"><button class="btn tablerows btn-outline-light">{{ __('messageAMK.Edit') }}</button></a> --}}
                                     <a href="{{ route('product.edit', $product->pid) }}"><button
                                             class="btn btn-outline-light"><i class="bi bi-arrow-right"></i></button></a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            There is no product.
+                        @endforelse
                     </tbody>
                 </table>
-               
+
             </div>
             <div class="d-flex justify-content-center">{{ $products->links() }}</div>
-            <a href="/product" class="d-flex justify-content-end"><button
-                class="btn seemore text-light">{{ __('messageAMK.Product Add') }}</button></a>
+            <a href="/product" class="d-flex justify-content-end mt-3"><button
+                    class="btn seemore text-light mb-5">{{ __('messageAMK.Product Add') }}</button></a>
         </div>
     </div>
 

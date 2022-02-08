@@ -27,6 +27,7 @@ section{
 .coininput,.choosephoto{
     font-size: 1.2rem;
     margin-top: 5%;
+    padding-left: 5%;
 }
 .coinCal{
     color: var(--coin-color);
@@ -40,6 +41,8 @@ section{
     display: flex;
     width: 40%;
     flex-direction: column;
+    border-radius: 20px;
+    border: 0.2rem solid var(--fileicon-color);
 }
 .coinRule,.coinCalculator{
     text-align: center;
@@ -47,34 +50,32 @@ section{
     margin-top: 3%;
     font-weight: 900;
 }
-
 .coinList{
-    color: var(--text-color2) ;
+    color: var(--text-color) ;
     margin-top: 5%;
     font-size: 1rem;
+    margin-left: 0.1%;
 }
-
 .coinRulehr{
-    color: var(--text-color2) ;
+    color: var(--fileicon-color) ;
     width: 70%;
-    height: 50px;
-    margin-left: 15%;
+    margin: auto;
 }
 
 .submitbtn{
     margin-top: 10%;
     width: 20%;
     font-size: 1.2rem;
+    margin-left: 10%;
     font-weight: 900;
     background-color: var(--coinRulebg) !important;
     color: var(--submitbtn-textcolor) !important;
     transition: 1s;
 }
-
 .cancelbtn{
     margin-top: 10%;
-    width: 15%;
-    margin-left: 10%;
+    width: 20%;
+    margin-left: 15%;
     color: var(--cancelbtn-textcolor) !important;
     background-color: var(--cancelbtn-color) !important ;
     font-size: 1.2rem;
@@ -104,38 +105,68 @@ section{
     font-size: 2.1rem;
     font-weight: 1000;
 }
-
 .ccalcul{
-    width: 25%;
+    width: 30%;
     border-radius: 5px;
     border:none;
     height: 50%;
+    padding-left: 7%;
+}
+#coinChargeinput{
+   padding-left: 7%;
+}
+.copy {
+    min-height: 10vh;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
 }
 
 
+/*End Footer Section*/
 
+.copy p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 @media(max-width:991px){
-    .container{
-        flex-direction:column-reverse;
-        justify-content: center;
-        align-items: center;
-        width: 100% ;  
-    }
+.container{
+    flex-direction:column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100% ;  
+}
 .coinrule{
-    width: 60%;
+    width: 90%;
+    display: flex;
+}
+.coincharge{
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 .coinchargeformdiv{
-    width: 60%;
+    width: 80%;
     margin-top: 10%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+.coinchargeform{
+    width: 100%;
+}
+.ccalcul{
+    width: 33%;
+    padding-left: 2%;
+    font-size: 1rem;
+}
+.submitbtn,.cancelbtn{
+    width: 32%;
+    margin-left: 13%;
+}
+.fileuploadInput,#coinChargeinput{
+ width:40vw;
 }
 
-.submitbtn,.cancelbtn{
-    width: 30%;
-}
-.fileuploadInput{
- width: 180%;
-}
 }

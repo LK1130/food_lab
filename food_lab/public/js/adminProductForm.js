@@ -118,7 +118,7 @@ $(document).ready(function (e) {
       if (countDiv < 6) {
         let input = `<div class="d-flex mt-3 appendCount .deleteform">
             <div class="form-group d-flex mx-3">
-                <label for="category" class="col-form-label titles">Category</label>
+                <label for="category" class="col-form-label titles1">Category</label>
             <select name="category${count}" id="category" class="form-select mx-2">
               
                 <option value="1">Selected Box</option>

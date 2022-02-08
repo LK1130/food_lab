@@ -91,8 +91,8 @@
 
     {{-- Start Welcome Section --}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes">
-        <p class="fs-1 fw-bolder welcometexts">{{ __('messageMK.welcome') }}</p>
-        <p class="fs-4 companyinfos"><i class="fas fa-quote-left falefts"></i>{{ $company->intro }}<i
+        <p class="fs-1 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
+        <p class="fs-4 companyinfos"><i class="fas fa-quote-left falefts"></i>{{ $name->intro }}<i
                 class="fas fa-quote-right farights"></i></p>
     </section>
     {{-- End Welcome Section --}}
@@ -186,7 +186,7 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="col-10">
-                                <p>{{ $company->address }}</p>
+                                <p>{{ $name->address }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -195,12 +195,12 @@
                             </div>
                             <div class="col-10">
                                 <p>
-                                    <a href="tel:{{ $company->phone1 }}" class="d-block">{{ $company->phone1 }}</a>
-                                    @if($company->phone2 != 'null')
-                                        <a href="tel:{{ $company->phone2 }}" class="d-block">{{ $company->phone2 }}</a>
+                                    <a href="tel:{{ $name->phone1 }}" class="d-block">{{ $name->phone1 }}</a>
+                                    @if($name->phone2 != 'null')
+                                        <a href="tel:{{ $name->phone2 }}" class="d-block">{{ $name->phone2 }}</a>
                                     @endif
-                                    @if($company->phone3 != 'null')
-                                        <a href="tel:{{ $company->phone3 }}" class="d-block">{{ $company->phone3 }}</a>
+                                    @if($name->phone3 != 'null')
+                                        <a href="tel:{{ $name->phone3 }}" class="d-block">{{ $name->phone3 }}</a>
                                     @endif
                                     
                                 </p>
@@ -211,7 +211,7 @@
                                 <p><i class="fas fa-envelope"></i></p>
                             </div>
                             <div class="col-10">
-                                <a href="mailto:{{ $company->gmail }}">{{ $company->gmail }}</a>
+                                <a href="mailto:{{ $name->gmail }}">{{ $name->gmail }}</a>
                             </div>
                         </div>
                     </div>
@@ -225,8 +225,8 @@
     <footer>
         <div class="pt-5 ps-3 footer-infos">
             <div class="d-flex align-items-center footer-logos">
-                {{--  <img src="{{ url('storage/siteLogo/{{ $company->site_logo }}') }}" />  --}}
-                <p class="fw-bolder text-uppercase footer-names">{{ $company->site_name }}</p>
+                 <img src="/storage/siteLogo/{{ $name->site_logo }}" /> 
+                <p class="fw-bolder text-uppercase footer-names">{{ $name->site_name }}</p>
             </div>
             <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
                 <div class="footer-navs">
@@ -263,7 +263,7 @@
         </div>
         <div class="copys">
             <p></p>
-            <p>Copy right by {{ $company->site_name }}</p>
+            <p>Copy right by {{ $name->site_name }}</p>
         </div>
     </footer>
     {{-- End Footer Section --}}

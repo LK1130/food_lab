@@ -22,7 +22,7 @@ class M_AD_CoinCharge_Message extends Model
             'Start informMessage'
         ]);
 
-        $result = T_AD_CoinCharge::where('t_ad_coincharge.customer_id', '=', $sessionCustomerId)
+        $result = T_AD_CoinCharge::where('t_ad_coincharge.customer_id', $sessionCustomerId)
             ->where('t_ad_coincharge.del_flg', 0)
             ->leftjoin('m_ad_coincharge_message', 'm_ad_coincharge_message.charge_id', '=', 't_ad_coincharge.id')
             ->leftjoin('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')

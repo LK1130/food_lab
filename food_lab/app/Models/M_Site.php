@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class M_Site extends Model
@@ -166,7 +167,8 @@ class M_Site extends Model
         Log::channel('adminlog')->info("M_Site Model", [
             'End news'
         ]);
-        return M_AD_News::where('m_ad_news.del_flg', 0)
+        return M_AD_News::select('*', DB::raw('m_ad_news.id AS newsid'))
+            ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->paginate(3);
     }

@@ -87,7 +87,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
     Route::resource('payment', PaymentController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('taste', TasteController::class);
-    Route::resource('suggest', SuggestController::class);
+    Route::resource('suggestAdmin', SuggestController::class);
     Route::resource('favtype', FavtypeController::class);
     Route::resource('orderstatus', OrderStatusController::class);
     Route::resource('decision', DecisionController::class);
@@ -261,8 +261,16 @@ Route::get('/login', [CustomerController::class, 'login']);
  * zayar
  */
 Route::resource('editprofile', CustomerProfileController::class);
-
-
+/*
+ * For ajax 
+ * zayar
+ */
+Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
+/*
+ * For news get initial 
+ * zayar
+ */
+Route::get('getnews', [CustomerController::class, 'getNews']);
 /*
  * For Update Profile Page
  * zayar
@@ -327,7 +335,11 @@ Route::post('cartsession', [CartController::class, 'getData']);
  * For Product
  */
 Route::get('productLists', [ProductDetailController::class, 'productList']);
+// Route::get('menu',[ProductDetailController::class,'eachList'] );
 Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
+Route::post('searchTaste', [ProductSearchController::class, 'searchByTaste']);
+Route::get('menutype',[ProductSearchController::class,'listByType']);
+Route::get('menutaste',[ProductSearchController::class,'listByTaste']);
 /*
  * For logging out
  */

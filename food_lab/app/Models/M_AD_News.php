@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class M_AD_News extends Model
@@ -54,7 +55,7 @@ class M_AD_News extends Model
    * This function is used to show news edit view.
    */
 
-    public function newsEditView($id)
+    public function newsEditView($newsid)
     {
         Log::channel('adminlog')->info("M_AD_News Model", [
             'Start newsEditView'
@@ -62,10 +63,11 @@ class M_AD_News extends Model
         Log::channel('adminlog')->info("M_AD_News Model", [
             'End newsEditView'
         ]);
-        return  M_AD_News::where('m_ad_news.id', $id)
+        return  M_AD_News::select('*', DB::raw('m_ad_news.id AS newsid'))
+            ->where('m_ad_news.id', $newsid)
             ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
-            ->get();
+            ->first();
     }
 
     /*
@@ -145,10 +147,12 @@ class M_AD_News extends Model
         Log::channel('adminlog')->info("M_AD_News Model", [
             'End newsLimited'
         ]);
-        return M_AD_News::where('m_ad_news.del_flg', 0)
+        $allnews =
+            M_AD_News::where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->limit(3)
             ->get();
+        return $allnews;
     }
 
     /*

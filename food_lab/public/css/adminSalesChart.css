@@ -83,12 +83,12 @@
 }
 /*For Range Search Submit*/
 #rangeSearchSubmit{
-    width: 6em;
-    margin-left: 3em;
-    border-radius: 1.2em;
+
     background-color: var(--color1);
     color: var(--color3);
-    padding: 0.2em;
+    padding-top: 0.2em;
+    margin-top: 0.1rem;
+    margin-left: 2rem;
     font-size: 1em;
 }
 .errorShow{
@@ -152,5 +152,14 @@
     }
     #saleCaption{
         margin-top: 1.5em;
+    }
+
+    .tableContainer{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        margin-bottom: 10%;
+        
     }
 }

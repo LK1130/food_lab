@@ -38,24 +38,28 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <select class="selectpicker p-3 mx-4 m-5 "  data-size="7" name="type" id="selectpicker1">
+                    <select class="selectpicker p-3 mx-3 m-5 "  data-size="7" name="type" id="selectpicker1">
                         <option class="selectpicker1" value="" selected disabled>Lists By Category</option>
                         @foreach ($mFav as $item)
                             <option  value="{{ $item->id }}" class="special">{{ $item->favourite_food }}</option>
                         @endforeach
-                        {{-- <option class="special">Mustard</option>
-                        <option class="special">Ketchup</option>
-                        <option class="special">Relish</option> --}}
+                       
                     </select>
                 </div>
             </div>
+
+            <div class="col-sm-3 ms-auto my-auto btnappend">
+               <a href="" id="typetag"> <button type="button" class="btn typebtns">See All</button></a>
+            </div>
         </div>
 
-        <div id="byCategory" class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
+       <div id="byCategory" class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
             @foreach( $products as $item)
                 
             <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-                <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
+               
+                <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class="img-fluid images" alt="bestitem1" />
+               
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
                 <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
@@ -63,6 +67,7 @@
             </div>
 
 
+           
             @endforeach
         </div>
 
@@ -70,7 +75,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <select class="selectpicker p-3 mx-4 m-5" data-size="7" id="selectpicker2">
+                    <select class="selectpicker p-3 mx-3 m-5" data-size="7" id="selectpicker2">
                         <option class="" value="" selected disabled>Lists By Taste</option>
                         @foreach ($mTaste as $item)
                         <option  value="{{ $item->id }}" class="special">{{ $item->taste }}</option>
@@ -78,9 +83,13 @@
                     </select>
                 </div>
             </div>
+
+            <div class="col-sm-3 ms-auto my-auto btnappend">
+                <a href="" id="tastetag"> <button type="button" class="btn tastebtns">See All</button></a>
+             </div>
         </div>
 
-        <div  class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
+        <div id="byTaste" class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
             
             @foreach( $products as $item)
                 
@@ -96,30 +105,32 @@
             @endforeach
         </div>
 
-        <div class="row">
-            <div class="col-md-3 col-sm-3 mx-2 mt-4 mb-4  text-center">
-                    <p class=" recommends">Recommend items</p>
-                
-            </div>
+      @if (session()->has('customerId'))
+      <div class="row">
+        <div class="col-md-3 col-sm-3   mt-4 mb-4  text-center">
+                <p class=" recommends">Recommend items</p>
+            
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
+        
+        @foreach( $recommend as $item)
+            
+        <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+            <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
+            <p class="fs-3 pt-2">{{ $item->product_name }}</p>
+            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+            <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
+            <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
         </div>
 
-        <div class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
-            
-            @foreach( $products as $item)
-                
-            <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-                <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
-                <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
-                <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
-                <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
-            </div>
 
+        @endforeach
+        
 
-            @endforeach
-            
-
-        </div>
+    </div>
+      @endif
 
         
     </div>

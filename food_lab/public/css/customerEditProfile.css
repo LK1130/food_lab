@@ -66,6 +66,26 @@ body {
     margin-left: 23vw;
     margin-top: 1.5vh;
 }
+.bootstrap-tagsinput {
+    background-color: transparent !important;
+    border: none !important;
+    outline: 0;
+}
+
+.bootstrap-tagsinput .tag {
+    background-color: #ffffff;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px;
+}
+#favType {
+    height: fit-content !important;
+}
+#favType2 {
+    height: fit-content !important;
+    min-height: 7vh !important;
+}
 @media (max-width: 720px) {
     .titleEditProfile {
         position: absolute;
