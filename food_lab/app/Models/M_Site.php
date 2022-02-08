@@ -213,7 +213,7 @@ class M_Site extends Model
         Log::channel('customerlog')->info('M_Site Model', [
             'start siteName'
         ]);
-        $name = M_Site::select('site_name')
+        $name = M_Site::select('*')
             ->where('del_flg', '=', 0)
             ->first();
 

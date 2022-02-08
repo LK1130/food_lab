@@ -92,7 +92,7 @@ class CustomerController extends Controller
 
         $informBadgeCount = $newsCount + $trackcount + $messagecount;
         $site = new M_Site();
-        $name = $site->siteName();
+        $company = $site->siteName();
 
         $tAdOrderDetail = new T_AD_OrderDetail();
         $sellProducts = $tAdOrderDetail->bestSellItems();
@@ -104,7 +104,7 @@ class CustomerController extends Controller
             'limitednews' => $newsLimited,
             'limitedmessages' => $messageLimited,
             'limitedtracks' => $tracksLimited,
-            'name' => $name,
+            'company' => $company,
             'sellProducts' => $sellProducts,
             'recomProducts' => $recomProducts,
             'count' => $informBadgeCount,
@@ -338,7 +338,7 @@ class CustomerController extends Controller
             'end policy'
         ]);
 
-        return view('customer.policyInfo', ['policys' => $policys]);
+        return view('customer.information.policyInfo', ['policys' => $policys]);
     }
 
     /*
@@ -361,7 +361,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end report'
             ]);
-            return view('customer.report', ['orderlists' => $orderlists]);
+            return view('customer.feedback.report', ['orderlists' => $orderlists]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end report'
@@ -405,14 +405,14 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'start suggest'
         ]);
-        if (session()->has('cutomerId')) {
+        if (session()->has('customerId')) {
             $data = new M_Suggest();
             $type = $data->suggestType();
 
             Log::channel('customerlog')->info('CustomerController', [
                 'end suggest'
             ]);
-            return view('customer.suggest', ['types' => $type]);
+            return view('customer.feedback.suggest', ['types' => $type]);
         }
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'

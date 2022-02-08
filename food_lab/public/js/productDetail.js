@@ -109,9 +109,6 @@ $(document).ready(function() {
                 console.error(data);
             }
         });
-
-
-
     });
 });
 

@@ -25,12 +25,12 @@ return [
     'Name' => 'Name',
     'Phone' => 'Phone',
     'Address' => 'Address',
-    'Cancle' => 'Cancle',
+    'Cancel' => 'Cancel',
     'Order' => 'Order',
     'Payment' => 'Payment',
     'Delivery Information' => 'Delivery Information',
 
-   
-    
 
-]; 
+
+
+];

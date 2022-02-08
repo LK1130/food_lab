@@ -55,7 +55,7 @@ class ProductDetailController extends Controller
             'End Product'
         ]);
 
-        return View('customer.productDetail.productDetail', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'productId' => $productId, 'photos' => $productPhoto, 'detail' => $detail, 'nav' => 'home', 'limitednews' => $newsLimited]);
+        return View('customer.productDetail.productDetail', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'productId' => $productId, 'photos' => $productPhoto, 'detail' => $detail, 'nav' => 'product', 'limitednews' => $newsLimited]);
     }
 
     public function productList()
@@ -94,6 +94,6 @@ class ProductDetailController extends Controller
             'End get product'
         ]);
 
-        return View('customer.productDetail.product', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'products' => $allProducts, 'mFav' => $mFav, 'mTaste' => $mTaste, 'nav' => 'home', 'limitednews' => $newsLimited]);
+        return View('customer.productDetail.product', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'products' => $allProducts, 'mFav' => $mFav, 'mTaste' => $mTaste, 'nav' => 'product', 'limitednews' => $newsLimited]);
     }
 }
