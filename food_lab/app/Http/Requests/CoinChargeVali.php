@@ -32,7 +32,7 @@ class CoinChargeVali extends FormRequest
         ]);
         return [
             "coinput"=>"required | max:3",
-            // "file" => "'required|file|max:100"
+            "file" => "required|image|mimes:jpg,png,jpeg,gif,svg|max:51200"
         ];
     }
 }
