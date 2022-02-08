@@ -51,7 +51,7 @@ section{
     font-weight: 900;
 }
 .coinList{
-    color: var(--text-color2) ;
+    color: var(--text-color) ;
     margin-top: 5%;
     font-size: 1rem;
     margin-left: 0.1%;
@@ -59,8 +59,7 @@ section{
 .coinRulehr{
     color: var(--fileicon-color) ;
     width: 70%;
-    height: 20px;
-    margin-left: 15%;
+    margin: auto;
 }
 
 .submitbtn{

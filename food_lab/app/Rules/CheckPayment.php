@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\M_Payment;
 use App\Models\PaymentModel;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -26,7 +27,7 @@ class CheckPayment implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = PaymentModel::where('payment_name', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_Payment::where('payment_name', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

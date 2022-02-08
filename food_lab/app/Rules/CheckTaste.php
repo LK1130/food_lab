@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\M_Taste;
 use App\Models\TasteModel;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -26,7 +27,7 @@ class CheckTaste implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = TasteModel::where('taste', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_Taste::where('taste', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

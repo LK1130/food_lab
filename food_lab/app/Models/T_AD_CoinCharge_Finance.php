@@ -39,6 +39,8 @@ class T_AD_CoinCharge_Finance extends Model
 
         return $coin;
     }
+
+
     public function coinMonthly()
     {
         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
@@ -189,5 +191,99 @@ class T_AD_CoinCharge_Finance extends Model
         ]);
 
        return $result;
+    }
+
+     /*
+    * Create : Zaw(2022/02/22) 
+    * Update : 
+    * This function is use to 
+    * Parameters :
+    * Return : 
+    */
+
+    public function dailyCointable (){
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'Start dailyCointable'
+        ]);
+
+        $currentYear = Carbon::now()->year;
+        $currentMonth = Carbon::now()->month;
+
+        $coinTable = T_AD_CoinCharge_Finance::select(
+            DB::raw(('date(created_at) as date')),
+            DB::raw('sum(amount) as totalAmount'),
+        )
+            ->where(DB::raw('month(created_at)'), $currentMonth)
+            ->where(DB::raw('year(created_at)'), $currentYear)
+            ->orderBy(DB::raw('created_at'), 'ASC')
+            ->groupBy('date')
+            ->paginate(10);
+
+         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'End dailyCointable'
+        ]);
+
+        return $coinTable;
+    }
+
+     /*
+    * Create : Zaw(2022/02/22) 
+    * Update : 
+    * This function is use to 
+    * Parameters :
+    * Return : 
+    */
+
+    public function coinmonthlyTable()
+    {
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'Start coinMonthly'
+        ]);
+        $current = Carbon::now()->year;
+        $coin = T_AD_CoinCharge_Finance::select(
+            DB::raw('year(created_at) as year'),
+            DB::raw('monthname(created_at)as month'),
+            DB::raw('sum(amount) as totalAmount'),
+        )
+            ->where(DB::raw('year(created_at)'), $current)
+            ->groupBy('year')
+            ->groupBy('month')
+            ->paginate(10);
+
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'End coinMonthly'
+        ]);
+
+        return $coin;
+    }
+
+     /*
+    * Create : Zaw(2022/02/22) 
+    * Update : 
+    * This function is use to 
+    * Parameters :
+    * Return : 
+    */
+
+
+    public function coinyearlyTable()
+    {
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'Start coinyearlyTable'
+        ]);
+
+        $coin = T_AD_CoinCharge_Finance::select(
+            DB::raw('year(created_at) as year'),
+            DB::raw('sum(amount) as totalAmount'),
+        )
+            ->orderBy(DB::raw('year(created_at)'), 'ASC')
+            ->groupBy('year')
+            ->paginate(10);
+
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+            'End coinyearlyTable'
+        ]);
+
+        return $coin;
     }
 }
