@@ -31,49 +31,20 @@ class CartController extends Controller
             'start cart'
         ]);
         if (session()->has('customerId')) {
-            // session(['cart' => '[
-            //     {
-            //         "pid": 1,
-            //         "q": 2,
-            //         "value": [{
-            //                 "label": "A kyaw",
-            //                 "value": "Egg"
-            //             },
-            //             {
-            //                 "label": "A po",
-            //                 "value": "Chill,Lemon,nananpin"
-            //             }
-            //         ]
-            //     },
-            //     {                    
-            //         "pid": 1,
-            //         "q": 5,
-            //         "value": [{
-            //                 "label": "A kyaw",
-            //                 "value": "Egg"
-            //             },
-            //             {
-            //                 "label": "A po",
-            //                 "value": "Chill,Lemon,nananpin"
-            //             }
-            //         ]
-            //     }
-            // ]']);
             $products = [];
-
             $cuProducts = session('cart');
-            $productArrays = json_decode($cuProducts, true);
+            $productArrays = $cuProducts;
             if (count($productArrays) != 0) {
                 // for product 
                 $m_product = new M_Product();
                 foreach ($productArrays as $productArray) {
-                    $product = $m_product->products($productArray['pid']);
+                    $product = $m_product->products((int)$productArray['pid']);
                     array_push($products, $product);
                 }
 
                 // add quantity in product array from session quantity 
                 for ($i = 0; $i < count($products); $i++) {
-                    $products[$i]['quantity'] = $productArrays[$i]['q'];
+                    $products[$i]['quantity'] = (int)$productArrays[$i]['q'];
                 }
 
                 $customerId = session('customerId');
@@ -124,13 +95,13 @@ class CartController extends Controller
         $totalCoin = 0;
         $totalCash = 0;
         $products = [];
-        $productArrays = json_decode(session('cart'), true);
+        $productArrays = session('cart');
         $postProducts = $_POST['cart'];
 
         // to get product info
         $m_product = new M_Product();
         foreach ($productArrays as $productArray) {
-            $product = $m_product->products($productArray['pid']);
+            $product = $m_product->products((int)$productArray['pid']);
             array_push($products, $product);
         }
 
@@ -160,7 +131,7 @@ class CartController extends Controller
         $grandCash = $totalCash + $delCash;
 
         // store session product 
-        $storeProduct = json_encode($productArrays);
+        $storeProduct = $productArrays;
         session(['cart' => $storeProduct, 'grandCoin' => $grandCoin, 'grandCash' => $grandCash]);
 
         Log::channel('custoerlog')->info('CartController', [
@@ -182,14 +153,14 @@ class CartController extends Controller
         ]);
 
         $sessionProduct = [];
-        $productArrays = json_decode(session('cart'), true);
+        $productArrays = session('cart');
         $id = $_POST['id'];
         unset($productArrays[$id - 1]);
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
 
-        session(['cart' => json_encode($sessionProduct)]);
+        session(['cart' => $sessionProduct]);
         Log::channel('custoemrlog')->info('CartController', [
             'end deleteProduct'
         ]);
@@ -211,27 +182,25 @@ class CartController extends Controller
             'start detail info'
         ]);
 
-        $count = $request->input('qty');
-        Log::critical("count", [$count]);
-        session(["cart" => "[{
-                'pid' : 1,
-                'q': 2,
-                'value': [{
-                        'label': 'A kyaw',
-                        'value': 'Egg'
-                    },
-                    {
-                        'label': 'A po',
-                        'value': 'Chill,Lemon,nananpin
-                    }
-                ]
-            } ]"]);
+        $products = [];
+        $newProduct = $request->data;
+        if (session()->has('cart')) {
+            $product = session('cart');
+            session()->forget('cart');
+            if (count($product) > 1) {
+                foreach ($product as $item) {
+                    array_push($products, $item);
+                }
+            } else {
+                array_push($products, $product[0]);
+            }
+        }
+        array_push($products, $newProduct);
+        session(['cart' => $products]);
+
         Log::channel('customerlog')->info('CartController', [
             'end detail info'
         ]);
-
-
-        // return View('customer.cart');
-
+        return session('cart');
     }
 }

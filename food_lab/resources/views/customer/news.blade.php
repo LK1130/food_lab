@@ -9,8 +9,8 @@
 @endsection
 
 @section('script')
-    <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
-    <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
+    {{-- <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script> --}}
+
 @endsection
 
 @section('title', 'Food Lab')
@@ -30,7 +30,7 @@
                 </div>
             @empty
                 <div class="news d-flex flex-row justify-content-center align-items-center">
-                    <p class="fs-6 fw-bolder mt-2 me-auto">{{ __('messageZY.nocategory') }} </p>
+                    <p class="fs-5 fw-bolder mt-2 me-auto">{{ __('messageZY.nonews') }} </p>
                 </div>
             @endforelse
 

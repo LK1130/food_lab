@@ -11,21 +11,21 @@ textarea {
 :root {
     --primary-color: #ff470b;
     --secondary-color: #ff6600;
-    --product-color : #FF0B1A;
-    --btn-color : #FF280B;
+    --product-color: #ff0b1a;
+    --btn-color: #ff280b;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
     --text-color2: #000000;
     --bg2-color: black;
     --bg3-color: white;
-    --coin-color: #FFD233;
+    --coin-color: #ffd233;
     --coin-color: #ffd233;
     --coinRulebg: #ff0000;
     --fileicon-color: #ffffff;
     --cancelbtn-textcolor: #ff0000;
-    --cancelbtn-color:#ffffff;
+    --cancelbtn-color: #ffffff;
     --submitbtn-color: #ff0000;
-    --submitbtn-textcolor:#ffffff;
+    --submitbtn-textcolor: #ffffff;
 }
 
 /*Start Header*/
@@ -37,6 +37,10 @@ textarea {
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
+}
+
+marquee {
+    background-color: #000000;
 }
 
 /*start navbar*/
@@ -87,12 +91,35 @@ textarea {
     cursor: pointer;
 }
 
-#profileButton {
+#profileButton,
+#cartButton,
+.companys {
     display: block;
 }
 
-@media (max-width: 720px) {
-    #profileButton {
+#cartButton {
+    position: relative;
+}
+
+.count {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 70%;
+    left: 90%;
+    text-align: center;
+    line-height: 25px;
+}
+
+@media (max-width: 1000px) {
+    #profileButton,
+    #cartButton,
+    .companys {
         display: none;
     }
 }
@@ -156,9 +183,11 @@ textarea {
 #back:hover {
     color: var(--primary-color) !important;
 }
+
 #logout {
     cursor: pointer;
 }
+
 @media only screen and (max-width: 720px) {
     #profileAlert {
         position: absolute;
@@ -174,7 +203,6 @@ textarea {
     .editProfile {
         font-size: 0.8rem !important;
     }
-
     .updatePassword {
         font-size: 0.8rem !important;
     }
@@ -255,15 +283,19 @@ textarea {
     margin-left: auto;
     color: white;
 }
+
 .green {
     background-color: green;
 }
+
 .yellow {
     background-color: yellow;
 }
+
 .red {
     background-color: red;
 }
+
 .forNews,
 .forMessages,
 .forTracks {
@@ -363,160 +395,6 @@ textarea {
 
 /*end navbar*/
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-/*start carousel*/
-
-.carousels {
-    min-height: 100%;
-}
-
-.items {
-    min-height: 85vh;
-}
-
-.abouts {
-    background-color: red;
-}
-
-.menuphotos {
-    background-color: blue;
-}
-
-.tastes {
-    margin-left: 15%;
-    margin-bottom: 10%;
-    color: var(--text-color);
-}
-
-.delivery-infos {
-    margin-left: 40%;
-    color: var(--primary-color);
-}
-
-.delivery-btns {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: 2px groove transparent;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-left: 45%;
-    margin-top: 20px;
-}
-
-.delivery-btns:hover {
-    background-color: var(--text-color);
-    color: var(--primary-color);
-    border: 2px groove var(--primary-color);
-}
-
-.carousel-photos {
-    width: 100%;
-}
-
-
-/*end carousel*/
-
-@media (max-width: 720px) {
-    .companys {
-        display: none;
-    }
-    .menus {
-        max-width: 100px;
-    }
-}
-
-
 /*End Header*/
 
-
-/*Start Footer Section*/
-
-footer {
-    min-height: 100vh;
-}
-
-.footer-infos {
-    min-height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg5.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 1.3rem;
-}
-
-.footer-logos {
-    position: relative;
-}
-
-.footer-names {
-    position: absolute;
-    top: 50%;
-    left: 7%;
-    transform: translateY(-50%);
-}
-
-.footer-infos div:first-of-type p.fw-bolder {
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-
-.footer-details a {
-    text-decoration: none;
-    color: var(--text-color);
-}
-
-.footer-details .mailTeams {
-    text-decoration: underline;
-}
-
-.footer-details a:hover {
-    color: var(--primary-color);
-}
-
-.footer-details .footer-navs>*,
-.footer-details div:nth-of-type(2) p:first-of-type,
-.footer-details div:nth-of-type(3) p:first-of-type,
-.footer-details div:last-of-type p:first-of-type {
-    font-size: 1.6rem;
-    color: var(--primary-color);
-}
-
-.sitelinks {
-    padding-left: 2.5px;
-}
-
-.copys {
-    background: url("/img/bg2.png");
-    min-height: 10vh;
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: bold;
-    position: relative;
-}
-
-/*End Footer Section*/
-.copys p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@media (max-width:720px) {
-    .copys p {
-        font-size: 1rem;
-    }
-}
-
-
-/*End Footer Section*/
-=======
 /*End Header*/
->>>>>>> 3d399cd1ea8deca25653557de090be1d1fd09265
-=======
-/*End Header*/
->>>>>>> 867a44dfa251e87ad45a62291a250b52db198e9c

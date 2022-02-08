@@ -246,7 +246,7 @@ class T_AD_CoinCharge extends Model
     * Create : ZPA(2022/01/27) 
     * Update : 
     * This function is use to insert customer data and coin data for Coin Charge.
-    * Parameters : $coin= request coin , $customerID = customer ID,
+    * Parameters : $coin= request coin , $customerID = customer ID, $filepath=Transaction Image Path
     * Return : Customer Coin Charge Data
     */
   public function customerCoinCharge($coin,$customerID,$filepath){

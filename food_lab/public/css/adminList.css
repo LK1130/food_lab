@@ -15,14 +15,6 @@
 .active {
     background-color: var(--btns) !important;
 }
-.navBar {
-    display: flex;
-
-    flex-direction: row;
-    gap: 7vh;
-    margin-top: 4vh;
-    margin-left: 17vw;
-}
 
 .headerButton {
     width: 12vw;
@@ -41,10 +33,7 @@
     color: var(--bs-white);
 }
 .table {
-    width: 70%;
-    margin-left: 23%;
-    margin-top: 8%;
-    box-shadow: 5px 5px 7px black;
+    box-shadow: 3px 3px 10px silver;
 }
 .tableHeader {
     background-color: var(--dashboardminlistingheader);
@@ -114,11 +103,8 @@ label {
     margin-left: 20vh;
 }
 .addAdminButton {
-    margin-top: 3%;
-
-    margin-left: 23vw;
-
     text-align: center;
+    margin-left: 67vw;
 }
 #delete {
     cursor: pointer;

@@ -1,15 +1,24 @@
 const main = document.getElementById('mainimg');
 
-$(document).ready(function () {
+$(document).ready(function() {
     $('.count').prop('disabled', true);
-    $(document).on('click', '.plus', function () {
+    
+ /*
+ * Create : Aung Min Khant(27/1/2022)
+ * Update :
+ * Explain of function : when user click plus and minus amount
+ * Prarameter : no
+ * return : count value
+ */
 
-        if ($('.count').val() < 5) {
+    $(document).on('click', '.plus', function() {
+
+        if ($('.count').val() < 9) {
             $('.count').val(parseInt($('.count').val()) + 1);
 
         }
     });
-    $(document).on('click', '.minus', function () {
+    $(document).on('click', '.minus', function() {
         $('.count').val(parseInt($('.count').val()) - 1);
         if ($('.count').val() == 0) {
             $('.count').val(1);
@@ -17,7 +26,7 @@ $(document).ready(function () {
     });
 
     let count = 0;
-    $('.btns').click(function (e) {
+    $('.btns').click(function(e) {
 
         let text = $('#count').text();
 
@@ -25,7 +34,15 @@ $(document).ready(function () {
         e.preventDefault();
     })
 
-    $(".btns").click(function (e) {
+
+ /*
+ * Create : Aung Min Khant(29/1/2022)
+ * Update :
+ * Explain of function : when user click get selected and checkvalue send with ajax to cart
+ * Prarameter : no
+ * return : form data
+ */
+    $(".btns").click(function(e) {
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -34,44 +51,94 @@ $(document).ready(function () {
             },
         });
         e.preventDefault();
-        var formdata = { pid: pid, qty: $("#qty").val(), };
-        console.log(formdata);
-        console.log($("input[type='checkbox']:checked").val());
-        let status = [];
-        $('input[type=checkbox]:checked').each(function () 
-        {
-             status = (this.checked ? $(this).val() : ""); 
-            
-             let text = $(this).parent().parent().siblings(".lab").find('.ptop').text();
-               console.log(text);
-            });
-          
-        var checkedValues = $('input:checkbox:checked').map(function() {
-            
-                return $(this).parent().parent().siblings().children().find('.ptop');
-            }).get();
-        console.log(checkedValues);
-            console.log(status);
 
+        let status = [];
+        let values = [];
+
+        let text;
+        let allLabels = [];
+
+        $('.ptop').each(function() {
+            allLabels.push($(this).text());
+        });
+
+        //check value 
+        $('input[type=checkbox]:checked').each(function() {
+            text = $(this).parent().parent().prev().find('.ptop').text();
+            status = this.checked ? $(this).val() : "";
+
+
+            for (let index = 0; index < allLabels.length; index++) {
+                if (allLabels[index] == text) {
+                    var obj = {
+                        label: text,
+                        value: status
+                    };
+
+                    values.push(obj);
+
+                }
+            }
+
+        });
+        // selected value
+        $("select option:selected").each(function() {
+            text = $(this).parent().parent().parent().prev().find('.ptop').text();
+            status = this.selected ? $(this).val() : "";
+
+            for (let index = 0; index < allLabels.length; index++) {
+                if (allLabels[index] == text) {
+
+                    var obj = {
+                        label: text,
+                        value: status
+                    };
+
+                    values.push(obj);
+
+                }
+            }
+
+        });
+        const sessionValue = [];
+        // obj array looping
+        values.forEach(function(item) {
+            var existing = sessionValue.filter(function(v, i) {
+                return v.label == item.label;
+            })
+            if (existing.length) {
+                var existingIndex = sessionValue.indexOf(existing[0]);
+                sessionValue[existingIndex].value = sessionValue[existingIndex].value.concat(',', item.value)
+            } else {
+                if (typeof item.value == 'String')
+                    item.value = [item.value];
+                sessionValue.push(item);
+            }
+        })
+
+        var formdata = { "pid": Number(pid), "q": Number($("#qty").val()), "value": sessionValue };
         $.ajax({
             type: "POST",
             url: "cartsession",
-            data: formdata,
-            dataType: "json",
-            success: function (data) {
-
+            data: { data: formdata },
+            success: function(data) {
                 console.log(data);
             },
-            error: function (data) {
-                console.log(data);
+            error: function(data) {
+                console.error(data);
             }
         });
-
-
-
     });
 });
 
+
+/*
+ * Create : Aung Min Khant(30/1/2022)
+ * Update :
+ * Explain of function : To change image main photo 
+ * Prarameter : no
+ * return : change image src
+ */
 function changeImage(img) {
 
     main.src = img.src;

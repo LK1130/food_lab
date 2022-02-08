@@ -48,6 +48,7 @@ class M_AD_Login extends Model
         $hasAccount = M_AD_Login::select(['id', 'ad_role', 'ad_name'])
             ->where('ad_name', $name)
             ->where('ad_password', md5(sha1($password)))
+            ->where('ad_valid', 1)
             ->first();
 
         Log::channel('adminlog')->info('M_AD_Login Model', [
