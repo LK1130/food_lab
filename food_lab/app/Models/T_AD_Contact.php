@@ -13,8 +13,8 @@ class T_AD_Contact extends Model
     use HasFactory;
 
      /*
-   * Create:Zar Ni(2022/01/22) 
-   * Update: 
+   * Create:Zar Ni(2022/01/22)
+   * Update:
    * This function is Show data of Customer Contact List.
    */
     public function customerContactList(){
@@ -37,8 +37,8 @@ class T_AD_Contact extends Model
     }
 
     /*
-   * Create:Zar Ni(2022/01/22) 
-   * Update: 
+   * Create:Zar Ni(2022/01/22)
+   * Update:
    * This function is Show data of Customer Contact Count.
    */
     public function contactCount(){
@@ -60,8 +60,8 @@ class T_AD_Contact extends Model
     }
 
     /*
-   * Create:Zar Ni(2022/01/22) 
-   * Update: 
+   * Create:Zar Ni(2022/01/22)
+   * Update:
    * This function is Show data of Customer Contact Reply.
    */
     public function contactReply($id){
@@ -85,8 +85,8 @@ class T_AD_Contact extends Model
     }
 
     /*
-   * Create:Zar Ni(2022/01/25) 
-   * Update: 
+   * Create:Zar Ni(2022/01/25)
+   * Update:
    * This function is for reply to customer.
    */
     public function cuscontactrp($id,$request){
@@ -101,12 +101,12 @@ class T_AD_Contact extends Model
         Log::channel('adminlog')->info("T_AD_Contact Model", [
             'Start cuscontactrp'
         ]);
-        
+
         return $cont;
     }
      /*
-   * Create:Zar Ni(2022/01/25) 
-   * Update: 
+   * Create:Zar Ni(2022/01/25)
+   * Update:
    * This function is for reply to customer.
    */
     public function cuscontactMail($id){
@@ -114,6 +114,26 @@ class T_AD_Contact extends Model
         ->where('id',$id)
         ->first();
         return $contactmail;
+    }
+
+    /*
+    * Create : Min Khant(9/2/2022)
+    * Update :
+     * * Explain of function : store data from customer contact form
+     * * Prarameter : input data
+     * * return :
+     */
+    public function contactForm($req){
+        Log::channel('customerlog')->info('CustoemrController',[
+            'start contactForm'
+        ]);
+        $contact = new T_AD_Contact();
+        $contact->message = $req['message'];
+        $contact->customer_id = session('customerId');
+        $contact->save();
+        Log::channel('customerlog')->info('CustoemrController',[
+            'end contactForm'
+        ]);
     }
 
 }

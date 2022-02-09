@@ -221,6 +221,11 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     Route::get('/policyinfo', [CustomerController::class, 'policy']);
 
     /*
+    * For delivery info Page
+    */
+    Route::get('/delivery',[CustomerController::class,'deliveryDetails']);
+
+    /*
      * For Reprot Page
     */
     Route::get('/report', [CustomerController::class, 'report']);
@@ -236,6 +241,14 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
 
     // For Suggest Form
     Route::post('/suggest', [CustomerController::class, 'suggestForm']);
+
+    /*
+     * For contact page*/
+    Route::get('/contact',[CustomerController::class,'contact']);
+
+    /*
+     * For contact form*/
+    Route::post('/contact',[CustomerController::class,'contactForm']);
 
     /*
      * For Access Page

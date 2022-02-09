@@ -34,7 +34,7 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3 nav-containers">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="/storage/siteLogo/{{ $name->site_logo }}" class="pe-2" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"  class="pe-2" />
                 <span class="text-uppercase comapanynames">{{ $name->site_name }}</span>
             </a>
 
@@ -101,7 +101,7 @@
                     @endif
                     <li class="nav-item companys">
                         <a href="/" class="navbar-brand d-lg-inline">
-                            <img src="/storage/siteLogo/{{ $name->site_logo }}" class="pe-2" />
+                            <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px" class="pe-2" />
                             <span class="comapanynames">{{ $name->site_name }}</span>
                         </a>
                     </li>
@@ -145,8 +145,8 @@
             </div>
 
             {{-- /*
-                * Create:zayar(2022/01/17) 
-                * Update: 
+                * Create:zayar(2022/01/17)
+                * Update:
                 */ --}}
             {{-- start profile alert box --}}
 
@@ -169,8 +169,8 @@
         </nav>
         {{-- end navbar --}}
         {{-- /*
-* Create:zayar(2022/01/22) 
-* Update: 
+* Create:zayar(2022/01/22)
+* Update:
 */ --}}
         {{-- start inform alert box --}}
 

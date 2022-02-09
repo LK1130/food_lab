@@ -1,5 +1,10 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
+@section('css')
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('title','Food Lab')
 
 @section('body')
@@ -13,7 +18,7 @@
                 <img src="{{ url('storage/logo/siteLog.png') }}" alt="logo"/>
             </div>
         </div>
-        
+
         <div class="d-flex flex-column justify-content-center align-items-center suggests">
             <p class="fw-bolder form-headers">{{ __('messageMK.suggestForm') }}</p>
             <form action="/suggest" method="post">
