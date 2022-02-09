@@ -180,7 +180,6 @@ class CustomerController extends Controller
             'alltracks' => $alltracks,
             'news' => $newDatas,
             'name' => $name,
-
             'nav' => 'inform'
         ]);
     }
@@ -196,8 +195,10 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start policy'
         ]);
+
         $msite = new M_Site();
         $policys = $msite->policy();
+
 
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end policy'
