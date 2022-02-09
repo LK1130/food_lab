@@ -14,6 +14,7 @@ use App\Models\T_AD_Suggest;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -24,6 +25,10 @@ class DashboardController extends Controller
     * Return is view (dashboard.blade.php)
     */
     public function dashboardList(){
+
+        Log::channel('adminlog')->info("DashboardController", [
+            'Start dashboardList'
+        ]);
 
         $detail = new T_AD_Order();
         $orderdetail = $detail->DashboardMinitrans();
@@ -61,6 +66,11 @@ class DashboardController extends Controller
 
         $top =new T_AD_OrderDetail();
         $top3 =$top->topthree();    
+
+        Log::channel('adminlog')->info("NotificationController", [
+            'Start dashboardList'
+        ]);
+        
         return view('admin.dashboard',['t_cu_customer'=>$customerlist,'orderdetail'=>$orderdetail ,'coincharge'=>$coincharge ,'tcount'=>$transcount1 ,'cuscount'=>$customercount ,'coinrate'=>$coinrate,'todaycount'=>$todayorder,'product'=>$dashproduct,'sugcount'=>$sugcount,'concount'=>$conCount,'rpcount'=>$rpcount,'top'=>$top3]);
     }
     

@@ -33,6 +33,8 @@
     border: 1px black solid;
     background-color: var(--btns) !important;
 }
-.back {
-    margin-right: 48vw;
+.notification {
+    display: flex;
+    justify-content: end;
+    width: 100%;
 }

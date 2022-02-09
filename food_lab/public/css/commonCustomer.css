@@ -11,14 +11,14 @@ textarea {
 :root {
     --primary-color: #ff470b;
     --secondary-color: #ff6600;
-    --product-color: #FF0B1A;
-    --btn-color: #FF280B;
+    --product-color: #ff0b1a;
+    --btn-color: #ff280b;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
     --text-color2: #000000;
     --bg2-color: black;
     --bg3-color: white;
-    --coin-color: #FFD233;
+    --coin-color: #ffd233;
     --coin-color: #ffd233;
     --coinRulebg: #ff0000;
     --fileicon-color: #ffffff;
@@ -27,7 +27,6 @@ textarea {
     --submitbtn-color: #ff0000;
     --submitbtn-textcolor: #ffffff;
 }
-
 
 /*Start Header*/
 
@@ -43,7 +42,6 @@ textarea {
 marquee {
     background-color: #000000;
 }
-
 
 /*start navbar*/
 
@@ -126,15 +124,12 @@ marquee {
     }
 }
 
-
 /*end navbar*/
-
 
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
-
 
 /*start Profile Alert box*/
 
@@ -234,15 +229,12 @@ marquee {
     } */
 }
 
-
 /*end profile alert */
-
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
-
 
 /*start inform Alert box*/
 
@@ -401,14 +393,8 @@ marquee {
     color: var(--text-color);
 }
 
-
-<<<<<<< HEAD
-/*end navbar*/
-=======
 /*end navbar*/
 
 /*End Header*/
 
 /*End Header*/
-
->>>>>>> e20d634f71f5c7e67027910cb38e1086632d61ab
