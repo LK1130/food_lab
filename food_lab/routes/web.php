@@ -50,7 +50,7 @@ use PhpParser\Node\Expr\FuncCall;
 //admin login
 Route::get('/admin', [AdminController::class, 'loginPage']);
 Route::post('/admin', [AdminController::class, 'loginForm']);
-// admin logout 
+// admin logout
 Route::get('/adminlogout', [AdminController::class, 'logout']);
 Route::group(['middleware' => ['checkAdmin']], function () {
 
@@ -211,139 +211,140 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 
 Route::group(['middleware' => ['checkMaintenance']], function () {
     /*
- * For customer home page
-*/
+     * For customer home page
+    */
     Route::get('/', [CustomerController::class, 'home']);
 
     /*
- * For Policy Info Page
-*/
+     * For Policy Info Page
+    */
     Route::get('/policyinfo', [CustomerController::class, 'policy']);
 
     /*
- * For Reprot Page
-*/
+     * For Reprot Page
+    */
     Route::get('/report', [CustomerController::class, 'report']);
 
     /*
- * From Report Page to store form data in database
-*/
+     * From Report Page to store form data in database
+    */
     Route::post('/report', [CustomerController::class, 'reportForm']);
 
     /*
- * For Suggest Page */
+     * For Suggest Page */
     Route::get('/suggest', [CustomerController::class, 'suggest']);
 
-    // For Suggest Form 
+    // For Suggest Form
     Route::post('/suggest', [CustomerController::class, 'suggestForm']);
 
     /*
- * For Access Page
- */
+     * For Access Page
+     */
     Route::get('/access', [CustomerController::class, 'access']);
 
     /*
- * For Register Form
- */
+     * For Register Form
+     */
     Route::post('/access', [CustomerController::class, 'register']);
     Route::post('/google', [CustomerController::class, 'google']);
 
     /*
- * For verify account
- */
+     * For verify account
+     */
     Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
 
     /*
- * For Login Page
- */
+     * For Login Page
+     */
     Route::get('/login', [CustomerController::class, 'login']);
 
     /*
- * For Edit Profile Page
- * zayar
- */
+     * For Edit Profile Page
+     * zayar
+     */
     Route::resource('editprofile', CustomerProfileController::class);
     /*
- * For ajax 
- * zayar
- */
+     * For ajax
+     * zayar
+     */
     Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
     /*
- * For news get initial 
- * zayar
- */
+     * For news get initial
+     * zayar
+     */
     Route::get('getnews', [CustomerController::class, 'getNews']);
     /*
- * For Update Profile Page
- * zayar
- */
+     * For Update Profile Page
+     * zayar
+     */
     Route::resource('updateprofile', CustomerProfileUpdate::class);
     /*
- * For Update Profile
- * zayar
- */
+     * For Update Profile
+     * zayar
+     */
     Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
     /*
- * For news page
- * zayar
- */
+     * For news page
+     * zayar
+     */
     Route::get('/customerNews', [CustomerController::class, 'news']);
 
     /*
- * For messages page
- * zayar
- */
+     * For messages page
+     * zayar
+     */
     Route::get('/messages', [CustomerController::class, 'message']);
+
     /*
-/*
- * For tracks page
- * zayar
- */
+     * For tracks page
+     * zayar
+     */
     Route::get('/tracks', [CustomerController::class, 'tracks']);
 
     /*
- * For cart page
- * min khant
-*/
+     * For cart page
+     * min khant
+    */
     Route::get('/cart', [CartController::class, 'cart']);
     Route::post('/cart', [CartController::class, 'cartDetail']);
     Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
 
     /*
- * For deliery info page
- * cherry
-*/
+     * For deliery info page
+     * cherry
+    */
     Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
     Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
     /*
- * For Login Form
- */
+     * For Login Form
+     */
     Route::post('/login', [CustomerController::class, 'loginForm']);
 
     /*
-For Buy Coin Page
-*/
+    For Buy Coin Page
+    */
     Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
     Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
 
     /*
- * For Product Detail Form
- */
+     * For Product Detail Form
+     */
     Route::get('productDetail', [ProductDetailController::class, 'detail']);
     Route::post('cartsession', [CartController::class, 'getData']);
 
 
     /*
- * For Product
- */
+     * For Product
+     */
     Route::get('productLists', [ProductDetailController::class, 'productList']);
     // Route::get('menu',[ProductDetailController::class,'eachList'] );
     Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
     Route::post('searchTaste', [ProductSearchController::class, 'searchByTaste']);
     Route::get('menutype', [ProductSearchController::class, 'listByType']);
     Route::get('menutaste', [ProductSearchController::class, 'listByTaste']);
+
     /*
- * For logging out
- */
+     * For logging out
+     */
     Route::get('/logout', [CustomerController::class, 'logout']);
 });

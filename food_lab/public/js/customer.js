@@ -1,7 +1,5 @@
 let prices = document.querySelectorAll(".prices");
 
-
-
 /*
  * Create : Min Khant(13/1/2022)
  * Update :
