@@ -121,6 +121,7 @@
    
   }
 
+
 .special:focus,.special:hover{
 
     /* background-color:  !important; */
@@ -187,9 +188,14 @@
     border: 1px solid var(--product-color);
 }
 
+
+.image-container{
+    width: 60%;
+    height: 50%;
+}
 .images{
-    width: 61%;
-    height: 70%;
+    width: 60%;
+    margin-left: 2rem;
 }
 
 .copy{
@@ -206,9 +212,14 @@
         margin-right: auto;
     }
 
+    .image-container{
+        width: 60%;
+        height: 50%;
+       
+    }
     .images{
         width: 60%;
-        height: 60%;
+        margin: 3rem;
     
     }
 
@@ -238,6 +249,9 @@
         background: var(--bg2-color);
         border: 1px solid var(--product-color);
     }
+
+    
+   
 
     
 }

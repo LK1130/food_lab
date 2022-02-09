@@ -66,7 +66,7 @@
                         </p>
                         <a class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
-                    <div class="col-6 ">
+                    <div class="col-6">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1" />
                     </div>
                 </div>

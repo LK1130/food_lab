@@ -22,7 +22,11 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ url('js/productChange.js') }}" type="text/javascript" defer></script>
+    
+    
+    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
+    <script src="{{ url('js/productChange.js') }}" type="text/javascript"></script>
+    
 @endsection
 
 @section('title', 'Food Lab')
@@ -33,7 +37,7 @@
     <section>
         <div class="container-fluid">
             <div class="d-flex justify-content-center">
-                <p class="products">Products</p>
+                <p class="products">Food</p>
             </div>
         </div>
 
@@ -41,7 +45,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <select class="selectpicker p-3 mx-3 m-5 "  data-size="7" name="type" id="selectpicker1">
+                    <select class="selectpicker p-3 mx-3 m-5 "  data-size="5" name="type" id="selectpicker1">
                         <option class="selectpicker1" value="" selected disabled>Lists By Category</option>
                         @foreach ($mFav as $item)
                             <option  value="{{ $item->id }}" class="special">{{ $item->favourite_food }}</option>
@@ -61,10 +65,12 @@
                 
             <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
                
-                <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class="img-fluid images" alt="bestitem1" />
+                <div class="image-container ">
+                    <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class=" images" alt="bestitem1" />
+                </div>
                
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
             </div>
@@ -97,9 +103,11 @@
             @foreach( $products as $item)
                 
             <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-                <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
+                <div class="image-container">
+                    <img src="/storage/{{ $item->path }}" class="images" alt="bestitem1" />
+                </div>
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}  / /   {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
             </div>
@@ -121,9 +129,11 @@
         @foreach( $recommend as $item)
             
         <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-            <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
+           <div class="image-container">
+            <img src="/storage/{{ $item->path }}" class="images" alt="bestitem1" />
+           </div>
             <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }} / /   {{ number_format($item->amount) }} MMK</p>
             <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
             <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
         </div>
