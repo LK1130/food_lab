@@ -15,6 +15,9 @@
 
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+   
+  
     {{--  <script src="{{ url('js/commonCustomer.js') }}" type="text/javascript" defer></script>  --}}
    
 @endsection
@@ -28,7 +31,7 @@
             <a href="/productLists">
                 <i class="fas fa-arrow-left fs-2 text-white arrows"></i>
             </a>
-            <div class="mx-5 details">Item Details</div>
+            <div class="mx-5 details">Food Details</div>
         </div>
 
         <div class="container mt-3">
@@ -81,7 +84,7 @@
 
                                                         <div class="d-flex justify-content-between">
                                                             <p class="pamount">Amount -</p>
-                                                            <p class="amount">{{ $productId->amount }}</p>
+                                                            <p class="amount">{{ number_format($productId->amount) }}</p>
                                                         </div>
 
                                                         <div class="d-flex  justify-content-between">
@@ -117,9 +120,7 @@
                                                                 <input type="number" class="count" id="qty" name="qty" value="1">
                                                                 <span class="plus">+</span>
                                                             </div>
-                                                            <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3  ">
-                                                                <button class="btn btns">Buy Now</button>
-                                                            </div>
+                                                            
                                                         </div>
 
 
@@ -191,6 +192,13 @@
 
                                 {{-- </div>
                             </div> --}}
+                            
+                               
+                            <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 mx-auto  ">
+                                <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal">Buy Now</button>
+                                <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
+                            </div>
+                           
 
                                 
 
@@ -201,12 +209,38 @@
                                 </div>
                             </div>
 
+
+                        </div>
+
+
+                        {{-- start modal --}}
+                        <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+                              <div class="modal-content">
+                                {{-- <div class="modal-header"> --}}
+                                  
+                                <div class="d-flex justify-content-end ">
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                                </div>
+                                {{-- </div> --}}
+                                {{-- <div class="modal-body"> --}}
+                                  <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added to your Shopping Cart. You now have item in your Shopping Cart.</p>
+                                {{-- </div> --}}
+                                <div class="modal-footer">
+                                 <a href="/cart"> <button type="button" class="btn btnCart" >View Shopping Cart</button></a>
+                                  <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            {{-- end modal --}}
                             <script>
                               
                                 let pid = @json($productId->pid);
                                 console.log(pid);
                                
                             </script>
-                            
+                             
                             <script src="{{ url('js/productDetail.js') }}" type="text/javascript" defer></script>
                         @endsection
