@@ -1,6 +1,5 @@
 /*start navbar*/
 
-
 .headers {
     min-height: 100vh;
     background-image: url('/img/bg10.png') !important;
@@ -55,14 +54,13 @@
     color: var(--text-color);
 }
 
-.leftside{
+.leftside {
     left: 130% !important;
     font-size: 1rem;
     padding: 2px;
     border-radius: 50%;
     color: var(--product-color);
 }
-
 
 .navs i {
     cursor: pointer;
@@ -71,15 +69,15 @@
 
 /*end navbar*/
 
+
 /* Detail Section */
 
-
-.products{
+.products {
     font-size: 3rem;
     color: var(--product-color);
 }
 
-#selectpicker1{
+#selectpicker1 {
     /* min-width: 20%; */
     font-weight: bold;
     color: var(--text-color);
@@ -89,10 +87,7 @@
     background: var(--bg2-color);
 }
 
-
-
-
-.selectpicker1{
+.selectpicker1 {
     /* min-width: 20%; */
     font-weight: bold;
     color: var(--text-color);
@@ -102,8 +97,7 @@
     background: var(--bg2-color);
 }
 
-
-#selectpicker2{
+#selectpicker2 {
     /* min-width: 50%; */
     font-weight: bold;
     color: var(--text-color);
@@ -122,14 +116,14 @@
   }
 
 
-.special:focus,.special:hover{
-
+.special:focus,
+.special:hover {
+    background-color: burlywood !important;
     /* background-color:  !important; */
     border: 1px solid var(--product-color) !important;
 }
-  
+
 .productbox {
-   
     background: linear-gradient( 120deg, rgba(245, 0, 0, 0.5) 30%, rgba(0, 0, 0, 1) 60%);
     border-radius: 20px;
 }
@@ -139,7 +133,7 @@
     font-size: 1.4rem;
 }
 
-.tastebtns{
+.tastebtns {
     background-color: var(--text-color);
     color: var(--product-color);
     border: 2px groove transparent;
@@ -147,7 +141,7 @@
     height: 40%;
 }
 
-.typebtns{
+.typebtns {
     background-color: var(--text-color);
     color: var(--product-color);
     border: 2px groove transparent;
@@ -162,20 +156,22 @@
     margin: 10px;
     padding: 5px 17px 5px 17px;
 }
-.detailbtns{
+
+.detailbtns {
     background-color: var(--primary-color);
     color: var(--text-color);
     background-origin: 2px groove transparent;
     margin: 10px;
 }
 
-.shopbtns:hover,.allbtns:hover {
+.shopbtns:hover,
+.allbtns:hover {
     background-color: var(--text-color);
     color: var(--primary-color);
     border: 2px groove var(--primary-color);
 }
 
-.recommends{
+.recommends {
     width: 100%;
     height: 100%;
     font-size: 1.6rem;
@@ -193,19 +189,19 @@
     width: 60%;
     height: 50%;
 }
-.images{
-    width: 60%;
-    margin-left: 2rem;
+
+.images {
+    width: 61%;
+    height: 70%;
 }
 
-.copy{
+.copy {
     font-size: 1.5rem;
     color: var(--product-color);
 }
 
-@media only screen and (max-width: 720px){
-
-    .recommends{
+@media only screen and (max-width: 720px) {
+    .recommends {
         width: 80%;
         height: 90%;
         padding: 5px;
@@ -217,31 +213,29 @@
         height: 50%;
        
     }
-    .images{
-        width: 60%;
-        margin: 3rem;
+   
     
+    .images {
+        width: 60%;
+        height: 60%;
     }
-
-    .tastebtns{
+    .tastebtns {
         background-color: var(--text-color);
         color: var(--product-color);
         border: 2px groove transparent;
-        margin : 20px !important;
+        margin: 20px !important;
         min-width: 25% !important;
         min-height: 25% !important;
     }
-
-    .typebtns{
+    .typebtns {
         background-color: var(--text-color);
         color: var(--product-color);
         border: 2px groove transparent;
-        margin : 20px !important;
+        margin: 20px !important;
         min-width: 25% !important;
         min-height: 25% !important;
     }
-  
-    .recommends{
+    .recommends {
         margin: 1rem;
         margin: auto;
         padding: 5px !important;
@@ -254,4 +248,5 @@
    
 
     
+
 }

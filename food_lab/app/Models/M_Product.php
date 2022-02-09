@@ -374,11 +374,12 @@ class M_Product extends Model
 
         $result = DB::table('m_product')
         ->select(['*'], DB::raw('m_product.id'))
-        ->join('t_ad_photo', 't_ad_photo.link_id', '=', $id)
+        ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
         ->where('m_product.avaliable', 1)
         ->where('t_ad_photo.order_id', 1)
         ->where('t_ad_photo.del_flg', 0)
         ->where('m_product.del_flg', 0)
+        ->where('m_product.product_type', $id)
         ->orderBy('m_product.id')
         ->get();
            

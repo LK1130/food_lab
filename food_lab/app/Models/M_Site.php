@@ -4,12 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class M_Site extends Model
 {
     public $table = 'm_site';
     use HasFactory;
+
+    /*
+     * Create : Min Khant(23/1/2022)
+     * Update :
+     * Explain of function : check server maintenance
+     * Prarameter : no
+     * return : maintenance true/false
+     * */
+    public function maintenance()
+    {
+        Log::channel('customerlog')->info('M_Site Model', [
+            'start maintenance'
+        ]);
+
+        $maintenance = M_Site::select('maintenance')->first();
+
+        Log::channel('customerlog')->info('M_Site Model', [
+            'start maintenance'
+        ]);
+
+        return $maintenance;
+    }
+
     /*
     * Create:zayar(2022/01/13) 
     * Update: 
@@ -166,7 +190,8 @@ class M_Site extends Model
         Log::channel('adminlog')->info("M_Site Model", [
             'End news'
         ]);
-        return M_AD_News::where('m_ad_news.del_flg', 0)
+        return M_AD_News::select('*', DB::raw('m_ad_news.id AS newsid'))
+            ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->paginate(3);
     }
@@ -213,7 +238,7 @@ class M_Site extends Model
         Log::channel('customerlog')->info('M_Site Model', [
             'start siteName'
         ]);
-        $name = M_Site::select('site_name')
+        $name = M_Site::select('*')
             ->where('del_flg', '=', 0)
             ->first();
 

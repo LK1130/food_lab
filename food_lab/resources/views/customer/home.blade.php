@@ -35,7 +35,7 @@
                         <p class="fw-bold delivery-infos">
                             {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
                         </p>
-                        <a class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
+                        <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
 
                     <div class="col-6 ">
@@ -50,7 +50,7 @@
                         <p class="fw-bold delivery-infos">
                             {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
                         </p>
-                        <a class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
+                        <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
                     <div class="col-6 ">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1" />
@@ -64,7 +64,7 @@
                         <p class="fw-bold delivery-infos">
                             {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
                         </p>
-                        <a class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
+                        <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
                     <div class="col-6">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1" />
@@ -91,8 +91,8 @@
 
     {{-- Start Welcome Section --}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes">
-        <p class="fs-1 fw-bolder welcometexts">{{ __('messageMK.Welcome Our Food Lab') }}</p>
-        <p class="fs-4 companyinfos"><i class="fas fa-quote-left falefts"></i>{{ __('messageMK.FoodLabInfo') }}<i
+        <p class="fs-1 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
+        <p class="fs-4 companyinfos"><i class="fas fa-quote-left falefts"></i>{{ $name->intro }}<i
                 class="fas fa-quote-right farights"></i></p>
     </section>
     {{-- End Welcome Section --}}
@@ -186,7 +186,7 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="col-10">
-                                <p> 3rd floor,Myanmar Plazzar, Kabar Aye Pagoda Rd, Yangon</p>
+                                <p>{{ $name->address }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -194,8 +194,16 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="col-10">
-                                <p><a href="tel:09876543211" class="d-block">09876543211</a><a
-                                        href="tel:097788665544" class="d-block">097788665544</a></p>
+                                <p>
+                                    <a href="tel:{{ $name->phone1 }}" class="d-block">{{ $name->phone1 }}</a>
+                                    @if($name->phone2 != 'null')
+                                        <a href="tel:{{ $name->phone2 }}" class="d-block">{{ $name->phone2 }}</a>
+                                    @endif
+                                    @if($name->phone3 != 'null')
+                                        <a href="tel:{{ $name->phone3 }}" class="d-block">{{ $name->phone3 }}</a>
+                                    @endif
+                                    
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -203,17 +211,11 @@
                                 <p><i class="fas fa-envelope"></i></p>
                             </div>
                             <div class="col-10">
-                                <a href="mailto:www.foodlab2022@gmail.com">www.foodlab2022@gmail.com</a>
+                                <a href="mailto:{{ $name->gmail }}">{{ $name->gmail }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center align-items-center">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d238.61434557816733!2d96.20029431720103!3d16.88432532626319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smm!4v1641994274866!5m2!1sen!2smm"
-                    class="maps" width="450" height="450" style="border:0;" allowfullscreen=""
-                    loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -223,16 +225,17 @@
     <footer>
         <div class="pt-5 ps-3 footer-infos">
             <div class="d-flex align-items-center footer-logos">
-                <img src="{{ url('storage/logo/siteLog.png') }}" />
-                <p class="fw-bolder footer-names">{{ $name->site_name }}</p>
+                 <img src="/storage/siteLogo/{{ $name->site_logo }}" /> 
+                <p class="fw-bolder text-uppercase footer-names">{{ $name->site_name }}</p>
             </div>
             <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
                 <div class="footer-navs">
                     <p><a href="/">{{ __('messageMK.home') }}</a></p>
                     <p><a href="#">{{ __('messageMK.aboutus') }}</a></p>
-                    <p><a href="#">{{ __('messageMK.products') }}</a></p>
-                    <p><a href="">{{ __('messageMK.buy coin') }}</a></p>
-                    <p><a href="#">{{ __('messageMK.inform') }}</a></p>
+                    <p><a href="/productLists">{{ __('messageMK.Food') }}</a></p>
+                    @if (session()->has('customerId'))
+                        <p><a href="/buycoin">{{ __('messageMK.buy coin') }}</a></p>
+                    @endif
                     @if (!session()->has('customerId'))
                         <p><a href="/access">{{ __('messageMK.access') }}</a></p>
                     @endif
@@ -251,15 +254,10 @@
                         <p><a href="/policyinfo">{{ __('messageMK.privacy') }}</a></p>
                         <p><a href="#">{{ __('messageMK.deliveryinfo') }}</a></p>
                     </div>
-                    <div class="mt-4">
-                        <p>{{ __('messageMK.othesite') }}</p>
-                        <p class="sitelinks"><a href="#">{{ __('messageMK.sitelink') }}</a></p>
-                    </div>
                 </div>
                 <div>
                     <p>{{ __('messageMK.powerby') }}</p>
-                    <p>Team x</p>
-                    <p class="mailTeams"><a href="mailto:https://www.teamx.com">https://www.teamx.com</a></p>
+                    <p class="mailTeams"><a href="mailto:https://www.teamx.com">Team x</a></p>
                 </div>
             </div>
         </div>

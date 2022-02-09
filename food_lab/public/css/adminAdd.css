@@ -41,7 +41,7 @@
     color: var(--bs-white);
 }
 .adminAddForm {
-    margin-left: 28%;
+    margin-left: 10%;
     margin-top: 4%;
 }
 
@@ -140,7 +140,8 @@ button {
 }
 #validate {
     position: absolute;
-    left: 30vh;
+    right: 45vw;
+    top: 1vh;
 }
 #back2 {
     position: absolute;
@@ -157,10 +158,13 @@ button {
 #icon {
     cursor: pointer;
     position: absolute;
-    margin-top: 3.3%;
-    margin-left: 37%;
-    width: 3%;
-    height: 3%;
+    width: 3.5vw;
+    height: 3.5vh;
+    top: 22%;
+    right: 37vw;
+}
+.relative {
+    position: relative;
 }
 .selectcategory {
     width: 12%;

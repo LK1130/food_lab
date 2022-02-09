@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Models\OrderStatusModel;
+use App\Models\M_Order_Status;
 use Illuminate\Contracts\Validation\Rule;
 
 class CheckOrder implements Rule
@@ -26,7 +26,7 @@ class CheckOrder implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = OrderStatusModel::where('status', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_Order_Status::where('status', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }

@@ -31,7 +31,7 @@ class ProductDetailController extends Controller
             'Start detail'
         ]);
 
-    
+
         $news = new M_AD_News();
         $newDatas = $news->news();
         $newsCount = count($newDatas);
@@ -42,18 +42,18 @@ class ProductDetailController extends Controller
 
         $product = new M_Product();
         $productId = $product->searchById($request->input('id'));
-        if($productId == null)abort(404);
+        if ($productId == null) abort(404);
 
         $pPhoto = new T_AD_Photo();
         $productPhoto = $pPhoto->editEvd($request->input('id'));
-        if($productPhoto == null)abort(404);
-        
+        if ($productPhoto == null) abort(404);
+
         $productInfos = $product->productInfo();
 
 
         $mDetail = new M_Product_Detail();
         $detail = $mDetail->searchDataById($request->input('id'));
-        if($detail == null)abort(404);
+        if ($detail == null) abort(404);
 
 
         Log::channel('customerlog')->info('ProductDetailController', [
@@ -78,7 +78,7 @@ class ProductDetailController extends Controller
             'Start productList'
         ]);
 
-    
+
         $news = new M_AD_News();
         $newDatas = $news->news();
         $newsCount = count($newDatas);
@@ -116,10 +116,6 @@ class ProductDetailController extends Controller
             'End productList'
         ]);
 
-        return View('customer.productDetail.product', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'products' => $allProducts,'recommend' => $recomProducts, 'mFav' => $mFav, 'mTaste' => $mTaste, 'nav' => 'product', 'limitednews' => $newsLimited]);
+        return View('customer.productDetail.product', ['name' => $name, 'news' => $newDatas, 'productInfos' => $productInfos, 'products' => $allProducts, 'recommend' => $recomProducts, 'mFav' => $mFav, 'mTaste' => $mTaste, 'nav' => 'product', 'limitednews' => $newsLimited]);
     }
-
-
-  
-
 }

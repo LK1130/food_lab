@@ -153,4 +153,13 @@
     #saleCaption{
         margin-top: 1.5em;
     }
+
+    .tableContainer{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        margin-bottom: 10%;
+        
+    }
 }

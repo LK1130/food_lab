@@ -44,6 +44,7 @@ class CustomerController extends Controller
             'Start foodlab'
         ]);
 
+
         $recomProducts = [];
 
 
@@ -82,6 +83,7 @@ class CustomerController extends Controller
             'nav' => 'home'
         ]);
     }
+
     /*
      * Create : zayar(25/1/2022)
      * Update :
@@ -178,7 +180,6 @@ class CustomerController extends Controller
             'alltracks' => $alltracks,
             'news' => $newDatas,
             'name' => $name,
-
             'nav' => 'inform'
         ]);
     }
@@ -194,14 +195,16 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start policy'
         ]);
+
         $msite = new M_Site();
         $policys = $msite->policy();
+
 
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end policy'
         ]);
 
-        return view('customer.policyInfo', ['policys' => $policys]);
+        return view('customer.information.policyInfo', ['policys' => $policys]);
     }
 
     /*
@@ -224,7 +227,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end report'
             ]);
-            return view('customer.report', ['orderlists' => $orderlists]);
+            return view('customer.feedback.report', ['orderlists' => $orderlists]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end report'
@@ -268,14 +271,14 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'start suggest'
         ]);
-        if (session()->has('cutomerId')) {
+        if (session()->has('customerId')) {
             $data = new M_Suggest();
             $type = $data->suggestType();
 
             Log::channel('customerlog')->info('CustomerController', [
                 'end suggest'
             ]);
-            return view('customer.suggest', ['types' => $type]);
+            return view('customer.feedback.suggest', ['types' => $type]);
         }
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'

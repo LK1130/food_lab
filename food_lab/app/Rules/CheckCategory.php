@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Models\CategoryModel;
+use App\Models\M_News_Category;
 use Illuminate\Contracts\Validation\Rule;
 
 class CheckCategory implements Rule
@@ -26,7 +27,7 @@ class CheckCategory implements Rule
      */
     public function passes($attribute, $value)
     {
-        $admin = CategoryModel::where('category_name', '=', $value)->where('del_flg', '=', 0)->get();
+        $admin = M_News_Category::where('category_name', '=', $value)->where('del_flg', '=', 0)->get();
         if (count($admin) > 0) {
             return false;
         }
