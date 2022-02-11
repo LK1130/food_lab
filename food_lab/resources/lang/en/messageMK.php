@@ -1,12 +1,12 @@
 <?php
 
 return [
-    // admin 
+    // admin
     'Username' => 'Username',
     'adminLogin' => 'Admin Login',
     'Password' => 'Password',
     'login' => 'Login',
-    // customer 
+    // customer
     'home' => 'Home',
     'Food' => 'Food',
     'buy coin' => 'Buy Coin',
@@ -67,5 +67,7 @@ return [
     'favouriteType' => 'Favourite Type',
     'favouriteTaste' => 'Favourite Taste',
     'Note' => 'Note',
-    'submit' => 'Submit'
+    'submit' => 'Submit',
+    'contactForm' => 'Contact Form',
+    'Details' => 'Details'
 ];

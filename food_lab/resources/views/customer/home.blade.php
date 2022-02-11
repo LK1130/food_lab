@@ -11,7 +11,6 @@
 
 @section('script')
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
-
 @endsection
 
 @section('title', 'Food Lab')
@@ -202,7 +201,7 @@
                                     @if($name->phone3 != 'null')
                                         <a href="tel:{{ $name->phone3 }}" class="d-block">{{ $name->phone3 }}</a>
                                     @endif
-                                    
+
                                 </p>
                             </div>
                         </div>
@@ -225,7 +224,7 @@
     <footer>
         <div class="pt-5 ps-3 footer-infos">
             <div class="d-flex align-items-center footer-logos">
-                 <img src="/storage/siteLogo/{{ $name->site_logo }}" /> 
+                 <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"  />
                 <p class="fw-bolder text-uppercase footer-names">{{ $name->site_name }}</p>
             </div>
             <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
@@ -243,7 +242,7 @@
                 @if (session()->has('customerId'))
                     <div>
                         <p>{{ __('messageMK.feedback') }}</p>
-                        <p><a href="#">{{ __('messageMK.contact') }}</a></p>
+                        <p><a href="/contact">{{ __('messageMK.contact') }}</a></p>
                         <p><a href="/suggest">{{ __('messageMK.suggest') }}</a></p>
                         <p><a href="/report">{{ __('messageMK.report') }}</a></p>
                     </div>
@@ -252,7 +251,7 @@
                     <div>
                         <p>{{ __('messageMK.information') }}</p>
                         <p><a href="/policyinfo">{{ __('messageMK.privacy') }}</a></p>
-                        <p><a href="#">{{ __('messageMK.deliveryinfo') }}</a></p>
+                        <p><a href="/delivery">{{ __('messageMK.deliveryinfo') }}</a></p>
                     </div>
                 </div>
                 <div>

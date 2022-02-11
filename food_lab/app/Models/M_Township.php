@@ -74,10 +74,33 @@ class M_Township extends Model
         ]);
 
         $townships = M_Township::where('del_flg', '=', '0')
+            ->limit(10)
             ->get();
 
         Log::channel('customerlog')->info('M_Township Model', [
             'end townshipDetails'
+        ]);
+        return $townships;
+    }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : To get Township name in m_township Table From Database
+     * Prarameter : no
+     * return : Township names and each delivery prices
+     * */
+    public function townshipMoreDetails()
+    {
+        Log::channel('customerlog')->info('M_Township Model', [
+            'start townshipMoreDetails'
+        ]);
+
+        $townships = M_Township::where('del_flg', '=', '0')
+            ->get();
+
+        Log::channel('customerlog')->info('M_Township Model', [
+            'end townshipMoreDetails'
         ]);
         return $townships;
     }
