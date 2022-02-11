@@ -11,14 +11,14 @@ textarea {
 :root {
     --primary-color: #ff470b;
     --secondary-color: #ff6600;
-    --product-color: #FF0B1A;
-    --btn-color: #FF280B;
+    --product-color: #ff0b1a;
+    --btn-color: #ff280b;
     --bg-color: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
     --text-color2: #000000;
     --bg2-color: black;
     --bg3-color: white;
-    --coin-color: #FFD233;
+    --coin-color: #ffd233;
     --coin-color: #ffd233;
     --coinRulebg: #ff0000;
     --fileicon-color: #ffffff;
@@ -27,7 +27,6 @@ textarea {
     --submitbtn-color: #ff0000;
     --submitbtn-textcolor: #ffffff;
 }
-
 
 /*Start Header*/
 
@@ -40,6 +39,9 @@ textarea {
     position: relative;
 }
 
+marquee {
+    background-color: #000000;
+}
 
 /*start navbar*/
 
@@ -90,26 +92,49 @@ textarea {
 }
 
 #profileButton,
-#cartButton {
+#cartButton,
+.companys {
     display: block;
 }
 
-@media (max-width: 720px) {
+#cartButton {
+    position: relative;
+}
+
+.cartout{
+    left: 145% !important;
+    top: -25% !important;
+}
+
+.count {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 70%;
+    left: 90%;
+    text-align: center;
+    line-height: 25px;
+}
+
+@media (max-width: 1000px) {
     #profileButton,
-    #cartButton {
+    #cartButton,
+    .companys {
         display: none;
     }
 }
 
-
 /*end navbar*/
-
 
 /*
     * Create:zayar(2022/01/17) 
     * Update: 
     */
-
 
 /*start Profile Alert box*/
 
@@ -209,15 +234,12 @@ textarea {
     } */
 }
 
-
 /*end profile alert */
-
 
 /*
     * Create:zayar(2022/01/22) 
     * Update: 
     */
-
 
 /*start inform Alert box*/
 
@@ -360,6 +382,7 @@ textarea {
 
 .texts {
     color: var(--primary-color);
+    
     margin-bottom: 0;
     cursor: pointer;
 }
@@ -376,10 +399,8 @@ textarea {
     color: var(--text-color);
 }
 
-
 /*end navbar*/
 
 /*End Header*/
 
 /*End Header*/
-

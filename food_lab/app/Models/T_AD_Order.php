@@ -65,16 +65,15 @@ class T_AD_Order extends Model
         Log::channel('adminlog')->info("T_AD_Order Model", [
             'Start OrderTransactions'
         ]);
-        
-        $ordertransactions=T_AD_Order::
-        select('*', DB::raw('t_ad_order.id AS orderid'))
-        ->join('t_cu_customer','t_cu_customer.id','=','t_ad_order.customer_id')
-        ->join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
-        ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
-        ->orderby('t_ad_order.order_date','DESC')
-        ->orderby('t_ad_order.order_time','DESC')
-        ->where('t_ad_order.del_flg',0)
-        ->paginate(10);
+
+        $ordertransactions = T_AD_Order::select('*', DB::raw('t_ad_order.id AS orderid'))
+            ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
+            ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
+            ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->orderby('t_ad_order.order_date', 'DESC')
+            ->orderby('t_ad_order.order_time', 'DESC')
+            ->where('t_ad_order.del_flg', 0)
+            ->paginate(10);
 
         Log::channel('adminlog')->info("T_AD_Order Model", [
             'End OrderTransactions'
@@ -97,8 +96,8 @@ class T_AD_Order extends Model
         $dashboardtrans = T_AD_Order::join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
             ->where('t_ad_order.del_flg', 0)
-            ->orderby('t_ad_order.order_date','DESC')
-            ->orderby('t_ad_order.order_time','DESC')
+            ->orderby('t_ad_order.order_date', 'DESC')
+            ->orderby('t_ad_order.order_time', 'DESC')
             ->limit(5)
             ->get();
 
@@ -167,13 +166,11 @@ class T_AD_Order extends Model
             'Start Usertransaction'
         ]);
 
-        $userdetail = T_AD_Order::
-        
-        join('m_ad_login','m_ad_login.id','=','t_ad_order.last_control_by')
-        ->join('m_order_status','m_order_status.id','=','t_ad_order.order_status')
-        ->where('t_ad_order.del_flg',0)
-        ->where('t_ad_order.customer_id','=',$id)
-        ->paginate(10,['*'],'customerTrans');
+        $userdetail = T_AD_Order::join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
+            ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->where('t_ad_order.del_flg', 0)
+            ->where('t_ad_order.customer_id', '=', $id)
+            ->paginate(10, ['*'], 'customerTrans');
 
         return $userdetail;
 

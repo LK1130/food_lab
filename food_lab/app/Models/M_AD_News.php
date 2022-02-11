@@ -124,6 +124,7 @@ class M_AD_News extends Model
             'start news'
         ]);
         $news = M_AD_News::where('del_flg', '=', '0')
+            ->where('public', '0')
             ->get();
         Log::channel('customerlog')->info('M_AD_News Model', [
             'end news'

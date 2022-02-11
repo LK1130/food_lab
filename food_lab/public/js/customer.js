@@ -1,10 +1,4 @@
-let navbuttons = document.querySelector(".nav-buttons");
 let prices = document.querySelectorAll(".prices");
-
-
-navbuttons.addEventListener("click", function() {
-    navbuttons.classList.toggle("changes");
-});
 
 /*
  * Create : Min Khant(13/1/2022)

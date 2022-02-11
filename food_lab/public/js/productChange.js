@@ -8,7 +8,7 @@
 $(document).ready(function () {
     $('.typebtns').hide();
     $('.tastebtns').hide();
-    $("#selectpicker1").change(function (e) {
+    $("#selectpicker1").unbind().change(function (e) {
        
         $.ajaxSetup({
             headers: {
@@ -65,6 +65,8 @@ $(document).ready(function () {
     });
 
 
+  
+      
     /*
      * Create : Aung Min Khant(29/1/2022)
      * Update :

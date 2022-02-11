@@ -1,22 +1,21 @@
 <?php
 
 return [
-    // admin 
+    // admin
     'Username' => 'Username',
     'adminLogin' => 'Admin Login',
     'Password' => 'Password',
     'login' => 'Login',
-    // customer 
+    // customer
     'home' => 'Home',
-    'products' => 'Products',
+    'Food' => 'Food',
     'buy coin' => 'Buy Coin',
     'food lab' => 'FOOD LAB',
     'inform' => 'Inform',
     'access' => 'Access',
     'TasteOurDeliciousFood' => 'Taste Our Delicious  Food',
+    'welcome' => 'Welcome From Our ',
     'We deliver food as fast as you expert and we care about your time, so that you can grab your food at time' => 'We deliver food as fast as you expert and we care about your time, so that you can grab your food at time.',
-    'Welcome Our Food Lab' => 'Welcome Our Food Lab',
-    'FoodLabInfo' => 'Food Lab started up since 2016 . Loream aavmadva akma  kaklen  kafkaen  knfake aaa aaaaa. anaedfa  faek  ajef akjef ajefkkkk aeafae',
     'shopnow' => 'Shop Now',
     'bestselleritems' => 'Best Seller Items',
     'recommanditems' => 'Recommand Items',
@@ -55,7 +54,7 @@ return [
     'email' => 'Email',
     'address(State)' => 'address(State)',
     'address(Township)' => 'Address(Township)',
-    'address(No)' => 'Address(No)',
+    'address(street)' => 'Address(street)',
     'password' => 'Password',
     'confirmPassword' => 'Confirm Password',
     'alreadyHaveAnAccount' => 'Already Have An Account ?',
@@ -68,5 +67,7 @@ return [
     'favouriteType' => 'Favourite Type',
     'favouriteTaste' => 'Favourite Taste',
     'Note' => 'Note',
-    'submit' => 'Submit'
+    'submit' => 'Submit',
+    'contactForm' => 'Contact Form',
+    'Details' => 'Details'
 ];

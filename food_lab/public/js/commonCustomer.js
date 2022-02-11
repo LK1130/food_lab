@@ -1,5 +1,6 @@
 let marquee = document.querySelector("marquee"),
     importantnews = document.querySelectorAll(".importantnews");
+let navbuttons = document.querySelector(".nav-buttons");
 
 let importantNew = function() {
     if (importantnews.length != 0) {
@@ -29,3 +30,23 @@ let importantNew = function() {
 };
 
 importantNew();
+
+
+navbuttons.addEventListener("click", function() {
+    navbuttons.classList.toggle("changes");
+});
+
+window.addEventListener('load',function(){
+    
+})
+$(document).ready(function () {
+
+  show();
+});
+
+function show(){
+    
+   if(sessionStorage.clickcount > 0){
+    $('.cartcount').text(sessionStorage.clickcount);
+   }
+}

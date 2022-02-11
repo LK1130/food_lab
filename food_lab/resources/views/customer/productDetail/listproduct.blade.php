@@ -20,7 +20,7 @@
 @section('script')
    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
+    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
     {{--  <script src="{{ url('js/productChange.js') }}" type="text/javascript" defer></script>  --}}
 @endsection
 
@@ -51,7 +51,11 @@
                        </div>
                        <div class="d-flex  flex-column mt-3 mr-3">
                           <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns">More Details</button></a> 
-                          <a href=""> <button type="button " class="btn shopbtns">Shop Now</button></a> 
+                          @if (session()->has('customerId'))
+                          <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button></a>
+                          @else
+                          <a href="/access"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+                          @endif
                        </div>
                     </div>
                     

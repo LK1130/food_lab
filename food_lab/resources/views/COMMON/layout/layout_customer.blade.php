@@ -12,8 +12,10 @@
     <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
     @yield('script')
     @yield('css')
+    @yield('script')
     <title>@yield('title')</title>
 </head>
 
@@ -33,7 +35,7 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3 nav-containers">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="{{ url('storage/logo/siteLog.png') }}" class="pe-2" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"  class="pe-2" />
                 <span class="text-uppercase comapanynames">{{ $name->site_name }}</span>
             </a>
 
@@ -50,9 +52,12 @@
             @endif
 
             <div class="d-flex">
-                <a href="/" class="d-lg-none pt-2 me-3 texts"><i class="fas fa-shopping-cart fs-3"></i></a>
-
                 @if (session()->has('customerId'))
+                    <p class="nav-link d-lg-none me-2 mt-1 texts" id="profileButton2">
+                        <a href="/cart" class="d-lg-none me-3 position-relative texts"><i class="fas fa-shopping-cart fs-3"></i>
+                            <span id="cartCount1"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartout cartcount"></span></a>
+                    </p>
                     <p class="nav-link d-lg-none me-5 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p>
                 @endif
@@ -79,25 +84,27 @@
                     @endif
                     @if ($nav == 'product')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="#">{{ __('messageMK.products') }}</a>
+                            <a class="nav-link texts actives" href="#">{{ __('messageMK.Food') }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="/productLists">{{ __('messageMK.products') }}</a>
+                            <a class="nav-link texts" href="/productLists">{{ __('messageMK.Food') }}</a>
                         </li>
                     @endif
-                    @if ($nav == 'coin')
+                    @if (session()->has('customerId'))
+                        @if ($nav == 'coin')
                         <li class="nav-item">
                             <a class="nav-link texts actives" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
                         </li>
-                    @else
+                        @else
                         <li class="nav-item">
                             <a class="nav-link texts" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
                         </li>
+                        @endif
                     @endif
                     <li class="nav-item companys">
                         <a href="/" class="navbar-brand d-lg-inline">
-                            <img src="{{ url('storage/logo/siteLog.png') }}" class="pe-2" />
+                            <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px" class="pe-2" />
                             <span class="comapanynames">{{ $name->site_name }}</span>
                         </a>
                     </li>
@@ -126,6 +133,11 @@
                     @endif
 
                     @if (session()->has('customerId'))
+                        <li class="nav-item" id="cartButton">
+                            <a href="/cart" class="nav-link texts "><i class="fas fa-shopping-cart fs-3"></i>
+                            <span id="cartCount2"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartcount"></span></a>
+                        </li>
                         <li class="nav-item">
                             <p class="nav-link texts" id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
                         </li>
@@ -134,15 +146,12 @@
                             <a class="nav-link texts" href="/access">{{ __('messageMK.access') }}</a>
                         </li>
                     @endif
-                    <li class="nav-item">
-                        <a href="/" class="nav-link texts" id="cartButton"><i class="fas fa-shopping-cart fs-3"></i></a>
-                    </li>
                 </ul>
             </div>
 
             {{-- /*
-                * Create:zayar(2022/01/17) 
-                * Update: 
+                * Create:zayar(2022/01/17)
+                * Update:
                 */ --}}
             {{-- start profile alert box --}}
 
@@ -165,8 +174,8 @@
         </nav>
         {{-- end navbar --}}
         {{-- /*
-* Create:zayar(2022/01/22) 
-* Update: 
+* Create:zayar(2022/01/22)
+* Update:
 */ --}}
         {{-- start inform alert box --}}
 

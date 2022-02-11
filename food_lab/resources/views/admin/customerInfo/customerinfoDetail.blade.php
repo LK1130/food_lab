@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Customer Info Detail
+    Admin | Customer Info Detail
 @endsection
 
 @section('css')
@@ -17,17 +17,17 @@
 
 @section('body')
     <div class="col-md-10">
-        <a href="customerInfo"><button class="btn btncust1 text-light mt-4">Back</button></a>
-        <div class="status text title fw-bold mb-4 mt-4">Customer Info Detail</div>
+        <a href="customerInfo"><button class="btn btncust1 text-light mt-4">{{ __('messageZN.Back') }}</button></a>
+        <div class="status text title fw-bold mb-4 mt-4">{{ __('messageZN.Cusinfodetail') }}</div>
         <div class="row">
             <div class="col-md-12">
                 <div class="border border-dark">
                     <div class="d-flex justify-content-center my-3">
                         <div>
-                            <p class="lidisplay  detail"><b>Nickname</b></p>
-                            <p class="lidisplay  detail"><b>Customer ID</b></p>
-                            <p class="lidisplay  detail"><b>Phone No.</b></p>
-                            <p class="lidisplay  detail"><b>Address</b></p>
+                            <p class="lidisplay  detail"><b>{{ __('messageZN.Nickname') }}</b></p>
+                            <p class="lidisplay  detail"><b>{{ __('messageZN.Customer ID') }}</b></p>
+                            <p class="lidisplay  detail"><b>{{ __('messageZN.Phoneno') }}</b></p>
+                            <p class="lidisplay  detail"><b>{{ __('messageZN.Address') }}</b></p>
                         </div>
                         <div class="mx-2">
                             <p class="lidisplay  detail">:</p>
@@ -48,35 +48,42 @@
                 </div>
                 <div class="row tabe">
                     <div class="col-md-6 mt-5 tablelist">
-                        <div class="status text tableheaders fw-bold mt-6">Order History</div>
+                        <div class="status text tableheaders fw-bold mt-6">{{ __('messageZN.order history') }}</div>
                         <table class="table boxshad">
                             <tr class="tableheader tablerows">
-                                <th scope="col">No.</th>
-                                <th scope="col">Pay Type</th>
-                                <th scope="col">GrandTotal Coin</th>
-                                <th scope="col">GrandTotal Cash</th>
-                                <th scope="col">Order Status</th>
-                                <th scope="col">Last Control By</th>
-                                <th scope="col">Date&Time</th>
+                                <th scope="col" rowspan="2">{{ __('messageZN.No') }}</th>
+                                <th scope="col" rowspan="2">{{ __('messageZN.pay type') }}</th>
+                                <th scope="col" colspan="2" class="text-center">Grand Total</th>
+                                <th scope="col" rowspan="2">{{ __('messageZN.Order Status') }}</th>
+                                <th scope="col" rowspan="2">{{ __('messageZN.Last Control') }}</th>
+                                <th scope="col" rowspan="2">{{ __('messageZN.Date&t') }}</th>
+                            </tr>
+                            <tr class="tableheader tablerows">
+                                <th>Coin</th>
+                                <th>Cash</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($t_ad_order as $trans)
+                                @forelse ($t_ad_order as $trans)
                                     <tr class="tablecolor1 tablerows">
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         @if ($trans->payment == 0)
-                                            <td>Coin</td>
+                                            <td scope="col">Coin</td>
                                         @else
-                                            <td>C.O.D</td>
+                                            <td scope="col">C.O.D</td>
                                         @endif
-                                        <td class="text-center">{{ $trans->grandtotal_coin }}</td>
-                                        <td class="text-center">{{ $trans->grandtotal_cash }}</td>
-                                        <td>{{ $trans->status }}</td>
-                                        <td>{{ $trans->ad_name }}</td>
+                                        <td class="text-center" scope="col">{{ $trans->grandtotal_coin }}</td>
+                                        <td class="text-center" scope="col">{{ $trans->grandtotal_cash }}</td>
+                                        <td scope="col">{{ $trans->status }}</td>
+                                        <td scope="col">{{ $trans->ad_name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($trans->order_date)->diffForHumans() }}
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">There is no Data.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                         @if ($t_ad_order->hasPages())
@@ -91,36 +98,49 @@
 
                     </div>
                     <div class="col-md-6 mt-5 tablelist">
-                        <div class="status text fs-3 fw-bold mt-6">Coin Charge History</div>
+                        <div class="status text fs-3 fw-bold mt-6">{{ __('messageZN.Coinchargehistory') }}</div>
                         <table class="table boxshad">
                             <thead>
                                 <tr class="tableheader tablerows">
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Coin Amount</th>
-                                    <th scope="col">Approve By</th>
-                                    <th scope="col">Request Time</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">{{ __('messageZN.No') }}</th>
+                                    <th scope="col">{{ __('messageZN.CoinA') }}</th>
+                                    <th scope="col">{{ __('messageZN.Approve By') }}</th>
+                                    <th scope="col">{{ __('messageZN.Reqtime') }}</th>
+                                    <th scope="col">{{ __('messageZN.Status') }}</th>
+                                    <th></th>
                                 </tr>
+
                             </thead>
                             <tbody>
-                                @foreach ($cuscoin as $coin)
+                                @forelse ($cuscoin as $coin)
                                     <tr class="tablecolor1 tablerows">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $coin->request_coin }}</td>
-                                        <td>{{ $coin->ad_name }}</td>
-                                        <td> {{ \Carbon\Carbon::parse($coin->request_datetime)->diffForHumans() }}
+                                        <td scope="col">{{ $coin->request_coin }}</td>
+                                        <td scope="col">{{ $coin->ad_name }}</td>
+                                        <td scope="col">
+                                            {{ \Carbon\Carbon::parse($coin->request_datetime)->diffForHumans() }}
                                         </td>
                                         @if ($coin->status == 'Request')
-                                            <td class="text-success">{{ $coin->status }}</td>
+                                            <td scope="col" class="text-success">{{ $coin->status }}</td>
                                         @elseif ($coin->status == 'Approve')
-                                            <td class="text-info">{{ $coin->status }}</td>
+                                            <td scope="col" class="text-info">{{ $coin->status }}</td>
                                         @elseif ($coin->status == 'Waiting')
-                                            <td class="text-warning">{{ $coin->status }}</td>
+                                            <td scope="col" class="text-warning">{{ $coin->status }}</td>
                                         @elseif ($coin->status == 'Reject')
-                                            <td class="text-secondary">{{ $coin->status }}</td>
+                                            <td scope="col" class="text-secondary">{{ $coin->status }}</td>
                                         @endif
+                                        <td scope="col">
+                                            <a href="detailCharge/{{ $coin->chargeid }}">
+                                                <button class="btn tablerows btn-outline-dark"><i
+                                                        class="bi bi-arrow-right"></i></button>
+                                            </a>
+                                        </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">There is no Data.</td>
+                                    </tr>
+                                @endforelse
 
                             </tbody>
                         </table>

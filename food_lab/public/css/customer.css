@@ -263,16 +263,9 @@
     text-decoration: none;
 }
 
-.maps {
-    border-radius: 10px;
-}
-
 @media (max-width: 720px) {
     .contacts {
         min-height: 70vh;
-    }
-    .maps {
-        display: none;
     }
     .company-infos p.fw-bolder {
         font-size: 1.8rem;
@@ -846,10 +839,6 @@ footer {
 .footer-details div:last-of-type p:first-of-type {
     font-size: 1.6rem;
     color: var(--primary-color);
-}
-
-.sitelinks {
-    padding-left: 2.5px;
 }
 
 .copys {
