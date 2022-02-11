@@ -39,6 +39,10 @@ textarea {
     position: relative;
 }
 
+marquee {
+    background-color: #000000;
+}
+
 /*start navbar*/
 
 .navs {
@@ -88,13 +92,39 @@ textarea {
 }
 
 #profileButton,
-#cartButton {
+#cartButton,
+.companys {
     display: block;
 }
 
-@media (max-width: 720px) {
+#cartButton {
+    position: relative;
+}
+
+.cartout {
+    left: 145% !important;
+    top: -25% !important;
+}
+
+.count {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 70%;
+    left: 90%;
+    text-align: center;
+    line-height: 25px;
+}
+
+@media (max-width: 1000px) {
     #profileButton,
-    #cartButton {
+    #cartButton,
+    .companys {
         display: none;
     }
 }
@@ -385,6 +415,7 @@ textarea {
 
 .texts {
     color: var(--primary-color);
+
     margin-bottom: 0;
     cursor: pointer;
 }
@@ -550,6 +581,9 @@ footer {
 
 /*End Footer Section*/
 
+/*End Header*/
+
+/*End Header*/
 /*End Header*/
 
 /*End Header*/

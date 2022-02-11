@@ -26,7 +26,8 @@ return [
     'Phone' => 'Phone',
     'Address' => 'Address',
     'Cancel' => 'Cancel',
-    'Submit' => 'Submit',
+    'Reset' => 'Reset',
+    'Charge' => 'Charge',
     'Order' => 'Order',
     'Payment' => 'Payment',
     'Delivery Information' => 'Delivery Information',
@@ -37,10 +38,12 @@ return [
     'Order Amount' => 'Order Amount',
     'Order Amount List' => 'Order Amount List',
     'Coin Charge' => 'Coin Charge',
-    'Choose Photo' => 'Choose Photo',
+    'Screenshot' => 'Screenshot',
     'Payment Accounts' => 'Payment Accounts',
     'Coin Rule' => 'Coin Rule',
     'Coin Calculator' => 'Coin Calculator',
 
 
-]; 
+
+
+];

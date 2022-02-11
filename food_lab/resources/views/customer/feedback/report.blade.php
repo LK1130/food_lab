@@ -1,5 +1,10 @@
 @extends('COMMON.layout.layout_cusotmer_2')
 
+@section('css')
+    <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('title','Food Lab')
 
 @section('body')
@@ -13,35 +18,32 @@
                 <img src="{{ url('storage/logo/siteLog.png') }}" alt="logo"/>
             </div>
         </div>
-        
-        <div class="d-flex flex-column justify-content-center align-items-center suggests">
-            <p class="fw-bolder form-headers">{{ __('messageMK.suggestForm') }}</p>
-            <form action="/suggest" method="post">
+
+        <div class="d-flex flex-column justify-content-center align-items-center reports">
+            <p class="fw-bolder form-headers">{{ __('messageMK.reportForm') }}</p>
+            <form action="/report" method="post">
                 @csrf
                 <div class="d-flex mb-5 errors">
-                    <label class="fw-bold">{{ __('messageMK.suggestionType') }}</label>
-                    <select class="form-select" name='type'>
+                    <label class="fw-bold">{{ __('messageMK.reportOrder') }}</label>
+                    <select class="form-select" aria-label="Default select example" name='order'>
                         <option selected disabled>Open this select menu</option>
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}">{{ $type->suggest_type }}</option>
+                        @foreach ($orderlists as $orderlist)
+                            <option value="{{ $orderlist->id }}">#{{ $orderlist->id }} {{ $orderlist->order_date }} {{  $orderlist->order_time }}</option>
                         @endforeach
                     </select>
-                    @error('type')
+                    @error('order')
                         <span class="fw-bloder text-danger error-spans">Plesae Choose one</span>
                     @enderror
                 </div>
                 <div class="d-flex mb-5 errors">
-                    <label class="fw-bold" id="details">{{ __('messageMK.suggestDetails') }}</label>
-                    <textarea class="form-control" id="details" name="details"></textarea>
-                    @error('details')
+                    <label class="fw-bold" id="details">{{ __('messageMK.reportDetails') }}</label>
+                    <textarea class="form-control" id="details" name="message"></textarea>
+                    @error('message')
                         <span class="fw-bolder text-danger error-spans">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="float-end">
-                    <p><span>0</span>/255</p>
-                </div>
-                <div class="float-end">
-                    <button type="submit" class="btn me-5">{{ __('messageMK.suggest') }}</button>
+                    <button type="submit" class="btn me-5">{{ __('messageMK.report') }}</button>
                     <a href="/" type="reset" class="btn me-5 cancels">{{ __('messageMK.cancel') }}</a>
                 </div>
             </form>

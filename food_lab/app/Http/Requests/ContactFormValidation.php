@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Requests;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Foundation\Http\FormRequest;
 
-class CoinChargeVali extends FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
+
+class ContactFormValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +23,16 @@ class CoinChargeVali extends FormRequest
      * @return array
      */
     public function rules()
-    {   
-        Log::channel('customerlog')->info('CoinChargeVali Request', [
+    {
+        Log::channel('customerlog')->info('ReportFormValidation Request', [
             'start rules'
         ]);
 
-        Log::channel('customerlog')->info('CoinChargeVali Request', [
+        Log::channel('customerlog')->info('ReportFormValidation Request', [
             'end rules'
         ]);
         return [
-            "coinput"=>"required | max:3",
-            "file" => "required|image|mimes:jpg,png,jpeg,gif,svg|max:51200"
+            'message' => 'required | max:255'
         ];
     }
 }

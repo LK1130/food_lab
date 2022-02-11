@@ -27,33 +27,32 @@
                         <div class="col-7">
                                 <input type="number" id="coinChargeinput" name="coinput">
                             @error('coinput')
-                                <span class="text-danger">Coin must be lower than 1000</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="col-8 d-flex choosephoto">
-                        <span class="col-7"><i class="fileUpload far fa-file-alt"></i> {{ __('messageCPPK.Choose Photo') }}</span>
+                        <span class="col-7"><i class="fileUpload far fa-file-alt"></i> {{ __('messageCPPK.Screenshot') }}</span>
                         <div class="col-7">
-                            <input class="fileuploadInput form-control" type="file" id="formFile" name="fileimage">
+                            <input class="fileuploadInput form-control" type="file"  accept="image/*" id="formFile" name="fileimage">
                             @error('file')
-                                <span class="text-danger">Your file size is too big.</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <a href="/" class="cancelbtn btn btn-light">{{ __('messageCPPK.Cancel') }}</a>
-                    <button type="submit" class="submitbtn btn btn-danger">{{ __('messageCPPK.Submit') }}</button>
+                    <button id="reset" class="cancelbtn btn btn-light">{{ __('messageCPPK.Reset') }}</button>
+                    <button type="submit" class="submitbtn btn btn-danger">{{ __('messageCPPK.Charge') }}</button>
                 </form>
             </div>
             <div class="coinrule">
                 <h2 class="coinRule">{{ __('messageCPPK.Coin Rule') }}</h2>
-                <ul class="coinList">
-                    <li>1 coin equal <span id="coinratedata" class="coinratedata">{{ $coinrateData->rate }}</span> Kyats
-                    </li>
-                    <li>This coin can be used only on this website</li>
-                    <li>This coin cannot be transfered</li>
-                </ul>
+                    <ul class="coinList">
+                        <li>1 coin equal <span id="coinratedata" class="coinratedata">{{ $coinrateData->rate }}</span> Kyats
+                        </li>
+                        <li>This coin can be used only on this website</li>
+                        <li>This coin cannot be transfered</li>
+                    </ul>
                 <h2 class="coinRule">{{ __('messageCPPK.Payment Accounts') }}</h2>
-                <table>
                     <ul class="coinList">
                         @forelse ($paymentAccount as $accounts)
                             <li>{{ $accounts->payment_name }} <span><i class="fas fa-arrow-right"></i></span>
@@ -62,7 +61,6 @@
 
                         @endforelse
                     </ul>
-                </table>
                 <hr class="coinRulehr">
                 <h2 class="coinCalculator">{{ __('messageCPPK.Coin Calculator') }}</h2>
                 <div class="coinCaldiv">

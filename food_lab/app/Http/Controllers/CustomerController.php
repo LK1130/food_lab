@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactFormValidation;
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
 use App\Http\Requests\UpdateProfileValidation;
@@ -21,6 +22,7 @@ use App\Models\M_Suggest;
 use App\Models\M_Taste;
 use App\Models\M_Township;
 use App\Models\T_AD_CoinCharge;
+use App\Models\T_AD_Contact;
 use App\Models\T_AD_Order;
 use App\Models\T_AD_OrderDetail;
 use App\Models\T_AD_Report;
@@ -45,8 +47,8 @@ class CustomerController extends Controller
             'Start foodlab'
         ]);
 
-        $recomProducts = [];
 
+        $recomProducts = [];
 
         if (session()->has('customerId')) {
             $sessionCustomerId = session()->get('customerId');
@@ -62,6 +64,7 @@ class CustomerController extends Controller
             // }
         }
 
+
         $townships = new M_Township();
         $townshipnames = $townships->townshipDetails();
 
@@ -74,6 +77,7 @@ class CustomerController extends Controller
         $tAdOrderDetail = new T_AD_OrderDetail();
         $sellProducts = $tAdOrderDetail->bestSellItems();
 
+
         return view('customer.home', [
             'townships' => $townshipnames,
             'news' => $newDatas,
@@ -83,6 +87,7 @@ class CustomerController extends Controller
             'nav' => 'home'
         ]);
     }
+
     /*
      * Create : zayar(25/1/2022)
      * Update :
@@ -179,22 +184,22 @@ class CustomerController extends Controller
             'alltracks' => $alltracks,
             'news' => $newDatas,
             'name' => $name,
-
             'nav' => 'inform'
         ]);
     }
     /*
      * Create : Min Khant(13/1/2022)
      * Update :
-     * Explain of function : For call view customer policy page
+     * Explain of function : For call view customer delivery info page
      * Prarameter : no
-     * return : View policyInfo Blade
+     * return : View delivery info Blade
      * */
     public function policy()
     {
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start policy'
         ]);
+
         $msite = new M_Site();
         $policys = $msite->policy();
 
@@ -202,8 +207,32 @@ class CustomerController extends Controller
             'end policy'
         ]);
 
-        return view('customer.policyInfo', ['policys' => $policys]);
+        return view('customer.information.policyInfo', ['policys' => $policys]);
     }
+
+    /*
+     * Create : Min Khant(13/1/2022)
+     * Update :
+     * Explain of function : For call view customer policy page
+     * Prarameter : no
+     * return : View policyInfo Blade
+     * */
+    public function deliveryDetails()
+    {
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'start deliveryDetails'
+        ]);
+
+        $townships = new M_Township();
+        $townshipnames = $townships->townshipMoreDetails();
+
+        Log::channel('cutomerlog')->info('Customer Controller', [
+            'end deliveryDetails'
+        ]);
+
+        return view('customer.information.deliveryInfo', ['townships' => $townshipnames]);
+    }
+
 
     /*
      * Create : Min Khant(13/1/2022)
@@ -225,7 +254,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end report'
             ]);
-            return view('customer.report', ['orderlists' => $orderlists]);
+            return view('customer.feedback.report', ['orderlists' => $orderlists]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end report'
@@ -269,14 +298,14 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'start suggest'
         ]);
-        if (session()->has('cutomerId')) {
+        if (session()->has('customerId')) {
             $data = new M_Suggest();
             $type = $data->suggestType();
 
             Log::channel('customerlog')->info('CustomerController', [
                 'end suggest'
             ]);
-            return view('customer.suggest', ['types' => $type]);
+            return view('customer.feedback.suggest', ['types' => $type]);
         }
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'
@@ -289,7 +318,7 @@ class CustomerController extends Controller
      * Update :
      * Explain of function : To stroe data from suggest form
      * Prarameter : no
-     * return : 
+     * return :
      * */
     public function suggestForm(SuggestFormValidation $request)
     {
@@ -308,6 +337,46 @@ class CustomerController extends Controller
         return redirect('/');
     }
 
+    /*
+     * Create : Min Khant(9/2/2022)
+     * Update :
+     * Explain of function : For call view customer contact page
+     * Prarameter : no
+     * return : View contact Blade
+     * */
+    public function contact()
+    {
+        Log::channel('customerlog')->info('CustoemrController', [
+            'start contact'
+        ]);
+
+        Log::channel('customerlog')->info('CustoemrController', [
+            'end contact'
+        ]);
+        return view('customer.feedback.contact');
+    }
+
+    /*
+    * Create : Min Khant(9/2/2022)
+    * Update :
+     * * Explain of function : For call view customer contact page
+     * * Prarameter : no
+     * * return : View contact Blade
+     */
+    public function contactForm(ContactFormValidation $request)
+    {
+        Log::channel('customerlog')->info('CustoemrController', [
+            'start contact'
+        ]);
+        $validated = $request->validated();
+        $tAdContact = new T_AD_Contact();
+        $message = $tAdContact->contactForm($validated);
+
+        Log::channel('customerlog')->info('CustoemrController', [
+            'end contact'
+        ]);
+        return redirect('/');
+    }
     /*
      * Create : Min Khant(14/1/2022)
      * Update :

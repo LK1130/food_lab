@@ -18,11 +18,10 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ url('js/productChange.js') }}" type="text/javascript" defer></script>
+    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
+    <script src="{{ url('js/productChange.js') }}" type="text/javascript"></script>
+    
 @endsection
 
 @section('title', 'Food Lab')
@@ -33,7 +32,7 @@
     <section>
         <div class="container-fluid">
             <div class="d-flex justify-content-center">
-                <p class="products">Products</p>
+                <p class="products">Food</p>
             </div>
         </div>
 
@@ -41,7 +40,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <select class="selectpicker p-3 mx-3 m-5 "  data-size="7" name="type" id="selectpicker1">
+                    <select class="selectpicker p-3 mx-3 m-5 "  data-size="5" name="type" id="selectpicker1">
                         <option class="selectpicker1" value="" selected disabled>Lists By Category</option>
                         @foreach ($mFav as $item)
                             <option  value="{{ $item->id }}" class="special">{{ $item->favourite_food }}</option>
@@ -61,12 +60,18 @@
                 
             <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
                
-                <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class="img-fluid images" alt="bestitem1" />
+                <div class="image-container ">
+                    <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class=" images" alt="bestitem1" />
+                </div>
                
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+                <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
-                <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
+                @if (session()->has('customerId'))
+                <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
+                @else
+                <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+                @endif
             </div>
 
 
@@ -97,11 +102,18 @@
             @foreach( $products as $item)
                 
             <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-                <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
+                <div class="image-container">
+                    <img src="/storage/{{ $item->path }}" class="images" alt="bestitem1" />
+                </div>
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+                <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}  /    {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
-                <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
+                @if (session()->has('customerId'))
+                <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
+                @else
+                <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+                @endif
+               
             </div>
 
 
@@ -111,24 +123,31 @@
       @if (session()->has('customerId'))
       <div class="row">
         <div class="col-md-3 col-sm-3   mt-4 mb-4  text-center">
-                <p class=" recommends">Recommend items</p>
+                <p class="recommends">Recommend items</p>
             
         </div>
     </div>
 
     <div class="col-md-12 col-sm-12 d-flex flex-wrap m-auto border border-3 text-light productbox">
         
-        @foreach( $recommend as $item)
-            
+        @foreach( $recommend as $items)
+            @foreach($items as $item)
         <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-            <img src="/storage/{{ $item->path }}" class="img-fluid images" alt="bestitem1" />
+           <div class="image-container">
+            <img src="/storage/{{ $item->path }}" class="images" alt="bestitem1" />
+           </div>
             <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>{{ $item->coin }}</p>
+            <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }} /   {{ number_format($item->amount) }} MMK</p>
             <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
-            <a href=""><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
+            @if (session()->has('customerId'))
+            <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" >{{ __('messageMK.shopnow') }}</button></a>
+            @else
+            <a href="/login
+            "><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+            @endif
         </div>
 
-
+            @endforeach
         @endforeach
         
 
@@ -138,10 +157,32 @@
         
     </div>
 
+      {{-- start modal --}}
+      <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+              {{-- <div class="modal-header"> --}}
+                
+              <div class="d-flex justify-content-end ">
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              </div>
+              {{-- </div> --}}
+              {{-- <div class="modal-body"> --}}
+                <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added to your Shopping Cart. You now have item in your Shopping Cart.</p>
+              {{-- </div> --}}
+              <div class="modal-footer">
+               <a href="/cart"> <button type="button" class="btn btnCart" >View Shopping Cart</button></a>
+                <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
+              </div>
+            </div>
+          </div>
+        </div>
+{{-- end modal --}}
     <div class="container-fluid mt-5 p-3">
         <div class="d-flex justify-content-center">
             <p class="copy">Copy right by Food Lab</p>
         </div>
     </div>
-    </section>
+    </section>  
 @endsection

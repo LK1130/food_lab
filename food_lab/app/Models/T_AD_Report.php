@@ -14,8 +14,8 @@ class T_AD_Report extends Model
 
 
      /*
-   * Create:Zar Ni(2022/01/22) 
-   * Update: 
+   * Create:Zar Ni(2022/01/22)
+   * Update:
    * This function is Show data of Customer Report List.
    */
     public function customerReportlist(){
@@ -39,8 +39,8 @@ class T_AD_Report extends Model
     }
 
     /*
-   * Create:Zar Ni(2022/01/22) 
-   * Update: 
+   * Create:Zar Ni(2022/01/22)
+   * Update:
    * This function is Show data of Customer Report Count.
    */
     public function reportCount(){
@@ -62,8 +62,8 @@ class T_AD_Report extends Model
     }
 
      /*
-   * Create:Zar Ni(2022/01/22) 
-   * Update: 
+   * Create:Zar Ni(2022/01/22)
+   * Update:
    * This function is Show data of Customer Report Reply.
    */
     public function cusreportReply($id){
@@ -87,8 +87,8 @@ class T_AD_Report extends Model
     }
 
      /*
-   * Create:Zar Ni(2022/01/25) 
-   * Update: 
+   * Create:Zar Ni(2022/01/25)
+   * Update:
    * This function is for reply to customer.
    */
     public function repRpy($id,$request){
@@ -117,7 +117,7 @@ class T_AD_Report extends Model
      * Update :
      * Explain of function : To store customer report data
      * Prarameter : no
-     * return : 
+     * return :
      * */
     public function customerReport($request)
     {
@@ -128,6 +128,7 @@ class T_AD_Report extends Model
         $report = new T_AD_Report();
         $report->order_id = $request['order'];
         $report->report_message = $request['message'];
+        $report->customer_id = session('customerId');
         $report->save();
 
         Log::channel('customerlog')->info('T_AD_Report Model', [

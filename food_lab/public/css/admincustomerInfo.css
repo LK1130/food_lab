@@ -31,3 +31,9 @@
 .tablecolor1 {
     background-color: var(--tablecolor1);
 }
+.boxshad {
+    box-shadow: 3px 10px 10px silver;
+}
+.status {
+    text-shadow: 0px 5px 10px silver;
+}

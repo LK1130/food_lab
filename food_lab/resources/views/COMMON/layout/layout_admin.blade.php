@@ -16,10 +16,12 @@
 </head>
 
 <body>
+    @if (session("role") == "SA")
     <div class="container-fluid">
         <div class="row">
             <!-- sidenav bar Start  -->
             <div class="col-md-2">
+                
                 <div class="sidenav fixed-top">
                     <div class="sidebar-heading text-center py-4 text-uppercase fs-5 text-white">
                         <li class="adminli">{{ session('ad_name') }}</li>
@@ -44,6 +46,31 @@
                 </div>
                 <!-- sidenav bar End  -->
             </div>
+            @else
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- sidenav bar Start  -->
+                    <div class="col-md-2">
+                        
+                        <div class="sidenav fixed-top">
+                            <div class="sidebar-heading text-center py-4 text-uppercase fs-5 text-white">
+                                <li class="adminli">{{ session('ad_name') }}</li>
+                                <li class="adminli">{{ __('messageZN.Role') }} : {{ session('role') }}</li>
+                            </div>
+                            <div class="text-center list-group list-group-flush ">
+                                <a href="/dashboard"><button
+                                        class="buttons btn dash navbtnactive">{{ __('messageZN.Dashboard') }}</button></a>
+                                <a href="/customerInfo"><button
+                                        class="buttons btn cust">{{ __('messageZN.Customer') }}</button></a>
+                                <a href="/coinListing"><button
+                                        class="buttons btn coin">{{ __('messageZN.Coin') }}</button></a>
+                                <a href="/adminlogout"><button class="logout btn">{{ __('messageZN.Logout') }}</button></a>
+                            </div>
+                        </div>
+                        <!-- sidenav bar End  -->
+                    </div>
+                @endif
+    
             @yield('body')
 
         </div>
