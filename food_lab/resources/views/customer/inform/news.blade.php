@@ -17,15 +17,22 @@
 @section('header')
 
     <div class="news-container">
-        <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.news') }}</p>
+        <div class="d-flex flex-row">
+            <a href="/"><i class="fa-solid fa-arrow-left fs-2 mt-2 ms-2 back"></i></a>
+            <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.news') }}</p>
+        </div>
+
         <div class="allNews">
             @forelse ($allnews as $allnew)
                 <div class="news mb-4">
                     <div class="news d-flex flex-row justify-content-center align-items-center">
-                        <img src="/storage/newsImage/{{ $allnew->source }}" alt="">
-                        <p class="fs-6 fw-bolder mt-2 me-auto">{{ $allnew->title }}
-                            ({{ $allnew->detail }})</p>
-                        <p class="fs-6 fw-bolder mt-2 ms-auto">{{ $allnew->created_at }}</p>
+                        <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="newsImg">
+                        <div class="mobile me-5">
+                            <p class="fs-5 fw-bolder  ms-auto me-5">{{ $allnew->title }}
+                                ({{ $allnew->detail }})</p>
+                            <p class="fs-5 fw-bolder  ms-auto">{{ $allnew->newscreated }}</p>
+                        </div>
+
                     </div>
                 </div>
             @empty
@@ -35,7 +42,7 @@
             @endforelse
 
         </div>
-        <a href="/"><button class="btn fs-5  mt-5 backNews">{{ __('messageZY.back') }}</button></a>
+
 
     </div>
     </div>

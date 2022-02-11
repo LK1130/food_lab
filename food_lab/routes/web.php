@@ -282,6 +282,16 @@ Route::resource('updateprofile', CustomerProfileUpdate::class);
  */
 Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
 /*
+ * For Detail message Customer
+ * zayar
+ */
+Route::get('/messageDetail/{id}', [CustomerController::class, 'messageDetail']);
+/*
+ * For Detail message Customer
+ * zayar
+ */
+Route::get('/trackDetail/{id}', [CustomerController::class, 'trackDetail']);
+/*
  * For news page
  * zayar
  */
@@ -338,8 +348,8 @@ Route::get('productLists', [ProductDetailController::class, 'productList']);
 // Route::get('menu',[ProductDetailController::class,'eachList'] );
 Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
 Route::post('searchTaste', [ProductSearchController::class, 'searchByTaste']);
-Route::get('menutype',[ProductSearchController::class,'listByType']);
-Route::get('menutaste',[ProductSearchController::class,'listByTaste']);
+Route::get('menutype', [ProductSearchController::class, 'listByType']);
+Route::get('menutaste', [ProductSearchController::class, 'listByTaste']);
 /*
  * For logging out
  */

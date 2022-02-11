@@ -147,7 +147,9 @@ class M_AD_News extends Model
             'End newsLimited'
         ]);
         $allnews =
-            M_AD_News::where('m_ad_news.del_flg', 0)
+            M_AD_News::select('*', DB::raw('m_ad_news.created_at AS newscreated'))
+            ->where('m_ad_news.del_flg', 0)
+            ->orderBy('m_ad_news.created_at', 'desc')
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->limit(3)
             ->get();
@@ -169,7 +171,9 @@ class M_AD_News extends Model
         Log::channel('adminlog')->info("M_AD_News Model", [
             'End newsLimited'
         ]);
-        return M_AD_News::where('m_ad_news.del_flg', 0)
+        return M_AD_News::select('*', DB::raw('m_ad_news.created_at AS newscreated'))
+            ->orderBy('m_ad_news.created_at', 'DESC')
+            ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->get();
     }

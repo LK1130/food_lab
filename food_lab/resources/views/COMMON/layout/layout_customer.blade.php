@@ -12,6 +12,7 @@
     <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     @yield('script')
     @yield('css')
     <title>@yield('title')</title>
@@ -162,6 +163,51 @@
                 </div>
             </div>
 
+            <div id="informAlert" class="informAlert">
+
+
+                @if (session()->has('customerId'))
+                    <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
+                        <div>
+                            <p class="fw-bolder fs-5  infromTitle" id="clickNews">{{ __('messageZY.new') }}</p>
+                        </div>
+                        <div>
+                            <p class="fw-bolder fs-5 infromTitle" id="clickMessages">{{ __('messageZY.message') }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="fw-bolder fs-5 infromTitle" id="clickTracks">{{ __('messageZY.track') }}</p>
+                        </div>
+                    </div>
+                    <div class="forNews d-flex flex-column" id="forNews">
+
+                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                    <div class="forMessages d-flex flex-column" id="forMessages">
+
+                        <a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                    <div class="forTracks d-flex flex-column" id="forTracks">
+
+                        <a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                @else
+                    <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
+                        <div>
+                            <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">
+                                {{ __('messageZY.new') }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="forNews d-flex flex-column" id="forNews">
+
+                        <a href="/customerNews" class="ms-auto"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                @endif
         </nav>
         {{-- end navbar --}}
         {{-- /*
@@ -170,52 +216,10 @@
 */ --}}
         {{-- start inform alert box --}}
 
-        <div id="informAlert" class="informAlert">
-            <i class="fas fa-arrow-circle-left fs-1  mt-1" id="backInform"></i>
-
-            @if (session()->has('customerId'))
-                <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
-                    <div>
-                        <p class="fw-bolder fs-5  infromTitle" id="clickNews">{{ __('messageZY.new') }}</p>
-                    </div>
-                    <div>
-                        <p class="fw-bolder fs-5 infromTitle" id="clickMessages">{{ __('messageZY.message') }}</p>
-                    </div>
-                    <div>
-                        <p class="fw-bolder fs-5 infromTitle" id="clickTracks">{{ __('messageZY.track') }}</p>
-                    </div>
-                </div>
-                <div class="forNews d-flex flex-column" id="forNews">
-
-                    <a href="/customerNews" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-                <div class="forMessages d-flex flex-column" id="forMessages">
-
-                    <a href="/messages" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-                <div class="forTracks d-flex flex-column" id="forTracks">
-
-                    <a href="/tracks" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-            @else
-                <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
-                    <div>
-                        <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">{{ __('messageZY.new') }}
-                        </p>
-                    </div>
-                </div>
-                <div class="forNews d-flex flex-column" id="forNews">
-
-                    <a href="/customerNews" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-            @endif
 
 
-            {{-- end inform alert box --}}
+
+        {{-- end inform alert box --}}
         </div>
         @yield('header')
     </header>

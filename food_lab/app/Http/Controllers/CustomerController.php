@@ -20,6 +20,7 @@ use App\Models\M_State;
 use App\Models\M_Suggest;
 use App\Models\M_Taste;
 use App\Models\M_Township;
+use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_Order;
 use App\Models\T_AD_OrderDetail;
 use App\Models\T_AD_Report;
@@ -54,11 +55,11 @@ class CustomerController extends Controller
             $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
             $mFavType = new M_Fav_Type();
             $product = new M_Product();
-            foreach ($favTypes as $favType) {
-                $id = $mFavType->customerFavType($favType);
-                $eachProduct = $product->customerFavType($id['id']);
-                array_push($recomProducts, $eachProduct);
-            }
+            // foreach ($favTypes as $favType) {
+            //     $id = $mFavType->customerFavType($favType);
+            //     $eachProduct = $product->customerFavType($id['id']);
+            //     array_push($recomProducts, $eachProduct);
+            // }
         }
 
         $townships = new M_Township();
@@ -101,7 +102,7 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end news'
         ]);
-        return view('customer.news', [
+        return view('customer.inform.news', [
             'news' => $allnews,
             'allnews' => $allnews,
             'name' => $name,
@@ -136,7 +137,7 @@ class CustomerController extends Controller
             'end news'
         ]);
 
-        return view('customer.messages', [
+        return view('customer.inform.messages', [
             'allmessages' => $allmessage,
             'news' => $allnews,
             'name' => $name,
@@ -174,7 +175,7 @@ class CustomerController extends Controller
             'end news'
         ]);
 
-        return view('customer.tracks', [
+        return view('customer.inform.tracks', [
             'alltracks' => $alltracks,
             'news' => $newDatas,
             'name' => $name,
@@ -539,5 +540,55 @@ class CustomerController extends Controller
                 => $newsLimited,
                 'alertCount' => $newsCount
             ]);
+    }
+
+    /*
+      * Create : zayar(07/2/2022)
+      * Update :
+      * Explain of function : To show message detail page
+      * Prarameter : no
+      * return : View message detail page
+     * */
+    public function messageDetail($id)
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start messageDetail'
+        ]);
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $site = new M_Site();
+        $name = $site->siteName();
+        $message = new T_AD_CoinCharge();
+        $coinmessage = $message->searchMessage($id);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end messageDetail'
+        ]);
+
+        return view('customer.customerProfile.messageDetail', ['news' => $newDatas, 'name' => $name, 'message' => $coinmessage, 'nav' => 'inform']);
+    }
+
+    /*
+      * Create : zayar(07/2/2022)
+      * Update :
+      * Explain of function : To show message detail page
+      * Prarameter : no
+      * return : View message detail page
+     * */
+    public function trackDetail($id)
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start trackDetail'
+        ]);
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $site = new M_Site();
+        $name = $site->siteName();
+        $message = new M_AD_Track();
+        $coinmessage = $message->searchTrack($id);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end trackDetail'
+        ]);
+
+        return view('customer.customerProfile.trackDetail', ['news' => $newDatas, 'name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
     }
 }
