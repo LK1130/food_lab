@@ -84,7 +84,7 @@
                         @forelse ($coinlistTable as $key => $list )
                             <tr class="tabletd">
                                 <td scope="col">No.{{ $coinlistTable->firstItem() + $key }}</td>
-                                <td scope="col">{{ $list->month }} </td>
+                                <td scope="col">{{ $list->year }} </td>
                                 <td scope="col">{{ $list->totalAmount }} KS </td>
                             </tr>
                         @empty

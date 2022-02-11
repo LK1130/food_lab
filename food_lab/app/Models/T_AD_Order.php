@@ -323,7 +323,7 @@ class T_AD_Order extends Model
         $currentMonth = Carbon::now()->month;
 
         $order = T_AD_Order::select(
-            DB::raw('order_date as date'),
+             DB::raw('order_date as date'),
             DB::raw(('day(order_date) as day')),
             DB::raw('count(id) as totalorder'),
         )
@@ -332,6 +332,7 @@ class T_AD_Order extends Model
             ->orderBy(DB::raw('order_date'), 'ASC')
             ->groupBy('date')
             ->paginate(10);
+            // ->get();
 
         Log::channel('adminlog')->info("T_AD_Order Model", [
             'End orderDailyList'
@@ -376,7 +377,7 @@ class T_AD_Order extends Model
             DB::raw('year(order_date) as year'),
             DB::raw('count(id) as totalorder'),
         )
-            ->orderBy(DB::raw('year(order_date)'), 'ASC')
+            ->orderBy(DB::raw('year(order_date)'), 'DESC')
             ->groupBy('year')
             ->paginate(10);
 

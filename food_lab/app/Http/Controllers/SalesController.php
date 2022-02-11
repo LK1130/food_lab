@@ -59,6 +59,8 @@ class SalesController extends Controller
         $dailyCointable= $T_AD_CoinCharge_Finance->dailyCointable();
         $dailyOrdertable= $T_AD_Order->orderDailyList();
 
+        // return $dailyCointable;
+
         Log::channel('adminlog')->info("SalesController", [
             'End dailyChart'
         ]);
