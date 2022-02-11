@@ -331,6 +331,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
     Route::get('productDetail', [ProductDetailController::class, 'detail']);
     Route::post('cartsession', [CartController::class, 'getData']);
+    Route::post('sessionCount',[CartController::class,'getSessionCount']);
 
 
     /*

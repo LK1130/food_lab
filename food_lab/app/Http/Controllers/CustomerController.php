@@ -62,6 +62,7 @@ class CustomerController extends Controller
             }
         }
 
+      
         $townships = new M_Township();
         $townshipnames = $townships->townshipDetails();
 
@@ -74,6 +75,7 @@ class CustomerController extends Controller
         $tAdOrderDetail = new T_AD_OrderDetail();
         $sellProducts = $tAdOrderDetail->bestSellItems();
 
+      
         return view('customer.home', [
             'townships' => $townshipnames,
             'news' => $newDatas,

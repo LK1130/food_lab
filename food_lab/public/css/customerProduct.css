@@ -200,6 +200,29 @@
     color: var(--product-color);
 }
 
+
+.btnCart{
+    border-style: solid;
+    background: var(--btn-color) ;
+    color: var(--text-color);
+    border-color: transparent;
+}
+
+.btnShopping{
+    border-style: solid;
+    background-color: transparent;
+    border-color: var(--btn-color);
+}
+
+.close{
+    width: 5%;
+    height: 5%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    background: transparent;
+    border: none;
+ }
+
 @media only screen and (max-width: 720px) {
     .recommends {
         width: 80%;

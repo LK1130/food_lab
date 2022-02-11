@@ -106,7 +106,7 @@
             @forelse ($sellProducts as $sellProduct)
                 <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5"
                     id="{{ $sellProduct->product_id }}">
-                    <img src="{{ url('img/bestitem1.png') }}" alt="bestitem1" />
+                    <img src="/storage/{{ $sellProduct->path }}" alt="bestitem1" />
                     <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
                     <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
                     <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
@@ -132,7 +132,7 @@
                 @foreach ($recomProducts as $recomProduct)
                     @foreach ($recomProduct as $product)
                         <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5" id="{{ $product->id }}">
-                            <img src="{{ url('img/menu2.png') }}" alt="bestitem1" />
+                            <img src="/storage/{{ $product->path }}" alt="bestitem1" />
                             <p class="fs-3 pt-2">{{$product->product_name }}</p>
                             <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $product->coin }}</p>
                             <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>

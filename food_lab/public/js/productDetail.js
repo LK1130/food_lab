@@ -13,15 +13,16 @@ $(document).ready(function() {
 
     $(document).on('click', '.plus', function() {
 
-        if ($('.count').val() < 9) {
-            $('.count').val(parseInt($('.count').val()) + 1);
+        if ($('.counts').val() < 9) {
+            $('.counts').val(parseInt($('.counts').val()) + 1);
 
         }
+        console.log($('.counts').val());
     });
     $(document).on('click', '.minus', function() {
-        $('.count').val(parseInt($('.count').val()) - 1);
-        if ($('.count').val() == 0) {
-            $('.count').val(1);
+        $('.counts').val(parseInt($('.counts').val()) - 1);
+        if ($('.counts').val() == 0) {
+            $('.counts').val(1);
         }
     });
 
@@ -29,7 +30,7 @@ $(document).ready(function() {
     $('.btns').click(function(e) {
 
         let text = $('#count').text();
-
+        
         $('#count').text($('.count').val());
         e.preventDefault();
     })
@@ -42,7 +43,7 @@ $(document).ready(function() {
  * Prarameter : no
  * return : form data
  */
-    $(".btns").click(function(e) {
+    $(".buy").click(function(e) {
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -50,7 +51,7 @@ $(document).ready(function() {
                 ),
             },
         });
-        e.preventDefault();
+       
 
         let status = [];
         let values = [];
@@ -141,6 +142,11 @@ $(document).ready(function() {
  */
 function changeImage(img) {
 
-    main.src = img.src;
+    let temp  = main.src;
+    if(img.src != window.location.href){
+        main.src = img.src;
+        img.src = temp;
+    }
+    console.log(img.src);
     //  this.src = img.src;
 }

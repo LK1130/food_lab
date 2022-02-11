@@ -53,8 +53,10 @@
 
             <div class="d-flex">
                 @if (session()->has('customerId'))
-                    <p class="nav-link d-lg-none me-2 texts" id="profileButton2">
-                        <a href="/cart" class="d-lg-none me-3 texts"><i class="fas fa-shopping-cart fs-1"></i></a>
+                    <p class="nav-link d-lg-none me-2 mt-1 texts" id="profileButton2">
+                        <a href="/cart" class="d-lg-none me-3 position-relative texts"><i class="fas fa-shopping-cart fs-3"></i>
+                            <span id="cartCount1"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartout cartcount"></span></a>
                     </p>
                     <p class="nav-link d-lg-none me-5 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p>
@@ -132,7 +134,9 @@
 
                     @if (session()->has('customerId'))
                         <li class="nav-item" id="cartButton">
-                            <a href="/cart" class="nav-link texts"><i class="fas fa-shopping-cart fs-3"></i></a>
+                            <a href="/cart" class="nav-link texts "><i class="fas fa-shopping-cart fs-3"></i>
+                            <span id="cartCount2"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartcount"></span></a>
                         </li>
                         <li class="nav-item">
                             <p class="nav-link texts" id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>

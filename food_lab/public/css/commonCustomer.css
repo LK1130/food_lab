@@ -101,6 +101,11 @@ marquee {
     position: relative;
 }
 
+.cartout{
+    left: 145% !important;
+    top: -25% !important;
+}
+
 .count {
     display: block;
     width: 25px;
@@ -377,6 +382,7 @@ marquee {
 
 .texts {
     color: var(--primary-color);
+    
     margin-bottom: 0;
     cursor: pointer;
 }
