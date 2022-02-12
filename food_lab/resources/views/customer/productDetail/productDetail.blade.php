@@ -201,7 +201,8 @@
                             @if (session()->has('customerId'))
                                 <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 mx-auto  ">
                                     <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal3">Buy Now</button>
-                                  <button id="{{ $productId->pid }}" class="btn btns  buy" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
+                                  <button id="{{ $productId->pid }}" class="btn btns buy" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
+                               
                                 </div>
                            
                                 

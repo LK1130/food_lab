@@ -5,10 +5,10 @@
  * Prarameter : no
  * return :
  */
-$(document).ready(function () {
-   
-    $('.shopcart').unbind().click(function(e){
-       
+$(document).ready(function() {
+
+    $('.shopcart').unbind().click(function(e) {
+
         clickCount();
         $.ajaxSetup({
             headers: {
@@ -19,22 +19,22 @@ $(document).ready(function () {
         });
         e.preventDefault();
         let count = 1;
-        let formdata = { "pid": Number(e.target.id), "q" : Number(count)};
-        console.log(formdata);
+        let formdata = { "pid": Number(e.target.id), "q": Number(count) };
+
         $.ajax({
             type: "POST",
-            url:"sessionCount",
-            data: {data:formdata},
+            url: "sessionCount",
+            data: { data: formdata },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 console.log(data);
-                
-               
+
+
             },
-            error: function(data){
+            error: function(data) {
                 console.log(data);
             }
-        } );
+        });
 
     });
 

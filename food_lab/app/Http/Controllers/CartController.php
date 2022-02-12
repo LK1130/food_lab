@@ -199,7 +199,9 @@ class CartController extends Controller
                 array_push($products, $product[0]);
             }
         }
+
         array_push($products, $newProduct);
+
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [

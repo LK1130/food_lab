@@ -38,9 +38,10 @@
                     </div>
                     <div class="form-group">
                         <label for="password">{{ __('messageZY.password') }}</label>
-                        <div class="relative">
-                            <ion-icon name="eye-off-outline" id="icon"></ion-icon>
-                            <input type="password" class="form-control" id="password" name="password">
+                        <div class="relative w-50">
+                            <ion-icon name="eye-off-outline" class="fs-3 mt-1" id="icon"></ion-icon>
+                            <input type="password" class="form-control w-100" id="password" name="password">
+
                         </div>
 
                         @error('password')

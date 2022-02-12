@@ -252,7 +252,7 @@ class M_Product extends Model
             ->where('m_product.del_flg', 0)
             ->orderBy('m_product.id')
             ->get();
-        
+
 
         Log::channel('adminlog')->info("M_Product Model", [
             'End search by type'
@@ -262,7 +262,7 @@ class M_Product extends Model
     }
 
 
-     /*
+    /*
     * Create : Aung Min Khant(28/1/2022)
     * Update :
     * Explain of function : To search product data to customer product page
@@ -289,7 +289,7 @@ class M_Product extends Model
             ->where('m_product.del_flg', 0)
             ->orderBy('m_product.id')
             ->get();
-        
+
 
         Log::channel('adminlog')->info("M_Product Model", [
             'End search by taste'
@@ -372,16 +372,17 @@ class M_Product extends Model
         ]);
 
         $result = DB::table('m_product')
-        ->select(['*'], DB::raw('m_product.id'))
-        ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
-        ->where('m_product.avaliable', 1)
-        ->where('t_ad_photo.order_id', 1)
-        ->where('t_ad_photo.del_flg', 0)
-        ->where('m_product.del_flg', 0)
-        ->where('m_product.product_type', $id)
-        ->orderBy('m_product.id')
-        ->get();
-           
+            ->select(['*'], DB::raw('m_product.id'))
+            ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
+            ->where('m_product.avaliable', 1)
+            ->where('t_ad_photo.order_id', 1)
+            ->where('t_ad_photo.del_flg', 0)
+            ->where('m_product.del_flg', 0)
+            ->where('m_product.product_type', $id)
+            ->orderBy('m_product.id')
+            ->limit(1)
+            ->get();
+
         Log::channel('customerlog')->info("T_CU_Customer Model", [
             'End customerInformation'
         ]);
