@@ -224,7 +224,7 @@
     <footer>
         <div class="pt-5 ps-3 footer-infos">
             <div class="d-flex align-items-center footer-logos">
-                 <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"  />
+                 <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"/>
                 <p class="fw-bolder text-uppercase footer-names">{{ $name->site_name }}</p>
             </div>
             <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">

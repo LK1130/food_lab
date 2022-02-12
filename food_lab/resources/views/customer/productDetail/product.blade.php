@@ -20,7 +20,7 @@
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
-    
+
     <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
     <script src="{{ url('js/productChange.js') }}" type="text/javascript"></script>
     
