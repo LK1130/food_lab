@@ -380,6 +380,7 @@ class M_Product extends Model
             ->where('m_product.del_flg', 0)
             ->where('m_product.product_type', $id)
             ->orderBy('m_product.id')
+            ->limit(1)
             ->get();
 
         Log::channel('customerlog')->info("T_CU_Customer Model", [

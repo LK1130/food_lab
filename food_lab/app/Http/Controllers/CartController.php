@@ -195,7 +195,9 @@ class CartController extends Controller
                 array_push($products, $product[0]);
             }
         }
+
         array_push($products, $newProduct);
+
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
@@ -203,30 +205,4 @@ class CartController extends Controller
         ]);
         return session('cart');
     }
-
-     /*
-     * Create :Aung Min Khant(9/2/2022)
-     * Update :
-     * Explain of function : get session count from view page
-     * Prarameter : request from ajax
-     * return : 
-     * */
-
-        public function getSessionCount(Request $request){
-
-            Log::channel('customerlog')->info('CartController', [
-                'start getSessionCount'
-            ]);
-
-            $products = $request->data;
-        
-            session(['cart' => $products]);
-            
-    
-            Log::channel('customerlog')->info('CartController', [
-                'end getSessionCount'
-            ]);
-
-            return session('cart');
-        }
 }
