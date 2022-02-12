@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3 nav-containers">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px" class="pe-2" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px" class="pe-2" />
                 <span class="text-uppercase comapanynames">{{ $name->site_name }}</span>
             </a>
 
@@ -53,13 +53,13 @@
 
             <div class="d-flex">
                 @if (session()->has('customerId'))
-                    <p class="nav-link d-lg-none me-2 mt-1 texts" id="profileButton2">
-                        <a href="/cart" class="d-lg-none me-3 position-relative texts"><i
+                    <p class="nav-link d-lg-none mt-1 texts" id="profileButton2">
+                        <a href="/cart" class="d-lg-none position-relative texts"><i
                                 class="fas fa-shopping-cart fs-3"></i>
                             <span id="cartCount1"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartout cartcount"></span></a>
                     </p>
-                    <p class="nav-link d-lg-none me-5 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
+                    <p class="nav-link d-lg-none me-2 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p>
                 @endif
 
