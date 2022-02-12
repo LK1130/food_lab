@@ -15,11 +15,11 @@
 
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
-   
-  
-    {{--  <script src="{{ url('js/commonCustomer.js') }}" type="text/javascript" defer></script>  --}}
-   
+
+    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
+
+    {{-- <script src="{{ url('js/commonCustomer.js') }}" type="text/javascript" defer></script> --}}
+
 @endsection
 
 @section('title', 'Food Lab')
@@ -37,23 +37,23 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-md-6 col-sm-10 m-auto">
-                    <div class="row">
+                    
                         <div class="col-sm-10 mb-5 m-auto">
                             <div class="m-auto mainblocks">
-                                <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg" class="img-fluid"
-                                alt="">
-                            </div>
-                            
+                                <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg"
+                                        class="img-fluid" alt="">
+                                </div>
+
                             </div>
                             <div class="col-md-12 col-sm-12 bg-light p-2 ">
-                                <div class="d-flex col-md-12 col-sm-12   blocks" >
+                                <div class="d-flex col-md-12 col-sm-12   blocks">
                                     <div class="d-flex justify-content-center  m-2 customBlock">
-                                        <img src="@isset($photos[1]->path)/storage/{{ $photos[1]->path }}@endisset" 
-                                                class="img-fluid images" onclick="changeImage(this)" >
+                                        <img src="@isset($photos[1]->path)/storage/{{ $photos[1]->path }}@endisset"
+                                                class="img-fluid images" onclick="changeImage(this)">
                                         </div>
                                         <div class="d-flex justify-content-center m-2 customBlock">
                                             <img src="@isset($photos[2]->path)/storage/{{ $photos[2]->path }}@endisset"
-                                                    class="img-fluid  images"  onclick="changeImage(this)" alt="">
+                                                    class="img-fluid  images" onclick="changeImage(this)" alt="">
                                             </div>
                                             <div class="d-flex justify-content-center  m-2 customBlock">
                                                 <img src="@isset($photos[3]->path)/storage/{{ $photos[3]->path }}@endisset"
@@ -69,7 +69,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            
                                         </div>
                                         <div class="col-md-6 col-sm-10 ms-auto">
                                             <form action="/cartOne" method="POST" enctype="multipart/form-data">
@@ -79,7 +79,7 @@
                                                         <p class="pdname">{{ $productId->product_name }}</p>
                                                         <div class="d-flex justify-content-between m-auto">
                                                             <p class="pcoin">Coin -</p>
-                                                            <p class="coins">{{ $productId->coin }}</p>
+                                                            <p class="coins"> <i class="fas fa-coins pe-2 icons"></i>{{ $productId->coin }}</p>
                                                         </div>
 
                                                         <div class="d-flex justify-content-between">
@@ -101,7 +101,7 @@
                                                         <div class="">
                                                             <p class="pingredients">Ingredients -</p>
                                                             <span class="col-md-10 col-sm-10  mx-4   m-auto ingredients">
-                                                                {{ $productId->list }}  </span>
+                                                                {{ $productId->list }} </span>
                                                         </div>
 
                                                         <div class="col-md-10">
@@ -114,13 +114,13 @@
 
 
                                                     <div class="d-flex col-md-12 col-sm-10 ">
-                                                        <div class="container-fluid col-md-7 col-sm-6 d-flex ms-auto justify-content-between mb-3">
-                                                            <div class="d-flex justify-content-center col-md-5 bg-light  rounded mt-3 qty ">
+                                                        <div class="container-fluid col-md-7 col-sm-6 d-flex  justify-content-between mb-3">
+                                                            <div class="d-flex justify-content-center  col-md-5 bg-light  rounded mt-3 qty ">
                                                                 <span class="minus">-</span>
-                                                                <input type="number" class="count" id="qty" name="qty" value="1">
+                                                                <input type="number" class="counts" id="qty" name="qty" value="1">
                                                                 <span class="plus">+</span>
                                                             </div>
-                                                            
+
                                                         </div>
 
 
@@ -135,10 +135,11 @@
 
 
                                 @php
-                                $count = 0;
-                                $label = '';
-                                $countId = 1;
-                            @endphp
+                                    $count = 0;
+                                    $label = '';
+                                    $countId = 1;
+                                @endphp
+                            @if (count($detail) > 0)
                             <div class="container-fluid mt-5">
                                 <div class="row">
                                     @for ($i = 0; $i < count($detail); $i++)
@@ -165,8 +166,8 @@
                                                         <select name="select{{ $countId }}" id="" class="form-select">
                                                             <option value="0" selected disabled>Choose any type</option>
                                                             @php
-                                                           
-                                                            $countId++;
+                                                                
+                                                                $countId++;
                                                             @endphp
                                                             @foreach ($detail as $item2)
                                                                 @if ($item2->label == $label && $item2->category === 1)
@@ -179,68 +180,124 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    @break
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                        @php
-                                            $i = $count;
-                                        @endphp
-                                    @endfor
+                                                @break
+                                            @endif
+                                    @endforeach
                                 </div>
+                                @php
+                                    $i = $count;
+                                @endphp
+                                @endfor
                             </div>
+                        </div>
+                            @endif
 
-                                {{-- </div>
-                            </div> --}}
-                            
+                           
+                    
+
+                            @if (session()->has('customerId'))
+                                <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 mx-auto  ">
+                                    <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal3">Buy Now</button>
+                                  <button id="{{ $productId->pid }}" class="btn btns shopcart buy" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
+                                </div>
+                           
+                                
+                            @else
+                            <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 m-auto  ">
+                                <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal2">Buy Now</button>
                                
-                            <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 mx-auto  ">
-                                <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal">Buy Now</button>
-                                <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
                             </div>
                            
+                            @endif
 
-                                
 
-                                <div class="container-fluid mt-5 p-3">
-                                    <div class="d-flex justify-content-center">
-                                        <p class="copy">Copy right by Food Lab</p>
+
+                            <div class="container-fluid mt-5 p-3">
+                                <div class="d-flex justify-content-center">
+                                    <p class="copy">Copy right by Food Lab</p>
+                                </div>
+                            </div>
+                            </div>
+
+
+
+                                {{-- start modal --}}
+                            <div id="modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+                                <div class="modal-content">
+                                   
+
+                                    <div class="d-flex justify-content-end ">
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                                    </div>
+                                  
+                                    <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added
+                                        to your Shopping Cart. You now have item in your Shopping Cart.</p>
+                                   
+                                    <div class="modal-footer">
+                                        <a href="/cart"> <button type="button" class="btn btnCart">View Shopping Cart</button></a>
+                                        <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
+                        {{-- end modal --}}
 
+                        {{--start model --}}
+                        <div id="modal2" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+                            <div class="modal-content">
+                               
 
-                        {{-- start modal --}}
-                        <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
-                              <div class="modal-content">
-                                {{-- <div class="modal-header"> --}}
-                                  
                                 <div class="d-flex justify-content-end ">
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                                 </div>
-                                {{-- </div> --}}
-                                {{-- <div class="modal-body"> --}}
-                                  <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added to your Shopping Cart. You now have item in your Shopping Cart.</p>
-                                {{-- </div> --}}
-                                <div class="modal-footer">
-                                 <a href="/cart"> <button type="button" class="btn btnCart" >View Shopping Cart</button></a>
-                                  <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
+                             
+                                <div class="d-flex flex-column">
+                                    <p class="fs-3 mx-4">Welcome! Please Login to continue.</p>
+                                    <small class="mx-4 mb-4">New member? <a href="/access">Register</a> here </small>
                                 </div>
-                              </div>
+                                <div class="modal-footer">
+                                   <button type="button" class="btn border-primary btncancel" data-bs-dismiss="modal">Cancel</button></a>
+                                   <a href="/login"> <button type="button" class="btn btn-primary btnlogin" >Login</button></a>
+                                </div>
                             </div>
-                          </div>
-            {{-- end modal --}}
+                        </div>
+                    </div>
+                     {{--end model --}}
+
+                     {{--start model --}}
+                     <div id="modal3" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                     <div class="col-sm-6  modal-dialog modal-dialog-centered " role="document">
+                         <div class="modal-content">
+                            
+
+                             <div class="d-flex justify-content-end ">
+                                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                             </div>
+                          
+                             <div class="d-flex flex-column">
+                                 <p class="fs-5 mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span> Are you sure? You want to buy this.</p>
+                                
+                             </div>
+                             <div class="modal-footer d-flex justify-content-end">
+                                <button type="button" class="btn btnShopping" data-bs-dismiss="modal">No</button></a>
+                                <a href="/cart"> <button type="button" class="btn btnCart buy" >Yes</button></a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                  {{--end model --}}
+
+                        </div>
+
                             <script>
-                              
                                 let pid = @json($productId->pid);
-                                console.log(pid);
                                
                             </script>
-                             
+
                             <script src="{{ url('js/productDetail.js') }}" type="text/javascript" defer></script>
                         @endsection

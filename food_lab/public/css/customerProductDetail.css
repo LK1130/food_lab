@@ -105,6 +105,10 @@
 
     color: var(--text-color);
 }
+
+.icons{
+    color: gold;
+}
 .amount{
     font-size: 1.6rem;
     color: var(--text-color);
@@ -147,7 +151,7 @@
 
 
 /* product + -  */
-.qty .count {
+.qty .counts {
     color : black;
     width: 30%;
     text-align: center;
@@ -307,6 +311,7 @@ input:disabled{
     background-color: transparent;
     border-color: var(--btn-color);
 }
+
 
 
 /* start modal  */

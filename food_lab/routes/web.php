@@ -223,7 +223,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     /*
     * For delivery info Page
     */
-    Route::get('/delivery',[CustomerController::class,'deliveryDetails']);
+    Route::get('/delivery', [CustomerController::class, 'deliveryDetails']);
 
     /*
      * For Reprot Page
@@ -244,17 +244,57 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
 
     /*
      * For contact page*/
-    Route::get('/contact',[CustomerController::class,'contact']);
+    Route::get('/contact', [CustomerController::class, 'contact']);
 
     /*
      * For contact form*/
-    Route::post('/contact',[CustomerController::class,'contactForm']);
+    Route::post('/contact', [CustomerController::class, 'contactForm']);
 
     /*
      * For Access Page
      */
     Route::get('/access', [CustomerController::class, 'access']);
 
+    /*
+ * For Edit Profile Page
+ * zayar
+ */
+    Route::resource('editprofile', CustomerProfileController::class);
+    /*
+ * For ajax 
+ * zayar
+ */
+    Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
+    /*
+ * For news get initial 
+ * zayar
+ */
+    Route::get('getnews', [CustomerController::class, 'getNews']);
+    /*
+ * For Update Profile Page
+ * zayar
+ */
+    Route::resource('updateprofile', CustomerProfileUpdate::class);
+    /*
+ * For Update Profile
+ * zayar
+ */
+    Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
+    /*
+ * For Detail message Customer
+ * zayar
+ */
+    Route::get('/messageDetail/{id}', [CustomerController::class, 'messageDetail']);
+    /*
+ * For Detail message Customer
+ * zayar
+ */
+    Route::get('/trackDetail/{id}', [CustomerController::class, 'trackDetail']);
+    /*
+ * For news page
+ * zayar
+ */
+    Route::get('/customerNews', [CustomerController::class, 'news']);
     /*
      * For Register Form
      */
@@ -344,6 +384,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
     Route::get('productDetail', [ProductDetailController::class, 'detail']);
     Route::post('cartsession', [CartController::class, 'getData']);
+    Route::post('sessionCount', [CartController::class, 'getSessionCount']);
 
 
     /*

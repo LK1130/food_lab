@@ -21,6 +21,7 @@ use App\Models\M_State;
 use App\Models\M_Suggest;
 use App\Models\M_Taste;
 use App\Models\M_Township;
+use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_Contact;
 use App\Models\T_AD_Order;
 use App\Models\T_AD_OrderDetail;
@@ -56,12 +57,13 @@ class CustomerController extends Controller
             $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
             $mFavType = new M_Fav_Type();
             $product = new M_Product();
-            foreach ($favTypes as $favType) {
-                $id = $mFavType->customerFavType($favType);
-                $eachProduct = $product->customerFavType($id['id']);
-                array_push($recomProducts, $eachProduct);
-            }
+            // foreach ($favTypes as $favType) {
+            //     $id = $mFavType->customerFavType($favType);
+            //     $eachProduct = $product->customerFavType($id['id']);
+            //     array_push($recomProducts, $eachProduct);
+            // }
         }
+
 
         $townships = new M_Township();
         $townshipnames = $townships->townshipDetails();
@@ -74,6 +76,7 @@ class CustomerController extends Controller
 
         $tAdOrderDetail = new T_AD_OrderDetail();
         $sellProducts = $tAdOrderDetail->bestSellItems();
+
 
         return view('customer.home', [
             'townships' => $townshipnames,
@@ -104,7 +107,7 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end news'
         ]);
-        return view('customer.news', [
+        return view('customer.inform.news', [
             'news' => $allnews,
             'allnews' => $allnews,
             'name' => $name,
@@ -139,7 +142,7 @@ class CustomerController extends Controller
             'end news'
         ]);
 
-        return view('customer.messages', [
+        return view('customer.inform.messages', [
             'allmessages' => $allmessage,
             'news' => $allnews,
             'name' => $name,
@@ -177,7 +180,7 @@ class CustomerController extends Controller
             'end news'
         ]);
 
-        return view('customer.tracks', [
+        return view('customer.inform.tracks', [
             'alltracks' => $alltracks,
             'news' => $newDatas,
             'name' => $name,
@@ -341,12 +344,13 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : View contact Blade
      * */
-    public function contact(){
-        Log::channel('customerlog')->info('CustoemrController',[
+    public function contact()
+    {
+        Log::channel('customerlog')->info('CustoemrController', [
             'start contact'
         ]);
 
-        Log::channel('customerlog')->info('CustoemrController',[
+        Log::channel('customerlog')->info('CustoemrController', [
             'end contact'
         ]);
         return view('customer.feedback.contact');
@@ -359,15 +363,16 @@ class CustomerController extends Controller
      * * Prarameter : no
      * * return : View contact Blade
      */
-    public function contactForm(ContactFormValidation $request){
-        Log::channel('customerlog')->info('CustoemrController',[
+    public function contactForm(ContactFormValidation $request)
+    {
+        Log::channel('customerlog')->info('CustoemrController', [
             'start contact'
         ]);
         $validated = $request->validated();
         $tAdContact = new T_AD_Contact();
         $message = $tAdContact->contactForm($validated);
 
-        Log::channel('customerlog')->info('CustoemrController',[
+        Log::channel('customerlog')->info('CustoemrController', [
             'end contact'
         ]);
         return redirect('/');
@@ -604,5 +609,55 @@ class CustomerController extends Controller
                 => $newsLimited,
                 'alertCount' => $newsCount
             ]);
+    }
+
+    /*
+      * Create : zayar(07/2/2022)
+      * Update :
+      * Explain of function : To show message detail page
+      * Prarameter : no
+      * return : View message detail page
+     * */
+    public function messageDetail($id)
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start messageDetail'
+        ]);
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $site = new M_Site();
+        $name = $site->siteName();
+        $message = new T_AD_CoinCharge();
+        $coinmessage = $message->searchMessage($id);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end messageDetail'
+        ]);
+
+        return view('customer.customerProfile.messageDetail', ['news' => $newDatas, 'name' => $name, 'message' => $coinmessage, 'nav' => 'inform']);
+    }
+
+    /*
+      * Create : zayar(07/2/2022)
+      * Update :
+      * Explain of function : To show message detail page
+      * Prarameter : no
+      * return : View message detail page
+     * */
+    public function trackDetail($id)
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start trackDetail'
+        ]);
+        $news = new M_AD_News();
+        $newDatas = $news->news();
+        $site = new M_Site();
+        $name = $site->siteName();
+        $message = new M_AD_Track();
+        $coinmessage = $message->searchTrack($id);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end trackDetail'
+        ]);
+
+        return view('customer.customerProfile.trackDetail', ['news' => $newDatas, 'name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
     }
 }

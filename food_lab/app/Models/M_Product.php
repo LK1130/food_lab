@@ -173,7 +173,6 @@ class M_Product extends Model
 
         $product = DB::table('m_product')
             ->select(['*'], DB::raw('m_product.id'))
-            // ->join('m_product_detail', 'm_product_detail.product_id', '=', 'm_product.id')
             ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
             ->where('m_product.avaliable', 1)
             ->where('t_ad_photo.order_id', 1)

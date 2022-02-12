@@ -136,18 +136,20 @@ class CustomerInfoController extends Controller
             $messages = new M_AD_CoinCharge_Message();
             $messageLimited = $messages->informMessage($sessionCustomerId);
             $allmessage = $messages->allMessage($sessionCustomerId);
-            $messagecount = count($allmessage);
+            $allMessageToCount = $messages->allMessageToCount($sessionCustomerId);
+            $messagecount = count($allMessageToCount);
 
             $tracks = new M_AD_Track();
             $tracksLimited = $tracks->trackLimited($sessionCustomerId);
             $alltracks = $tracks->allTracks($sessionCustomerId);
-            $trackcount = count($alltracks);
+            $allTracksToCount = $tracks->allTracksToCount($sessionCustomerId);
+            $trackcount = count($allTracksToCount);
 
             $user = new T_CU_Customer();
             $userinfo = $user->loginUser($sessionCustomerId);
         }
         $news = new M_AD_News();
-        $newDatas = $news->news();
+        $newDatas = $news->newsAll();
         $newsCount = count($newDatas);
         $newsLimited = $news->newsLimited();
 

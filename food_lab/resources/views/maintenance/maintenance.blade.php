@@ -12,7 +12,7 @@
             <div class="main-photos">
                 <img src="{{ url('/storage/maintenance/maintenance.gif') }}" width="100%" alt="maintenance">
             </div>
-            <p class="fs-1 fw-bolder text-uppercase pt-2">maintenance</p>
+            <p class="fs-1 fw-bolder text-uppercase pt-2 text-danger">Our Site is Currently maintenance.<br/>Try Again Later.</p>
         </div>
     </div>
 @endsection
