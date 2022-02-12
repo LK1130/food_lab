@@ -26,6 +26,7 @@ return [
     'Phone' => 'Phone',
     'Address' => 'Address',
     'Cancel' => 'Cancel',
+    'Back' => 'Back',
     'Reset' => 'Reset',
     'Charge' => 'Charge',
     'Order' => 'Order',
