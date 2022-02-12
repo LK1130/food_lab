@@ -16,6 +16,9 @@ body {
 .news-container .title {
     color: var(--secondary-color);
 }
+.news {
+    height: fit-content !important;
+}
 .newsAll {
     position: relative;
     margin-top: 5vh !important;
@@ -24,6 +27,7 @@ body {
     /* max-height: 15vh; */
     height: fit-content;
     margin: auto;
+    cursor: pointer;
     border-radius: 1vw;
 }
 .tracks {
@@ -50,7 +54,8 @@ body {
     right: -3% !important;
 }
 .newsImg {
-    max-width: 13% !important;
+    max-width: 14% !important;
+
     margin-top: 3vh !important;
     margin-bottom: 3vh !important;
 }

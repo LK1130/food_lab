@@ -42,7 +42,9 @@ textarea {
 marquee {
     background-color: #000000;
 }
-
+.coinCalInform {
+    color: var(--coin-color);
+}
 /*start navbar*/
 
 .navs {
@@ -341,6 +343,9 @@ marquee {
 }
 .tracks {
     height: 18vh !important;
+}
+.nocursor {
+    cursor: auto !important;
 }
 .newsLogo {
     position: absolute;

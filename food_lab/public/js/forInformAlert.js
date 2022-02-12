@@ -61,7 +61,7 @@ $(document).ready(function () {
                 if (newscount == 0) {
                     $(".forMessages").prepend(
                         `
-                        <div class="news d-flex flex-row justify-content-center align-items-center">
+                        <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                             <p class="fs-6 fw-bolder mt-2 me-auto">No new has left </p>
                         </div>
                         `
@@ -79,9 +79,9 @@ $(document).ready(function () {
                         if (date < 3) {
                             $(".forNews").prepend(
                                 `
-                            <div class="news d-flex flex-row justify-content-center align-items-center">
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 ">${news.title}
+                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
                                         (${news.detail})</p>
                                         <img src="img/new.png" alt="" class="newsLogo" >
                                 </div>
@@ -90,9 +90,9 @@ $(document).ready(function () {
                         } else {
                             $(".forNews").prepend(
                                 `
-                            <div class="news d-flex flex-row justify-content-center align-items-center">
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 ">${news.title}
+                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
                                         (${news.detail})</p>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
@@ -189,7 +189,7 @@ $(document).ready(function () {
                                     <p class=" fw-bolder mb-1">${$name[0]} and ${$namesCount} other</p>
                                     
                                     
-                                    <p class=" fw-bold mb-1">${tracks.coin} coin</p>
+                                    <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
                                     <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
                                 </div>
                                 <div class="d-flex flex-column me-3 w-100 mt-4 nomelimited">
@@ -210,7 +210,7 @@ $(document).ready(function () {
                                 <p class=" fw-bolder mb-1">${$name[0]} and ${$namesCount} other</p>
                                     
                                     
-                                <p class=" fw-bold mb-1">${tracks.coin} coin</p>
+                                <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
                                 <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
                                 </div>
                                 <div class="d-flex flex-column me-3 w-100 mt-4">
@@ -342,29 +342,79 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#alertCount").text(data["alertCount"]);
-
                 let newscount = data["limitednews"].length;
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, "0");
+                var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+                var yyyy = today.getFullYear();
+
+                today = yyyy + "-" + mm + "-" + dd;
+                console.log(today);
                 if (newscount == 0) {
-                    $(".forNews").prepend(
+                    $(".forMessages").prepend(
                         `
-                        <div class="news d-flex flex-row justify-content-center align-items-center">
-                        <p class="fs-6 fw-bolder mt-2 me-auto">No news has left. </p>
-                    </div>
+                        <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
+                            <p class="fs-6 fw-bolder mt-2 me-auto">No new has left </p>
+                        </div>
                         `
                     );
                 } else {
                     for (const news of data["limitednews"]) {
-                        $(".forNews").prepend(
-                            `
-                            <div class="news d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-auto">${news.title}
+                        var oneD = 1000 * 60 * 60 * 24;
+
+                        var sMS = new Date(news.newscreated);
+                        var eMS = new Date(today);
+                        var date = Math.round(
+                            (eMS.getTime() - sMS.getTime()) / oneD
+                        );
+
+                        if (date < 3) {
+                            $(".forNews").prepend(
+                                `
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
+                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
                                         (${news.detail})</p>
+                                        <img src="img/new.png" alt="" class="newsLogo" >
                                 </div>
                             `
-                        );
+                            );
+                        } else {
+                            $(".forNews").prepend(
+                                `
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
+                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
+                                        (${news.detail})</p>
+                                        <img src="" alt="" class="newsLogo" >
+                                </div>
+                            `
+                            );
+                        }
                     }
                 }
+                // let newscount = data["limitednews"].length;
+                // if (newscount == 0) {
+                //     $(".forNews").prepend(
+                //         `
+                //         <div class="news d-flex flex-row justify-content-center align-items-center">
+                //         <p class="fs-6 fw-bolder mt-2 me-auto">No news has left. </p>
+                //     </div>
+                //         `
+                //     );
+                // } else {
+                //     for (const news of data["limitednews"]) {
+                //         $(".forNews").prepend(
+                //             `
+                //             <div class="news d-flex flex-row justify-content-center align-items-center">
+                //                     <img src="/storage/newsImage/${news.source}" class="my-3" alt="">
+                //                     <p class="fs-6 fw-bolder mt-2 me-auto">${news.title}
+                //                         (${news.detail})</p>
+                //                 </div>
+                //             `
+                //         );
+                //     }
+                // }
             },
         });
 

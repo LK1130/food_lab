@@ -71,7 +71,7 @@ class M_AD_Track extends Model
         Log::channel('adminlog')->info("M_AD_Track Model", [
             'Start allTracks'
         ]);
-        $result = T_AD_Order::select('*', DB::raw('t_ad_order.created_at AS trackscreated'))
+        $result = T_AD_Order::select('*', DB::raw('t_ad_order.created_at AS trackscreated'), DB::raw('t_ad_order.id AS trackid'))
             ->where('t_ad_order.customer_id', '=', $sessionCustomerId)
             ->where('t_ad_order.del_flg', 0)
             ->orderBy('t_ad_order.created_at', 'DESC')
