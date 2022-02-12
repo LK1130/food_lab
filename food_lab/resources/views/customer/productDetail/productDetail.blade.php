@@ -1,5 +1,8 @@
 @extends('COMMON.layout.layout_customer')
 
+@section('title')
+  {{ $name->site_name }} | Food Detail
+@endsection
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -198,7 +201,7 @@
                             @if (session()->has('customerId'))
                                 <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 mx-auto  ">
                                     <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal3">Buy Now</button>
-                                  <button id="{{ $productId->pid }}" class="btn btns shopcart buy" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
+                                  <button id="{{ $productId->pid }}" class="btn btns  buy" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
                                 </div>
                            
                                 
@@ -214,7 +217,7 @@
 
                             <div class="container-fluid mt-5 p-3">
                                 <div class="d-flex justify-content-center">
-                                    <p class="copy">Copy right by Food Lab</p>
+                                    <p class="copy">Copy right by {{ $name->site_name }}</p>
                                 </div>
                             </div>
                             </div>

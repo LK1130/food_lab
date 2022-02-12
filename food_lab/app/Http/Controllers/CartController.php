@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\returnSelf;
+
 class CartController extends Controller
 {
     public function orderList()
@@ -33,6 +35,8 @@ class CartController extends Controller
         if (session()->has('customerId')) {
             $products = [];
             $cuProducts = session('cart');
+
+        
             $productArrays = $cuProducts;
             if (count($productArrays) != 0) {
                 // for product 
@@ -219,14 +223,13 @@ class CartController extends Controller
             ]);
 
             $products = $request->data;
-        
             session(['cart' => $products]);
             
-    
+            
             Log::channel('customerlog')->info('CartController', [
                 'end getSessionCount'
             ]);
 
-            return session('cart');
+            // return session('cart');
         }
 }
