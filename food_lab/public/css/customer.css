@@ -152,6 +152,10 @@
     padding: 0 10px 0 10px;
 }
 
+.product-imgs {
+    width: 130px;
+}
+
 .recommands {
     min-width: 95%;
     background: linear-gradient( 120deg, rgba(245, 0, 0, 0.5) 30%, rgba(0, 0, 0, 1) 60%);
@@ -280,8 +284,8 @@
 
 
 /*
-    * Create:zayar(2022/01/17) 
-    * Update: 
+    * Create:zayar(2022/01/17)
+    * Update:
     */
 
 
@@ -362,8 +366,8 @@
 
 
 /*
-    * Create:zayar(2022/01/22) 
-    * Update: 
+    * Create:zayar(2022/01/22)
+    * Update:
     */
 
 
@@ -453,6 +457,10 @@
 
 .policys {
     min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg6.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
 }
 
@@ -646,6 +654,12 @@ form div .cancels {
     margin-bottom: 2%;
 }
 
+.form-inputs {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
 .register-forms input,
 .register-forms select {
     background-color: var(--bg-color);
@@ -792,12 +806,8 @@ form div .cancels {
 
 /*Start Footer Section*/
 
-footer {
-    min-height: 100vh;
-}
-
 .footer-infos {
-    min-height: 90vh;
+    min-height: 70vh;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg5.png");
     background-position: center;
     background-size: cover;

@@ -36,7 +36,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#alertCount").text(data["alertcount"]);
 
-                $(".profileAlertBody").prepend(
+                $("#profileAlertBody").prepend(
                     `
                     <div class="d-flex flex-column justify-content-center align-items-center ">
                     <i class="far fa-user-circle fs-1 text-light"></i>
@@ -176,10 +176,25 @@ $(document).ready(function () {
                         ];
                         $statusMessage = tracks.order_status;
                         $messagecolor = $allcolor[$statusMessage - 1];
-                        $names = tracks.product_name;
+                        $names = tracks.title;
                         $name = $names.split(",");
                         $namesCount = $name.length - 1;
                         console.log($namesCount);
+                        $.ajaxSetup({
+                            headers: {
+                                "X-CSRF-TOKEN": jQuery(
+                                    'meta[name="csrf-token"]'
+                                ).attr("content"),
+                            },
+                        });
+
+                        $.ajax({
+                            type: "GET",
+                            url: "searchcustomerdetails",
+                            data: formdata,
+                            dataType: "json",
+                            success: function (data) {},
+                        });
                         if (tracks.seen == 0) {
                             $(".forTracks").prepend(
                                 `
@@ -235,16 +250,16 @@ $(document).ready(function () {
         document
             .getElementById("profileButton")
             .addEventListener("click", function () {
-                document.getElementById("profileAlert").style.display = "block";
+                $("#profileAlert").toggleClass("visible");
             });
         document
             .getElementById("profileButton2")
             .addEventListener("click", function () {
-                document.getElementById("profileAlert").style.display = "block";
+                $("#profileAlert").toggleClass("visible");
             });
-        document.getElementById("back").addEventListener("click", function () {
-            document.getElementById("profileAlert").style.display = "none";
-        });
+        // document.getElementById("back").addEventListener("click", function () {
+        //     document.getElementById("profileAlert").style.display = "none";
+        // });
         /*
          * Create : zayar(23/1/2022)
          * Update :

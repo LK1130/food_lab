@@ -10,7 +10,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link href="{{ url('css/buyCoin.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 
 
@@ -23,44 +22,48 @@
                 <form action="buycoinForm" method="POST" class="coinchargeform" enctype="multipart/form-data">
                     @csrf
                     <div class="col-8 d-flex coininput">
-                        <span class="col-7"><i class="coinCal fas fa-coins"></i> {{ __('messageCPPK.Coin') }}</span>
+                        <span class="col-7"><i class="coinCal fas fa-coins"></i>
+                            {{ __('messageCPPK.Coin') }}</span>
                         <div class="col-7">
-                                <input type="number" id="coinChargeinput" name="coinput">
+                            <input type="number" id="coinChargeinput" name="coinput">
                             @error('coinput')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="col-8 d-flex choosephoto">
-                        <span class="col-7"><i class="fileUpload far fa-file-alt"></i> {{ __('messageCPPK.Screenshot') }}</span>
+                        <span class="col-7"><i class="fileUpload far fa-file-alt"></i>
+                            {{ __('messageCPPK.Screenshot') }}</span>
                         <div class="col-7">
-                            <input class="fileuploadInput form-control" type="file"  accept="image/*" id="formFile" name="fileimage">
-                            @error('file')
+                            <input class="fileuploadInput form-control" type="file" accept="image/*" id="formFile"
+                                name="fileimage">
+                            @error('fileimage')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <button id="reset" class="cancelbtn btn btn-light">{{ __('messageCPPK.Reset') }}</button>
+                    <button type="button" id="reset"
+                        class="cancelbtn btn btn-light">{{ __('messageCPPK.Reset') }}</button>
                     <button type="submit" class="submitbtn btn btn-danger">{{ __('messageCPPK.Charge') }}</button>
                 </form>
             </div>
             <div class="coinrule">
                 <h2 class="coinRule">{{ __('messageCPPK.Coin Rule') }}</h2>
-                    <ul class="coinList">
-                        <li>1 coin equal <span id="coinratedata" class="coinratedata">{{ $coinrateData->rate }}</span> Kyats
-                        </li>
-                        <li>This coin can be used only on this website</li>
-                        <li>This coin cannot be transfered</li>
-                    </ul>
+                <ul class="coinList">
+                    <li>1 coin equal <span id="coinratedata" class="coinratedata">{{ $coinrateData->rate }}</span>
+                        Kyats
+                    </li>
+                    <li>This coin can be used only on this website</li>
+                    <li>This coin cannot be transfered</li>
+                </ul>
                 <h2 class="coinRule">{{ __('messageCPPK.Payment Accounts') }}</h2>
-                    <ul class="coinList">
-                        @forelse ($paymentAccount as $accounts)
-                            <li>{{ $accounts->payment_name }} <span><i class="fas fa-arrow-right"></i></span>
-                                {{ $accounts->account_name }}</li>
-                        @empty
-
-                        @endforelse
-                    </ul>
+                <ul class="coinList">
+                    @forelse ($paymentAccount as $accounts)
+                        <li>{{ $accounts->payment_name }} <span><i class="fas fa-arrow-right"></i></span>
+                            {{ $accounts->account_name }}</li>
+                    @empty
+                    @endforelse
+                </ul>
                 <hr class="coinRulehr">
                 <h2 class="coinCalculator">{{ __('messageCPPK.Coin Calculator') }}</h2>
                 <div class="coinCaldiv">

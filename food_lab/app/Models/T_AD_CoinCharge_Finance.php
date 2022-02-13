@@ -211,6 +211,7 @@ class T_AD_CoinCharge_Finance extends Model
 
         $coinTable = T_AD_CoinCharge_Finance::select(
             DB::raw(('date(created_at) as date')),
+            DB::raw(('day(created_at) as day')),
             DB::raw('sum(amount) as totalAmount'),
         )
             ->where(DB::raw('month(created_at)'), $currentMonth)
@@ -218,6 +219,7 @@ class T_AD_CoinCharge_Finance extends Model
             ->orderBy(DB::raw('created_at'), 'ASC')
             ->groupBy('date')
             ->paginate(10);
+            // ->get();
 
          Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
             'End dailyCointable'

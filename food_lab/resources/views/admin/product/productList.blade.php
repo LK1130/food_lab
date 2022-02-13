@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    Proudct List
+    Admin | Proudct List
 @endsection
 
 @section('css')
@@ -50,7 +50,6 @@
 
                                 @else
                                     <td>Not Avaliable</td>
-
                                 @endif
                                 <td>
                                     <a href="{{ route('product.edit', $product->pid) }}"><button

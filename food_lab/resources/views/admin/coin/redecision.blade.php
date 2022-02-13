@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Coin Decision')
+@section('title', 'Admin | Coin Decision')
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ URL::asset('css/adminCoin.css') }}" />
@@ -119,7 +119,7 @@
                 {{-- End Decision Making --}}
 
                 {{-- Start History --}}
-                @if (count($history)>0)
+                @if (count($history) > 0)
                     <label for="" class="fw-bold fs-4 fw-bold mt-3">Decision History</label>
                 @endif
 

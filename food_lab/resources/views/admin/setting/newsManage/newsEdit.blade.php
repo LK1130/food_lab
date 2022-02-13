@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'News Add')
+@section('title', 'Admin | News Edit')
 
 @section('css')
 
@@ -48,7 +48,6 @@
                                     </option>
                                 @else
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-
                                 @endif
 
                             @empty

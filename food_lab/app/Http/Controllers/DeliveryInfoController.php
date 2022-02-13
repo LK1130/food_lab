@@ -24,25 +24,29 @@ class DeliveryInfoController extends Controller
             'start deliveryInfo'
         ]);
 
-        $userID = session('customerId');
+        if(session()->has('cart')){
+            $userID = session('customerId');
 
-        $deliTownshipInfo = new T_CU_Customer();
-        $deliInfo = $deliTownshipInfo->deliTownship($userID);
+            $deliTownshipInfo = new T_CU_Customer();
+            $deliInfo = $deliTownshipInfo->deliTownship($userID);
 
-        if ($deliInfo === null) {
-            Log::channel('adminlog')->info("T_CU_Customer Model", [
-                'End deliTownship'
-                
+            if ($deliInfo === null) {
+                Log::channel('adminlog')->info("T_CU_Customer Model", [
+                    'End deliTownship'
+                    
+                ]);
+                return redirect('error/404');
+            }
+
+            Log::channel('customerlog')->info('DeliveryInfoController ', [
+                'End deliveryInfo'
             ]);
-            return redirect('error/404');
+
+            return View('customer.deliveryInfo', ['deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
         }
-
-        Log::channel('customerlog')->info('DeliveryInfoController ', [
-            'End deliveryInfo'
-        ]);
-
-        return View('customer.deliveryInfo', ['deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
+         return redirect('/');
     }
+        
 
     /* Create:cherry(1/2/2022)
     * Update: Min Khant(1/2/2022)
@@ -58,6 +62,7 @@ class DeliveryInfoController extends Controller
         $phone = $_POST['phone'];
 
         $userID = session('customerId');
+
 
         $productArrays = session('cart');
         $deliTownshipInfo = new T_CU_Customer();

@@ -226,72 +226,140 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
    Route::get('/delivery', [CustomerController::class, 'deliveryDetails']);
 
-   /*
+   // check Customer id
+   Route::group(['middleware' => ['checkCustomerId']], function () {
+
+      /*
+    * For Update Profile
+    * zayar
+    */
+      Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
+
+      /*
+    * For Detail message Customer
+    * zayar
+    */
+      Route::get('/messageDetail/{id}', [CustomerController::class, 'messageDetail']);
+      /*
+    * For Detail message Customer
+    * zayar
+    */
+      Route::get('/trackDetail/{id}', [CustomerController::class, 'trackDetail']);
+
+      /*
+    * For Edit Profile Page
+    * zayar
+    */
+      Route::resource('editprofile', CustomerProfileController::class);
+
+      /*
+    * For ajax
+    * zayar
+    */
+      Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
+
+      /*
+    * For Update Profile Page
+    * zayar
+    */
+      Route::resource('updateprofile', CustomerProfileUpdate::class);
+
+      /*
+     * For Update Profile
+     * zayar
+     */
+      Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
+
+      /*
+     * For messages page
+     * zayar
+     */
+      Route::get('/messages', [CustomerController::class, 'message']);
+
+      /*
+     * For tracks page
+     * zayar
+     */
+      Route::get('/tracks', [CustomerController::class, 'tracks']);
+
+      /*
      * For Reprot Page
     */
-   Route::get('/report', [CustomerController::class, 'report']);
+      Route::get('/report', [CustomerController::class, 'report']);
 
-   /*
+      /*
      * From Report Page to store form data in database
     */
-   Route::post('/report', [CustomerController::class, 'reportForm']);
+      Route::post('/report', [CustomerController::class, 'reportForm']);
 
-   /*
+      /*
      * For Suggest Page */
-   Route::get('/suggest', [CustomerController::class, 'suggest']);
+      Route::get('/suggest', [CustomerController::class, 'suggest']);
 
-   // For Suggest Form
-   Route::post('/suggest', [CustomerController::class, 'suggestForm']);
+      // For Suggest Form
+      Route::post('/suggest', [CustomerController::class, 'suggestForm']);
 
-   /*
+      /*
      * For contact page*/
-   Route::get('/contact', [CustomerController::class, 'contact']);
+      Route::get('/contact', [CustomerController::class, 'contact']);
 
-   /*
+      /*
      * For contact form*/
-   Route::post('/contact', [CustomerController::class, 'contactForm']);
+      Route::post('/contact', [CustomerController::class, 'contactForm']);
+
+      /*
+     * For cart page
+     * min khant
+    */
+      Route::get('/cart', [CartController::class, 'cart']);
+      Route::post('/cart', [CartController::class, 'cartDetail']);
+      Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+
+      /*
+     * For deliery info page
+     * cherry
+    */
+      Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+      Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
+   });
 
    /*
      * For Access Page
      */
-   Route::get('/access', [CustomerController::class, 'access']);
+   Route::get('/signup', [CustomerController::class, 'signup']);
+
 
    /*
- * For Edit Profile Page
- * zayar
- */
-   Route::resource('editprofile', CustomerProfileController::class);
-   /*
- * For ajax 
- * zayar
- */
-   Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
-   /*
- * For news get initial 
+ * For news get initial
  * zayar
  */
    Route::get('getnews', [CustomerController::class, 'getNews']);
+
+
    /*
- * For Update Profile Page
- * zayar
- */
-   Route::resource('updateprofile', CustomerProfileUpdate::class);
-   /*
- * For Update Profile
- * zayar
- */
-   Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
-   /*
- * For Detail message Customer
- * zayar
- */
-   Route::get('/messageDetail/{id}', [CustomerController::class, 'messageDetail']);
-   /*
- * For Detail message Customer
- * zayar
- */
-   Route::get('/trackDetail/{id}', [CustomerController::class, 'trackDetail']);
-   /*
+    /*
+     * For tracks page
+     * zayar
+     */
+    Route::get('/tracks', [CustomerController::class, 'tracks']);
+
+    /*
+     * For cart page
+     * min khant
+    */
+    Route::get('/cart', [CartController::class, 'cart']);
+    Route::post('/cart', [CartController::class, 'cartDetail']);
+    Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+
+    /*
+     * For deliery info page
+     * cherry
+    */
+  Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+  Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
+  });
+
+  /*
  * For news page
  * zayar
  */
@@ -300,6 +368,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      * For Register Form
      */
    Route::post('/access', [CustomerController::class, 'register']);
+   Route::post('/getTownship', [CustomerController::class, 'getTownship']);
    Route::post('/google', [CustomerController::class, 'google']);
 
    /*
@@ -310,7 +379,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
    /*
      * For Login Page
      */
-   Route::get('/login', [CustomerController::class, 'login']);
+   Route::get('/signin', [CustomerController::class, 'login']);
 
    /*
      * For Edit Profile Page
@@ -332,43 +401,13 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      * zayar
      */
    Route::resource('updateprofile', CustomerProfileUpdate::class);
-   /*
-     * For Update Profile
-     * zayar
-     */
-   Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
+
    /*
      * For news page
      * zayar
      */
    Route::get('/customerNews', [CustomerController::class, 'news']);
 
-   /*
-     * For messages page
-     * zayar
-     */
-   Route::get('/messages', [CustomerController::class, 'message']);
-
-   /*
-     * For tracks page
-     * zayar
-     */
-   Route::get('/tracks', [CustomerController::class, 'tracks']);
-
-   /*
-     * For cart page
-     * min khant
-    */
-   Route::get('/cart', [CartController::class, 'cart']);
-   Route::post('/cart', [CartController::class, 'cartDetail']);
-   Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
-
-   /*
-     * For deliery info page
-     * cherry
-    */
-   Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
-   Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
    /*
      * For Login Form
      */
@@ -379,6 +418,18 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
    Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
    Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
+  /*
+     * For cart page
+     * min khant
+    */
+    Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+    Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
+
+  /*
+   * For Login Form
+   */
+  Route::post('/login', [CustomerController::class, 'loginForm']);
+
 
    /*
      * For Product Detail Form
@@ -405,4 +456,4 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
 
    // still need to fix
     // Route::get('/tags',[CustomerController::class,'tagsFavType']);
-});
+
