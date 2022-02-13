@@ -145,7 +145,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="/access">{{ __('messageMK.access') }}</a>
+                            <a class="nav-link texts" href="/signin">{{ __('messageMK.access') }}</a>
                         </li>
                     @endif
                 </ul>

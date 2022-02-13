@@ -14,7 +14,7 @@
     <script src="{{ url('js/customerRegister.js') }}" type="text/javascript" defer></script>
 @endsection
 
-@section('title', 'Food Lab')
+@section('title', "$name->site_name | Sign Up")
 
 @section('google')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,14 +34,14 @@
                 <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div>
-                <img src="{{ url('/img/logo.png') }}" alt="logo" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px"/>
             </div>
         </div>
 
         {{-- start register header --}}
         <div class="d-flex ms-5 mb-3 register-headers">
             <div>
-                <p class="fw-bolder pb-3 creates">{{ __('messageMK.createAccount') }}</p>
+                <p class="fw-bolder pb-3 creates">{{ __('messageMK.signUp') }}</p>
                 <div class="d-flex justify-content-around align-items-center text-white sign-withs">
                     <p class="btn g-signin2" data-onsuccess="onSignIn"><i
                             class="fab fa-google"></i>{{ __('messageMK.signUpWithGoogle') }}</p>
@@ -61,30 +61,30 @@
             <form action="/access" method="post" class="d-flex flex-column align-items-center justify-content-start">
                 @csrf
                 <div class="inputs">
-                    <input type="text" id="username" class="form-control" name="username"
-                        placeholder="{{ __('messageMK.fullName') }}" value="{{ old('username') }}"
+                    <input type="text" id="username" class="form-inputs" name="username"
+                        placeholder="{{ __('messageMK.fullName') }}" value="{{ old('username') }}" maxlength="30"
                         autocomplete="off" />
                     @error('username')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="phone" class="form-control" name="phone"
-                        placeholder="{{ __('messageMK.phone') }}" value="{{ old('phone') }}" autocomplete="off" />
+                    <input type="text" id="phone" class="form-inputs" name="phone"
+                        placeholder="{{ __('messageMK.phone') }}" value="{{ old('phone') }}" maxlength="14" autocomplete="off" />
                     @error('phone')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="email" id="email" class="form-control" name="email"
-                        placeholder="{{ __('messageMK.email') }}" value="{{ old('email') }}" autocomplete="off" />
+                    <input type="email" id="email" class="form-inputs" name="email"
+                        placeholder="{{ __('messageMK.email') }}" value="{{ old('email') }}" maxlength='128' autocomplete="off" />
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
                     <select class="form-select selects" id="addressState" name="addressState">
-                        <option class="township-options" value="0" selected>{{ __('messageMK.address(State)') }}</option>
+                        <option class="township-options" value="0" selected disabled>{{ __('messageMK.address(State)') }}</option>
                         @forelse ($staenames as $staename)
                             <option class="township-options" value="{{ $staename->id }}">{{ $staename->state_name }}
                             </option>
@@ -112,8 +112,8 @@
                     @enderror
                 </div>
                 <div class="inputs">
-                    <input type="text" id="addressNo" class="form-control" name="addressNo"
-                        placeholder="{{ __('messageMK.address(street)') }}" value="{{ old('addressNo') }}"
+                    <input type="text" id="addressNo" class="form-inputs" name="addressNo"
+                        placeholder="{{ __('messageMK.address(street)') }}" value="{{ old('addressNo') }}" maxlength="128"
                         autocomplete="off" />
                     @error('addressNo')
                         <span class="text-danger">{{ $message }}</span>
@@ -121,8 +121,8 @@
                 </div>
                 <div class="inputs">
                     <div class="passwords">
-                        <input type="password" id="password" class="form-control" name="password"
-                            placeholder="{{ __('messageMK.password') }}" value="{{ old('password') }}"
+                        <input type="password" id="password" class="form-inputs" name="password"
+                            placeholder="{{ __('messageMK.password') }}" value="{{ old('password') }}" maxlength='30'
                             autocomplete="off" />
                         <i class="fas fa-eye-slash pwd-eye-slash"></i>
                         <i class="far fa-eye pwd-eye"></i>
@@ -133,8 +133,8 @@
                 </div>
                 <div class="inputs">
                     <div class="passwords">
-                        <input type="password" id="cPassword" class="form-control" name="cPassword"
-                            placeholder="{{ __('messageMK.confirmPassword') }}" autocomplete="off" />
+                        <input type="password" id="cPassword" class="form-inputs" name="cPassword"
+                            placeholder="{{ __('messageMK.confirmPassword') }}" maxlength="30" autocomplete="off" />
                         <i class="fas fa-eye-slash cpwd-eye-slash"></i>
                         <i class="far fa-eye cpwd-eye"></i>
                     </div>
@@ -179,7 +179,7 @@
                                 <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">{{ __('messageMK.Note') }}</legend>
                                     <div class="m-3  @error('note') border-danger @enderror">
-                                        <textarea name="note"></textarea>
+                                        <textarea name="note" maxlength="255"></textarea>
                                     </div>
                                 </fieldset>
                             </div>
@@ -198,8 +198,12 @@
         {{-- end register form --}}
 
         <div class="ms-5 py-2 have-accs">
-            <p>{{ __('messageMK.alreadyHaveAnAccount') }} <a href="/login"
-                    class="ms-3">{{ __('messageMK.loginInHere') }}</a></p>
+            <p>{{ __('messageMK.alreadyHaveAnAccount') }} <a href="/signin"
+                    class="ms-3 text-decoration-underline">{{ __('messageMK.loginInHere') }}</a></p>
+        </div>
+
+        <div class="copys">
+            <p>Copyright &copy; {{ $name->site_name }}</p>
         </div>
     </section>
 
