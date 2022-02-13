@@ -143,14 +143,19 @@ marquee {
 #profileAlert {
     position: absolute;
     z-index: 999;
-    width: 67vh;
-    height: 70vh;
+    min-width: 30%;
+    height: fit-content;
     background-color: rgba(0, 0, 0, 0.952);
     top: 100%;
-    right: 0;
+    right: 5%;
+    border-radius: 2vw;
     display: none;
 }
-
+.profileAlertBody {
+    height: fit-content;
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.952);
+}
 .profileAlertHeader {
     color: var(--primary-color);
 }
@@ -182,7 +187,12 @@ marquee {
     background-color: var(--primary-color);
     color: var(--text-color);
 }
+.profileAlertfooter {
+    height: auto;
+    border-radius: 0 0 2vw 2vw;
 
+    background-color: rgba(0, 0, 0, 0.952);
+}
 #back {
     cursor: pointer;
 }
@@ -198,8 +208,9 @@ marquee {
 @media only screen and (max-width: 720px) {
     #profileAlert {
         position: absolute;
-        width: 55vw;
-        margin-right: 20vw;
+        width: 80%;
+        margin: auto;
+        margin-right: 5%;
     }
     .userProfile {
         margin-left: 0;

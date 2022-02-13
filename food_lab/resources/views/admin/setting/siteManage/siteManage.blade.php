@@ -71,11 +71,11 @@
                 </div>
                 <div class="rowInput">
                     <label for="policy">{{ __('messageZY.privacy') }}</label>
-                    <div class="input-group mb-3">
-                        <div class="form-floating">
-                            <textarea id="policy" class="form-control textarea"
-                                name="policy">{{ $siteInfo == null ? '' : $siteInfo->privacy_policy }}</textarea>
-                        </div>
+                    <div class="mb-3">
+
+                        <textarea id="policy" class="form-control textarea"
+                            name="policy">{{ $siteInfo == null ? '' : $siteInfo->privacy_policy }}</textarea>
+
 
                         @error('policy')
                             <li class="text-danger ">{{ $message }}</li>
@@ -102,7 +102,6 @@
                     <div class=" mb-3">
                         <textarea id="intro" class="form-control textarea"
                             name="intro">{{ $siteInfo == null ? '' : $siteInfo->intro }}</textarea>
-
                         @error('intro')
                             <li class="text-danger ">{{ $message }}</li>
                         @enderror
