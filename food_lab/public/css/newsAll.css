@@ -1,5 +1,14 @@
+body {
+    min-height: 80vh;
+    background-image: url("/img/Home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
 .news-container {
     margin: auto;
+    margin-top: 9%;
     width: 90%;
     height: 65vh;
     background-color: rgba(101, 102, 102, 0.199);
@@ -8,28 +17,90 @@
     color: var(--secondary-color);
 }
 .news {
+    height: fit-content !important;
+}
+.newsAll {
+    position: relative;
+    margin-top: 5vh !important;
     width: 90%;
     background-color: rgb(216, 211, 193);
-    max-height: 15vh;
+    /* max-height: 15vh; */
+    height: fit-content;
     margin: auto;
+    cursor: pointer;
+    border-radius: 1vw;
 }
-.news img {
-    width: 6vw;
+.tracks {
+    position: relative;
+    margin-top: 5vh !important;
+    width: 90%;
+    background-color: rgb(216, 211, 193);
+    /* max-height: 15vh; */
+    height: fit-content !important;
+    margin: auto;
+    border-radius: 1vw;
 }
-.backNews {
-    margin-left: 70vw;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+.productname {
+    width: 40vw !important;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* height: fit-content !important; */
+}
+.newsLogoAll {
+    position: absolute;
+    width: 5% !important;
+    top: -15% !important;
+    right: -3% !important;
+}
+.newsImg {
+    max-width: 14% !important;
+
+    margin-top: 3vh !important;
+    margin-bottom: 3vh !important;
+}
+.trackImg {
+    max-width: 8% !important;
+}
+.mobile {
+    display: flex;
+    flex-direction: row;
+    gap: 10vw;
+}
+.back {
+    color: var(--primary-color);
 }
 .allNews {
     height: 80%;
     overflow-y: scroll;
 }
 @media (max-width: 720px) {
-    .news img {
-        width: 9vw;
+    .newsImg {
+        min-width: 30%;
     }
-    .news {
-        height: 15vh;
+    .newsLogoAll {
+        min-width: 12vw !important;
+        right: -6% !important;
+        top: -10% !important;
+    }
+    .newsAll p {
+        font-size: 1rem !important;
+        margin-left: auto !important;
+        margin-left: 1vw !important;
+    }
+    .tracks p {
+        font-size: 1.1rem !important;
+        margin-left: auto !important;
+        margin-left: 1vw !important;
+    }
+    .mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1vw;
+        margin-left: 4vw !important;
+    }
+    .nome {
+        margin-right: auto !important;
+        margin-left: 2vw !important;
     }
 }

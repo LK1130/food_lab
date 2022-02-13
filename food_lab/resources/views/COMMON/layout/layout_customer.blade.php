@@ -12,7 +12,7 @@
     <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
+
     @yield('script')
     @yield('css')
     @yield('script')
@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3 nav-containers">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"  class="pe-2" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px" class="pe-2" />
                 <span class="text-uppercase comapanynames">{{ $name->site_name }}</span>
             </a>
 
@@ -53,12 +53,13 @@
 
             <div class="d-flex">
                 @if (session()->has('customerId'))
-                    <p class="nav-link d-lg-none me-2 mt-1 texts" id="profileButton2">
-                        <a href="/cart" class="d-lg-none me-3 position-relative texts"><i class="fas fa-shopping-cart fs-3"></i>
+                    <p class="nav-link d-lg-none mt-1 texts" id="">
+                        <a href="/cart" class="d-lg-none position-relative texts"><i
+                                class="fas fa-shopping-cart fs-3"></i>
                             <span id="cartCount1"
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartout cartcount"></span></a>
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartout cartcount"></span></a>
                     </p>
-                    <p class="nav-link d-lg-none me-5 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
+                    <p class="nav-link d-lg-none me-2 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p>
                 @endif
 
@@ -93,18 +94,19 @@
                     @endif
                     @if (session()->has('customerId'))
                         @if ($nav == 'coin')
-                        <li class="nav-item">
-                            <a class="nav-link texts actives" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link texts actives" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
+                            </li>
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link texts" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link texts" href="/buycoin">{{ __('messageMK.buy coin') }}</a>
+                            </li>
                         @endif
                     @endif
                     <li class="nav-item companys">
                         <a href="/" class="navbar-brand d-lg-inline">
-                            <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px" class="pe-2" />
+                            <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"
+                                class="pe-2" />
                             <span class="comapanynames">{{ $name->site_name }}</span>
                         </a>
                     </li>
@@ -135,8 +137,8 @@
                     @if (session()->has('customerId'))
                         <li class="nav-item" id="cartButton">
                             <a href="/cart" class="nav-link texts "><i class="fas fa-shopping-cart fs-3"></i>
-                            <span id="cartCount2"
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartcount"></span></a>
+                                <span id="cartCount2"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartcount"></span></a>
                         </li>
                         <li class="nav-item">
                             <p class="nav-link texts" id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
@@ -157,20 +159,67 @@
 
             <div id="profileAlert">
                 <div class="d-flex flex-row justify-content-center profileAlertHeader">
-                    <i class="fas fa-arrow-circle-left fs-4 mt-2 text-light" id="back"></i>
+
                     <p class="userProfile text-center">User Profile</p>
-                    <a href="/logout"><i class="fas fa-sign-out-alt fs-4 mt-2 text-light" id="logout"></i></a>
+                    <a href="/logout"><i class="fas fa-sign-out-alt fs-4 mt-2 me-2 text-light" id="logout"></i></a>
                 </div>
                 <div class="profileAlertBody" id="profileAlertBody">
-                    <div class="d-flex flex-row mt-3 ms-5">
-                        <a href="{{ route('editprofile.index') }}"><button class="btn fs-5 me-3 editProfile">Edit
+                    <div class="d-flex flex-row gap-4 justify-content-center  profileAlertfooter">
+                        <a href="{{ route('editprofile.index') }}" class="mb-3 "><button
+                                class="btn fs-5  editProfile">Edit
                                 Profile</button></a>
-                        <a href="{{ route('updateprofile.index') }}"><button
-                                class="btn fs-5 ms-3 updatePassword">Change Password</button></a>
+                        <a href="{{ route('updateprofile.index') }}" class="mb-3 "><button
+                                class="btn fs-5  updatePassword">Change
+                                Password</button></a>
                     </div>
                 </div>
             </div>
 
+            <div id="informAlert" class="informAlert">
+
+
+                @if (session()->has('customerId'))
+                    <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
+                        <div>
+                            <p class="fw-bolder fs-5  infromTitle" id="clickNews">{{ __('messageZY.new') }}</p>
+                        </div>
+                        <div>
+                            <p class="fw-bolder fs-5 infromTitle" id="clickMessages">{{ __('messageZY.message') }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="fw-bolder fs-5 infromTitle" id="clickTracks">{{ __('messageZY.track') }}</p>
+                        </div>
+                    </div>
+                    <div class="forNews d-flex flex-column" id="forNews">
+
+                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                    <div class="forMessages d-flex flex-column" id="forMessages">
+
+                        <a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                    <div class="forTracks d-flex flex-column" id="forTracks">
+
+                        <a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                @else
+                    <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
+                        <div>
+                            <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">
+                                {{ __('messageZY.new') }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="forNews d-flex flex-column" id="forNews">
+
+                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a>
+                    </div>
+                @endif
         </nav>
         {{-- end navbar --}}
         {{-- /*
@@ -179,52 +228,10 @@
 */ --}}
         {{-- start inform alert box --}}
 
-        <div id="informAlert" class="informAlert">
-            <i class="fas fa-arrow-circle-left fs-1  mt-1" id="backInform"></i>
-
-            @if (session()->has('customerId'))
-                <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
-                    <div>
-                        <p class="fw-bolder fs-5  infromTitle" id="clickNews">{{ __('messageZY.new') }}</p>
-                    </div>
-                    <div>
-                        <p class="fw-bolder fs-5 infromTitle" id="clickMessages">{{ __('messageZY.message') }}</p>
-                    </div>
-                    <div>
-                        <p class="fw-bolder fs-5 infromTitle" id="clickTracks">{{ __('messageZY.track') }}</p>
-                    </div>
-                </div>
-                <div class="forNews d-flex flex-column" id="forNews">
-
-                    <a href="/customerNews" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-                <div class="forMessages d-flex flex-column" id="forMessages">
-
-                    <a href="/messages" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-                <div class="forTracks d-flex flex-column" id="forTracks">
-
-                    <a href="/tracks" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-            @else
-                <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
-                    <div>
-                        <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">{{ __('messageZY.new') }}
-                        </p>
-                    </div>
-                </div>
-                <div class="forNews d-flex flex-column" id="forNews">
-
-                    <a href="/customerNews" class="ms-auto"><button class="btn mb-2 alertButton">
-                            {{ __('messageZY.more') }}</button></a>
-                </div>
-            @endif
 
 
-            {{-- end inform alert box --}}
+
+        {{-- end inform alert box --}}
         </div>
         @yield('header')
     </header>

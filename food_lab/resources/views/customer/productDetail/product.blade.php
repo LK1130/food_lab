@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_customer')
 
 @section('title')
-    Product Menu
+  {{ $name->site_name }} | Food
 @endsection
 
 @section('css')
@@ -19,8 +19,6 @@
 
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
-    <script src="{{ url('js/productChange.js') }}" type="text/javascript"></script>
     
 @endsection
 
@@ -60,12 +58,12 @@
                 
             <div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
                
-                <div class="image-container ">
-                    <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class=" images" alt="bestitem1" />
+                <div class="image-container">
+                    <img src=" @isset($item->path)/storage/{{ $item->path }}@endisset" class="images" alt="bestitem1" />
                 </div>
                
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
+                <p class="fs-5 m-auto p-2"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 @if (session()->has('customerId'))
                 <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
@@ -142,8 +140,7 @@
             @if (session()->has('customerId'))
             <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" >{{ __('messageMK.shopnow') }}</button></a>
             @else
-            <a href="/login
-            "><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+            <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
             @endif
         </div>
 
@@ -181,8 +178,18 @@
 {{-- end modal --}}
     <div class="container-fluid mt-5 p-3">
         <div class="d-flex justify-content-center">
-            <p class="copy">Copy right by Food Lab</p>
+            <p class="copy">Copy right by {{ $name->site_name }}</p>
         </div>
     </div>
+    
     </section>  
+
+
+    <script>
+
+            let customerId = @json(session()->has('customerId'));
+            
+        </script>
+        <script src="{{ url('js/productChange.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
 @endsection

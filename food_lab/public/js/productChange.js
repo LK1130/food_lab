@@ -27,25 +27,54 @@ $(document).ready(function () {
             url: "searchCategory",
             data: formdata,
             dataType: "json",
+            beforeSend: function(){
+                $('#byCategory').empty();
+                $("#byCategory").hide('slow');
+            },
             success: function (data) {
+                
                 $("#byCategory").empty();
                 let count = 0;
+                $('#byCategory').show('slow');
+                if(data.length == 0){
+                    $('#byCategory').append(`
+                        <div class="d-flex justify-content-center align-items-center p-3"
+                                <p >There is no food in this category. We will announce later.</p>
+                        </div>
+                    `);
+                }
 
                 for (const list of data) {
                     if(count < 4){
+                        let amount = numberWithCommas(list.amount);
+                       if(customerId){
                         $('#byCategory').append(
                             `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
-                            <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
+                            <div class="image-container">
+                            <img src="/storage/${list.path}" class=" images" alt="bestitem1" />
+                            </div>
                             <p class="fs-3 pt-2">${ list.product_name }</p>
-                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin }</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                            <a href=""><button type="button" class="btn shopbtns"> Shop Now</button></a>
-                        </div>`
-                        )
+                            <a href=""><button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button></a>
+                            </div>`)
+                       }else{
+                        $('#byCategory').append(
+                            `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+                            <div class="image-container">
+                            <img src="/storage/${list.path}" class=" images" alt="bestitem1" />
+                            </div>
+                            <p class="fs-3 pt-2">${ list.product_name }</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
+                            <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
+                            <a href="/login"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
+                            </div>`)
+                       }
+                        
                     }
                     count++;
                 
-                    if(count > 3){
+                    if(count > 4){
                         $('.typebtns').show('slow');
                     
                     }else{
@@ -74,7 +103,7 @@ $(document).ready(function () {
      * Prarameter : no
      * return :
      */
-    $("#selectpicker2").change(function (e) {
+    $("#selectpicker2").unbind().change(function (e) {
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -92,21 +121,50 @@ $(document).ready(function () {
             url: "searchTaste",
             data: formdata,
             dataType: "json",
+            beforeSend: function(){
+                $('#byTaste').empty();
+                $("#byTaste").hide('slow');
+            },
             success: function (data) {
                 $("#byTaste").empty();
                 let count = 0;
-
+            
+                $('#byTaste').show('slow');
+                if(data.length == 0){
+                    $('#byTaste').append(`
+                        <div class="d-flex justify-content-center align-items-center p-3"
+                                <p >There is no food in this category. We will announce later.</p>
+                        </div>
+                    `);
+                }
                 for (const list of data) {
                     if(count < 4){
+                        let amount = numberWithCommas(list.amount);
+                        if(customerId){
                         $('#byTaste').append(
                             `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+                            <div class="image-container">
                             <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
+                            </div>
                             <p class="fs-3 pt-2">${ list.product_name }</p>
-                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin }</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                            <a href=""><button type="button" class="btn shopbtns"> Shop Now</button></a>
+                            <a href=""><button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button></a>
                         </div>`
                         )
+                        }else{
+                            $('#byTaste').append(
+                                `<div class="col-md-3 col-sm-3 d-flex flex-column justify-content-center align-items-center m-auto my-3 fw-bold py-5">
+                                <div class="image-container">
+                                <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
+                                </div>
+                                <p class="fs-3 pt-2">${ list.product_name }</p>
+                                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
+                                <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
+                                <a href="/login"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
+                            </div>`
+                            )
+                        }
                     }
                     count++;
                     if(count > 4){
@@ -131,4 +189,13 @@ $(document).ready(function () {
             
         });
     });
+
+
+    $('.shopcart').click(function(e){
+        e.preventDefault();
+    });
 });
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}

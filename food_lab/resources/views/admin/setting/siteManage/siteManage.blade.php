@@ -71,12 +71,11 @@
                 </div>
                 <div class="rowInput">
                     <label for="policy">{{ __('messageZY.privacy') }}</label>
-                    <div class="input-group mb-3">
-                        <div class="form-floating">
-                            <textarea id="policy" class="form-control"
-                                name="policy">{{ $siteInfo == null ? '' : $siteInfo->privacy_policy }}</textarea>
-                            <label for="policy" class="fs-6">{{ __('messageZY.privacy') }}</label>
-                        </div>
+                    <div class="mb-3">
+
+                        <textarea id="policy" class="form-control textarea"
+                            name="policy">{{ $siteInfo == null ? '' : $siteInfo->privacy_policy }}</textarea>
+
 
                         @error('policy')
                             <li class="text-danger ">{{ $message }}</li>
@@ -97,6 +96,70 @@
                         @enderror
                         <input type="text" id="mvalue" value="" name="maintenance">
                     </div>
+                </div>
+                <div class="rowInput">
+                    <label for="intro">{{ __('messageZY.introtext') }}</label>
+                    <div class=" mb-3">
+                        <textarea id="intro" class="form-control textarea"
+                            name="intro">{{ $siteInfo == null ? '' : $siteInfo->intro }}</textarea>
+                        @error('intro')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                </div>
+                <div class="rowInput">
+                    <label for="address">{{ __('messageZY.address') }}</label>
+                    <div class=" mb-3">
+                        <textarea id="address" class="form-control textarea"
+                            name="address">{{ $siteInfo == null ? '' : $siteInfo->address }}</textarea>
+                        @error('address')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+                </div>
+                <div class="rowInput">
+                    <label for="phone1">{{ __('messageZY.phone1') }}</label>
+                    <div class=" mb-3">
+                        <input type="text" id="phone1" name="phone1" class="form-control w-25"
+                            value="{{ $siteInfo == null ? '' : $siteInfo->phone1 }}">
+                        @error('phone1')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="rowInput">
+                    <label for="phone2">{{ __('messageZY.phone2') }}</label>
+                    <div class=" mb-3">
+                        <input type="text" id="phone2" name="phone2" class="form-control w-25"
+                            value="{{ $siteInfo == null ? '' : $siteInfo->phone2 }}">
+                        @error('phone2')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="rowInput">
+                    <label for="phone3">{{ __('messageZY.phone3') }}</label>
+                    <div class=" mb-3">
+                        <input type="text" id="phone3" name="phone3" class="form-control w-25"
+                            value="{{ $siteInfo == null ? '' : $siteInfo->phone3 }}">
+                        @error('phone3')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="rowInput">
+                    <label for="gmail">{{ __('messageZY.gmail') }}</label>
+                    <div class=" mb-3">
+                        <input type="email" id="gmail" name="gmail" class="form-control w-25"
+                            value="{{ $siteInfo == null ? '' : $siteInfo->gmail }}">
+                        @error('gmail')
+                            <li class="text-danger ">{{ $message }}</li>
+                        @enderror
+                    </div>
+
                 </div>
                 <button type="submit"
                     class="btn text-light addAdminButton active btncust ms-4">{{ __('messageZY.save') }}</button>
