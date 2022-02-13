@@ -405,7 +405,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
    Route::get('/customerNews', [CustomerController::class, 'news']);
 
-<<<<<<< HEAD
    /*
      * For Login Form
      */
@@ -416,7 +415,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
    Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
    Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
-=======
   /*
      * For cart page
      * min khant
@@ -430,7 +428,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
    */
   Route::post('/login', [CustomerController::class, 'loginForm']);
 
->>>>>>> 2b46d70c6213934d1d6d57b29ce2b46fe46426ca
 
    /*
      * For Product Detail Form
@@ -454,4 +451,5 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      * For logging out
      */
    Route::get('/logout', [CustomerController::class, 'logout']);
+
 });
