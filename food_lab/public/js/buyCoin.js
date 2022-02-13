@@ -28,6 +28,6 @@ reset.addEventListener("click" , function (){
     coinChargeinput.value="";
     coinInput.value="";
     mmkInput.value="";  
-    fileimginput.value=
+    fileimginput.value="";
 
 })

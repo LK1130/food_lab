@@ -108,10 +108,12 @@ class BuycoinController extends Controller
         $cucoindata = new T_AD_CoinCharge();
         $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID,$filepath);
 
+        
+
         Log::channel('customerlog')->info('Buycoin Controller', [
             'End coinrequestUpload'
         ]);
-
+            
         return redirect('/buycoin');
      }
 }
