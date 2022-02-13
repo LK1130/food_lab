@@ -13,6 +13,17 @@ let peye = document.querySelector(".pwd-eye"),
 let cpeye = document.querySelector(".cpwd-eye"),
     cpeyeSlash = document.querySelector(".cpwd-eye-slash");
 
+phone.addEventListener('keydown', (e) => {
+    console.log(e.key);
+    let reg = new RegExp(/^([0-9+-]{1,})$/);
+    if (reg.test(e.key) == true || e.key == 'Backspace') {
+        console.log('true');
+    } else {
+        e.preventDefault();
+        console.log('false');
+    }
+})
+
 // for password eye icon addEventListener
 peyeSlash.addEventListener("click", function() {
     peyeSlash.style.display = "none";
@@ -124,3 +135,31 @@ createAccs.addEventListener("click", function() {
         operate();
     })(window.jQuery);
 });
+
+document.getElementById('addressState').addEventListener('change', () => {
+    let state = document.getElementById('addressState').value;
+
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: 'getTownship',
+        data: { data: state },
+        success: (response) => {
+            console.log(response);
+            let townships = response;
+            for (let i = 0; i < response.length; i++) {
+                $('#addressTownship').append(`<option class="township-options" value="${response[i]['id']}">${response[i]['township_name']}</option>`);
+            }
+
+        },
+        error: (error) => {
+            console.log(error);
+        }
+
+    })
+})

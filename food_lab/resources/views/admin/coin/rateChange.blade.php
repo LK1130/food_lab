@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Coin List')
+@section('title', 'Admin | Coin List')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -25,7 +25,7 @@
         {{-- Starts Form --}}
         <form action="rateStore" method="POST" enctype="multipart/form-data">
             <div class="col-5">
-            @include('COMMON.component.coinRateAdd')
+                @include('COMMON.component.coinRateAdd')
             </div>
         </form>
 

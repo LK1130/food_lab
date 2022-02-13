@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'News Add')
+@section('title', 'Admin | News Add')
 
 @section('css')
 

@@ -25,6 +25,7 @@ class M_AD_Track extends Model
 
         $result = T_AD_Order::select('*', DB::raw('t_ad_order.created_at AS trackscreated'))
             ->where('t_ad_order.customer_id', '=', $sessionCustomerId)
+
             // ->orderBy('t_ad_order.created_at', 'DESC')
             ->where('t_ad_order.del_flg', 0)
             ->leftjoin('m_ad_track', 'm_ad_track.order_id', '=', 't_ad_order.id')
@@ -35,6 +36,9 @@ class M_AD_Track extends Model
             ->limit(3)
             ->get();
 
+        // Log::channel('adminlog')->info("M_AD_Track Model", [
+        //     $result->title;
+        // ]);
         Log::channel('adminlog')->info("M_AD_Track Model", [
             'End trackLimited'
         ]);

@@ -91,8 +91,9 @@ class NotificationController extends Controller
         // return $customername;
         $mail=[
             'title' => 'food labs',
-            'body' =>'Dear',$customername['nickname'],
+            'body' =>$customername['nickname'],
             'reply' => $mailsuggest['reply'],
+            'cusmessage' => $mailsuggest['message'],
         ];
         Mail::to($sugmail)->send(new SuggestMail($mail));
 
@@ -180,6 +181,7 @@ class NotificationController extends Controller
             'title' => 'food labs',
             'reply'=>$mailcontact['reply'],
             'name'=>$customername['nickname'],
+            'cusmessage'=>$mailcontact['message'],
         ];
         Mail::to($sugmail)->send(new ContactMail($mail2));
 
@@ -259,15 +261,16 @@ class NotificationController extends Controller
         //For Email
         $customeremail = new M_CU_Customer_Login();
         $mailreport =$replyrp->customerreportMail($id);
+        
         $email = $customeremail->suggestMail($mailreport['customer_id']);
         //for customername
         $name = new T_CU_Customer();
         $customernamerp = $name->suggestmailnickname($mailreport['customer_id']);
-        
         $mail1=[
             'title' => 'food labs',
             'name' =>$customernamerp['nickname'],
             'reply'=>$mailreport['reply'],
+            'cusmessage'=>$mailreport['message'],
         ];
         Mail::to($email)->send(new ReportMail($mail1));
 

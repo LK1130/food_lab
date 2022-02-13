@@ -27,7 +27,7 @@ class T_AD_Contact extends Model
         select('*',DB::raw('t_ad_contact.id AS ID'))
         ->join('t_cu_customer','t_cu_customer.id','=','t_ad_contact.customer_id')
         ->where('t_ad_contact.del_flg',0)
-        ->get();
+        ->paginate(10);
 
         Log::channel('adminlog')->info("T_AD_Contact Model", [
             'End customerContactList'
@@ -110,7 +110,7 @@ class T_AD_Contact extends Model
    * This function is for reply to customer.
    */
     public function cuscontactMail($id){
-        $contactmail = T_AD_Contact::select(['customer_id','reply'])
+        $contactmail = T_AD_Contact::select(['customer_id','reply','message'])
         ->where('id',$id)
         ->first();
         return $contactmail;

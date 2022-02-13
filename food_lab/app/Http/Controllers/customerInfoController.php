@@ -22,7 +22,8 @@ class CustomerInfoController extends Controller
     * This is function is to show admin Customer Listing
     * Return is view (customerInfo.blade.php)
     */
-    public function customerInfo(){
+    public function customerInfo()
+    {
 
         Log::channel('adminlog')->info("CustomerInfoController", [
             'Start customerInfo'
@@ -35,7 +36,7 @@ class CustomerInfoController extends Controller
             'End customerInfo'
         ]);
 
-        return view('admin.customerInfo.customerInfo',['t_cu_customer'=>$customer]);
+        return view('admin.customerInfo.customerInfo', ['t_cu_customer' => $customer]);
     }
     /*
     * Create:Zarni(2022/01/12) 
@@ -43,13 +44,14 @@ class CustomerInfoController extends Controller
     * This is function is to show Customer detail orderListing
     * Return is view (customerinfoDetail.blade.php)
     */
-    public function customerinfoDetail(Request $request){
+    public function customerinfoDetail(Request $request)
+    {
 
         Log::channel('adminlog')->info("CustomerInfoController", [
             'Start customerinfoDetail'
         ]);
 
-        $customerd =new T_CU_Customer();
+        $customerd = new T_CU_Customer();
         $cusdetail = $customerd->customerDetail($request->input('id'));
         if ($cusdetail == null) abort(404);
         // Log::critical('asdasd',[$cusdetail,$request->input('id')]);
@@ -59,12 +61,12 @@ class CustomerInfoController extends Controller
         // return $trans;
         $coin = new T_AD_CoinCharge();
         $cuscoin = $coin->UsercoinchargeList($request->input('id'));
-        
+
         Log::channel('adminlog')->info("CustomerInfoController", [
             'End customerinfoDetail'
         ]);
 
-        return view('admin.customerInfo.customerinfoDetail',['cusdetail'=>$cusdetail,'t_ad_order'=>$trans,'cuscoin'=>$cuscoin]);
+        return view('admin.customerInfo.customerinfoDetail', ['cusdetail' => $cusdetail, 't_ad_order' => $trans, 'cuscoin' => $cuscoin]);
     }
 
     /*
@@ -74,8 +76,9 @@ class CustomerInfoController extends Controller
       * Prarameter : no
       * return :
     */
-    public function customerSearch(Request $request){
-        
+    public function customerSearch(Request $request)
+    {
+
         Log::channel('adminlog')->info("CustomerInfoController", [
             'Start customerSearch'
         ]);
@@ -141,6 +144,9 @@ class CustomerInfoController extends Controller
 
             $tracks = new M_AD_Track();
             $tracksLimited = $tracks->trackLimited($sessionCustomerId);
+            foreach ($tracksLimited as $key => $value) {
+                $ids = $value->title;
+            }
             $alltracks = $tracks->allTracks($sessionCustomerId);
             $allTracksToCount = $tracks->allTracksToCount($sessionCustomerId);
             $trackcount = count($allTracksToCount);

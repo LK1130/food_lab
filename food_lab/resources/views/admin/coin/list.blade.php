@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Coin List')
+@section('title', 'Admin | Coin List')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -27,7 +27,8 @@
             @endif
             <div class="row">
                 <div class="col">
-                    <div class="fw-bold mb-4 mt-4 title">{{ __('messageLK.Request') }} ({{ $request->total() }})</div>
+                    <div class="fw-bold mb-4 mt-4 title status">{{ __('messageLK.Request') }} ({{ $request->total() }})
+                    </div>
                     <table class="table table-success  me-5 tbcust">
                         <thead>
                             <tr class="tableth">
@@ -74,7 +75,8 @@
 
             <div class="row">
                 <div class="col">
-                    <div class="fw-bold mb-4 mt-4 title">{{ __('messageLK.Approve') }} ({{ $approve->total() }})</div>
+                    <div class="fw-bold mb-4 mt-4 title status">{{ __('messageLK.Approve') }}
+                        ({{ $approve->total() }})</div>
                     <table class="table table-primary me-5 tbcust">
                         <thead>
                             <tr class="tableth">
@@ -124,7 +126,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="fw-bold mb-4 mt-4 title">{{ __('messageLK.Waiting') }} ({{ $waiting->total() }})</div>
+                    <div class="fw-bold mb-4 mt-4 title status">{{ __('messageLK.Waiting') }}
+                        ({{ $waiting->total() }})</div>
                     <table class="table table-warning me-5 tbcust">
                         <thead>
                             <tr class="tableth">
@@ -174,7 +177,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="fw-bold mb-4 mt-4 title">{{ __('messageLK.Reject') }} ({{ $reject->total() }})</div>
+                    <div class="fw-bold mb-4 mt-4 title status">{{ __('messageLK.Reject') }} ({{ $reject->total() }})
+                    </div>
                     <table class="table me-5 table-secondary tbcust">
                         <thead>
                             <tr class="tableth">

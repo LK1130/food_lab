@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Admin Edit')
+@section('title', 'Admin | Admin Edit')
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/adminLayout.css') }}" />

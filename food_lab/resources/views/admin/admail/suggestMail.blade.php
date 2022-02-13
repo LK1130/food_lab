@@ -4,4 +4,5 @@
     <h2>{{ $title }}</h2>
     <p>{{ $reply }}</p>
     <p>{{ $body }}</p>
+    <p>{{ $Message }}</p>
 @endsection

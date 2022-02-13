@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Coin Rate')
+@section('title', 'Admin | Coin Rate')
 
 @section('css')
 

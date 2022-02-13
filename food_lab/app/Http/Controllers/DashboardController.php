@@ -47,7 +47,6 @@ class DashboardController extends Controller
 
         $rateofcoin =new M_AD_CoinRate();
         $coinrate = $rateofcoin->DashboardCoinrate();
-        $coinrate['rate'] = number_format($coinrate['rate']);
 
         $today = new T_AD_Order();
         $todayorder = $today->Todayordercount();

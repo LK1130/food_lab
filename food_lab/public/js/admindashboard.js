@@ -19,3 +19,10 @@ let myAnimation3 = anime({
     easing: "linear",
     round: 1,
 });
+//for Today Order
+let myAnimation4 = anime({
+    targets: ".todaycount",
+    innerHTML: [0, toadyorder],
+    easing: "linear",
+    round: 1,
+});

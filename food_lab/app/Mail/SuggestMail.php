@@ -35,6 +35,7 @@ class SuggestMail extends Mailable
             'title'=>$this->mail['title'],
             'reply'=>$this->mail['reply'],
             'body'=>$this->mail['body'],
+            'Message'=>$this->mail['cusmessage'],
         ]);
         
     }

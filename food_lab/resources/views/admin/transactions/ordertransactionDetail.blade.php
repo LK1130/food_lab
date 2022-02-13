@@ -62,9 +62,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($orderdetail as $list)
+                                        @forelse ($orderdetail as $key => $list)
                                             <tr class="tablecolor1 fs-5">
-                                                <th scope="row">1</th>
+                                                <th scope="row">{{ $orderdetail->firstItem() + $key }}</th>
                                                 <td>{{ $list->product_name }}</td>
                                                 <td>{{ $list->product_id }}</td>
                                                 <td>{{ $list->coin }}</td>

@@ -34,6 +34,7 @@ class ContactMail extends Mailable
             'title'=>$this->conmail['title'],
             'reply'=>$this->conmail['reply'],
             'name'=>$this->conmail['name'],
+            'Message'=>$this->conmail['cusmessage']
         ]);
     }
 }

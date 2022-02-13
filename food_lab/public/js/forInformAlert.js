@@ -176,10 +176,25 @@ $(document).ready(function () {
                         ];
                         $statusMessage = tracks.order_status;
                         $messagecolor = $allcolor[$statusMessage - 1];
-                        $names = tracks.product_name;
+                        $names = tracks.title;
                         $name = $names.split(",");
                         $namesCount = $name.length - 1;
                         console.log($namesCount);
+                        $.ajaxSetup({
+                            headers: {
+                                "X-CSRF-TOKEN": jQuery(
+                                    'meta[name="csrf-token"]'
+                                ).attr("content"),
+                            },
+                        });
+
+                        $.ajax({
+                            type: "GET",
+                            url: "searchcustomerdetails",
+                            data: formdata,
+                            dataType: "json",
+                            success: function (data) {},
+                        });
                         if (tracks.seen == 0) {
                             $(".forTracks").prepend(
                                 `
