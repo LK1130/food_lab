@@ -36,7 +36,7 @@ class RegisterValidation extends FormRequest
 
         return [
             'username' => 'required | min:6 | max:30',
-            'phone' => 'required | max:11 ',
+            'phone' => 'max:14 ',
             'email' => ['required', ' max:128 ', 'email', new CheckMail()],
             'addressNo' => 'required | max:128',
             'addressTownship' => 'required | max:11',
