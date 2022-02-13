@@ -13,7 +13,7 @@
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
 @endsection
 
-@section('title', 'Food Lab')
+@section('title', "$name->site_name")
 
 @section('header')
     {{-- start carousel --}}
@@ -89,7 +89,7 @@
 
 
     {{-- Start Welcome Section --}}
-    <section class="d-flex flex-column justify-content-center align-items-center welcomes">
+    <section class="d-flex flex-column justify-content-center align-items-center welcomes" id="welcomes">
         <p class="fs-1 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
         <p class="fs-4 companyinfos"><i class="fas fa-quote-left falefts"></i>{{ $name->intro }}<i
                 class="fas fa-quote-right farights"></i></p>
@@ -105,7 +105,9 @@
             @forelse ($sellProducts as $sellProduct)
                 <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5"
                     id="{{ $sellProduct->product_id }}">
-                    <img src="/storage/{{ $sellProduct->path }}" alt="bestitem1" />
+                    <div class="product-imgs">
+                        <img src="/storage/{{ $sellProduct->path }}" alt="bestitem1" width="100%" />
+                    </div>
                     <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
                     <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
                     <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
@@ -131,7 +133,9 @@
                 @foreach ($recomProducts as $recomProduct)
                     @foreach ($recomProduct as $product)
                         <div class="d-flex flex-column justify-content-center align-items-center fw-bold my-3 py-5" id="{{ $product->id }}">
-                            <img src="/storage/{{ $product->path }}" alt="bestitem1" />
+                            <div class="product-imgs">
+                                <img src="/storage/{{ $product->path }}" width="100%" alt="bestitem1" />
+                            </div>
                             <p class="fs-3 pt-2">{{$product->product_name }}</p>
                             <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $product->coin }}</p>
                             <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
@@ -230,13 +234,13 @@
             <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
                 <div class="footer-navs">
                     <p><a href="/">{{ __('messageMK.home') }}</a></p>
-                    <p><a href="#">{{ __('messageMK.aboutus') }}</a></p>
+                    <p><a href="#welcomes">{{ __('messageMK.aboutus') }}</a></p>
                     <p><a href="/productLists">{{ __('messageMK.Food') }}</a></p>
                     @if (session()->has('customerId'))
                         <p><a href="/buycoin">{{ __('messageMK.buy coin') }}</a></p>
                     @endif
                     @if (!session()->has('customerId'))
-                        <p><a href="/access">{{ __('messageMK.access') }}</a></p>
+                        <p><a href="/signin">{{ __('messageMK.access') }}</a></p>
                     @endif
                 </div>
                 @if (session()->has('customerId'))
@@ -260,11 +264,10 @@
                 </div>
             </div>
         </div>
-        <div class="copys">
-            <p></p>
-            <p>Copy right by {{ $name->site_name }}</p>
-        </div>
     </footer>
+    <div class="copys">
+        <p>Copyright &copy; {{ $name->site_name }}</p>
+    </div>
     {{-- End Footer Section --}}
 
 @endsection

@@ -28,6 +28,11 @@ textarea {
     --submitbtn-textcolor: #ffffff;
 }
 
+body {
+    background-color: #000000;
+}
+
+
 /*Start Header*/
 
 .headers {
@@ -42,9 +47,12 @@ textarea {
 marquee {
     background-color: #000000;
 }
+
 .coinCalInform {
     color: var(--coin-color);
 }
+
+
 /*start navbar*/
 
 .navs {
@@ -131,12 +139,15 @@ marquee {
     }
 }
 
+
 /*end navbar*/
 
+
 /*
-    * Create:zayar(2022/01/17) 
-    * Update: 
+    * Create:zayar(2022/01/17)
+    * Update:
     */
+
 
 /*start Profile Alert box*/
 
@@ -151,11 +162,13 @@ marquee {
     border-radius: 2vw;
     display: none;
 }
+
 .profileAlertBody {
     height: fit-content;
     width: 30%;
     background-color: rgba(0, 0, 0, 0.952);
 }
+
 .profileAlertHeader {
     color: var(--primary-color);
 }
@@ -187,12 +200,13 @@ marquee {
     background-color: var(--primary-color);
     color: var(--text-color);
 }
+
 .profileAlertfooter {
     height: auto;
     border-radius: 0 0 2vw 2vw;
-
     background-color: rgba(0, 0, 0, 0.952);
 }
+
 #back {
     cursor: pointer;
 }
@@ -247,12 +261,15 @@ marquee {
     } */
 }
 
+
 /*end profile alert */
 
+
 /*
-    * Create:zayar(2022/01/22) 
-    * Update: 
+    * Create:zayar(2022/01/22)
+    * Update:
     */
+
 
 /*start inform Alert box*/
 
@@ -314,14 +331,15 @@ marquee {
 .red {
     background-color: red;
 }
+
 .visible {
     display: block !important;
 }
+
 .forNews,
 .forMessages,
 .forTracks {
     height: fit-content;
-
     width: 54.5vh;
     background-color: rgb(255, 255, 255);
     margin: auto;
@@ -352,21 +370,26 @@ marquee {
     border-radius: 1vh;
     background-color: rgb(189, 173, 158);
 }
+
 .tracks {
     height: 18vh !important;
 }
+
 .nocursor {
     cursor: auto !important;
 }
+
 .newsLogo {
     position: absolute;
     width: 13%;
     margin-bottom: 13vh;
     left: 21.5vw !important;
 }
+
 .trackNews {
     margin-bottom: 16vh !important;
 }
+
 .news img {
     max-width: 22%;
     margin-right: auto;
@@ -401,7 +424,6 @@ marquee {
     .forMessages,
     .forTracks {
         height: fit-content;
-
         width: 100%;
         background-color: rgb(255, 255, 255);
         margin: auto;
@@ -431,7 +453,6 @@ marquee {
 
 .texts {
     color: var(--primary-color);
-
     margin-bottom: 0;
     cursor: pointer;
 }
@@ -448,7 +469,9 @@ marquee {
     color: var(--text-color);
 }
 
+
 /*end navbar*/
+
 
 /*start carousel*/
 
@@ -499,6 +522,7 @@ marquee {
     width: 100%;
 }
 
+
 /*end carousel*/
 
 @media (max-width: 720px) {
@@ -510,96 +534,17 @@ marquee {
     }
 }
 
-/*End Header*/
-
-/*Start Footer Section*/
-
-footer {
-    min-height: 100vh;
-}
-
-.footer-infos {
-    min-height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-        url("/img/bg5.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 1.3rem;
-}
-
-.footer-logos {
-    position: relative;
-}
-
-.footer-names {
-    position: absolute;
-    top: 50%;
-    left: 7%;
-    transform: translateY(-50%);
-}
-
-.footer-infos div:first-of-type p.fw-bolder {
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-
-.footer-details a {
-    text-decoration: none;
-    color: var(--text-color);
-}
-
-.footer-details .mailTeams {
-    text-decoration: underline;
-}
-
-.footer-details a:hover {
-    color: var(--primary-color);
-}
-
-.footer-details .footer-navs > *,
-.footer-details div:nth-of-type(2) p:first-of-type,
-.footer-details div:nth-of-type(3) p:first-of-type,
-.footer-details div:last-of-type p:first-of-type {
-    font-size: 1.6rem;
-    color: var(--primary-color);
-}
-
-.sitelinks {
-    padding-left: 2.5px;
-}
-
-.copys {
-    background: url("/img/bg2.png");
-    min-height: 10vh;
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: bold;
-    position: relative;
-}
-
-/*End Footer Section*/
-
-.copys p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@media (max-width: 720px) {
-    .copys p {
-        font-size: 1rem;
-    }
-}
-
-/*End Footer Section*/
 
 /*End Header*/
 
+
 /*End Header*/
+
+
 /*End Header*/
+
+
+/*End Header*/
+
 
 /*End Header*/

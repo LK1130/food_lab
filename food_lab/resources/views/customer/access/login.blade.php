@@ -10,7 +10,7 @@
     <script src="{{ url('js/customerLogin.js') }}" type="text/javascript" defer></script>
 @endsection
 
-@section('title','Food Lab')
+@section('title',"$name->site_name | Sign In")
 
 @section('body')
     {{-- Start Login Section--}}
@@ -20,7 +20,7 @@
                 <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div>
-                <img src="{{ url('/img/logo.png') }}" alt="logo"/>
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px"/>
             </div>
         </div>
 
@@ -43,28 +43,34 @@
             <form action="/login" method="post" class="d-flex flex-column align-items-center justify-content-center">
                 @csrf
                 <div class="inputs">
-                    <input type="email" id="email" class="form-control" name="email" placeholder="{{ __('messageMK.email') }}" value="{{ old('email') }}" autocomplete="off"/>
+                    <input type="email" id="email" class="form-inputs" name="email" placeholder="{{ __('messageMK.email') }}" value="{{ old('email') }}"maxlength="128" autocomplete="off"/>
                     @error('email')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="inputs passwords">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('messageMK.password') }}" value="{{ old('password') }}" autocomplete="off"/>
-                    <i class="fas fa-eye-slash pwd-eye-slash"></i>
-                    <i class="far fa-eye pwd-eye"></i>
+                <div class="inputs">
+                    <div class="passwords">
+                        <input type="password" id="password" class="form-inputs" name="password" placeholder="{{ __('messageMK.password') }}" value="{{ old('password') }}" maxlength="30" autocomplete="off"/>
+                        <i class="fas fa-eye-slash pwd-eye-slash"></i>
+                        <i class="far fa-eye pwd-eye"></i>
+                    </div>
                     @error('password')
-                    <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="inputs">
                     <input type="submit" class="form-control text-center createAccs" value="{{ __('messageMK.signIn') }}"/>
                 </div>
                 <div class="py-2 have-accs">
-                    <p>{{ __('messageMK.Ifyoudoesn\'thaveAnyaccount') }} ? <a href="/access" class="ms-2">{{ __('messageMK.signUpHere') }}</a></p>
+                    <p>{{ __('messageMK.Ifyoudoesn\'thaveAnyaccount') }} ? <a href="/signup" class="ms-2 text-decoration-underline">{{ __('messageMK.signUpHere') }}</a></p>
                 </div>
             </form>
         </div>
         {{-- end register form --}}
+
+        <div class="copys">
+            <p>Copyright &copy; {{ $name->site_name }}</p>
+        </div>
     </section>
     {{-- End Login Section--}}
 @endsection

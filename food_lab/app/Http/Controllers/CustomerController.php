@@ -57,11 +57,11 @@ class CustomerController extends Controller
             $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
             $mFavType = new M_Fav_Type();
             $product = new M_Product();
-            // foreach ($favTypes as $favType) {
-            //     $id = $mFavType->customerFavType($favType);
-            //     $eachProduct = $product->customerFavType($id['id']);
-            //     array_push($recomProducts, $eachProduct);
-            // }
+            foreach ($favTypes as $favType) {
+                $id = $mFavType->customerFavType($favType);
+                $eachProduct = $product->customerFavType($id['id']);
+                array_push($recomProducts, $eachProduct);
+            }
         }
 
 
@@ -188,11 +188,14 @@ class CustomerController extends Controller
         $msite = new M_Site();
         $policys = $msite->policy();
 
+        $site = new M_Site();
+        $name = $site->siteName();
+
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end policy'
         ]);
 
-        return view('customer.information.policyInfo', ['policys' => $policys]);
+        return view('customer.information.policyInfo', ['policys' => $policys, 'name' => $name]);
     }
 
     /*
@@ -208,6 +211,9 @@ class CustomerController extends Controller
             'start deliveryDetails'
         ]);
 
+        $site = new M_Site();
+        $name = $site->siteName();
+
         $townships = new M_Township();
         $townshipnames = $townships->townshipMoreDetails();
 
@@ -215,7 +221,7 @@ class CustomerController extends Controller
             'end deliveryDetails'
         ]);
 
-        return view('customer.information.deliveryInfo', ['townships' => $townshipnames]);
+        return view('customer.information.deliveryInfo', ['name' => $name, 'townships' => $townshipnames]);
     }
 
 
@@ -236,10 +242,13 @@ class CustomerController extends Controller
             $order = new T_AD_Order();
             $orderlists = $order->orderId($customerid);
 
+            $site = new M_Site();
+            $name = $site->siteName();
+
             Log::channel('customerlog')->info('Customer Controller', [
                 'end report'
             ]);
-            return view('customer.feedback.report', ['orderlists' => $orderlists]);
+            return view('customer.feedback.report', ['orderlists' => $orderlists, 'name' => $name]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end report'
@@ -287,10 +296,13 @@ class CustomerController extends Controller
             $data = new M_Suggest();
             $type = $data->suggestType();
 
+            $site = new M_Site();
+            $name = $site->siteName();
+
             Log::channel('customerlog')->info('CustomerController', [
                 'end suggest'
             ]);
-            return view('customer.feedback.suggest', ['types' => $type]);
+            return view('customer.feedback.suggest', ['types' => $type, 'name' => $name]);
         }
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'
@@ -335,10 +347,13 @@ class CustomerController extends Controller
             'start contact'
         ]);
 
+        $site = new M_Site();
+        $name = $site->siteName();
+
         Log::channel('customerlog')->info('CustoemrController', [
             'end contact'
         ]);
-        return view('customer.feedback.contact');
+        return view('customer.feedback.contact', ['name' => $name]);
     }
 
     /*
@@ -369,14 +384,12 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : View Register Blade
      * */
-    public function access()
+    public function signup()
     {
         Log::channel('customerlog')->info('Customer Controller', [
             'start access'
         ]);
         if (!session()->has('customerId')) {
-            $mTownship = new M_Township();
-            $townshipnames = $mTownship->townshipDetails();
 
             $mstate = new M_State();
             $staenames = $mstate->stateName();
@@ -387,10 +400,13 @@ class CustomerController extends Controller
             $mTaste = new M_Taste();
             $tastenames = $mTaste->taste();
 
+            $site = new M_Site();
+            $name = $site->siteName();
+
             Log::channel('customerlog')->info('Customer Controller', [
                 'end access'
             ]);
-            return view('customer.access.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames]);
+            return view('customer.access.register', ['staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames, 'name' => $name]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'
@@ -441,7 +457,7 @@ class CustomerController extends Controller
                 'end register'
             ]);
 
-            return redirect('/login');
+            return redirect('/signin');
         }
     }
 
@@ -463,6 +479,21 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'end google'
         ]);
+    }
+
+    public function getTownship(Request $req)
+    {
+        Log::channel('customerlog')->info('CustomerController', [
+            'start getTownship'
+        ]);
+        $mTownship = new M_Township();
+        $getTownship = $mTownship->townshipName($req['data']);
+
+        Log::channel('customerlog')->info('CustomerController', [
+            'end getTownship'
+        ]);
+
+        return $getTownship;
     }
 
     /*
@@ -506,7 +537,10 @@ class CustomerController extends Controller
                 'end login'
             ]);
 
-            return view('customer.access.login');
+            $site = new M_Site();
+            $name = $site->siteName();
+
+            return view('customer.access.login', ['name' => $name]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end login'

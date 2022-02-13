@@ -34,6 +34,7 @@ class T_AD_Suggest extends Model
         $suggest = new T_AD_Suggest();
         $suggest->suggest_type = $request['type'];
         $suggest->message = $request['details'];
+        $suggest->customer_id = session('customerId');
         $suggest->save();
 
         Log::channel('customerlog')->info('T_AD_Suggest Model', [
@@ -125,10 +126,10 @@ class T_AD_Suggest extends Model
             'Start sugRpy'
         ]);
 
-        $rp = T_AD_Suggest::where('id',$id)
-        ->update(['reply'=>$request]);
+        $rp = T_AD_Suggest::where('id', $id)
+            ->update(['reply' => $request]);
         return $rp;
-        
+
         Log::channel('adminlog')->info("T_AD_Suggest Model", [
             'End sugRpy'
         ]);

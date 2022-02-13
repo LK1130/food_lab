@@ -127,4 +127,28 @@ class M_Township extends Model
         ]);
         return $fees;
     }
+
+    /*
+      * Create : Linn Ko(20/1/2022)
+      * Update :
+      * Explain of function : To get township ,equal with state for ajax
+      * Prarameter : no
+      * return : township 
+    */
+    public function townshipName($stateId)
+    {
+        Log::channel('customerlog')->info('M_Township Model', [
+            'start townshipName'
+        ]);
+
+        $townships = M_Township::select(['id', 'township_name'])
+            ->where('state_id', $stateId)
+            ->where('del_flg', 0)
+            ->get();
+
+        Log::channel('customerlog')->info('M_Township Model', [
+            'end townshipName'
+        ]);
+        return $townships;
+    }
 }
