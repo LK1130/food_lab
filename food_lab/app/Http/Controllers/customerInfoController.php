@@ -144,9 +144,9 @@ class CustomerInfoController extends Controller
 
             $tracks = new M_AD_Track();
             $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-            foreach ($tracksLimited as $key => $value) {
-                $ids = $value->title;
-            }
+            // foreach ($tracksLimited as $key => $value) {
+            //     $ids = $value->title;
+            // }
             $alltracks = $tracks->allTracks($sessionCustomerId);
             $allTracksToCount = $tracks->allTracksToCount($sessionCustomerId);
             $trackcount = count($allTracksToCount);

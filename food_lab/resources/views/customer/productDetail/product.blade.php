@@ -68,7 +68,7 @@
                 @if (session()->has('customerId'))
                 <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
                 @else
-                <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+                <a href="/signin"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
                 @endif
             </div>
 
@@ -109,7 +109,7 @@
                 @if (session()->has('customerId'))
                 <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
                 @else
-                <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+                <a href="/signin"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
                 @endif
                
             </div>
@@ -140,7 +140,7 @@
             @if (session()->has('customerId'))
             <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" >{{ __('messageMK.shopnow') }}</button></a>
             @else
-            <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+            <a href="/signin"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
             @endif
         </div>
 
