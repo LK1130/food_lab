@@ -336,6 +336,27 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
 
 
    /*
+    /*
+       * For tracks page
+       * zayar
+       */
+    Route::get('/tracks', [CustomerController::class, 'tracks']);
+    /*
+    For Buy Coin Page
+    cherry
+    */
+   Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
+   Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
+
+   /*
+     * For deliery info page
+     * cherry
+    */
+  Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+  Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
+  });
+
+  /*
  * For news page
  * zayar
  */
@@ -384,6 +405,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
    Route::get('/customerNews', [CustomerController::class, 'news']);
 
+<<<<<<< HEAD
    /*
      * For Login Form
      */
@@ -394,6 +416,21 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
    Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
    Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
+=======
+  /*
+     * For cart page
+     * min khant
+    */
+  Route::get('/cart', [CartController::class, 'cart']);
+  Route::post('/cart', [CartController::class, 'cartDetail']);
+  Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+
+  /*
+   * For Login Form
+   */
+  Route::post('/login', [CustomerController::class, 'loginForm']);
+
+>>>>>>> 2b46d70c6213934d1d6d57b29ce2b46fe46426ca
 
    /*
      * For Product Detail Form
