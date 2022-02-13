@@ -26,6 +26,10 @@
 @section('body')
     <div class="col-md-10">
         {{-- Product Form --}}
+
+        <div class="d-flex justify-content-start ">
+            <a href="/productList"><button class="btn btncust1 text-light mt-4">{{ __('messageAMK.Back') }}</button></a>
+           </div>
         <form action="{{ route('product.update', $products->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -263,9 +267,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12 d-flex justify-content-end mb-4">
-                                            <div class="col-md-6">
-                                                <button class="backBtn"><a href="/productList" class="back">{{ __('messageAMK.Back') }}</a></button>
-                                            </div>
+                                            
                                             <div class="col-md-3">
                                             <button type="reset" onclick='location.reload();' class="resetBtn">{{ __('messageAMK.Reset') }}</button>
                                             

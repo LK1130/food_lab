@@ -645,4 +645,15 @@ class CustomerController extends Controller
 
         return view('customer.customerProfile.trackDetail', ['news' => $newDatas, 'name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
     }
+
+
+
+    public function tagsFavType(){
+
+
+        $mFavType = new M_Fav_Type();
+        $type = $mFavType->tagsType();
+        return response($type);
+    }
 }
+

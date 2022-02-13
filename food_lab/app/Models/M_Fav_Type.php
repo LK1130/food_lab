@@ -163,4 +163,13 @@ class M_Fav_Type extends Model
     ]);
     return $typeId;
   }
+
+
+  public function tagsType(){
+
+
+    $types = M_Fav_Type::all()->pluck('favourite_food')->toArray();
+    Log::critical("message",[$types]);
+    return $types;
+  }
 }

@@ -11,7 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
     <script src="{{ url('js/bootstrap-tagsinput.min.js') }}" defer></script>
     <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
+    <script src="{{ url('js/adminTypeAhead.js') }}" defer></script>
     <script src="{{ url('js/customerRegister.js') }}" type="text/javascript" defer></script>
+    <script src="{{ url('js/customertags.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('title', 'Food Lab')
@@ -158,7 +160,7 @@
                                 <fieldset class="border border-3 rounded">
                                     <legend class="modal-headers">{{ __('messageMK.favouriteType') }}</legend>
                                     <div class="m-3">
-                                        <input type="text" class="modal-inputs @error('type') border-danger @enderror"
+                                        <input type="text"  class="modal-inputs @error('type') border-danger @enderror"
                                             name="type" value="@foreach ($types as $type){{ $type->favourite_food }},@endforeach" data-role="tagsinput" id="tags"
                                             class="form-control">
                                     </div>
@@ -203,4 +205,6 @@
         </div>
     </section>
 
+
+    
 @endsection

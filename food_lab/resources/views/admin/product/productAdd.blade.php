@@ -20,6 +20,11 @@
 
 @section('body')
      <div class="col-md-10">
+
+        
+       <div class="d-flex justify-content-start ">
+        <a href="/productList"><button class="btn btncust1 text-light mt-4">{{ __('messageAMK.Back') }}</button></a>
+       </div>
             {{-- Product Form --}}
             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -195,9 +200,6 @@
 
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end mb-4">
-                        <div class="col-md-6">
-                            <button class="backBtn"><a href="/productList" class="back">{{ __('messageAMK.Back') }}</a></button>
-                        </div>
                         <div class="col-md-3">
                         <button type="button"  onclick='location.reload();'  class="resetBtn">{{ __('messageAMK.Reset') }}</button>
                         

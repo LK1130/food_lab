@@ -44,7 +44,7 @@
                                 <td>{{ $product->favourite_food }}</td>
                                 <td>{{ $product->taste }}</td>
                                 <td>{{ $product->coin }}</td>
-                                <td>{{ $product->amount }} MMK</td>
+                                <td>{{ number_format($product->amount) }} MMK</td>
                                 @if ($product->avaliable == 1)
                                     <td>Avaliable</td>
 
@@ -64,9 +64,15 @@
                 </table>
 
             </div>
+
+           
             <div class="d-flex justify-content-center">{{ $products->links() }}</div>
-            <a href="/product" class="d-flex justify-content-end mt-3"><button
-                    class="btn seemore text-light mb-5">{{ __('messageAMK.Product Add') }}</button></a>
+
+           <div class="d-flex justify-content-end ">
+            <a href="/product" class="m-3"><button
+                class="btn text-light  active btncust">{{ __('messageAMK.Product Add') }}</button></a>
+           </div>
+            
         </div>
     </div>
 

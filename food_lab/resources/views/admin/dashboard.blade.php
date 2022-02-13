@@ -81,6 +81,7 @@
                 <div class="col a  stats">
                     <div class="text-center pb-3 stat">
                         <p class=" numbers coinrate" id="coin">{{ $coinrate->rate }} </p>
+                
                         <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
                         <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                     </div>

@@ -1,5 +1,5 @@
 <?php
-
+// use Cviebrock\EloquentTaggable\Models\Tag;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
@@ -33,6 +33,7 @@ use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
+use phpDocumentor\Reflection\DocBlock\Tag as DocBlockTag;
 use PhpParser\Node\Expr\FuncCall;
 
 /*
@@ -401,4 +402,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      * For logging out
      */
    Route::get('/logout', [CustomerController::class, 'logout']);
+
+   // still need to fix
+    // Route::get('/tags',[CustomerController::class,'tagsFavType']);
 });
