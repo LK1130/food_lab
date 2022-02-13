@@ -70,10 +70,10 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt-5 p-3">
-            <div class="d-flex justify-content-center">
-                <p class="copy">{{ __('messageCPPK.Copyright') }}</p>
-            </div>
+        <br></br>
+        <div class="copy">
+            <p></p>
+            <p>Copy right by {{ $name->site_name }}</p>
         </div>
     </section>
 @endsection

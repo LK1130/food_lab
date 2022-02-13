@@ -28,7 +28,7 @@ class ProductSearchController extends Controller
 
         $products = new M_Product();
         $product  = $products->searchByType($request->input('type'));
-        if($product == null) abort(404);
+     
         
 
         Log::channel('adminlog')->info("ProductSearchController", [
@@ -57,7 +57,7 @@ class ProductSearchController extends Controller
 
         $products = new M_Product();
         $product  = $products->searchByTaste($request->input('type'));
-        if(count($product) == 0) abort(404);
+        
         
 
         Log::channel('adminlog')->info("ProductSearchController", [

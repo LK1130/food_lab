@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_customer')
 
 @section('title')
-    Product Menu
+    {{ $name->site_name }} | Food Menu
 @endsection
 
 @section('css')
@@ -36,25 +36,25 @@
                 <div class="row">
                    @forelse ($products as $item)
                        
-                   <div class="col-md-10 col-sm-8 m-auto">
+                   <div class="col-md-10 col-sm-10 m-auto">
                     <div class="d-flex justify-content-between p-1 mb-3 productblog">
-                       <div class="img-container">
+                       <div class="image-container ">
                         <img src="/storage/{{ $item->path }}" class="img-fluid" alt="">
                        </div>
-                       <div class="d-flex flex-column p-4">
+                       <div class="d-flex flex-column px-3 py-3 doxxes">
                            <p class="productName">{{ $item->product_name }}</p>
                            <p class="productCategory mt-2">({{ $item->favourite_food }})</p>
                        </div>
-                       <div class="d-flex flex-column p-4 ">
+                       <div class="d-flex flex-column px-3 py-3 doxxes">
                            <p class="productTaste">{{ $item->taste }}</p>
-                           <p class="productCoin mt-2">{{ $item->coin }} Coin</p>
+                           <p class="productCoin mt-2 "><i class="fas fa-coins  icons"></i>  {{ $item->coin }}  </p>
                        </div>
                        <div class="d-flex  flex-column mt-3 mr-3">
                           <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns">More Details</button></a> 
                           @if (session()->has('customerId'))
-                          <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button></a>
+                          <a href=""><button type="button" id="{{ $item->link_id }}" class="btn border-warning shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" >{{ __('messageMK.shopnow') }}</button></a>
                           @else
-                          <a href="/access"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
+                          <a href="/login"><button type="button" class="btn  shopbtns"  >{{ __('messageMK.shopnow') }}</button></a> 
                           @endif
                        </div>
                     </div>
@@ -80,6 +80,29 @@
     <div class="d-flex justify-content-end  ">
         <a href="productLists"><button class="btn  p-3 m-5 backbtnss">{{ __('messageZY.back') }}</button></a>
     </div>
+
+     {{-- start modal --}}
+     <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+           <div class="modal-content">
+             {{-- <div class="modal-header"> --}}
+               
+             <div class="d-flex justify-content-end ">
+                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+             </div>
+             {{-- </div> --}}
+             {{-- <div class="modal-body"> --}}
+               <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added to your Shopping Cart. You now have item in your Shopping Cart.</p>
+             {{-- </div> --}}
+             <div class="modal-footer">
+              <a href="/cart"> <button type="button" class="btn btnCart" >View Shopping Cart</button></a>
+               <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
+             </div>
+           </div>
+         </div>
+       </div>
+{{-- end modal --}}
 
 
 @endsection
