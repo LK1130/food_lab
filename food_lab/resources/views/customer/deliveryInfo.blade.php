@@ -85,6 +85,27 @@
                 </div>
             </div>
         </form>
+              {{-- start modal --}}
+      <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+              {{-- <div class="modal-header"> --}}
+                
+              <div class="d-flex justify-content-end ">
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              </div>
+              {{-- </div> --}}
+              {{-- <div class="modal-body"> --}}
+                <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Your order has successfully completed!</p>
+              {{-- </div> --}}
+              <div class="modal-footer">
+               <a href="/"> <button type="button" class="btn btnCart" >OK</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+{{-- end modal --}}
         
     </div>
    </section>

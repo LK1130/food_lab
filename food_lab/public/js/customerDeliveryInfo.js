@@ -26,8 +26,9 @@ order.addEventListener('click', function(e) {
         url: '/deliveryInfo',
         data: { 'vouncher': $('.vouncher:checked').val(), 'phone': $('.phone').val() },
         success: function(res) {
-            window.alert('Your order is completed');
-            window.location.href = '/';
+            // window.alert('Your order has successfully completed!');
+            // window.location.href = '/';
+            $('#modal').modal('show');
         },
         error: function(err) {
             console.error(err);
