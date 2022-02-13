@@ -64,7 +64,9 @@
                                 <td scope="col">{{ $list->totalorder }} </td>
                             </tr>
                         @empty
-                            There is no data.
+                            <tr class="tabletd">
+                                <td colspan="3" class="text-center">There is no data.</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -81,14 +83,16 @@
                         </tr>
                     </thead>
                     <tbody class="scroll">
-                        @forelse ($coinlistTable as $key => $list )
+                        @forelse ($coinlistTable as $key => $list)
                             <tr class="tabletd">
                                 <td scope="col">No.{{ $coinlistTable->firstItem() + $key }}</td>
                                 <td scope="col">{{ $list->year }} </td>
                                 <td scope="col">{{ $list->totalAmount }} KS </td>
                             </tr>
                         @empty
-                            There is no data.
+                            <tr class="tabletd">
+                                <td colspan="3" class="text-center">There is no data.</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
