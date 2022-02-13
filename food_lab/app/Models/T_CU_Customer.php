@@ -235,54 +235,30 @@ class T_CU_Customer extends Model
 
     $customerId = $firstStr . $lastStr . $firstemail . $firstPwd . $lastPwd . $day . $hour . $generateKey;
 
-    if ($data->has('type') && $data->has('taste') && $data->has('note')) {
-      DB::transaction(function () use ($customerId, $data, $key) {
-        //insert customer
-        $customer = new T_CU_Customer();
-        $customer->customerID = $customerId;
-        $customer->nickname = $data['username'];
-        $customer->phone = $data['phone'];
-        $customer->address1 = $data['addressState'];
-        $customer->address2 = $data['addressTownship'];
-        $customer->address3 = $data['addressNo'];
-        $customer->fav_type = $data['type'];
-        $customer->taste = $data['taste'];
-        $customer->allergic = $data['note'];
-        $customer->save();
+    DB::transaction(function () use ($customerId, $data, $key) {
+      //insert customer
+      $customer = new T_CU_Customer();
+      $customer->customerID = $customerId;
+      $customer->nickname = $data['username'];
+      $customer->phone = $data['phone'];
+      $customer->address1 = $data['addressState'];
+      $customer->address2 = $data['addressTownship'];
+      $customer->address3 = $data['addressNo'];
+      $customer->fav_type = $data['type'] ? $data['type'] : '';
+      $customer->taste = $data['taste'] ? $data['taste'] : '';
+      $customer->allergic = $data['note'] ? $data['note'] : '';
+      $customer->save();
 
-        //insert customerLogin
-        $customerLogin = new M_CU_Customer_Login();
-        $customerLogin->email = $data['email'];
-        $customerLogin->password = md5(sha1($data['password']));
-        $customerLogin->customer_id =  $customer->id;
-        $customerLogin->verify_code = $key;
-        $customerLogin->save();
+      //insert customerLogin
+      $customerLogin = new M_CU_Customer_Login();
+      $customerLogin->email = $data['email'];
+      $customerLogin->password = md5(sha1($data['password']));
+      $customerLogin->customer_id =  $customer->id;
+      $customerLogin->verify_code = $key;
+      $customerLogin->save();
 
-        // $customer->customerLogin()->save($customerLogin);
-      });
-    } else {
-      DB::transaction(function () use ($customerId, $data, $key) {
-        //insert customer
-        $customer = new T_CU_Customer();
-        $customer->customerID = $customerId;
-        $customer->nickname = $data['username'];
-        $customer->phone = $data['phone'];
-        $customer->address1 = $data['addressState'];
-        $customer->address2 = $data['addressTownship'];
-        $customer->address3 = $data['addressNo'];
-        $customer->save();
-
-        //insert customerLogin
-        $customerLogin = new M_CU_Customer_Login();
-        $customerLogin->email = $data['email'];
-        $customerLogin->password = md5(sha1($data['password']));
-        $customerLogin->customer_id =  $customer->id;
-        $customerLogin->verify_code = $key;
-        $customerLogin->save();
-
-        // $customer->customerLogin()->save($customerLogin);
-      });
-    }
+      // $customer->customerLogin()->save($customerLogin);
+    });
 
     Log::channel('customerlog')->info('T_CU_Customer Model', [
       'end customerData'

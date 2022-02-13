@@ -28,6 +28,10 @@ textarea {
     --submitbtn-textcolor: #ffffff;
 }
 
+body {
+    background-color: #000000;
+}
+
 
 /*Start Header*/
 

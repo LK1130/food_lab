@@ -19,6 +19,6 @@ class CheckCustomerId
         if (session()->has('customerId')) {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/signin');
     }
 }

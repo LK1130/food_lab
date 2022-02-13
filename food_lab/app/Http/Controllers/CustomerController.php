@@ -390,8 +390,6 @@ class CustomerController extends Controller
             'start access'
         ]);
         if (!session()->has('customerId')) {
-            $mTownship = new M_Township();
-            $townshipnames = $mTownship->townshipDetails();
 
             $mstate = new M_State();
             $staenames = $mstate->stateName();
@@ -408,7 +406,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end access'
             ]);
-            return view('customer.access.register', ['townshipnames' => $townshipnames, 'staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames, 'name' => $name]);
+            return view('customer.access.register', ['staenames' => $staenames, 'types' => $types, 'tastenames' => $tastenames, 'name' => $name]);
         }
         Log::channel('customerlog')->info('Customer Controller', [
             'end access'
@@ -481,6 +479,21 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'end google'
         ]);
+    }
+
+    public function getTownship(Request $req)
+    {
+        Log::channel('customerlog')->info('CustomerController', [
+            'start getTownship'
+        ]);
+        $mTownship = new M_Township();
+        $getTownship = $mTownship->townshipName($req['data']);
+
+        Log::channel('customerlog')->info('CustomerController', [
+            'end getTownship'
+        ]);
+
+        return $getTownship;
     }
 
     /*

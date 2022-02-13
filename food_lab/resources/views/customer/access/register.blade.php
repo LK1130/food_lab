@@ -4,10 +4,11 @@
     {{-- custom css 2 --}}
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('js')
-    <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
     <script src="{{ url('js/bootstrap-tagsinput.min.js') }}" defer></script>
     <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
@@ -100,12 +101,6 @@
                     <select class="form-select selects" id="addressTownship" name="addressTownship">
                         <option class="township-options" selected disabled>{{ __('messageMK.address(Township)') }}
                         </option>
-                        @forelse ($townshipnames as $townshipname)
-                            <option class="township-options" value="{{ $townshipname->id }}">
-                                {{ $townshipname->township_name }}</option>
-                        @empty
-                            <option disabled>No Township</option>
-                        @endforelse
                     </select>
                     @error('addressTownship')
                         <span class="text-danger">{{ $message }}</span>
@@ -144,7 +139,7 @@
                 </div>
                 <div class="inputs">
                     <input type="button" class="form-control text-center createAccs" id="createAccs"
-                        value="{{ __('messageMK.createAccount') }}" data-bs-toggle="modal" data-bs-target="#modal" />
+                        value="{{ __('messageMK.signUp') }}" data-bs-toggle="modal" data-bs-target="#modal" />
                 </div>
                 {{-- start modal --}}
                 <div class="modal fade text-white modals" id="modal" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -183,7 +178,8 @@
                                     </div>
                                 </fieldset>
                             </div>
-                            <div class="modal-footer justify-content-center">
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">x</button>
                                 <button type="submit" class="btn btn-primary">{{ __('messageMK.submit') }}</button>
                             </div>
                         </div>
