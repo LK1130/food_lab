@@ -41,16 +41,15 @@ $(document).ready(function() {
 });
 
 
-function clickCount() {
-
-    console.log('hello');
-
-
-    if (sessionStorage.clickcount) {
-        sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
-    } else {
-        sessionStorage.clickcount = 1;
-    }
-    $('.cartcount').text(sessionStorage.clickcount);
-
-};
+     function clickCount(){
+        
+        console.log(sessionStorage.clickcount);
+        if (sessionStorage.clickcount) {
+            sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+          } else {
+            sessionStorage.clickcount = 1;
+            }
+            $('.cartcount').text(sessionStorage.clickcount);
+      
+        };
+    

@@ -131,10 +131,6 @@ class CustomerController extends Controller
             $messages = new M_AD_CoinCharge_Message();
             $allmessage = $messages->allMessage($sessionCustomerId);
         }
-        $site = new M_Site();
-        $name = $site->siteName();
-        $news = new M_AD_News();
-        $allnews = $news->newsAll();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start news'
         ]);
@@ -144,9 +140,6 @@ class CustomerController extends Controller
 
         return view('customer.inform.messages', [
             'allmessages' => $allmessage,
-            'news' => $allnews,
-            'name' => $name,
-
             'nav' => 'inform'
         ]);
     }
@@ -170,20 +163,12 @@ class CustomerController extends Controller
             $tracks = new M_AD_Track();
             $alltracks = $tracks->allTracks($sessionCustomerId);
         }
-
-        $news = new M_AD_News();
-        $newDatas = $news->news();
-
-        $site = new M_Site();
-        $name = $site->siteName();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end news'
         ]);
 
         return view('customer.inform.tracks', [
             'alltracks' => $alltracks,
-            'news' => $newDatas,
-            'name' => $name,
             'nav' => 'inform'
         ]);
     }

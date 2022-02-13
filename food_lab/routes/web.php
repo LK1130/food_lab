@@ -226,47 +226,47 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
   Route::get('/delivery', [CustomerController::class, 'deliveryDetails']);
 
   // check Customer id
-  Route::group(['middleware' => ['checkCustomerId']], function () {
-    /*
+  //  Route::group(['middleware' => ['checkCustomerId']], function () {
+  /*
      * For Reprot Page
     */
-    Route::get('/report', [CustomerController::class, 'report']);
+  Route::get('/report', [CustomerController::class, 'report']);
 
-    /*
+  /*
      * From Report Page to store form data in database
     */
-    Route::post('/report', [CustomerController::class, 'reportForm']);
+  Route::post('/report', [CustomerController::class, 'reportForm']);
 
-    /*
+  /*
      * For Suggest Page */
-    Route::get('/suggest', [CustomerController::class, 'suggest']);
+  Route::get('/suggest', [CustomerController::class, 'suggest']);
 
-    // For Suggest Form
-    Route::post('/suggest', [CustomerController::class, 'suggestForm']);
+  // For Suggest Form
+  Route::post('/suggest', [CustomerController::class, 'suggestForm']);
 
-    /*
+  /*
      * For contact page*/
-    Route::get('/contact', [CustomerController::class, 'contact']);
+  Route::get('/contact', [CustomerController::class, 'contact']);
 
-    /*
+  /*
      * For contact form*/
-    Route::post('/contact', [CustomerController::class, 'contactForm']);
+  Route::post('/contact', [CustomerController::class, 'contactForm']);
 
-    /*
+  /*
      * For cart page
      * min khant
     */
-    Route::get('/cart', [CartController::class, 'cart']);
-    Route::post('/cart', [CartController::class, 'cartDetail']);
-    Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
+  Route::get('/cart', [CartController::class, 'cart']);
+  Route::post('/cart', [CartController::class, 'cartDetail']);
+  Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
 
-    /*
+  /*
      * For deliery info page
      * cherry
     */
-    Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
-    Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
-  });
+  Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
+  Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
+  //  });
 
   /*
      * For Access Page

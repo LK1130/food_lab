@@ -213,12 +213,24 @@ class M_Site extends Model
             $site->site_logo = $siteLogo;
             $site->privacy_policy = $request->input('policy');
             $site->maintenance = $request->input('maintenance');
+            $site->intro = $request->input('intro');
+            $site->address = $request->input('address');
+            $site->phone1 = $request->input('phone1');
+            $site->phone2 = $request->input('phone2');
+            $site->phone3 = $request->input('phone3');
+            $site->gmail = $request->input('gmail');
             $site->save();
         } else {
             $siteFirst->site_name = $request->input('name');
             $siteFirst->site_logo = $siteLogo;
             $siteFirst->privacy_policy = $request->input('policy');
             $siteFirst->maintenance = $request->input('maintenance');
+            $siteFirst->intro = $request->input('intro');
+            $siteFirst->address = $request->input('address');
+            $siteFirst->phone1 = $request->input('phone1');
+            $siteFirst->phone2 = $request->input('phone2');
+            $siteFirst->phone3 = $request->input('phone3');
+            $siteFirst->gmail = $request->input('gmail');
             $siteFirst->save();
         }
         Log::channel('adminlog')->info("M_Site Model", [

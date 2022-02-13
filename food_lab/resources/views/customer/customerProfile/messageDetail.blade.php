@@ -17,7 +17,7 @@
 @section('body')
     <div class="news-container">
         <div class="d-flex flex-row">
-            <a href="/"><i class="fa-solid fa-arrow-left fs-2 mt-2 ms-2 back"></i></a>
+            <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left fs-2 mt-2 ms-2 back"></i></a>
             <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.messageDetail') }}</p>
         </div>
 

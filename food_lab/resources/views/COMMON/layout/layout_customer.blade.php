@@ -53,7 +53,7 @@
 
             <div class="d-flex">
                 @if (session()->has('customerId'))
-                    <p class="nav-link d-lg-none mt-1 texts" id="profileButton2">
+                    <p class="nav-link d-lg-none mt-1 texts" id="">
                         <a href="/cart" class="d-lg-none position-relative texts"><i
                                 class="fas fa-shopping-cart fs-3"></i>
                             <span id="cartCount1"
@@ -159,16 +159,18 @@
 
             <div id="profileAlert">
                 <div class="d-flex flex-row justify-content-center profileAlertHeader">
-                    <i class="fas fa-arrow-circle-left fs-4 mt-2 text-light" id="back"></i>
+
                     <p class="userProfile text-center">User Profile</p>
-                    <a href="/logout"><i class="fas fa-sign-out-alt fs-4 mt-2 text-light" id="logout"></i></a>
+                    <a href="/logout"><i class="fas fa-sign-out-alt fs-4 mt-2 me-2 text-light" id="logout"></i></a>
                 </div>
                 <div class="profileAlertBody" id="profileAlertBody">
-                    <div class="d-flex flex-row mt-3 ms-5">
-                        <a href="{{ route('editprofile.index') }}"><button class="btn fs-5 me-3 editProfile">Edit
+                    <div class="d-flex flex-row gap-4 justify-content-center  profileAlertfooter">
+                        <a href="{{ route('editprofile.index') }}" class="mb-3 "><button
+                                class="btn fs-5  editProfile">Edit
                                 Profile</button></a>
-                        <a href="{{ route('updateprofile.index') }}"><button
-                                class="btn fs-5 ms-3 updatePassword">Change Password</button></a>
+                        <a href="{{ route('updateprofile.index') }}" class="mb-3 "><button
+                                class="btn fs-5  updatePassword">Change
+                                Password</button></a>
                     </div>
                 </div>
             </div>
@@ -214,7 +216,7 @@
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto"><button class="btn mb-2 alertButton">
+                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
                                 {{ __('messageZY.more') }}</button></a>
                     </div>
                 @endif

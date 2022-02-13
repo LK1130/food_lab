@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class CheckCustoemrId
+class CheckCustomerId
 {
     /**
      * Handle an incoming request.
@@ -20,6 +19,6 @@ class CheckCustoemrId
         if (session()->has('customerId')) {
             return $next($request);
         }
-        return new Response(redirect('signin'));
+        return redirect('/login');
     }
 }

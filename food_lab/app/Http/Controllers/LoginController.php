@@ -115,6 +115,7 @@ class LoginController extends Controller
         $model = new M_AD_Login();
         $find = $model->AdminDetail($id);
         $oldname = $find["ad_name"];
+
         session(['oldname' => $oldname]);
         $model = new M_AD_Login();
         $find = $model->AdminDetail($id);

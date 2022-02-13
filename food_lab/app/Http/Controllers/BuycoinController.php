@@ -48,37 +48,44 @@ class BuycoinController extends Controller
 
             $user = new T_CU_Customer();
             $userinfo = $user->loginUser($sessionCustomerId);
+        
+
+            $news = new M_AD_News();
+            $newDatas = $news->news();
+            $newsLimited = $news->newsLimited();
+
+            $coinrate=new M_AD_CoinRate();
+            $coinrateDatas = $coinrate->DashboardCoinrate();
+
+
+            $site = new M_Site();
+            $name = $site->siteName();
+
+            $paymentdata= new M_Payment();
+            $paymentAccounts = $paymentdata->paymentAcoounts();
+
+            Log::channel('customerlog')->info('Buycoin Controller', [
+                'End customerBuycoin'
+            ]);
+
+            return view('customer.buyCoin',[
+                'nav'=> 'coin',
+                'news' => $newDatas,
+                'user' => $userinfo,
+                'limitednews' => $newsLimited,
+                'limitedmessages' => $messageLimited,
+                'limitedtracks' => $tracksLimited,
+                'name' => $name,
+                'coinrateData'=> $coinrateDatas,
+                'paymentAccount'=>$paymentAccounts
+            ]);
         }
-
-        $news = new M_AD_News();
-        $newDatas = $news->news();
-        $newsLimited = $news->newsLimited();
-
-        $coinrate=new M_AD_CoinRate();
-        $coinrateDatas = $coinrate->DashboardCoinrate();
-
-
-        $site = new M_Site();
-        $name = $site->siteName();
-
-        $paymentdata= new M_Payment();
-        $paymentAccounts = $paymentdata->paymentAcoounts();
-
-        Log::channel('customerlog')->info('Buycoin Controller', [
-            'End customerBuycoin'
-        ]);
-
-        return view('customer.buyCoin',[
-            'nav'=> 'coin',
-            'news' => $newDatas,
-            'user' => $userinfo,
-            'limitednews' => $newsLimited,
-            'limitedmessages' => $messageLimited,
-            'limitedtracks' => $tracksLimited,
-            'name' => $name,
-            'coinrateData'=> $coinrateDatas,
-            'paymentAccount'=>$paymentAccounts
-        ]);
+        else{
+            Log::channel('customerlog')->info('Buycoin Controller', [
+                'End customerBuycoin'
+            ]);
+            return redirect("/");
+        }
     }
     /*
      * Create : Zaw Phyo(26/1/2022)

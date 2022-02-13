@@ -28,6 +28,7 @@ textarea {
     --submitbtn-textcolor: #ffffff;
 }
 
+
 /*Start Header*/
 
 .headers {
@@ -41,6 +42,10 @@ textarea {
 
 marquee {
     background-color: #000000;
+}
+
+.coinCalInform {
+    color: var(--coin-color);
 }
 
 
@@ -130,24 +135,34 @@ marquee {
     }
 }
 
+
 /*end navbar*/
+
 
 /*
     * Create:zayar(2022/01/17)
     * Update:
     */
 
+
 /*start Profile Alert box*/
 
 #profileAlert {
     position: absolute;
     z-index: 999;
-    width: 67vh;
-    height: 70vh;
+    min-width: 30%;
+    height: fit-content;
     background-color: rgba(0, 0, 0, 0.952);
     top: 100%;
-    right: 0;
+    right: 5%;
+    border-radius: 2vw;
     display: none;
+}
+
+.profileAlertBody {
+    height: fit-content;
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.952);
 }
 
 .profileAlertHeader {
@@ -182,6 +197,12 @@ marquee {
     color: var(--text-color);
 }
 
+.profileAlertfooter {
+    height: auto;
+    border-radius: 0 0 2vw 2vw;
+    background-color: rgba(0, 0, 0, 0.952);
+}
+
 #back {
     cursor: pointer;
 }
@@ -197,8 +218,9 @@ marquee {
 @media only screen and (max-width: 720px) {
     #profileAlert {
         position: absolute;
-        width: 55vw;
-        margin-right: 20vw;
+        width: 80%;
+        margin: auto;
+        margin-right: 5%;
     }
     .userProfile {
         margin-left: 0;
@@ -235,12 +257,15 @@ marquee {
     } */
 }
 
+
 /*end profile alert */
+
 
 /*
     * Create:zayar(2022/01/22)
     * Update:
     */
+
 
 /*start inform Alert box*/
 
@@ -302,14 +327,15 @@ marquee {
 .red {
     background-color: red;
 }
+
 .visible {
     display: block !important;
 }
+
 .forNews,
 .forMessages,
 .forTracks {
     height: fit-content;
-
     width: 54.5vh;
     background-color: rgb(255, 255, 255);
     margin: auto;
@@ -340,18 +366,26 @@ marquee {
     border-radius: 1vh;
     background-color: rgb(189, 173, 158);
 }
+
 .tracks {
     height: 18vh !important;
 }
+
+.nocursor {
+    cursor: auto !important;
+}
+
 .newsLogo {
     position: absolute;
     width: 13%;
     margin-bottom: 13vh;
     left: 21.5vw !important;
 }
+
 .trackNews {
     margin-bottom: 16vh !important;
 }
+
 .news img {
     max-width: 22%;
     margin-right: auto;
@@ -386,7 +420,6 @@ marquee {
     .forMessages,
     .forTracks {
         height: fit-content;
-
         width: 100%;
         background-color: rgb(255, 255, 255);
         margin: auto;
@@ -416,7 +449,6 @@ marquee {
 
 .texts {
     color: var(--primary-color);
-
     margin-bottom: 0;
     cursor: pointer;
 }
@@ -433,7 +465,9 @@ marquee {
     color: var(--text-color);
 }
 
+
 /*end navbar*/
+
 
 /*start carousel*/
 
@@ -484,6 +518,7 @@ marquee {
     width: 100%;
 }
 
+
 /*end carousel*/
 
 @media (max-width: 720px) {
@@ -495,11 +530,17 @@ marquee {
     }
 }
 
-/*End Header*/
 
 /*End Header*/
 
+
 /*End Header*/
+
+
 /*End Header*/
+
+
+/*End Header*/
+
 
 /*End Header*/

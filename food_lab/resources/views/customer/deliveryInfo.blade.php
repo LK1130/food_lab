@@ -80,11 +80,12 @@
             </div>
             <div class="d-flex justify-content-center align-items-center forms">
                 <div>
-                    <a href="/cart" type="reset" class="btn me-5 cancels">{{ __('messageCPPK.') }}</a>
+                    <a href="/cart" type="reset" class="btn me-5 cancels">{{ __('messageCPPK.Back') }}</a>
                     <button type="submit" class="order">{{ __('messageCPPK.Order') }}</button>
                 </div>
             </div>
         </form>
+        
     </div>
    </section>
 @endsection

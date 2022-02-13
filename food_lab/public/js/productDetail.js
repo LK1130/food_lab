@@ -147,6 +147,5 @@ function changeImage(img) {
         main.src = img.src;
         img.src = temp;
     }
-    console.log(img.src);
-    //  this.src = img.src;
+
 }
