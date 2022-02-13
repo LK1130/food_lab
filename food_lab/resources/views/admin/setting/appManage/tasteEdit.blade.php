@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Taste Add')
+@section('title', 'Admin | Taste Edit')
 
 @section('css')
 

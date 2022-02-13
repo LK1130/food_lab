@@ -26,8 +26,6 @@ class TransactionController extends Controller
 
         $ordertable = new T_AD_Order();
         $order = $ordertable->ordertransactionDetails($request->input('id'));
-        $order['grandtotal_coin'] =number_format($order['grandtotal_coin']);
-        $order['grandtotal_cash'] = number_format($order['grandtotal_cash']);
         if($order == null)
         {
             abort(404);
@@ -35,6 +33,7 @@ class TransactionController extends Controller
 
         $ordedetail = new T_AD_OrderDetail();
         $oDetail = $ordedetail->orderDetail($request->input('id'));
+        
 
         Log::channel('adminlog')->info("TransactionController", [
             'End ordertransactionDetail'

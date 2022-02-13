@@ -34,6 +34,7 @@ class ReportMail extends Mailable
             'title'=>$this->mail['title'],
             'reply'=>$this->mail['reply'],
             'name'=>$this->mail['name'],
+            'Message'=>$this->mail['cusmessage'],
         ]);
     }
 }

@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Coin List')
+@section('title', 'Admin | Coin List')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">

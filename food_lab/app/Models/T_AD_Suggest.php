@@ -139,7 +139,7 @@ class T_AD_Suggest extends Model
    * This function is for send emal to customer.
    */
     public function cussuggestMail($id){
-        $sugmail = T_AD_Suggest::select(['customer_id','reply'])
+        $sugmail = T_AD_Suggest::select(['customer_id','reply','message'])
         ->where('id',$id)
         ->first();
         return $sugmail;

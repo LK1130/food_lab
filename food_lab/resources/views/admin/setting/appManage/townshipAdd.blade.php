@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Township Add')
+@section('title', 'Admin | Township Add')
 
 @section('css')
 
