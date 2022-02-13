@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Coin Decision')
+@section('title', 'Admin | Coin Decision')
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ URL::asset('css/adminCoin.css') }}" />
@@ -66,17 +66,20 @@
                             @if ($Cdetail->statusid == 1)
                                 <li class="detail_list fs-5 fw-bold text-success"> : {{ $Cdetail->status }}</li>
                                 <li class="detail_list fs-5">
-                                <button class="btn btn-rimary"><a href="/makeDecision/{{ $Cdetail->chargeid }}" class="btn btn-primary" ><i class="bi bi-pencil-square"></i> Edit</a></button>
+                                    <button class="btn btn-rimary"><a href="/makeDecision/{{ $Cdetail->chargeid }}"
+                                            class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a></button>
                                 </li>
                             @elseif($Cdetail->statusid == 2)
                                 <li class="detail_list fs-5 fw-bold text-info"> : {{ $Cdetail->status }}</li>
                                 <li class="detail_list fs-5">
-                                <button class="btn btn-rimary"><a href="/makeReDecision/{{ $Cdetail->chargeid }}" class="btn btn-primary" ><i class="bi bi-pencil-square"></i> Edit</a></button>
+                                    <button class="btn btn-rimary"><a href="/makeReDecision/{{ $Cdetail->chargeid }}"
+                                            class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a></button>
                                 </li>
                             @elseif($Cdetail->statusid == 3)
                                 <li class="detail_list fs-5 fw-bold text-warning"> : {{ $Cdetail->status }}</li>
                                 <li class="detail_list fs-5">
-                                <button class="btn btn-rimary"><a href="/makeDecision/{{ $Cdetail->chargeid }}" class="btn btn-primary" ><i class="bi bi-pencil-square"></i> Edit</a></button>
+                                    <button class="btn btn-rimary"><a href="/makeDecision/{{ $Cdetail->chargeid }}"
+                                            class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a></button>
                                 </li>
                             @elseif($Cdetail->statusid == 4)
                                 <li class="detail_list fs-5 fw-bold text-secondary"> : {{ $Cdetail->status }}</li>
@@ -135,7 +138,7 @@
                 {{-- End Decision Making --}}
 
                 {{-- Start History --}}
-                @if (count($history)>0)
+                @if (count($history) > 0)
                     <label for="" class="fw-bold fs-4 fw-bold mt-3">Decision History</label>
                 @endif
 

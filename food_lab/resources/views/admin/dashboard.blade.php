@@ -81,13 +81,14 @@
                 <div class="col a  stats">
                     <div class="text-center pb-3 stat">
                         <p class=" numbers coinrate" id="coin">{{ $coinrate->rate }} </p>
+                
                         <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
                         <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                     </div>
                 </div>
                 <div class="col a  stats">
                     <div class="text-center pb-3 stat">
-                        <p class=" numbers">{{ $todaycount }}</p>
+                        <p class=" numbers todaycount">{{ $todaycount }}</p>
                         <p class="detail">{{ __('messageZN.Today Order') }}</p>
                         <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                     </div>
@@ -437,6 +438,8 @@
         var cuscount = @json($cuscount);
         // for coinrate
         var coinrate = @json($coinrate->rate);
+        //for todayorder
+        var toadyorder = @json($todaycount);
     </script>
     <script src="{{ URL::asset('js/admindashboard.js') }}"></script>
 @endsection

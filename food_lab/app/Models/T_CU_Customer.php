@@ -204,6 +204,7 @@ class T_CU_Customer extends Model
     return $sugmail;
   }
 
+
   /*
       * Create : Min Khant(15/1/2022)
       * Update :

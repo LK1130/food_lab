@@ -1,5 +1,5 @@
 <?php
-
+// use Cviebrock\EloquentTaggable\Models\Tag;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoinchargeTransaction;
 use App\Http\Controllers\AppController;
@@ -33,6 +33,7 @@ use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Routing\RouteGroup;
+use phpDocumentor\Reflection\DocBlock\Tag as DocBlockTag;
 use PhpParser\Node\Expr\FuncCall;
 
 /*
@@ -264,12 +265,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
       Route::resource('updateprofile', CustomerProfileUpdate::class);
 
       /*
-     * For Update Profile
-     * zayar
-     */
-      Route::post('/updateuserinfo/{id}', [CustomerController::class, 'updateProfile']);
-
-      /*
      * For messages page
      * zayar
      */
@@ -332,28 +327,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
  * For news get initial
  * zayar
  */
-   Route::get('getnews', [CustomerController::class, 'getNews']);
-
-
-   /*
-    /*
-       * For tracks page
-       * zayar
-       */
-   Route::get('/tracks', [CustomerController::class, 'tracks']);
-   /*
-    For Buy Coin Page
-    cherry
-    */
-   Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
-   Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
-
-   /*
-     * For deliery info page
-     * cherry
-    */
-   Route::get('/deliveryInfo', [DeliveryInfoController::class, 'deliveryInfo']);
-   Route::post('/deliveryInfo', [DeliveryInfoController::class, 'order']);
+   Route::get('/getnews', [CustomerController::class, 'getNews']);
 
 
    /*
@@ -379,33 +353,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
    Route::get('/signin', [CustomerController::class, 'login']);
 
    /*
-     * For Edit Profile Page
-     * zayar
-     */
-   Route::resource('editprofile', CustomerProfileController::class);
-   /*
-     * For ajax
-     * zayar
-     */
-   Route::get('searchcustomerdetails', [customerInfoController::class, 'customerDetailSearch']);
-   /*
-     * For news get initial
-     * zayar
-     */
-   Route::get('getnews', [CustomerController::class, 'getNews']);
-   /*
-     * For Update Profile Page
-     * zayar
-     */
-   Route::resource('updateprofile', CustomerProfileUpdate::class);
-
-   /*
-     * For news page
-     * zayar
-     */
-   Route::get('/customerNews', [CustomerController::class, 'news']);
-
-   /*
      * For Login Form
      */
    Route::post('/login', [CustomerController::class, 'loginForm']);
@@ -415,40 +362,31 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
    Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
    Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
-   /*
-     * For cart page
-     * min khant
-    */
-   Route::get('/cart', [CartController::class, 'cart']);
-   Route::post('/cart', [CartController::class, 'cartDetail']);
-   Route::post('/deleteProduct', [CartController::class, 'deleteProduct']);
-
-   /*
-   * For Login Form
-   */
-   Route::post('/login', [CustomerController::class, 'loginForm']);
 
 
    /*
      * For Product Detail Form
      */
-   Route::get('productDetail', [ProductDetailController::class, 'detail']);
-   Route::post('cartsession', [CartController::class, 'getData']);
-   Route::post('sessionCount', [CartController::class, 'getData']);
+   Route::get('/productDetail', [ProductDetailController::class, 'detail']);
+   Route::post('/cartsession', [CartController::class, 'getData']);
+   Route::post('/sessionCount', [CartController::class, 'getData']);
 
 
    /*
      * For Product
      */
-   Route::get('productLists', [ProductDetailController::class, 'productList']);
+   Route::get('/productLists', [ProductDetailController::class, 'productList']);
    // Route::get('menu',[ProductDetailController::class,'eachList'] );
-   Route::post('searchCategory', [ProductSearchController::class, 'searchByCategory']);
-   Route::post('searchTaste', [ProductSearchController::class, 'searchByTaste']);
-   Route::get('menutype', [ProductSearchController::class, 'listByType']);
-   Route::get('menutaste', [ProductSearchController::class, 'listByTaste']);
+   Route::post('/searchCategory', [ProductSearchController::class, 'searchByCategory']);
+   Route::post('/searchTaste', [ProductSearchController::class, 'searchByTaste']);
+   Route::get('/menutype', [ProductSearchController::class, 'listByType']);
+   Route::get('/menutaste', [ProductSearchController::class, 'listByTaste']);
 
    /*
      * For logging out
      */
    Route::get('/logout', [CustomerController::class, 'logout']);
 });
+
+   // still need to fix
+    // Route::get('/tags',[CustomerController::class,'tagsFavType']);

@@ -73,9 +73,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($contact as $con)
+                        @forelse ($contact as $key => $con)
                             <tr class="tablecolor1 tablerows">
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $contact->firstItem() + $key }}</th>
                                 <td>{{ $con->customerID }}</td>
                                 <td>{{ $con->message }}</td>
                                 <td>
@@ -95,6 +95,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $contact->links() }}</div>
             </div>
         </div>
     </div>

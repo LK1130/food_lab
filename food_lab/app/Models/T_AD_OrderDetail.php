@@ -44,7 +44,7 @@ class T_AD_OrderDetail extends Model
         $orderDetail = T_AD_OrderDetail::where('t_ad_orderdetail.order_id', '=', $id)
             ->join('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
             ->where('t_ad_orderdetail.del_flg', 0)
-            ->paginate(7);
+            ->paginate(5);
         return $orderDetail;
     }
      /*

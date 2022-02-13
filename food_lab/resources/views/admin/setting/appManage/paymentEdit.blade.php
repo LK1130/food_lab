@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Payment Add')
+@section('title', 'Admin | Payment Add')
 
 @section('css')
 

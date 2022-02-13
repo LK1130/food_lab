@@ -1,5 +1,5 @@
 @extends('COMMON.layout.layout_admin')
-@section('title', 'Site Manage')
+@section('title', 'Admin | Site Manage')
 
 @section('css')
 
@@ -52,7 +52,6 @@
                         @endphp
 
                         @forelse ($townships as $township)
-
                             <tr class="tableChile">
                                 <th class="tdBlack">{{ $count++ }}</td>
                                 <td class="tdBlack">{{ $township->township_name }}</td>
