@@ -2,6 +2,7 @@ var coinInput = document.getElementById('ccalcul');
 var mmkInput = document.getElementById('mmkcalcul');
 var coinRate = document.getElementById('coinratedata');
 var coinChargeinput= document.getElementById('coinChargeinput');
+var fileimginput=document.getElementById('formFile');
 var reset= document.getElementById('reset');
 var error=document.getElementById('errorBox');
 var aftercoinSum=0;
@@ -27,4 +28,6 @@ reset.addEventListener("click" , function (){
     coinChargeinput.value="";
     coinInput.value="";
     mmkInput.value="";  
+    fileimginput.value=
+
 })
