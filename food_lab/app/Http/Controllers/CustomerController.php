@@ -57,7 +57,6 @@ class CustomerController extends Controller
             $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
             $mFavType = new M_Fav_Type();
             $product = new M_Product();
-            return $favTypes;
             foreach ($favTypes as $favType) {
                 $id = $mFavType->customerFavType($favType);
                 $eachProduct = $product->customerFavType($id['id']);
@@ -683,7 +682,8 @@ class CustomerController extends Controller
 
 
 
-    public function tagsFavType(){
+    public function tagsFavType()
+    {
 
 
         $mFavType = new M_Fav_Type();
@@ -691,4 +691,3 @@ class CustomerController extends Controller
         return response($type);
     }
 }
-
