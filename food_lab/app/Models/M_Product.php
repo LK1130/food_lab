@@ -389,4 +389,33 @@ class M_Product extends Model
 
         return $result;
     }
+    /*
+      * Create :zayar(15/2/2022)
+      * Update :
+      * Explain of function : To search Product
+      * Prarameter : no
+      * return : customer track product data
+    */
+    public function  searchProduct($productIds)
+    {
+        Log::channel('customerlog')->info("T_CU_Customer Model", [
+            'Start searchProduct'
+        ]);
+        Log::channel('customerlog')->info("asdf", [
+            $productIds
+        ]);
+        $result = M_Product::where('m_product.avaliable', 1)
+            ->where('m_product.del_flg', 0)
+            ->whereIn('m_product.id', $productIds)
+            ->get();
+
+
+        Log::channel('customerlog')->info("T_CU_Customer Model", [
+            'End searchProduct'
+        ]);
+        Log::channel('customerlog')->info("asdf", [
+            $result
+        ]);
+        return $result;
+    }
 }

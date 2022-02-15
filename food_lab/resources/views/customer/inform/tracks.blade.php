@@ -37,6 +37,7 @@
                     $totalSecondsDiff = abs($date2 - $currentdate);
                     $totalDaysDiff = $totalSecondsDiff / 60 / 60 / 24;
                     $diff = (int) $totalDaysDiff;
+                    
                 @endphp
                 @if ($alltrack->seen == 0)
                     <div class="tracks d-flex flex-row justify-content-center align-items-center my-4"
@@ -44,11 +45,12 @@
 
                         <div class="d-flex flex-column  me-auto ms-5 mt-4  ">
                             <p class=" fw-bolder fs-4 productname">
-                                {{ $alltrack->product_name }}
 
+                                {{ $alltrack->title }}
                             </p>
                             <p class=" fw-bold fs-4">{{ $alltrack->coin }} <i class=" fas fa-coins"></i>
-                                ( {{ $alltrack->amount }} {{ __('messageZY.mmk') }} )</p>
+                                ({{ $alltrack->amount }} {{ __('messageZY.mmk') }})
+                            </p>
                         </div>
                         <div class="d-flex flex-column  me-5 mt-4 ">
                             <p class="fs-3 me-3 fw-bolder rounded {{ $messagecolor }} w-100 text-center">
@@ -63,8 +65,9 @@
                     <div class="tracks d-flex flex-row justify-content-center align-items-center my-4"
                         id="{{ $alltrack->trackid }}">
                         <div class="d-flex flex-column me-auto ms-5 mt-4 nome">
-                            <p class=" fw-bolder fs-4 productname">{{ $alltrack->product_name }}
+                            <p class=" fw-bolder fs-4 productname">
 
+                                {{ $alltrack->title }}
                             </p>
                             {{-- coinCalInform --}}
                             <p class=" fw-bold fs-4">{{ $alltrack->coin }} <i class=" fas fa-coins"></i>
