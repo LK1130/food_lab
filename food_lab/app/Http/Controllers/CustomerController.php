@@ -31,6 +31,7 @@ use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Mockery\CountValidator\CountValidatorAbstract;
 
 class CustomerController extends Controller
 {
@@ -57,11 +58,11 @@ class CustomerController extends Controller
             $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
             $mFavType = new M_Fav_Type();
             $product = new M_Product();
-            foreach ($favTypes as $favType) {
-                $id = $mFavType->customerFavType($favType);
-                $eachProduct = $product->customerFavType($id['id']);
-                array_push($recomProducts, $eachProduct);
-            }
+            // foreach ($favTypes as $favType) {
+            //     $id = $mFavType->customerFavType($favType);
+            //     $eachProduct = $product->customerFavType($id['id']);
+            //     array_push($recomProducts, $eachProduct);
+            // }
         }
 
 
@@ -132,10 +133,10 @@ class CustomerController extends Controller
             $allmessage = $messages->allMessage($sessionCustomerId);
         }
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'start news'
+            'start message'
         ]);
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'end news'
+            'end message'
         ]);
 
         return view('customer.inform.messages', [
@@ -154,7 +155,7 @@ class CustomerController extends Controller
     public function tracks()
     {
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'start news'
+            'start tracks'
         ]);
         $alltracks = [];
         if (session()->has('customerId')) {
@@ -162,13 +163,40 @@ class CustomerController extends Controller
             $sessionCustomerId = session('customerId');
             $tracks = new M_AD_Track();
             $alltracks = $tracks->allTracks($sessionCustomerId);
+
+            for ($i = 0; $i < count($alltracks); $i++) {
+                $combine = "";
+                $ids = $alltracks[$i]->title;
+
+
+
+                $product = new M_Product();
+                $searchProduct = $product->searchProduct(explode(',', $ids));
+                Log::channel('customerlog')->info("product", [
+                    $searchProduct
+                ]);
+                // $value->title = $searchProduct;
+                foreach ($searchProduct as $key => $value) {
+                    $combine .=  " " . $value->product_name;
+                }
+                $alltracks[$i]->title = $combine;
+                Log::channel('customerlog')->info("product naem", [
+                    $searchProduct[0]->product_name
+                ]);
+            }
+
+
+            Log::channel('customerlog')->info('M_Site Model', [
+                'start maintenance'
+            ]);
         }
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'end news'
+            'end tracks'
         ]);
 
         return view('customer.inform.tracks', [
             'alltracks' => $alltracks,
+            'products' => $searchProduct,
             'nav' => 'inform'
         ]);
     }
@@ -616,8 +644,9 @@ class CustomerController extends Controller
         ]);
         $news = new M_AD_News();
         $newsLimited = $news->newsLimited();
-        $newDatas = $news->news();
-        $newsCount = count($newDatas);
+        $newsAllToCount = $news->newsAllToCount();
+
+        $newsCount = count($newsAllToCount);
         Log::channel('customerlog')->info('Customer Controller', [
             'end getNews'
         ]);

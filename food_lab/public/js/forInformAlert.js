@@ -34,7 +34,9 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#alertCount").text(data["alertcount"]);
+                if (data["alertcount"] == 0) {
+                    $("#alertCount").css("display", "none");
+                } else $("#alertCount").text(data["alertcount"]);
 
                 $("#profileAlertBody").prepend(
                     `
@@ -53,7 +55,7 @@ $(document).ready(function () {
                 let newscount = data["limitednews"].length;
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, "0");
-                var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+                var mm = String(today.getMonth() + 1).padStart(2, "0");
                 var yyyy = today.getFullYear();
 
                 today = yyyy + "-" + mm + "-" + dd;
@@ -179,64 +181,60 @@ $(document).ready(function () {
                         $names = tracks.title;
                         $name = $names.split(",");
                         $namesCount = $name.length - 1;
-                        console.log($namesCount);
-                        $.ajaxSetup({
-                            headers: {
-                                "X-CSRF-TOKEN": jQuery(
-                                    'meta[name="csrf-token"]'
-                                ).attr("content"),
-                            },
-                        });
-
-                        $.ajax({
-                            type: "GET",
-                            url: "searchcustomerdetails",
-                            data: formdata,
-                            dataType: "json",
-                            success: function (data) {},
-                        });
-                        if (tracks.seen == 0) {
-                            $(".forTracks").prepend(
-                                `
-                                <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.id}">
-                                
-                                <div class="d-flex flex-column w-100 ms-1 mt-2">
-                                    <p class=" fw-bolder mb-1">${$name[0]} and ${$namesCount} other</p>
-                                    
-                                    
-                                    <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
-                                    <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
-                                </div>
-                                <div class="d-flex flex-column me-3 w-100 mt-4 nomelimited">
-                                    <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
-                                    ${tracks.status} </p>
-                                    <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
-                                </div>
-                                <img src="img/new.png" alt="" class="newsLogo  trackNews" >
-                            </div>
-                                `
-                            );
-                        } else {
-                            $(".forTracks").prepend(
-                                `
-                                <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.id}">
-                                
-                                <div class="d-flex flex-column w-100 ms-1 mt-2">
-                                <p class=" fw-bolder mb-1">${$name[0]} and ${$namesCount} other</p>
-                                    
-                                    
-                                <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
-                                <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
-                                </div>
-                                <div class="d-flex flex-column me-3 w-100 mt-4">
-                                    <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
-                                    ${tracks.status} </p>
-                                    <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
-                                </div>
-                                <img src="" alt="" class="newsLogo me-auto trackNews" >
-                            </div>
-                                `
-                            );
+                        $howmuchtext = "";
+                        $namesCount == 0
+                            ? ($howmuchtext = "")
+                            : ($namesCount = 1
+                                  ? ($howmuchtext =
+                                        "and " + $namesCount + " other")
+                                  : ($howmuchtext =
+                                        "and " + $namesCount + " others"));
+                        for (const product of data["trackProduct"]) {
+                            if ($name[0] == product.id) {
+                                if (tracks.seen == 0) {
+                                    $(".forTracks").prepend(
+                                        `
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.tid}">
+                                        
+                                        <div class="d-flex flex-column w-100 ms-1 mt-2">
+                                            <p class=" fw-bolder mb-1">${product.product_name}  ${$howmuchtext} </p>
+                                            
+                                            
+                                            <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                            <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
+                                        </div>
+                                        <div class="d-flex flex-column me-3 w-100 mt-4 nomelimited">
+                                            <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
+                                            ${tracks.status} </p>
+                                            <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
+                                        </div>
+                                        <img src="img/new.png" alt="" class="newsLogo  trackNews" >
+                                    </div>
+                                        `
+                                    );
+                                } else {
+                                    $(".forTracks").prepend(
+                                        `
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.tid}">
+                                        
+                                        <div class="d-flex flex-column w-100 ms-1 mt-2">
+                                        <p class=" fw-bolder mb-1">${product.product_name}  ${$howmuchtext}</p>
+                                            
+                                            
+                                        <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
+                                        </div>
+                                        <div class="d-flex flex-column me-3 w-100 mt-4">
+                                            <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
+                                            ${tracks.status} </p>
+                                            <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
+                                        </div>
+                                        <img src="" alt="" class="newsLogo me-auto trackNews" >
+                                    </div>
+                                        `
+                                    );
+                                }
+                            }
                         }
                     }
                     $(".tracks").click(function () {
@@ -356,7 +354,9 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#alertCount").text(data["alertCount"]);
+                if (data["alertCount"] == 0) {
+                    $("#alertCount").css("display", "none");
+                } else $("#alertCount").text(data["alertCount"]);
                 let newscount = data["limitednews"].length;
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, "0");

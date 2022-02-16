@@ -23,7 +23,7 @@ class M_AD_Track extends Model
             'Start trackLimited'
         ]);
 
-        $result = T_AD_Order::select('*', DB::raw('t_ad_order.created_at AS trackscreated'))
+        $result = T_AD_Order::select('*', DB::raw('t_ad_order.created_at AS trackscreated'), DB::raw('m_ad_track.id AS tid'))
             ->where('t_ad_order.customer_id', '=', $sessionCustomerId)
 
             // ->orderBy('t_ad_order.created_at', 'DESC')
@@ -104,8 +104,12 @@ class M_AD_Track extends Model
             'Start searchTrack'
         ]);
         $unseenTrack = M_AD_Track::where('order_id', $id)->first();
+
+
         $unseenTrack->seen = 1;
         $unseenTrack->save();
+
+
         $result = T_AD_Order::where('t_ad_order.id', '=', $id)
             ->where('t_ad_order.del_flg', 0)
             ->leftjoin('m_ad_track', 'm_ad_track.order_id', '=', 't_ad_order.id')

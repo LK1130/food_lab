@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class M_AD_News extends Model
 {
@@ -177,5 +178,35 @@ class M_AD_News extends Model
             ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->get();
+    }
+    /*
+     * Create : zayar(15/2/2022)
+     * Update :
+     * Explain of function : To show  news for users in news page
+     * Prarameter : no
+     * return : news
+     * */
+    public function newsAllToCount()
+    {
+
+
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'Start newsAllToCount'
+        ]);
+
+        Log::channel('adminlog')->info("M_AD_News Model", [
+            'End newsAllToCount'
+        ]);
+        $news = M_AD_News::where('del_flg', 0)
+            // ->whereDate('created_at',  Carbon::now()->subDays(3))
+            ->whereBetween('created_at', [
+                \carbon\Carbon::now()->subdays(3)->format('Y-m-d'),
+                \carbon\Carbon::now()->subday()->format('Y-m-d')
+            ])->get();
+
+        Log::channel('adminlog')->info("count", [
+            $news
+        ]);
+        return $news;
     }
 }
