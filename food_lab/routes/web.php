@@ -388,5 +388,4 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
    Route::get('/logout', [CustomerController::class, 'logout']);
 });
 
-   // still need to fix
-    // Route::get('/tags',[CustomerController::class,'tagsFavType']);
+

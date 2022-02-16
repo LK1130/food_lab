@@ -20,7 +20,7 @@ $(document).ready(function() {
         e.preventDefault();
         let count = 1;
         let formdata = { "pid": Number(e.target.id), "q": Number(count) };
-
+        console.log(formdata);
         $.ajax({
             type: "POST",
             url: "sessionCount",
@@ -28,8 +28,6 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 console.log(data);
-
-
             },
             error: function(data) {
                 console.log(data);
@@ -41,15 +39,14 @@ $(document).ready(function() {
 });
 
 
-     function clickCount(){
-        
-        console.log(sessionStorage.clickcount);
-        if (sessionStorage.clickcount) {
-            sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
-          } else {
-            sessionStorage.clickcount = 1;
-            }
-            $('.cartcount').text(sessionStorage.clickcount);
-      
-        };
-    
+function clickCount() {
+
+    console.log(sessionStorage.clickcount);
+    if (sessionStorage.clickcount) {
+        sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+    } else {
+        sessionStorage.clickcount = 1;
+    }
+    $('.cartcount').text(sessionStorage.clickcount);
+
+};

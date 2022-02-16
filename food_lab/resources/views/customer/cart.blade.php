@@ -6,7 +6,7 @@
     <link href="css/customerCart.css" rel="stylesheet" type="text/css"/>
     {{--  coin icon cdn  --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    
+
 @endsection
 
 @section('js')
@@ -15,8 +15,8 @@
     {{--  jquery cdn  --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     {{--  coin icon cdn  --}}
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" ></script> 
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" ></script> 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" ></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" ></script>
     {{--  join link to customerCart.js  --}}
     <script src="js/customerCart.js" type="text/javascript" defer></script>
 @endsection
@@ -49,17 +49,17 @@
             @php
                 $i = 1;
             @endphp
-            @foreach ($products as $product)
+            @forelse ($products as $product)
                 <div class="row justify-content-center align-items-center mt-3 products">
                     <div class="col-1 text-center">
                         <ion-icon name="close-sharp" class="fs-1 delete" id="{{ $i++ }}"></ion-icon>
                     </div>
-                    <div class="col-3">
-                        <img src="img/menu.png" alt = "" style="width: 80%"/>
+                    <div class="col-3" style="width: 280px">
+                        <img src="/storage/{{ $product['path'] }}" alt = "" style="width: 100%"/>
                     </div>
                     <div class="col-2">
                         <p class="fw-bold text-uppercase" id="pname">{{ $product['product_name'] }}</p>
-                        <p class="fw-bold" id="code">#33445</p>
+                        <p class="fw-bold" id="code">#{{ $product['id'] }}</p>
                     </div>
                     <div class="col-3 text-center">
                         <div class="mx-auto wrapper">
@@ -77,9 +77,13 @@
                         <span class="cashBox"><span class="cash">{{ $totalCash }}</span> Ks</span>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="fs-1 fw-bolder my-3 products no-datas">
+                    <p class="text-white text-center">Plesae Buy First item . <a href="/productLists" class="btn">Buy now</a></p>
+                </div>
+            @endforelse
             {{-- End Added Buy Products  --}}
-        </div>                                                                                  
+        </div>
         <div class="row my-4 bouchers">
             <div class="col-lg-6 d-flex align-items-center justify-content-center cart-icons">
                 <img src="img/shopCart.png" alt="" style="width: 40%">

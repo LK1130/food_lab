@@ -14,17 +14,6 @@ let order = document.querySelector('.order'),
     products = document.querySelectorAll('.products'),
     nums = document.querySelectorAll('.num');
 
-
-// let load = () => {
-//     totalCoin = totalCoin.textContent;
-//     totalCash = totalCash.textContent;
-//     delCoin = delCoin.textContent;
-//     delCash = delCash.textContent;
-//     grandCoin = grandCoin.textContent;
-//     grandCash = grandCash.textContent;
-// }
-
-// load();
 // Coin switch
 function leftClick() {
     var btnSwitch = document.getElementById('btnSwitch');
@@ -73,7 +62,6 @@ function rightClick() {
 
 
 $(document).on('click', '.delete', (e) => {
-    console.log(e.originalEvent.path[3].id);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -82,8 +70,9 @@ $(document).on('click', '.delete', (e) => {
     $.ajax({
         type: 'POST',
         url: '/deleteProduct',
-        data: { 'id': e.originalEvent.path[3].id },
+        data: { 'id': e.target.id },
         success: function(res) {
+            console.log(res);
             window.location.href = '/cart';
         },
         error: function(err) {

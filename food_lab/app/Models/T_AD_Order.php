@@ -303,7 +303,7 @@ class T_AD_Order extends Model
     }
 
 
- /*
+    /*
     * Create : Zaw(2022/02/22) 
     * Update : 
     * This function is use to 
@@ -320,7 +320,7 @@ class T_AD_Order extends Model
         $currentMonth = Carbon::now()->month;
 
         $order = T_AD_Order::select(
-             DB::raw('order_date as date'),
+            DB::raw('order_date as date'),
             DB::raw(('day(order_date) as day')),
             DB::raw('count(id) as totalorder'),
         )
@@ -329,7 +329,7 @@ class T_AD_Order extends Model
             ->orderBy(DB::raw('order_date'), 'ASC')
             ->groupBy('date')
             ->paginate(10);
-            // ->get();
+        // ->get();
 
         Log::channel('adminlog')->info("T_AD_Order Model", [
             'End orderDailyList'
@@ -417,7 +417,11 @@ class T_AD_Order extends Model
                 $tAdOrderDetail->quantity = $product['q'];
                 $tAdOrderDetail->total_coin = $product['coin'];
                 $tAdOrderDetail->total_cash = $product['cash'];
-                $tAdOrderDetail->note = json_encode($product['value']);
+                if (array_key_exists('value', $product) == true) {
+                    $tAdOrderDetail->note = $product['value'];
+                } else {
+                    $tAdOrderDetail->note = '';
+                }
                 $tAdOrderDetail->save();
             }
         });

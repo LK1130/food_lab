@@ -775,7 +775,7 @@ form div .cancels {
 /*Start Login Section*/
 
 .login {
-    min-height: 100vh;
+    min-height: 90vh;
     background: url("/img/bg8.png");
     background-repeat: no-repeat;
     background-size: cover;

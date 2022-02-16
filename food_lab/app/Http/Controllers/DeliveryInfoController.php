@@ -24,7 +24,7 @@ class DeliveryInfoController extends Controller
             'start deliveryInfo'
         ]);
 
-        if(session()->has('cart')){
+        if (session()->has('cart')) {
             $userID = session('customerId');
 
             $deliTownshipInfo = new T_CU_Customer();
@@ -33,7 +33,6 @@ class DeliveryInfoController extends Controller
             if ($deliInfo === null) {
                 Log::channel('adminlog')->info("T_CU_Customer Model", [
                     'End deliTownship'
-                    
                 ]);
                 return redirect('error/404');
             }
@@ -44,9 +43,9 @@ class DeliveryInfoController extends Controller
 
             return View('customer.deliveryInfo', ['deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
         }
-         return redirect('/');
+        return redirect('/');
     }
-        
+
 
     /* Create:cherry(1/2/2022)
     * Update: Min Khant(1/2/2022)
@@ -60,15 +59,12 @@ class DeliveryInfoController extends Controller
         ]);
         $vouncher = $_POST['vouncher'];
         $phone = $_POST['phone'];
-
         $userID = session('customerId');
-
 
         $productArrays = session('cart');
         $deliTownshipInfo = new T_CU_Customer();
         $deliInfo = $deliTownshipInfo->deliveryTownship($userID);
         $township = $deliInfo['address2'];
-
         if ($vouncher == 0) {
             $grandCoin = session('grandCoin');
             $grandCash = 0;

@@ -35,7 +35,7 @@
                     <label class="fw-bold"id="details">{{ __('messageCPPK.Phone') }}</label>
                 </div>
                 <div class="inputs">
-                    <input type="text" name="phone" class="controlForm phone" value="{{$deliInfo->phone }}"/>
+                    <input type="text" name="phone" class="controlForm phone" id="phone" value="{{$deliInfo->phone }}"/>
                 </div>
             </div>
             <div class="d-flex mb-4 forms">

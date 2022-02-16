@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_Product;
 use App\Models\M_Township;
+use App\Models\T_AD_Photo;
 use App\Models\T_CU_Customer;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -34,45 +35,49 @@ class CartController extends Controller
         ]);
         if (session()->has('customerId')) {
             $products = [];
-            $cuProducts = session('cart');
+            if(session()->has('cart')) {
+                if(count(session('cart'))!=0) {
+                    $cuProducts = session('cart');
 
-        
-            $productArrays = $cuProducts;
-            if (count($productArrays) != 0) {
-                // for product 
-                $m_product = new M_Product();
-                foreach ($productArrays as $productArray) {
-                    $product = $m_product->products((int)$productArray['pid']);
-                    array_push($products, $product);
+                    $productArrays = $cuProducts;
+                    // for product
+                    $m_product = new M_Product();
+                    $tAdPhoto = new T_AD_Photo();
+                    foreach ($productArrays as $productArray) {
+                        $product = $m_product->products((int)$productArray['pid']);
+                        $photo = $tAdPhoto->productImg((int)$productArray['pid']);
+                        $product['path'] = $photo['path'];
+                        array_push($products, $product);
+                    }
+
+                    // add quantity in product array from session quantity
+                    for ($i = 0; $i < count($products); $i++) {
+                        $products[$i]['quantity'] = (int)$productArrays[$i]['q'];
+                    }
+                }else{
+                    session()->forget('cart');
                 }
-
-                // add quantity in product array from session quantity 
-                for ($i = 0; $i < count($products); $i++) {
-                    $products[$i]['quantity'] = (int)$productArrays[$i]['q'];
-                }
-
-                $customerId = session('customerId');
-
-                $tCuCustomer = new T_CU_Customer();
-                $township = $tCuCustomer->deliveryTownship($customerId);
-
-                // for delivery fees 
-                $mAdCoinRate = new M_AD_CoinRate();
-                $rate = $mAdCoinRate->getRate();
-
-                $mTownship = new M_Township();
-                $fees = $mTownship->townshipFees($township->address2);
-
-                $delCoin = $fees->delivery_price / $rate->rate;
-                $delCash = $fees->delivery_price;
-
-                Log::channel('customerlog')->info('CartController', [
-                    'end cart'
-                ]);
-
-                return View('customer.cart', ['products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
             }
-            return redirect('/');
+            $customerId = session('customerId');
+
+            $tCuCustomer = new T_CU_Customer();
+            $township = $tCuCustomer->deliveryTownship($customerId);
+
+            // for delivery fees
+            $mAdCoinRate = new M_AD_CoinRate();
+            $rate = $mAdCoinRate->getRate();
+
+            $mTownship = new M_Township();
+            $fees = $mTownship->townshipFees($township->address2);
+
+            $delCoin = $fees->delivery_price / $rate->rate;
+            $delCash = $fees->delivery_price;
+
+            Log::channel('customerlog')->info('CartController', [
+                'end cart'
+            ]);
+
+            return View('customer.cart', ['products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
         }
         Log::channel('customerlog')->info('CartController', [
             'end cart'
@@ -112,11 +117,11 @@ class CartController extends Controller
         $mTownship = new M_Township();
         $fees = $mTownship->townshipFees($township->address2);
 
-        // get delivery fees 
+        // get delivery fees
         $mAdCoinRate = new M_AD_CoinRate();
         $rate = $mAdCoinRate->getRate();
 
-        // get coin rate 
+        // get coin rate
         $delCoin = $fees->delivery_price / $rate->rate;
         $delCash = $fees->delivery_price;
         // change quantity in session data  and cal total coin,cash
@@ -134,7 +139,7 @@ class CartController extends Controller
         $grandCoin = $totalCoin + $delCoin;
         $grandCash = $totalCash + $delCash;
 
-        // store session product 
+        // store session product
         $storeProduct = $productArrays;
         session(['cart' => $storeProduct, 'grandCoin' => $grandCoin, 'grandCash' => $grandCash]);
 
@@ -146,7 +151,7 @@ class CartController extends Controller
     /*
      * Create : Min Khant(1/2/2022)
      * Update :admin
-     * Explain of function : delete session product 
+     * Explain of function : delete session product
      * Prarameter : no
      * return : no
      * */
@@ -163,8 +168,8 @@ class CartController extends Controller
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
-
         session(['cart' => $sessionProduct]);
+
         Log::channel('custoemrlog')->info('CartController', [
             'end deleteProduct'
         ]);
@@ -174,7 +179,7 @@ class CartController extends Controller
     /*
      * Create :Aung Min Khant(31/1/2022)
      * Update :
-     * Explain of function : add session data 
+     * Explain of function : add session data
      * Prarameter : no
      * return : View deliveryInfo blade
      * */
@@ -187,8 +192,10 @@ class CartController extends Controller
         ]);
 
         $products = [];
+        $sessionArr = session('cart');
         $newProduct = $request->data;
-        if (session()->has('cart')) {
+
+        if (!empty($sessionArr)) {
             $product = session('cart');
             session()->forget('cart');
             if (count($product) > 1) {
@@ -199,9 +206,7 @@ class CartController extends Controller
                 array_push($products, $product[0]);
             }
         }
-
         array_push($products, $newProduct);
-
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
@@ -209,29 +214,4 @@ class CartController extends Controller
         ]);
         return session('cart');
     }
-
-     /*
-     * Create :Aung Min Khant(9/2/2022)
-     * Update :
-     * Explain of function : get session count from view page
-     * Prarameter : request from ajax
-     * return : 
-     * */
-
-        public function getSessionCount(Request $request){
-
-            Log::channel('customerlog')->info('CartController', [
-                'start getSessionCount'
-            ]);
-
-            $products = $request->data;
-            session(['cart' => $products]);
-            
-            
-            Log::channel('customerlog')->info('CartController', [
-                'end getSessionCount'
-            ]);
-
-            // return session('cart');
-        }
 }

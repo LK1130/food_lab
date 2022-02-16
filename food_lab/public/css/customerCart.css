@@ -1,4 +1,4 @@
-:root {
+products:root {
     --primary-color: #FF470B;
     --secondary-color: #ff6600;
     --text-color: #FFFFFF;
@@ -19,10 +19,6 @@ body {
 
 .cartTitle {
     color: var(--primary-color);
-    /* font-weight: bold; */
-    /* font-size: 2rem; */
-    /* margin-left: 1.5rem;
-     padding-top: 2rem; */
 }
 
 .itemTitle {
@@ -37,26 +33,16 @@ body {
     color: var(--primary-color);
     font-size: 1.5rem;
     margin-bottom: 0 !important;
-    /* font-weight: 400;
-    margin-left: 15%;
-    width: 30%;
-    position: relative; */
 }
 
 #qtyTitle {
     color: var(--primary-color);
     font-size: 1.5rem;
     margin-bottom: 0 !important;
-    /* font-weight: 400; */
-    /* margin-left: 5%; */
-    /* width: 18%; */
-    /* position: relative; */
 }
 
 .form-box {
-    /* padding-left: 2rem; */
     width: 20%;
-    /* margin-left: 3%; */
 }
 
 
@@ -87,7 +73,6 @@ body {
     outline: none;
     position: relative;
     text-align: center;
-    /* font-size: 90%; */
     color: black
 }
 
@@ -107,6 +92,19 @@ body {
 
 .products {
     position: relative;
+}
+
+.no-datas{
+    height: 20vh;
+}
+
+.no-datas p{
+    line-height: 20vh;
+}
+
+.no-datas a{
+    background-color: var(--primary-color);
+    color: var(--text-color);
 }
 
 .products::after {
@@ -177,7 +175,6 @@ body {
 #pname,
 #code {
     font-size: 1.2rem;
-    /* font-weight: 400; */
     color: var(--text-color);
     margin-bottom: 0 !important;
 }
@@ -284,22 +281,11 @@ body {
 .grandtitle {
     color: var(--text-color);
     font-size: 1.3rem;
-    /* font-weight: 400; */
-    /* width: 50%;
-    position: relative; */
 }
 
 .coinDiv {
-    /* width: 10rem;
-    height: 4rem; */
     color: var(--text-color);
-    /* justify-content: center;
-    align-items: center; */
     font-size: 1.3rem;
-    /* padding: 0.2rem; */
-    /* font-weight: 400; */
-    /* display: block; */
-    /* position: relative; */
 }
 
 .totals {
@@ -377,77 +363,29 @@ body {
     }
     .button-box {
         width: 100%;
-        /*height: 2rem;
-        position: relative;
-        margin-left: 0rem; */
         font-size: 0.9rem;
         padding: 2px 0 2px 0;
     }
-    /*
-    #btnSwitch {
-        width: 3.5rem;
-        height: 2rem;
-    }
-    .toggle-btn {
-        padding: 6px 15px;
-        font-size: 0.7rem;
-        color: black
-    } */
-    /* Added Buy Products */
-    /* .calculateitem {
-        height: 25rem;
-        margin-top: 0.8rem;
-        margin-left: 0.5rem;
-    }
-    .item {
-        height: 5rem;
-    }
-    .imgBox {
-        width: 20%;
-        margin-left: 0.2rem;
-    }
-    .imgSize {
-        height: 80%;
-        width: 70%;
-    }
-    .itemdetail {
-        width: 22%;
-        padding-left: 1rem;
-    }*/
+
     #pname,
     #code {
         font-size: 0.7rem;
     }
-    /*    .quantityDiv {
-        margin-left: 0rem;
-        width: 20%;
-    }
-*/
+
     .wrapper {
-        /* height: 30px; */
         min-width: 100%;
-        /* margin-left: 10%;*/
         border-radius: 5px;
     }
     .wrapper span,
     .wrapper span.num {
         font-size: 0.9rem;
     }
-    /* 
-    .amountDiv {
-        margin-left: 4%;
-        width: 24%;
-        padding-left: 0rem;
-    }    */
+
     .coinBox,
     .cashBox {
-        /* width: 100%;
-        height: 3rem; */
         font-size: 0.9rem;
-        /* padding-left: 0;
-        margin-left: 0;
-        text-align: start; */
     }
+
     /* Calculate Total Price */
     .imgDiv {
         display: none;
@@ -455,40 +393,13 @@ body {
     .cart-icons {
         display: none !important;
     }
-    /* 
-    .totalDiv {
-        width: 100vw;
-        margin-left: 3px;
-    }
-    .amountDiv1 {
-        display: block;
-        width: 100vw;
-        flex-direction: row;
-    }
-    .btnStyle {
-        width: 100vw;
-        height: 5rem;
-        margin-top: 1rem;
-    }
-    */
+
     .cancels,
     .order {
         padding: 5px 10px;
         font-size: 0.8rem;
     }
-    /*
-    .order {
-        margin-left: 0rem;
-        font-size: 1rem;
-    }
-    .copys {
-        margin-top: 7rem;
-    }
-    .iconSize {
-        width: 1.2rem;
-        height: 1.2rem;
-    }
-    */
+
     #amounttitle,
     .deliverytitle,
     .grandtitle,

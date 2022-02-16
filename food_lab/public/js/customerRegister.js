@@ -13,6 +13,12 @@ let peye = document.querySelector(".pwd-eye"),
 let cpeye = document.querySelector(".cpwd-eye"),
     cpeyeSlash = document.querySelector(".cpwd-eye-slash");
 
+$(document).ready(function() {
+    $('#phone').bind('cut copy paste', function(event) {
+        event.preventDefault();
+    });
+});
+
 phone.addEventListener('keydown', (e) => {
     console.log(e.key);
     let reg = new RegExp(/^([0-9+-]{1,})$/);
@@ -22,7 +28,8 @@ phone.addEventListener('keydown', (e) => {
         e.preventDefault();
         console.log('false');
     }
-})
+});
+
 
 // for password eye icon addEventListener
 peyeSlash.addEventListener("click", function() {
@@ -150,10 +157,11 @@ document.getElementById('addressState').addEventListener('change', () => {
         url: 'getTownship',
         data: { data: state },
         success: (response) => {
-            console.log(response);
-            let townships = response;
-            for (let i = 0; i < response.length; i++) {
-                $('#addressTownship').append(`<option class="township-options" value="${response[i]['id']}">${response[i]['township_name']}</option>`);
+            let townships = [];
+            townships = response;
+            console.log(townships);
+            for (let i = 0; i < townships.length; i++) {
+                $('#addressTownship').append(`<option class="township-options" value="${townships[i]['id']}">${townships[i]['township_name']}</option>`);
             }
 
         },
