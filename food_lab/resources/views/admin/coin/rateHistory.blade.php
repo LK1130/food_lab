@@ -3,8 +3,8 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ URL::asset('css/adminCoin.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/coinRate.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/adminCoin.css') }}" />
 @endsection
 
 @section('script')

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Common\Variable;
 use App\Http\Controllers\Controller;
-
-
+use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_Payment;
 use App\Models\T_AD_CoinCharge;
@@ -292,6 +291,7 @@ class CoinController extends Controller
 
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $charge = $t_ad_coincharge->findChargeById($request->chargeId);
+                if ($charge == null) abort(404);
 
                 //Double Check
                 if ($request->decision == $common->APPROVE) {
@@ -309,6 +309,13 @@ class CoinController extends Controller
                     $request->note
                 );
 
+                // Check decision 
+                if (
+                    $request->decision != $common->APPROVE &&
+                    $request->decision != $common->WAITING &&
+                    $request->decision != $common->REJECT
+                ) abort(404);
+
                 // Set Status
                 $t_ad_coincharge = new T_AD_CoinCharge();
                 $t_ad_coincharge->setChargeDecision($request->chargeId, $request->decision);
@@ -324,11 +331,25 @@ class CoinController extends Controller
 
                     // Set Coin History
                     $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
-                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, $request->amount, $request->note);
+                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, $charge->request_coin, $request->note);
 
                     // Set Coin Table
                     $t_cu_coin_customer = new T_CU_Coin_Customer();
-                    $t_cu_coin_customer->setCoin($charge->customer_id, $request->amount);
+                    $t_cu_coin_customer->setCoin($charge->customer_id, $charge->request_coin);
+                }
+
+                //Set Message to m_ad_coincharge_message
+                $m_ad_coincharge_message = new M_AD_CoinCharge_Message();
+                switch ($request->decision) {
+                    case $common->APPROVE:
+                        $m_ad_coincharge_message->addMessage($common->APP, $common->APP_MESSAGE_DET, $request->chargeId);
+                        break;
+                    case $common->WAITING:
+                        $m_ad_coincharge_message->addMessage($common->WAIT, $common->WAIT_MESSAGE_DET, $request->chargeId);
+                        break;
+                    case $common->REJECT:
+                        $m_ad_coincharge_message->addMessage($common->REJ, $common->REJ_MESSAGE_DET, $request->chargeId);
+                        break;
                 }
             }
         );
@@ -382,18 +403,32 @@ class CoinController extends Controller
                 // Reset if waiting
                 if ($request->decision == $common->WAITING) {
                     $t_ad_Coincharage_finance = new T_AD_CoinCharge_Finance();
-                    $subAmount =  $t_ad_Coincharage_finance->getFinance($request->chargeId);
+                   // $subAmount =  $t_ad_Coincharage_finance->getFinance($request->chargeId);
 
                     // Set Coin History
                     $t_cu_coin_customer_history = new T_CU_Coin_Customer_History();
-                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, - ($subAmount->amount), $request->note);
+                    $t_cu_coin_customer_history->setCoinHistory($charge->customer_id, - ($charge->request_coin), $request->note);
 
                     // Set Coin Table
                     $t_cu_coin_customer = new T_CU_Coin_Customer();
-                    $t_cu_coin_customer->setCoin($charge->customer_id, - ($subAmount->amount));
+                    $t_cu_coin_customer->setCoin($charge->customer_id, - ($charge->request_coin));
 
                     // reset Finance Table
                     $t_ad_Coincharage_finance->reSetFinance($request->chargeId);
+                }
+
+                //Set Message to m_ad_coincharge_message
+                $m_ad_coincharge_message = new M_AD_CoinCharge_Message();
+                switch ($request->decision) {
+                    case $common->APPROVE:
+                        $m_ad_coincharge_message->addMessage($common->APP, $common->APP_MESSAGE_DET, $request->chargeId);
+                        break;
+                    case $common->WAITING:
+                        $m_ad_coincharge_message->addMessage($common->WAIT, $common->WAIT_MESSAGE_DET, $request->chargeId);
+                        break;
+                    case $common->REJECT:
+                        $m_ad_coincharge_message->addMessage($common->REJ, $common->REJ_MESSAGE_DET, $request->chargeId);
+                        break;
                 }
             }
         );
