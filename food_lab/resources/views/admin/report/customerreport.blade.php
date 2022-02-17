@@ -74,9 +74,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($report as $rp)
+                        @forelse ($report as $key => $rp)
                             <tr class="tablecolor1 tablerows">
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $report->firstItem() + $key }}</th>
                                 <td>{{ $rp->customerID }}</td>
                                 <td>{{ $rp->id }}</td>
                                 <td>{{ $rp->report_message }}</td>
@@ -96,6 +96,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $report->links() }}</div>
             </div>
         </div>
     </div>

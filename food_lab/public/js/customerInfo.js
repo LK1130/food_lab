@@ -35,14 +35,19 @@ $(document).ready(function () {
                                 <td>${list.customerID}</td>
                                 <td>${list.phone}</td>
                                 <td>${list.address3}</td>
-                                <td>
-                                <a href="customerinfoDetail?id=${list.id}">
-                                        <button class="btn tablerows btn-outline-dark"><i
-                                                class="bi bi-arrow-right"></i></button>
-                                    </a>
-                                </td>
+                                ` +
+                            (role == "SA"
+                                ? `<td><a href="customerinfoDetail?id=${list.id}">
+                                <button class="btn tablerows btn-outline-dark"><i
+                                        class="bi bi-arrow-right"></i></button>
+                            </a></td>`
+                                : ``) +
+                            `
+                                
+                                    
+                                
                             </tr>
-                        `
+                            `
                     );
                 }
             },
