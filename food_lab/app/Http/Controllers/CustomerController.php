@@ -702,6 +702,16 @@ class CustomerController extends Controller
         $name = $site->siteName();
         $message = new M_AD_Track();
         $coinmessage = $message->searchTrack($id);
+        $combine = "";
+        $ids = $coinmessage->title;
+        $product = new M_Product();
+        $searchProduct = $product->searchProduct(explode(',', $ids));
+
+        // $value->title = $searchProduct;
+        foreach ($searchProduct as $key => $value) {
+            $combine .=  " " . $value->product_name;
+        }
+        $coinmessage->title = $combine;
         Log::channel('customerlog')->info('Customer Controller', [
             'end trackDetail'
         ]);

@@ -200,8 +200,8 @@ class M_AD_News extends Model
         $news = M_AD_News::where('del_flg', 0)
             // ->whereDate('created_at',  Carbon::now()->subDays(3))
             ->whereBetween('created_at', [
-                \carbon\Carbon::now()->subdays(3)->format('Y-m-d'),
-                \carbon\Carbon::now()->subday()->format('Y-m-d')
+                \carbon\Carbon::now()->subdays(2)->format('Y-m-d'),
+                \carbon\Carbon::now()->addDays(1)->format('Y-m-d')
             ])->get();
 
         Log::channel('adminlog')->info("count", [

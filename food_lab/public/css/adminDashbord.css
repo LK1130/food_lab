@@ -69,6 +69,9 @@ a {
     justify-content: end;
     width: 100%;
 }
+.space {
+    margin-bottom: 3vh;
+}
 @media (max-width: 1380px) {
     .stat {
         width: 100%;

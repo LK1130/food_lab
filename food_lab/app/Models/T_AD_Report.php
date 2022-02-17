@@ -29,7 +29,7 @@ class T_AD_Report extends Model
         ->join('t_cu_customer','t_cu_customer.id','=','t_ad_report.customer_id')
         ->join('t_ad_order','t_ad_order.id','=','t_ad_report.order_id')
         ->where('t_ad_report.del_flg',0)
-        ->get();
+        ->paginate(10);
 
         Log::channel('adminlog')->info("T_AD_Report Model", [
             'End customerReportlist'

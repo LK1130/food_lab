@@ -13,8 +13,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
         integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
 @endsection
 
 
@@ -81,7 +79,7 @@
                 <div class="col a  stats">
                     <div class="text-center pb-3 stat">
                         <p class=" numbers coinrate" id="coin">{{ $coinrate->rate }} </p>
-                
+
                         <p class="detail">{{ __('messageZN.Coin Rate') }}</p>
                         <a href="orderTransaction" class="fs-5 see">{{ __('messageZN.See More Detail') }}</a>
                     </div>
@@ -122,7 +120,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ( $orderdetail as $list2 )
+                            @forelse ($orderdetail as $list2)
                                 <tr class="tablecolor1 tablerows">
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $list2->customerID }}</td>
@@ -182,7 +180,7 @@
                             class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row space">
                 <div class="col-md-6 tablelist">
                     {{-- Product List --}}
                     <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Product List') }}</div>
@@ -229,7 +227,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ( $coincharge as $list4 )
+                            @forelse ($coincharge as $list4)
                                 <tr class="tablecolor1 tablerows">
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $list4->customerID }}</td>
@@ -351,7 +349,7 @@
                 {{-- Status End --}}
                 {{-- Listing Start --}}
                 {{-- <div class="status text fs-2 fw-bold mb-4 mt-5">{{ __('messageZN.Listing') }}</div> --}}
-                <div class="row mt-4">
+                <div class="row mt-4 ">
                     <div class="col-md-12 tablelist">
                         {{-- Customer Info --}}
                         <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Customers List') }}</div>
@@ -388,7 +386,7 @@
                                 class="btn seemore text-light">{{ __('messageZN.See More') }}</button></a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row space">
                     <div class="col-md-12 tablelist">
                         {{-- Coin Charge List --}}
                         <div class="status text tableheaders fw-bold mb-2">{{ __('messageZN.Coin Charge List') }}</div>
@@ -403,7 +401,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ( $coincharge as $list4 )
+                                @forelse ($coincharge as $list4)
                                     <tr class="tablecolor1 tablerows">
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $list4->customerID }}</td>
