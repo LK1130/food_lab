@@ -14,6 +14,7 @@ let order = document.querySelector('.order'),
     products = document.querySelectorAll('.products'),
     nums = document.querySelectorAll('.num');
 
+
 // Coin switch
 function leftClick() {
     var btnSwitch = document.getElementById('btnSwitch');
@@ -72,7 +73,13 @@ $(document).on('click', '.delete', (e) => {
         url: '/deleteProduct',
         data: { 'id': e.target.id },
         success: function(res) {
-            console.log(res);
+            let count = Number(sessionStorage.getItem('clickcount'));
+            count = --count;
+            if(count != 0) {
+                sessionStorage.setItem('clickcount', count);
+            }else{
+                sessionStorage.removeItem('clickcount');
+            }
             window.location.href = '/cart';
         },
         error: function(err) {

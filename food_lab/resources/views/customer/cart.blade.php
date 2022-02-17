@@ -117,14 +117,11 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <a href="/" class="btn me-3 cancels">{{ __('messageCPPK.Back') }}</a>
+                    <a href="/productLists" class="btn me-3 cancels">{{ __('messageCPPK.Back') }}</a>
                     <p class="btn order" id="order">{{ __('messageCPPK.Delivery') }}</a>
                 </div>
             </div>
         </div>
-        {{--  <div class="d-flex justify-content-center align-items-center copys">
-            <p>{{ __('messageCPPK.Copyright') }}</p>
-        </div>  --}}
     </section>
     {{--  End Cart Session   --}}
 @endsection

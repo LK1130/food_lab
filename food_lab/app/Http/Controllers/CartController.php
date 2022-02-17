@@ -206,7 +206,18 @@ class CartController extends Controller
                 array_push($products, $product[0]);
             }
         }
-        array_push($products, $newProduct);
+
+//        if(count($products) != 0) {
+//            foreach ($products as $eachItem) {
+//                if ($eachItem['pid'] == $newProduct['pid']) {
+//                    return $eachItem['q'];
+//                } else {
+//                    array_push($products, $newProduct);
+//                }
+//            }
+//        }else{
+            array_push($products, $newProduct);
+//        }
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [

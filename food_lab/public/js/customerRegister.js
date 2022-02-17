@@ -157,11 +157,14 @@ document.getElementById('addressState').addEventListener('change', () => {
         url: 'getTownship',
         data: { data: state },
         success: (response) => {
-            let townships = [];
-            townships = response;
-            console.log(townships);
-            for (let i = 0; i < townships.length; i++) {
-                $('#addressTownship').append(`<option class="township-options" value="${townships[i]['id']}">${townships[i]['township_name']}</option>`);
+            let townships = document.getElementsByClassName('townships');
+            if(townships.length != 0) {
+                for (let i = 0 ; i < townships.length ; i++) {
+                    townships[i].remove();
+                }
+            }
+            for (let i = 0; i < response.length; i++) {
+                $('#addressTownship').append(`<option class="township-options townships" value="${response[i]['id']}">${response[i]['township_name']}</option>`);
             }
 
         },
