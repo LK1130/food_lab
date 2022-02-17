@@ -36,16 +36,21 @@ class CartController extends Controller
             $products = [];
             $cuProducts = session('cart');
 
-        
+            
             $productArrays = $cuProducts;
+        
             if (count($productArrays) != 0) {
                 // for product 
                 $m_product = new M_Product();
                 foreach ($productArrays as $productArray) {
                     $product = $m_product->products((int)$productArray['pid']);
+                    
                     array_push($products, $product);
+                    
                 }
 
+            
+              
                 // add quantity in product array from session quantity 
                 for ($i = 0; $i < count($products); $i++) {
                     $products[$i]['quantity'] = (int)$productArrays[$i]['q'];
@@ -158,13 +163,18 @@ class CartController extends Controller
 
         $sessionProduct = [];
         $productArrays = session('cart');
+       
         $id = $_POST['id'];
+      
         unset($productArrays[$id - 1]);
+     
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
-
+        
+     
         session(['cart' => $sessionProduct]);
+    
         Log::channel('custoemrlog')->info('CartController', [
             'end deleteProduct'
         ]);
@@ -185,29 +195,58 @@ class CartController extends Controller
         Log::channel('customerlog')->info('CartController', [
             'start detail info'
         ]);
-
+            
+       
         $products = [];
+        $count = 0;
         $newProduct = $request->data;
-        if (session()->has('cart')) {
-            $product = session('cart');
+        $emptyArray = session('cart');
+        
+        if(empty($emptyArray)) 
+            array_push($products,$newProduct);
+
+        if (!empty($emptyArray)) {
+            $product = session('cart'); 
+            Log::critical("product",[$product]);
             session()->forget('cart');
-            if (count($product) > 1) {
-                foreach ($product as $item) {
-                    array_push($products, $item);
-                }
-            } else {
-                array_push($products, $product[0]);
+            Log::critical("count 0",[$product[0]]);
+            if (count($product) == 0) 
+            
+            $products = $this->checkValue($product,$product[0]);  
+
+            if(count($product) > 1)
+            Log::critical("count 1",[$product]);
+             foreach ($product as $item) {
+                $products =  $this->checkValue($product,$item); 
             }
         }
-
-        array_push($products, $newProduct);
-
+            
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
             'end detail info'
         ]);
         return session('cart');
+    }
+
+    public function checkValue($products,$newProduct){
+
+          
+             if(count($products) > 1){
+                for ($i=0; $i < count($products); $i++) { 
+              
+                    Log::critical("check id", [$products[$i]['pid'],$newProduct['pid']]);
+                    if($products[$i]['pid'] ==  $newProduct['pid']){
+                             $products[$i]['q'] += $newProduct['q'];
+                    }else{
+                         array_push($products,$newProduct);
+                    }
+                }
+             }
+
+            
+            Log::critical("return product",[$products]);
+            return $products;
     }
 
      /*

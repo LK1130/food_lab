@@ -66,7 +66,7 @@
                 <p class="fs-5 m-auto p-2"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 @if (session()->has('customerId'))
-                <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
+                <button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
                 @else
                 <a href="/login"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a> 
                 @endif
@@ -169,7 +169,7 @@
                 <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added to your Shopping Cart. You now have item in your Shopping Cart.</p>
               {{-- </div> --}}
               <div class="modal-footer">
-               <a href="/cart"> <button type="button" class="btn btnCart" >View Shopping Cart</button></a>
+               <a href="/cart"> <button type="button" class="btn btnCart shop" >View Shopping Cart</button></a>
                 <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
               </div>
             </div>
