@@ -25,8 +25,9 @@
         <div class="allNews">
             <div class="d-flex flex-column trackDetailContainer  m-auto">
                 @php
-                    $names = $track->product_name;
-                    $namesArray = explode(',', $names);
+                    $names = $track->title;
+                    $namesA = explode(' ', $names);
+                    $namesArray = array_slice($namesA, 1);
                     $c = 0;
                 @endphp
 

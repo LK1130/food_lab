@@ -54,7 +54,7 @@ return [
     'email' => 'Email',
     'address(State)' => 'Address(State)',
     'address(Township)' => 'Address(Township)',
-    'address(street)' => 'Address(street)',
+    'address(street)' => 'Address(Street)',
     'password' => 'Password',
     'confirmPassword' => 'Confirm Password',
     'alreadyHaveAnAccount' => 'Already Have An Account ?',

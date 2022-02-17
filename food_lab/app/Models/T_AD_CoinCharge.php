@@ -248,18 +248,18 @@ class T_AD_CoinCharge extends Model
     * Create : ZPA(2022/01/27) 
     * Update : 
     * This function is use to insert customer data and coin data for Coin Charge.
-    * Parameters : $coin= request coin , $customerID = customer ID, $filepath=Transaction Image Path
+    * Parameters : $coinChargeFormdata= request coin and screen shots , $customerID = customer ID, $filepath=Transaction Image Path
     * Return : Customer Coin Charge Data
     */
-  public function customerCoinCharge($coin, $customerID, $filepath)
+  public function customerCoinCharge($coinChargeFormdata, $customerID, $filepath)
   {
 
-    DB::transaction(function () use ($coin, $customerID, $filepath) {
+    DB::transaction(function () use ($coinChargeFormdata, $customerID, $filepath) {
       $evdData = new T_AD_Evd();
       $evdData->path = $filepath;
       $evdData->save();
       $curequestcoindata = new T_AD_CoinCharge();
-      $curequestcoindata->request_coin = $coin['coinput'];
+      $curequestcoindata->request_coin = $coinChargeFormdata['coinput'];
       $curequestcoindata->customer_id = $customerID;
       $curequestcoindata->decision_status = "1";
       $curequestcoindata->request_evd_ID = $evdData->id;

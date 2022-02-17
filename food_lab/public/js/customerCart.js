@@ -15,16 +15,6 @@ let order = document.querySelector('.order'),
     nums = document.querySelectorAll('.num');
 
 
-// let load = () => {
-//     totalCoin = totalCoin.textContent;
-//     totalCash = totalCash.textContent;
-//     delCoin = delCoin.textContent;
-//     delCash = delCash.textContent;
-//     grandCoin = grandCoin.textContent;
-//     grandCash = grandCash.textContent;
-// }
-
-// load();
 // Coin switch
 function leftClick() {
     var btnSwitch = document.getElementById('btnSwitch');
@@ -88,6 +78,13 @@ $(document).on('click', '.delete', (e) => {
         data: { 'id': e.target.id },
         
         success: function(res) {
+            let count = Number(sessionStorage.getItem('clickcount'));
+            count = --count;
+            if(count != 0) {
+                sessionStorage.setItem('clickcount', count);
+            }else{
+                sessionStorage.removeItem('clickcount');
+            }
             window.location.href = '/cart';
             console.log(res);
         },

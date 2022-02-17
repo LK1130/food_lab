@@ -67,10 +67,9 @@
             </form>
         </div>
         {{-- end register form --}}
-
-        <div class="copys">
-            <p>Copyright &copy; {{ $name->site_name }}</p>
-        </div>
     </section>
     {{-- End Login Section--}}
+    <div class="copys">
+        <p>Copyright &copy; {{ $name->site_name }}</p>
+    </div>
 @endsection

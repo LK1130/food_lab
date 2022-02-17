@@ -8,12 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ URL::asset('css/admincustomerInfo.css') }}">
-
 @endsection
 
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ URL::asset('js/customerInfo.js') }}"></script>
 @endsection
 
 
@@ -91,7 +89,6 @@
                                 <th scope="col">{{ __('messageZN.Customer ID') }}</th>
                                 <th scope="col">{{ __('messageZN.Phoneno') }}</th>
                                 <th scope="col">{{ __('messageZN.Address') }}</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody class="searchlist">
@@ -114,5 +111,9 @@
             </div>
         </div>
     @endif
-
+    <script>
+        var role = @json(session('role'));
+        console.log(role);
+    </script>
+    <script src="{{ URL::asset('js/customerInfo.js') }}"></script>
 @endsection
