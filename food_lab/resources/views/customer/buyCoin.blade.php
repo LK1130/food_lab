@@ -12,6 +12,9 @@
     <link href="{{ url('css/buyCoin.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
+@section('title')
+    {{ $name->site_name }} | Buy Coin
+@endsection
 
 @section('header')
     <section>
@@ -73,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <br></br>
+        <br>
         <div class="copy">
             <p></p>
             <p>Copy right by {{ $name->site_name }}</p>

@@ -32,7 +32,6 @@ body {
     background-color: #000000;
 }
 
-
 /*Start Header*/
 
 .headers {
@@ -51,7 +50,6 @@ marquee {
 .coinCalInform {
     color: var(--coin-color);
 }
-
 
 /*start navbar*/
 
@@ -139,15 +137,12 @@ marquee {
     }
 }
 
-
 /*end navbar*/
-
 
 /*
     * Create:zayar(2022/01/17)
     * Update:
     */
-
 
 /*start Profile Alert box*/
 
@@ -261,15 +256,12 @@ marquee {
     } */
 }
 
-
 /*end profile alert */
-
 
 /*
     * Create:zayar(2022/01/22)
     * Update:
     */
-
 
 /*start inform Alert box*/
 
@@ -383,7 +375,7 @@ marquee {
     position: absolute;
     width: 13%;
     margin-bottom: 13vh;
-    left: 21.5vw !important;
+    left: 21.5vw;
 }
 
 .trackNews {
@@ -469,9 +461,7 @@ marquee {
     color: var(--text-color);
 }
 
-
 /*end navbar*/
-
 
 /*start carousel*/
 
@@ -522,7 +512,6 @@ marquee {
     width: 100%;
 }
 
-
 /*end carousel*/
 
 @media (max-width: 720px) {
@@ -534,17 +523,12 @@ marquee {
     }
 }
 
+/*End Header*/
 
 /*End Header*/
 
-
 /*End Header*/
 
-
 /*End Header*/
-
-
-/*End Header*/
-
 
 /*End Header*/
