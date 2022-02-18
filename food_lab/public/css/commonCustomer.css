@@ -49,6 +49,10 @@ marquee {
     font-weight: bold;
 }
 
+.importantnews{
+    border-radius: 20px;
+}
+
 .coinCalInform {
     color: var(--coin-color);
 }
@@ -57,7 +61,7 @@ marquee {
 
 .navs {
     background-color: var(--bg-color);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 .nav-buttons {
@@ -472,7 +476,7 @@ marquee {
 }
 
 .items {
-    min-height: 85vh;
+    min-height: 70vh;
 }
 
 .abouts {
@@ -489,10 +493,7 @@ marquee {
     color: var(--text-color);
 }
 
-.delivery-infos {
-    margin-left: 40%;
-    color: var(--primary-color);
-}
+
 
 .delivery-btns {
     background-color: var(--primary-color);
