@@ -306,7 +306,7 @@ body {
 }
 
  /* change password */
-/* .alertBox {
+ .alertBox {
     width: 50vw;
     height: 60vh;
     background-color: black;
@@ -317,6 +317,7 @@ body {
     border-radius: 1vh;
     visibility: hidden;
 }
+/*
 .locks {
     margin-left: 42vw;
 }
