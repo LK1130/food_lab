@@ -11,7 +11,6 @@
 @endsection
 
 @section('script')
-
 @endsection
 
 
@@ -98,7 +97,8 @@
                         </div>
                         <div class="col-md-4 ">
                             <div class="text-end position-absolute bottom-0 end-0">
-                                <li class="lidisplay fs-5 me-4"><b>{{ __('messageZN.Delivery') }}</b> : 1,000</li>
+                                <li class="lidisplay fs-5 me-4"><b>{{ __('messageZN.Delivery') }}</b> :
+                                    {{ $order->delivery_price }}</li>
                                 @if ($order->grandtotal_coin > 0)
                                     <li class="lidisplay fs-3 me-4"><b>{{ __('messageZN.GrandTotalcoin') }} </b> :
                                         {{ $order->grandtotal_coin }}

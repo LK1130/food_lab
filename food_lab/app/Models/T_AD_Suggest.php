@@ -58,7 +58,7 @@ class T_AD_Suggest extends Model
             ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_suggest.customer_id')
             ->join('m_suggest', 'm_suggest.id', '=', 't_ad_suggest.suggest_type')
             ->where('t_ad_suggest.del_flg', 0)
-            ->get();
+            ->paginate(10);
 
         return $suggest;
 

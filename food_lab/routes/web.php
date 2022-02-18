@@ -55,6 +55,38 @@ Route::post('/admin', [AdminController::class, 'loginForm']);
 Route::get('/adminlogout', [AdminController::class, 'logout']);
 Route::group(['middleware' => ['checkAdmin']], function () {
 
+
+    //admin role Check
+  Route::group(['middleware' => ['checkadminRole']], function (){
+
+    Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
+    Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
+    Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
+    Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
+    //_________________________________Chart Routes_________________________
+   /**
+    * For Daily SalesChart show
+    */
+   Route::get('dailyChart', [SalesController::class, 'dailyChart']);
+
+   /**
+    * For Monthly SalesChart show
+    */
+   Route::get('monthlyChart', [SalesController::class, 'monthlyChart']);
+
+   /**
+    * For Yearly SalesChart show
+    */
+   Route::get('yearlyChart', [SalesController::class, 'yearlyChart']);
+
+   /**
+    * For Range Chart show
+    */
+   Route::get('rangeChart', function () {
+      return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
+   });
+   Route::post('rangeChart', [SalesController::class, 'rangeChart']);
+
    //admin/setting/loginManage
    Route::resource('adminLogin', LoginController::class);
    //admin/setting/coinRate
@@ -104,32 +136,24 @@ Route::group(['middleware' => ['checkAdmin']], function () {
    Route::resource('news', NewsController::class);
 
    //_________________________________end newsManage_________________________/
+    //admin/setting/coinRate
+    Route::resource('coinrate', CoinController::class);
+  });
+  //Admin role check end
 
-
-
-   Route::get('dashboard', function () {
-      return View('admin.dashboard');
-   });
-   Route::get('orderTransaction', function () {
-      return View('admin.transactions.orderTransaction');
-   });
-   Route::get('coinchargeList', function () {
-      return View('admin.transactions.coinchargeList');
-   });
    /**
     * For Dashboard & Transaction
     */
    Route::get('dashboard', [DashboardController::class, 'dashboardList']);
-   Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
-   Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
-   Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
+
+   
    /**
     * Customer Info
     */
    Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
    Route::get('searchname', [customerInfoController::class, 'customerSearch']);
    Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
-   Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
+   
    /**
     * Customer Report
     */
@@ -160,8 +184,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
    //admin/setting/loginManage
    Route::resource('adminLogin', LoginController::class);
 
-   //admin/setting/coinRate
-   Route::resource('coinrate', CoinController::class);
+  
 
 
    //_________________________________Start Admin Coin Routes_________________________
@@ -183,29 +206,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 
 
 
-   //_________________________________Chart Routes_________________________
-   /**
-    * For Daily SalesChart show
-    */
-   Route::get('dailyChart', [SalesController::class, 'dailyChart']);
-
-   /**
-    * For Monthly SalesChart show
-    */
-   Route::get('monthlyChart', [SalesController::class, 'monthlyChart']);
-
-   /**
-    * For Yearly SalesChart show
-    */
-   Route::get('yearlyChart', [SalesController::class, 'yearlyChart']);
-
-   /**
-    * For Range Chart show
-    */
-   Route::get('rangeChart', function () {
-      return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
-   });
-   Route::post('rangeChart', [SalesController::class, 'rangeChart']);
+   
 });
 
 //_________________________________Customer Routes_________________________
@@ -388,5 +389,4 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
    Route::get('/logout', [CustomerController::class, 'logout']);
 });
 
-   // still need to fix
-    // Route::get('/tags',[CustomerController::class,'tagsFavType']);
+

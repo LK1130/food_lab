@@ -29,9 +29,10 @@
 <body>
 
     {{-- Start Marquee --}}
-    <marquee class="pt-1">
+    <p></p>
+    <marquee>
         @foreach ($news as $new)
-            <p class="d-inline mx-5 importantnews" id="{{ $new->category }}">{{ $new->title }}</p>
+            <p class="d-inline mx-5 importantnews p-3 fs-5" id="{{ $new->category }}">{{ $new->title }}</p>
         @endforeach
     </marquee>
     {{-- End Marquee --}}
@@ -42,7 +43,7 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3 nav-containers">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px" class="pe-2" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px" class="pe-2" />
                 <span class="text-uppercase comapanynames">{{ $name->site_name }}</span>
             </a>
 

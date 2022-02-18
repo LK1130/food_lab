@@ -43,6 +43,7 @@ class T_AD_Order extends Model
             ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->join('m_township','m_township.id','=','t_ad_order.township_id')
             ->where('t_ad_order.del_flg', 0)
             ->where('t_ad_order.id', '=', $id)
             ->first();
@@ -70,6 +71,7 @@ class T_AD_Order extends Model
             ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->join('m_township','m_township.id','=','t_ad_order.township_id')
             ->orderby('t_ad_order.order_date', 'DESC')
             ->orderby('t_ad_order.order_time', 'DESC')
             ->where('t_ad_order.del_flg', 0)
@@ -303,7 +305,7 @@ class T_AD_Order extends Model
     }
 
 
- /*
+    /*
     * Create : Zaw(2022/02/22) 
     * Update : 
     * This function is use to 
@@ -320,7 +322,7 @@ class T_AD_Order extends Model
         $currentMonth = Carbon::now()->month;
 
         $order = T_AD_Order::select(
-             DB::raw('order_date as date'),
+            DB::raw('order_date as date'),
             DB::raw(('day(order_date) as day')),
             DB::raw('count(id) as totalorder'),
         )
@@ -329,7 +331,7 @@ class T_AD_Order extends Model
             ->orderBy(DB::raw('order_date'), 'ASC')
             ->groupBy('date')
             ->paginate(10);
-            // ->get();
+        // ->get();
 
         Log::channel('adminlog')->info("T_AD_Order Model", [
             'End orderDailyList'
@@ -417,7 +419,11 @@ class T_AD_Order extends Model
                 $tAdOrderDetail->quantity = $product['q'];
                 $tAdOrderDetail->total_coin = $product['coin'];
                 $tAdOrderDetail->total_cash = $product['cash'];
-                $tAdOrderDetail->note = json_encode($product['value']);
+                if (array_key_exists('value', $product) == true) {
+                    $tAdOrderDetail->note = $product['value'];
+                } else {
+                    $tAdOrderDetail->note = '';
+                }
                 $tAdOrderDetail->save();
             }
         });

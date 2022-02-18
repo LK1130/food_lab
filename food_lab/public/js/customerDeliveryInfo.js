@@ -4,6 +4,23 @@ let radionbutton = document.querySelectorAll("input[type='radio']"),
 
 let order = document.querySelector('.order');
 
+$(document).ready(function() {
+    $('#phone').bind('cut copy paste', function(event) {
+        event.preventDefault();
+    });
+});
+
+document.getElementById('phone').addEventListener('keydown', (e) => {
+    console.log(e.key);
+    let reg = new RegExp(/^([0-9+-]{1,})$/);
+    if (reg.test(e.key) == true || e.key == 'Backspace') {
+        console.log('true');
+    } else {
+        e.preventDefault();
+        console.log('false');
+    }
+});
+
 radionbutton[0].addEventListener('click', () => {
     coin.style.display = 'block';
     cash.style.display = 'none';
@@ -26,8 +43,8 @@ order.addEventListener('click', function(e) {
         url: '/deliveryInfo',
         data: { 'vouncher': $('.vouncher:checked').val(), 'phone': $('.phone').val() },
         success: function(res) {
-            // window.alert('Your order has successfully completed!');
-            // window.location.href = '/';
+            console.log(res);
+            window.alert('Your order has successfully completed!');
             $('#modal').modal('show');
         },
         error: function(err) {

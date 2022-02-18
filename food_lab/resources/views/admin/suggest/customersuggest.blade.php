@@ -74,9 +74,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($suggest as $sug)
+                        @forelse ($suggest as $key => $sug)
                             <tr class="tablecolor1  tablerows">
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th scope="row">{{ $suggest->firstItem() + $key }}</th>
                                 <td>{{ $sug->customerID }}</td>
                                 <td>{{ $sug->suggest_type }}</td>
                                 <td>{{ $sug->message }}</td>
@@ -97,6 +97,7 @@
 
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $suggest->links() }}</div>
             </div>
         </div>
     </div>
