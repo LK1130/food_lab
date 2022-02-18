@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    {{ __('messageCPPK.Daily Sales') }}
+    Admin | {{ __('messageCPPK.Daily Sales') }}
 @endsection
 
 @section('css')
