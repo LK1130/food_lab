@@ -96,12 +96,12 @@ $(document).ready(function () {
                             $(".forNews").prepend(
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
                                     <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
                                     <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
                                         </p>
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
-                                        ${news.detail}</p>
+                                        (${news.detail})</p>
                                         </div>
                                         <img src="img/new.png" alt="" class="newsLogo" >
                                 </div>
@@ -112,12 +112,12 @@ $(document).ready(function () {
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                             
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
                                     <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
                                     <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
                                         </p>
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
-                                        ${news.detail}</p>
+                                        (${news.detail})</p>
                                         </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
@@ -136,7 +136,13 @@ $(document).ready(function () {
                         `
                     );
                 } else {
+                    let countMessage = 0;
+                    let more = ``;
                     for (const messages of data["limitedmessages"]) {
+                        countMessage++;
+                        if (countMessage == 3)
+                            more = `<a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                        More</button></a>`;
                         // $allcolor = ["yellow", "green", "yellow", "red"];
                         // $statusMessage = messages.decision_status;
                         $messagecolor = "";
@@ -148,7 +154,7 @@ $(document).ready(function () {
                             $messagecolor = "yellow";
                         if (messages.title == "REJECT") $messagecolor = "gray";
                         if (messages.seen == 0) {
-                            $(".forMessages").prepend(
+                            $(".forMessages").append(
                                 `
         <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
         
@@ -161,10 +167,11 @@ $(document).ready(function () {
                 </div>
                 <img src="img/new.png" alt="" class="newsLogo gleft" >
             </div>
+            ${more}
         `
                             );
                         } else {
-                            $(".forMessages").prepend(
+                            $(".forMessages").append(
                                 `
         <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
         
@@ -177,6 +184,7 @@ $(document).ready(function () {
                 </div>
                 
             </div>
+            ${more}
         `
                             );
                         }
@@ -197,7 +205,14 @@ $(document).ready(function () {
                         `
                     );
                 } else {
+                    let countTrack = 0;
+                    let more = ``;
                     for (const tracks of data["limitedtracks"]) {
+                        countTrack++;
+                        if (countTrack == 3)
+                            more = `<a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                            More</button></a>`;
+
                         $allcolor = [
                             "yellow",
                             "red",
@@ -215,19 +230,19 @@ $(document).ready(function () {
                         $namesCount == 0
                             ? ($howmuchtext = "")
                             : ($namesCount = 1
-                                  ? ($howmuchtext =
-                                        "and " + $namesCount + " other")
-                                  : ($howmuchtext =
-                                        "and " + $namesCount + " others"));
+                                  ? ($howmuchtext = `<span class="fw-bolder ">and ${$namesCount} other</span>`)
+                                  : // "and " + $namesCount + " other"
+                                    ($howmuchtext = `<span class="fw-bolder "> and ${$namesCount} others</span>`));
+                        // "and " + $namesCount + " others")
                         for (const product of data["trackProduct"]) {
                             if ($name[0] == product.id) {
                                 if (tracks.seen == 0) {
-                                    $(".forTracks").prepend(
+                                    $(".forTracks").append(
                                         `
                                         <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block" id="${tracks.tid}">
                                         
-                                        <div class="d-flex flex-column w-75 ms-1 mt-2">
-                                        <p class="fw-bolder "><span><p class="text-truncate fw-bolder mb-1 informText" >${product.product_name}</p></span><span class="fw-bolder ">${$howmuchtext}</span></p>
+                                        <div class="d-flex flex-column w-75 ms-1 ">
+                                        <p class="fw-bolder "><span><p class="text-truncate fw-bolder  informText" >${product.product_name}</p>${$howmuchtext}
                                             
                                             
                                         <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
@@ -240,16 +255,18 @@ $(document).ready(function () {
                                         </div>
                                         <img src="img/new.png" alt="" class="newsLogo aleft" >
                                     </div>
+                                    ${more}
                                         `
                                     );
                                 } else {
-                                    $(".forTracks").prepend(
+                                    $(".forTracks").append(
                                         `
                                         <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block" id="${tracks.tid}">
                                         
-                                        <div class="d-flex flex-column w-75 ms-1 mt-2">
-                                        <p class="fw-bolder "><span><p class="text-truncate fw-bolder mb-1 informText" >${product.product_name}</p></span><span class="fw-bolder ">${$howmuchtext}</span></p>
-                                            
+                                        <div class="d-flex flex-column w-100 ms-1 h-50">
+                                        <div class="d-flex flex-row gap-1">
+                                        <p class="text-truncate fw-bolder  informText" >${product.product_name}</p> ${$howmuchtext}
+                                            </div>
                                             
                                         <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
                                         <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
@@ -261,6 +278,7 @@ $(document).ready(function () {
                                         </div>
                                         
                                     </div>
+                                    ${more}
                                         `
                                     );
                                 }
@@ -417,12 +435,12 @@ $(document).ready(function () {
                             $(".forNews").prepend(
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
                                     <div class=" d-flex flex-column  me-auto ms-3 text-truncate  w-75">
                                     <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
                                         </p>
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
-                                        ${news.detail}</p>
+                                        (${news.detail})</p>
                                         </div>
                                         <img src="img/new.png" alt="" class="newsLogo" >
                                 </div>
@@ -432,12 +450,12 @@ $(document).ready(function () {
                             $(".forNews").prepend(
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
                                     <div class=" d-flex flex-column  me-auto ms-3  text-truncate w-75" >
                                     <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
                                         </p>
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate " style="max-width: 80%; min-width:12vw;"  >
-                                        ${news.detail}</p>
+                            (${news.detail})</p>
                                         </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>

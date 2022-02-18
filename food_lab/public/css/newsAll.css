@@ -1,5 +1,5 @@
 body {
-    min-height: 80vh;
+    height: auto;
     background-image: url("/img/Home.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -16,8 +16,15 @@ body {
 .news-container .title {
     color: var(--secondary-color);
 }
-.news {
-    height: fit-content !important;
+.newsA {
+    position: relative;
+    height: 15vh !important;
+    width: 70%;
+
+    margin: auto;
+    cursor: pointer;
+    border-radius: 1vw;
+    background-color: rgb(216, 211, 193);
 }
 .newsAll {
     position: relative;
@@ -49,12 +56,21 @@ body {
 }
 .newsLogoAll {
     position: absolute;
-    width: 5% !important;
+    width: 6.5% !important;
     top: -15% !important;
     right: -3% !important;
+    filter: none;
+    /* filter: blur(0.7px);
+    image-rendering: pixelated; */
+    clear: both;
+}
+.newsLogoMessage {
+    position: absolute;
+    top: -15% !important;
+    right: -1.8% !important;
 }
 .newsImg {
-    max-width: 14% !important;
+    width: 10vw !important;
 
     margin-top: 3vh !important;
     margin-bottom: 3vh !important;
@@ -70,19 +86,41 @@ body {
 .back {
     color: var(--primary-color);
 }
+
+.arrows {
+    font-size: 2rem;
+}
+.heading {
+    color: var(--primary-color);
+    font-size: xx-large;
+}
 .allNews {
     height: 80%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+}
+.Wtruncate {
+    width: 80%;
+    min-width: 20vw;
+}
+.Mtruncate {
+    width: 80%;
+    min-width: 20vw;
 }
 @media (max-width: 720px) {
+    .newsA {
+        height: 18vh !important;
+        width: 90% !important;
+    }
+    .Wtruncate {
+        max-width: 9vw !important;
+    }
+    .Mtruncate {
+        max-width: 45vw !important;
+    }
     .newsImg {
         min-width: 30%;
     }
-    .newsLogoAll {
-        min-width: 12vw !important;
-        right: -6% !important;
-        top: -10% !important;
-    }
+
     .newsAll p {
         font-size: 1rem !important;
         margin-left: auto !important;
@@ -103,4 +141,13 @@ body {
         margin-right: auto !important;
         margin-left: 2vw !important;
     }
+}
+@media (max-width: 680px) {
+    .newsLogoAll {
+        width: 10vw !important;
+        right: -5% !important;
+        top: -10% !important;
+    }
+}
+@media (max-width: 980px) {
 }

@@ -15,60 +15,49 @@
 
 @section('title', 'Track Detail')
 @section('body')
-
-    <div class="news-container">
-        <div class="d-flex flex-row">
-            <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left fs-2 mt-2 ms-2 back"></i></a>
-            <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.trackDetail') }}</p>
+    <div class="d-flex ps-5 py-4">
+        <div class="me-4 mt-3">
+            <a href="{{ url()->previous() }}"><i class="fas fa-arrow-left text-white arrows"></i></a>
         </div>
+        <div>
+            <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px" />
+        </div>
+    </div>
+    <h1 class=" fw-bold text-center heading">{{ __('messageZY.trackDetail') }}</h1>
+    <div class="allNews  m-auto ">
+        <div class="d-flex flex-column trackDetailContainer mt-5 m-auto">
+            @php
+                $names = $track->title;
+                $namesA = explode(' ', $names);
+                $namesArray = array_slice($namesA, 1);
+                $c = 0;
+            @endphp
 
-        <div class="allNews">
-            <div class="d-flex flex-column trackDetailContainer  m-auto">
-                @php
-                    $names = $track->title;
-                    $namesA = explode(' ', $names);
-                    $namesArray = array_slice($namesA, 1);
-                    $c = 0;
-                @endphp
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.product') }}</label>
 
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital"
-                        class="detailTital fs-4 me-auto ms-5 pname">{{ __('messageZY.product') }}</label>
-
-                    <div class="d-flex flex-column namesShow">
-                        @foreach ($namesArray as $name)
-                            @php
-                                $c++;
-                            @endphp
-                            <p class="fs-4 mb-1 ms-5 titleInfo">
-                                {{ $c }}. {{ $name }}</p>
-                        @endforeach
-
-
-                    </div>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital me-auto fs-4 ms-5">{{ __('messageZY.coin') }}</label>
-
-                    <p class="fs-5 mt-1 titleInfo ms-auto">{{ $track->total_coin }}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital me-auto fs-4 ms-5">{{ __('messageZY.status') }}</label>
-
-                    <p class="fs-5 mt-1 titleInfo ms-auto">{{ $track->status }}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital"
-                        class="detailTital fs-4 me-auto ms-5">{{ __('messageZY.requestedat') }}</label>
-
-                    <p class="fs-5 mt-1 titleInfo ms-auto DetailC">{{ $track->created_at }}</p>
+                <div class="d-flex flex-column namesShow">
+                    @foreach ($namesArray as $name)
+                        @php
+                            $c++;
+                        @endphp
+                        <p class=" mb-1 ms-5 titleInfo names">
+                            {{ $c }}. {{ $name }}</p>
+                    @endforeach
                 </div>
             </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.coin') }}</label>
+                <p class="  titleInfo ms-auto">{{ $track->total_coin }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.status') }}</label>
+                <p class=" titleInfo ms-auto">{{ $track->status }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital  me-auto ms-1">{{ __('messageZY.requestedat') }}</label>
+                <p class=" titleInfo ms-auto date ">{{ $track->created_at }}</p>
+            </div>
         </div>
-
-
     </div>
-    </div>
-
-
 @endsection

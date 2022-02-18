@@ -28,24 +28,34 @@ body {
 }
 .newsDetailContainer {
     height: 80%;
-    width: 80%;
+    width: 40%;
     gap: 9vh;
     margin-top: 4vh !important;
 }
 .trackDetailContainer {
     height: 80%;
-    width: 80%;
+    width: 60%;
     gap: 2vh;
     margin-top: 4vh !important;
+    margin: auto;
 }
 .roe img {
     width: 20%;
 }
 .titleInfo {
     color: aliceblue;
+    font-size: 1.8rem;
+}
+.date {
+    margin-top: 0.5vh !important;
+    font-size: 1.5rem !important;
+}
+.names {
+    font-size: 1.4rem !important;
 }
 .detailTital {
     color: var(--secondary-color);
+    font-size: 1.8rem;
 }
 .roe {
     gap: 2vw;
@@ -62,15 +72,56 @@ body {
     height: 80%;
     margin-top: 0vh !important;
 }
+::-webkit-scrollbar {
+    width: 2px;
+}
+::-webkit-scrollbar-track {
+    background: #f5ecec00;
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
 .namesShow {
     height: 10vh;
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+.arrows {
+    font-size: 2rem;
+}
+.heading {
+    color: var(--primary-color);
+    font-size: xx-large;
 }
 @media (max-width: 720px) {
-    .news-container {
+    /* .news-container {
+        width: 90% !important;
+    } */
+    .newsDetailContainer {
+        width: 50%;
+    }
+    .trackDetailContainer {
         width: 90%;
     }
     .detailTital {
+        font-size: 1rem;
+    }
+    .titleInfo {
+        font-size: 1rem;
+    }
+    .date {
+        font-size: 0.8rem !important;
+    }
+    .dateM {
+        font-size: 0.8rem !important;
+    }
+    .names {
+        font-size: 0.9rem !important;
+    }
+    /* .detailTital {
         margin-left: auto !important;
     }
     .news img {
@@ -87,5 +138,10 @@ body {
     }
     .pname {
         margin-right: 4vw !important;
+    } */
+}
+@media (max-width: 960px) {
+    body {
+        min-height: 120vh;
     }
 }

@@ -12,11 +12,13 @@
     <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js">
     </script>
+
+
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -273,13 +275,13 @@
                     </div>
                     <div class="forMessages d-flex flex-column" id="forMessages">
 
-                        <a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                     <div class="forTracks d-flex flex-column" id="forTracks">
 
-                        <a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                 @else
                     <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
@@ -295,8 +297,8 @@
                                 {{ __('messageZY.more') }}</button></a>
                     </div>
                 @endif
-
-                {{-- End Inform Alert --}}
+            </div>
+            {{-- End Inform Alert --}}
         </nav>
         {{-- end navbar --}}
 

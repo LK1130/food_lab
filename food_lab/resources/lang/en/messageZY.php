@@ -130,10 +130,10 @@ return [
     'logout' => 'Logout',
     'yousure' => 'Are
     you sure to logout?',
-    'address' => 'Address',
-    'address' => 'Address',
-    'address' => 'Address',
-    'address' => 'Address',
+    'messages' => 'Messages',
+    'tracks' => 'Tracks',
+    'trackDetail' => 'Track Detail',
+    'messageDetail' => 'Message Detail',
     'address' => 'Address', 'address' => 'Address',
 
 

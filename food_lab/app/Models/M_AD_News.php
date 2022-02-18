@@ -179,7 +179,7 @@ class M_AD_News extends Model
             ->orderBy('m_ad_news.updated_at', 'DESC')
             ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
-            ->get();
+            ->paginate(10);
     }
     /*
      * Create : zayar(15/2/2022)

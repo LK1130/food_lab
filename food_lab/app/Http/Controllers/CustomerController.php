@@ -126,7 +126,8 @@ class CustomerController extends Controller
     public function message()
     {
         $allmessage = [];
-
+        $site = new M_Site();
+        $name = $site->siteName();
         if (session()->has('customerId')) {
             $sessionCustomerId = session('customerId');
             $messages = new M_AD_CoinCharge_Message();
@@ -141,6 +142,7 @@ class CustomerController extends Controller
 
         return view('customer.inform.messages', [
             'allmessages' => $allmessage,
+            'name' => $name,
             'nav' => 'inform'
         ]);
     }
@@ -154,6 +156,8 @@ class CustomerController extends Controller
      * */
     public function tracks()
     {
+        $site = new M_Site();
+        $name = $site->siteName();
         Log::channel('cutomerlog')->info('Customer Controller', [
             'start tracks'
         ]);
@@ -167,9 +171,6 @@ class CustomerController extends Controller
             for ($i = 0; $i < count($alltracks); $i++) {
                 $combine = "";
                 $ids = $alltracks[$i]->title;
-
-
-
                 $product = new M_Product();
                 $searchProduct = $product->searchProduct(explode(',', $ids));
                 Log::channel('customerlog')->info("product", [
@@ -197,6 +198,7 @@ class CustomerController extends Controller
         return view('customer.inform.tracks', [
             'alltracks' => $alltracks,
             'products' => $searchProduct,
+            'name' => $name,
             'nav' => 'inform'
         ]);
     }
