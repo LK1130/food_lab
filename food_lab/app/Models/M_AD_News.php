@@ -149,10 +149,12 @@ class M_AD_News extends Model
             'End newsLimited'
         ]);
         $allnews =
-            M_AD_News::select('*', DB::raw('m_ad_news.created_at AS newscreated'))
+            M_AD_News::orderBy('updated_at', 'ASC')
+            ->select('*', DB::raw('updated_at AS newscreated'))
             ->where('m_ad_news.del_flg', 0)
-            ->orderBy('m_ad_news.created_at', 'desc')
-            ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
+
+            // ->leftjoin('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
+
             ->limit(3)
             ->get();
         return $allnews;
@@ -173,8 +175,8 @@ class M_AD_News extends Model
         Log::channel('adminlog')->info("M_AD_News Model", [
             'End newsLimited'
         ]);
-        return M_AD_News::select('*', DB::raw('m_ad_news.created_at AS newscreated'))
-            ->orderBy('m_ad_news.created_at', 'DESC')
+        return M_AD_News::select('*', DB::raw('m_ad_news.updated_at AS newscreated'))
+            ->orderBy('m_ad_news.updated_at', 'DESC')
             ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->get();
@@ -199,7 +201,7 @@ class M_AD_News extends Model
         ]);
         $news = M_AD_News::where('del_flg', 0)
             // ->whereDate('created_at',  Carbon::now()->subDays(3))
-            ->whereBetween('created_at', [
+            ->whereBetween('updated_at', [
                 \carbon\Carbon::now()->subdays(2)->format('Y-m-d'),
                 \carbon\Carbon::now()->addDays(1)->format('Y-m-d')
             ])->get();
