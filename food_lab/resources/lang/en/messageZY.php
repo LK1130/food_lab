@@ -126,9 +126,10 @@ return [
     'phone2' => 'Phone Number 2',
     'phone3' => 'Phone Number 3',
     'gmail' => 'Gmail',
-    'address' => 'Address',
-    'address' => 'Address',
-    'address' => 'Address',
+    'profileSetting' => 'Profile Setting',
+    'logout' => 'Logout',
+    'yousure' => 'Are
+    you sure to logout?',
     'address' => 'Address',
     'address' => 'Address',
     'address' => 'Address',

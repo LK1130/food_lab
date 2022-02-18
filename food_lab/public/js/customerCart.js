@@ -63,15 +63,20 @@ function rightClick() {
 
 
 $(document).on('click', '.delete', (e) => {
+    // console.log(e.originalEvent.path[3].id);
+    console.log(e.target.id);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
     $.ajax({
         type: 'POST',
         url: '/deleteProduct',
         data: { 'id': e.target.id },
+        
         success: function(res) {
             let count = Number(sessionStorage.getItem('clickcount'));
             count = --count;
@@ -81,6 +86,7 @@ $(document).on('click', '.delete', (e) => {
                 sessionStorage.removeItem('clickcount');
             }
             window.location.href = '/cart';
+            console.log(res);
         },
         error: function(err) {
             console.error(err);

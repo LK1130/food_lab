@@ -7,6 +7,20 @@
  */
 $(document).ready(function () {
     /*
+     * Create : zayar(17/2/2022)
+     * Update :
+     * Explain of function : To toggle inform alert
+     * Prarameter : no
+     * return : toggle
+     * */
+    $(".dropdown-toggle").dropdown();
+    document
+        .getElementById("closeInform")
+        .addEventListener("click", function () {
+            $("#informAlert").removeClass("visible");
+        });
+
+    /*
      * Create : zayar(17/1/2022)
      * Update :
      * Explain of function : To toggle profile alert
@@ -83,8 +97,12 @@ $(document).ready(function () {
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
-                                        (${news.detail})</p>
+                                    <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
+                                        ${news.detail}</p>
+                                        </div>
                                         <img src="img/new.png" alt="" class="newsLogo" >
                                 </div>
                             `
@@ -93,9 +111,14 @@ $(document).ready(function () {
                             $(".forNews").prepend(
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
+                            
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
-                                        (${news.detail})</p>
+                                    <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
+                                        ${news.detail}</p>
+                                        </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
                             `
@@ -114,22 +137,29 @@ $(document).ready(function () {
                     );
                 } else {
                     for (const messages of data["limitedmessages"]) {
-                        $allcolor = ["yellow", "green", "yellow", "red"];
-                        $statusMessage = messages.decision_status;
-                        $messagecolor = $allcolor[$statusMessage - 1];
+                        // $allcolor = ["yellow", "green", "yellow", "red"];
+                        // $statusMessage = messages.decision_status;
+                        $messagecolor = "";
+                        if (messages.title == "APPROVE")
+                            $messagecolor = "green";
+                        if (messages.title == "REQUEST")
+                            $messagecolor = "yellow";
+                        if (messages.title == "WAITING")
+                            $messagecolor = "yellow";
+                        if (messages.title == "REJECT") $messagecolor = "gray";
                         if (messages.seen == 0) {
                             $(".forMessages").prepend(
                                 `
         <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
         
-                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.title}</p>
+                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.detail}</p>
                 <div class="d-flex flex-column me-4">
-                    <p class="fs-5 fw-bolder  ms-auto mt-2 rounded ${$messagecolor} text-center">
-                    ${messages.status}
+                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-75 rounded ${$messagecolor} text-center">
+                    ${messages.title}
                     </p>
                     <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
                 </div>
-                <img src="img/new.png" alt="" class="newsLogo" >
+                <img src="img/new.png" alt="" class="newsLogo gleft" >
             </div>
         `
                             );
@@ -138,14 +168,14 @@ $(document).ready(function () {
                                 `
         <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
         
-                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.title}</p>
+                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.detail}</p>
                 <div class="d-flex flex-column me-4">
-                    <p class="fs-5 fw-bolder  ms-auto mt-2 rounded ${$messagecolor} text-center">
-                    ${messages.status}
+                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-75 rounded ${$messagecolor} text-center">
+                    ${messages.title}
                     </p>
                     <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
                 </div>
-                <img src="" alt="" class="newsLogo" >
+                
             </div>
         `
                             );
@@ -194,42 +224,42 @@ $(document).ready(function () {
                                 if (tracks.seen == 0) {
                                     $(".forTracks").prepend(
                                         `
-                                        <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.tid}">
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block" id="${tracks.tid}">
                                         
-                                        <div class="d-flex flex-column w-100 ms-1 mt-2">
-                                            <p class=" fw-bolder mb-1">${product.product_name}  ${$howmuchtext} </p>
+                                        <div class="d-flex flex-column w-75 ms-1 mt-2">
+                                        <p class="fw-bolder "><span><p class="text-truncate fw-bolder mb-1 informText" >${product.product_name}</p></span><span class="fw-bolder ">${$howmuchtext}</span></p>
                                             
                                             
-                                            <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
-                                            <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
-                                        </div>
-                                        <div class="d-flex flex-column me-3 w-100 mt-4 nomelimited">
-                                            <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
-                                            ${tracks.status} </p>
-                                            <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
-                                        </div>
-                                        <img src="img/new.png" alt="" class="newsLogo  trackNews" >
-                                    </div>
-                                        `
-                                    );
-                                } else {
-                                    $(".forTracks").prepend(
-                                        `
-                                        <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.tid}">
-                                        
-                                        <div class="d-flex flex-column w-100 ms-1 mt-2">
-                                        <p class=" fw-bolder mb-1">${product.product_name}  ${$howmuchtext}</p>
-                                            
-                                            
-                                        <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
-                                        <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
                                         </div>
                                         <div class="d-flex flex-column me-3 w-100 mt-4">
                                             <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
                                             ${tracks.status} </p>
                                             <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
                                         </div>
-                                        <img src="" alt="" class="newsLogo me-auto trackNews" >
+                                        <img src="img/new.png" alt="" class="newsLogo aleft" >
+                                    </div>
+                                        `
+                                    );
+                                } else {
+                                    $(".forTracks").prepend(
+                                        `
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block" id="${tracks.tid}">
+                                        
+                                        <div class="d-flex flex-column w-75 ms-1 mt-2">
+                                        <p class="fw-bolder "><span><p class="text-truncate fw-bolder mb-1 informText" >${product.product_name}</p></span><span class="fw-bolder ">${$howmuchtext}</span></p>
+                                            
+                                            
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
+                                        </div>
+                                        <div class="d-flex flex-column me-3 w-100 mt-4">
+                                            <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
+                                            ${tracks.status} </p>
+                                            <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
+                                        </div>
+                                        
                                     </div>
                                         `
                                     );
@@ -245,16 +275,16 @@ $(document).ready(function () {
             },
         });
 
-        document
-            .getElementById("profileButton")
-            .addEventListener("click", function () {
-                $("#profileAlert").toggleClass("visible");
-            });
-        document
-            .getElementById("profileButton2")
-            .addEventListener("click", function () {
-                $("#profileAlert").toggleClass("visible");
-            });
+        // document
+        //     .getElementById("profileButton")
+        //     .addEventListener("click", function () {
+        //         $("#profileAlert").toggleClass("visible");
+        //     });
+        // document
+        //     .getElementById("profileButton2")
+        //     .addEventListener("click", function () {
+        //         $("#profileAlert").toggleClass("visible");
+        //     });
         // document.getElementById("back").addEventListener("click", function () {
         //     document.getElementById("profileAlert").style.display = "none";
         // });
@@ -388,8 +418,12 @@ $(document).ready(function () {
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
-                                        (${news.detail})</p>
+                                    <div class=" d-flex flex-column  me-auto ms-3 text-truncate  w-75">
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
+                                        ${news.detail}</p>
+                                        </div>
                                         <img src="img/new.png" alt="" class="newsLogo" >
                                 </div>
                             `
@@ -399,8 +433,12 @@ $(document).ready(function () {
                                 `
                             <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
-                                        (${news.detail})</p>
+                                    <div class=" d-flex flex-column  me-auto ms-3  text-truncate w-75" >
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate " style="max-width: 80%; min-width:12vw;"  >
+                                        ${news.detail}</p>
+                                        </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
                             `

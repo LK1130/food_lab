@@ -21,7 +21,7 @@
             <div class="col-3">
                 <div class="evd_photo">
                     @isset($path->path)
-                        <img src="{{ URL::asset('/storage/coinCharge/' . $path->path) }}"
+                        <img src="{{ URL::asset('/storage/' . $path->path) }}"
                             class="rounded  d-block border border-danger border-1 rounded" alt="...">
                     @endisset
                     @empty($path->path)

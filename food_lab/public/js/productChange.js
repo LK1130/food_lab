@@ -56,7 +56,7 @@ $(document).ready(function () {
                             <p class="fs-3 pt-2">${ list.product_name }</p>
                             <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                            <a href=""><button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button></a>
+                            <button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button>
                             </div>`)
                        }else{
                         $('#byCategory').append(
@@ -72,6 +72,8 @@ $(document).ready(function () {
                        }
                         
                     }
+
+                    
                     count++;
                 
                     if(count > 4){
@@ -85,14 +87,47 @@ $(document).ready(function () {
                     $('.typebtns').hide('slow');
                 }
                
-               
+                
+                $('.shopcart').click(function(e) {
+
+                    clickCount();
+                    $.ajaxSetup({
+                        headers: {
+                            "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
+                    });
+                    e.preventDefault();
+                    let count = 1;
+                    let formdata = { "pid": Number(e.target.id), "q": Number(count) };
+            
+                    $.ajax({
+                        type: "POST",
+                        url: "sessionCount",
+                        data: { data: formdata },
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data);
+            
+            
+                        },
+                        error: function(data) {
+                            console.log(data);
+                        }
+                    });
+            
+                });
             },
             error: function(data){
                 console.log(data);
             }
         });
+
+       
     });
 
+    
 
   
       
@@ -149,7 +184,7 @@ $(document).ready(function () {
                             <p class="fs-3 pt-2">${ list.product_name }</p>
                             <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                            <a href=""><button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button></a>
+                            <button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button>
                         </div>`
                         )
                         }else{
@@ -181,6 +216,36 @@ $(document).ready(function () {
               
                 console.log(count);
 
+                $('.shopcart').click(function(e) {
+
+                    clickCount();
+                    $.ajaxSetup({
+                        headers: {
+                            "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
+                    });
+                    e.preventDefault();
+                    let count = 1;
+                    let formdata = { "pid": Number(e.target.id), "q": Number(count) };
+            
+                    $.ajax({
+                        type: "POST",
+                        url: "sessionCount",
+                        data: { data: formdata },
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data);
+            
+            
+                        },
+                        error: function(data) {
+                            console.log(data);
+                        }
+                    });
+            
+                });
                
             },
             error: function(data){
@@ -191,9 +256,7 @@ $(document).ready(function () {
     });
 
 
-    $('.shopcart').click(function(e){
-        e.preventDefault();
-    });
+   
 });
 
 function numberWithCommas(x) {

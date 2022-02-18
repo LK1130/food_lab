@@ -163,8 +163,11 @@ class CartController extends Controller
 
         $sessionProduct = [];
         $productArrays = session('cart');
+       
         $id = $_POST['id'];
+      
         unset($productArrays[$id - 1]);
+     
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
@@ -190,34 +193,31 @@ class CartController extends Controller
         Log::channel('customerlog')->info('CartController', [
             'start detail info'
         ]);
-
+            
+       
         $products = [];
-        $sessionArr = session('cart');
+        $count = 0;
         $newProduct = $request->data;
+        $emptyArray = session('cart');
+        
+        if(empty($emptyArray)) 
+            array_push($products,$newProduct);
 
-        if (!empty($sessionArr)) {
-            $product = session('cart');
+        if (!empty($emptyArray)) {
+            $product = session('cart'); 
+            Log::critical("product",[$product]);
             session()->forget('cart');
-            if (count($product) > 1) {
-                foreach ($product as $item) {
-                    array_push($products, $item);
-                }
-            } else {
-                array_push($products, $product[0]);
+            Log::critical("count 0",[$product[0]]);
+            if (count($product) == 0) 
+            $products = $this->checkValue($product,$product[0]);  
+
+            if(count($product) > 1)
+            Log::critical("count 1",[$product]);
+             foreach ($product as $item) {
+                $products =  $this->checkValue($product,$item); 
             }
         }
-
-//        if(count($products) != 0) {
-//            foreach ($products as $eachItem) {
-//                if ($eachItem['pid'] == $newProduct['pid']) {
-//                    return $eachItem['q'];
-//                } else {
-//                    array_push($products, $newProduct);
-//                }
-//            }
-//        }else{
-            array_push($products, $newProduct);
-//        }
+            
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
@@ -225,4 +225,49 @@ class CartController extends Controller
         ]);
         return session('cart');
     }
+
+    public function checkValue($products,$newProduct){
+
+          
+             if(count($products) > 1){
+                for ($i=0; $i < count($products); $i++) { 
+              
+                    Log::critical("check id", [$products[$i]['pid'],$newProduct['pid']]);
+                    if($products[$i]['pid'] ==  $newProduct['pid']){
+                             $products[$i]['q'] += $newProduct['q'];
+                    }else{
+                         array_push($products,$newProduct);
+                    }
+                }
+             }
+
+            
+            Log::critical("return product",[$products]);
+            return $products;
+    }
+
+     /*
+     * Create :Aung Min Khant(9/2/2022)
+     * Update :
+     * Explain of function : get session count from view page
+     * Prarameter : request from ajax
+     * return : 
+     * */
+
+        public function getSessionCount(Request $request){
+
+            Log::channel('customerlog')->info('CartController', [
+                'start getSessionCount'
+            ]);
+
+            $products = $request->data;
+            session(['cart' => $products]);
+            
+            
+            Log::channel('customerlog')->info('CartController', [
+                'end getSessionCount'
+            ]);
+
+            // return session('cart');
+        }
 }

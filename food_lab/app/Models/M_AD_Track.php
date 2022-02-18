@@ -23,13 +23,13 @@ class M_AD_Track extends Model
             'Start trackLimited'
         ]);
 
-        $result = T_AD_Order::select('*', DB::raw('t_ad_order.created_at AS trackscreated'), DB::raw('m_ad_track.id AS tid'))
-            ->where('t_ad_order.customer_id', '=', $sessionCustomerId)
+        $result = T_AD_Order::where('t_ad_order.customer_id', '=', $sessionCustomerId)
 
-            // ->orderBy('t_ad_order.created_at', 'DESC')
+
             ->where('t_ad_order.del_flg', 0)
             ->leftjoin('m_ad_track', 'm_ad_track.order_id', '=', 't_ad_order.id')
-
+            ->select('*', DB::raw('m_ad_track.updated_at AS trackscreated'), DB::raw('m_ad_track.id AS tid'))
+            ->orderBy('m_ad_track.updated_at', 'ASC')
             ->leftjoin('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
             ->leftjoin('t_ad_orderdetail', 't_ad_orderdetail.order_id', '=', 't_ad_order.id')
             ->leftjoin('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
