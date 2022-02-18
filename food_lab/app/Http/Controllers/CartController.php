@@ -163,11 +163,11 @@ class CartController extends Controller
 
         $sessionProduct = [];
         $productArrays = session('cart');
-       
+
         $id = $_POST['id'];
-      
+
         unset($productArrays[$id - 1]);
-     
+
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
@@ -193,31 +193,31 @@ class CartController extends Controller
         Log::channel('customerlog')->info('CartController', [
             'start detail info'
         ]);
-            
-       
+
+
         $products = [];
         $count = 0;
         $newProduct = $request->data;
         $emptyArray = session('cart');
-        
-        if(empty($emptyArray)) 
+
+        if(empty($emptyArray))
             array_push($products,$newProduct);
 
         if (!empty($emptyArray)) {
-            $product = session('cart'); 
+            $product = session('cart');
             Log::critical("product",[$product]);
             session()->forget('cart');
             Log::critical("count 0",[$product[0]]);
-            if (count($product) == 0) 
-            $products = $this->checkValue($product,$product[0]);  
+            if (count($product) == 0)
+            $products = $this->checkValue($product,$product[0]);
 
             if(count($product) > 1)
             Log::critical("count 1",[$product]);
              foreach ($product as $item) {
-                $products =  $this->checkValue($product,$item); 
+                $products =  $this->checkValue($product,$item);
             }
         }
-            
+
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
@@ -227,11 +227,9 @@ class CartController extends Controller
     }
 
     public function checkValue($products,$newProduct){
-
-          
              if(count($products) > 1){
-                for ($i=0; $i < count($products); $i++) { 
-              
+                for ($i=0; $i < count($products); $i++) {
+
                     Log::critical("check id", [$products[$i]['pid'],$newProduct['pid']]);
                     if($products[$i]['pid'] ==  $newProduct['pid']){
                              $products[$i]['q'] += $newProduct['q'];
@@ -241,7 +239,7 @@ class CartController extends Controller
                 }
              }
 
-            
+
             Log::critical("return product",[$products]);
             return $products;
     }
@@ -251,7 +249,7 @@ class CartController extends Controller
      * Update :
      * Explain of function : get session count from view page
      * Prarameter : request from ajax
-     * return : 
+     * return :
      * */
 
         public function getSessionCount(Request $request){
@@ -262,8 +260,8 @@ class CartController extends Controller
 
             $products = $request->data;
             session(['cart' => $products]);
-            
-            
+
+
             Log::channel('customerlog')->info('CartController', [
                 'end getSessionCount'
             ]);

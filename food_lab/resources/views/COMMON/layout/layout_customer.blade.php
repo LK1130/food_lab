@@ -29,7 +29,6 @@
 <body>
 
     {{-- Start Marquee --}}
-    <p></p>
     <marquee>
         @foreach ($news as $new)
             <p class="d-inline mx-5 importantnews p-3 fs-5" id="{{ $new->category }}">{{ $new->title }}</p>
@@ -299,8 +298,8 @@
                 {{-- End Inform Alert --}}
         </nav>
         {{-- end navbar --}}
-
-
+        @yield('header')
+    </header>
         @yield('section')
 
 </body>
