@@ -136,7 +136,7 @@ marquee {
 }
 
 @media (max-width: 1000px) {
-    #profileButton,
+    #dropdownMenuButton,
     #cartButton,
     .companys {
         display: none;
@@ -287,7 +287,20 @@ marquee {
 #informButton {
     cursor: pointer;
 }
-
+.btnCart {
+    border-style: solid;
+    background: var(--btn-color);
+    color: var(--text-color);
+    border-color: transparent;
+}
+.informText {
+    max-width: 8vw;
+}
+.btnShopping {
+    border-style: solid;
+    background-color: transparent;
+    border-color: var(--btn-color);
+}
 .hiddenAlert {
     display: none;
 }
@@ -329,7 +342,9 @@ marquee {
 .red {
     background-color: red;
 }
-
+.gray {
+    background-color: gray;
+}
 .visible {
     display: block !important;
 }
@@ -369,9 +384,9 @@ marquee {
     background-color: rgb(189, 173, 158);
 }
 
-.tracks {
+/* .tracks {
     height: 18vh !important;
-}
+} */
 
 .nocursor {
     cursor: auto !important;
@@ -380,17 +395,22 @@ marquee {
 .newsLogo {
     position: absolute;
     width: 13%;
-    margin-bottom: 13vh;
-    left: 21.5vw;
-}
+    /* margin-bottom: 13vh; */
+    /* margin-left: 100% !important; */
+    top: -1vh;
 
-.trackNews {
-    margin-bottom: 16vh !important;
+    /* margin-bottom: 20% !important; */
 }
-
+.gleft {
+    margin-left: 98% !important;
+}
+.aleft {
+    margin-left: 100% !important;
+    /* margin-bottom: 40% !important; */
+}
 .news img {
     max-width: 22%;
-    margin-right: auto;
+    /* margin-right: auto; */
     /* margin-left: 1vw; */
 }
 
@@ -408,10 +428,7 @@ marquee {
         margin-right: 0vw !important;
     }
     .newsLogo {
-        position: relative;
-        width: 13%;
-        margin-bottom: 15vh;
-        left: 3vw;
+        margin-left: 2vh;
     }
     .informAlert {
         width: 93%;
@@ -447,6 +464,15 @@ marquee {
     .headerInform {
         gap: 4vw;
     }
+    .informText {
+        max-width: 20vw;
+    }
+    /* .gleft {
+        margin-left: 0 !important;
+    }
+    .aleft {
+        margin-left: 0 !important;
+    } */
 }
 
 .texts {
