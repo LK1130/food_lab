@@ -8,19 +8,19 @@ let importantNew = function() {
             let category = importantnews[i].getAttribute("id");
             switch (category) {
                 case "1":
-                    importantnews[i].style.color = "green";
+                    importantnews[i].classList.add("bg-success", "text-white");
                     break;
                 case "2":
-                    importantnews[i].style.color = "red";
+                    importantnews[i].classList.add("bg-danger", "text-white");
                     break;
                 case "3":
-                    importantnews[i].style.color = "blue";
+                    importantnews[i].classList.add("bg-primary", "text-white");
                     break;
                 case "4":
-                    importantnews[i].style.color = "red";
+                    importantnews[i].classList.add("bg-danger", "text-white");
                     break;
                 case "5":
-                    importantnews[i].style.color = "black";
+                    importantnews[i].classList.add("bg-warning", "text-dark");
                     break;
             }
         }

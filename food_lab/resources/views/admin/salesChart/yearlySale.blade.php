@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    {{ __('messageCPPK.Yearly Sales') }}
+    Admin | {{ __('messageCPPK.Yearly Sales') }}
 @endsection
 
 @section('css')

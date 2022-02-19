@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_Product;
+use App\Models\M_Site;
 use App\Models\M_Township;
 use App\Models\T_AD_Photo;
 use App\Models\T_CU_Customer;
@@ -73,11 +74,14 @@ class CartController extends Controller
             $delCoin = $fees->delivery_price / $rate->rate;
             $delCash = $fees->delivery_price;
 
+            $site = new M_Site();
+            $name = $site->siteName();
+
             Log::channel('customerlog')->info('CartController', [
                 'end cart'
             ]);
 
-            return View('customer.cart', ['products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
+            return View('customer.cart.cart', ['name' => $name,'products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
         }
         Log::channel('customerlog')->info('CartController', [
             'end cart'
@@ -163,11 +167,11 @@ class CartController extends Controller
 
         $sessionProduct = [];
         $productArrays = session('cart');
-       
+
         $id = $_POST['id'];
-      
+
         unset($productArrays[$id - 1]);
-     
+
         foreach ($productArrays as $productArray) {
             array_push($sessionProduct, $productArray);
         }
@@ -193,18 +197,18 @@ class CartController extends Controller
         Log::channel('customerlog')->info('CartController', [
             'start detail info'
         ]);
-            
-       
+
+
         $products = [];
         $count = 0;
         $newProduct = $request->data;
         $emptyArray = session('cart');
-        
-        if(empty($emptyArray)) 
+
+        if(empty($emptyArray))
             array_push($products,$newProduct);
 
         if (!empty($emptyArray)) {
-            $product = session('cart'); 
+            $product = session('cart');
             Log::critical("product",[$product]);
             session()->forget('cart');
            
@@ -248,7 +252,7 @@ class CartController extends Controller
                 }
              
 
-            
+
             Log::critical("return product",[$products]);
             return $products;
     }
@@ -258,7 +262,7 @@ class CartController extends Controller
      * Update :
      * Explain of function : get session count from view page
      * Prarameter : request from ajax
-     * return : 
+     * return :
      * */
 
         public function getSessionCount(Request $request){
@@ -269,8 +273,8 @@ class CartController extends Controller
 
             $products = $request->data;
             session(['cart' => $products]);
-            
-            
+
+
             Log::channel('customerlog')->info('CartController', [
                 'end getSessionCount'
             ]);

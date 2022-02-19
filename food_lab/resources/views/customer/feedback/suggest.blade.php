@@ -43,11 +43,7 @@
                     @enderror
                 </div>
                 <div class="float-end">
-                    <p><span>0</span>/255</p>
-                </div>
-                <div class="float-end">
                     <button type="submit" class="btn me-5">{{ __('messageMK.suggest') }}</button>
-                    <a href="/" type="reset" class="btn me-5 cancels">{{ __('messageMK.cancel') }}</a>
                 </div>
             </form>
         </div>

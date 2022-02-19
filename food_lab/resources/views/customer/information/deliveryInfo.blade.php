@@ -6,7 +6,7 @@
     <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 
-@section('title','Food Lab')
+@section('title',"$name->site_name | Delivery Information")
 
 @section('body')
     {{-- Start Delivery Section --}}
@@ -15,8 +15,8 @@
             <div class="me-4 mt-3">
                 <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
-            <div>
-                <img src="{{ url('storage/logo/siteLog.png') }}" alt="logo"/>
+            <div style="width: 50px">
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="100%" alt="logo"/>
             </div>
         </div>
 

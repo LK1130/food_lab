@@ -287,7 +287,8 @@ class T_AD_CoinCharge extends Model
     $result = T_AD_CoinCharge::where('t_ad_coincharge.del_flg', 0)
       ->leftjoin('m_ad_coincharge_message', 'm_ad_coincharge_message.charge_id', '=', 't_ad_coincharge.id')
       ->leftjoin('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
-      ->where('t_ad_coincharge.id', $id)
+      ->select('*', DB::raw('m_ad_coincharge_message.updated_at AS messageUpdated'))
+      ->where('m_ad_coincharge_message.id', $id)
       ->first();
     return $result;
   }

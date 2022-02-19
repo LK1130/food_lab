@@ -77,9 +77,8 @@
             </div>
         </div>
         <br>
-        <div class="copy">
-            <p></p>
-            <p>Copy right by {{ $name->site_name }}</p>
+        <div class="copys">
+            <p>Copyright &copy; {{ $name->site_name }}</p>
         </div>
     </section>
 @endsection

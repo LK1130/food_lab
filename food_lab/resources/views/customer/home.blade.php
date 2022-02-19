@@ -30,43 +30,43 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="row align-items-center items">
-                    <div class="col-6 flex-column">
+                    <div class="col-8 flex-column">
                         <h1 class="fw-bolder tastes">{{ __('messageMK.TasteOurDeliciousFood') }}</h1>
-                        <p class="fw-bold delivery-infos">
-                            {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
+                        <p class="fw-bold fs-5 ms-5 delivery-infos">
+                            {{ __('messageMK.banner') }}
                         </p>
                         <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
 
-                    <div class="col-6 ">
+                    <div class="col-4">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1" />
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="row align-items-center items">
-                    <div class="col-6 flex-column">
+                    <div class="col-8 flex-column">
                         <h1 class="fw-bolder tastes">{{ __('messageMK.TasteOurDeliciousFood') }}</h1>
-                        <p class="fw-bold delivery-infos">
-                            {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
+                        <p class="fw-bold fs-5 ms-5 delivery-infos">
+                            {{ __('messageMK.banner') }}
                         </p>
                         <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
-                    <div class="col-6 ">
+                    <div class="col-4 ">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1" />
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="row align-items-center items">
-                    <div class="col-6 flex-column">
+                    <div class="col-8 flex-column">
                         <h1 class="fw-bolder tastes">{{ __('messageMK.TasteOurDeliciousFood') }}</h1>
-                        <p class="fw-bold delivery-infos">
-                            {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
+                        <p class="fw-bold fs-5 ms-5 delivery-infos">
+                            {{ __('messageMK.banner') }}
                         </p>
                         <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <img src="{{ url('img/menu.png') }}" class="carousel-photos" alt="menu1" />
                     </div>
                 </div>
@@ -91,9 +91,9 @@
 
     {{-- Start Welcome Section --}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes" id="welcomes">
-        <p class="fs-1 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
-        <p class="fs-4 companyinfos"><i class="fas fa-quote-left falefts"></i>{{ $name->intro }}<i
-                class="fas fa-quote-right farights"></i></p>
+        <p class="fs-1 p-3 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
+        <p class="fs-3 p-3 companyinfos"><i class="fas fa-quote-left falefts me-5"></i>{{ $name->intro }}<i
+                class="fas fa-quote-right farights ms-5"></i></p>
     </section>
     {{-- End Welcome Section --}}
 
