@@ -100,6 +100,7 @@ return [
     'notrack' => 'There is no track.',
     'nomessage' => 'There is no message.',
     'updateprofile' => 'Update Profile',
+    'editprofile' => 'Edit Profile',
     'welcomfrom' => 'Welcome From',
     'outfoodlab' => 'Our Food Lab',
     'oldpassword' => 'Old Password',
@@ -108,7 +109,6 @@ return [
     'updatepassword' => 'Update Password',
     'changepassword' => 'Change Password',
     'editprofile' => 'Edit Profile',
-    'updateprofile' => 'Update Profile',
     'no' => 'Profile',
     'validation' => 'Valid',
     'valid' => 'Valid',
@@ -129,11 +129,12 @@ return [
     'profileSetting' => 'Profile Setting',
     'logout' => 'Logout',
     'yousure' => 'Are
-    you sure to logout?',
-    'address' => 'Address',
-    'address' => 'Address',
-    'address' => 'Address',
-    'address' => 'Address',
+    you sure ?',
+    'logging' => 'You are logging out',
+    'messages' => 'Messages',
+    'tracks' => 'Tracks',
+    'trackDetail' => 'Track Detail',
+    'messageDetail' => 'Message Detail',
     'address' => 'Address', 'address' => 'Address',
 
 

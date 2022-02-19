@@ -50,7 +50,7 @@ marquee {
     font-weight: bold;
 }
 
-.importantnews{
+.importantnews {
     border-radius: 20px;
 }
 
@@ -137,7 +137,7 @@ marquee {
 }
 
 @media (max-width: 1000px) {
-    #dropdownMenuButton,
+    #profileButton,
     #cartButton,
     .companys {
         display: none;
@@ -349,7 +349,10 @@ marquee {
 .visible {
     display: block !important;
 }
-
+.btnlogout {
+    background-color: var(--primary-color);
+    color: wheat;
+}
 .forNews,
 .forMessages,
 .forTracks {
@@ -357,10 +360,12 @@ marquee {
     width: 54.5vh;
     background-color: rgb(255, 255, 255);
     margin: auto;
-    gap: 2.5vh;
+    /* gap: 2.5vh; */
     border-radius: 1.4vh;
 }
-
+.fc {
+    height: fit-content;
+}
 #forNews {
     display: none !important;
 }
@@ -431,7 +436,7 @@ marquee {
     .newsLogo {
         margin-left: 2vh;
     }
-    .informAlert {
+    #informAlert {
         width: 93%;
         margin-top: 140%;
         margin-left: auto;
@@ -519,8 +524,6 @@ marquee {
     margin-bottom: 10%;
     color: var(--text-color);
 }
-
-
 
 .delivery-btns {
     background-color: var(--primary-color);

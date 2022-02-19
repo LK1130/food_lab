@@ -359,6 +359,10 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
   Route::post('/login', [CustomerController::class, 'loginForm']);
 
+    //  for Check Mail page
+    Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
+
+
 //  Route::get()
 
   /*
