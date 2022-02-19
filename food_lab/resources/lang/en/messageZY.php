@@ -129,7 +129,8 @@ return [
     'profileSetting' => 'Profile Setting',
     'logout' => 'Logout',
     'yousure' => 'Are
-    you sure to logout?',
+    you sure ?',
+    'logging' => 'You are logging out',
     'messages' => 'Messages',
     'tracks' => 'Tracks',
     'trackDetail' => 'Track Detail',

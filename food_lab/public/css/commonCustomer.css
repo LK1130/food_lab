@@ -136,7 +136,7 @@ marquee {
 }
 
 @media (max-width: 1000px) {
-    #dropdownMenuButton,
+    #profileButton,
     #cartButton,
     .companys {
         display: none;
@@ -348,7 +348,10 @@ marquee {
 .visible {
     display: block !important;
 }
-
+.btnlogout {
+    background-color: var(--primary-color);
+    color: wheat;
+}
 .forNews,
 .forMessages,
 .forTracks {
