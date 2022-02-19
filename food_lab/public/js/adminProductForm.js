@@ -112,11 +112,12 @@ $(document).ready(function (e) {
     $(".plusBox").click(function () {
       let countDiv = document.getElementsByClassName('appendCount').length;
       count = countArray[0];
-  
+      
+      console.log(count);
       disable(countDiv);
   
       if (countDiv < 6) {
-        let input = `<div class="d-flex mt-3 appendCount .deleteform">
+        let input = `<div class="d-flex mt-3 appendCount deleteform">
             <div class="form-group d-flex mx-3">
                 <label for="category" class="col-form-label titles1">Category</label>
             <select name="category${count}" id="category" class="form-select mx-2">
@@ -129,7 +130,7 @@ $(document).ready(function (e) {
             <input type="text"  name="pdname${count}"  class="mx-3 col-sm-3 plabel${count}">
             <input type="text" class="inputtag"  name="pdvalue${count}"  value="" class="ms-3  form-control inputs${count}" data-role="tagsinput">
           
-            <div class="mx-3 mt-3 delete" id=${count}><i class="fas fa-minus-circle minusIcon" ></i></div>
+            <div class="mx-3 mt-3 delete" id=${count}><i class="fas fa-minus-circle minusIcon"></i></div>
         </div>
             `;
   
@@ -141,7 +142,7 @@ $(document).ready(function (e) {
         // To delete form
         $('.delete').click(function (e) {
   
-          $(this).closest(`.deleteForm`).remove();
+          $(this).closest(`.deleteform`).remove();
           let found = false;
           for (let int = 0; int < countArray.length; int++) if (countArray[int] == this.id) found = true;
           if (!found) {

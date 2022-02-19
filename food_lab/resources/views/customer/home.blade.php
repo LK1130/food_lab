@@ -11,6 +11,7 @@
 
 @section('script')
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
+    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
 @endsection
 
 @section('title', "$name->site_name")
@@ -110,7 +111,7 @@
                     </div>
                     <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
                     <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
-                    <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                    <button type="button" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button>
                 </div>
             @empty
                 <div class="text-center">
@@ -138,7 +139,7 @@
                             </div>
                             <p class="fs-3 pt-2">{{$product->product_name }}</p>
                             <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $product->coin }}</p>
-                            <button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button>
+                            <button type="button" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button>
                         </div>
                     @endforeach
                 @endforeach

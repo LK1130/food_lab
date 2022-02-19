@@ -54,14 +54,14 @@ textarea{
 
 .appendBox{
     width: 77vw;
-    height: 80vh;
+    height: 100vh;
     border: 1px solid rgba(0,0,0,0.5);
     
 }
 
 .plusBox{
-    width: 7vw;
-    height: 7.5vh; 
+    width: 6.5vw;
+    height: 8.3vh; 
     text-align: center;
     margin-left: 4rem !important;
     font-size: var(--fontsize2);
@@ -71,6 +71,7 @@ textarea{
 }
 .icons{
     color: var(--white);
+    font-size: 2rem;
     background: transparent;
 }
 
@@ -132,14 +133,19 @@ textarea{
 @media only screen and (max-width: 720px){
     .appendBox{
         width: 100vw;
-        height: 90vh;
+        height: 120vh;
         overflow-x: scroll;
     } 
     .plusBox{
-        width: 12%;
-        height: 9%; 
-   
+        width: 13.3vw;
+        height: 7.5vh; 
+        text-align: center;
+        margin: auto;
     }
+    .icons{
+        font-size: 1.8rem;
+    }
+    
     .titles1{
         font-size: 2rem;
     }

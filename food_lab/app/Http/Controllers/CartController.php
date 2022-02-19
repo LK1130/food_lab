@@ -207,17 +207,20 @@ class CartController extends Controller
             $product = session('cart'); 
             Log::critical("product",[$product]);
             session()->forget('cart');
+           
+            if (count($product) == 1) {
             Log::critical("count 0",[$product[0]]);
-            if (count($product) == 0) 
-            $products = $this->checkValue($product,$product[0]);  
-
-            if(count($product) > 1)
-            Log::critical("count 1",[$product]);
-             foreach ($product as $item) {
-                $products =  $this->checkValue($product,$item); 
+            $products = $this->checkValue($product,$newProduct);  
             }
+            
+            if(count($product) > 1){
+            Log::critical("count 1",[$product]);
+                $products =  $this->checkValue($product,$newProduct); 
+            
+         }
         }
             
+        Log::critical("final product",[$products]);
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
@@ -229,17 +232,21 @@ class CartController extends Controller
     public function checkValue($products,$newProduct){
 
           
-             if(count($products) > 1){
+             
                 for ($i=0; $i < count($products); $i++) { 
-              
+                    
+                    Log::critical("all pros",[$products]);
                     Log::critical("check id", [$products[$i]['pid'],$newProduct['pid']]);
                     if($products[$i]['pid'] ==  $newProduct['pid']){
-                             $products[$i]['q'] += $newProduct['q'];
+                            
+                             $products[$i]['q']++;
+                            return $products;
                     }else{
                          array_push($products,$newProduct);
+                         $i++;
                     }
                 }
-             }
+             
 
             
             Log::critical("return product",[$products]);
@@ -270,4 +277,6 @@ class CartController extends Controller
 
             // return session('cart');
         }
+
+        
 }
