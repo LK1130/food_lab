@@ -7,7 +7,7 @@
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/customerEditProfile.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css">
-    {{-- <link href="{{ url('css/customerUpdateProfile.css') }}" rel="stylesheet" type="text/css" /> --}}
+    
 @endsection
 @section('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
@@ -44,10 +44,9 @@
                         </div>
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
-                        <i class="fas fa-pen-square fs-3 me-4 mt-2 text-light"></i>
+                        <i class="fas fa-envelope fs-3 me-4 mt-2 text-light"></i>
                         <div class="InputParent">
-                            <input type="text" name="bio" id="nickname" class="InputChild" value="{{ $user->bio }}"
-                                autocomplete="off">
+                            <input type="text" id="email" class="InputChild" value="{{ $user->email }}" readonly>
                         </div>
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
@@ -73,6 +72,13 @@
                         </div>
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                        <i class="fas fa-phone-alt fs-3 me-4 mt-2 text-light"></i>
+                        <div class="InputParent">
+                            <input type="number" name="phonenumber" id="phonenumber" class="InputChild"
+                                value="{{ $user->phone }}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                         <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
                         <div class="InputParent">
                             <select name="state" id="Taste" class="InputChild">
@@ -92,40 +98,6 @@
                                     <option>{{ __('messageZY.notownship') }} .</option>
                                 @endforelse
                             </select>
-                        </div>
-                    </div>
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
-                        <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent">
-                            <input type="text" name="addressNumber" id="addressNumber" class="InputChild"
-                                value="{{ $user->address3 }}" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
-                        <i class="fas fa-phone-alt fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent">
-                            <input type="number" name="phonenumber" id="phonenumber" class="InputChild"
-                                value="{{ $user->phone }}" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
-                        <i class="fas fa-envelope fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent">
-                            <input type="text" id="email" class="InputChild" value="{{ $user->email }}" readonly>
-                        </div>
-                    </div>
-
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-2 infos" id="favType">
-                        <i class="fas fa-grin-hearts fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent" id="favType2">
-                            <input type="text" name="favtype" value="{{ $user->fav_type }}" data-role="tagsinput">
-                        </div>
-                    </div>
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
-                        <i class="fas fa-dizzy fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent">
-                            <input type="text" name="Allergic" id="Allergic" class="InputChild"
-                                value="{{ $user->allergic }}" autocomplete="off">
                         </div>
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
@@ -150,12 +122,41 @@
 
                         </div>
                     </div>
+                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                        <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
+                        <div class="InputParent">
+                            <input type="text" name="addressNumber" id="addressNumber" class="InputChild"
+                                value="{{ $user->address3 }}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                        <i class="fas fa-pen-square fs-3 me-4 mt-2 text-light"></i>
+                        <div class="InputParent">
+                            <input type="text" name="bio" id="nickname" class="InputChild" value="{{ $user->bio }}"
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="d-flex  me-3 ms-3 mt-0 mb-2 infos" id="favType">
+                        <i class="fas fa-grin-hearts fs-3 me-4 mt-2 text-light"></i>
+                        <div class="InputParent" id="favType2">
+                            <input type="text" name="favtype" value="{{ $user->fav_type }}" data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
+                        <i class="fas fa-dizzy fs-3 me-4 mt-2 text-light"></i>
+                        <div class="InputParent">
+                            <input type="text" name="Allergic" id="Allergic" class="InputChild"
+                                value="{{ $user->allergic }}" autocomplete="off">
+                        </div>
+                    </div>
+                   
                     <div class="btnDiv">
-                        <button class="btn updateButton "  >{{ __('messageZY.updateprofile') }}</button>
-                        <button class="btn changePassword" id="changePasswordBtn">{{ __('messageZY.changepassword') }}</button>
+                        <button class="btn updateButton">{{ __('messageZY.updateprofile') }}</button>
                     <div>
                 </div>
             </form>
+            <button class="btn changePassword" id="changePassword">{{ __('messageZY.changepassword') }}</button>
+       
         </div>
 
          {{-- Update Profile --}}
@@ -215,40 +216,36 @@
                 @csrf
                 @method('PUT')
                 <div class="absolute d-flex flex-column justify-content-center alertUpdate">
-                    @error('oldpassword')
-                        <span class="errorIcon"><i
-                                class="fas fa-exclamation-circle fs-3 mt-2 errorPassword text-danger"></i></span>
-                    @enderror
                     <p class="InputTitle" id="old">{{ __('messageZY.oldpassword') }}</p>
-                    <div class="d-flex  me-3 ms-3  infos">
+                    <div class="d-flex  me-3 ms-3  infos1">
                         <div class="InputParentAlert">
-                            <input type="text" name="oldpassword" class="InputChild" autocomplete="off">
-
+                            <input type="text" name="oldpassword" class="InputChild1" autocomplete="off">
+                                @error('oldpassword')
+                                <span class="errorIcon"><i
+                                        class="fas fa-exclamation-circle fs-4 errorPassword text-danger"></i></span>
+                                @enderror
                         </div>
                     </div>
-                    @error('newpassword')
-                        <span class="errorIcon"><i
-                                class="fas fa-exclamation-circle fs-3 mt-2 errorPassword text-danger"></i></span>
-                    @enderror
                     <p class="InputTitle" id="new">{{ __('messageZY.newpassword') }}</p>
-                    <div class="d-flex  me-3 ms-3  infos">
-
+                    <div class="d-flex  me-3 ms-3  infos1">
                         <div class="InputParentAlert">
-                            <input type="text" name="newpassword" class="InputChild" autocomplete="off">
+                            <input type="text" name="newpassword" class="InputChild1" autocomplete="off">
+                                @error('newpassword')
+                                <span class="errorIcon"><i
+                                        class="fas fa-exclamation-circle fs-4 errorPassword text-danger"></i></span>
+                                @enderror
                         </div>
                     </div>
-                    @error('confirmpassword')
-                        <span class="errorIcon"><i
-                                class="fas fa-exclamation-circle fs-3 mt-2 errorPassword text-danger"></i></span>
-                    @enderror
                     <p class="InputTitle" id="confirm">{{ __('messageZY.confirmnewpassword') }}</p>
                     <div class="d-flex  me-3 ms-3  infos1">
                         <div class="InputParentAlert">
                             <input type="text" name="confirmpassword" class="InputChild1" autocomplete="off">
-
+                                @error('confirmpassword')
+                                <span class="errorIcon"><i
+                                        class="fas fa-exclamation-circle fs-4 errorPassword text-danger"></i></span>
+                                @enderror
                         </div>
                     </div>
-
                 </div>
                 <button class="btn updateButtonAlert " id="updatePassword">{{ __('messageZY.updatepassword') }}</button>
             </form>
