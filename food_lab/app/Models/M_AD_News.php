@@ -149,7 +149,7 @@ class M_AD_News extends Model
             'End newsLimited'
         ]);
         $allnews =
-            M_AD_News::orderBy('updated_at', 'ASC')
+            M_AD_News::orderBy('updated_at', 'DESC')
             ->select('*', DB::raw('updated_at AS newscreated'))
             ->where('m_ad_news.del_flg', 0)
 

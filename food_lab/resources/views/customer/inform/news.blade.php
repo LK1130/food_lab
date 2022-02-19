@@ -44,15 +44,15 @@
                 @if ($diff < 3)
                     <div class="  newsA d-flex flex-row  justify-content-between align-items-center">
                         <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="ms-3 rounded" width="80vw">
-                        <div class="d-flex flex-column mt-2 me-1 ">
+                        <div class="d-flex flex-column mt-2  ">
                             <p class=" fs-5 fw-bolder text-truncate Wtruncate ">{{ $allnew->title }}
                             </p>
-                            <p class="  fs-5 fw-bolder text-truncate Wtruncate">
+                            <p class="  fs-5 fw-bolder text-truncate Wtruncate ">
                                 {{ $allnew->detail }}
                             </p>
 
                         </div>
-                        <p class="fs-5 fw-bold me-5">
+                        <p class="fs-5 fw-bold text-truncate Wtruncate  w-25">
                             {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}
                         </p>
                         <img src="img/new.png" alt="" class="newsLogoMessage" width="40vw">
@@ -62,15 +62,15 @@
 
                     <div class="  newsA d-flex flex-row  justify-content-between align-items-center">
                         <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="ms-3 rounded" width="80vw">
-                        <div class="d-flex flex-column mt-2 ms-2 ">
+                        <div class="d-flex flex-column mt-2  ">
                             <p class=" fs-5 fw-bolder text-truncate Wtruncate ">{{ $allnew->title }}
                             </p>
-                            <p class="  fs-5 fw-bolder text-truncate Wtruncate">
+                            <p class="  fs-5 fw-bolder text-truncate Wtruncate ">
                                 {{ $allnew->detail }}
                             </p>
 
                         </div>
-                        <p class="fs-5 fw-bold me-5">
+                        <p class="fs-5 fw-bold text-truncate Wtruncate  w-25">
                             {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}
                         </p>
                         <img src="" alt="" class="newsLogoMessage" width="40vw">

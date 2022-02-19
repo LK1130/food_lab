@@ -77,13 +77,19 @@ $(document).ready(function () {
                 if (newscount == 0) {
                     $(".forMessages").prepend(
                         `
-                        <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                            <p class="fs-6 fw-bolder mt-2 me-auto">No new has left </p>
+                        <div class="news mb-3 nocursor d-flex flex-row justify-content-center align-items-center">
+                            <p class="fs-5 fw-bolder ms-3 mt-2 me-auto">No new has left </p>
                         </div>
                         `
                     );
                 } else {
+                    let countNews = 0;
+                    let more = ``;
                     for (const news of data["limitednews"]) {
+                        countNews++;
+                        if (countNews == 3)
+                            more = `<a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                            More</button></a>`;
                         var oneD = 1000 * 60 * 60 * 24;
 
                         var sMS = new Date(news.newscreated);
@@ -93,9 +99,9 @@ $(document).ready(function () {
                         );
 
                         if (date < 3) {
-                            $(".forNews").prepend(
+                            $(".forNews").append(
                                 `
-                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center mb-3">
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
                                     <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
                                     <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
@@ -103,14 +109,15 @@ $(document).ready(function () {
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
                                         </div>
-                                        <img src="img/new.png" alt="" class="newsLogo" >
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
                                 </div>
+                                ${more}
                             `
                             );
                         } else {
-                            $(".forNews").prepend(
+                            $(".forNews").append(
                                 `
-                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center mb-3">
                             
                                     <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
                                     <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
@@ -121,6 +128,7 @@ $(document).ready(function () {
                                         </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
+                                ${more}
                             `
                             );
                         }
@@ -130,8 +138,8 @@ $(document).ready(function () {
                 if (messagecount == 0) {
                     $(".forMessages").prepend(
                         `
-                        <div class="news d-flex flex-row justify-content-center align-items-center">
-                            <p class="fs-6 fw-bolder mt-2 me-auto">No message has left </p>
+                        <div class="news mb-3 d-flex flex-row justify-content-center align-items-center">
+                            <p class="fs-5 fw-bolder mt-2 ms-3 me-auto">No message has left </p>
                         </div>
                         `
                     );
@@ -146,7 +154,7 @@ $(document).ready(function () {
                         // $allcolor = ["yellow", "green", "yellow", "red"];
                         // $statusMessage = messages.decision_status;
                         $messagecolor = "";
-                        if (messages.title == "APPROVE")
+                        if (messages.title == "APPROVED")
                             $messagecolor = "green";
                         if (messages.title == "REQUEST")
                             $messagecolor = "yellow";
@@ -156,11 +164,11 @@ $(document).ready(function () {
                         if (messages.seen == 0) {
                             $(".forMessages").append(
                                 `
-        <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
+        <div class="messages d-flex flex-row justify-content-center align-items-center mb-3" id="${messages.chargeid}">
         
-                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.detail}</p>
+                <p class="fs-6 fw-bolder me-auto w-50 ms-3 mt-3">${messages.detail}</p>
                 <div class="d-flex flex-column me-4">
-                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-75 rounded ${$messagecolor} text-center">
+                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-100 rounded ${$messagecolor} text-center">
                     ${messages.title}
                     </p>
                     <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
@@ -173,17 +181,17 @@ $(document).ready(function () {
                         } else {
                             $(".forMessages").append(
                                 `
-        <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
+                                <div class="messages d-flex flex-row justify-content-center align-items-center mb-3" id="${messages.chargeid}">
         
-                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.detail}</p>
-                <div class="d-flex flex-column me-4">
-                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-75 rounded ${$messagecolor} text-center">
-                    ${messages.title}
-                    </p>
-                    <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
-                </div>
-                
-            </div>
+                                <p class="fs-6 fw-bolder me-auto w-50 ms-3 mt-3">${messages.detail}</p>
+                                <div class="d-flex flex-column me-4">
+                                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-100 rounded ${$messagecolor} text-center">
+                                    ${messages.title}
+                                    </p>
+                                    <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
+                                </div>
+                                
+                            </div>
             ${more}
         `
                             );
@@ -199,8 +207,8 @@ $(document).ready(function () {
                 if (trackcount == 0) {
                     $(".forTracks").prepend(
                         `
-                        <div class="news d-flex flex-row justify-content-center align-items-center">
-                                <p class="fs-6 fw-bolder mt-2 me-auto">No track has left </p>
+                        <div class="news mb-3 d-flex flex-row justify-content-center align-items-center">
+                                <p class="fs-5 ms-3 fw-bolder mt-2 me-auto">No track has left </p>
                             </div>
                         `
                     );
@@ -239,7 +247,7 @@ $(document).ready(function () {
                                 if (tracks.seen == 0) {
                                     $(".forTracks").append(
                                         `
-                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block" id="${tracks.tid}">
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block mb-3" id="${tracks.tid}">
                                         
                                         <div class="d-flex flex-column w-75 ms-1 ">
                                         <p class="fw-bolder "><span><p class="text-truncate fw-bolder  informText" >${product.product_name}</p>${$howmuchtext}
@@ -261,7 +269,7 @@ $(document).ready(function () {
                                 } else {
                                     $(".forTracks").append(
                                         `
-                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block" id="${tracks.tid}">
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block mb-3" id="${tracks.tid}">
                                         
                                         <div class="d-flex flex-column w-100 ms-1 h-50">
                                         <div class="d-flex flex-row gap-1">
@@ -442,7 +450,7 @@ $(document).ready(function () {
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
                                         </div>
-                                        <img src="img/new.png" alt="" class="newsLogo" >
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
                                 </div>
                             `
                             );

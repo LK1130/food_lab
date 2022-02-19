@@ -359,7 +359,7 @@ marquee {
     width: 54.5vh;
     background-color: rgb(255, 255, 255);
     margin: auto;
-    gap: 2.5vh;
+    /* gap: 2.5vh; */
     border-radius: 1.4vh;
 }
 .fc {

@@ -254,8 +254,8 @@
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                     <div class="forMessages d-flex flex-column" id="forMessages">
 
