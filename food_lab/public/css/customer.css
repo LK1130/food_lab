@@ -879,3 +879,9 @@ form div .cancels {
 
 
 /*End Footer Section*/
+
+/*Start Cart Section*/
+.cart-label{
+    margin-bottom: 0 !important;
+}
+/*End Cart Section*/

@@ -359,6 +359,8 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
   Route::post('/login', [CustomerController::class, 'loginForm']);
 
+//  Route::get()
+
   /*
     For Buy Coin Page
     */

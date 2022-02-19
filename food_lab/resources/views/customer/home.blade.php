@@ -46,8 +46,8 @@
                 <div class="row align-items-center items">
                     <div class="col-8 flex-column">
                         <h1 class="fw-bolder tastes">{{ __('messageMK.TasteOurDeliciousFood') }}</h1>
-                        <p class="fw-bold delivery-infos">
-                            {{ __('messageMK.We deliver food as fast as you expert and we care about your time, so that you can grab your food at time') }}
+                        <p class="fw-bold fs-5 ms-5 delivery-infos">
+                            {{ __('messageMK.banner') }}
                         </p>
                         <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
                     </div>
@@ -60,7 +60,7 @@
                 <div class="row align-items-center items">
                     <div class="col-8 flex-column">
                         <h1 class="fw-bolder tastes">{{ __('messageMK.TasteOurDeliciousFood') }}</h1>
-                        <p class="fw-bold delivery-infos">
+                        <p class="fw-bold fs-5 ms-5 delivery-infos">
                             {{ __('messageMK.banner') }}
                         </p>
                         <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>

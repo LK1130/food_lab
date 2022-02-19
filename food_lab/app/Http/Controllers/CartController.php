@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_Product;
+use App\Models\M_Site;
 use App\Models\M_Township;
 use App\Models\T_AD_Photo;
 use App\Models\T_CU_Customer;
@@ -73,11 +74,14 @@ class CartController extends Controller
             $delCoin = $fees->delivery_price / $rate->rate;
             $delCash = $fees->delivery_price;
 
+            $site = new M_Site();
+            $name = $site->siteName();
+
             Log::channel('customerlog')->info('CartController', [
                 'end cart'
             ]);
 
-            return View('customer.cart', ['products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
+            return View('customer.cart.cart', ['name' => $name,'products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
         }
         Log::channel('customerlog')->info('CartController', [
             'end cart'

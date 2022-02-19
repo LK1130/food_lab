@@ -11,7 +11,6 @@ $(document).ready(function() {
 });
 
 document.getElementById('phone').addEventListener('keydown', (e) => {
-    console.log(e.key);
     let reg = new RegExp(/^([0-9+-]{1,})$/);
     if (reg.test(e.key) == true || e.key == 'Backspace') {
         console.log('true');
@@ -44,7 +43,6 @@ order.addEventListener('click', function(e) {
         data: { 'vouncher': $('.vouncher:checked').val(), 'phone': $('.phone').val() },
         success: function(res) {
             console.log(res);
-            window.alert('Your order has successfully completed!');
             $('#modal').modal('show');
         },
         error: function(err) {
