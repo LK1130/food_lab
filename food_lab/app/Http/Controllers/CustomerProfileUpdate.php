@@ -38,7 +38,7 @@ class CustomerProfileUpdate extends Controller
             Log::channel('adminlog')->info("CustomerProfileUpdate", [
                 'End update(error)'
             ]);
-            return redirect()->back()->with('message', 'Wrong Old Password');
+            return redirect()->back()->with('error', 'Wrong Old Password');
         }
     }
 }

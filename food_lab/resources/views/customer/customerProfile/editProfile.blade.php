@@ -170,53 +170,8 @@
 
                 {{-- Update Profile --}}
 
-                {{-- <div id="updateProfile">
-            <div class="headerUpdateProfile ms-5 mt-3">
-                <a href="{{ url('/') }}"><i class="fas fa-arrow-circle-left fs-1 me-4 text-light" id="back"></i></a>
-                <a href="{{ url('/') }}"><img src="{{ url('img/logo.png') }}" /></a>
-            </div>
-            <div class="titleUpdateProfile d-flex justify-content-center ">
-                <p class="fw-bold">{{ __('messageZY.updateprofile') }}</p>
-            </div>
-                <div class="bodyUpdateProfile d-flex flex-column justify-content-center">
 
-                    <div class="d-flex me-3 ms-3 mt-0 mb-4 infos">
-                        <i class="fas fa-user fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent1">
-                            <input type="text" name="username" id="username" class="InputChild" value="{{ $user->nickname }}"
-                        disabled>
-                        </div>
-                    </div>
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-4 infos">
-                        <i class="fas fa-phone-alt fs-3 me-4 mt-2  text-light"></i>
-                        <div class="InputParent1">
-                            <input type="number" name="phonenumber" id="phonenumber" class="InputChild"
-                            value="{{ $user->phone }}" disabled>
-                        </div>
-                    </div>
-                    <div class="d-flex me-3 ms-3 mt-0 mb-4 infos">
-                        <i class="fas fa-address-book fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent1">
-                            <input type="text" id="address" class="InputChild"
-                                value="{{ $user->township_name }}/{{ $user->state_name }}/ ({{ $user->address3 }})"
-                                disabled>
-                        </div>
-                    </div>
-                    <div class="d-flex  me-3 ms-3 mt-0 mb-4 infos">
-                        <i class="fas fa-envelope fs-3 me-4 mt-2 text-light"></i>
-                        <div class="InputParent1">
-                            <input type="text" name="email" id="email" class="InputChild" value="{{ $user->email }}"
-                            disabled>
-                        </div>
-                    </div>
-                    <div class="btnDiv">
-                        <button class="btn editProfile">{{ __('messageZY.editprofile') }}</button>
-                        <button class="btn changePassword">{{ __('messageZY.changepassword') }}</button>
-                    <div>
-                </div>
-              
-               
-        </div> --}}
+
 
                 {{-- to change password --}}
                 @if ($errors->any())
@@ -224,8 +179,15 @@
                 @else
                     <input type="text" value="0" id="error" class="hide">
                 @endif
+
+                @if (session()->has('error'))
+                    <input type="text" value="1" id="error2" class="hide">
+                @else
+                    <input type="text" value="0" id="error2" class="hide">
+                @endif
                 <div class="alertBox" id="alertBox">
-                    <i class="fas fa-arrow-circle-left fs-1 mt-3 ms-3 text-light" id="back"></i>
+                    <div class="mt-5 ms-3 "></div>
+                    {{-- <i class="fas fa-arrow-circle-left fs-1  text-light" id="back"></i> --}}
                     <form action="{{ route('updateprofile.update', $user->cid) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -234,6 +196,10 @@
                             <div class="d-flex  me-3 ms-3  infos1">
                                 <div class="InputParentAlert">
                                     <input type="text" name="oldpassword" class="InputChild1" autocomplete="off">
+                                    @if (session()->has('error'))
+                                        <span class="errorIcon"><i
+                                                class="fas fa-exclamation-circle fs-4 ms-3 errorPassword text-danger"></i></span>
+                                    @endif
                                     @error('oldpassword')
                                         <span class="errorIcon"><i
                                                 class="fas fa-exclamation-circle fs-4 ms-3 errorPassword text-danger"></i></span>
@@ -267,10 +233,11 @@
                     </form>
                 </div>
             </div>
-            @if (session()->has('message'))
-                <div class="alert alert-success">
+            {{-- @if (session()->has('message'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+
                     {{ session()->get('message') }}
                 </div>
-            @endif
+            @endif --}}
             {{-- End Profile Edit Section --}}
         @endsection

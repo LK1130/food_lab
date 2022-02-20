@@ -222,6 +222,9 @@ body {
     border-radius: 1vh;
     visibility: hidden;
 }
+.visible {
+    visibility: visible;
+}
 .hide {
     display: none;
 }
