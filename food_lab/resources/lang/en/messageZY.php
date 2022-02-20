@@ -5,7 +5,7 @@ return [
     'loginManage' => 'Login Manage',
     'coinRate' => 'Coin Rate',
     'siteManager' => 'Site Manage',
-    'username' => 'Username',
+    'changeby' => 'Change By',
     'password' => 'Password',
     'role' => 'Role',
     'sa' => 'SA',
