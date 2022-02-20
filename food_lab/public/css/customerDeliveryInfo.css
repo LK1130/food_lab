@@ -40,6 +40,10 @@ body {
     font-size: xx-large;
 }
 
+.arrows {
+    font-size: 2rem;
+}
+
 .formDisplay {
     min-width: 60% !important;
     border: 0.2em solid var(--text-color);
