@@ -15,6 +15,7 @@
 
 @section('title', 'Track Detail')
 @section('body')
+
     <div class="d-flex ps-5 py-4">
         <div class="me-4 mt-3">
             <a href="{{ url()->previous() }}"><i class="fas fa-arrow-left text-white arrows"></i></a>
@@ -60,7 +61,7 @@
             </div>
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital  me-auto ms-1">{{ __('messageZY.requestedat') }}</label>
-                <p class=" titleInfo ms-auto date ">{{ $track->created_at }}</p>
+                <p class=" titleInfo ms-auto date ">{{ $track->tracksupdated }}</p>
             </div>
         </div>
     </div>

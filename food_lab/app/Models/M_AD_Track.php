@@ -115,6 +115,7 @@ class M_AD_Track extends Model
         $result = T_AD_Order::where('t_ad_order.id', '=', $id)
             ->where('t_ad_order.del_flg', 0)
             ->leftjoin('m_ad_track', 'm_ad_track.order_id', '=', 't_ad_order.id')
+            ->select('*', DB::raw('m_ad_track.updated_at AS tracksupdated'))
             ->leftjoin('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
             ->leftjoin('t_ad_orderdetail', 't_ad_orderdetail.order_id', '=', 't_ad_order.id')
             ->leftjoin('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
