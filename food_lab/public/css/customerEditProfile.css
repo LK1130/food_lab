@@ -32,7 +32,6 @@ body {
     font-size: 2.8rem;
     color: var(--primary-color);
 }
-
 .bodyEditProfile {
     position: absolute;
     width: 80%;
@@ -67,7 +66,6 @@ body {
     font-size: 1rem;
     color: var(--primary-color);
 }
-
 .bodyEditProfile div label {
     color: white;
 }
@@ -113,7 +111,6 @@ body {
     border: none !important;
     outline: 0;
 }
-
 .bootstrap-tagsinput .tag {
     background-color: #ffffff;
     margin: 5px;
@@ -128,7 +125,6 @@ body {
     height: fit-content !important;
     min-height: 7vh !important;
 }
-
 /* edit profile*/
 @media (max-width: 650px) {
     .titleEditProfile {
@@ -192,212 +188,198 @@ body {
         margin-left: 20vw;
         margin-top: 1.5vh;
     }
+    .InputParent,
+    .InputParent1,.InputChild{
+        font-size: 0.5rem !important;
+    }
 }
+@media (max-width: 300px) {
+    .changePassword,.updateButton{
+        height: 7vh;
+        font-size: 0.5rem;
+    }
+    .titleEditProfile {
 
-/* to .changePassword */
-.InputParentAlert {
-    width: 25vw;
-    height: 6vh;
-    background-color: rgba(126, 124, 118, 0);
-    border-radius: 1.2vh;
-    border: 2px solid wheat;
+        margin-left: 20vw;
+        margin-top: 7rem;
+        font-size: 1rem;
+    }
 }
-.InputTitle {
-    position: absolute;
-    background-color: black;
-    color: whitesmoke;
-    margin-bottom: 34vh;
-    margin-left: 4vw;
-    font-size: large;
-    width: 12vw;
-    text-align: center;
-}
-.errorPassword {
-    position: absolute;
-    right: 27vw;
-}
-#new {
-    margin-top: 22vh !important;
-}
-#confirm {
-    margin-top: 44vh !important;
-    width: 17vw !important;
-}
-.InputChild1{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(44, 83, 255, 0) !important;
-    border-style: none;
-    color: white !important;
-    font-size: 1.2rem;
-}
-.alertUpdate {
-    margin-top: 15vh;
-    margin-left: 10vw;
-    height: 10vh;
-}
-.updateButtonAlert {
-    width: 25vw;
-    height: 6vh;
-    border-radius: 1.2vh;
-    margin-left: 11.2vw;
-    background-color: var(--primary-color);
-    color: white;
-    margin-top: 35vh;
-}
-.infos1 {
-    margin-bottom: 4vh;
-}
-
-
-.InputParentAlert {
-    width: 25vw;
-    height: 6vh;
-    background-color: rgba(126, 124, 118, 0);
-    border-radius: 1.2vh;
-    border: 2px solid wheat;
-    height: 7vh;
-}
-.InputTitle {
-    position: absolute;
-    background-color: black;
-    color: whitesmoke;
-    margin-bottom: 34vh;
-    margin-left: 4vw;
-    font-size: large;
-    width: 12vw;
-    text-align: center;
-}
-.errorPassword {
-    position: absolute;
-    right: 27vw;
-}
-#new {
-    margin-top: 22vh !important;
-}
-#confirm {
-    margin-top: 44vh !important;
-    width: 17vw !important;
-}
-.InputChild1{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(44, 83, 255, 0) !important;
-    border-style: none;
-    color: white !important;
-    font-size: 1.2rem;
-}
-.alertUpdate {
-    margin-top: 15vh;
-    margin-left: 10vw;
-    height: 10vh;
-}
-.updateButtonAlert {
-    width: 25vw;
-    height: 6vh;
-    border-radius: 1.2vh;
-    margin-left: 11.2vw;
-    background-color: var(--primary-color);
-    color: white;
-    margin-top: 35vh;
-}
-.infos1 {
-    margin-bottom: 4vh;
-}
-
- /* change password */
- .alertBox {
-    width: 50vw;
+/* changePassword */
+.alertBox {
+    width: 40vw;
     height: 60vh;
     background-color: black;
     position: absolute;
-    z-index: 1;
-    margin-top: 20vh;
-    margin-left: 20vw;
-    border-radius: 1vh;
-    visibility: hidden;
+    margin: 0;
+    border-radius: 1vh; 
+    visibility: hidden; 
 }
-/*
-.locks {
-    margin-left: 42vw;
+.alertUpdate {
+    margin-top: 1vh;
+    margin-left: 10%;
+    position: absolute;
+    height: 38vh;
+    width: 80%;
+    background-color:black;
 }
-.hide {
-    visibility: hidden;
+.InputTitle {
+    position: absolute;
+    background-color: black;
+    color: var(--primary-color);
+    margin-bottom: 40vh;
+    margin-left: 4vw;
+    font-size: 1rem;
+    text-align: center;
 }
-@media (max-width: 720px) {
-
-    /* change password */
-    /* .alertBox {
-        width: 70vw;
+.infos1 {
+    margin-bottom: 6vh;
+}
+.InputParentAlert {
+    width: 50vw;
+    height: 7vh;
+    background-color: rgba(126, 124, 118, 0);
+    border-radius: 1.2vh;
+    border: 2px solid red;
+    display: flex;
+    flex-direction: row;
+}
+.InputChild1 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 83, 255, 0) !important;
+    border-style: none;
+    padding-left: 3%;
+    padding-top: 2%;
+    color: white !important;
+    font-size: 1.2rem;
+}
+.errorPassword {
+    margin-right: 0.5rem;
+    margin-top: 0.7rem;
+}
+.updateButtonAlert {
+    width: 30vw;
+    height: 6vh;
+    border-radius: 1.2vh;
+    margin-left: 5vw;
+    background-color: var(--primary-color);
+    color: white;
+    margin-top: 40vh;
+    font-size: larger;
+}
+#new {
+    margin-top: 26vh !important;
+    width: 17vw !important;
+    height: 1rem;
+}
+#confirm {
+    margin-top: 52vh !important;
+    width: 20vw !important;
+    height: 1rem;
+}
+#old {
+    width: 17vw !important;
+    height: 1rem;
+}
+@media (max-width: 850px) {
+     #confirm {
+        width: 60% !important;
+    }
+    .InputTitle {
+        font-size: 0.9rem !important;
+    }
+    .alertUpdate {
+        height: 30vh;
+        width: 90%;
+        margin-top: 12%;
+        margin-left: 5%;
     }
     .InputParentAlert {
-        width: 45vw;
+        width:80vw;
     }
-    .InputTitle {
-        margin-left: 1vw;
-    }
-    #new {
-        margin-top: 23vh !important;
-        width: 27vw !important;
-    }
-    #confirm {
-        margin-top: 45vh !important;
-        width: 27vw !important;
-    }
-    #old {
-        width: 27vw !important;
-    }
-    .updateButtonAlert {
-        margin-left: 32.2vw;
-    }
-    .errorPassword {
-        margin-right: 23vw;
+    .InputChild1 {
+        font-size: 1rem !important;
     }
 }
-@media (max-width: 1130px) {
+@media (max-width: 720px) {
+    .alertBox {
+        width: 70%;
+        height: 60vh;
+        margin-left: 15vw;
+    }
+    .alertUpdate {
+        margin-left: 5%;
+        height: 28vh;
+        width: 90%;
+        margin-top: 16%;
+    }
     .InputTitle {
         position: absolute;
-        background-color: black;
-        color: whitesmoke;
-        margin-bottom: 34vh;
-        margin-left: 2vw;
-        font-size: 1rem;
-        width: 15w;
+        font-size: 0.8rem !important;
         text-align: center;
     }
+    .updateButtonAlert {
+       width: 80%;
+        height: 5vh;
+        margin-top: 42vh;
+        margin-left: 10%;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    #new {
+       margin-left: 12%;
+        width: 40% !important;
+    }
+    #confirm {
+  
+        width: 65% !important;
+        margin-left: 12% !important;;
+    }
+    #old {
+        margin-left: 12%;
+        width: 40% !important;
+    }
+    .InputChild1 {
+        font-size: 0.8rem !important;
+    }
 }
-@media (max-width: 1006px) {
-    #confirm {
-        margin-left: 4vh !important;
-        font-size: 0.9rem !important;
-        min-width: 23vw !important;
+@media (max-width: 400px) {
+    .alertUpdate {
+        width: 90%;
+        height: 32vh;
+        margin-top: 23%;
+        margin-left: 5%;
+        }
+    .updateButtonAlert {
+        width: 80%;
+         font-size: 0.5rem;
+         margin-left: 10%;
+     }
+     .InputChild1 {
+        font-size: 0.5rem !important;
     }
     #new {
-        width: 21vw !important;
-        font-size: 0.9rem !important;
-        margin-left: 5vh !important;
+        margin-left: 12%;
+         width: 80% !important;
+     }
+     #confirm {
+         width: 80% !important;
+         margin-left: 12% !important;;
+     }
+     #old {
+         margin-left: 12%;
+         width: 80% !important;
+     }
+     .InputParentAlert {
+        width:90vw;
     }
-    #old {
-        width: 21vw !important;
-        font-size: 0.9rem !important;
-        margin-left: 5vh !important;
+    .InputTitle {
+        font-size: 0.8rem !important;
     }
-} */
-/* @media (max-width: 564px) {
-    #confirm {
-        margin-left: 5vh !important;
-        font-size: 0.9rem !important;
-        width: 40vw !important;
+}
+@media (max-width: 200px) {
+    .InputTitle {
+        font-size: 0.5rem !important;
     }
-    #new {
-        width: 31vw !important;
-        font-size: 0.9rem !important;
-        margin-left: 8vh !important;
-    }
-    #old {
-        width: 31vw !important;
-        font-size: 0.9rem !important;
-        margin-left: 8vh !important;
-    }
-} */
-
+}

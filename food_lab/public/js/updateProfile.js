@@ -13,6 +13,7 @@ function firstClick() {
 
     el.addEventListener("click", function () {
         document.getElementById("alertBox").style.visibility = "visible";
+        document.getElementById("alertBox").style.position = "absolute";
     });
 }
 

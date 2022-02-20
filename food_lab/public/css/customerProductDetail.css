@@ -142,13 +142,20 @@
 }
 
 .mainblocks{
+    width: 60% !important;
+    /* height: 35vh; */
 
+}
+.mainimgs{
+    width: 100% !important;
+    height: 38vh !important;
+    margin: auto;
 }
 
 .customBlock{
     width: 30% !important;
-    cursor: pointer;
-   
+    height: 20vh !important;
+    cursor: pointer;  
 }
 
 
@@ -439,7 +446,9 @@ input:disabled{
     }
 
     .customBlock{
-        width: 70% !important;
+        width: 60% !important;
+        height: 10vh !important; 
+        /* height: ; */
     }
 
     .inputs{

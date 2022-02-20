@@ -174,7 +174,7 @@
 {{-- end modal --}}
     <div class="container-fluid mt-5 p-3">
         <div class="d-flex justify-content-center">
-            <p class="copy">Copy right by {{ $name->site_name }}</p>
+            <p class="copy">Copy right &copy; {{ $name->site_name }}</p>
         </div>
     </div>
 
