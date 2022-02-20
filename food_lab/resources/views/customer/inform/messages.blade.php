@@ -34,7 +34,7 @@
         @forelse ($allmessages as $allmessage)
             @php
                 $messagecolor = '';
-                if ($allmessage->title == 'APPROVE') {
+                if ($allmessage->title == 'APPROVED') {
                     $messagecolor = 'green';
                 }
                 if ($allmessage->title == 'REQUEST') {
@@ -48,9 +48,27 @@
                 }
                 $date2 = strtotime($allmessage->messagecreated);
                 $totalSecondsDiff = abs($date2 - $currentdate);
+                $message = '';
                 $totalDaysDiff = $totalSecondsDiff / 60 / 60 / 24; //493.05
                 $totalDaysDiffPlus = $totalDaysDiff;
-                $diff = (int) $totalDaysDiffPlus;
+                $totalTimesDiff = $totalSecondsDiff / 60 / 60;
+                $totalMinutesDiff = $totalSecondsDiff / 60;
+                $diff = (int) $totalDaysDiff;
+                $tdiff = (int) $totalTimesDiff;
+                $mdiff = (int) $totalMinutesDiff;
+                if ($diff == 0) {
+                    if ($tdiff == 0) {
+                        $message = $mdiff == 0 ? '1 minute ago' : ($mdiff == 1 ? '1 minute ago' : $mdiff . 'minutes ago');
+                    } elseif ($tdiff == 1) {
+                        $message = $tdiff . 'hour ago';
+                    } else {
+                        $message = $tdiff . 'hours ago';
+                    }
+                } elseif ($diff == 1) {
+                    $message = 'Yesterday';
+                } else {
+                    $message = $diff . ' ' . ' days ago';
+                }
             @endphp
             @if ($allmessage->seen == 0)
                 <div class="newsAll d-flex flex-row justify-content-center messageClick align-items-center mb-4"
@@ -61,7 +79,8 @@
                             {{ $allmessage->title }}
                         </p>
                         <p class=" fw-bold fs-5  mb-1 me-3">
-                            {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}</p>
+                            {{-- {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}</p> --}}
+                            {{ $message }}
                         </p>
                     </div>
                     <img src="img/new.png" alt="" class="newsLogoMessage" width="45vw">
@@ -75,7 +94,8 @@
                             {{ $allmessage->title }}
                         </p>
                         <p class=" fw-bold fs-5  mb-1 me-3">
-                            {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}</p>
+                            {{-- {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}</p> --}}
+                            {{ $message }}
                         </p>
                     </div>
                     <img src="" alt="" class="newsLogoMessage" width="45vw">
