@@ -59,7 +59,7 @@
                 </script>
             @endif
 
-            <div class="d-flex">
+            <div class="d-flex ms-auto">
                 @if (session()->has('customerId'))
                     <p class="nav-link d-lg-none mt-1 texts" id="">
                         <a href="/cart" class="d-lg-none position-relative texts"><i

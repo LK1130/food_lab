@@ -142,13 +142,11 @@
 }
 
 .mainblocks{
-    width: 60% !important;
-    /* height: 35vh; */
+     height: 35vh; 
 
 }
 .mainimgs{
-    width: 100% !important;
-    height: 38vh !important;
+    height: 100% !important;
     margin: auto;
 }
 

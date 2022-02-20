@@ -28,7 +28,7 @@
     {{-- proudct section --}}
     <section>
         <div class="container-fluid">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex">
                 <p class="products">Food</p>
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <select class="selectpicker p-3 mx-3 m-5 "  data-size="5" name="type" id="selectpicker1">
+                    <select class="selectpicker p-3 mx-3 m-5 mt-0 "  data-size="5" name="type" id="selectpicker1">
                         <option class="selectpicker1" value="" selected disabled>Lists By Category</option>
                         @foreach ($mFav as $item)
                             <option  value="{{ $item->id }}" class="special">{{ $item->favourite_food }}</option>
@@ -62,7 +62,7 @@
                 </div>
 
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5 m-auto p-2"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
+                <p class="fs-5 m-auto p-2"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   <br> <i class="fa-solid fa-money-bill money text-success"></i>  {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 @if (session()->has('customerId'))
                 <button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
@@ -100,7 +100,7 @@
                     <img src="/storage/{{ $item->path }}" class="images" alt="bestitem1" />
                 </div>
                 <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-                <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}  /    {{ number_format($item->amount) }} MMK</p>
+                <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   <br> <i class="fa-solid fa-money-bill money text-success"></i>     {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 @if (session()->has('customerId'))
                 <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button></a>
@@ -131,7 +131,7 @@
             <img src="/storage/{{ $item->path }}" class="images" alt="bestitem1" />
            </div>
             <p class="fs-3 pt-2">{{ $item->product_name }}</p>
-            <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }} /   {{ number_format($item->amount) }} MMK</p>
+            <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}  <br> <i class="fa-solid fa-money-bill money text-success"></i> {{ number_format($item->amount) }} MMK</p>
             <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
             @if (session()->has('customerId'))
             <a href=""><button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" >{{ __('messageMK.shopnow') }}</button></a>
@@ -174,7 +174,7 @@
 {{-- end modal --}}
     <div class="container-fluid mt-5 p-3">
         <div class="d-flex justify-content-center">
-            <p class="copy">Copy right &copy; {{ $name->site_name }}</p>
+            <p class="copy">Copyright &copy; {{ $name->site_name }}</p>
         </div>
     </div>
 
