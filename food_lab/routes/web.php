@@ -253,6 +253,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     * zayar
     */
     Route::resource('editprofile', CustomerProfileController::class);
+    Route::get('editProfile', [CustomerController::class, 'index']);
 
     /*
     * For ajax
@@ -359,11 +360,11 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
   Route::post('/login', [CustomerController::class, 'loginForm']);
 
-    //  for Check Mail page
-    Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
+  //  for Check Mail page
+  Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
 
 
-//  Route::get()
+  //  Route::get()
 
   /*
     For Buy Coin Page

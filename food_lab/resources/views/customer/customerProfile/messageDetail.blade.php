@@ -15,36 +15,7 @@
 
 @section('title', 'Food Lab')
 @section('body')
-    {{-- <div class="news-container">
-        <div class="d-flex flex-row">
-            <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left fs-2 mt-2 ms-2 back"></i></a>
-            <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.messageDetail') }}</p>
-        </div>
 
-        <div class="allNews">
-
-            <div class="d-flex flex-column newsDetailContainer  m-auto">
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital fs-4">{{ __('messageZY.title') }}</label>
-                    <p class="fs-5 mt-1 titleInfo">--</p>
-                    <p class="fs-5 mt-1 titleInfo">{{ $message->title }}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital fs-4">{{ __('messageZY.status') }}</label>
-                    <p class="fs-5 mt-1 titleInfo">--</p>
-                    <p class="fs-5 mt-1 titleInfo">{{ $message->status }}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital fs-4">{{ __('messageZY.requestedat') }}</label>
-                    <p class="fs-5 mt-1 titleInfo">--</p>
-                    <p class="fs-5 mt-1 titleInfo">{{ $message->created_at }}</p>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    </div> --}}
 
     <div class="d-flex ps-5 py-4">
         <div class="me-4 mt-3">
