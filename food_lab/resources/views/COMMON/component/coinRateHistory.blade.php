@@ -3,7 +3,7 @@
  <table class="table mt-5">
      <tr class="tableHeader">
          <td>{{ __('messageZY.number') }}</td>
-         <td>{{ __('messageZY.username') }}</td>
+         <td>{{ __('messageZY.changeby') }}</td>
          <td>{{ __('messageZY.kyat') }}</td>
          <td>{{ __('messageZY.date') }}</td>
          <td>{{ __('messageZY.note') }}</td>

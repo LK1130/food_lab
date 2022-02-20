@@ -73,9 +73,6 @@
 
 /* Detail Section */
 
-.arrows{
-    
-}
 
 .details{
     font-size: 3.3rem;
@@ -148,6 +145,7 @@
 .mainimgs{
     height: 100% !important;
     margin: auto;
+    border-radius: 12px;
 }
 
 .customBlock{
