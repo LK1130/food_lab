@@ -6,7 +6,7 @@
     <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 
-@section('title','Food Lab')
+@section('title', "$name->site_name | Policy Info")
 
 @section('body')
     {{-- Start Policy Section --}}
