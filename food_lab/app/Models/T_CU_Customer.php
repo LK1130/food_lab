@@ -352,7 +352,7 @@ class T_CU_Customer extends Model
     $admin = T_CU_Customer_Login::where('customer_id', '=', $id)
       // ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->first();
-    $admin->password = $validate['newpassword'];
+    $admin->password = md5(sha1($validate['newpassword']));
 
     $admin->save();
     Log::channel('adminlog')->info("T_CU_Customer Model", [
