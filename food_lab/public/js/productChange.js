@@ -67,7 +67,7 @@ $(document).ready(function () {
                             <p class="fs-3 pt-2">${ list.product_name }</p>
                             <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                            <a href="/login"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
+                            <a href="/signin"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
                             </div>`)
                        }
                         
@@ -196,7 +196,7 @@ $(document).ready(function () {
                                 <p class="fs-3 pt-2">${ list.product_name }</p>
                                 <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
                                 <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
-                                <a href="/login"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
+                                <a href="/signin"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
                             </div>`
                             )
                         }

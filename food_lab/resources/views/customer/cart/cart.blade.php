@@ -7,6 +7,7 @@
     {{--  coin icon cdn  --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('js')
@@ -21,70 +22,81 @@
     <script src="js/customerCart.js" type="text/javascript" defer></script>
 @endsection
 
-@section('title','Cart')
+@section('title',"$name->site_name | Cart")
 
 @section('body')
     {{--  Start Cart Session  --}}
     <section class="cart-section">
         <div class="cartTitle">
-            <p class="pt-3 ms-3 fs-1 fw-bolder">{{ __('messageCPPK.yourCart') }}</p>
-            <div class="row text-uppercase text-center">
-                <div class="col-1"></div>
-                <div class="col-5 my-auto">
-                    <p id="productTitle">{{ __('messageCPPK.Product') }}</p>
+            <div class="d-flex ps-5 py-4">
+                <div class="me-4 mt-3">
+                    <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
                 </div>
-                <div class="col-3 my-auto">
-                    <p id="qtyTitle">{{ __('messageCPPK.Quantity') }}</p>
-                </div>
-                <div class="col-3">
-                    <div class="button-box">
-                        <div id="btnSwitch"></div>
-                        <button type="button" class="toggle-btn" onclick="leftClick()" >{{ __('messageCPPK.Coin') }}</button>
-                        <button type="button" class="toggle-btn" onclick="rightClick()">{{ __('messageCPPK.Cash') }}</button>
-                    </div>
+                <div>
+                    <p class="fs-1 fw-bolder cart-label">{{ __('messageCPPK.yourCart') }}</p>
                 </div>
             </div>
 
-            {{-- Start Added Buy Products  --}}
-            @php
-                $i = 1;
-            @endphp
-            @forelse ($products as $product)
-                <div class="row justify-content-center align-items-center mt-3 products">
-                    <div class="col-1 text-center">
-                        <ion-icon name="close-sharp" class="fs-1 delete" id="{{ $i++ }}"></ion-icon>
+            @if(session()->has('cart'))
+                <div class="row text-uppercase text-center">
+                    <div class="col-1"></div>
+                    <div class="col-5 my-auto">
+                        <p id="productTitle">{{ __('messageCPPK.Product') }}</p>
                     </div>
-                    <div class="col-3" style="width: 280px">
-                        <img src="/storage/{{ $product['path'] }}" alt = "" style="width: 100%"/>
+                    <div class="col-3 my-auto">
+                        <p id="qtyTitle">{{ __('messageCPPK.Quantity') }}</p>
                     </div>
-                    <div class="col-2">
-                        <p class="fw-bold text-uppercase" id="pname">{{ $product['product_name'] }}</p>
-                        <p class="fw-bold" id="code">#{{ $product['id'] }}</p>
-                    </div>
-                    <div class="col-3 text-center">
-                        <div class="mx-auto wrapper">
-                            <span class="minus">-</span>
-                            <span class="num">{{ $product['quantity'] }}</span>
-                            <span class="plus">+</span>
+                    <div class="col-3">
+                        <div class="button-box">
+                            <div id="btnSwitch"></div>
+                            <button type="button" class="toggle-btn" onclick="leftClick()" >{{ __('messageCPPK.Coin') }}</button>
+                            <button type="button" class="toggle-btn" onclick="rightClick()">{{ __('messageCPPK.Cash') }}</button>
                         </div>
                     </div>
-                    <div class="col-3 text-center">
-                        @php
-                            $totalCoin = $product['quantity'] * $product['coin'];
-                            $totalCash = $product['quantity'] * $product['amount'];
-                        @endphp
-                        <span class="coinBox"><i class="fas fa-coins fa-1x me-2"></i><span class="coin">{{ $totalCoin }}</span></span>
-                        <span class="cashBox"><span class="cash">{{ $totalCash }}</span> Ks</span>
-                    </div>
                 </div>
-            @empty
-                <div class="fs-1 fw-bolder my-3 products no-datas">
+
+                {{-- Start Added Buy Products  --}}
+                @php
+                    $i = 1;
+                @endphp
+                @foreach ($products as $product)
+                    <div class="row justify-content-center align-items-center mt-3 products">
+                        <div class="col-1 text-center">
+                            <ion-icon name="close-sharp" class="fs-1 delete" id="{{ $i++ }}"></ion-icon>
+                        </div>
+                        <div class="col-3" style="width: 280px">
+                            <img src="/storage/{{ $product['path'] }}" alt = "" style="width: 100%"/>
+                        </div>
+                        <div class="col-2">
+                            <p class="fw-bold text-uppercase" id="pname">{{ $product['product_name'] }}</p>
+                            <p class="fw-bold" id="code">#{{ $product['id'] }}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <div class="mx-auto wrapper">
+                                <span class="minus">-</span>
+                                <span class="num">{{ $product['quantity'] }}</span>
+                                <span class="plus">+</span>
+                            </div>
+                        </div>
+                        <div class="col-3 text-center">
+                            @php
+                                $totalCoin = $product['quantity'] * $product['coin'];
+                                $totalCash = $product['quantity'] * $product['amount'];
+                            @endphp
+                            <span class="coinBox"><i class="fas fa-coins fa-1x me-2"></i><span class="coin">{{ $totalCoin }}</span></span>
+                            <span class="cashBox"><span class="cash">{{ $totalCash }}</span> Ks</span>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- End Added Buy Products  --}}
+            @else
+                <div class="fs-1 fw-bolder my-3 no-datas">
                     <p class="text-white text-center">Plesae Buy First item . <a href="/productLists" class="btn">Buy now</a></p>
                 </div>
-            @endforelse
-            {{-- End Added Buy Products  --}}
+            @endif
         </div>
-        <div class="row my-4 bouchers">
+        @if(session()->has('cart'))
+            <div class="row my-4 bouchers">
             <div class="col-lg-6 d-flex align-items-center justify-content-center cart-icons">
                 <img src="img/shopCart.png" alt="" style="width: 40%">
             </div>
@@ -117,11 +129,11 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <a href="/productLists" class="btn me-3 cancels">{{ __('messageCPPK.Back') }}</a>
                     <p class="btn order" id="order">{{ __('messageCPPK.Delivery') }}</a>
                 </div>
             </div>
         </div>
+        @endif
     </section>
     {{--  End Cart Session   --}}
 @endsection

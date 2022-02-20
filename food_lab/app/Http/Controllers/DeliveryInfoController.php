@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Site;
 use App\Models\T_AD_Order;
 use App\Models\T_CU_Customer;
 use Illuminate\Contracts\Session\Session;
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Log;
 
 class DeliveryInfoController extends Controller
 {   /*
-    * Create:cherry(2022/01/30 
-    * Update: 
+    * Create:cherry(2022/01/30
+    * Update:
     * This is function is to show Delivery Information
     * Return is view (customerDeliveryInfo.blade.php)
     */
@@ -37,11 +38,14 @@ class DeliveryInfoController extends Controller
                 return redirect('error/404');
             }
 
+            $site = new M_Site();
+            $name = $site->siteName();
+
             Log::channel('customerlog')->info('DeliveryInfoController ', [
                 'End deliveryInfo'
             ]);
 
-            return View('customer.deliveryInfo', ['deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
+            return View('customer.cart.deliveryInfo', ['name' => $name,'deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
         }
         return redirect('/');
     }
@@ -65,6 +69,7 @@ class DeliveryInfoController extends Controller
         $deliTownshipInfo = new T_CU_Customer();
         $deliInfo = $deliTownshipInfo->deliveryTownship($userID);
         $township = $deliInfo['address2'];
+
         if ($vouncher == 0) {
             $grandCoin = session('grandCoin');
             $grandCash = 0;
@@ -78,7 +83,6 @@ class DeliveryInfoController extends Controller
                 $productArrays[$i]['coin'] = 0;
             }
         }
-
         $tAdOrder = new T_AD_Order();
         $customerOrder = $tAdOrder->customerOrder($userID, $township, $productArrays, $grandCoin, $grandCash, $phone);
         session()->forget(['cart', 'grandCoin', 'grandCash']);

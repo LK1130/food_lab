@@ -69,5 +69,6 @@ return [
     'Note' => 'Note',
     'submit' => 'Submit',
     'contactForm' => 'Contact Form',
-    'Details' => 'Details'
+    'Details' => 'Details',
+    'close' => 'Close'
 ];

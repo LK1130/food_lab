@@ -6,6 +6,7 @@
 
 textarea {
     resize: none;
+    height : 160px;
 }
 
 :root {
@@ -19,7 +20,7 @@ textarea {
     --bg2-color: black;
     --bg3-color: white;
     --coin-color: #ffd233;
-    --coin-color: #ffd233;
+    --money-color:#28a745;
     --coinRulebg: #ff0000;
     --fileicon-color: #ffffff;
     --cancelbtn-textcolor: #ff0000;
@@ -564,3 +565,7 @@ marquee {
 /*End Header*/
 
 /*End Header*/
+
+.dropdown-toggle:empty::after{
+    margin-left: 10px;
+}

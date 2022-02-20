@@ -13,12 +13,20 @@
     <script src="js/customerDeliveryInfo.js" type="text/javascript" defer></script>
 @endsection
 
-@section('title','Deliver Information')
+@section('title', "$name->site_name | deliveryInfo")
 
 @section('body')
 <section>
-    <p class="fs-1 text-white fw-bold text-center pt-4"><img src="{{ url('storage/logo/siteLog.png') }}" alt="Logo">{{ __('messageCPPK.Food Lab') }}</p>
-    <h1 class="fw-bold ms-4 my-4 heading">{{ __('messageCPPK.Delivery Information') }}</h1>
+    <p class="fs-1 text-white fw-bold text-uppercase text-center pt-4"><img src="/storage/siteLogo/{{ $name->site_logo }}" class="me-4" width="50px" alt="Logo">{{ $name->site_name }}</p>
+    <div class="d-flex ps-5 py-4">
+        <div class="me-4">
+            <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
+        </div>
+        <div>
+            <h1 class="fw-bold heading">{{ __('messageCPPK.Delivery Information') }}</h1>
+        </div>
+    </div>
+
     <div class="d-flex flex-column justify-content-center align-items-center">
         <form action="/insertOrder" class="py-3 formDisplay" method="post">
             @csrf
@@ -44,11 +52,11 @@
                 </div>
                 <div class="inputs">
                     <textarea class="controlForm" disabled>{{ $deliInfo->address3}} , {{ $deliInfo->township_name }} , {{ $deliInfo->state_name }}</textarea>
-                    
-                    <p class="fs-6 text-start text-danger">click this button to change name and address.  
+
+                    <p class="fs-6 text-start text-danger">click this button to change name and address.
                         <a href="/" class="btn btn-warning btn-sm"> User Profile</a></a>
                     </p>
-   
+
                 </div>
             </div>
             <div class="d-flex mb-4 forms">
@@ -57,11 +65,11 @@
                 </div>
                 <div class="d-flex justify-content-around align-items-center inputs">
                     <div>
-                        <input type="radio" id="coin" class="me-3 vouncher" name="money" value="0" checked/> 
+                        <input type="radio" id="coin" class="me-3 vouncher" name="money" value="0" checked/>
                         <label for="coin" class="text-white moneys cursor">{{ __('messageCPPK.Coin') }}</label>
                     </div>
                     <div>
-                        <input type="radio" id="cash" class="me-3 vouncher" name="money" value="1"/> 
+                        <input type="radio" id="cash" class="me-3 vouncher" name="money" value="1"/>
                         <label for="cash" class="text-white moneys cursor">{{ __('messageCPPK.Cash') }}</label>
                     </div>
                 </div>
@@ -80,7 +88,6 @@
             </div>
             <div class="d-flex justify-content-center align-items-center forms">
                 <div>
-                    <a href="/cart" type="reset" class="btn me-5 cancels">{{ __('messageCPPK.Back') }}</a>
                     <button type="submit" class="order">{{ __('messageCPPK.Order') }}</button>
                 </div>
             </div>
@@ -91,7 +98,7 @@
           <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content">
               {{-- <div class="modal-header"> --}}
-                
+
               <div class="d-flex justify-content-end ">
                   <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               </div>
@@ -106,7 +113,7 @@
           </div>
         </div>
 {{-- end modal --}}
-        
+
     </div>
    </section>
 @endsection

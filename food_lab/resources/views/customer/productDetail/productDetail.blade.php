@@ -41,10 +41,11 @@
             <div class="row">
                 <div class="col-md-6 col-sm-10 m-auto">
                     
-                        <div class="col-sm-10 mb-5 m-auto">
+                        <div class="col-sm-10 mb-5 m-auto text-center">
                             <div class="m-auto mainblocks">
-                                <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg"
-                                        class="img-fluid" alt="">
+                                    <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg"
+                                    class="img-fluid mainimgs" alt="">
+
                                 </div>
 
                             </div>
@@ -87,7 +88,7 @@
 
                                                         <div class="d-flex justify-content-between">
                                                             <p class="pamount">Amount -</p>
-                                                            <p class="amount">{{ number_format($productId->amount) }}</p>
+                                                            <p class="amount"> <br> <i class="fa-solid fa-money-bill money text-success"></i> {{ number_format($productId->amount) }} MMK</p>
                                                         </div>
 
                                                         <div class="d-flex  justify-content-between">
@@ -218,7 +219,7 @@
 
                             <div class="container-fluid mt-5 p-3">
                                 <div class="d-flex justify-content-center">
-                                    <p class="copy">Copy right by {{ $name->site_name }}</p>
+                                    <p class="copy">Copyright &copy; {{ $name->site_name }}</p>
                                 </div>
                             </div>
                             </div>
@@ -265,7 +266,7 @@
                                 </div>
                                 <div class="modal-footer">
                                    <button type="button" class="btn border-primary btncancel" data-bs-dismiss="modal">Cancel</button></a>
-                                   <a href="/login"> <button type="button" class="btn btn-primary btnlogin" >Login</button></a>
+                                   <a href="/signin"> <button type="button" class="btn btn-primary btnlogin" >Login</button></a>
                                 </div>
                             </div>
                         </div>

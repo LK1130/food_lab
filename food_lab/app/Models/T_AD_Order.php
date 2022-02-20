@@ -16,20 +16,20 @@ class T_AD_Order extends Model
     public $table = 't_ad_order';
     use HasFactory;
 
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of admin ordertransactionDetail
-    * Return 
+    * Return
     */
     public function orderTransaction()
     {
         return T_AD_Order::all();
     }
 
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of admin ordertransactionDetail
-    * Return 
+    * Return
     */
     public function ordertransactionDetails($id)
     {
@@ -43,7 +43,7 @@ class T_AD_Order extends Model
             ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
-            ->join('m_township','m_township.id','=','t_ad_order.township_id')
+            ->join('m_township', 'm_township.id', '=', 't_ad_order.township_id')
             ->where('t_ad_order.del_flg', 0)
             ->where('t_ad_order.id', '=', $id)
             ->first();
@@ -55,10 +55,10 @@ class T_AD_Order extends Model
         return $ordertransactionDetail;
     }
 
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of admin ordertransactionList
-    * Return 
+    * Return
     */
     public function OrderTransactions()
     {
@@ -71,7 +71,7 @@ class T_AD_Order extends Model
             ->join('t_cu_customer', 't_cu_customer.id', '=', 't_ad_order.customer_id')
             ->join('m_ad_login', 'm_ad_login.id', '=', 't_ad_order.last_control_by')
             ->join('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
-            ->join('m_township','m_township.id','=','t_ad_order.township_id')
+            ->join('m_township', 'm_township.id', '=', 't_ad_order.township_id')
             ->orderby('t_ad_order.order_date', 'DESC')
             ->orderby('t_ad_order.order_time', 'DESC')
             ->where('t_ad_order.del_flg', 0)
@@ -83,10 +83,10 @@ class T_AD_Order extends Model
 
         return $ordertransactions;
     }
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of admin Dashboardminitransaction List
-    * Return 
+    * Return
     */
     public function DashboardMinitrans()
     {
@@ -109,10 +109,10 @@ class T_AD_Order extends Model
 
         return $dashboardtrans;
     }
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of admin Dashboardtransaction Count
-    * Return 
+    * Return
     */
     public function Dashboardtranscount()
     {
@@ -131,10 +131,10 @@ class T_AD_Order extends Model
         return $transcount;
     }
 
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of admin Dashboard TodayOrder Count
-    * Return 
+    * Return
     */
     public function Todayordercount()
     {
@@ -156,10 +156,10 @@ class T_AD_Order extends Model
             'End Todayordercount'
         ]);
     }
-    /* Create:Zarni(2022/01/16) 
-    * Update: 
+    /* Create:Zarni(2022/01/16)
+    * Update:
     * This is function is to show the data of User's TransactionDetail
-    * Return 
+    * Return
     */
     public function Usertransaction($id)
     {
@@ -278,7 +278,6 @@ class T_AD_Order extends Model
 
         return $order;
     }
-
     /*
     * Create : Min Khant(14/1/2022)
     * Update :
@@ -306,11 +305,11 @@ class T_AD_Order extends Model
 
 
     /*
-    * Create : Zaw(2022/02/22) 
-    * Update : 
-    * This function is use to 
+    * Create : Zaw(2022/02/22)
+    * Update :
+    * This function is use to
     * Parameters :
-    * Return : 
+    * Return :
     */
     public function orderDailyList()
     {
@@ -420,7 +419,7 @@ class T_AD_Order extends Model
                 $tAdOrderDetail->total_coin = $product['coin'];
                 $tAdOrderDetail->total_cash = $product['cash'];
                 if (array_key_exists('value', $product) == true) {
-                    $tAdOrderDetail->note = $product['value'];
+                    $tAdOrderDetail->note = json_encode($product['value']);
                 } else {
                     $tAdOrderDetail->note = '';
                 }
