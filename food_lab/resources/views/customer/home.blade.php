@@ -32,7 +32,7 @@
                 <div class="row align-items-center items">
                     <div class="col-8 flex-column">
                         <h1 class="fw-bolder tastes">{{ __('messageMK.TasteOurDeliciousFood') }}</h1>
-                        <p class="fw-bold fs-5 ms-5 delivery-infos">
+                        <p class="fw-bold fs-5 ms-5 delivery-infos text-center">
                             {{ __('messageMK.banner') }}
                         </p>
                         <a href="/productLists" class="btn delivery-btns">{{ __('messageMK.shopnow') }}</a>
