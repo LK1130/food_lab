@@ -11,27 +11,6 @@ use Illuminate\Support\Facades\Log;
 class CustomerProfileUpdate extends Controller
 {
 
-    public function index()
-    {
-        Log::channel('adminlog')->info("CustomerProfileUpdate", [
-            'Start index'
-        ]);
-        $sessionCustomerId = session()->get('customerId');
-        $user = new T_CU_Customer();
-        $userinfo = $user->loginUser($sessionCustomerId);
-
-        if ($userinfo === null) {
-            Log::channel('adminlog')->info("CustomerProfileUpdate", [
-                'End index(error)'
-            ]);
-            return view('errors.404');
-        } else {
-            Log::channel('adminlog')->info("CustomerProfileUpdate", [
-                'End index'
-            ]);
-            return view('customer.customerProfile.updateProfile', ['user' => $userinfo]);
-        }
-    }
 
 
     public function update(UpdatePasswordValidation $request, $id)
@@ -54,12 +33,12 @@ class CustomerProfileUpdate extends Controller
 
 
 
-            return redirect('updateprofile');
+            return redirect('editprofile');
         } else {
             Log::channel('adminlog')->info("CustomerProfileUpdate", [
                 'End update(error)'
             ]);
-            return view('errors.404');
+            return redirect()->back()->with('error', 'Wrong Old Password');
         }
     }
 }

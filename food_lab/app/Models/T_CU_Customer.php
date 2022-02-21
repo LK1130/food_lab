@@ -291,8 +291,8 @@ class T_CU_Customer extends Model
       ->where('t_cu_customer.id', '=', $sessionCustomerId)
 
       ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
-      ->join('m_township', 'm_township.id', '=', 't_cu_customer.address1')
-      ->join('m_state', 'm_state.id', '=', 't_cu_customer.address2')
+      ->join('m_township', 'm_township.id', '=', 't_cu_customer.address2')
+      ->join('m_state', 'm_state.id', '=', 't_cu_customer.address1')
       // ->join('m_fav_type', 'm_fav_type.id', '=', 't_cu_customer.fav_type')
       // ->join('m_taste', 'm_taste.id', '=', 't_cu_customer.taste')
       ->first();
@@ -352,7 +352,7 @@ class T_CU_Customer extends Model
     $admin = T_CU_Customer_Login::where('customer_id', '=', $id)
       // ->join('m_cu_customer_login', 'm_cu_customer_login.customer_id', '=', 't_cu_customer.id')
       ->first();
-    $admin->password = $validate['newpassword'];
+    $admin->password = md5(sha1($validate['newpassword']));
 
     $admin->save();
     Log::channel('adminlog')->info("T_CU_Customer Model", [
@@ -401,8 +401,8 @@ class T_CU_Customer extends Model
     $customer->nickname = $validate['username'];
     $customer->bio = $validate['bio'];
     $customer->phone = $validate['phonenumber'];
-    $customer->address1 = $validate['township'];
-    $customer->address2 = $validate['state'];
+    $customer->address1 = $validate['state'];
+    $customer->address2 = $validate['township'];
     $customer->address3 = $validate['addressNumber'];
     $customer->fav_type = $validate['favtype'];
     $customer->taste = $validate['Taste'];

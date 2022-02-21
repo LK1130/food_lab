@@ -18,7 +18,15 @@
 @section('body')
 <section>
     <p class="fs-1 text-white fw-bold text-uppercase text-center pt-4"><img src="/storage/siteLogo/{{ $name->site_logo }}" class="me-4" width="50px" alt="Logo">{{ $name->site_name }}</p>
-    <h1 class="fw-bold ms-4 my-4 heading">{{ __('messageCPPK.Delivery Information') }}</h1>
+    <div class="d-flex ps-5 py-4">
+        <div class="me-4">
+            <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
+        </div>
+        <div>
+            <h1 class="fw-bold heading">{{ __('messageCPPK.Delivery Information') }}</h1>
+        </div>
+    </div>
+
     <div class="d-flex flex-column justify-content-center align-items-center">
         <form action="/insertOrder" class="py-3 formDisplay" method="post">
             @csrf
@@ -80,7 +88,6 @@
             </div>
             <div class="d-flex justify-content-center align-items-center forms">
                 <div>
-                    <a href="/cart" type="reset" class="btn me-5 cancels">{{ __('messageCPPK.Back') }}</a>
                     <button type="submit" class="order">{{ __('messageCPPK.Order') }}</button>
                 </div>
             </div>

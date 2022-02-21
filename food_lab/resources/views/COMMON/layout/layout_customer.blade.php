@@ -29,6 +29,7 @@
 <body>
 
     {{-- Start Marquee --}}
+    <p></p>
     <marquee>
         @foreach ($news as $new)
             <p class="d-inline mx-5 importantnews p-3 fs-5" id="{{ $new->category }}">{{ $new->title }}</p>
@@ -58,7 +59,7 @@
                 </script>
             @endif
 
-            <div class="d-flex">
+            <div class="d-flex ms-auto">
                 @if (session()->has('customerId'))
                     <p class="nav-link d-lg-none mt-1 texts" id="">
                         <a href="/cart" class="d-lg-none position-relative texts"><i
@@ -276,8 +277,7 @@
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+
                     </div>
                 @endif
             </div>

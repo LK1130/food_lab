@@ -159,9 +159,7 @@ document.getElementById('addressState').addEventListener('change', () => {
         success: (response) => {
             let townships = document.getElementsByClassName('townships');
             if(townships.length != 0) {
-                for (let i = 0 ; i < townships.length ; i++) {
-                    townships[i].remove();
-                }
+                $(`.townships`).remove();
             }
             for (let i = 0; i < response.length; i++) {
                 $('#addressTownship').append(`<option class="township-options townships" value="${response[i]['id']}">${response[i]['township_name']}</option>`);
