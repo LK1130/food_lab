@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="/storage/siteLogo/{{ $name->site_logo }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ url('js/commonCustomer.js') }}" type="text/javascript" defer></script>
@@ -59,7 +59,7 @@
                 </script>
             @endif
 
-            <div class="d-flex">
+            <div class="d-flex ms-auto">
                 @if (session()->has('customerId'))
                     <p class="nav-link d-lg-none mt-1 texts" id="">
                         <a href="/cart" class="d-lg-none position-relative texts"><i
@@ -254,8 +254,8 @@
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                     <div class="forMessages d-flex flex-column" id="forMessages">
 
@@ -277,25 +277,14 @@
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+
                     </div>
                 @endif
             </div>
             {{-- End Inform Alert --}}
         </nav>
         {{-- end navbar --}}
-        {{-- /*
-* Create:zayar(2022/01/22)
-* Update:
-*/ --}}
-        {{-- start inform alert box --}}
 
-
-
-
-        {{-- end inform alert box --}}
-        </div>
         @yield('header')
     </header>
     {{-- End Header --}}

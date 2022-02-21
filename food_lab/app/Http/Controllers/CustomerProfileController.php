@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileValidation;
 use App\Models\M_Fav_Type;
+use App\Models\M_Site;
 use App\Models\M_State;
 use App\Models\M_Taste;
 use App\Models\M_Township;
@@ -33,6 +34,8 @@ class CustomerProfileController extends Controller
 
         $mstate = new M_State();
         $staenames = $mstate->stateName();
+        $site = new M_Site();
+        $name = $site->siteName();
 
         if ($userinfo === null) {
             Log::channel('adminlog')->info("CustomerProfileController", [
@@ -51,6 +54,7 @@ class CustomerProfileController extends Controller
                 'user' => $userinfo,
                 'tastes' => $tastes,
                 'types' => $types,
+                'name' => $name,
                 'townships' => $townshipnames,
                 'states' => $staenames
             ]);
@@ -69,6 +73,6 @@ class CustomerProfileController extends Controller
         Log::channel('adminlog')->info("CustomerProfileController", [
             'End update'
         ]);
-        return redirect('/');
+        return redirect('editprofile');
     }
 }

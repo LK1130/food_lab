@@ -44,6 +44,9 @@ $(document).ready(function() {
  * return : form data
  */
     $(".buy").click(function(e) {
+
+
+        clickCount();
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -52,6 +55,7 @@ $(document).ready(function() {
             },
         });
        
+        
 
         let status = [];
         let values = [];
@@ -149,3 +153,15 @@ function changeImage(img) {
     }
 
 }
+
+function clickCount(){
+        
+    console.log(sessionStorage.clickcount);
+    if (sessionStorage.clickcount) {
+        sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+      } else {
+        sessionStorage.clickcount = 1;
+        }
+        $('.cartcount').text(sessionStorage.clickcount);
+  
+    };

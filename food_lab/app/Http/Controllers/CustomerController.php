@@ -58,11 +58,11 @@ class CustomerController extends Controller
             $favTypes = explode(",", $custoemrInfo[0]['fav_type']);
             $mFavType = new M_Fav_Type();
             $product = new M_Product();
-            // foreach ($favTypes as $favType) {
-            //     $id = $mFavType->customerFavType($favType);
-            //     $eachProduct = $product->customerFavType($id['id']);
-            //     array_push($recomProducts, $eachProduct);
-            // }
+            foreach ($favTypes as $favType) {
+                $id = $mFavType->customerFavType($favType);
+                $eachProduct = $product->customerFavType($id['id']);
+                array_push($recomProducts, $eachProduct);
+            }
         }
 
 
@@ -516,6 +516,9 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'start getTownship'
         ]);
+        Log::channel('customerlog')->info('asdfasdf', [
+            $req['data']
+        ]);
         $mTownship = new M_Township();
         $getTownship = $mTownship->townshipName($req['data']);
 
@@ -608,7 +611,29 @@ class CustomerController extends Controller
             'end loginForm'
         ]);
 
-        return view('customer.access.checkMail');
+        return redirect('/checkEmail');
+    }
+
+    /*
+  * Create : Min Khant(19/2/2022)
+  * Update :
+  * Explain of function : To check verify email
+  * Prarameter : no
+  * return : View check mail blade
+ * */
+    public  function checkEmail()
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start checkEmail'
+        ]);
+
+        $site = new M_Site();
+        $name = $site->siteName();
+
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end checkEmail'
+        ]);
+        return view('customer.access.checkMail', ['name' => $name]);
     }
 
     /*

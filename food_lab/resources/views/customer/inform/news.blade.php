@@ -43,36 +43,40 @@
                 @endphp
                 @if ($diff < 3)
                     <div class="  newsA d-flex flex-row  justify-content-between align-items-center">
-                        <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="ms-3 rounded" width="80vw">
-                        <div class="d-flex flex-column mt-2 me-1 ">
-                            <p class=" fs-5 fw-bolder text-truncate Wtruncate ">{{ $allnew->title }}
-                            </p>
-                            <p class="  fs-5 fw-bolder text-truncate Wtruncate">
-                                {{ $allnew->detail }}
-                            </p>
+                        <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="ms-3 rounded" width="60vw">
+                        <div class="titleDateBox">
+                            <div class="d-flex flex-column mt-2">
+                                <p class=" fs-5 fw-bolder Wtruncate ">{{ $allnew->title }}
+                                </p>
+                                <p class="  fs-5 fw-bolder Wtruncate ">
+                                    {{ $allnew->detail }}
+                                </p>
 
+                            </div>
+                            <p class="fs-5 fw-bold  Mtruncate dateDiv">
+                                {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}
+                            </p>
                         </div>
-                        <p class="fs-5 fw-bold me-5">
-                            {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}
-                        </p>
                         <img src="img/new.png" alt="" class="newsLogoMessage" width="40vw">
                     </div>
 
                 @else
 
                     <div class="  newsA d-flex flex-row  justify-content-between align-items-center">
-                        <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="ms-3 rounded" width="80vw">
-                        <div class="d-flex flex-column mt-2 ms-2 ">
-                            <p class=" fs-5 fw-bolder text-truncate Wtruncate ">{{ $allnew->title }}
-                            </p>
-                            <p class="  fs-5 fw-bolder text-truncate Wtruncate">
-                                {{ $allnew->detail }}
-                            </p>
+                        <img src="/storage/newsImage/{{ $allnew->source }}" alt="" class="ms-3 rounded" width="60vw">
+                        <div class="titleDateBox">
+                            <div class="d-flex flex-column mt-2  ">
+                                <p class=" fs-5 fw-bolder  Wtruncate ">{{ $allnew->title }}
+                                </p>
+                                <p class="  fs-5 fw-bolder Wtruncate ">
+                                    {{ $allnew->detail }}
+                                </p>
 
+                            </div>
+                            <p class="fs-5 fw-bold Mtruncate dateDiv">
+                                {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}
+                            </p>
                         </div>
-                        <p class="fs-5 fw-bold me-5">
-                            {{ $diff == 0 ? 'Today' : ($diff == 1 ? 'Yesterday' : $diff . 'days ago') }}
-                        </p>
                         <img src="" alt="" class="newsLogoMessage" width="40vw">
                     </div>
                 @endif

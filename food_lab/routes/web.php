@@ -56,104 +56,105 @@ Route::get('/adminlogout', [AdminController::class, 'logout']);
 Route::group(['middleware' => ['checkAdmin']], function () {
 
 
-    //admin role Check
-  Route::group(['middleware' => ['checkadminRole']], function (){
+   //admin role Check
+   Route::group(['middleware' => ['checkadminRole']], function () {
 
-    Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
-    Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
-    Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
-    Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
-    //_________________________________Chart Routes_________________________
-   /**
-    * For Daily SalesChart show
-    */
-   Route::get('dailyChart', [SalesController::class, 'dailyChart']);
+      Route::get('coinchargeList', [CoinchargeTransaction::class, 'coinchargeList']);
+      Route::get('orderTransaction', [OrderTransactionController::class, 'orderTransaction']);
+      Route::get('ordertransactionDetail', [TransactionController::class, 'ordertransactionDetail']);
+      Route::get('customerinfoDetail', [customerInfoController::class, 'customerinfoDetail']);
+      //_________________________________Chart Routes_________________________
+      /**
+       * For Daily SalesChart show
+       */
+      Route::get('dailyChart', [SalesController::class, 'dailyChart']);
 
-   /**
-    * For Monthly SalesChart show
-    */
-   Route::get('monthlyChart', [SalesController::class, 'monthlyChart']);
+      /**
+       * For Monthly SalesChart show
+       */
+      Route::get('monthlyChart', [SalesController::class, 'monthlyChart']);
 
-   /**
-    * For Yearly SalesChart show
-    */
-   Route::get('yearlyChart', [SalesController::class, 'yearlyChart']);
+      /**
+       * For Yearly SalesChart show
+       */
+      Route::get('yearlyChart', [SalesController::class, 'yearlyChart']);
 
-   /**
-    * For Range Chart show
-    */
-   Route::get('rangeChart', function () {
-      return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
+      /**
+       * For Range Chart show
+       */
+      Route::get('rangeChart', function () {
+         return  view('admin.salesChart.rangeSale', ['order' => '', 'coin' => '', 'orderArray' => [], 'coinArray' => [], 'orderDaily' => [], 'coinDaily' => []]);
+      });
+
+      Route::post('rangeChart', [SalesController::class, 'rangeChart']);
+
+      //admin/setting/loginManage
+      Route::resource('adminLogin', LoginController::class);
+      //admin/setting/coinRate
+      Route::resource('coinrate', CoinController::class);
+      //admin/setting/siteManage
+      Route::get('siteManage', [SiteController::class, 'siteManage']);
+      Route::post('siteManage/store', [SiteController::class, 'store']);
+      //admin/setting/appManage
+      //_________________________________start loginManage_________________________/
+
+      Route::resource('adminLogin', LoginController::class);
+
+      //_________________________________end loginManage_________________________/
+
+      //_________________________________start coinManage_________________________/
+
+      Route::resource('coinrate', CoinController::class);
+
+      //_________________________________end coinManage_________________________/
+
+      //_________________________________start siteManage_________________________/
+
+      Route::get('siteManage', [SiteController::class, 'siteManage']);
+      Route::post('siteManage/store', [SiteController::class, 'store']);
+
+      //_________________________________end siteManage_________________________/
+
+      //_________________________________start appManage_________________________/
+
+      Route::resource('app', AppController::class);
+      Route::resource('township', TownshipController::class);
+      Route::resource('payment', PaymentController::class);
+      Route::resource('category', CategoryController::class);
+      Route::resource('taste', TasteController::class);
+      Route::resource('suggestAdmin', SuggestController::class);
+      Route::resource('favtype', FavtypeController::class);
+      Route::resource('orderstatus', OrderStatusController::class);
+      Route::resource('decision', DecisionController::class);
+      //admin/setting/newsManage
+      Route::resource('news', NewsController::class);
+
+      Route::get('adminValidate/{id}', [AdminController::class, 'adminValidate']);
+      //_________________________________end appManage_________________________/
+
+      //_________________________________start newsManage_________________________/
+
+      Route::resource('news', NewsController::class);
+
+      //_________________________________end newsManage_________________________/
+      //admin/setting/coinRate
+      Route::resource('coinrate', CoinController::class);
    });
-   Route::post('rangeChart', [SalesController::class, 'rangeChart']);
-
-   //admin/setting/loginManage
-   Route::resource('adminLogin', LoginController::class);
-   //admin/setting/coinRate
-   Route::resource('coinrate', CoinController::class);
-   //admin/setting/siteManage
-   Route::get('siteManage', [SiteController::class, 'siteManage']);
-   Route::post('siteManage/store', [SiteController::class, 'store']);
-   //admin/setting/appManage
-   //_________________________________start loginManage_________________________/
-
-   Route::resource('adminLogin', LoginController::class);
-
-   //_________________________________end loginManage_________________________/
-
-   //_________________________________start coinManage_________________________/
-
-   Route::resource('coinrate', CoinController::class);
-
-   //_________________________________end coinManage_________________________/
-
-   //_________________________________start siteManage_________________________/
-
-   Route::get('siteManage', [SiteController::class, 'siteManage']);
-   Route::post('siteManage/store', [SiteController::class, 'store']);
-
-   //_________________________________end siteManage_________________________/
-
-   //_________________________________start appManage_________________________/
-
-   Route::resource('app', AppController::class);
-   Route::resource('township', TownshipController::class);
-   Route::resource('payment', PaymentController::class);
-   Route::resource('category', CategoryController::class);
-   Route::resource('taste', TasteController::class);
-   Route::resource('suggestAdmin', SuggestController::class);
-   Route::resource('favtype', FavtypeController::class);
-   Route::resource('orderstatus', OrderStatusController::class);
-   Route::resource('decision', DecisionController::class);
-   //admin/setting/newsManage
-   Route::resource('news', NewsController::class);
-
-   Route::get('adminValidate/{id}', [AdminController::class, 'adminValidate']);
-   //_________________________________end appManage_________________________/
-
-   //_________________________________start newsManage_________________________/
-
-   Route::resource('news', NewsController::class);
-
-   //_________________________________end newsManage_________________________/
-    //admin/setting/coinRate
-    Route::resource('coinrate', CoinController::class);
-  });
-  //Admin role check end
+   //Admin role check end
 
    /**
     * For Dashboard & Transaction
     */
    Route::get('dashboard', [DashboardController::class, 'dashboardList']);
 
-   
+
    /**
     * Customer Info
     */
    Route::get('customerInfo', [customerInfoController::class, 'customerInfo']);
    Route::get('searchname', [customerInfoController::class, 'customerSearch']);
    Route::get('searchid', [customerInfoController::class, 'customeridSearch']);
-   
+
    /**
     * Customer Report
     */
@@ -184,7 +185,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
    //admin/setting/loginManage
    Route::resource('adminLogin', LoginController::class);
 
-  
+
 
 
    //_________________________________Start Admin Coin Routes_________________________
@@ -206,7 +207,7 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 
 
 
-   
+
 });
 
 //_________________________________Customer Routes_________________________
@@ -252,6 +253,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     * zayar
     */
       Route::resource('editprofile', CustomerProfileController::class);
+      Route::get('editProfile', [CustomerController::class, 'index']);
 
       /*
     * For ajax
@@ -336,11 +338,13 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
  * zayar
  */
    Route::get('/customerNews', [CustomerController::class, 'news']);
+
    /*
      * For Register Form
      */
    Route::post('/access', [CustomerController::class, 'register']);
    Route::post('/getTownship', [CustomerController::class, 'getTownship']);
+
    Route::post('/google', [CustomerController::class, 'google']);
 
    /*
@@ -357,6 +361,12 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      * For Login Form
      */
    Route::post('/login', [CustomerController::class, 'loginForm']);
+
+   //  for Check Mail page
+   Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
+
+
+   //  Route::get()
 
    /*
     For Buy Coin Page
@@ -388,5 +398,3 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
    Route::get('/logout', [CustomerController::class, 'logout']);
 });
-
-

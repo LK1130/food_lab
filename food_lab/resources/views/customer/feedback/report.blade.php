@@ -44,7 +44,6 @@
                 </div>
                 <div class="float-end">
                     <button type="submit" class="btn me-5">{{ __('messageMK.report') }}</button>
-                    <a href="/" type="reset" class="btn me-5 cancels">{{ __('messageMK.cancel') }}</a>
                 </div>
             </form>
         </div>

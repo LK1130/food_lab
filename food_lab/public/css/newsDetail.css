@@ -51,7 +51,7 @@ body {
     font-size: 1.5rem !important;
 }
 .names {
-    font-size: 1.4rem !important;
+    font-size: 2rem !important;
 }
 .detailTital {
     color: var(--secondary-color);
@@ -96,6 +96,19 @@ body {
     color: var(--primary-color);
     font-size: xx-large;
 }
+.coins {
+    color: var(--coin-color);
+    font-size: 1.4rem;
+}
+.cgreen {
+    color: green;
+}
+.cyellow {
+    color: yellow;
+}
+.cgray {
+    color: gray;
+}
 @media (max-width: 720px) {
     /* .news-container {
         width: 90% !important;
@@ -121,6 +134,7 @@ body {
     .names {
         font-size: 0.9rem !important;
     }
+
     /* .detailTital {
         margin-left: auto !important;
     }

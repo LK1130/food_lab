@@ -41,32 +41,33 @@
             <div class="row">
                 <div class="col-md-6 col-sm-10 m-auto">
                     
-                        <div class="col-sm-10 mb-5 m-auto">
+                        <div class="col-sm-10 mb-3 m-auto text-center">
                             <div class="m-auto mainblocks">
-                                <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg"
-                                        class="img-fluid" alt="">
+                                    <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg"
+                                    class="img-fluid mainimgs" alt="">
+
                                 </div>
 
                             </div>
-                            <div class="col-md-12 col-sm-12 bg-light p-2 ">
+                            <div class="col-md-12 col-sm-12  p-2 ">
                                 <div class="d-flex col-md-12 col-sm-12   blocks">
-                                    <div class="d-flex justify-content-center  m-2 customBlock">
+                                    <div class="d-flex justify-content-center  customBlock border">
                                         <img src="@isset($photos[1]->path)/storage/{{ $photos[1]->path }}@endisset"
                                                 class="img-fluid images" onclick="changeImage(this)">
                                         </div>
-                                        <div class="d-flex justify-content-center m-2 customBlock">
+                                        <div class="d-flex justify-content-center customBlock border">
                                             <img src="@isset($photos[2]->path)/storage/{{ $photos[2]->path }}@endisset"
                                                     class="img-fluid  images" onclick="changeImage(this)" alt="">
                                             </div>
-                                            <div class="d-flex justify-content-center  m-2 customBlock">
+                                            <div class="d-flex justify-content-center   customBlock border">
                                                 <img src="@isset($photos[3]->path)/storage/{{ $photos[3]->path }}@endisset"
                                                         class="img-fluid  images" onclick="changeImage(this)" alt="">
                                                 </div>
-                                                <div class="d-flex justify-content-center  m-2 customBlock ">
+                                                <div class="d-flex justify-content-center   customBlock border">
                                                     <img src="@isset($photos[4]->path)/storage/{{ $photos[4]->path }}@endisset"
                                                             class="img-fluid  images" onclick="changeImage(this)" alt="">
                                                     </div>
-                                                    <div class="d-flex justify-content-center  m-2  customBlock">
+                                                    <div class="d-flex justify-content-center   customBlock border">
                                                         <img src="@isset($photos[5]->path)/storage/{{ $photos[5]->path }}@endisset"
                                                                 class="img-fluid images" onclick="changeImage(this)" alt="">
                                                         </div>
@@ -81,34 +82,34 @@
                                                     <div class="col-md-10 col-sm-10 m-auto mt-2">
                                                         <p class="pdname">{{ $productId->product_name }}</p>
                                                         <div class="d-flex justify-content-between m-auto">
-                                                            <p class="pcoin">Coin -</p>
+                                                            <p class="pcoin">Coin :</p>
                                                             <p class="coins"> <i class="fas fa-coins pe-2 icons"></i>{{ $productId->coin }}</p>
                                                         </div>
 
                                                         <div class="d-flex justify-content-between">
-                                                            <p class="pamount">Amount -</p>
-                                                            <p class="amount">{{ number_format($productId->amount) }}</p>
+                                                            <p class="pamount">Amount :</p>
+                                                            <p class="amount"><i class="fa-solid fa-money-bill money text-success"></i> {{ number_format($productId->amount) }} Ks</p>
                                                         </div>
 
                                                         <div class="d-flex  justify-content-between">
-                                                            <p class="ptype">Type -</p>
+                                                            <p class="ptype">Type :</p>
                                                             <p class="type">{{ $productId->favourite_food }}</p>
                                                         </div>
 
                                                         <div class="d-flex justify-content-between">
-                                                            <p class="ptaste">Taste -</p>
+                                                            <p class="ptaste">Taste :</p>
 
                                                             <p class="taste">{{ $productId->taste }}</p>
                                                         </div>
 
                                                         <div class="">
-                                                            <p class="pingredients">Ingredients -</p>
+                                                            <p class="pingredients">Ingredients :</p>
                                                             <span class="col-md-10 col-sm-10  mx-4   m-auto ingredients">
                                                                 {{ $productId->list }} </span>
                                                         </div>
 
                                                         <div class="col-md-10">
-                                                            <p class="pdesc">Description -</p>
+                                                            <p class="pdesc">Description :</p>
                                                             {{-- <input type="text" class="form-control border-0 bg-dark text-light" value="{{ $productId->description }}" readonly> --}}
                                                             <span class="col-md-10 col-sm-10 mx-4 mt-2 mb-2 text-justify   desc ">
                                                                 {{ $productId->description }} </span>
@@ -218,7 +219,7 @@
 
                             <div class="container-fluid mt-5 p-3">
                                 <div class="d-flex justify-content-center">
-                                    <p class="copy">Copy right by {{ $name->site_name }}</p>
+                                    <p class="copy">Copyright &copy; {{ $name->site_name }}</p>
                                 </div>
                             </div>
                             </div>
@@ -265,7 +266,7 @@
                                 </div>
                                 <div class="modal-footer">
                                    <button type="button" class="btn border-primary btncancel" data-bs-dismiss="modal">Cancel</button></a>
-                                   <a href="/login"> <button type="button" class="btn btn-primary btnlogin" >Login</button></a>
+                                   <a href="/signin"> <button type="button" class="btn btn-primary btnlogin" >Login</button></a>
                                 </div>
                             </div>
                         </div>

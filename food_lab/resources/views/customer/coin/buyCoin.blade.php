@@ -77,8 +77,7 @@
             </div>
         </div>
         <br>
-        <div class="copy">
-            <p></p>
+        <div class="copys">
             <p>Copyright &copy; {{ $name->site_name }}</p>
         </div>
     </section>

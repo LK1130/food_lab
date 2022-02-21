@@ -73,9 +73,6 @@
 
 /* Detail Section */
 
-.arrows{
-    
-}
 
 .details{
     font-size: 3.3rem;
@@ -142,13 +139,19 @@
 }
 
 .mainblocks{
+     height: 35vh; 
 
+}
+.mainimgs{
+    height: 100% !important;
+    margin: auto;
+    border-radius: 12px;
 }
 
 .customBlock{
     width: 30% !important;
-    cursor: pointer;
-   
+    height: 20vh !important;
+    cursor: pointer;  
 }
 
 
@@ -439,7 +442,9 @@ input:disabled{
     }
 
     .customBlock{
-        width: 70% !important;
+        width: 60% !important;
+        height: 10vh !important; 
+        /* height: ; */
     }
 
     .inputs{

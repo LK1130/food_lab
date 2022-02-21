@@ -24,7 +24,7 @@ class BuycoinController extends Controller
     /*
      * Create : Zaw Phyo(25/1/2022)
      * Update :
-     * Explain of function : To Call Customer Buycoin View 
+     * Explain of function : To Call Customer Buycoin View
      * Prarameter : no
      * return : View buyCoin blade
      * */
@@ -33,7 +33,7 @@ class BuycoinController extends Controller
         Log::channel('customerlog')->info('Buycoin Controller', [
             'Start customerBuycoin'
         ]);
-        
+
         $messageLimited = [];
         $tracksLimited = [];
         $userinfo = null;
@@ -48,7 +48,7 @@ class BuycoinController extends Controller
 
             $user = new T_CU_Customer();
             $userinfo = $user->loginUser($sessionCustomerId);
-        
+
 
             $news = new M_AD_News();
             $newDatas = $news->news();
@@ -68,7 +68,7 @@ class BuycoinController extends Controller
                 'End customerBuycoin'
             ]);
 
-            return view('customer.buyCoin',[
+            return view('customer.coin.buyCoin',[
                 'nav'=> 'coin',
                 'news' => $newDatas,
                 'user' => $userinfo,
@@ -104,16 +104,16 @@ class BuycoinController extends Controller
         $filepath=$file->store('coinCharge');
 
         $bcustomerID =session("customerId");
-        
+
         $cucoindata = new T_AD_CoinCharge();
         $cucoindata->customerCoinCharge($coinChargeFormdata,$bcustomerID,$filepath);
 
-        
+
 
         Log::channel('customerlog')->info('Buycoin Controller', [
             'End coinrequestUpload'
         ]);
-            
+
         return redirect('/buycoin');
      }
 }

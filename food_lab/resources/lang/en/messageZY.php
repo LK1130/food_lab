@@ -5,7 +5,7 @@ return [
     'loginManage' => 'Login Manage',
     'coinRate' => 'Coin Rate',
     'siteManager' => 'Site Manage',
-    'username' => 'Username',
+    'changeby' => 'Change By',
     'password' => 'Password',
     'role' => 'Role',
     'sa' => 'SA',
@@ -90,7 +90,7 @@ return [
     'detail' => 'Detail',
     'reset' => 'Reset',
     'chosenimage' => 'Chosen Image',
-    'back' => 'Back',
+    'back' => 'Cancel',
     'new' => 'News',
     'message' => 'Messages',
     'track' => 'Tracks',
@@ -130,12 +130,13 @@ return [
     'logout' => 'Logout',
     'yousure' => 'Are
     you sure ?',
-    'logging' => 'You are logging out',
+    'logging' => 'You are Logging Out',
     'messages' => 'Messages',
     'tracks' => 'Tracks',
     'trackDetail' => 'Track Detail',
     'messageDetail' => 'Message Detail',
-    'address' => 'Address', 'address' => 'Address',
+    'rqcoin' => 'Requested Coin',
+    'nostate' => 'There is no state.',
 
 
 ];

@@ -29,7 +29,7 @@
 
         <div class="d-flex justify-content-start ">
             <a href="/productList"><button class="btn btncust1 text-light mt-4">{{ __('messageAMK.Back') }}</button></a>
-           </div>
+        </div>
         <form action="{{ route('product.update', $products->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -209,8 +209,9 @@
                                                                         <div class="col-md-7 col-sm-7">
                                                                             <div class="form-group mt-3">
                                                                                 <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
-                                                                                <textarea type="text" name="list" id="list" class="form-control inputs" rows="4" required>{{ $products->list }}
-                                                                                                                                    </textarea>
+                                                                                <textarea type="text" name="list" id="list" class="form-control inputs" rows="4"
+                                                                                    required>{{ $products->list }}
+                                                                                                                                                                                            </textarea>
 
                                                                             </div>
                                                                         </div>
@@ -259,8 +260,8 @@
                                                                                                     <input type="text" name="pdname{{ $loop->iteration }}"
                                                                                                         class="mx-3 col-sm-3 plabel{{ $loop->iteration }}"
                                                                                                         value="{{ $detail->label }}">
-                                                                                                    <input type="text" class="inputtag"
-                                                                                                        name="pdvalue{{ $loop->iteration }}" value="{{ $detail->value }}"
+                                                                                                    <input type="text" class="inputtag" name="pdvalue{{ $loop->iteration }}"
+                                                                                                        value="{{ $detail->value }}"
                                                                                                         class="ms-3  form-control inputs${count}" data-role="tagsinput">
 
                                                                                                     <div class="mx-3 mt-3 delete" id={{ $loop->iteration }}><i
@@ -275,12 +276,11 @@
                                                                     </div>
                                                                 </div>
 
+
+
                                                                 <div class="row">
                                                                     <div class="col-md-12 d-flex justify-content-end mb-4">
-                                                                        <div class="col-md-6">
-                                                                            <button class="backBtn"><a href="/productList"
-                                                                                    class="back">{{ __('messageAMK.Back') }}</a></button>
-                                                                        </div>
+
                                                                         <div class="col-md-3">
                                                                             <button type="reset" onclick='location.reload();'
                                                                                 class="resetBtn">{{ __('messageAMK.Reset') }}</button>
@@ -293,33 +293,14 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                        <script>
+                                                            var startCount = @json(count($pdetails) + 1);
+                                                            var file = @json($phd[0]->path);
+                                                            console.log(file);
+                                                            var rate = @json($rates->rate);
 
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-end mb-4">
-                                            
-                                            <div class="col-md-3">
-                                            <button type="reset" onclick='location.reload();' class="resetBtn">{{ __('messageAMK.Reset') }}</button>
-                                            
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button type="submit" class="submitBtn">{{ __('messageAMK.Submit') }}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <script>
-                                var startCount = @json(count($pdetails) + 1);
-                                var file = @json($phd[0]->path);
-                                console.log(file);
-                                var rate = @json($rates->rate);
-                            </script>
-                            
-                            <script src="{{ URL::asset('js/adminProduct.js') }}"></script>
-                            <script src="{{ URL::asset('js/adminProductCalculate.js') }}"></script>
-                        @endsection
+                                                        </script>
+
+                                                        <script src="{{ URL::asset('js/adminProduct.js') }}"></script>
+                                                        <script src="{{ URL::asset('js/adminProductCalculate.js') }}"></script>
+                                                    @endsection
