@@ -65,9 +65,9 @@
                 <p class="fs-5 m-auto p-2"><i class="fas fa-coins me-2 coins"></i>{{ $item->coin }}   /   {{ number_format($item->amount) }} MMK</p>
                 <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns"> More Details</button></a>
                 @if (session()->has('customerId'))
-                <button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
+                <button type="button" id="{{ $item->link_id }}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageAMK.shopnow') }}</button>
                 @else
-                <a href="/signin"><button type="button" class="btn shopbtns">{{ __('messageMK.shopnow') }}</button></a>
+                <a href="/signin"><button type="button" class="btn shopbtns">{{ __('messageAMK.shopnow') }}</button></a>
                 @endif
             </div>
             @endforeach

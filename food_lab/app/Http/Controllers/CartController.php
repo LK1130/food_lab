@@ -242,8 +242,7 @@ class CartController extends Controller
                     Log::critical("all pros",[$products]);
                     Log::critical("check id", [$products[$i]['pid'],$newProduct['pid']]);
                     if($products[$i]['pid'] ==  $newProduct['pid']){
-                            
-                             $products[$i]['q']++;
+                            $products[$i]['q']++;
                             return $products;
                     }else{
                          array_push($products,$newProduct);
