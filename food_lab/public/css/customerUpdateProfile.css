@@ -54,11 +54,11 @@ body {
     position: absolute;
     background-color: black;
     color: whitesmoke;
-    margin-bottom: 34vh;
-    margin-left: 4vw;
+    /* margin-bottom: 34vh;
+    margin-left: 4vw; */
     font-size: large;
     width: 12vw;
-    text-align: center;
+    /* text-align: center; */
 }
 .errorPassword {
     position: absolute;
@@ -88,10 +88,10 @@ body {
     width: 25vw;
     height: 6vh;
     border-radius: 1.2vh;
-    margin-left: 11.2vw;
+    /* margin-left: 11.2vw; */
     background-color: var(--primary-color);
     color: white;
-    margin-top: 35vh;
+    /* margin-top: 35vh; */
 }
 .infos {
     margin-bottom: 4vh;
@@ -124,13 +124,14 @@ body {
     margin-bottom: 5vh;
 }
 .alertBox {
-    width: 50vw;
+    width: 90%;
     height: 60vh;
     background-color: black;
     position: absolute;
     z-index: 1;
-    margin-top: 20vh;
-    margin-left: 20vw;
+    /* margin-top: 20vh; */
+    /* margin-left: 20vw; */
+    margin: auto;
     border-radius: 1vh;
 }
 .locks {
@@ -221,8 +222,7 @@ body {
         position: absolute;
         background-color: black;
         color: whitesmoke;
-        margin-bottom: 34vh;
-        margin-left: 2vw;
+        /* ti */
         font-size: 1rem;
         width: 15w;
         text-align: center;

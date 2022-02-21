@@ -36,7 +36,7 @@
                 $color = 'cgreen';
             @endphp
         @endif
-        @if ($message->title == 'REQUESTED')
+        @if ($message->title == 'REQUEST')
             @php
                 $color = 'cyellow';
             @endphp
@@ -58,7 +58,12 @@
                 <p class="titleInfo {{ $color }}">{{ $message->title }}</p>
             </div>
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                <label for="detailTital" class="detailTital  me-auto">{{ __('messageZY.detail') }}</label>
+                <label for="detailTital" class="detailTital me-auto ">{{ __('messageZY.detail') }}</label>
+
+                <p class=" titleInfo  fs-5 w-25">{{ $message->detail }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital  me-auto">{{ __('messageZY.rqcoin') }}</label>
 
                 <p class=" titleInfo  ">{{ $message->request_coin }} <i class="fas fa-coins pe-2 coins"></i></p>
             </div>

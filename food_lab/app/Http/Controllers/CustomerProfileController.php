@@ -73,6 +73,6 @@ class CustomerProfileController extends Controller
         Log::channel('adminlog')->info("CustomerProfileController", [
             'End update'
         ]);
-        return redirect('/');
+        return redirect('editprofile');
     }
 }

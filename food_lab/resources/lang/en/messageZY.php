@@ -135,7 +135,8 @@ return [
     'tracks' => 'Tracks',
     'trackDetail' => 'Track Detail',
     'messageDetail' => 'Message Detail',
-    'address' => 'Address', 'address' => 'Address',
+    'rqcoin' => 'Requested Coin',
+    'nostate' => 'There is no state.',
 
 
 ];

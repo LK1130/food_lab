@@ -52,20 +52,6 @@ $(document).ready(function () {
                     $("#alertCount").css("display", "none");
                 } else $("#alertCount").text(data["alertcount"]);
 
-                $("#profileAlertBody").prepend(
-                    `
-                    <div class="d-flex flex-column justify-content-center align-items-center ">
-                    <i class="far fa-user-circle fs-1 text-light"></i>
-                    <p class="mt-3"><i class="fas fa-coins text-warning fs-1"></i> <span
-                            class=" fw-bolder  text-light"> 300</span> </p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["nickname"]}</p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["email"]}</p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["phone"]}</p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["township_name"]} , ${data["detail"]["state_name"]} , ${data["detail"]["address3"]}</p>
-                    
-                </div>
-                        `
-                );
                 let newscount = data["limitednews"].length;
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, "0");
