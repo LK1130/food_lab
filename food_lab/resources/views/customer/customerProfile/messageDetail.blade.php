@@ -13,7 +13,7 @@
 
 @endsection
 
-@section('title', 'Message Detail')
+@section('title', "$name->site_name | Message Detail")
 @section('body')
 
 
@@ -51,7 +51,7 @@
                 $color = 'cgray';
             @endphp
         @endif
-        <div class="d-flex flex-column newsDetailContainer  m-auto">
+        <div class="d-flex flex-column newsDetailContainer  align-self-center">
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital me-auto">{{ __('messageZY.title') }}</label>
 
@@ -60,7 +60,7 @@
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital me-auto ">{{ __('messageZY.detail') }}</label>
 
-                <p class=" titleInfo  fs-5 w-25">{{ $message->detail }}</p>
+                <p class=" titleInfo  fs-5 ">{{ $message->detail }}</p>
             </div>
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital  me-auto">{{ __('messageZY.rqcoin') }}</label>
