@@ -28,11 +28,15 @@ class M_AD_Track extends Model
 
             ->where('t_ad_order.del_flg', 0)
             ->leftjoin('m_ad_track', 'm_ad_track.order_id', '=', 't_ad_order.id')
+            ->where('m_ad_track.del_flg', 0)
             ->select('*', DB::raw('m_ad_track.updated_at AS trackscreated'), DB::raw('m_ad_track.id AS tid'))
             ->orderBy('m_ad_track.updated_at', 'DESC')
             ->leftjoin('m_order_status', 'm_order_status.id', '=', 't_ad_order.order_status')
+            ->where('m_order_status.del_flg', 0)
             ->leftjoin('t_ad_orderdetail', 't_ad_orderdetail.order_id', '=', 't_ad_order.id')
+            ->where('t_ad_orderdetail.del_flg', 0)
             ->leftjoin('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
+            ->where('m_product.del_flg', 0)
             ->limit(3)
             ->get();
 

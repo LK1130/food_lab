@@ -165,11 +165,17 @@ class M_Fav_Type extends Model
   }
 
 
-  public function tagsType(){
+  public function tagsType()
+  {
 
-
-    $types = M_Fav_Type::all()->pluck('favourite_food')->toArray();
-    Log::critical("message",[$types]);
+    Log::channel('customerlog')->info('M_Fav_Type Modal', [
+      'start tagsType'
+    ]);
+    $types = M_Fav_Type::select('favourite_food')->get();
+    Log::channel('customerlog')->info('gggggggg', []);
+    Log::channel('customerlog')->info('M_Fav_Type Modal', [
+      'start tagsType'
+    ]);
     return $types;
   }
 }

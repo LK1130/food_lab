@@ -12,12 +12,13 @@
 @section('js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="{{ url('js/adminTypeAhead.js') }}" defer></script>
     <script src="{{ url('js/bootstrap-tagsinput.min.js') }}" defer></script>
-    <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
+    {{-- <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script> --}}
     <script src="{{ url('js/updateProfile.js') }}" type="text/javascript" defer></script>
     <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 @endsection
-@section('title', 'Edit Profile')
+@section('title', " $name->site_name | Edit Profile")
 
 @section('body')
     {{-- Start Profile Edit Section --}}
@@ -41,7 +42,8 @@
         {{-- <p class="fw-bold  titleEditProfile">{{ __('messageZY.editprofile') }}</p> --}}
         <div id="editProfile">
 
-            <form action="{{ route('editprofile.update', $user->cid) }}" method="POST">
+            <form action="{{ route('editprofile.update', $user->cid) }}" method="POST"
+                onkeydown="return event.key != 'Enter';">
                 @csrf
                 @method('PUT')
                 <div class="bodyEditProfile d-flex flex-row justify-content-center">
@@ -156,9 +158,25 @@
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-2 infos" id="favType">
                         <i class="fas fa-grin-hearts fs-3 me-4 mt-2 text-light"></i>
+
+                        @php
+                            $favtypes = $user->fav_type;
+                            $favArrays = explode(',', $favtypes);
+                        @endphp
                         <div class="InputParent" id="favType2">
-                            <input type="text" name="favtype" value="{{ $user->fav_type }}" data-role="tagsinput">
+                            <select multiple data-role="tagsinput" name="favtype" id="favTypesInput">
+                                @forelse ($favArrays as $favArray)
+                                    <option value="{{ $favArray }}">{{ $favArray }}</option>
+                                @empty
+                                    <option disabled>No data</option>
+                                @endforelse
+
+                            </select>
                         </div>
+                        {{-- <div class="InputParent" id="favType2">
+                            <input type="text" name="favtype" value="{{ $user->fav_type }}" id="favTypesInput"
+                                data-role="tagsinput">
+                        </div> --}}
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                         <i class="fas fa-dizzy fs-3 me-4 mt-2 text-light"></i>
@@ -182,7 +200,7 @@
 
 
         {{-- to change password --}}
-        @if ($errors->any())
+        @if ($errors->has('oldpassword') || $errors->has('newpassword') || $errors->has('confirmpassword'))
             <input type="text" value="1" id="error" class="hide">
         @else
             <input type="text" value="0" id="error" class="hide">

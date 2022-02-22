@@ -47,7 +47,7 @@ class DeliveryInfoController extends Controller
                 'End deliveryInfo'
             ]);
 
-            return View('customer.cart.deliveryInfo', ['name' => $name,'deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
+            return View('customer.cart.deliveryInfo', ['name' => $name, 'deliInfo' => $deliInfo, 'grandCoin' => session('grandCoin'), 'grandCash' => session('grandCash')]);
         }
         return redirect('/');
     }
@@ -71,7 +71,7 @@ class DeliveryInfoController extends Controller
         $deliInfo = $deliTownshipInfo->deliveryTownship($userID);
         $township = $deliInfo['address2'];
 
-        if($vouncher == 0) {
+        if ($vouncher == 0) {
             $grandCoin = session('grandCoin');
             $grandCash = 0;
             for ($i = 0; $i < count($productArrays); $i++) {
@@ -80,11 +80,11 @@ class DeliveryInfoController extends Controller
             $tCuCoinCustomer = new T_CU_Coin_Customer();
             $checkCoin = $tCuCoinCustomer->customerCoin($userID);
 
-            $reaminCoin = $checkCoin['remain_coin'] ;
+            $reaminCoin = $checkCoin['remain_coin'];
             $totalCoin = session('grandCoin');
 
-            if($reaminCoin >= $totalCoin ) {
-                $calCustomerCoin = $tCuCoinCustomer->calCustomerCoin($userID,$reaminCoin,$totalCoin);
+            if ($reaminCoin >= $totalCoin) {
+                $calCustomerCoin = $tCuCoinCustomer->calCustomerCoin($userID, $reaminCoin, $totalCoin);
 
                 $tAdOrder = new T_AD_Order();
                 $customerOrder = $tAdOrder->customerOrder($userID, $township, $productArrays, $grandCoin, $grandCash, $phone);
@@ -95,7 +95,7 @@ class DeliveryInfoController extends Controller
                 ]);
 
                 return 'true';
-            }else{
+            } else {
 
                 Log::channel('customerlog')->info('DeliveryInfoController', [
                     'end order'
@@ -103,7 +103,7 @@ class DeliveryInfoController extends Controller
 
                 return  'false';
             }
-        }else{
+        } else {
             $grandCoin = 0;
             $grandCash = session('grandCash');
             for ($i = 0; $i < count($productArrays); $i++) {
@@ -121,5 +121,4 @@ class DeliveryInfoController extends Controller
             return 'true';
         }
     }
-
 }

@@ -114,7 +114,7 @@ class CoinController extends Controller
         ]);
         $admin = new M_AD_CoinRate();
         $admin->coinRateChange($request);
-
+                //  need to write product rate
         Log::channel('adminlog')->info("CoinController", [
             'End rateStore'
         ]);
