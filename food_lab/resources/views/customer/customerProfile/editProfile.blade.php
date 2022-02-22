@@ -12,9 +12,9 @@
 @section('js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
-    <script src="{{ url('js/adminTypeAhead.js') }}" defer></script>
     <script src="{{ url('js/bootstrap-tagsinput.min.js') }}" defer></script>
-    {{-- <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script> --}}
+    <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
+    <script src="{{ url('js/adminTypeAhead.js') }}" defer></script>
     <script src="{{ url('js/updateProfile.js') }}" type="text/javascript" defer></script>
     <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 @endsection
@@ -163,7 +163,7 @@
                             $favtypes = $user->fav_type;
                             $favArrays = explode(',', $favtypes);
                         @endphp
-                        <div class="InputParent" id="favType2">
+                        {{-- <div class="InputParent" id="favType2">
                             <select multiple data-role="tagsinput" name="favtype" id="favTypesInput">
                                 @forelse ($favArrays as $favArray)
                                     <option value="{{ $favArray }}">{{ $favArray }}</option>
@@ -172,11 +172,11 @@
                                 @endforelse
 
                             </select>
-                        </div>
-                        {{-- <div class="InputParent" id="favType2">
-                            <input type="text" name="favtype" value="{{ $user->fav_type }}" id="favTypesInput"
-                                data-role="tagsinput">
                         </div> --}}
+                        <div class="InputParent" id="favType2">
+                            <input type="text" value="{{ $user->fav_type }}" id="favTypesInput"
+                                data-role="tagsinput">
+                        </div>
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
                         <i class="fas fa-dizzy fs-3 me-4 mt-2 text-light"></i>
