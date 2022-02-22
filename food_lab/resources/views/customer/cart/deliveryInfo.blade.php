@@ -28,7 +28,7 @@
     </div>
 
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <form action="/insertOrder" class="py-3 formDisplay" method="post">
+        <form action="" class="py-3 formDisplay" method="post">
             @csrf
             <div class="d-flex mb-4 forms">
                 <div class="text-center labels">
@@ -43,7 +43,7 @@
                     <label class="fw-bold"id="details">{{ __('messageCPPK.Phone') }}</label>
                 </div>
                 <div class="inputs">
-                    <input type="text" name="phone" class="controlForm phone" id="phone" value="{{$deliInfo->phone }}"/>
+                    <input type="text" name="phone" class="controlForm phone" id="phone" value="{{$deliInfo->phone }}" required/>
                 </div>
             </div>
             <div class="d-flex mb-4 forms">
@@ -88,31 +88,64 @@
             </div>
             <div class="d-flex justify-content-center align-items-center forms">
                 <div>
-                    <button type="submit" class="order">{{ __('messageCPPK.Order') }}</button>
+                    <input type="button" data-bs-toggle="modal" data-bs-target="#modal1" class="order" value="{{ __('messageCPPK.Order') }}">
                 </div>
             </div>
         </form>
-              {{-- start modal --}}
-      <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
-      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content">
-              {{-- <div class="modal-header"> --}}
-
-              <div class="d-flex justify-content-end ">
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              </div>
-              {{-- </div> --}}
-              {{-- <div class="modal-body"> --}}
-                <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Your order has successfully completed!</p>
-              {{-- </div> --}}
-              <div class="modal-footer">
-               <a href="/"> <button type="button" class="btn btnCart" >OK</button></a>
-              </div>
+        {{-- start modal --}}
+        <div class="modal" id="modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Your order has successfully completed!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/"> <button type="button" class="btn btnCart confirms" >OK</button></a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-{{-- end modal --}}
+        {{-- end modal --}}
+        {{--start order confirm moadal--}}
+        <div class="modal" id="modal1" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="modal-title"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Are you sure? You want to buy this.</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn no_orders" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn confirms order-confirms">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--start order confirm  moadal--}}
+
+        {{--start no enough moadal--}}
+        <div class="modal" id="modal2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Doesn't enuogh Coin .</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please Buy more Coin.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/buycoin"><button type="button" class="btn confirms ">Ok</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--start no enough moadal--}}
 
     </div>
    </section>

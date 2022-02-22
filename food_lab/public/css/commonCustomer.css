@@ -60,6 +60,15 @@ marquee {
 
 /*start navbar*/
 
+.navbar{
+    align-items: flex-start !important;
+    flex-direction: column !important;
+}
+
+.navbar-collapse{
+    width: 100% !important;
+}
+
 .navs {
     background-color: var(--bg-color);
     font-size: 1.3rem;

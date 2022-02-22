@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class T_CU_Coin_Customer extends Model
@@ -12,8 +13,8 @@ class T_CU_Coin_Customer extends Model
     use HasFactory;
 
     /*
-    * Create : linn(2022/01/16) 
-    * Update : 
+    * Create : linn(2022/01/16)
+    * Update :
     * This function is use to set coin.
     * Parameters : customer_id and add coin amount
     * Return : no
@@ -45,4 +46,62 @@ class T_CU_Coin_Customer extends Model
             'End setCoin'
         ]);
     }
+
+    /* Create:Min Khant(22/2/2022)
+    * Update:
+    * This is function is to check customer coin amount
+    * Parameter : customer id
+    * Return no
+    */
+    public function customerCoin($id)
+    {
+        Log::channel('customerlog')->info('DeliveryInfoController', [
+            'start customerCoin'
+        ]);
+        $check = T_CU_Coin_Customer::select('remain_coin')
+            ->where('customer_id',$id)
+            ->where('del_flg',0)
+            ->first();
+        Log::channel('customerlog')->info('DeliveryInfoController', [
+            'end customerCoin'
+        ]);
+        return $check;
+    }
+
+    /* Create:Min Khant(22/2/2022)
+      * Update:
+      * This is function is to calculate customer coin amount after buy product
+      * Parameter : customer id , total coin
+      * Return no
+      */
+    public function calCustomerCoin($id,$remain_coin,$sub_coin)
+    {
+        Log::channel('customerlog')->info('DeliveryInfoController', [
+            'start customerCoin'
+        ]);
+        $calCoin = $remain_coin - $sub_coin;
+
+        DB::transaction(function() use($id,$calCoin,$sub_coin){
+            T_CU_Coin_Customer::where('customer_id', $id)
+                ->update([
+                    'remain_coin' => $calCoin
+                ]);
+
+            $tCuCoinHistory = new T_CU_Coin_Customer_History();
+            $tCuCoinHistory->customer_id = $id;
+            $tCuCoinHistory->add_coin = -$sub_coin;
+            $tCuCoinHistory->balance_coin = $calCoin;
+            $tCuCoinHistory->last_control_by = '0';
+            $tCuCoinHistory->note = 'Buy Product';
+            $tCuCoinHistory->by_action = '1';
+            $tCuCoinHistory->save();
+        });
+
+        Log::channel('customerlog')->info('DeliveryInfoController', [
+            'end customerCoin'
+        ]);
+
+    }
+
+
 }
