@@ -84,7 +84,7 @@ $(document).ready(function () {
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace("text"),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: {
-            url: "/getfavtypes",
+            url: "127.0.0.1:8000/getfavtypes",
             filter: function (list) {
                 return $.map(list, function (favourite_food) {
                     return { name: favourite_food };
