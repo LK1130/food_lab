@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_CoinRate;
 use App\Models\M_Payment;
+use App\Models\M_Product;
 use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_CoinCharge_Decision_History;
 use App\Models\T_AD_CoinCharge_Finance;
@@ -97,8 +98,8 @@ class CoinController extends Controller
 
     /*
     * Create : linn(2022/01/17) 
-    * Update : 
-    * This function is use to show coin change history.
+    * Update : Aung Min Khant (2022/22/2)
+    * This function is use to show coin change history. and change existing all product coin rate
     * Parameters : no
     * Return : view('admin.coin.rateHistory')
     */
@@ -114,7 +115,13 @@ class CoinController extends Controller
         ]);
         $admin = new M_AD_CoinRate();
         $admin->coinRateChange($request);
-                //  need to write product rate
+        
+        $rates = $admin->getRate();
+        $products = new M_Product();
+        $products->changeAmount($rates->rate);
+    
+        
+
         Log::channel('adminlog')->info("CoinController", [
             'End rateStore'
         ]);
