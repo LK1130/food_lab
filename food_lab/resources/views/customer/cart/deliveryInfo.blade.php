@@ -104,11 +104,15 @@
               </div>
               {{-- </div> --}}
               {{-- <div class="modal-body"> --}}
-                <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Your order has successfully completed!</p>
+                <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span> Are you sure? You want to order this.</p>
               {{-- </div> --}}
-              <div class="modal-footer">
-               <a href="/"> <button type="button" class="btn btnCart" >OK</button></a>
-              </div>
+              {{--  <div class="modal-footer">
+                <a href="/"> <button type="button" class="btn btnCart" >OK</button></a>  
+              </div>  --}}
+              <div class="modal-footer d-flex justify-content-end">
+                <a href="/deliveryInfo"><button type="button" class="btn btnShopping" data-bs-dismiss="modal">No</button></a>
+                <a href=""> <button type="button" class="btn btnCart buy" >Yes</button></a>
+             </div>
             </div>
           </div>
         </div>
