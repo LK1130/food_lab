@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Expr\FuncCall;
 use SebastianBergmann\Environment\Console;
+use App\Common\Method;
 
 class T_CU_Customer extends Model
 {
@@ -236,7 +237,10 @@ class T_CU_Customer extends Model
 
     $customerId = $firstStr . $lastStr . $firstemail . $firstPwd . $lastPwd . $day . $hour . $generateKey;
 
-    DB::transaction(function () use ($customerId, $data, $key) {
+    $customercoin = new Method();
+    $coin = $customercoin->customerCoin();
+
+    DB::transaction(function () use ($customerId, $data, $key ,$coin) {
       //insert customer
       $customer = new T_CU_Customer();
       $customer->customerID = $customerId;
@@ -257,6 +261,12 @@ class T_CU_Customer extends Model
       $customerLogin->customer_id =  $customer->id;
       $customerLogin->verify_code = $key;
       $customerLogin->save();
+
+      //insert customer coin
+        $customerCoin = new T_CU_Coin_Customer();
+        $customerCoin->customer_id = $customer->id;
+        $customerCoin->remain_coin = $coin;
+        $customerCoin->save();
 
       // $customer->customerLogin()->save($customerLogin);
     });

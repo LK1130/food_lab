@@ -473,22 +473,19 @@ class CustomerController extends Controller
 
         $msite = new M_Site();
         $siteName = $msite->siteName();
-
         //send verify mail
-        if ($createAccount) {
-            $mail = [
-                'name' => $validated['username'],
-                'siteName' => $siteName->site_name,
-                'verifyLink' => $generateKey
-            ];
-            Mail::to($validated['email'])->send(new VerifyMail($mail));
+        $mail = [
+            'name' => $validated['username'],
+            'siteName' => $siteName,
+            'verifyLink' => $generateKey
+        ];
+        Mail::to($validated['email'])->send(new VerifyMail($mail));
 
-            Log::channel('customerlog')->info('Customer Controller', [
-                'end register'
-            ]);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end register'
+        ]);
 
-            return redirect('/signin');
-        }
+        return redirect('/signin');
     }
 
     /*

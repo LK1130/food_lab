@@ -3,12 +3,12 @@
 namespace App\Common;
 
 /**
- * This is used for common variable for all 
+ * This is used for common variable for all
  */
 
 class Variable
 {
-    //PUBLIC 
+    //PUBLIC
     public $REQUEST = 1; // Reject status
     public $APPROVE = 2; // Approve status
     public $WAITING = 3; // Waiting status
@@ -20,8 +20,9 @@ class Variable
     public $REJ_MESSAGE_DET = "Your Payment Was Reject By Admin.Contact Our Cell Center";
 
 
-    public $REQ = "REQUEST"; 
-    public $APP = "APPROVED"; 
-    public $WAIT = "WAITING"; 
-    public $REJ = "REJECT"; 
+    public $REQ = "REQUEST";
+    public $APP = "APPROVED";
+    public $WAIT = "WAITING";
+    public $REJ = "REJECT";
+
 }

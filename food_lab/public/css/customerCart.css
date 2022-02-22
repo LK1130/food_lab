@@ -94,6 +94,15 @@ body {
     position: relative;
 }
 
+.products .product-img{
+    height: 200px !important;
+    overflow: hidden;
+}
+
+.products .product-img img{
+    width: 100%;
+}
+
 .no-datas{
     height: 20vh;
 }
@@ -295,11 +304,11 @@ body {
 .totals::after {
     content: ' ';
     display: block;
-    width: 80%;
-    height: 4px;
+    width: 70%;
+    height: 2px;
     background-color: #FFFFFF;
     position: absolute;
-    bottom: 105%;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -352,6 +361,11 @@ body {
 
 @media(max-width: 750px) {
     /* Start Cart Section */
+
+    .products .product-img{
+        height: 100px !important;
+    }
+
     #qtyTitle,
     #productTitle {
         font-size: 0.9rem;

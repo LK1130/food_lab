@@ -22,7 +22,7 @@
 
         <div class="text-white fw-bolder policy-infos">
             <p class="policyheaders">{{ __('messageMK.policyInfo') }}</p>
-            <div class="ps-5 mt-4">
+            <div>
                 <p>{{ $policys->privacy_policy }}</p>
             </div>
         </div>

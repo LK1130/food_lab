@@ -325,48 +325,43 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
    Route::get('/signup', [CustomerController::class, 'signup']);
 
-
-   /*
- * For news get initial
- * zayar
- */
-   Route::get('/getnews', [CustomerController::class, 'getNews']);
-
-
-   /*
- * For news page
- * zayar
- */
-   Route::get('/customerNews', [CustomerController::class, 'news']);
-
-   /*
+    /*
      * For Register Form
      */
-   Route::post('/access', [CustomerController::class, 'register']);
-   Route::post('/getTownship', [CustomerController::class, 'getTownship']);
+    Route::post('/access', [CustomerController::class, 'register']);
+    Route::post('/getTownship', [CustomerController::class, 'getTownship']);
 
-   Route::post('/google', [CustomerController::class, 'google']);
+    Route::post('/google', [CustomerController::class, 'google']);
+
+    /*
+      * For verify account
+      */
+    Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
+
+    /*
+      * For Login Page
+      */
+    Route::get('/signin', [CustomerController::class, 'login']);
+
+    /*
+      * For Login Form
+      */
+    Route::post('/login', [CustomerController::class, 'loginForm']);
+
+    //  for Check Mail page
+    Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
 
    /*
-     * For verify account
+     * For news get initial
+     * zayar
      */
-   Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
+   Route::get('/getnews', [CustomerController::class, 'getNews']);
 
    /*
-     * For Login Page
+     * For news page
+     * zayar
      */
-   Route::get('/signin', [CustomerController::class, 'login']);
-
-   /*
-     * For Login Form
-     */
-   Route::post('/login', [CustomerController::class, 'loginForm']);
-
-   //  for Check Mail page
-   Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
-
-
-   //  Route::get()
+   Route::get('/customerNews', [CustomerController::class, 'news']);
 
    /*
     For Buy Coin Page
