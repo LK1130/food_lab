@@ -39,14 +39,14 @@
             @endphp
 
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.product') }}</label>
+                <label for="detailTital" class="detailTital me-auto  ms-1 w-25">{{ __('messageZY.product') }}</label>
 
-                <div class="d-flex flex-column namesShow">
+                <div class="d-flex flex-column titleInfo ms-1 w-50 namesShow">
                     @foreach ($namesArray as $nameB)
                         @php
                             $c++;
                         @endphp
-                        <p class=" mb-1 ms-5 titleInfo names">
+                        <p class=" titleInfo  names">
                             {{ $c }}. {{ $nameB }}</p>
                     @endforeach
                 </div>

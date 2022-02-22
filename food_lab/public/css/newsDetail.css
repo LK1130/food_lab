@@ -28,20 +28,24 @@ body {
 }
 .newsDetailContainer {
     height: 80%;
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: row;
     border-radius: 20px solid white !important;
     gap: 9vh;
-    margin-top: 5% !important;
-    margin-left: 32% !important;
+    margin-top: 3% !important;
+    margin-left: 25% !important;
 }
 .trackDetailContainer {
     height: 80%;
     width: 60%;
-    gap: 2vh;
+    gap: 5vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px solid white !important;
     margin-top: 4vh !important;
-    margin: auto;
+    margin-top: 3% !important;
+    margin-left: 25% !important;
 }
 .roe img {
     width: 20%;
@@ -129,6 +133,8 @@ body {
     }
     .trackDetailContainer {
         width: 90%;
+        margin-left: 7% !important;
+        margin-top: 20% !important;
     }
     .detailTital {
         font-size: 1rem;
