@@ -325,20 +325,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
      */
   Route::get('/signup', [CustomerController::class, 'signup']);
 
-
-  /*
- * For news get initial
- * zayar
- */
-  Route::get('/getnews', [CustomerController::class, 'getNews']);
-
-
-  /*
- * For news page
- * zayar
- */
-  Route::get('/customerNews', [CustomerController::class, 'news']);
-
   /*
      * For Register Form
      */
@@ -348,25 +334,34 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
   Route::post('/google', [CustomerController::class, 'google']);
 
   /*
-     * For verify account
-     */
+      * For verify account
+      */
   Route::get('mail/{key}', [CustomerController::class, 'verifyLink']);
 
   /*
-     * For Login Page
-     */
+      * For Login Page
+      */
   Route::get('/signin', [CustomerController::class, 'login']);
 
   /*
-     * For Login Form
-     */
+      * For Login Form
+      */
   Route::post('/login', [CustomerController::class, 'loginForm']);
 
   //  for Check Mail page
   Route::get('/checkEmail', [CustomerController::class, 'checkEmail']);
 
+  /*
+     * For news get initial
+     * zayar
+     */
+  Route::get('/getnews', [CustomerController::class, 'getNews']);
 
-  //  Route::get()
+  /*
+     * For news page
+     * zayar
+     */
+  Route::get('/customerNews', [CustomerController::class, 'news']);
 
   /*
     For Buy Coin Page
@@ -374,10 +369,6 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
   Route::get('/buycoin', [BuycoinController::class, 'customerBuycoin']);
   Route::post('/buycoinForm', [BuycoinController::class, 'coinrequestUpload']);
 
-  /*
-    For getting fav types
-    */
-  Route::get('/getfavtypes', [CustomerController::class, 'tagsFavType']);
 
   /*
      * For Product Detail Form

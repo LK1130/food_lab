@@ -81,10 +81,11 @@ $(document).ready(function () {
     // });
 
     var favTypes = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("text"),
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: {
-            url: "127.0.0.1:8000/getfavtypes",
+            url: location.protocol + "//" + location.host + "/getfavtypes/",
+            cache: false,
             filter: function (list) {
                 return $.map(list, function (favourite_food) {
                     return { name: favourite_food };
@@ -94,14 +95,22 @@ $(document).ready(function () {
     });
     favTypes.initialize();
 
-    var elt = $("#favTypesInput");
-    elt.tagsinput({
-        itemValue: "value",
-        itemText: "text",
+    $("#favTypesInput").tagsinput({
         typeaheadjs: {
-            name: "favTypes",
-            displayKey: "text",
+            name: "favtype",
+            displayKey: "name",
+            valueKey: "name",
             source: favTypes.ttAdapter(),
         },
     });
+
+    // elt.tagsinput({
+    //     itemValue: "value",
+    //     itemText: "text",
+    //     typeaheadjs: {
+    //         name: "favTypes",
+    //         displayKey: "text",
+    //         source: favTypes.ttAdapter(),
+    //     },
+    // });
 });
