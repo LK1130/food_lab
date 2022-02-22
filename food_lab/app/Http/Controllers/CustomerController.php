@@ -749,9 +749,14 @@ class CustomerController extends Controller
     public function tagsFavType()
     {
 
-
+        Log::channel('customerlog')->info('Customer Controller', [
+            'Start tagsFavType'
+        ]);
         $mFavType = new M_Fav_Type();
         $type = $mFavType->tagsType();
-        return response($type);
+        return $type;
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end tagsFavType'
+        ]);
     }
 }
