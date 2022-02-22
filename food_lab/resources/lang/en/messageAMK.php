@@ -27,5 +27,6 @@ return [
     'Coin' => 'Coin',
     'Amount' => 'Amount',
     'Avaliable' => 'Avaliable',
-    'Edit' =>'Edit'
+    'Edit' =>'Edit',
+    'shopnow' => 'Shop Now'
 ];
