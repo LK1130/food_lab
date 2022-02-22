@@ -56,7 +56,61 @@ $(document).ready(function () {
             },
         });
     }
+
     document.getElementById("addressState").addEventListener("change", () => {
         initial();
     });
+    // var FavJson = {};
+    // $.ajax({
+    //     type: "GET",
+    //     url: "getfavtypes",
+    //     success: function (data) {
+    //         FavJson = JSON.stringify(data);
+    //         console.log(FavJson);
+    //         $("#favTypesInput").tagsinput({
+    //             typeahead: {
+    //                 source: function (query) {
+    //                     return FavJson;
+    //                 },
+    //             },
+    //         });
+    //     },
+    // });
+    // document.getElementById("favTypesInput").addEventListener("change", () => {
+    //     $("favTypesInput").tagsinput("items");
+    // });
+
+    var favTypes = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: {
+            url: location.protocol + "//" + location.host + "/getfavtypes/",
+            cache: false,
+            filter: function (list) {
+                return $.map(list, function (favourite_food) {
+                    return { name: favourite_food };
+                });
+            },
+        },
+    });
+    favTypes.initialize();
+
+    $("#favTypesInput").tagsinput({
+        typeaheadjs: {
+            name: "favtype",
+            displayKey: "name",
+            valueKey: "name",
+            source: favTypes.ttAdapter(),
+        },
+    });
+
+    // elt.tagsinput({
+    //     itemValue: "value",
+    //     itemText: "text",
+    //     typeaheadjs: {
+    //         name: "favTypes",
+    //         displayKey: "text",
+    //         source: favTypes.ttAdapter(),
+    //     },
+    // });
 });

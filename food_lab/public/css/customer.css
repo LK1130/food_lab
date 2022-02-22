@@ -461,6 +461,7 @@
 }
 
 .policy-infos {
+    width: 80%;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
     word-spacing: 0.5px;
@@ -477,9 +478,18 @@
 
 .policy-infos div>* {
     padding-bottom: 10px;
+    margin-left: 30px;
 }
 
+@media (max-width: 720px) {
+    .policy-infos {
+        font-size: 0.9rem;
+    }
 
+    .policyheaders {
+        font-size: 1.6rem;
+    }
+}
 /*End Policy Section*/
 
 
