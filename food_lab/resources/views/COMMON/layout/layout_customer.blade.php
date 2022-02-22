@@ -69,9 +69,9 @@
                     </p>
                     {{-- <p class="nav-link d-lg-none me-2 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
                     </p> --}}
-                    <div class="dropdown d-lg-none mx-2 mt-2" id="profileButton2">
+                    <div class="dropdown d-lg-none mx-3 mt-2" id="profileButton2">
 
-                        <i class="fas fa-user-circle fs-2 dropdown-toggle  texts" type="button"
+                        <i class="fas fa-user-circle fs-1 dropdown-toggle  texts" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="profileButton2">

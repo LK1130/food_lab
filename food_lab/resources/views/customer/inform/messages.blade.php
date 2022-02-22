@@ -14,7 +14,7 @@
 
 @endsection
 
-@section('title', 'Food Lab')
+@section('title', "$name->site_name | Messages")
 @section('body')
 
     <div class="d-flex ps-5 py-4">

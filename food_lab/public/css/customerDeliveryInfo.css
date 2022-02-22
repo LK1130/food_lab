@@ -122,6 +122,15 @@ input[type='radio'],
     border-radius: 0.3em;
 }
 
+.no_orders{
+    border: 1px solid var(--primary-color);
+}
+
+.confirms{
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
 @media (max-width: 720px) {
     .heading {
         font-size: x-large;

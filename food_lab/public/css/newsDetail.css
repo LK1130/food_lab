@@ -28,16 +28,24 @@ body {
 }
 .newsDetailContainer {
     height: 80%;
-    width: 40%;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px solid white !important;
     gap: 9vh;
-    margin-top: 4vh !important;
+    margin-top: 3% !important;
+    margin-left: 25% !important;
 }
 .trackDetailContainer {
     height: 80%;
     width: 60%;
-    gap: 2vh;
+    gap: 5vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px solid white !important;
     margin-top: 4vh !important;
-    margin: auto;
+    margin-top: 3% !important;
+    margin-left: 25% !important;
 }
 .roe img {
     width: 20%;
@@ -45,6 +53,7 @@ body {
 .titleInfo {
     color: aliceblue;
     font-size: 1.8rem;
+    width: 100%;
 }
 .date {
     margin-top: 0.5vh !important;
@@ -56,6 +65,7 @@ body {
 .detailTital {
     color: var(--secondary-color);
     font-size: 1.8rem;
+    width: 100%;
 }
 .roe {
     gap: 2vw;
@@ -95,6 +105,9 @@ body {
 .heading {
     color: var(--primary-color);
     font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .coins {
     color: var(--coin-color);
@@ -114,16 +127,23 @@ body {
         width: 90% !important;
     } */
     .newsDetailContainer {
-        width: 50%;
+        width: 90%;
+        margin-left: 5% !important;
+        margin-top: 20% !important;
     }
     .trackDetailContainer {
         width: 90%;
+        margin-left: 7% !important;
+        margin-top: 20% !important;
     }
     .detailTital {
         font-size: 1rem;
     }
     .titleInfo {
         font-size: 1rem;
+    }
+    .heading {
+        font-size: x-large;
     }
     .date {
         font-size: 0.8rem !important;
@@ -132,7 +152,7 @@ body {
         font-size: 0.8rem !important;
     }
     .names {
-        font-size: 0.9rem !important;
+        font-size: 0.8rem !important;
     }
 
     /* .detailTital {
@@ -154,8 +174,26 @@ body {
         margin-right: 4vw !important;
     } */
 }
-@media (max-width: 960px) {
+@media (max-width: 990px) {
     body {
         min-height: 120vh;
+    }
+    .newsDetailContainer {
+        width: 70% !important;
+        margin-left: 15% !important;
+    }
+}
+@media (max-width: 1030px) {
+    .newsDetailContainer {
+        width: 80% !important;
+        margin-left: 10% !important;
+        margin-top: 15% !important;
+    }
+}
+@media (max-width: 400px) {
+    .newsDetailContainer {
+        width: 95% !important;
+        margin-left: 2.5% !important;
+        margin-top: 20% !important;
     }
 }

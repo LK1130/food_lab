@@ -64,8 +64,8 @@
                         <div class="col-1 text-center">
                             <ion-icon name="close-sharp" class="fs-1 delete" id="{{ $i++ }}"></ion-icon>
                         </div>
-                        <div class="col-3" style="width: 280px">
-                            <img src="/storage/{{ $product['path'] }}" alt = "" style="width: 100%"/>
+                        <div class="col-3 mb-3 product-img">
+                            <img src="/storage/{{ $product['path'] }}" alt = "{{ $product['product_name'] }}"/>
                         </div>
                         <div class="col-2">
                             <p class="fw-bold text-uppercase" id="pname">{{ $product['product_name'] }}</p>
@@ -83,8 +83,8 @@
                                 $totalCoin = $product['quantity'] * $product['coin'];
                                 $totalCash = $product['quantity'] * $product['amount'];
                             @endphp
-                            <span class="coinBox"><i class="fas fa-coins fa-1x me-2"></i><span class="coin">{{ $totalCoin }}</span></span>
-                            <span class="cashBox"><span class="cash">{{ $totalCash }}</span> Ks</span>
+                            <span class="coinBox"><i class="fas fa-coins fa-1x mt-1 me-2"></i><span class="coin">{{ $totalCoin }}</span></span>
+                            <span class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="cash">{{ $totalCash }}</span> Ks</span>
                         </div>
                     </div>
                 @endforeach
@@ -107,25 +107,25 @@
                     </div>
                     <div class="col-6">
                         <p class="coinDiv" id="coinSubTotal"><i class="fas fa-coins fa-1x me-2" id="coinIcon"></i><span class="totalCoin"></span></p>
-                        <p class="cashBox"><span class="totalCash"></span> Ks</p>
+                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="totalCash"></span> Ks</p>
                     </div>
                 </div>
-                <div class="row mb-2">
+                <div class="row mb-2 totals">
                     <div class="col-6">
                         <p class="deliverytitle">{{ __('messageCPPK.DeliveryFee') }}</p>
                     </div>
                     <div class="col-6">
                         <p class="coinDiv" id="coinDeliPrice"><i class="fas fa-coins fa-1x me-2" id="coinIcon"></i><span class="delCoin">{{ $delCoin }}</span></p>
-                        <p class="cashBox"><span class="delCash">{{ $delCash }}</span> Ks</p>
+                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="delCash">{{ $delCash }}</span> Ks</p>
                     </div>
                 </div>
-                <div class="row mb-2 totals">
+                <div class="row mb-2">
                     <div class="col-6">
                         <p class="grandtitle">{{ __('messageCPPK.GrandTotal') }}</p>
                     </div>
                     <div class="col-6">
                         <p class="coinDiv" id="coinTotalPrice"><i class="fas fa-coins fa-1x me-2" id="coinIcon"></i><span class="grandCoin"></span></p>
-                        <p class="cashBox"><span class="grandCash"></span> Ks</p>
+                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="grandCash"></span> Ks</p>
                     </div>
                 </div>
                 <div class="mt-4">

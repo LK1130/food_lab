@@ -14,7 +14,7 @@
 
 @endsection
 
-@section('title', 'Update Profile')
+@section('title', "$name->site_name | Update Profile")
 
 @section('body')
     {{-- Start Profile Edit Section --}}
