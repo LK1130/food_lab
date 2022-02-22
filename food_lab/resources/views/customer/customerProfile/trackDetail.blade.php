@@ -13,7 +13,7 @@
 
 @endsection
 
-@section('title', 'Track Detail')
+@section('title', "$name->site_name | Track Detail")
 @section('body')
 
     <div class="d-flex ps-5 py-4">
@@ -42,12 +42,12 @@
                 <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.product') }}</label>
 
                 <div class="d-flex flex-column namesShow">
-                    @foreach ($namesArray as $name)
+                    @foreach ($namesArray as $nameB)
                         @php
                             $c++;
                         @endphp
                         <p class=" mb-1 ms-5 titleInfo names">
-                            {{ $c }}. {{ $name }}</p>
+                            {{ $c }}. {{ $nameB }}</p>
                     @endforeach
                 </div>
             </div>

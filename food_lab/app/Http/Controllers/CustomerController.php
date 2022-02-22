@@ -698,8 +698,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start messageDetail'
         ]);
-        $news = new M_AD_News();
-        $newDatas = $news->news();
+
         $site = new M_Site();
         $name = $site->siteName();
         $message = new T_AD_CoinCharge();
@@ -708,7 +707,7 @@ class CustomerController extends Controller
             'end messageDetail'
         ]);
 
-        return view('customer.customerProfile.messageDetail', ['news' => $newDatas, 'name' => $name, 'message' => $coinmessage, 'nav' => 'inform']);
+        return view('customer.customerProfile.messageDetail', ['name' => $name, 'message' => $coinmessage, 'nav' => 'inform']);
     }
 
     /*
@@ -723,8 +722,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start trackDetail'
         ]);
-        $news = new M_AD_News();
-        $newDatas = $news->news();
+
         $site = new M_Site();
         $name = $site->siteName();
         $message = new M_AD_Track();
@@ -743,7 +741,7 @@ class CustomerController extends Controller
             'end trackDetail'
         ]);
 
-        return view('customer.customerProfile.trackDetail', ['news' => $newDatas, 'name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
+        return view('customer.customerProfile.trackDetail', ['name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
     }
 
 

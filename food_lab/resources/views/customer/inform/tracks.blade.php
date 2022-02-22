@@ -14,7 +14,7 @@
 
 @endsection
 
-@section('title', 'Food Lab')
+@section('title', "$name->site_name | Tracks")
 @section('body')
 
 

@@ -17,7 +17,7 @@
     <script src="{{ url('js/updateProfile.js') }}" type="text/javascript" defer></script>
     <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 @endsection
-@section('title', 'Edit Profile')
+@section('title', " $name->site_name | Edit Profile")
 
 @section('body')
     {{-- Start Profile Edit Section --}}
