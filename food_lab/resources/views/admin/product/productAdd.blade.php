@@ -165,7 +165,7 @@
             <div class="container-fluid mb-4">
                 <div class="row">
 
-                    <div class="col-md-5 col-sm-5">
+                    <div class="col-md-10 col-sm-12">
                         <div class="form-group">
                             <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
                             <textarea type="text" name="list" id="list" class="form-control inputs" rows="5"

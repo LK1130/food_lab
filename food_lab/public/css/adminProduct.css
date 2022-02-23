@@ -1,87 +1,91 @@
-*{
-     box-sizing: border-box;
-     
+* {
+    box-sizing: border-box;
 }
 
-.product{
+.product {
     background-color: var(--btns) !important;
     color: var(--white) !important;
 }
 
 /* Product Label */
-.labels{
+.labels {
     font-size: var(--title);
     font-weight: bold;
 }
 
 /* Container Image */
-.image-container{
-     border: 2px solid  grey;
+.image-container {
+    border: 2px solid grey;
 }
 
-
-#img1,#img2,#img3,#img4,#img5,#img6{
+#img1,
+#img2,
+#img3,
+#img4,
+#img5,
+#img6 {
     width: 15vw !important;
     border: none;
 }
 /* Image Block */
-.blocks{
+.blocks {
     border: 1px solid grey;
-    background :rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* File Customize */
-.files{
+.files {
     width: 17.5vw;
 }
 
 /* Form Label */
-.titles,.titles1{
+.titles,
+.titles1 {
     font-size: var(--detail);
 }
 
-textarea{
+textarea {
     resize: none;
-    border: 1px solid rgba(0,0,0,0.5) !important;
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 
-.custombox{
+.custombox {
     width: 6vw;
     height: 3vh;
 }
 
 /* Append Detail Box */
 
-.appendBox{
+.appendBox {
     width: 77vw;
     height: 100vh;
-    border: 1px solid rgba(0,0,0,0.5);
-    
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.plusBox{
+.plusBox {
     width: 6.5vw;
-    height: 8.3vh; 
-    text-align: center;
+    height: 6.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 4rem !important;
     font-size: var(--fontsize2);
     border: 1px solid var(--black);
     background: var(--btns);
     cursor: pointer;
 }
-.icons{
+.icons {
     color: var(--white);
     font-size: 2rem;
     background: transparent;
 }
 
-.minusIcon{
+.minusIcon {
     font-size: var(--fontsize1);
     cursor: pointer;
 }
 
 /* Submit Button */
-
 
 .btncust1 {
     /* margin: 10px; */
@@ -91,18 +95,18 @@ textarea{
     background-color: var(--btns) !important;
 }
 
-.submitBtn{
+.submitBtn {
     width: 10vw;
     height: 3.7vw;
     background: var(--btns);
     font-size: var(--btntextsize);
     color: var(--white);
     margin-left: 7rem !important;
-     border-radius: 10px;
-     cursor: pointer;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.resetBtn{
+.resetBtn {
     width: 10vw;
     height: 3.7vw;
     background: var(--btns);
@@ -112,12 +116,12 @@ textarea{
     border-radius: 10px;
     cursor: pointer;
 }
-.back{
+.back {
     text-decoration: none;
     color: var(--white);
 }
 
-.backBtn{
+.backBtn {
     width: 10vw;
     height: 3.7vw;
     background: var(--btns);
@@ -129,24 +133,23 @@ textarea{
     cursor: pointer;
 }
 
-
-@media only screen and (max-width: 720px){
-    .appendBox{
+@media only screen and (max-width: 720px) {
+    .appendBox {
         width: 100vw;
         height: 120vh;
         overflow-x: scroll;
-    } 
-    .plusBox{
+    }
+    .plusBox {
         width: 13.3vw;
-        height: 7.5vh; 
+        height: 7.5vh;
         text-align: center;
         margin: auto;
     }
-    .icons{
+    .icons {
         font-size: 1.8rem;
     }
-    
-    .titles1{
+
+    .titles1 {
         font-size: 2rem;
     }
 }

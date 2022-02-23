@@ -37,25 +37,40 @@
                     <tbody class="scroll">
 
                         @forelse ($products as $product)
-                            <tr class="tablecolor1  tablerows">
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $product->product_name }}</td>
-                                <td>{{ $product->pid }}</td>
-                                <td>{{ $product->favourite_food }}</td>
-                                <td>{{ $product->taste }}</td>
-                                <td>{{ $product->coin }}</td>
-                                <td>{{ number_format($product->amount) }} MMK</td>
-                                @if ($product->avaliable == 1)
+                            @if ($product->avaliable == 1)
+                                <tr class="tablecolor1  tablerows bg-success">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $product->product_name }}</td>
+                                    <td>{{ $product->pid }}</td>
+                                    <td>{{ $product->favourite_food }}</td>
+                                    <td>{{ $product->taste }}</td>
+                                    <td>{{ $product->coin }}</td>
+                                    <td>{{ number_format($product->amount) }} MMK</td>
                                     <td>Avaliable</td>
+                                    <td>
+                                        <a href="{{ route('product.edit', $product->pid) }}"><button
+                                                class="btn btn-outline-light"><i class="bi bi-arrow-right"></i></button></a>
+                                    </td>
+                                </tr>
 
-                                @else
+                            @else
+                                <tr class="tablecolor1  tablerows">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $product->product_name }}</td>
+                                    <td>{{ $product->pid }}</td>
+                                    <td>{{ $product->favourite_food }}</td>
+                                    <td>{{ $product->taste }}</td>
+                                    <td>{{ $product->coin }}</td>
+                                    <td>{{ number_format($product->amount) }} MMK</td>
                                     <td>Not Avaliable</td>
-                                @endif
-                                <td>
-                                    <a href="{{ route('product.edit', $product->pid) }}"><button
-                                            class="btn btn-outline-light"><i class="bi bi-arrow-right"></i></button></a>
-                                </td>
-                            </tr>
+                                    <td>
+                                        <a href="{{ route('product.edit', $product->pid) }}"><button
+                                                class="btn btn-outline-light"><i class="bi bi-arrow-right"></i></button></a>
+                                    </td>
+                                </tr>
+
+                            @endif
+
                         @empty
                             There is no product.
                         @endforelse
@@ -64,14 +79,14 @@
 
             </div>
 
-           
+
             <div class="d-flex justify-content-center">{{ $products->links() }}</div>
 
-           <div class="d-flex justify-content-end ">
-            <a href="/product" class="m-3"><button
-                class="btn text-light  active btncust">{{ __('messageAMK.Product Add') }}</button></a>
-           </div>
-            
+            <div class="d-flex justify-content-end ">
+                <a href="/product" class="m-3"><button
+                        class="btn text-light  active btncust">{{ __('messageAMK.Product Add') }}</button></a>
+            </div>
+
         </div>
     </div>
 
