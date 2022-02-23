@@ -111,6 +111,7 @@
                     </div>
                     <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
                     <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
+                    <p class="fs-5"><i class="fa-solid fa-money-bill money text-success"></i> {{ $sellProduct->amount }} Ks</p>
                     <button type="button" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button>
                 </div>
             @empty
