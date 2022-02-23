@@ -86,27 +86,39 @@
     color: var(--text-color);
 }
 
-.welcometexts{
+.welcometexts {
     margin-bottom: 0;
 }
 
 .companyinfos {
-    max-width: 70%;
+    max-width: 80%;
     margin-top: 7%;
     position: relative;
 }
 
-.falefts {
+.falefts,
+.farights {
     font-size: 2.5rem;
+    position: absolute;
+}
+
+.falefts {
+    left: 0;
+    bottom: 90%;
 }
 
 .farights {
-    font-size: 2.5rem;
+    right: 0;
+    top: 90%;
 }
 
 @media (max-width: 720px) {
     .welcomes {
         min-height: 60vh;
+    }
+    .falefts,
+    .farights {
+        font-size: 1.5rem;
     }
 }
 
@@ -485,11 +497,12 @@
     .policy-infos {
         font-size: 0.9rem;
     }
-
     .policyheaders {
         font-size: 1.6rem;
     }
 }
+
+
 /*End Policy Section*/
 
 
@@ -813,7 +826,6 @@ form div .cancels {
 /*Start Footer Section*/
 
 .footer-infos {
-    min-height: 70vh;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg5.png");
     background-position: center;
     background-size: cover;
@@ -823,17 +835,9 @@ form div .cancels {
     font-size: 1.1rem;
 }
 
-.footer-logos {
-    position: relative;
-}
-
 .footer-names {
     font-size: 2rem;
     color: var(--primary-color);
-    position: absolute;
-    top: 50%;
-    left: 7vw;
-    transform: translateY(-50%);
 }
 
 .footer-details a {
@@ -890,8 +894,12 @@ form div .cancels {
 
 /*End Footer Section*/
 
+
 /*Start Cart Section*/
-.cart-label{
+
+.cart-label {
     margin-bottom: 0 !important;
 }
+
+
 /*End Cart Section*/
