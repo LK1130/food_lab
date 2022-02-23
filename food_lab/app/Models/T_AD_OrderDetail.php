@@ -80,7 +80,7 @@ class T_AD_OrderDetail extends Model
             'start bestSellItems'
         ]);
 
-        $prodcuts = T_AD_OrderDetail::select('product_id', 'product_name', 'coin', 'amount', DB::raw('SUM(quantity) AS total'))
+        $prodcuts = T_AD_OrderDetail::select('product_id','path', 'product_name', 'coin', 'amount', DB::raw('SUM(quantity) AS total'))
             ->join('m_product', 'm_product.id', '=', 't_ad_orderdetail.product_id')
             ->join('t_ad_photo', 't_ad_photo.link_id', '=', 'm_product.id')
             ->where('m_product.avaliable', 1)

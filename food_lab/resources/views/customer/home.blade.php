@@ -92,7 +92,7 @@
 
     {{-- Start Welcome Section --}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes" id="welcomes">
-        <p class="fs-1 p-3 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
+        <p class="fs-1 p-3 fw-bolder text-uppercase text-center welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
         <p class="fs-3 p-3 companyinfos"><i class="fas fa-quote-left falefts me-5"></i>{{ $name->intro }}<i
                 class="fas fa-quote-right farights ms-5"></i></p>
     </section>
@@ -112,6 +112,7 @@
                     </div>
                     <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
                     <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
+                    <p class="fs-5"><i class="fa-solid fa-money-bill money text-success"></i> {{ $sellProduct->amount }} Ks</p>
                    @if (session()->has('customerId'))
                    <button type="button"  id="{{ $sellProduct->link_id }}"   class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
                    @else
@@ -119,6 +120,8 @@
 
                    @endif
                     
+                   
+                   
                 </div>
             @empty
                 <div class="text-center">
@@ -146,6 +149,7 @@
                             </div>
                             <p class="fs-3 pt-2">{{$product->product_name }}</p>
                             <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $product->coin }}</p>
+                            <p class="fs-5"><i class="fa-solid fa-money-bill money text-success"></i> {{ $product->amount }} Ks</p>
                             <button type="button" id="{{ $product->link_id }}"  class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
                         </div>
                     @endforeach
@@ -237,9 +241,9 @@
         <div class="pt-5 ps-3 footer-infos">
             <div class="d-flex align-items-center footer-logos">
                  <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"/>
-                <p class="fw-bolder text-uppercase footer-names">{{ $name->site_name }}</p>
+                <p class="fw-bolder text-uppercase ms-2 footer-names">{{ $name->site_name }}</p>
             </div>
-            <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
+            <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 pb-3 footer-details">
                 <div class="footer-navs">
                     <p><a href="/">{{ __('messageMK.home') }}</a></p>
                     <p><a href="#welcomes">{{ __('messageMK.aboutus') }}</a></p>
