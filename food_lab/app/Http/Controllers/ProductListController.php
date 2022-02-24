@@ -28,6 +28,8 @@ class ProductListController extends Controller
         $mproduct = new M_Product();
         $product = $mproduct->getAllProducts();
 
+       
+
         Log::channel('adminlog')->info("ProductList Controller", [
             'End Product List'
         ]); 

@@ -2,6 +2,7 @@
 
 @section('css')
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,7 +12,7 @@
 
 @section('script')
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
-    <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
+  
 @endsection
 
 @section('title', "$name->site_name")
@@ -91,7 +92,7 @@
 
     {{-- Start Welcome Section --}}
     <section class="d-flex flex-column justify-content-center align-items-center welcomes" id="welcomes">
-        <p class="fs-1 p-3 fw-bolder text-uppercase welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
+        <p class="fs-1 p-3 fw-bolder text-uppercase text-center welcometexts">{{ __('messageMK.welcome') }}{{ $name->site_name }}</p>
         <p class="fs-3 p-3 companyinfos"><i class="fas fa-quote-left falefts me-5"></i>{{ $name->intro }}<i
                 class="fas fa-quote-right farights ms-5"></i></p>
     </section>
@@ -111,7 +112,16 @@
                     </div>
                     <p class="fs-3 pt-2 text-uppercase">{{ $sellProduct->product_name }}</p>
                     <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i> {{ $sellProduct->coin }}</p>
-                    <button type="button" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button>
+                    <p class="fs-5"><i class="fa-solid fa-money-bill money text-success"></i> {{ $sellProduct->amount }} Ks</p>
+                   @if (session()->has('customerId'))
+                   <button type="button"  id="{{ $sellProduct->link_id }}"   class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
+                   @else
+                   <a href="/signin"><button type="button" class="btn shopbtns">{{ __('messageAMK.shopnow') }}</button></a>
+
+                   @endif
+                    
+                   
+                   
                 </div>
             @empty
                 <div class="text-center">
@@ -139,7 +149,8 @@
                             </div>
                             <p class="fs-3 pt-2">{{$product->product_name }}</p>
                             <p class="fs-5"><i class="fas fa-coins me-2 coins"></i>{{ $product->coin }}</p>
-                            <button type="button" class="btn shopbtns shopcart">{{ __('messageMK.shopnow') }}</button>
+                            <p class="fs-5"><i class="fa-solid fa-money-bill money text-success"></i> {{ $product->amount }} Ks</p>
+                            <button type="button" id="{{ $product->link_id }}"  class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal">{{ __('messageMK.shopnow') }}</button>
                         </div>
                     @endforeach
                 @endforeach
@@ -230,9 +241,9 @@
         <div class="pt-5 ps-3 footer-infos">
             <div class="d-flex align-items-center footer-logos">
                  <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px"/>
-                <p class="fw-bolder text-uppercase footer-names">{{ $name->site_name }}</p>
+                <p class="fw-bolder text-uppercase ms-2 footer-names">{{ $name->site_name }}</p>
             </div>
-            <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 footer-details">
+            <div class="d-flex flex-wrap justify-content-around align-items-start mt-5 pb-3 footer-details">
                 <div class="footer-navs">
                     <p><a href="/">{{ __('messageMK.home') }}</a></p>
                     <p><a href="#welcomes">{{ __('messageMK.aboutus') }}</a></p>
@@ -271,4 +282,28 @@
     </div>
     {{-- End Footer Section --}}
 
+
+    {{-- start model  --}}
+    <div id="modal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+            
+              <div class="d-flex justify-content-end ">
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              </div>
+            
+                <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added to your Shopping Cart. You now have item in your Shopping Cart.</p>
+              
+              <div class="modal-footer">
+               <a href="/cart"> <button type="button" class="btn btnCart shop" >View Shopping Cart</button></a>
+                <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{-- end model --}}
+
+        <script src="{{ url('js/customerShop.js') }}" type="text/javascript" defer></script>
 @endsection

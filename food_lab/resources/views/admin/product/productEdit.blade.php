@@ -206,11 +206,11 @@
                                                                 {{-- Product Description --}}
                                                                 <div class="container-fluid mb-4">
                                                                     <div class="row">
-                                                                        <div class="col-md-7 col-sm-7">
+                                                                        <div class="col-md-10 col-sm-12">
                                                                             <div class="form-group mt-3">
                                                                                 <label for="list" class="form-label titles">{{ __('messageAMK.Ingredient') }}</label>
                                                                                 <textarea type="text" name="list" id="list" class="form-control inputs" rows="4"
-                                                                                    required>{{ $products->list }}
+                                                                                    required>{{ $products->list }}</textarea>
                                                                                                                                                                                             </textarea>
 
                                                                             </div>

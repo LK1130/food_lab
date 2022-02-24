@@ -97,7 +97,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <a href="/"><button type="button" class="btn-close"></button></a>
                     </div>
                     <div class="modal-body">
                         <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Your order has successfully completed!</p>
