@@ -96,7 +96,7 @@ $(document).ready(function () {
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
                                         </div>
-                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" width="49px">
                                 </div>
                                 ${more}
                             `
@@ -443,7 +443,7 @@ $(document).ready(function () {
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
                                         </div>
-                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" width="49px">
                                 </div>
                                 ${more}
                             `
