@@ -21,20 +21,19 @@ class T_AD_Photo extends Model
     * return save data
     * */
 
-    public function insertImage($filepath, $product,$order)
+    public function insertImage($filepath, $product, $order)
     {
 
         Log::channel('adminlog')->info("T_AD_Photo Model", [
             'Start save Data'
         ]);
 
-        Log::critical("session 1",[session($order),$order]);
-            if(session($order) != ""){
-                $phd = T_AD_Photo::where('link_id','=',$product->id)
-                ->where('order_id','=',$order)
+        Log::critical("session 1", [session($order), $order]);
+        if (session($order) != "") {
+            $phd = T_AD_Photo::where('link_id', '=', $product->id)
+                ->where('order_id', '=', $order)
                 ->update(['del_flg' => 1]);
-                
-            }
+        }
 
         $phd = new T_AD_Photo();
 
@@ -80,10 +79,11 @@ class T_AD_Photo extends Model
         return $phd;
     }
 
-    public function getPhoto($order,$product){
-        $photo = T_AD_Photo::where('link_id','=',$product)
-            ->where('order_id','=',$order)
-            ->where('del_flg','=',0)
+    public function getPhoto($order, $product)
+    {
+        $photo = T_AD_Photo::where('link_id', '=', $product)
+            ->where('order_id', '=', $order)
+            ->where('del_flg', '=', 0)
             ->first();
 
         return $photo ? $photo : "";
@@ -110,8 +110,6 @@ class T_AD_Photo extends Model
     * parament : request from product add form
     * return update data
     * */
-
-
     public function updateImage($id, $filepath)
     {
         Log::channel('adminlog')->info("T_AD_Photo Model", [
@@ -126,5 +124,18 @@ class T_AD_Photo extends Model
         Log::channel('adminlog')->info("T_AD_Photo  Model", [
             'End update Data'
         ]);
+    }
+
+    /*
+    * Create : Min Khant(16/2/2022)
+    * Update :
+    * Explain of function : get product photo for cart 
+    * parament : request from product add form
+    * return update data
+    * */
+    public function productImg($id)
+    {
+        $photo = T_AD_Photo::select('path')->where('link_id', $id)->first();
+        return $photo;
     }
 }

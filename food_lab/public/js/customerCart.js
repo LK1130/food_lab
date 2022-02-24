@@ -15,16 +15,6 @@ let order = document.querySelector('.order'),
     nums = document.querySelectorAll('.num');
 
 
-// let load = () => {
-//     totalCoin = totalCoin.textContent;
-//     totalCash = totalCash.textContent;
-//     delCoin = delCoin.textContent;
-//     delCash = delCash.textContent;
-//     grandCoin = grandCoin.textContent;
-//     grandCash = grandCash.textContent;
-// }
-
-// load();
 // Coin switch
 function leftClick() {
     var btnSwitch = document.getElementById('btnSwitch');
@@ -73,18 +63,30 @@ function rightClick() {
 
 
 $(document).on('click', '.delete', (e) => {
-    console.log(e.originalEvent.path[3].id);
+    // console.log(e.originalEvent.path[3].id);
+    console.log(e.target.id);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
     $.ajax({
         type: 'POST',
         url: '/deleteProduct',
-        data: { 'id': e.originalEvent.path[3].id },
+        data: { 'id': e.target.id },
+        
         success: function(res) {
+            let count = Number(sessionStorage.getItem('clickcount'));
+            count = --count;
+            if(count != 0) {
+                sessionStorage.setItem('clickcount', count);
+            }else{
+                sessionStorage.removeItem('clickcount');
+            }
             window.location.href = '/cart';
+            console.log(res);
         },
         error: function(err) {
             console.error(err);

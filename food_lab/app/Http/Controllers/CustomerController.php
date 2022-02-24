@@ -31,6 +31,7 @@ use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Mockery\CountValidator\CountValidatorAbstract;
 
 class CustomerController extends Controller
 {
@@ -125,21 +126,23 @@ class CustomerController extends Controller
     public function message()
     {
         $allmessage = [];
-
+        $site = new M_Site();
+        $name = $site->siteName();
         if (session()->has('customerId')) {
             $sessionCustomerId = session('customerId');
             $messages = new M_AD_CoinCharge_Message();
             $allmessage = $messages->allMessage($sessionCustomerId);
         }
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'start news'
+            'start message'
         ]);
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'end news'
+            'end message'
         ]);
 
         return view('customer.inform.messages', [
             'allmessages' => $allmessage,
+            'name' => $name,
             'nav' => 'inform'
         ]);
     }
@@ -153,8 +156,10 @@ class CustomerController extends Controller
      * */
     public function tracks()
     {
+        $site = new M_Site();
+        $name = $site->siteName();
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'start news'
+            'start tracks'
         ]);
         $alltracks = [];
         if (session()->has('customerId')) {
@@ -162,13 +167,38 @@ class CustomerController extends Controller
             $sessionCustomerId = session('customerId');
             $tracks = new M_AD_Track();
             $alltracks = $tracks->allTracks($sessionCustomerId);
+
+            for ($i = 0; $i < count($alltracks); $i++) {
+                $combine = "";
+                $ids = $alltracks[$i]->title;
+                $product = new M_Product();
+                $searchProduct = $product->searchProduct(explode(',', $ids));
+                Log::channel('customerlog')->info("product", [
+                    $searchProduct
+                ]);
+                // $value->title = $searchProduct;
+                foreach ($searchProduct as $key => $value) {
+                    $combine .=  " " . $value->product_name;
+                }
+                $alltracks[$i]->title = $combine;
+                Log::channel('customerlog')->info("product naem", [
+                    $searchProduct[0]->product_name
+                ]);
+            }
+
+
+            Log::channel('customerlog')->info('M_Site Model', [
+                'start maintenance'
+            ]);
         }
         Log::channel('cutomerlog')->info('Customer Controller', [
-            'end news'
+            'end tracks'
         ]);
 
         return view('customer.inform.tracks', [
             'alltracks' => $alltracks,
+            'products' => $searchProduct,
+            'name' => $name,
             'nav' => 'inform'
         ]);
     }
@@ -443,22 +473,19 @@ class CustomerController extends Controller
 
         $msite = new M_Site();
         $siteName = $msite->siteName();
-
         //send verify mail
-        if ($createAccount) {
-            $mail = [
-                'name' => $validated['username'],
-                'siteName' => $siteName->site_name,
-                'verifyLink' => $generateKey
-            ];
-            Mail::to($validated['email'])->send(new VerifyMail($mail));
+        $mail = [
+            'name' => $validated['username'],
+            'siteName' => $siteName,
+            'verifyLink' => $generateKey
+        ];
+        Mail::to($validated['email'])->send(new VerifyMail($mail));
 
-            Log::channel('customerlog')->info('Customer Controller', [
-                'end register'
-            ]);
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end register'
+        ]);
 
-            return redirect('/signin');
-        }
+        return redirect('/signin');
     }
 
     /*
@@ -485,6 +512,9 @@ class CustomerController extends Controller
     {
         Log::channel('customerlog')->info('CustomerController', [
             'start getTownship'
+        ]);
+        Log::channel('customerlog')->info('asdfasdf', [
+            $req['data']
         ]);
         $mTownship = new M_Township();
         $getTownship = $mTownship->townshipName($req['data']);
@@ -578,7 +608,29 @@ class CustomerController extends Controller
             'end loginForm'
         ]);
 
-        return view('customer.access.checkMail');
+        return redirect('/checkEmail');
+    }
+
+    /*
+  * Create : Min Khant(19/2/2022)
+  * Update :
+  * Explain of function : To check verify email
+  * Prarameter : no
+  * return : View check mail blade
+ * */
+    public  function checkEmail()
+    {
+        Log::channel('customerlog')->info('Customer Controller', [
+            'start checkEmail'
+        ]);
+
+        $site = new M_Site();
+        $name = $site->siteName();
+
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end checkEmail'
+        ]);
+        return view('customer.access.checkMail', ['name' => $name]);
     }
 
     /*
@@ -616,8 +668,9 @@ class CustomerController extends Controller
         ]);
         $news = new M_AD_News();
         $newsLimited = $news->newsLimited();
-        $newDatas = $news->news();
-        $newsCount = count($newDatas);
+        $newsAllToCount = $news->newsAllToCount();
+
+        $newsCount = count($newsAllToCount);
         Log::channel('customerlog')->info('Customer Controller', [
             'end getNews'
         ]);
@@ -642,8 +695,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start messageDetail'
         ]);
-        $news = new M_AD_News();
-        $newDatas = $news->news();
+
         $site = new M_Site();
         $name = $site->siteName();
         $message = new T_AD_CoinCharge();
@@ -652,7 +704,7 @@ class CustomerController extends Controller
             'end messageDetail'
         ]);
 
-        return view('customer.customerProfile.messageDetail', ['news' => $newDatas, 'name' => $name, 'message' => $coinmessage, 'nav' => 'inform']);
+        return view('customer.customerProfile.messageDetail', ['name' => $name, 'message' => $coinmessage, 'nav' => 'inform']);
     }
 
     /*
@@ -667,17 +719,26 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('Customer Controller', [
             'start trackDetail'
         ]);
-        $news = new M_AD_News();
-        $newDatas = $news->news();
+
         $site = new M_Site();
         $name = $site->siteName();
         $message = new M_AD_Track();
         $coinmessage = $message->searchTrack($id);
+        $combine = "";
+        $ids = $coinmessage->title;
+        $product = new M_Product();
+        $searchProduct = $product->searchProduct(explode(',', $ids));
+
+        // $value->title = $searchProduct;
+        foreach ($searchProduct as $key => $value) {
+            $combine .=  " " . $value->product_name;
+        }
+        $coinmessage->title = $combine;
         Log::channel('customerlog')->info('Customer Controller', [
             'end trackDetail'
         ]);
 
-        return view('customer.customerProfile.trackDetail', ['news' => $newDatas, 'name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
+        return view('customer.customerProfile.trackDetail', ['name' => $name, 'track' => $coinmessage, 'nav' => 'inform']);
     }
 
 
@@ -685,9 +746,14 @@ class CustomerController extends Controller
     public function tagsFavType()
     {
 
-
+        Log::channel('customerlog')->info('Customer Controller', [
+            'Start tagsFavType'
+        ]);
         $mFavType = new M_Fav_Type();
         $type = $mFavType->tagsType();
-        return response($type);
+        return $type;
+        Log::channel('customerlog')->info('Customer Controller', [
+            'end tagsFavType'
+        ]);
     }
 }

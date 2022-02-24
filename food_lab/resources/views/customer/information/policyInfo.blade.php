@@ -6,7 +6,7 @@
     <link href="{{ url('css/customer.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 
-@section('title','Food Lab')
+@section('title', "$name->site_name | Policy Info")
 
 @section('body')
     {{-- Start Policy Section --}}
@@ -16,14 +16,14 @@
                 <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div>
-                <img src="{{ url('storage/logo/siteLog.png') }}" alt="logo"/>
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px"/>
             </div>
         </div>
 
         <div class="text-white fw-bolder policy-infos">
             <p class="policyheaders">{{ __('messageMK.policyInfo') }}</p>
-            <div class="ps-5 mt-4">
-                <p><i class="fas fa-star pe-3"></i>{{ $policys->privacy_policy }}</p>
+            <div>
+                <p>{{ $policys->privacy_policy }}</p>
             </div>
         </div>
     </section>

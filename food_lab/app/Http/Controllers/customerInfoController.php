@@ -7,6 +7,7 @@ use App\Models\M_AD_CoinCharge_Message;
 use App\Models\M_AD_News;
 use App\Models\M_AD_Track;
 use App\Models\M_Fav_Type;
+use App\Models\M_Product;
 use App\Models\T_AD_CoinCharge;
 use App\Models\T_AD_Order;
 use App\Models\T_CU_Customer;
@@ -144,9 +145,13 @@ class CustomerInfoController extends Controller
 
             $tracks = new M_AD_Track();
             $tracksLimited = $tracks->trackLimited($sessionCustomerId);
-            // foreach ($tracksLimited as $key => $value) {
-            //     $ids = $value->title;
-            // }
+            $productIds = [];
+            foreach ($tracksLimited as $key => $value) {
+                $ids = (int)$value->title;
+                array_push($productIds, $ids);
+            }
+            $product = new M_Product();
+            $searchProduct = $product->searchProduct($productIds);
             $alltracks = $tracks->allTracks($sessionCustomerId);
             $allTracksToCount = $tracks->allTracksToCount($sessionCustomerId);
             $trackcount = count($allTracksToCount);
@@ -156,7 +161,8 @@ class CustomerInfoController extends Controller
         }
         $news = new M_AD_News();
         $newDatas = $news->newsAll();
-        $newsCount = count($newDatas);
+        $newsAllToCount = $news->newsAllToCount();
+        $newsCount = count($newsAllToCount);
         $newsLimited = $news->newsLimited();
 
         $informBadgeCount = $newsCount + $trackcount + $messagecount;
@@ -172,7 +178,8 @@ class CustomerInfoController extends Controller
                 'alltracks' => $alltracks,
                 'limitedtracks' => $tracksLimited,
                 'allmessages' => $allmessage,
-                'alertcount' => $informBadgeCount
+                'alertcount' => $informBadgeCount,
+                'trackProduct' => $searchProduct
             ]);
     }
 }

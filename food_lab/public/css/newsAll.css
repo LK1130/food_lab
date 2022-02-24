@@ -1,9 +1,10 @@
 body {
-    min-height: 80vh;
+    height: auto;
     background-image: url("/img/Home.png");
-    background-size: cover;
+
     background-repeat: no-repeat;
     background-position: center;
+    background-size: auto;
     position: relative;
 }
 .news-container {
@@ -16,8 +17,18 @@ body {
 .news-container .title {
     color: var(--secondary-color);
 }
-.news {
-    height: fit-content !important;
+.newsA {
+    position: relative;
+    height: 15vh !important;
+    width: 60%;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 1vw;
+    background-color: rgb(216, 211, 193);
+}
+.dateDiv {
+    color: var(--secondary-color);
+    margin-top: 2rem;
 }
 .newsAll {
     position: relative;
@@ -49,12 +60,21 @@ body {
 }
 .newsLogoAll {
     position: absolute;
-    width: 5% !important;
+    width: 6.5% !important;
     top: -15% !important;
     right: -3% !important;
+    filter: none;
+    /* filter: blur(0.7px);
+    image-rendering: pixelated; */
+    clear: both;
+}
+.newsLogoMessage {
+    position: absolute;
+    top: -15% !important;
+    right: -1.8% !important;
 }
 .newsImg {
-    max-width: 14% !important;
+    width: 10vw !important;
 
     margin-top: 3vh !important;
     margin-bottom: 3vh !important;
@@ -70,18 +90,50 @@ body {
 .back {
     color: var(--primary-color);
 }
+
+.arrows {
+    font-size: 2rem;
+}
+.heading {
+    color: var(--primary-color);
+    font-size: xx-large;
+}
 .allNews {
     height: 80%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
+.Wtruncate {
+    min-width: 28vw;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.Mtruncate {
+    min-width: 12vw;
+    text-overflow: ellipsis;
+}
+.titleDateBox {
+    display: flex;
+    flex-direction: row;
+}
+
 @media (max-width: 720px) {
+    /* body {
+        height: 100vh;
+    } */
+    .newsA {
+        height: 18vh !important;
+        width: 90% !important;
+    }
     .newsImg {
         min-width: 30%;
     }
-    .newsLogoAll {
-        min-width: 12vw !important;
-        right: -6% !important;
-        top: -10% !important;
+    .titleDateBox {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
     }
     .newsAll p {
         font-size: 1rem !important;
@@ -102,5 +154,34 @@ body {
     .nome {
         margin-right: auto !important;
         margin-left: 2vw !important;
+    }
+    .Wtruncate,
+    .Mtruncate {
+        min-width: 100% !important;
+        font-size: 1rem !important;
+        text-overflow: ellipsis;
+    }
+    .dateDiv {
+        margin-top: 0rem !important;
+    }
+    .pagination {
+        display: inline-block;
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+    }
+}
+@media (max-width: 680px) {
+    .newsLogoAll {
+        width: 10vw !important;
+        right: -5% !important;
+        top: -10% !important;
+    }
+}
+@media (max-width: 450px) {
+    .Wtruncate,
+    .Mtruncate {
+        font-size: 0.9rem !important;
+        text-overflow: ellipsis;
     }
 }

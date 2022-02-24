@@ -8,7 +8,7 @@
 }
 
 .items {
-    min-height: 85vh;
+    min-height: 70vh;
 }
 
 .abouts {
@@ -26,7 +26,6 @@
 }
 
 .delivery-infos {
-    margin-left: 40%;
     color: var(--primary-color);
 }
 
@@ -75,7 +74,7 @@
 /*Start Welcome Section*/
 
 .welcomes {
-    min-height: 100vh;
+    min-height: 60vh;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg1.png");
     background-position: center;
     background-size: cover;
@@ -87,30 +86,39 @@
     color: var(--text-color);
 }
 
+.welcometexts {
+    margin-bottom: 0;
+}
+
 .companyinfos {
-    max-width: 70%;
-    text-align: justify;
+    max-width: 80%;
     margin-top: 7%;
     position: relative;
 }
 
-.falefts {
-    font-size: 2.5rem;
-    position: absolute;
-    right: 100%;
-    bottom: 100%;
-}
-
+.falefts,
 .farights {
     font-size: 2.5rem;
     position: absolute;
-    top: 100%;
-    left: 100%;
+}
+
+.falefts {
+    left: 0;
+    bottom: 90%;
+}
+
+.farights {
+    right: 0;
+    top: 90%;
 }
 
 @media (max-width: 720px) {
     .welcomes {
         min-height: 60vh;
+    }
+    .falefts,
+    .farights {
+        font-size: 1.5rem;
     }
 }
 
@@ -132,6 +140,14 @@
     align-items: center;
 }
 
+.close{
+    width: 5%;
+    height: 5%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    background: transparent;
+    border: none;
+ }
 .sellers {
     min-width: 95%;
     background: linear-gradient( 120deg, rgba(0, 0, 0, 1) 30%, rgba(245, 0, 0, 0.5) 60%);
@@ -142,7 +158,7 @@
     width: auto;
     background-color: var(--bg2-color);
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: 2px;
     border-radius: 10px;
@@ -153,7 +169,7 @@
 }
 
 .product-imgs {
-    width: 130px;
+    width: 18rem;
 }
 
 .recommands {
@@ -465,6 +481,7 @@
 }
 
 .policy-infos {
+    width: 80%;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
     word-spacing: 0.5px;
@@ -481,6 +498,16 @@
 
 .policy-infos div>* {
     padding-bottom: 10px;
+    margin-left: 30px;
+}
+
+@media (max-width: 720px) {
+    .policy-infos {
+        font-size: 0.9rem;
+    }
+    .policyheaders {
+        font-size: 1.6rem;
+    }
 }
 
 
@@ -775,7 +802,7 @@ form div .cancels {
 /*Start Login Section*/
 
 .login {
-    min-height: 100vh;
+    min-height: 90vh;
     background: url("/img/bg8.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -807,27 +834,18 @@ form div .cancels {
 /*Start Footer Section*/
 
 .footer-infos {
-    min-height: 70vh;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/bg5.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     color: var(--text-color);
     font-weight: bold;
-    font-size: 1.3rem;
-}
-
-.footer-logos {
-    position: relative;
+    font-size: 1.1rem;
 }
 
 .footer-names {
     font-size: 2rem;
     color: var(--primary-color);
-    position: absolute;
-    top: 50%;
-    left: 7vw;
-    transform: translateY(-50%);
 }
 
 .footer-details a {
@@ -847,7 +865,7 @@ form div .cancels {
 .footer-details div:nth-of-type(2) p:first-of-type,
 .footer-details div:nth-of-type(3) p:first-of-type,
 .footer-details div:last-of-type p:first-of-type {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: var(--primary-color);
 }
 
@@ -883,3 +901,13 @@ form div .cancels {
 
 
 /*End Footer Section*/
+
+
+/*Start Cart Section*/
+
+.cart-label {
+    margin-bottom: 0 !important;
+}
+
+
+/*End Cart Section*/

@@ -14,7 +14,7 @@ class M_CU_Customer_Login extends Model
     /*
       * Create : Min Khant(15/1/2022)
       * Update :
-      * Explain of function : 
+      * Explain of function :
       * Prarameter : no
       * return :
     */
@@ -69,6 +69,7 @@ class M_CU_Customer_Login extends Model
         return $hasMail;
     }
 
+
     /*
       * Create : Min Khant(16/1/2022)
       * Update :
@@ -94,7 +95,7 @@ class M_CU_Customer_Login extends Model
     /*
       * Create : Min Khant(16/1/2022)
       * Update :
-      * Explain of function : To check email and password from login form 
+      * Explain of function : To check email and password from login form
       * Prarameter : no
       * return : customer info
     */
@@ -109,7 +110,7 @@ class M_CU_Customer_Login extends Model
         ]);
 
         $correct = M_CU_Customer_Login::where('email', '=', $mail)
-            // ->where('password', '=', md5(sha1($pwd)))
+            ->where('password', '=', md5(sha1($pwd)))
             ->get();
 
         Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
@@ -119,11 +120,12 @@ class M_CU_Customer_Login extends Model
         return $correct;
     }
 
-    public function suggestMail($id){
+    public function suggestMail($id)
+    {
 
         $suggest = M_CU_Customer_Login::select('email')
-        ->where('customer_id',$id)
-        ->first();
+            ->where('customer_id', $id)
+            ->first();
         return $suggest;
     }
 }

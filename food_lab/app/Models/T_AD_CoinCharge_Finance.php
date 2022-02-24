@@ -13,7 +13,7 @@ class T_AD_CoinCharge_Finance extends Model
 {
     public $table = 't_ad_coincharge_finance';
     use HasFactory;
-    
+
     public function coinDaily()
     {
         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
@@ -49,7 +49,7 @@ class T_AD_CoinCharge_Finance extends Model
         $current = Carbon::now()->year;
         $coin = T_AD_CoinCharge_Finance::select(
             DB::raw('year(created_at) as year'),
-            DB::raw('month(created_at) as month'),
+            DB::raw('monthname(created_at)as month'),
             DB::raw('sum(amount) as totalAmount'),
         )
             ->where(DB::raw('year(created_at)'), $current)
@@ -183,17 +183,17 @@ class T_AD_CoinCharge_Finance extends Model
         ]);
 
         $result = T_AD_CoinCharge_Finance::where('charge_id', $chargeid)
-            ->where('del_flg',0)
+            ->where('del_flg', 0)
             ->first();
 
         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
             'End getFinance'
         ]);
 
-       return $result;
+        return $result;
     }
 
-     /*
+    /*
     * Create : Zaw(2022/02/22) 
     * Update : 
     * This function is use to 
@@ -201,7 +201,8 @@ class T_AD_CoinCharge_Finance extends Model
     * Return : 
     */
 
-    public function dailyCointable (){
+    public function dailyCointable()
+    {
         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
             'Start dailyCointable'
         ]);
@@ -219,16 +220,16 @@ class T_AD_CoinCharge_Finance extends Model
             ->orderBy(DB::raw('created_at'), 'ASC')
             ->groupBy('date')
             ->paginate(10);
-            // ->get();
+        // ->get();
 
-         Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
+        Log::channel('adminlog')->info("T_AD_CoinCharge_Finance Model", [
             'End dailyCointable'
         ]);
 
         return $coinTable;
     }
 
-     /*
+    /*
     * Create : Zaw(2022/02/22) 
     * Update : 
     * This function is use to 
@@ -259,7 +260,7 @@ class T_AD_CoinCharge_Finance extends Model
         return $coin;
     }
 
-     /*
+    /*
     * Create : Zaw(2022/02/22) 
     * Update : 
     * This function is use to 

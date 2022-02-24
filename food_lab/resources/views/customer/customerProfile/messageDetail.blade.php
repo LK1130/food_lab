@@ -13,38 +13,65 @@
 
 @endsection
 
-@section('title', 'Food Lab')
+@section('title', "$name->site_name | Message Detail")
 @section('body')
-    <div class="news-container">
-        <div class="d-flex flex-row">
-            <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left fs-2 mt-2 ms-2 back"></i></a>
-            <p class="title fs-2 fw-bold ms-4">{{ __('messageZY.messageDetail') }}</p>
+
+
+    <div class="d-flex ps-5 py-4">
+        <div class="me-4 mt-3">
+            <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
         </div>
+        <div>
+            <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px" />
+        </div>
+    </div>
+    <h1 class=" fw-bold text-center heading">{{ __('messageZY.messageDetail') }}</h1>
+    <div class="allNews">
+        @php
+            $color = '';
+        @endphp
 
-        <div class="allNews">
+        @if ($message->title == 'APPROVED')
+            @php
+                $color = 'cgreen';
+            @endphp
+        @endif
+        @if ($message->title == 'REQUEST')
+            @php
+                $color = 'cyellow';
+            @endphp
+        @endif
+        @if ($message->title == 'WAITING')
+            @php
+                $color = 'cyellow';
+            @endphp
+        @endif
+        @if ($message->title == 'REJECTED')
+            @php
+                $color = 'cgray';
+            @endphp
+        @endif
+        <div class="d-flex flex-column newsDetailContainer  align-self-center">
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital me-auto">{{ __('messageZY.title') }}</label>
 
-            <div class="d-flex flex-column newsDetailContainer  m-auto">
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital fs-4">{{ __('messageZY.title') }}</label>
-                    <p class="fs-5 mt-1 titleInfo">--</p>
-                    <p class="fs-5 mt-1 titleInfo">{{ $message->title }}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital fs-4">{{ __('messageZY.status') }}</label>
-                    <p class="fs-5 mt-1 titleInfo">--</p>
-                    <p class="fs-5 mt-1 titleInfo">{{ $message->status }}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
-                    <label for="detailTital" class="detailTital fs-4">{{ __('messageZY.requestedat') }}</label>
-                    <p class="fs-5 mt-1 titleInfo">--</p>
-                    <p class="fs-5 mt-1 titleInfo">{{ $message->created_at }}</p>
-                </div>
+                <p class="titleInfo {{ $color }}">{{ $message->title }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital me-auto ">{{ __('messageZY.detail') }}</label>
+
+                <p class=" titleInfo  fs-5 ">{{ $message->detail }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital  me-auto">{{ __('messageZY.rqcoin') }}</label>
+
+                <p class=" titleInfo  ">{{ $message->request_coin }} <i class="fas fa-coins pe-2 coins"></i></p>
+            </div>
+            <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
+                <label for="detailTital" class="detailTital me-auto ">{{ __('messageZY.requestedat') }}</label>
+
+                <p class=" titleInfo date dateM">{{ $message->messageUpdated }}</p>
             </div>
         </div>
-
-
     </div>
-    </div>
-
-
 @endsection

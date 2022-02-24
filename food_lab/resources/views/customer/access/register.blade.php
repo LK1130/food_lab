@@ -181,7 +181,7 @@
                                 </fieldset>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">x</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{{ __('messageMK.close') }}</button>
                                 <button type="submit" class="btn btn-primary">{{ __('messageMK.submit') }}</button>
                             </div>
                         </div>
@@ -206,5 +206,5 @@
     </section>
 
 
-    
+
 @endsection

@@ -47,7 +47,7 @@ var options = {
     size: 1,
   },
   xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'], // to show months in x-axis
+    categories: orderMonthly, // to show months in x-axis
     title: {
         text: 'Months'
     }
@@ -118,7 +118,7 @@ var options1 = {
       size: 1
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'], // to show months in x-axis
+      categories: coinMonthly , // to show months in x-axis
       title: {
         text: 'Months'
       }

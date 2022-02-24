@@ -7,6 +7,20 @@
  */
 $(document).ready(function () {
     /*
+     * Create : zayar(17/2/2022)
+     * Update :
+     * Explain of function : To toggle inform alert
+     * Prarameter : no
+     * return : toggle
+     * */
+    $(".dropdown-toggle").dropdown();
+    document
+        .getElementById("closeInform")
+        .addEventListener("click", function () {
+            $("#informAlert").removeClass("visible");
+        });
+
+    /*
      * Create : zayar(17/1/2022)
      * Update :
      * Explain of function : To toggle profile alert
@@ -34,26 +48,14 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#alertCount").text(data["alertcount"]);
+                if (data["alertcount"] == 0) {
+                    $("#alertCount").css("display", "none");
+                } else $("#alertCount").text(data["alertcount"]);
 
-                $("#profileAlertBody").prepend(
-                    `
-                    <div class="d-flex flex-column justify-content-center align-items-center ">
-                    <i class="far fa-user-circle fs-1 text-light"></i>
-                    <p class="mt-3"><i class="fas fa-coins text-warning fs-1"></i> <span
-                            class=" fw-bolder  text-light"> 300</span> </p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["nickname"]}</p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["email"]}</p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["phone"]}</p>
-                    <p class="fw-bolder  profileAlertHeader">${data["detail"]["township_name"]} , ${data["detail"]["state_name"]} , ${data["detail"]["address3"]}</p>
-                    
-                </div>
-                        `
-                );
                 let newscount = data["limitednews"].length;
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, "0");
-                var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+                var mm = String(today.getMonth() + 1).padStart(2, "0");
                 var yyyy = today.getFullYear();
 
                 today = yyyy + "-" + mm + "-" + dd;
@@ -61,13 +63,20 @@ $(document).ready(function () {
                 if (newscount == 0) {
                     $(".forMessages").prepend(
                         `
-                        <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                            <p class="fs-6 fw-bolder mt-2 me-auto">No new has left </p>
+                        <div class="news mb-3 nocursor d-flex flex-row justify-content-center align-items-center">
+                            <p class="fs-5 fw-bolder ms-3 mt-2 me-auto">No new has left </p>
                         </div>
                         `
                     );
                 } else {
+                    let countNews = 0;
+                    let more = ``;
                     for (const news of data["limitednews"]) {
+                        countNews++;
+                        if (countNews == 3)
+                            more = `<a href="/customerNews" class=" ms-auto me-3"><button class="btn mb-2 alertButton ms-auto me-2 w-100">
+                            More</button></a>`;
+
                         var oneD = 1000 * 60 * 60 * 24;
 
                         var sMS = new Date(news.newscreated);
@@ -77,25 +86,36 @@ $(document).ready(function () {
                         );
 
                         if (date < 3) {
-                            $(".forNews").prepend(
+                            $(".forNews").append(
                                 `
-                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center mb-3">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
+                                    <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
-                                        <img src="img/new.png" alt="" class="newsLogo" >
+                                        </div>
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
                                 </div>
+                                ${more}
                             `
                             );
                         } else {
-                            $(".forNews").prepend(
+                            $(".forNews").append(
                                 `
-                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center mb-3">
+                            
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
+                                    <div class=" d-flex flex-column  me-auto ms-3 text-truncate w-75">
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
+                                        </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
+                                ${more}
                             `
                             );
                         }
@@ -105,46 +125,62 @@ $(document).ready(function () {
                 if (messagecount == 0) {
                     $(".forMessages").prepend(
                         `
-                        <div class="news d-flex flex-row justify-content-center align-items-center">
-                            <p class="fs-6 fw-bolder mt-2 me-auto">No message has left </p>
+                        <div class="news mb-3 d-flex flex-row justify-content-center align-items-center">
+                            <p class="fs-5 fw-bolder mt-2 ms-3 me-auto">No message has left </p>
                         </div>
                         `
                     );
                 } else {
+                    let countMessage = 0;
+                    let more = ``;
                     for (const messages of data["limitedmessages"]) {
-                        $allcolor = ["yellow", "green", "yellow", "red"];
-                        $statusMessage = messages.decision_status;
-                        $messagecolor = $allcolor[$statusMessage - 1];
+                        countMessage++;
+                        if (countMessage == 3)
+                            more = `<a href="/messages" class=" ms-auto me-3"><button class="btn mb-2 alertButton ms-auto me-2 w-100">
+                            More</button></a>`;
+
+                        // $allcolor = ["yellow", "green", "yellow", "red"];
+                        // $statusMessage = messages.decision_status;
+                        $messagecolor = "";
+                        if (messages.title == "APPROVED")
+                            $messagecolor = "green";
+                        if (messages.title == "REQUEST")
+                            $messagecolor = "yellow";
+                        if (messages.title == "WAITING")
+                            $messagecolor = "yellow";
+                        if (messages.title == "REJECT") $messagecolor = "gray";
                         if (messages.seen == 0) {
-                            $(".forMessages").prepend(
+                            $(".forMessages").append(
                                 `
-        <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
+        <div class="messages d-flex flex-row justify-content-center align-items-center mb-3" id="${messages.chargeid}">
         
-                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.title}</p>
+                <p class="fs-6 fw-bolder me-auto w-50 ms-3 mt-3">${messages.detail}</p>
                 <div class="d-flex flex-column me-4">
-                    <p class="fs-5 fw-bolder  ms-auto mt-2 rounded ${$messagecolor} text-center">
-                    ${messages.status}
+                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-100 rounded ${$messagecolor} text-center">
+                    ${messages.title}
                     </p>
                     <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
                 </div>
-                <img src="img/new.png" alt="" class="newsLogo" >
+                <img src="img/new.png" alt="" class="newsLogo gleft" width="49px">
             </div>
+            ${more}
         `
                             );
                         } else {
-                            $(".forMessages").prepend(
+                            $(".forMessages").append(
                                 `
-        <div class="messages d-flex flex-row justify-content-center align-items-center " id="${messages.chargeid}">
+                                <div class="messages d-flex flex-row justify-content-center align-items-center mb-3" id="${messages.chargeid}">
         
-                <p class="fs-6 fw-bolder me-auto ms-3 mt-3">${messages.title}</p>
-                <div class="d-flex flex-column me-4">
-                    <p class="fs-5 fw-bolder  ms-auto mt-2 rounded ${$messagecolor} text-center">
-                    ${messages.status}
-                    </p>
-                    <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
-                </div>
-                <img src="" alt="" class="newsLogo" >
-            </div>
+                                <p class="fs-6 fw-bolder me-auto w-50 ms-3 mt-3">${messages.detail}</p>
+                                <div class="d-flex flex-column me-4">
+                                    <p class="fs-5 fw-bolder  ms-auto mt-2 w-100 rounded ${$messagecolor} text-center">
+                                    ${messages.title}
+                                    </p>
+                                    <p class=" fw-bold  mb-1 ">${messages.messagecreated}</p>
+                                </div>
+                                
+                            </div>
+            ${more}
         `
                             );
                         }
@@ -159,13 +195,20 @@ $(document).ready(function () {
                 if (trackcount == 0) {
                     $(".forTracks").prepend(
                         `
-                        <div class="news d-flex flex-row justify-content-center align-items-center">
-                                <p class="fs-6 fw-bolder mt-2 me-auto">No track has left </p>
+                        <div class="news mb-3 d-flex flex-row justify-content-center align-items-center">
+                                <p class="fs-5 ms-3 fw-bolder mt-2 me-auto">No track has left </p>
                             </div>
                         `
                     );
                 } else {
+                    let countTrack = 0;
+                    let more = ``;
                     for (const tracks of data["limitedtracks"]) {
+                        countTrack++;
+                        if (countTrack == 3)
+                            more = `<a href="/tracks" class=" ms-auto me-3"><button class="btn mb-2 alertButton ms-auto me-2 w-100">
+                            More</button></a>`;
+
                         $allcolor = [
                             "yellow",
                             "red",
@@ -179,64 +222,63 @@ $(document).ready(function () {
                         $names = tracks.title;
                         $name = $names.split(",");
                         $namesCount = $name.length - 1;
-                        console.log($namesCount);
-                        $.ajaxSetup({
-                            headers: {
-                                "X-CSRF-TOKEN": jQuery(
-                                    'meta[name="csrf-token"]'
-                                ).attr("content"),
-                            },
-                        });
-
-                        $.ajax({
-                            type: "GET",
-                            url: "searchcustomerdetails",
-                            data: formdata,
-                            dataType: "json",
-                            success: function (data) {},
-                        });
-                        if (tracks.seen == 0) {
-                            $(".forTracks").prepend(
-                                `
-                                <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.id}">
-                                
-                                <div class="d-flex flex-column w-100 ms-1 mt-2">
-                                    <p class=" fw-bolder mb-1">${$name[0]} and ${$namesCount} other</p>
-                                    
-                                    
-                                    <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
-                                    <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
-                                </div>
-                                <div class="d-flex flex-column me-3 w-100 mt-4 nomelimited">
-                                    <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
-                                    ${tracks.status} </p>
-                                    <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
-                                </div>
-                                <img src="img/new.png" alt="" class="newsLogo  trackNews" >
-                            </div>
-                                `
-                            );
-                        } else {
-                            $(".forTracks").prepend(
-                                `
-                                <div class="tracks d-flex flex-row justify-content-center align-items-center" id="${tracks.id}">
-                                
-                                <div class="d-flex flex-column w-100 ms-1 mt-2">
-                                <p class=" fw-bolder mb-1">${$name[0]} and ${$namesCount} other</p>
-                                    
-                                    
-                                <p class=" fw-bold mb-1">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
-                                <p class=" fw-bold mb-1">${tracks.amount} MMK</p>
-                                </div>
-                                <div class="d-flex flex-column me-3 w-100 mt-4">
-                                    <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
-                                    ${tracks.status} </p>
-                                    <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
-                                </div>
-                                <img src="" alt="" class="newsLogo me-auto trackNews" >
-                            </div>
-                                `
-                            );
+                        $howmuchtext = "";
+                        $namesCount == 0
+                            ? ($howmuchtext = "")
+                            : ($namesCount = 1
+                                  ? ($howmuchtext = `<span class="fw-bolder ">and ${$namesCount} other</span>`)
+                                  : // "and " + $namesCount + " other"
+                                    ($howmuchtext = `<span class="fw-bolder "> and ${$namesCount} others</span>`));
+                        // "and " + $namesCount + " others")
+                        for (const product of data["trackProduct"]) {
+                            if ($name[0] == product.id) {
+                                if (tracks.seen == 0) {
+                                    $(".forTracks").append(
+                                        `
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block mb-3" id="${tracks.tid}">
+                                        
+                                        <div class="d-flex flex-column w-75 ms-1 ">
+                                        <p class="fw-bolder "><span><p class="text-truncate fw-bolder  informText" >${product.product_name}</p>${$howmuchtext}
+                                            
+                                            
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
+                                        </div>
+                                        <div class="d-flex flex-column me-3 w-100 mt-4">
+                                            <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
+                                            ${tracks.status} </p>
+                                            <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
+                                        </div>
+                                        <img src="img/new.png" alt="" class="newsLogo aleft" >
+                                    </div>
+                                    ${more}
+                                        `
+                                    );
+                                } else {
+                                    $(".forTracks").append(
+                                        `
+                                        <div class="tracks d-flex flex-row justify-content-center align-items-center h-auto d-inline-block mb-3" id="${tracks.tid}">
+                                        
+                                        <div class="d-flex flex-column w-100 ms-1 h-50">
+                                        <div class="d-flex flex-row gap-1">
+                                        <p class="text-truncate fw-bolder  informText" >${product.product_name}</p> ${$howmuchtext}
+                                            </div>
+                                            
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
+                                        </div>
+                                        <div class="d-flex flex-column me-3 w-100 mt-4">
+                                            <p class="fs-5 fw-bolder rounded ${$messagecolor} text-center">
+                                            ${tracks.status} </p>
+                                            <p class=" fw-bold  mb-3 ">${tracks.trackscreated} </p>
+                                        </div>
+                                        
+                                    </div>
+                                    ${more}
+                                        `
+                                    );
+                                }
+                            }
                         }
                     }
                     $(".tracks").click(function () {
@@ -247,16 +289,16 @@ $(document).ready(function () {
             },
         });
 
-        document
-            .getElementById("profileButton")
-            .addEventListener("click", function () {
-                $("#profileAlert").toggleClass("visible");
-            });
-        document
-            .getElementById("profileButton2")
-            .addEventListener("click", function () {
-                $("#profileAlert").toggleClass("visible");
-            });
+        // document
+        //     .getElementById("profileButton")
+        //     .addEventListener("click", function () {
+        //         $("#profileAlert").toggleClass("visible");
+        //     });
+        // document
+        //     .getElementById("profileButton2")
+        //     .addEventListener("click", function () {
+        //         $("#profileAlert").toggleClass("visible");
+        //     });
         // document.getElementById("back").addEventListener("click", function () {
         //     document.getElementById("profileAlert").style.display = "none";
         // });
@@ -356,7 +398,9 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#alertCount").text(data["alertCount"]);
+                if (data["alertCount"] == 0) {
+                    $("#alertCount").css("display", "none");
+                } else $("#alertCount").text(data["alertCount"]);
                 let newscount = data["limitednews"].length;
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, "0");
@@ -374,6 +418,8 @@ $(document).ready(function () {
                         `
                     );
                 } else {
+                    let countNews = 0;
+                    let more = ``;
                     for (const news of data["limitednews"]) {
                         var oneD = 1000 * 60 * 60 * 24;
 
@@ -382,54 +428,45 @@ $(document).ready(function () {
                         var date = Math.round(
                             (eMS.getTime() - sMS.getTime()) / oneD
                         );
-
+                        countNews++;
+                        if (countNews == 3)
+                            more = `<a href="/customerNews" class=" ms-auto me-3"><button class="btn mb-2 alertButton ms-auto me-2 w-100">
+                            More</button></a>`;
                         if (date < 3) {
-                            $(".forNews").prepend(
+                            $(".forNews").append(
                                 `
-                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center mb-3">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
+                                    <div class=" d-flex flex-column  me-auto ms-3 text-truncate  w-75">
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
-                                        <img src="img/new.png" alt="" class="newsLogo" >
+                                        </div>
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
                                 </div>
+                                ${more}
                             `
                             );
                         } else {
-                            $(".forNews").prepend(
+                            $(".forNews").append(
                                 `
-                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center">
-                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2" alt="">
-                                    <p class="fs-6 fw-bolder mt-2 me-5">${news.title}
-                                        (${news.detail})</p>
+                            <div class="news nocursor d-flex flex-row justify-content-center align-items-center mb-3">
+                                    <img src="/storage/newsImage/${news.source}" class="my-3 ms-2 rounded" alt="">
+                                    <div class=" d-flex flex-column  me-auto ms-3  text-truncate w-75" >
+                                    <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "  style="max-width: 80%; min-width:12vw;">${news.title}
+                                        </p>
+                                        <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate " style="max-width: 80%; min-width:12vw;"  >
+                            (${news.detail})</p>
+                                        </div>
                                         <img src="" alt="" class="newsLogo" >
                                 </div>
+                                ${more}
                             `
                             );
                         }
                     }
                 }
-                // let newscount = data["limitednews"].length;
-                // if (newscount == 0) {
-                //     $(".forNews").prepend(
-                //         `
-                //         <div class="news d-flex flex-row justify-content-center align-items-center">
-                //         <p class="fs-6 fw-bolder mt-2 me-auto">No news has left. </p>
-                //     </div>
-                //         `
-                //     );
-                // } else {
-                //     for (const news of data["limitednews"]) {
-                //         $(".forNews").prepend(
-                //             `
-                //             <div class="news d-flex flex-row justify-content-center align-items-center">
-                //                     <img src="/storage/newsImage/${news.source}" class="my-3" alt="">
-                //                     <p class="fs-6 fw-bolder mt-2 me-auto">${news.title}
-                //                         (${news.detail})</p>
-                //                 </div>
-                //             `
-                //         );
-                //     }
-                // }
             },
         });
 

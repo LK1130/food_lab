@@ -54,12 +54,13 @@ class M_Product extends Model
             ->join('m_fav_type', 'm_fav_type.id', '=', 'm_product.product_type')
             ->join('m_taste', 'm_taste.id', '=', 'm_product.product_taste')
             ->where('m_product.del_flg', 0)
+            ->orderBy('avaliable','DESC')
             ->paginate(10);
 
         Log::channel('adminlog')->info("M_Product Model", [
             'End Product List'
         ]);
-
+    
         return $product;
     }
 
@@ -98,6 +99,34 @@ class M_Product extends Model
         return $product;
     }
 
+    /*
+    * Create : Aung Min Khant(22/2/2022)
+    * Update :
+    * Explain of function : To change amount when admin change rate
+    * parament : none
+    * return change amount
+    * */
+    public function changeAmount($rate)
+    {
+
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start changeAmount'
+        ]);
+    
+        $product = DB::select(
+            DB::raw("
+            UPDATE
+            m_product
+            SET
+            amount = coin * $rate
+            "));
+          
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End changeAmount'
+        ]);
+            
+    }
+
 
     /*
     * Create : Aung Min Khant(20/1/2022)
@@ -110,12 +139,12 @@ class M_Product extends Model
     {
 
         Log::channel('adminlog')->info("M_Product_ Model", [
-            'Start get Data'
+            'Start getDataById'
         ]);
         $mProduct = M_Product::findOrfail($id);
 
         Log::channel('adminlog')->info("M_Product_ Model", [
-            'End get Data'
+            'End get DataById'
         ]);
         return $mProduct;
     }
@@ -129,8 +158,8 @@ class M_Product extends Model
 
     public function updateData($request, $id)
     {
-        Log::channel('adminlog')->info("M_Product_ Model", [
-            'Start update Data'
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start updateData'
         ]);
 
         $mrate = new M_AD_CoinRate();
@@ -147,8 +176,8 @@ class M_Product extends Model
         $product->avaliable = $request->has('avaliable') ? 1 : 0;
         $product->save();
 
-        Log::channel('adminlog')->info("M_Product_ Model", [
-            'End update Data'
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End updateData'
         ]);
 
 
@@ -167,8 +196,8 @@ class M_Product extends Model
     {
 
 
-        Log::channel('adminlog')->info("M_Product_ Model", [
-            'Start show product Data'
+        Log::channel('adminlog')->info("M_Product Model", [
+            'Start showProductList'
         ]);
 
         $product = DB::table('m_product')
@@ -183,8 +212,8 @@ class M_Product extends Model
             ->get();
 
 
-        Log::channel('adminlog')->info("M_Product_ Model", [
-            'End show product Data'
+        Log::channel('adminlog')->info("M_Product Model", [
+            'End showProductList'
         ]);
 
         return $product;
@@ -202,7 +231,7 @@ class M_Product extends Model
     {
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'Start search data'
+            'Start searchById'
         ]);
 
 
@@ -215,10 +244,10 @@ class M_Product extends Model
             ->where('m_product.avaliable', 1)
             ->where('m_product.del_flg', 0)
             ->first();
-        // dd($product);
+       
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'End search data'
+            'End searchById'
         ]);
 
         return $product;
@@ -237,7 +266,7 @@ class M_Product extends Model
     {
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'Start search by type'
+            'Start searchByType'
         ]);
 
         $product = DB::table('m_product')
@@ -255,7 +284,7 @@ class M_Product extends Model
 
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'End search by type'
+            'End searchByType'
         ]);
 
         return $product;
@@ -274,7 +303,7 @@ class M_Product extends Model
     {
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'Start search by taste'
+            'Start searchByTaste'
         ]);
 
         $product = DB::table('m_product')
@@ -292,7 +321,7 @@ class M_Product extends Model
 
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'End search by taste'
+            'End searchByTaste'
         ]);
 
         return $product;
@@ -387,6 +416,35 @@ class M_Product extends Model
             'End customerInformation'
         ]);
 
+        return $result;
+    }
+    /*
+      * Create :zayar(15/2/2022)
+      * Update :
+      * Explain of function : To search Product
+      * Prarameter : no
+      * return : customer track product data
+    */
+    public function  searchProduct($productIds)
+    {
+        Log::channel('customerlog')->info("T_CU_Customer Model", [
+            'Start searchProduct'
+        ]);
+        Log::channel('customerlog')->info("asdf", [
+            $productIds
+        ]);
+        $result = M_Product::where('m_product.avaliable', 1)
+            ->where('m_product.del_flg', 0)
+            ->whereIn('m_product.id', $productIds)
+            ->get();
+
+
+        Log::channel('customerlog')->info("T_CU_Customer Model", [
+            'End searchProduct'
+        ]);
+        Log::channel('customerlog')->info("asdf", [
+            $result
+        ]);
         return $result;
     }
 }

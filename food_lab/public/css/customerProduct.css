@@ -133,6 +133,10 @@
     font-size: 1.4rem;
 }
 
+.money{
+    font-size: 1.4rem;
+}
+
 .tastebtns {
     background-color: var(--text-color);
     color: var(--product-color);
@@ -192,7 +196,7 @@
 
 .images {
     width: 100%;
-
+    border-radius: 10px;
 }
 
 .copy {

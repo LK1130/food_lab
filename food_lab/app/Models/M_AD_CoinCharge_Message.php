@@ -11,6 +11,7 @@ class M_AD_CoinCharge_Message extends Model
 {
     public $table = 'm_ad_coincharge_message';
     use HasFactory;
+
     /*
     * Create:zayar(2022/01/24) 
     * Update: 
@@ -23,13 +24,15 @@ class M_AD_CoinCharge_Message extends Model
             'Start informMessage'
         ]);
 
-        $result = T_AD_CoinCharge::select('*', DB::raw('t_ad_coincharge.id AS chargeid'), DB::raw('t_ad_coincharge.created_at AS messagecreated'))
-            ->where('t_ad_coincharge.customer_id', $sessionCustomerId)
-            // ->orderBy('t_ad_coincharge.created_at', 'DESC')
-            ->where('t_ad_coincharge.del_flg', 0)
-            ->leftjoin('m_ad_coincharge_message', 'm_ad_coincharge_message.charge_id', '=', 't_ad_coincharge.id')
+        $result = T_AD_CoinCharge::where('t_ad_coincharge.customer_id', $sessionCustomerId)
 
-            ->leftjoin('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
+            ->where('t_ad_coincharge.del_flg', 0)
+
+            ->leftjoin('m_ad_coincharge_message', 'm_ad_coincharge_message.charge_id', '=', 't_ad_coincharge.id')
+            ->where('m_ad_coincharge_message.del_flg', 0)
+            ->select('*', DB::raw('m_ad_coincharge_message.created_at AS messagecreated'), DB::raw('m_ad_coincharge_message.id AS chargeid'))
+            ->orderBy('m_ad_coincharge_message.created_at', 'DESC')
+
             ->limit(3)
             ->get();
 
@@ -52,14 +55,15 @@ class M_AD_CoinCharge_Message extends Model
             'Start allMessage'
         ]);
 
-        $result = T_AD_CoinCharge::select('*', DB::raw('t_ad_coincharge.created_at AS messagescreated'))
-            ->where('t_ad_coincharge.customer_id', '=', $sessionCustomerId)
-            ->orderBy('t_ad_coincharge.created_at', 'DESC')
+        $result = T_AD_CoinCharge::where('t_ad_coincharge.customer_id', $sessionCustomerId)
+
             ->where('t_ad_coincharge.del_flg', 0)
             ->leftjoin('m_ad_coincharge_message', 'm_ad_coincharge_message.charge_id', '=', 't_ad_coincharge.id')
-
+            ->select('*', DB::raw('m_ad_coincharge_message.updated_at AS messagecreated'), DB::raw('t_ad_coincharge.id AS chargeid'))
+            ->orderBy('m_ad_coincharge_message.updated_at', 'DESC')
             ->leftjoin('m_decision_status', 'm_decision_status.id', '=', 't_ad_coincharge.decision_status')
-            ->get();
+
+            ->paginate(10);
 
         Log::channel('adminlog')->info("M_AD_CoinRate Model", [
             'End allMessage'
@@ -82,6 +86,32 @@ class M_AD_CoinCharge_Message extends Model
 
         Log::channel('adminlog')->info("M_AD_CoinRate Model", [
             'End allMessageToCount'
+        ]);
+
+        return $result;
+    }
+
+    /*
+    * Create:Linn Ko(2022/02/17) 
+    * Update: 
+    * This is method is used to add coin decision message to user notification.
+
+    */
+    public function addMessage($title, $detail, $chargeID)
+    {
+        Log::channel('adminlog')->info("M_AD_CoinCharge_Message Model", [
+            'Start addMessage'
+        ]);
+
+        $result = new M_AD_CoinCharge_Message();
+        $result->title = $title;
+        $result->detail = $detail;
+        $result->charge_id = $chargeID;
+        $result->seen = 0;
+        $result->save();
+
+        Log::channel('adminlog')->info("M_AD_CoinCharge_Message Model", [
+            'End addMessage'
         ]);
 
         return $result;

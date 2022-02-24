@@ -10,12 +10,13 @@
 @endsection
 
 @section('script')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- For Jquary Cdn-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- For Apex Charts Cdn-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="{{ url('js/rangeSale.js') }}" type="text/javascript" defer></script>
+    {{-- <script src="" type="text/javascript" defer></script> --}}
 @endsection
 
 @section('body')
@@ -39,11 +40,11 @@
             @csrf
             <div id="rangeSearch">
                 <!-- For  Start Range Search -->
-                <input id="appt-date" class="fromRangeCount" type="date" name="fromDate"></input>
+                <input id="start-date" class="fromRangeCount" type="date" name="fromDate" required></input>
                 <!-- For Between Symbol -->
                 <h3 id="betweenSymbol">~</h3>
                 <!-- For  End Range Search -->
-                <input id="appt-date" class="toRangeCount" type="date" name="toDate"></input>
+                <input id="end-date" class="toRangeCount" type="date" name="toDate" required></input>
                 <!-- Search Btn -->
                 <span class="mx-3"><button class="btn btncust" id="rangeSearchSubmit">Search</button></span>
             </div>
@@ -70,16 +71,47 @@
         </div>
 
     </div>
+
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-success me-5 tbcust" id='ordertable'>
+                <thead>
+                    <tr class="tableth">
+                        <th scope="col">From Date</th>
+                        <th scope="col">To Date</th>
+                        <th scope="col">Total Order</th>
+                    </tr>
+                </thead>
+                <tbody class="scroll" id="orders">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <table class="table table-success me-5 tbcust" id="cointable">
+                <thead>
+                    <tr class="tableth">
+                        <th scope="col">From Date</th>
+                        <th scope="col">To Date</th>
+                        <th scope="col">Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="scroll" id="coins">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script>
-        // {{-- For Sending Order Array to Order rangeChart.js --}}
-        var orderArray = @json($orderArray);
-        // {{-- For Sending Coin Array to Coin rangeChart.js --}}
-        var coinArray = @json($coinArray);
-        // {{-- For Sending order Array to Order rangeChart.js --}}
-        var orderDaily = @json($orderDaily);
-        // {{-- For Sending  coin Array to  Coin rangeChart.js --}}
-        var coinDaily = @json($coinDaily);
+        // // {{-- For Sending Order Array to Order rangeChart.js --}}
+        // var orderArrays = @json($orderArray);
+        // // {{-- For Sending Coin Array to Coin rangeChart.js --}}
+        // var coinArrays = @json($coinArray);
+        // // {{-- For Sending order Array to Order rangeChart.js --}}
+        // var orderDailys = @json($orderDaily);
+        // // {{-- For Sending  coin Array to  Coin rangeChart.js --}}
+        // var coinDailys = @json($coinDaily);
     </script>
     <!-- Join Javascript -->
-    <script src="js/rangeChart.js"></script>
+    <script src="js/adminRangeChart.js"></script>
 @endsection

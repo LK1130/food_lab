@@ -35,8 +35,8 @@ class M_Site extends Model
     }
 
     /*
-    * Create:zayar(2022/01/13) 
-    * Update: 
+    * Create:zayar(2022/01/13)
+    * Update:
     * This function is used to show site and app management view.
     */
     public function siteManage()
@@ -58,8 +58,8 @@ class M_Site extends Model
         }
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get township datas.
    */
     public function township()
@@ -73,8 +73,8 @@ class M_Site extends Model
         return M_Township::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get payments datas.
    */
     public function payments()
@@ -88,8 +88,8 @@ class M_Site extends Model
         return M_Payment::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get categories datas.
    */
     public function categories()
@@ -103,8 +103,8 @@ class M_Site extends Model
         return M_News_Category::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get tastes datas.
    */
     public function tastes()
@@ -118,8 +118,8 @@ class M_Site extends Model
         return M_Taste::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get suggests datas.
    */
     public function suggests()
@@ -133,8 +133,8 @@ class M_Site extends Model
         return M_Suggest::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get favtypes datas.
    */
     public function favtypes()
@@ -148,8 +148,8 @@ class M_Site extends Model
         return M_Fav_Type::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get orderStatus datas.
    */
     public function orderStatus()
@@ -163,8 +163,8 @@ class M_Site extends Model
         return M_Order_Status::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get desicions datas.
    */
     public function desicions()
@@ -178,8 +178,8 @@ class M_Site extends Model
         return M_Decison_Status::where('del_flg', '=', 0)->get();
     }
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to get news datas.
    */
     public function news()
@@ -191,14 +191,15 @@ class M_Site extends Model
             'End news'
         ]);
         return M_AD_News::select('*', DB::raw('m_ad_news.id AS newsid'))
+            ->orderBy('m_ad_news.updated_at', 'DESC')
             ->where('m_ad_news.del_flg', 0)
             ->join('m_news_category', 'm_news_category.id', '=', 'm_ad_news.category')
             ->paginate(3);
     }
 
     /*
-   * Create:zayar(2022/01/13) 
-   * Update: 
+   * Create:zayar(2022/01/13)
+   * Update:
    * This function is used to update site datas.
    */
     public function saveSiteUpdate($request, $siteLogo)

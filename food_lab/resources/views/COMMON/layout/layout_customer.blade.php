@@ -5,14 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="/storage/siteLogo/{{ $name->site_logo }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ url('css/commonCustomer.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ url('js/commonCustomer.js') }}" type="text/javascript" defer></script>
     <script src="{{ url('js/forInformAlert.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js">
+    </script> --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('script')
     @yield('css')
     @yield('script')
@@ -22,9 +29,10 @@
 <body>
 
     {{-- Start Marquee --}}
-    <marquee class="pt-1">
+    <p></p>
+    <marquee>
         @foreach ($news as $new)
-            <p class="d-inline mx-5 importantnews" id="{{ $new->category }}">{{ $new->title }}</p>
+            <p class="d-inline mx-5 importantnews p-3 fs-5" id="{{ $new->category }}">{{ $new->title }}</p>
         @endforeach
     </marquee>
     {{-- End Marquee --}}
@@ -35,7 +43,7 @@
         <nav class="navbar navbar-expand-lg container-fluid py-3 nav-containers">
 
             <a href="/" class="navbar-brand d-lg-none">
-                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="50px" class="pe-2" />
+                <img src="/storage/siteLogo/{{ $name->site_logo }}" width="80px" class="pe-2" />
                 <span class="text-uppercase comapanynames">{{ $name->site_name }}</span>
             </a>
 
@@ -51,7 +59,7 @@
                 </script>
             @endif
 
-            <div class="d-flex">
+            <div class="d-flex ms-auto">
                 @if (session()->has('customerId'))
                     <p class="nav-link d-lg-none mt-1 texts" id="">
                         <a href="/cart" class="d-lg-none position-relative texts"><i
@@ -59,13 +67,27 @@
                             <span id="cartCount1"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartout cartcount"></span></a>
                     </p>
-                    <p class="nav-link d-lg-none me-2 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
-                    </p>
+                    {{-- <p class="nav-link d-lg-none me-2 texts" id="profileButton2"><i class="fas fa-user-circle fs-1"></i>
+                    </p> --}}
+                    <div class="dropdown d-lg-none mx-3 mt-2" id="profileButton2">
+
+                        <i class="fas fa-user-circle fs-1 dropdown-toggle  texts" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="profileButton2">
+                            <li><a class="dropdown-item"
+                                    href="{{ route('editprofile.index') }}">{{ __('messageZY.profileSetting') }}</a>
+                            </li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#modal2">{{ __('messageZY.logout') }}</a></li>
+
+                        </ul>
+                    </div>
                 @endif
 
                 <button class="navbar-toggler nav-buttons" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="Toggle navigation" id="closeInform">
                     <div class="bg-light line1"></div>
                     <div class="bg-light line2"></div>
                     <div class="bg-light line3"></div>
@@ -141,7 +163,22 @@
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartcount"></span></a>
                         </li>
                         <li class="nav-item">
-                            <p class="nav-link texts" id="profileButton"><i class="fas fa-user-circle fs-2"></i></p>
+                            {{-- <p class="nav-link texts" id="profileButton"><i class="fas fa-user-circle fs-2"></i></p> --}}
+                            <div class="dropdown " id="profileButton">
+
+                                <i class="fas fa-user-circle fs-2 dropdown-toggle  texts" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+                                    aria-labelledby="profileButton">
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('editprofile.index') }}">{{ __('messageZY.profileSetting') }}</a>
+                                    </li>
+                                    <li><a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#modal2">{{ __('messageZY.logout') }}</a></li>
+
+                                </ul>
+                            </div>
                         </li>
                     @else
                         <li class="nav-item">
@@ -157,7 +194,7 @@
                 */ --}}
             {{-- start profile alert box --}}
 
-            <div id="profileAlert">
+            {{-- <div id="profileAlert">
                 <div class="d-flex flex-row justify-content-center profileAlertHeader">
 
                     <p class="userProfile text-center">User Profile</p>
@@ -173,8 +210,30 @@
                                 Password</button></a>
                     </div>
                 </div>
+            </div> --}}
+            {{-- Start model --}}
+            <div id="modal2" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
+                    <div class="modal-content">
+                        <div class="d-flex justify-content-end ">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <p class="fs-3 mx-4">{{ __('messageZY.yousure') }}</p>
+                            <small class="mx-4 mb-4">{{ __('messageZY.logging') }}</small>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn border-secondary"
+                                data-bs-dismiss="modal">{{ __('messageZY.back') }}</button></a>
+                            <a href="/logout"> <button type="button"
+                                    class="btn  btnlogout">{{ __('messageZY.logout') }}</button></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
+            {{-- End model --}}
             <div id="informAlert" class="informAlert">
 
 
@@ -184,55 +243,48 @@
                             <p class="fw-bolder fs-5  infromTitle" id="clickNews">{{ __('messageZY.new') }}</p>
                         </div>
                         <div>
-                            <p class="fw-bolder fs-5 infromTitle" id="clickMessages">{{ __('messageZY.message') }}
+                            <p class="fw-bolder fs-5 infromTitle" id="clickMessages">
+                                {{ __('messageZY.message') }}
                             </p>
                         </div>
                         <div>
-                            <p class="fw-bolder fs-5 infromTitle" id="clickTracks">{{ __('messageZY.track') }}</p>
+                            <p class="fw-bolder fs-5 infromTitle" id="clickTracks">{{ __('messageZY.track') }}
+                            </p>
                         </div>
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                     <div class="forMessages d-flex flex-column" id="forMessages">
 
-                        <a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/messages" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                     <div class="forTracks d-flex flex-column" id="forTracks">
 
-                        <a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+                        {{-- <a href="/tracks" class="ms-auto me-2"><button class="btn mb-2 alertButton">
+                                {{ __('messageZY.more') }}</button></a> --}}
                     </div>
                 @else
                     <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
-                        <div>
-                            <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">
-                                {{ __('messageZY.new') }}
-                            </p>
-                        </div>
+
+                        <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">
+                            {{ __('messageZY.new') }}
+                        </p>
+
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
-                        <a href="/customerNews" class="ms-auto me-2"><button class="btn mb-2 alertButton">
-                                {{ __('messageZY.more') }}</button></a>
+
                     </div>
                 @endif
+            </div>
+            {{-- End Inform Alert --}}
         </nav>
         {{-- end navbar --}}
-        {{-- /*
-* Create:zayar(2022/01/22)
-* Update:
-*/ --}}
-        {{-- start inform alert box --}}
 
-
-
-
-        {{-- end inform alert box --}}
-        </div>
         @yield('header')
     </header>
     {{-- End Header --}}
