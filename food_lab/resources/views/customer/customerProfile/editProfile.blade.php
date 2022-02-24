@@ -42,8 +42,8 @@
         {{-- <p class="fw-bold  titleEditProfile">{{ __('messageZY.editprofile') }}</p> --}}
         <div id="editProfile">
 
-            <form action="{{ route('editprofile.update', $user->cid) }}" method="POST">
-                {{-- onkeydown="return event.key != 'Enter';"> --}}
+            <form action="{{ route('editprofile.update', $user->cid) }}" method="POST"
+                onkeydown="return event.key != 'Enter';">
                 @csrf
                 @method('PUT')
                 <div class="bodyEditProfile d-flex flex-row justify-content-center">
