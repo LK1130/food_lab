@@ -106,16 +106,6 @@ Route::group(['middleware' => ['checkAdmin']], function () {
    //_________________________________end newsManage_________________________/
 
 
-
-   Route::get('dashboard', function () {
-      return View('admin.dashboard');
-   });
-   Route::get('orderTransaction', function () {
-      return View('admin.transactions.orderTransaction');
-   });
-   Route::get('coinchargeList', function () {
-      return View('admin.transactions.coinchargeList');
-   });
    /**
     * For Dashboard & Transaction
     */

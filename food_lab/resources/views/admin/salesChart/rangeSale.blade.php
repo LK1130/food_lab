@@ -1,7 +1,7 @@
 @extends('COMMON.layout.layout_admin')
 
 @section('title')
-    {{ __('messageCPPK.Range Sales') }}
+    Admin | {{ __('messageCPPK.Range Sales') }}
 @endsection
 
 @section('css')
@@ -15,6 +15,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- For Apex Charts Cdn-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{ url('js/rangeSale.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('body')

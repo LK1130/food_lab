@@ -30,7 +30,7 @@
                         <div class="col-7">
                             <input type="number" id="coinChargeinput" name="coinput">
                             @error('coinput')
-                                <span class="text-danger">{{ $message }}</span>
+                                <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                     </div>
-                    <button type="button" id="reset"
+                    <button type="buttton" id="reset"
                         class="cancelbtn btn btn-light">{{ __('messageCPPK.Reset') }}</button>
                     <button type="submit" class="submitbtn btn btn-danger">{{ __('messageCPPK.Charge') }}</button>
                 </form>
@@ -78,8 +78,7 @@
         </div>
         <br>
         <div class="copy">
-            <p></p>
-            <p>Copy right by {{ $name->site_name }}</p>
+            <p>Copyright &copy; {{ $name->site_name }}</p>
         </div>
     </section>
 @endsection
