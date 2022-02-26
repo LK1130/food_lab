@@ -20,6 +20,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" ></script>
     {{--  join link to customerCart.js  --}}
     <script src="js/customerCart.js" type="text/javascript" defer></script>
+    <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('title',"$name->site_name | Cart")
@@ -30,7 +31,7 @@
         <div class="cartTitle">
             <div class="d-flex ps-5 py-4">
                 <div class="me-4 mt-3">
-                    <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
+                    <a href="/productLists"><i class="fas fa-arrow-left text-white arrows"></i></a>
                 </div>
                 <div>
                     <p class="fs-1 fw-bolder cart-label">{{ __('messageCPPK.yourCart') }}</p>
@@ -84,7 +85,7 @@
                                 $totalCash = $product['quantity'] * $product['amount'];
                             @endphp
                             <span class="coinBox"><i class="fas fa-coins fa-1x mt-1 me-2"></i><span class="coin">{{ $totalCoin }}</span></span>
-                            <span class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="cash">{{ $totalCash }}</span> Ks</span>
+                            <span class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="cash prices">{{ $totalCash }}</span> Ks</span>
                         </div>
                     </div>
                 @endforeach
@@ -107,7 +108,7 @@
                     </div>
                     <div class="col-6">
                         <p class="coinDiv" id="coinSubTotal"><i class="fas fa-coins fa-1x me-2" id="coinIcon"></i><span class="totalCoin"></span></p>
-                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="totalCash"></span> Ks</p>
+                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="totalCash prices"></span> Ks</p>
                     </div>
                 </div>
                 <div class="row mb-2 totals">
@@ -116,7 +117,7 @@
                     </div>
                     <div class="col-6">
                         <p class="coinDiv" id="coinDeliPrice"><i class="fas fa-coins fa-1x me-2" id="coinIcon"></i><span class="delCoin">{{ $delCoin }}</span></p>
-                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="delCash">{{ $delCash }}</span> Ks</p>
+                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="delCash prices">{{ $delCash }}</span> Ks</p>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -125,7 +126,7 @@
                     </div>
                     <div class="col-6">
                         <p class="coinDiv" id="coinTotalPrice"><i class="fas fa-coins fa-1x me-2" id="coinIcon"></i><span class="grandCoin"></span></p>
-                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="grandCash"></span> Ks</p>
+                        <p class="cashBox"><i class="fa-solid fa-money-bill fa-1x money text-success me-2"></i><span class="grandCash prices"></span> Ks</p>
                     </div>
                 </div>
                 <div class="mt-4">

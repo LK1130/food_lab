@@ -36,17 +36,17 @@ navbuttons.addEventListener("click", function() {
     navbuttons.classList.toggle("changes");
 });
 
-window.addEventListener('load',function(){
-    
-})
-$(document).ready(function () {
+window.addEventListener('load', function() {
 
-  show();
+})
+$(document).ready(function() {
+
+    show();
 });
 
-function show(){
-    
-   if(sessionStorage.clickcount > 0){
-    $('.cartcount').text(sessionStorage.clickcount);
-   }
+function show() {
+
+    if (sessionStorage.clickcount > 0) {
+        $('.cartcount').text(sessionStorage.clickcount);
+    }
 }

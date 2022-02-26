@@ -36,8 +36,8 @@ class CartController extends Controller
         ]);
         if (session()->has('customerId')) {
             $products = [];
-            if(session()->has('cart')) {
-                if(count(session('cart'))!=0) {
+            if (session()->has('cart')) {
+                if (count(session('cart')) != 0) {
                     $cuProducts = session('cart');
 
                     $productArrays = $cuProducts;
@@ -47,7 +47,7 @@ class CartController extends Controller
                     foreach ($productArrays as $productArray) {
                         $product = $m_product->products((int)$productArray['pid']);
                         $photo = $tAdPhoto->productImg((int)$productArray['pid']);
-                        $product['path'] = $photo['path'];
+                        $product['path'] = $photo->path;
                         array_push($products, $product);
                     }
 
@@ -55,7 +55,7 @@ class CartController extends Controller
                     for ($i = 0; $i < count($products); $i++) {
                         $products[$i]['quantity'] = (int)$productArrays[$i]['q'];
                     }
-                }else{
+                } else {
                     session()->forget('cart');
                 }
             }
@@ -81,7 +81,7 @@ class CartController extends Controller
                 'end cart'
             ]);
 
-            return View('customer.cart.cart', ['name' => $name,'products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
+            return View('customer.cart.cart', ['name' => $name, 'products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
         }
         Log::channel('customerlog')->info('CartController', [
             'end cart'
@@ -204,27 +204,26 @@ class CartController extends Controller
         $newProduct = $request->data;
         $emptyArray = session('cart');
 
-        if(empty($emptyArray))
-            array_push($products,$newProduct);
+        if (empty($emptyArray))
+            array_push($products, $newProduct);
 
         if (!empty($emptyArray)) {
             $product = session('cart');
-            Log::critical("product",[$product]);
+            Log::critical("product", [$product]);
             session()->forget('cart');
-           
+
             if (count($product) == 1) {
-            Log::critical("count 0",[$product[0]]);
-            $products = $this->checkValue($product,$newProduct);  
+                Log::critical("count 0", [$product[0]]);
+                $products = $this->checkValue($product, $newProduct);
             }
-            
-            if(count($product) > 1){
-            Log::critical("count 1",[$product]);
-                $products =  $this->checkValue($product,$newProduct); 
-            
-         }
+
+            if (count($product) > 1) {
+                Log::critical("count 1", [$product]);
+                $products =  $this->checkValue($product, $newProduct);
+            }
         }
-            
-        Log::critical("final product",[$products]);
+
+        Log::critical("final product", [$products]);
         session(['cart' => $products]);
 
         Log::channel('customerlog')->info('CartController', [
@@ -233,30 +232,31 @@ class CartController extends Controller
         return session('cart');
     }
 
-    public function checkValue($products,$newProduct){
-
-          
-             
-                for ($i=0; $i < count($products); $i++) { 
-                    
-                    Log::critical("all pros",[$products]);
-                    Log::critical("check id", [$products[$i]['pid'],$newProduct['pid']]);
-                    if($products[$i]['pid'] ==  $newProduct['pid']){
-                            $products[$i]['q']++;
-                            return $products;
-                    }else{
-                         array_push($products,$newProduct);
-                         $i++;
-                    }
-                }
-             
+    public function checkValue($products, $newProduct)
+    {
 
 
-            Log::critical("return product",[$products]);
-            return $products;
+
+        for ($i = 0; $i < count($products); $i++) {
+
+            Log::critical("all pros", [$products]);
+            Log::critical("check id", [$products[$i]['pid'], $newProduct['pid']]);
+            if ($products[$i]['pid'] ==  $newProduct['pid']) {
+                $products[$i]['q']++;
+                return $products;
+            } else {
+                array_push($products, $newProduct);
+                $i++;
+            }
+        }
+
+
+
+        Log::critical("return product", [$products]);
+        return $products;
     }
 
-     /*
+    /*
      * Create :Aung Min Khant(9/2/2022)
      * Update :
      * Explain of function : get session count from view page
@@ -264,22 +264,21 @@ class CartController extends Controller
      * return :
      * */
 
-        public function getSessionCount(Request $request){
+    public function getSessionCount(Request $request)
+    {
 
-            Log::channel('customerlog')->info('CartController', [
-                'start getSessionCount'
-            ]);
+        Log::channel('customerlog')->info('CartController', [
+            'start getSessionCount'
+        ]);
 
-            $products = $request->data;
-            session(['cart' => $products]);
+        $products = $request->data;
+        session(['cart' => $products]);
 
 
-            Log::channel('customerlog')->info('CartController', [
-                'end getSessionCount'
-            ]);
+        Log::channel('customerlog')->info('CartController', [
+            'end getSessionCount'
+        ]);
 
-            // return session('cart');
-        }
-
-        
+        // return session('cart');
+    }
 }

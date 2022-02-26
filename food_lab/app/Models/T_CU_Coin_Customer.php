@@ -59,8 +59,8 @@ class T_CU_Coin_Customer extends Model
             'start customerCoin'
         ]);
         $check = T_CU_Coin_Customer::select('remain_coin')
-            ->where('customer_id',$id)
-            ->where('del_flg',0)
+            ->where('customer_id', $id)
+            ->where('del_flg', 0)
             ->first();
         Log::channel('customerlog')->info('DeliveryInfoController', [
             'end customerCoin'
@@ -74,14 +74,14 @@ class T_CU_Coin_Customer extends Model
       * Parameter : customer id , total coin
       * Return no
       */
-    public function calCustomerCoin($id,$remain_coin,$sub_coin)
+    public function calCustomerCoin($id, $remain_coin, $sub_coin)
     {
         Log::channel('customerlog')->info('DeliveryInfoController', [
             'start customerCoin'
         ]);
         $calCoin = $remain_coin - $sub_coin;
 
-        DB::transaction(function() use($id,$calCoin,$sub_coin){
+        DB::transaction(function () use ($id, $calCoin, $sub_coin) {
             T_CU_Coin_Customer::where('customer_id', $id)
                 ->update([
                     'remain_coin' => $calCoin
@@ -91,7 +91,6 @@ class T_CU_Coin_Customer extends Model
             $tCuCoinHistory->customer_id = $id;
             $tCuCoinHistory->add_coin = -$sub_coin;
             $tCuCoinHistory->balance_coin = $calCoin;
-            $tCuCoinHistory->last_control_by = '0';
             $tCuCoinHistory->note = 'Buy Product';
             $tCuCoinHistory->by_action = '1';
             $tCuCoinHistory->save();
@@ -100,8 +99,5 @@ class T_CU_Coin_Customer extends Model
         Log::channel('customerlog')->info('DeliveryInfoController', [
             'end customerCoin'
         ]);
-
     }
-
-
 }

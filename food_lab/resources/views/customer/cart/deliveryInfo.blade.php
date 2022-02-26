@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/customerDeliveryInfo.js" type="text/javascript" defer></script>
+    <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('title', "$name->site_name | deliveryInfo")
@@ -20,7 +21,7 @@
     <p class="fs-1 text-white fw-bold text-uppercase text-center pt-4"><img src="/storage/siteLogo/{{ $name->site_logo }}" class="me-4" width="50px" alt="Logo">{{ $name->site_name }}</p>
     <div class="d-flex ps-5 py-4">
         <div class="me-4">
-            <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
+            <a href="/cart"><i class="fas fa-arrow-left text-white arrows"></i></a>
         </div>
         <div>
             <h1 class="fw-bold heading">{{ __('messageCPPK.Delivery Information') }}</h1>
@@ -82,7 +83,7 @@
                         <p class="moneys">{{ $grandCoin }}</p>
                     </div>
                     <div class="text-center amount cash hide">
-                        <p class="moneys">{{ $grandCash }} Ks</p>
+                        <p class="moneys"><span class="prices">{{ $grandCash }}</span> Ks</p>
                     </div>
                 </div>
             </div>
@@ -100,10 +101,10 @@
                         <a href="/"><button type="button" class="btn-close"></button></a>
                     </div>
                     <div class="modal-body">
-                        <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Your order has successfully completed!</p>
+                        <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>{{ __('messageMK.orderComplete') }}</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="/"> <button type="button" class="btn btnCart confirms" >OK</button></a>
+                        <a href="/"> <button type="button" class="btn btnCart confirms" >{{ __('messageMK.ok') }}</button></a>
                     </div>
                 </div>
             </div>
@@ -117,11 +118,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h5 class="modal-title"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>Are you sure? You want to buy this.</h5>
+                        <h5 class="modal-title"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>{{ __('messageMK.confirm') }}</h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn no_orders" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn confirms order-confirms">Yes</button>
+                        <button type="button" class="btn no_orders" data-bs-dismiss="modal">{{ __('messageMK.no') }}</button>
+                        <button type="button" class="btn confirms order-confirms">{{ __('messageMK.yes') }}</button>
                     </div>
                 </div>
             </div>
@@ -133,14 +134,14 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Doesn't enuogh Coin .</h5>
+                        <h5 class="modal-title">{{ __('messageMK.notEnough') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Please Buy more Coin.</p>
+                        <p>{{ __('messageMK.moreCoin') }}</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="/buycoin"><button type="button" class="btn confirms ">Ok</button></a>
+                        <a href="/buycoin"><button type="button" class="btn confirms ">{{ __('messageMK.ok') }}</button></a>
                     </div>
                 </div>
             </div>
