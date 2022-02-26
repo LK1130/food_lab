@@ -220,7 +220,7 @@ class T_AD_Order extends Model
         $order = T_AD_Order::select(
 
             DB::raw('year(order_date) as year'),
-            DB::raw('month(order_date) as month'),
+            DB::raw('monthname(order_date) as month'),
             DB::raw('count(id) as totalorder'),
         )
             ->where(DB::raw('year(order_date)'), $current)
