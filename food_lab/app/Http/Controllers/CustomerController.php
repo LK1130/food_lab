@@ -78,6 +78,9 @@ class CustomerController extends Controller
         $tAdOrderDetail = new T_AD_OrderDetail();
         $sellProducts = $tAdOrderDetail->bestSellItems();
 
+        Log::channel('customerlog')->info('Customer Controller', [
+            'End foodlab'
+        ]);
 
         return view('customer.home', [
             'townships' => $townshipnames,
@@ -87,6 +90,30 @@ class CustomerController extends Controller
             'recomProducts' => $recomProducts,
             'nav' => 'home'
         ]);
+    }
+
+    /*
+     * Create : min khant(27/2/2022)
+     * Update :
+     * Explain of function : For get count from session of cart
+     * Prarameter : no
+     * return : cart count
+     * */
+    public  function  cartCount(){
+        Log::channel('customerlog')->info('Customer Controller', [
+            'Start cartCount'
+        ]);
+
+        $count = 0;
+        if(session()->has('cart')){
+            $count = count(session('cart'));
+        }
+
+        Log::channel('customerlog')->info('Customer Controller', [
+            'End cartCount'
+        ]);
+
+        return $count;
     }
 
     /*

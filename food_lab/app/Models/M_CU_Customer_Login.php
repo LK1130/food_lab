@@ -60,6 +60,7 @@ class M_CU_Customer_Login extends Model
         ]);
 
         $hasMail = M_CU_Customer_Login::where('email', $mail)
+            ->where('del_flg', 0)
             ->get();
 
         Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
@@ -68,6 +69,7 @@ class M_CU_Customer_Login extends Model
 
         return $hasMail;
     }
+
 
     /*
       * Create : Min Khant(16/1/2022)
@@ -109,7 +111,7 @@ class M_CU_Customer_Login extends Model
         ]);
 
         $correct = M_CU_Customer_Login::where('email', '=', $mail)
-             ->where('password', '=', md5(sha1($pwd)))
+            ->where('password', '=', md5(sha1($pwd)))
             ->get();
 
         Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
@@ -119,11 +121,12 @@ class M_CU_Customer_Login extends Model
         return $correct;
     }
 
-    public function suggestMail($id){
+    public function suggestMail($id)
+    {
 
         $suggest = M_CU_Customer_Login::select('email')
-        ->where('customer_id',$id)
-        ->first();
+            ->where('customer_id', $id)
+            ->first();
         return $suggest;
     }
 }

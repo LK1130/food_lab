@@ -10,8 +10,8 @@ $(document).ready(function() {
     $('.shopcart').click(function(e) {
 
         clickCount();
-       
-        
+
+
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -19,19 +19,19 @@ $(document).ready(function() {
                 ),
             },
         });
-        
+
         let count = 1;
-        if(temArray.includes(e.target.id) == false){
+        if (temArray.includes(e.target.id) == false) {
             temArray.push(e.target.id);
-        
+
         }
-       
-        
-       console.log(temArray);
+
+
+        console.log(temArray);
         console.log(count);
         e.preventDefault();
-        
-        let formdata = { "pid": Number(e.target.id), "q": Number(count),"value": [] };
+
+        let formdata = { "pid": Number(e.target.id), "q": Number(count), "value": [] };
 
         $.ajax({
             type: "POST",
@@ -47,34 +47,34 @@ $(document).ready(function() {
         });
 
 
-        $('.shop').click(function(){
-             console.log(temArray);
+        $('.shop').click(function() {
+            console.log(temArray);
         });
 
     });
-   
+
 
 });
 
 
-     function clickCount(){
-        
-        console.log(sessionStorage.clickcount);
-        if (sessionStorage.clickcount) {
-            sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
-          } else {
-            sessionStorage.clickcount = 1;
-            }
-            $('.cartcount').text(sessionStorage.clickcount);
-      
-        };
-    
+function clickCount() {
 
-    function checkSameId(id){
-        let tempArray = [];
-        if(tempArray.includes(id) == false){
-            tempArray.push(id);
-        }
-     
-        console.log(tempArray);
+    console.log(sessionStorage.clickcount);
+    if (sessionStorage.clickcount) {
+        sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+    } else {
+        sessionStorage.clickcount = 1;
     }
+    $('.cartcount').text(sessionStorage.clickcount);
+
+};
+
+
+function checkSameId(id) {
+    let tempArray = [];
+    if (tempArray.includes(id) == false) {
+        tempArray.push(id);
+    }
+
+    console.log(tempArray);
+}

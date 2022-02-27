@@ -22,6 +22,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('script')
     @yield('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('script')
     <title>@yield('title')</title>
 </head>
@@ -269,11 +270,11 @@
                     </div>
                 @else
                     <div class="headerInform d-flex flex-row justify-content-center align-items-center  mt-2">
-                        <div>
-                            <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">
-                                {{ __('messageZY.new') }}
-                            </p>
-                        </div>
+
+                        <p class="fw-bolder fs-5 text-center  infromTitle" id="clickNews">
+                            {{ __('messageZY.new') }}
+                        </p>
+
                     </div>
                     <div class="forNews d-flex flex-column" id="forNews">
 
