@@ -40,13 +40,29 @@ window.addEventListener('load', function() {
 
 })
 $(document).ready(function() {
+    // for cart count
+    let cartCount = () => {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-    show();
+        $.ajax({
+            type: 'POST',
+            url: '/cartCount',
+            success: function (res) {
+                console.warn(res);
+                if(res != 0){
+                    $('.cartcount').text(res);
+                }
+            },
+            error: function (err) {
+                console.error(err);
+            }
+        });
+    };
+
+    cartCount();
 });
 
-function show() {
-
-    if (sessionStorage.clickcount > 0) {
-        $('.cartcount').text(sessionStorage.clickcount);
-    }
-}

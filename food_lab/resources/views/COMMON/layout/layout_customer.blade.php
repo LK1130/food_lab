@@ -22,6 +22,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('script')
     @yield('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('script')
     <title>@yield('title')</title>
 </head>

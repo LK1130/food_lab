@@ -213,6 +213,9 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 //_________________________________Customer Routes_________________________
 
 Route::group(['middleware' => ['checkMaintenance']], function () {
+
+    //For Customer Cart Count
+    Route::post('/cartCount',[CustomerController::class,'cartCount']);
   /*
      * For customer home page
     */

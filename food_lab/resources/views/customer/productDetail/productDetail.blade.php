@@ -40,7 +40,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-md-6 col-sm-10 m-auto">
-                    
+
                         <div class="col-sm-10 mb-3 m-auto text-center">
                             <div class="m-auto mainblocks">
                                     <img src="@isset($photos[0]->path)/storage/{{ $photos[0]->path }}@endisset" id="mainimg"
@@ -73,7 +73,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            
+
                                         </div>
                                         <div class="col-md-6 col-sm-10 ms-auto">
                                             <form action="/cartOne" method="POST" enctype="multipart/form-data">
@@ -170,7 +170,7 @@
                                                         <select name="select{{ $countId }}" id="" class="form-select">
                                                             <option value="0" selected disabled>Choose any type</option>
                                                             @php
-                                                                
+
                                                                 $countId++;
                                                             @endphp
                                                             @foreach ($detail as $item2)
@@ -178,7 +178,7 @@
                                                                     <option value="{{ $item2->value }}">{{ $item2->value }}</option>
                                                                     @php
                                                                         $count++;
-                                                                        
+
                                                                     @endphp
                                                                 @endif
                                                             @endforeach
@@ -196,23 +196,23 @@
                         </div>
                             @endif
 
-                           
-                    
+
+
 
                             @if (session()->has('customerId'))
                                 <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 mx-auto  ">
                                     <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal3">Buy Now</button>
                                   <button id="{{ $productId->pid }}" class="btn btns buy" data-bs-toggle="modal" data-bs-target="#modal">Add to Cart</button>
-                               
+
                                 </div>
-                           
-                                
+
+
                             @else
                             <div class="d-flex justify-content-end col-md-6 col-sm-6 mt-3 m-auto  ">
                                 <button class="btn btns" data-bs-toggle="modal" data-bs-target="#modal3">Buy Now</button>
-                               
+
                             </div>
-                           
+
                             @endif
 
 
@@ -231,15 +231,15 @@
                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
                                 <div class="modal-content">
-                                   
+
 
                                     <div class="d-flex justify-content-end ">
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                                     </div>
-                                  
+
                                     <p class="mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span>A new item has been added
                                         to your Shopping Cart. You now have item in your Shopping Cart.</p>
-                                   
+
                                     <div class="modal-footer">
                                         <a href="/cart"> <button type="button" class="btn btnCart">View Shopping Cart</button></a>
                                         <button type="button" class="btn btnShopping" data-bs-dismiss="modal">Continue Shopping</button>
@@ -254,12 +254,12 @@
                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
                             <div class="modal-content">
-                               
+
 
                                 <div class="d-flex justify-content-end ">
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                                 </div>
-                             
+
                                 <div class="d-flex flex-column">
                                     <p class="fs-3 mx-4">Welcome! Please Login to continue.</p>
                                     <small class="mx-4 mb-4">New member? <a href="/access">Register</a> here </small>
@@ -278,15 +278,15 @@
                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                      <div class="col-sm-6  modal-dialog modal-dialog-centered " role="document">
                          <div class="modal-content">
-                            
+
 
                              <div class="d-flex justify-content-end ">
                                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                              </div>
-                          
+
                              <div class="d-flex flex-column">
                                  <p class="fs-5 mx-4"> <span><i class="fas fa-check-circle text-success mx-2"></i></span> Are you sure? You want to buy this.</p>
-                                
+
                              </div>
                              <div class="modal-footer d-flex justify-content-end">
                                 <button type="button" class="btn btnShopping" data-bs-dismiss="modal">No</button></a>
@@ -301,7 +301,7 @@
 
                             <script>
                                 let pid = @json($productId->pid);
-                               
+
                             </script>
 
                             <script src="{{ url('js/productDetail.js') }}" type="text/javascript" defer></script>

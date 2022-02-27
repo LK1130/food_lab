@@ -39,7 +39,6 @@ class CartController extends Controller
             if (session()->has('cart')) {
                 if (count(session('cart')) != 0) {
                     $cuProducts = session('cart');
-
                     $productArrays = $cuProducts;
                     // for product
                     $m_product = new M_Product();
