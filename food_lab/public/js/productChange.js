@@ -54,7 +54,7 @@ $(document).ready(function () {
                             <img src="/storage/${list.path}" class=" images" alt="bestitem1" />
                             </div>
                             <p class="fs-3 pt-2">${ list.product_name }</p>
-                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } </br> <p> <i class="fa-solid fa-money-bill money text-success"></i> ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
                             <button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button>
                             </div>`)
@@ -65,7 +65,7 @@ $(document).ready(function () {
                             <img src="/storage/${list.path}" class=" images" alt="bestitem1" />
                             </div>
                             <p class="fs-3 pt-2">${ list.product_name }</p>
-                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } </br> <p> <i class="fa-solid fa-money-bill money text-success"></i> ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
                             <a href="/signin"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
                             </div>`)
@@ -181,7 +181,7 @@ $(document).ready(function () {
                             <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
                             </div>
                             <p class="fs-3 pt-2">${ list.product_name }</p>
-                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
+                            <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } </br> <p> <i class="fa-solid fa-money-bill money text-success"></i> ${amount} MMK</p>
                             <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
                             <button type="button" id="${list.link_id}" class="btn shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" > Shop Now</button>
                         </div>`
@@ -193,7 +193,7 @@ $(document).ready(function () {
                                 <img src="/storage/${list.path}" class="img-fluid images" alt="bestitem1" />
                                 </div>
                                 <p class="fs-3 pt-2">${ list.product_name }</p>
-                                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } / ${amount} MMK</p>
+                                <p class="fs-5"><i class="fas fa-coins pe-2 coins"></i>${ list.coin } </p> </br> <p> <i class="fa-solid fa-money-bill money text-success"></i> ${amount} MMK</p>
                                 <a href="productDetail?id=${ list.link_id }"><button type="button" class="btn detailbtns"> More Details</button></a>
                                 <a href="/signin"><button type="button" class="btn shopbtns"> Shop Now</button></a> 
                             </div>`

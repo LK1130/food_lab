@@ -673,6 +673,7 @@ class CustomerController extends Controller
             'start logout'
         ]);
         session()->forget('customerId');
+        session()->forget('cart');
 
         Log::channel('customerlog')->info('Customer Controller', [
             'end logout'
