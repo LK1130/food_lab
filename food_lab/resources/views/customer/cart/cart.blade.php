@@ -59,7 +59,9 @@
                 @php
                     $i = 1;
                 @endphp
+                
                 @foreach ($products as $product)
+                
                     <div class="row justify-content-center align-items-center mt-3 products">
                         <div class="col-1 text-center">
                             <ion-icon name="close-sharp" class="fs-1 delete" id="{{ $i++ }}"></ion-icon>

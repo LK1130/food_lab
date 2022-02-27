@@ -47,10 +47,12 @@ class CartController extends Controller
                     foreach ($productArrays as $productArray) {
                         $product = $m_product->products((int)$productArray['pid']);
                         $photo = $tAdPhoto->productImg((int)$productArray['pid']);
-                        $product['path'] = $photo['path'];
+                        $product['path'] = $photo->path;
+                       
+                        
                         array_push($products, $product);
                     }
-
+                  
                     // add quantity in product array from session quantity
                     for ($i = 0; $i < count($products); $i++) {
                         $products[$i]['quantity'] = (int)$productArrays[$i]['q'];
@@ -81,6 +83,7 @@ class CartController extends Controller
                 'end cart'
             ]);
 
+            dd($products);
             return View('customer.cart.cart', ['name' => $name,'products' => $products, 'delCoin' => $delCoin, 'delCash' => $delCash,]);
         }
         Log::channel('customerlog')->info('CartController', [
