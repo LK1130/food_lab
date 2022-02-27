@@ -9,9 +9,6 @@ $(document).ready(function() {
     let temArray = [];
     $('.shopcart').click(function(e) {
 
-        clickCount();
-
-
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -57,17 +54,6 @@ $(document).ready(function() {
 });
 
 
-function clickCount() {
-
-    console.log(sessionStorage.clickcount);
-    if (sessionStorage.clickcount) {
-        sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
-    } else {
-        sessionStorage.clickcount = 1;
-    }
-    $('.cartcount').text(sessionStorage.clickcount);
-
-};
 
 
 function checkSameId(id) {

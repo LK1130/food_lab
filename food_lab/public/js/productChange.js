@@ -90,7 +90,6 @@ $(document).ready(function () {
                 
                 $('.shopcart').click(function(e) {
 
-                    clickCount();
                     $.ajaxSetup({
                         headers: {
                             "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
@@ -218,7 +217,6 @@ $(document).ready(function () {
 
                 $('.shopcart').click(function(e) {
 
-                    clickCount();
                     $.ajaxSetup({
                         headers: {
                             "X-CSRF-TOKEN": jQuery('meta[name="csrf-token"]').attr(
