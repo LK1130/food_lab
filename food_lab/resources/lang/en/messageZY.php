@@ -137,6 +137,11 @@ return [
     'messageDetail' => 'Message Detail',
     'rqcoin' => 'Requested Coin',
     'nostate' => 'There is no state.',
-    'username'  => 'Admin Name'
+    'username'  => 'Admin Name',
+    'Remaincoin' => 'Remain coin',
+    'toback' => 'Back',
+    // 'Remaincoin' => 'Remaincoin',
+    // 'Remaincoin' => 'Remaincoin',
+    // 'Remaincoin' => 'Remaincoin',
 
 ];

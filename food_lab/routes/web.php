@@ -228,6 +228,10 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
   Route::get('/delivery', [CustomerController::class, 'deliveryDetails']);
 
+  /*
+    * For favtypess
+    */
+  Route::get('/getfavtypes', [CustomerController::class, 'tagsFavType']);
   // check Customer id
   Route::group(['middleware' => ['checkCustomerId']], function () {
 

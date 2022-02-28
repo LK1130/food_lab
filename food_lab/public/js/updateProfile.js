@@ -3,11 +3,24 @@ $(document).ready(function () {
 
     firstClick();
 
+    const inputElement = document.getElementById("changePassword");
+    inputElement.onclick = (e) => {
+        e.preventDefault();
+    };
+    const back = document.getElementById("backUpdatePassword");
+    back.onclick = (e) => {
+        e.preventDefault();
+    };
     function firstClick() {
         document
             .getElementById("changePassword")
             .addEventListener("click", function () {
-                $("#alertBox").toggleClass("visible");
+                $("#alertBox").addClass("visible");
+            });
+        document
+            .getElementById("backUpdatePassword")
+            .addEventListener("click", function () {
+                $("#alertBox").removeClass("visible");
             });
     }
 
@@ -89,7 +102,7 @@ $(document).ready(function () {
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: {
-            url: "assets/citynames.json",
+            url: location.protocol + "//" + location.host + "/getfavtypes/",
             filter: function (list) {
                 return $.map(list, function (cityname) {
                     return { name: cityname };

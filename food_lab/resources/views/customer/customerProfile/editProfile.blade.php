@@ -16,6 +16,7 @@
     <script src="{{ url('js/adminProductTagsInput.js') }}" defer></script>
     <script src="{{ url('js/adminTypeAhead.js') }}" defer></script>
     <script src="{{ url('js/updateProfile.js') }}" type="text/javascript" defer></script>
+    {{-- <script src="{{ url('js/customertags.js') }}" type="text/javascript" defer></script> --}}
     <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 @endsection
 @section('title', " $name->site_name | Edit Profile")
@@ -39,6 +40,10 @@
         </div>
         {{-- edit profile --}}
         <h1 class=" fw-bold text-center titleEditProfile">{{ __('messageZY.editprofile') }}</h1>
+        <p class=" fw-bold text-end  remaincoin">{{ __('messageZY.Remaincoin') }} - <i
+                class="coinCalInform fas fa-coins "></i>
+            <span class="fs-5">{{ $remaincoin->remain_coin }}</span>
+        </p>
         {{-- <p class="fw-bold  titleEditProfile">{{ __('messageZY.editprofile') }}</p> --}}
         <div id="editProfile">
 
@@ -208,8 +213,11 @@
                     </div>
 
                     <div class="btnDiv">
-                        <button class="btn updateButton">{{ __('messageZY.updateprofile') }}</button>
-                        <p class="btn changePassword" id="changePassword">{{ __('messageZY.changepassword') }}</p>
+                        <button class="btn updateButton" value="Update1">{{ __('messageZY.updateprofile') }}</button>
+                        <button class="btn  changePassword" id="changePassword" value="Update2">
+                            {{ __('messageZY.changepassword') }}
+
+                        </button>
                     </div>
             </form>
         </div>
@@ -234,12 +242,15 @@
         @endif
         <div class="alertBox" id="alertBox">
 
-            {{-- <i class="fas fa-arrow-circle-left fs-1  text-light" id="back"></i> --}}
+
             <form action="{{ route('updateprofile.update', $user->cid) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="absolute d-flex flex-column justify-content-center gap-5 alertUpdate">
 
+
+
+                <div class="absolute d-flex flex-column justify-content-center gap-5 alertUpdate">
+                    {{-- <i class="fas fa-arrow-circle-left fs-1  text-light" id="backProfileAlert"></i> --}}
                     <div class="d-flex  me-3 ms-3  my-4 infos1">
 
                         <div class="InputParentAlert">
@@ -280,13 +291,18 @@
                         </div>
 
                     </div>
-                    <div class="d-flex  me-3 ms-3 justify-content-center infos2">
+                    <div class="d-flex flex-row ms-auto gap-3 me-4 justify-content-center infos2">
 
-                        <button class="btn updateButtonAlert "
+                        <button class="btn updateButtonAlert backbtn"
+                            id="backUpdatePassword">{{ __('messageZY.toback') }}
+                        </button>
+                        <button class="btn updateButtonAlert fs-6"
                             id="updatePassword">{{ __('messageZY.updatepassword') }}</button>
 
                     </div>
                 </div>
+
+
 
             </form>
         </div>

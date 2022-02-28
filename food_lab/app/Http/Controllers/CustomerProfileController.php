@@ -9,6 +9,7 @@ use App\Models\M_Site;
 use App\Models\M_State;
 use App\Models\M_Taste;
 use App\Models\M_Township;
+use App\Models\T_CU_Coin_Customer;
 use App\Models\T_CU_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -33,6 +34,9 @@ class CustomerProfileController extends Controller
         ]);
         $user = new T_CU_Customer();
         $userinfo = $user->loginUser($sessionCustomerId);
+
+        $coin = new T_CU_Coin_Customer();
+        $remaincoin = $coin->customerCoin($sessionCustomerId);
 
         $mTownship = new M_Township();
         $townshipnames = $mTownship->townshipDetails();
@@ -61,7 +65,8 @@ class CustomerProfileController extends Controller
                 'types' => $types,
                 'name' => $name,
                 'townships' => $townshipnames,
-                'states' => $staenames
+                'states' => $staenames,
+                'remaincoin' => $remaincoin
             ]);
         }
     }
