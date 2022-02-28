@@ -91,19 +91,18 @@ class SalesController extends Controller
         };
         $coinMonthly= [];
         foreach ($coinList as $key => $value) {
-            $monthNumber= $value->month;
-            array_push($orderMonthly, date("F", mktime($monthNumber)));
+            // $monthNumber= $value->month;
+            // array_push($orderMonthly, date("F", mktime($monthNumber)));
+            array_push($coinMonthly, $value->month);
         };
 
         // Get Order Monthly Data From T_AD_Order Model //
         $T_AD_Order = new T_AD_Order();
         $orderList =  $T_AD_Order->orderMonthly();
         // Senting monthly order data to monthlyChart.js
-
         $orderMonthly= [];
         foreach ($orderList as $key => $value) {
-            $monthNumber= $value->month;
-            array_push($orderMonthly, date("F", mktime($monthNumber)));
+            array_push($orderMonthly, $value->month);
         };
 
         $orderArray = [];
@@ -201,6 +200,7 @@ class SalesController extends Controller
             array_push($coinDaily, $value->date);
         };
         array_push($datas, $coinDaily);
+
         $coinArray = [];
         foreach ($coinList as $key => $value) {
             array_push($coinArray, $value->totalAmount);
@@ -227,6 +227,7 @@ class SalesController extends Controller
         ]);
 
         return $datas;
+        // return  view('admin.salesChart.rangeSale', ['datas' => $datas, 'orderArray' => $orderArray, 'orderDaily' => $orderDaily, 'coinArray' => $coinArray, 'coinDaily' => $coinDaily]);
     }
 
     public function rangeSale(Request $req)

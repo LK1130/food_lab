@@ -84,7 +84,7 @@ marquee {
     width: 20px;
     height: 3px;
     margin: 5px;
-    transition: all 0.4s;
+    transition: all 0.3s;
 }
 
 .changes .line1 {

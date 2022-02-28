@@ -10,13 +10,13 @@
 @endsection
 
 @section('script')
-    <meta name="csrf-token" content="{{ csrf_token() }}">   
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- For Jquary Cdn-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- For Apex Charts Cdn-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="{{ url('js/rangeSale.js') }}" type="text/javascript" defer></script>
+    {{-- <script src="" type="text/javascript" defer></script> --}}
 @endsection
 
 @section('body')
@@ -97,20 +97,20 @@
                     </tr>
                 </thead>
                 <tbody class="scroll" id="coins">
-                    
+
                 </tbody>
             </table>
         </div>
     </div>
     <script>
         // // {{-- For Sending Order Array to Order rangeChart.js --}}
-        // var orderArray = @json($orderArray);
+        // var orderArrays = @json($orderArray);
         // // {{-- For Sending Coin Array to Coin rangeChart.js --}}
-        // var coinArray = @json($coinArray);
+        // var coinArrays = @json($coinArray);
         // // {{-- For Sending order Array to Order rangeChart.js --}}
-        // var orderDaily = @json($orderDaily);
+        // var orderDailys = @json($orderDaily);
         // // {{-- For Sending  coin Array to  Coin rangeChart.js --}}
-        // var coinDaily = @json($coinDaily);
+        // var coinDailys = @json($coinDaily);
     </script>
     <!-- Join Javascript -->
     <script src="js/adminRangeChart.js"></script>

@@ -91,7 +91,6 @@ class T_CU_Coin_Customer extends Model
             $tCuCoinHistory->customer_id = $id;
             $tCuCoinHistory->add_coin = -$sub_coin;
             $tCuCoinHistory->balance_coin = $calCoin;
-            $tCuCoinHistory->last_control_by = '0';
             $tCuCoinHistory->note = 'Buy Product';
             $tCuCoinHistory->by_action = '1';
             $tCuCoinHistory->save();

@@ -18,7 +18,7 @@
 @endsection
 
 @section('script')
-   
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{ url('js/customerShop.js') }}" type="text/javascript"></script>
     {{--  <script src="{{ url('js/productChange.js') }}" type="text/javascript" defer></script>  --}}
@@ -35,7 +35,7 @@
                 <div class="headerproduct p-3">Products</div>
                 <div class="row">
                    @forelse ($products as $item)
-                       
+
                    <div class="col-md-10 col-sm-10 m-auto">
                     <div class="d-flex justify-content-between p-1 mb-3 productblog">
                        <div class="image-container ">
@@ -50,33 +50,33 @@
                            <p class="productCoin mt-2 "><i class="fas fa-coins  icons"></i>  {{ $item->coin }}  </p>
                        </div>
                        <div class="d-flex  flex-column mt-3 mr-3">
-                          <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns">More Details</button></a> 
+                          <a href="productDetail?id={{ $item->link_id }}"><button type="button" class="btn detailbtns">More Details</button></a>
                           @if (session()->has('customerId'))
                           <a href=""><button type="button" id="{{ $item->link_id }}" class="btn border-warning shopbtns shopcart" data-bs-toggle="modal" data-bs-target="#modal" >{{ __('messageMK.shopnow') }}</button></a>
                           @else
-                          <a href="/signin"><button type="button" class="btn  shopbtns"> Shop Now </button></a> 
+                          <a href="/signin"><button type="button" class="btn  shopbtns"> Shop Now </button></a>
                           @endif
                        </div>
                     </div>
-                    
+
                 </div>
                    @empty
                        <div class="d-flex justify-content-between p-1 mb-3 productblog">
                             <p class="productName">There is no Product</p>
                        </div>
                    @endforelse
-                    
+
                 </div>
                 </div>
 
-                
+
                </div>
            </div>
 
     </div>
 
 
-    
+
     <div class="d-flex justify-content-end  ">
         <a href="productLists"><button class="btn  p-3 m-5 backbtnss">{{ __('messageZY.back') }}</button></a>
     </div>
@@ -87,7 +87,7 @@
          <div class="col-sm-4 modal-dialog modal-dialog-centered " role="document">
            <div class="modal-content">
              {{-- <div class="modal-header"> --}}
-               
+
              <div class="d-flex justify-content-end ">
                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
              </div>

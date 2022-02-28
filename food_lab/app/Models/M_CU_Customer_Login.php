@@ -60,6 +60,7 @@ class M_CU_Customer_Login extends Model
         ]);
 
         $hasMail = M_CU_Customer_Login::where('email', $mail)
+            ->where('del_flg', 0)
             ->get();
 
         Log::channel('customerlog')->info('M_CU_Customer_Login Model', [
