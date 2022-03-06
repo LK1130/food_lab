@@ -99,13 +99,14 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : cart count
      * */
-    public  function  cartCount(){
+    public  function  cartCount()
+    {
         Log::channel('customerlog')->info('Customer Controller', [
             'Start cartCount'
         ]);
 
         $count = 0;
-        if(session()->has('cart')){
+        if (session()->has('cart')) {
             $count = count(session('cart'));
         }
 
@@ -311,7 +312,7 @@ class CustomerController extends Controller
             'end report'
         ]);
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -334,7 +335,7 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end reportData'
         ]);
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -364,7 +365,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'
         ]);
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -388,7 +389,7 @@ class CustomerController extends Controller
             'end suggestForm'
         ]);
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -432,7 +433,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustoemrController', [
             'end contact'
         ]);
-        return redirect('/');
+        return redirect('/home');
     }
     /*
      * Create : Min Khant(14/1/2022)

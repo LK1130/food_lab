@@ -13,7 +13,7 @@
     <section class="deliverys">
         <div class="d-flex ps-5 py-4">
             <div class="me-4 mt-3">
-                <a href="/"><i class="fas fa-arrow-left text-white arrows"></i></a>
+                <a href="/home"><i class="fas fa-arrow-left text-white arrows"></i></a>
             </div>
             <div style="width: 50px">
                 <img src="/storage/siteLogo/{{ $name->site_logo }}" width="100%" alt="logo"/>
