@@ -53,7 +53,7 @@ class ProductDetailController extends Controller
 
         $mDetail = new M_Product_Detail();
         $detail = $mDetail->searchDataById($request->input('id'));
-        // if ($detail == null) abort(404);
+     
 
 
         Log::channel('customerlog')->info('ProductDetailController', [

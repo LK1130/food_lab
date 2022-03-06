@@ -25,7 +25,7 @@ class T_AD_Photo extends Model
     {
 
         Log::channel('adminlog')->info("T_AD_Photo Model", [
-            'Start save Data'
+            'Start insertImage'
         ]);
 
         Log::critical("session 1", [session($order), $order]);
@@ -44,7 +44,7 @@ class T_AD_Photo extends Model
         $phd->save();
 
         Log::channel('adminlog')->info("T_AD_Photo Model", [
-            'End save Data'
+            'End insertImage'
         ]);
     }
 
