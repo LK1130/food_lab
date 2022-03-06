@@ -241,7 +241,7 @@ $(document).ready(function () {
                                         <p class="fw-bolder "><span><p class="text-truncate fw-bolder  informText" >${product.product_name}</p>${$howmuchtext}
                                             
                                             
-                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2"><i class="coinCalInform fas fa-coins"></i> ${tracks.coin} </p>
                                         <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
                                         </div>
                                         <div class="d-flex flex-column me-3 w-100 mt-4">
@@ -264,7 +264,7 @@ $(document).ready(function () {
                                         <p class="text-truncate fw-bolder  informText" >${product.product_name}</p> ${$howmuchtext}
                                             </div>
                                             
-                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2"><i class="coinCalInform fas fa-coins"></i> ${tracks.coin} </p>
                                         <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
                                         </div>
                                         <div class="d-flex flex-column me-3 w-100 mt-4">
