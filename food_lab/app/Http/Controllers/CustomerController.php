@@ -313,7 +313,7 @@ class CustomerController extends Controller
             'end report'
         ]);
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -336,7 +336,7 @@ class CustomerController extends Controller
         Log::channel('cutomerlog')->info('Customer Controller', [
             'end reportData'
         ]);
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -366,7 +366,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustomerController', [
             'end suggest'
         ]);
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -390,7 +390,7 @@ class CustomerController extends Controller
             'end suggestForm'
         ]);
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     /*
@@ -434,7 +434,7 @@ class CustomerController extends Controller
         Log::channel('customerlog')->info('CustoemrController', [
             'end contact'
         ]);
-        return redirect('/');
+        return redirect('/home');
     }
     /*
      * Create : Min Khant(14/1/2022)

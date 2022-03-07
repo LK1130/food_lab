@@ -143,7 +143,7 @@
                                                                                 <select name="ptaste" id="ptaste" class="form-select selects" required>
 
                                                                                     @foreach ($mTaste as $item)
-                                                                                        @if ($item->taste == $products->product_taste)
+                                                                                        @if ($item->id == $products->product_taste)
                                                                                             <option value="{{ $item->id }}" selected>{{ $item->taste }}</option>
                                                                                         @else
                                                                                             <option value="{{ $item->id }}">{{ $item->taste }}</option>
@@ -159,12 +159,12 @@
                                                                                 <select name="ptype" id="ptype" class="form-select selects" required>
 
                                                                                     @foreach ($mFav as $item)
-                                                                                        @if ($item->favourite_food == $products->product_type)
+                                                                                        @if ($item->id == $products->product_type)
                                                                                             <option value="{{ $item->id }}" selected>
                                                                                                 {{ $item->favourite_food }}</option>
                                                                                         @else
-                                                                                            <option value="{{ $item->id }}">{{ $item->favourite_food }}
-                                                                                            </option>
+                                                                                            <option value="{{ $item->id }}">{{ $item->favourite_food }} 
+                                                                                             </option>
                                                                                         @endif
                                                                                     @endforeach
                                                                                 </select>

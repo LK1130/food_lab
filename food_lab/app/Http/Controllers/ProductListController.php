@@ -22,16 +22,16 @@ class ProductListController extends Controller
     public function showList()
     {
 
-        Log::channel('adminlog')->info("ProductList Controller", [
-            'Start Product List'
+        Log::channel('adminlog')->info("ProductListController", [
+            'Start showList'
         ]);
         $mproduct = new M_Product();
         $product = $mproduct->getAllProducts();
 
        
 
-        Log::channel('adminlog')->info("ProductList Controller", [
-            'End Product List'
+        Log::channel('adminlog')->info("ProductListController", [
+            'End showList'
         ]); 
         return View('admin.product.productList', ['products' => $product]);
     }
@@ -47,6 +47,10 @@ class ProductListController extends Controller
 
     public function checkCategory($request)
     {
+
+        Log::channel('adminlog')->info("ProductListController", [
+            'Start checkCategory'
+        ]);
         if ($request->has('category1')) {
             $request->validate([
                 'pdname1' => 'required',
@@ -85,5 +89,10 @@ class ProductListController extends Controller
                 'pdvalue6' => 'required',
             ]);
         }
+        
+        Log::channel('adminlog')->info("ProductListController", [
+            'End checkCategory'
+        ]);
     }
+    
 }

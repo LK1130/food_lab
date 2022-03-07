@@ -30,10 +30,9 @@
 <body>
 
     {{-- Start Marquee --}}
-    <p></p>
-    <marquee>
+    <marquee class="mt-3">
         @foreach ($news as $new)
-            <p class="d-inline mx-5 importantnews p-3 fs-5" id="{{ $new->category }}">{{ $new->title }}</p>
+            <p class="d-inline mx-5 importantnews p-3 fs-5" id="{{ $new->category }}"><img src="/storage/siteLogo/{{ $name->site_logo }}" class="me-2" width="50px" alt="photo"/>{{ $new->title }}</p>
         @endforeach
     </marquee>
     {{-- End Marquee --}}
@@ -99,20 +98,20 @@
                 <ul class="navbar-nav w-100 justify-content-around align-items-center border-0 rounded py-3 navs">
                     @if ($nav == 'home')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="/">{{ __('messageMK.home') }}</a>
+                            <a class="nav-link texts actives" href="/home">{{ __('messageMK.home') }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="/">{{ __('messageMK.home') }}</a>
+                            <a class="nav-link texts" href="/home">{{ __('messageMK.home') }}</a>
                         </li>
                     @endif
                     @if ($nav == 'product')
                         <li class="nav-item">
-                            <a class="nav-link texts actives" href="#">{{ __('messageMK.Food') }}</a>
+                            <a class="nav-link texts actives" href="/">{{ __('messageMK.Food') }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link texts" href="/productLists">{{ __('messageMK.Food') }}</a>
+                            <a class="nav-link texts" href="/">{{ __('messageMK.Food') }}</a>
                         </li>
                     @endif
                     @if (session()->has('customerId'))

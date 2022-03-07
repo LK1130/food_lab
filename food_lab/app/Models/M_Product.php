@@ -75,7 +75,7 @@ class M_Product extends Model
     {
 
         Log::channel('adminlog')->info("M_Product_ Model", [
-            'Start save Data'
+            'Start saveData'
         ]);
 
         $mrate = new M_AD_CoinRate();
@@ -94,7 +94,7 @@ class M_Product extends Model
 
 
         Log::channel('adminlog')->info("M_Product Model", [
-            'End save data'
+            'End saveData'
         ]);
         return $product;
     }

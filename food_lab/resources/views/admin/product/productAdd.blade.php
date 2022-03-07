@@ -134,7 +134,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="coin" class="form-label titles">{{ __('messageAMK.CoinAmount') }}</label>
-                            <input type="number" name="coin" id="coin" class="form-control inputs" min="0"
+                            <input type="number" name="coin" id="coin" class="form-control inputs"
                                 value="{{ old('coin') }}">
                             @error('coin')
                                 <li class="text-danger ">

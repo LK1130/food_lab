@@ -110,12 +110,12 @@ class M_Taste extends Model
     {
 
         Log::channel('adminlog')->info("M_Taste Model", [
-            'Start all Data'
+            'Start getTasteAll'
         ]);
         $mTaste = M_Taste::all();
 
         Log::channel('adminlog')->info("M_Taste Model", [
-            'End all Data'
+            'End getTasteAll'
         ]);
         return  $mTaste;
     }
