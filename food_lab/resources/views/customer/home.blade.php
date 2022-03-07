@@ -14,7 +14,7 @@
     <script src="{{ url('js/customer.js') }}" type="text/javascript" defer></script>
 @endsection
 
-@section('title', "$name->site_name")
+@section('title', "$name->site_name | home")
 
 @section('header')
     {{-- start carousel --}}

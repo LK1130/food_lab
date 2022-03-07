@@ -109,12 +109,12 @@ class M_Fav_Type extends Model
   {
 
     Log::channel('adminlog')->info("M_Fav_Type Model", [
-      'Start all Data'
+      'Start getTypeAll'
     ]);
     $mType = M_Fav_Type::all();
 
     Log::channel('adminlog')->info("M_Fav_Type Model", [
-      'End all Data'
+      'End getTypeAll'
     ]);
     return  $mType;
   }

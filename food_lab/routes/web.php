@@ -214,12 +214,12 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 
 Route::group(['middleware' => ['checkMaintenance']], function () {
 
-    //For Customer Cart Count
-    Route::post('/cartCount',[CustomerController::class,'cartCount']);
+  //For Customer Cart Count
+  Route::post('/cartCount', [CustomerController::class, 'cartCount']);
   /*
      * For customer home page
     */
-  Route::get('/', [CustomerController::class, 'home']);
+  Route::get('/home', [CustomerController::class, 'home']);
 
   /*
      * For Policy Info Page
@@ -388,7 +388,7 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
   /*
      * For Product
      */
-  Route::get('/productLists', [ProductDetailController::class, 'productList']);
+  Route::get('/', [ProductDetailController::class, 'productList']);
   // Route::get('menu',[ProductDetailController::class,'eachList'] );
   Route::post('/searchCategory', [ProductSearchController::class, 'searchByCategory']);
   Route::post('/searchTaste', [ProductSearchController::class, 'searchByTaste']);
