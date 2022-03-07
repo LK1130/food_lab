@@ -96,7 +96,7 @@ $(document).ready(function () {
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
                                         </div>
-                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" width="49px">
                                 </div>
                                 ${more}
                             `
@@ -241,7 +241,7 @@ $(document).ready(function () {
                                         <p class="fw-bolder "><span><p class="text-truncate fw-bolder  informText" >${product.product_name}</p>${$howmuchtext}
                                             
                                             
-                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2"><i class="coinCalInform fas fa-coins"></i> ${tracks.coin} </p>
                                         <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
                                         </div>
                                         <div class="d-flex flex-column me-3 w-100 mt-4">
@@ -264,7 +264,7 @@ $(document).ready(function () {
                                         <p class="text-truncate fw-bolder  informText" >${product.product_name}</p> ${$howmuchtext}
                                             </div>
                                             
-                                        <p class=" fw-bold mb-1 ms-2">${tracks.coin} <i class="coinCalInform fas fa-coins"></i></p>
+                                        <p class=" fw-bold mb-1 ms-2"><i class="coinCalInform fas fa-coins"></i> ${tracks.coin} </p>
                                         <p class=" fw-bold mb-1 ms-2">${tracks.amount} MMK</p>
                                         </div>
                                         <div class="d-flex flex-column me-3 w-100 mt-4">
@@ -443,7 +443,7 @@ $(document).ready(function () {
                                         <p class="fs-5 fw-bolder mt-2 me-auto ms-3 text-truncate "   style="max-width: 80%; min-width:12vw;">
                                         (${news.detail})</p>
                                         </div>
-                                        <img src="img/new.png" alt="" class="newsLogo gleft" >
+                                        <img src="img/new.png" alt="" class="newsLogo gleft" width="49px">
                                 </div>
                                 ${more}
                             `

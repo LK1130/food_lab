@@ -22,6 +22,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('script')
     @yield('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('script')
     <title>@yield('title')</title>
 </head>
@@ -222,7 +223,7 @@
                         </div>
                         <div class="d-flex flex-column">
                             <p class="fs-3 mx-4">{{ __('messageZY.yousure') }}</p>
-                            <small class="mx-4 mb-4">{{ __('messageZY.logging') }}</small>
+                            <small class="mx-4 mb-4">{{ __('messageZY.logging') }}.Your cart item will be lost.</small>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn border-secondary"

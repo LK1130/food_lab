@@ -120,7 +120,8 @@ var options = {
       size: 1,
     },
     xaxis: {
-      categories:coinMonthly, // to show months in x-axis
+
+      categories: coinMonthly , // to show months in x-axis
       title: {
         text: 'Months'
       }

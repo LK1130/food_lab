@@ -192,8 +192,6 @@ button {
 }
 .table2 {
     width: fit-content;
-
-    box-shadow: 5px 5px 7px black;
 }
 .tdWhite {
     color: var(--white) !important;
@@ -216,7 +214,6 @@ button {
 .newstable {
     width: 100% !important;
     margin-top: 0.7%;
-    box-shadow: 5px 5px 7px black;
 }
 .newstr {
     width: 30%;

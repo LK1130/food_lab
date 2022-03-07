@@ -15,6 +15,9 @@ body {
 .headerEditProfile {
     position: absolute;
 }
+.backProfileAlert {
+    position: absolute;
+}
 .headerUpdateProfile {
     position: relative;
 }
@@ -26,6 +29,11 @@ body {
     letter-spacing: 0.1rem;
     font-size: 2rem;
     color: var(--primary-color);
+}
+.remaincoin {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-right: 15vw;
 }
 .hide {
     display: none;
@@ -45,7 +53,7 @@ body {
     position: absolute;
     width: 80%;
     height: 55vh;
-    margin-top: 4rem;
+    margin-top: 2rem;
     margin-left: 10%;
     flex-wrap: wrap;
 }
@@ -70,10 +78,15 @@ body {
     width: 25vw;
     height: 6vh;
     border-radius: 1.2vh;
+
     margin-left: 2vw;
     background-color: white;
     font-size: 1rem;
     color: var(--primary-color);
+}
+.changePasswordIn {
+    height: 100%;
+    padding: auto;
 }
 .bodyEditProfile div label {
     color: white;
@@ -97,13 +110,14 @@ body {
     border-radius: 1.2vh;
 }
 .InputChild {
-    width: 100%;
+    width: 98%;
     height: 100%;
     background-color: rgba(44, 83, 255, 0);
     border-style: none;
     color: white;
     font-size: 1rem !important;
     padding-left: 3%;
+    padding-right: 5%;
 }
 .btnDiv {
     display: flex;
@@ -139,8 +153,12 @@ body {
     .titleEditProfile {
         position: absolute;
         margin-left: 36vw;
-        margin-top: 7rem;
+        margin-top: 3rem;
         font-size: 1.5rem;
+    }
+    .remaincoin {
+        margin-right: 10vw;
+        margin-top: 8rem;
     }
     .titleUpdateProfile {
         position: absolute;
@@ -150,7 +168,7 @@ body {
     }
     .bodyEditProfile {
         flex-direction: column !important;
-        margin-top: 11rem;
+
         flex-wrap: nowrap;
         margin-left: 10%;
         width: 80%;
@@ -256,8 +274,8 @@ body {
     margin-bottom: 6vh;
 }
 .infos2 {
-    margin-top: 5vh;
-    margin-bottom: 11vh;
+    margin-top: 7vh;
+    margin-bottom: 5vh;
 }
 .InputParentAlert {
     position: absolute;
@@ -286,8 +304,8 @@ body {
     margin-top: 0.7rem;
 }
 .updateButtonAlert {
-    position: absolute;
-    width: 70%;
+    /* position: absolute; */
+
     height: 6vh;
     border-radius: 1.2vh;
     margin: auto;
@@ -295,6 +313,10 @@ body {
     color: white;
 
     font-size: larger;
+}
+.backbtn {
+    background-color: white;
+    color: var(--primary-color);
 }
 #new {
     width: 40% !important;

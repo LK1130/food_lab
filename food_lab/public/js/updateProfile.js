@@ -3,11 +3,24 @@ $(document).ready(function () {
 
     firstClick();
 
+    const inputElement = document.getElementById("changePassword");
+    inputElement.onclick = (e) => {
+        e.preventDefault();
+    };
+    const back = document.getElementById("backUpdatePassword");
+    back.onclick = (e) => {
+        e.preventDefault();
+    };
     function firstClick() {
         document
             .getElementById("changePassword")
             .addEventListener("click", function () {
-                $("#alertBox").toggleClass("visible");
+                $("#alertBox").addClass("visible");
+            });
+        document
+            .getElementById("backUpdatePassword")
+            .addEventListener("click", function () {
+                $("#alertBox").removeClass("visible");
             });
     }
 
@@ -60,57 +73,51 @@ $(document).ready(function () {
     document.getElementById("addressState").addEventListener("change", () => {
         initial();
     });
-    // var FavJson = {};
-    // $.ajax({
-    //     type: "GET",
-    //     url: "getfavtypes",
-    //     success: function (data) {
-    //         FavJson = JSON.stringify(data);
-    //         console.log(FavJson);
-    //         $("#favTypesInput").tagsinput({
-    //             typeahead: {
-    //                 source: function (query) {
-    //                     return FavJson;
-    //                 },
-    //             },
-    //         });
+
+    // var favTypes = new Bloodhound({
+    //     datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+    //     queryTokenizer: Bloodhound.tokenizers.whitespace,
+    //     prefetch: {
+    //         url: location.protocol + "//" + location.host + "/getfavtypes/",
+    //         cache: false,
+    //         filter: function (list) {
+    //             return $.map(list, function (favourite_food) {
+    //                 return { name: favourite_food };
+    //             });
+    //         },
     //     },
     // });
-    // document.getElementById("favTypesInput").addEventListener("change", () => {
-    //     $("favTypesInput").tagsinput("items");
+    // favTypes.initialize();
+
+    // $("#favTypesInput").tagsinput({
+    //     typeaheadjs: {
+    //         name: "favtype",
+    //         displayKey: "name",
+    //         valueKey: "name",
+    //         source: favTypes.ttAdapter(),
+    //     },
     // });
 
-    var favTypes = new Bloodhound({
+    var citynames = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: {
             url: location.protocol + "//" + location.host + "/getfavtypes/",
-            cache: false,
             filter: function (list) {
-                return $.map(list, function (favourite_food) {
-                    return { name: favourite_food };
+                return $.map(list, function (cityname) {
+                    return { name: cityname };
                 });
             },
         },
     });
-    favTypes.initialize();
+    citynames.initialize();
 
     $("#favTypesInput").tagsinput({
         typeaheadjs: {
-            name: "favtype",
+            name: "citynames",
             displayKey: "name",
             valueKey: "name",
-            source: favTypes.ttAdapter(),
+            source: citynames.ttAdapter(),
         },
     });
-
-    // elt.tagsinput({
-    //     itemValue: "value",
-    //     itemText: "text",
-    //     typeaheadjs: {
-    //         name: "favTypes",
-    //         displayKey: "text",
-    //         source: favTypes.ttAdapter(),
-    //     },
-    // });
 });

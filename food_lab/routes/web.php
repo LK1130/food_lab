@@ -213,6 +213,9 @@ Route::group(['middleware' => ['checkAdmin']], function () {
 //_________________________________Customer Routes_________________________
 
 Route::group(['middleware' => ['checkMaintenance']], function () {
+
+    //For Customer Cart Count
+    Route::post('/cartCount',[CustomerController::class,'cartCount']);
   /*
      * For customer home page
     */
@@ -228,6 +231,10 @@ Route::group(['middleware' => ['checkMaintenance']], function () {
     */
   Route::get('/delivery', [CustomerController::class, 'deliveryDetails']);
 
+  /*
+    * For favtypess
+    */
+  Route::get('/getfavtypes', [CustomerController::class, 'tagsFavType']);
   // check Customer id
   Route::group(['middleware' => ['checkCustomerId']], function () {
 

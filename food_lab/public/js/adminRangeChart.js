@@ -21,7 +21,7 @@ let coinDaily;
 //     }
 // }
 // checkTable();
-
+rangeChart123();
 document.getElementById('rangeSearchSubmit').addEventListener('click', (e) => {
         e.preventDefault();
         $.ajaxSetup({
@@ -40,17 +40,23 @@ document.getElementById('rangeSearchSubmit').addEventListener('click', (e) => {
             url: "/rangeChart",
             data: { data: date },
             success: function(res) {
-                // orderArray = JSON.parse(res[3]);
-                // coinArray = JSON.parse(res[1]);
-                // orderDaily = JSON.parse(res[2]);
-                // coinDaily = JSON.parse(res[0]);
+                // console.log(res);
+                orderArray = res[3];
+                coinArray = res[1];
+                orderDaily = res[2];
+                coinDaily = res[0];
+                rangeChart123();
+                console.log(orderArray);
+                console.log(coinArray);
+                console.log(res[3]);
+                console.log(res[1]);
                 let totalOrder = 0,
                     totalCoin = 0;
                 for (let i = 0; i < res[3].length; i++) {
                     totalOrder += res[3][i];
                 }
                 for (let x = 0; x < res[1].length; x++) {
-                    totalCoin += res[1][i];
+                    totalCoin += res[1][x];
                 }
                 if ($('#orderRow').length != 0) {
                     $('#orders').empty();
@@ -85,6 +91,8 @@ document.getElementById('rangeSearchSubmit').addEventListener('click', (e) => {
      * Update:cherry(2022/01/14)
      * This function is used to show searching Order list with chart using apex chart.
      */
+
+    function rangeChart123(){
 var options = {
     series: [{
         name: "Order Transaction",
@@ -155,6 +163,8 @@ chart.render();
  * Update:cherry(2022/01/14)
  * This function is used to show searching Coin lists with Chart using apex chart.
  */
+
+
 var options1 = {
     series: [{
         name: "Coin",
@@ -218,4 +228,4 @@ var options1 = {
     }
 };
 var chart1 = new ApexCharts(document.getElementById("chart1"), options1);
-chart1.render();
+chart1.render();}

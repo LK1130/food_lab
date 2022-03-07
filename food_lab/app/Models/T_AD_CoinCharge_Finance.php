@@ -49,7 +49,7 @@ class T_AD_CoinCharge_Finance extends Model
         $current = Carbon::now()->year;
         $coin = T_AD_CoinCharge_Finance::select(
             DB::raw('year(created_at) as year'),
-            DB::raw('month(created_at) as month'),
+            DB::raw('monthname(created_at)as month'),
             DB::raw('sum(amount) as totalAmount'),
         )
             ->where(DB::raw('year(created_at)'), $current)

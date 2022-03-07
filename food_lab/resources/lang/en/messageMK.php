@@ -70,5 +70,12 @@ return [
     'submit' => 'Submit',
     'contactForm' => 'Contact Form',
     'Details' => 'Details',
-    'close' => 'Close'
+    'close' => 'Close',
+    'orderComplete' => 'Your order has successfully completed!',
+    'ok' => 'OK',
+    'confirm' => 'Are you sure? You want to buy this.',
+    'no' => 'NO',
+    'yes' => 'Yes',
+    'notEnough' => 'Doesn\'t enuogh Coin .',
+    'moreCoin' => 'Please Buy more Coin.'
 ];

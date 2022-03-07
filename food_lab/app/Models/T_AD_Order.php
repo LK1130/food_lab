@@ -215,10 +215,11 @@ class T_AD_Order extends Model
         ]);
 
         $current = Carbon::now()->year;
+
         $order = T_AD_Order::select(
 
             DB::raw('year(order_date) as year'),
-            DB::raw('month(order_date) as month'),
+            DB::raw('monthname(order_date) as month'),
             DB::raw('count(id) as totalorder'),
         )
             ->where(DB::raw('year(order_date)'), $current)
@@ -400,7 +401,7 @@ class T_AD_Order extends Model
         DB::transaction(function () use ($id, $township, $products, $gCoin, $gCash, $phone) {
             $tAdOrder = new T_AD_Order();
             $tAdOrder->customer_id = $id;
-            $tAdOrder->payment = 0;
+            $tAdOrder->payment = $gCoin == 0 ? 1 : 0;
             $tAdOrder->township_id = $township;
             $tAdOrder->ph_number = $phone;
             $tAdOrder->grandtotal_coin = $gCoin;
@@ -408,7 +409,6 @@ class T_AD_Order extends Model
             $tAdOrder->order_status = 1;
             $tAdOrder->order_date =  date('Y-m-d');
             $tAdOrder->order_time = date('H:i:s');
-            $tAdOrder->last_control_by = 0;
             $tAdOrder->save();
 
             foreach ($products as $product) {
@@ -420,11 +420,15 @@ class T_AD_Order extends Model
                 $tAdOrderDetail->total_cash = $product['cash'];
                 if (array_key_exists('value', $product) == true) {
                     $tAdOrderDetail->note = json_encode($product['value']);
-                } else {
-                    $tAdOrderDetail->note = '';
                 }
                 $tAdOrderDetail->save();
             }
+
+            $mAdTrack = new M_AD_Track();
+            $mAdTrack->title = 'REQUESTED';
+            $mAdTrack->detail = 'Your order is pending';
+            $mAdTrack->order_id = $tAdOrder->id;
+            $mAdTrack->save();
         });
         Log::channel('customerlog')->info('T_AD_Order Model', [
             'end customerOrder'
