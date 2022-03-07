@@ -54,7 +54,7 @@
                     <textarea class="controlForm" disabled>{{ $deliInfo->address3}} , {{ $deliInfo->township_name }} , {{ $deliInfo->state_name }}</textarea>
 
                     <p class="fs-6 text-start text-danger">click this button to change name and address.
-                        <a href="/" class="btn btn-warning btn-sm"> User Profile</a></a>
+                        <a href="/editprofile" class="btn btn-warning btn-sm"> User Profile</a></a>
                     </p>
 
                 </div>

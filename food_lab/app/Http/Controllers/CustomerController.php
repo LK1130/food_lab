@@ -574,7 +574,7 @@ class CustomerController extends Controller
             Log::channel('customerlog')->info('Customer Controller', [
                 'end verifyLink'
             ]);
-            return redirect('/login');
+            return redirect('/signin');
         }
     }
 
