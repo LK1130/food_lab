@@ -53,7 +53,7 @@
             </div>
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.coin') }}</label>
-                <p class="  titleInfo ms-auto">{{ $track->total_coin }} <i class="fas fa-coins pe-2 coins"></i></p>
+                <p class="  titleInfo ms-auto"> <i class="fas fa-coins pe-2 coins"></i> {{ $track->total_coin }}</p>
             </div>
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital me-auto  ms-1">{{ __('messageZY.status') }}</label>

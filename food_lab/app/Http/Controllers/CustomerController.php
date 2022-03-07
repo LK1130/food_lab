@@ -49,6 +49,7 @@ class CustomerController extends Controller
         ]);
 
 
+
         $recomProducts = [];
 
         if (session()->has('customerId')) {
@@ -99,13 +100,14 @@ class CustomerController extends Controller
      * Prarameter : no
      * return : cart count
      * */
-    public  function  cartCount(){
+    public  function  cartCount()
+    {
         Log::channel('customerlog')->info('Customer Controller', [
             'Start cartCount'
         ]);
 
         $count = 0;
-        if(session()->has('cart')){
+        if (session()->has('cart')) {
             $count = count(session('cart'));
         }
 

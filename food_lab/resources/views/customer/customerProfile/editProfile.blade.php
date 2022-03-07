@@ -197,7 +197,7 @@
                         </div> --}}
                         <div class="InputParent" id="favType2">
                             <input type="text" value="{{ $user->fav_type }}" name="favtype" id="favTypesInput"
-                                data-role="tagsinput">
+                                data-role="tagsinput" multiple onkeydown="return event.key == 'Enter';">
                         </div>
                     </div>
                     <div class="d-flex  me-3 ms-3 mt-0 mb-1 infos">
