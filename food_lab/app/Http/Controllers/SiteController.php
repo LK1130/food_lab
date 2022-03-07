@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class SiteController extends Controller
 {
+
     public function siteManage()
     {
         Log::channel('adminlog')->info("SiteController", [

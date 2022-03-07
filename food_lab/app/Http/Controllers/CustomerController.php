@@ -49,6 +49,7 @@ class CustomerController extends Controller
         ]);
 
 
+
         $recomProducts = [];
 
         if (session()->has('customerId')) {

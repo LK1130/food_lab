@@ -135,7 +135,7 @@ class SalesController extends Controller
         ]);
         // Get Coin Yeatly Data From T_AD_CoinCharge_Finance Model //
         $T_AD_CoinCharge_Finance = new T_AD_CoinCharge_Finance();
-        $coinList = $T_AD_CoinCharge_Finance->coinMonthly();
+        $coinList = $T_AD_CoinCharge_Finance->coinYearly();
         // Senting yearlyy coin data to yearlyChart.js
         $coinArray = [];
         foreach ($coinList as $key => $value) {
@@ -148,7 +148,7 @@ class SalesController extends Controller
 
         // Get Order Yearly Data From T_AD_Order Model //
         $T_AD_Order = new T_AD_Order();
-        $orderList =  $T_AD_Order->orderMonthly();
+        $orderList =  $T_AD_Order->orderYearly();
         // Senting yearly order data to yearlyChart.js
         $orderArray = [];
         foreach ($orderList as $key => $value) {

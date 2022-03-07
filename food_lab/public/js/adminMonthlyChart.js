@@ -25,7 +25,7 @@ var options = {
       show:true
     }
   },
-  colors: ['#77B6EA'],
+  colors: ['#d3a1a1'],
   dataLabels: {
     enabled: true,
   },
@@ -39,7 +39,7 @@ var options = {
   grid: {
     borderColor: '#e7e7e7',
     row: {
-      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+      colors: ['#c4c4c4', 'transparent'], // takes an array which will be repeated on columns
       opacity: 0.5,
     },
   },
@@ -74,7 +74,9 @@ var options = {
      * Update:
      * This function is used to show Monthly Coin Chart using apex chart.
      */
-var options1 = {
+
+
+  var options1 = {
     series: [
       {
         name: "Coin",
@@ -82,27 +84,27 @@ var options1 = {
       }
     ],
     chart: {
-    height:400,
-    type: 'line',
-    dropShadow: {
-      enabled: true,
-      color: '#000',
-      top: 18,
-      left: 7,
-      blur: 10,
-      opacity: 0.2
-    },
+      height:400,
+      type: 'line',
+      dropShadow: {
+        enabled: true,
+        color: '#000',
+        top: 18,
+        left: 7,
+        blur: 10,
+        opacity: 0.5
+      },
       toolbar: {
-        show: true
+        show:true
       }
     },
-    colors: ['#ffa600'],
+    colors: ['#d3a1a1'],
     dataLabels: {
       enabled: true,
-    },
-    stroke: {
-      curve: 'smooth'
-    },
+  },
+  stroke: {
+    curve: 'smooth'
+  },
     title: {
       text: 'Monthly Coin Sales',
       align: 'left'
@@ -110,14 +112,15 @@ var options1 = {
     grid: {
       borderColor: '#e7e7e7',
       row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-        opacity: 0.5
+        colors: ['#c4c4c4', 'transparent'], // takes an array which will be repeated on columns
+        opacity: 0.5,
       },
     },
     markers: {
-      size: 1
+      size: 1,
     },
     xaxis: {
+
       categories: coinMonthly , // to show months in x-axis
       title: {
         text: 'Months'
@@ -129,16 +132,14 @@ var options1 = {
       },
       min: 0
     },
-    legend: {
-      position: 'bottom',
-      horizontalAlign: 'right',
-      floating: true,
-      offsetY: -25,
-      offsetX: -5
-    }
+     legend: {
+    position: 'bottom',
+    horizontalAlign: 'right',
+    floating: true,
+    offsetY: -25,
+    offsetX: -5
+  }
 };
   
   var chart1 = new ApexCharts(document.getElementById("chart1"), options1);
   chart1.render();
-
-

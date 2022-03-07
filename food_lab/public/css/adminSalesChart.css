@@ -108,7 +108,7 @@
     width: 100%;
     height: 80%;
     margin-top: 2em;
-    margin-left:3em;
+    margin-left:2em;
     display: flex;
     flex-direction: row;
 }
@@ -142,13 +142,14 @@
         margin-top: 1.5em;
         display: flex;
         flex-direction: column;
+        margin-left: 2em;
     }
     #betweenSymbol{
         margin-left:4.5em;
     }
     #rangeSearchSubmit{
-       margin-top:2em;
-       margin-left: 5.5em;
+       margin-top:5em;
+       margin-left: 6em;
     }
     #saleCaption{
         margin-top: 1.5em;
@@ -158,8 +159,11 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-
         margin-bottom: 10%;
-        
     }
+    #lineChart1{
+        margin-left:2rem;
+        margin-top: 1em;
+    }
+
 }

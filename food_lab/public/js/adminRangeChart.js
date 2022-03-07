@@ -99,6 +99,7 @@ var options = {
         data: orderArray
     }, ],
     chart: {
+        width:500,
         height: 400,
         type: 'line',
         dropShadow: {
@@ -113,7 +114,7 @@ var options = {
             show: true
         }
     },
-    colors: ['#77B6EA'],
+    colors: ['#d3a1a1'],
     dataLabels: {
         enabled: true,
     },
@@ -127,7 +128,7 @@ var options = {
     grid: {
         borderColor: '#e7e7e7',
         row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            colors: ['#c4c4c4', 'transparent'], // takes an array which will be repeated on columns
             opacity: 0.5
         },
     },
@@ -170,6 +171,7 @@ var options1 = {
         data: coinArray
     }],
     chart: {
+        width:500,
         height: 400,
         type: 'line',
         dropShadow: {
@@ -184,7 +186,7 @@ var options1 = {
             show: true
         }
     },
-    colors: ['#ffa600'],
+    colors: ['#d3a1a1'],
     dataLabels: {
         enabled: true,
     },
@@ -198,7 +200,7 @@ var options1 = {
     grid: {
         borderColor: '#e7e7e7',
         row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            colors: ['#c4c4c4', 'transparent'], // takes an array which will be repeated on columns
             opacity: 0.5
         },
     },

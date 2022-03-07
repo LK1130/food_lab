@@ -84,7 +84,7 @@ class ProductController extends Controller
 
         $request->validate([
             'pname' => 'required',
-            'coin' => 'required|min:0',
+            'coin' => 'required|numeric|gt:0',
             'photo1' => 'required||max:51200',
             'photo2' => 'max:51200',
             'photo3' => 'max:51200',
@@ -286,7 +286,7 @@ class ProductController extends Controller
 
         $request->validate([
             'pname' => 'required',
-            'coin' => 'required|min:0',
+            'coin' => 'required|numeric|gt:0',
     
         ]);
 

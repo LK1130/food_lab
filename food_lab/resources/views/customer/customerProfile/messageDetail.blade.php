@@ -65,7 +65,7 @@
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital  me-auto">{{ __('messageZY.rqcoin') }}</label>
 
-                <p class=" titleInfo  ">{{ $message->request_coin }} <i class="fas fa-coins pe-2 coins"></i></p>
+                <p class=" titleInfo  "> <i class="fas fa-coins pe-2 coins"></i> {{ $message->request_coin }}</p>
             </div>
             <div class="d-flex flex-row justify-content-center roe ms-3 align-center">
                 <label for="detailTital" class="detailTital me-auto ">{{ __('messageZY.requestedat') }}</label>
